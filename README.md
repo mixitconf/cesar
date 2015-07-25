@@ -10,13 +10,14 @@ The project lifecycle is managed with [gradle](https://gradle.org/). You don't n
 * [client](client/README.md) UI
 * [server](server/README.md) Backend
 
-## Launche the webapp
+## Launch the webapp
 
 This project uses [Spring Boot](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/). To launch the webapp you can use this command
 ```
 ./gradlew bootRun
 ```
 , start a web browser and visit [http://localhost:8080](http://localhost:8080) 
+
 ## Licence
 
 The project is open source on the MIT License (MIT)
@@ -40,3 +41,13 @@ The project is open source on the MIT License (MIT)
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
+    
+## Working with the code
+
+You have to clone the main project
+
+```
+git clone https://github.com/mix-it/cesar.git
+```
+
+After you just have to build the project `./gradlew build`. By default we don't commit any metadata linked to an IDE but all of us use IntelliJ Idea. You can contribute by [Pull requests](https://help.github.com/articles/using-pull-requests/)
