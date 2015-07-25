@@ -6,5 +6,4 @@ flyway {
     user = 'sa'
 }
 
-clean.dependsOn flywayClean
 jar.dependsOn flywayMigrate
