@@ -1,0 +1,10 @@
+/*******************************************************************************************
+ *                              gradle file : COMMON
+ ******************************************************************************************/
+flyway {
+    url = 'jdbc:h2:file:../server/build/cesar'
+    user = 'sa'
+}
+
+clean.dependsOn flywayClean
+jar.dependsOn flywayMigrate

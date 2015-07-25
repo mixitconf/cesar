@@ -1,0 +1,97 @@
+/*******************************************************************************************
+ *                              gradle file : ROOT
+ ******************************************************************************************/
+group 'org.mixit'
+version '1.0-SNAPSHOT'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+
+buildscript {
+    ext.springRepoM = 'http://repo.spring.io/libs-milestone'
+    ext.springRepo = 'http://repo.spring.io/libs-release-remote'
+
+    ext.vAssertJ = '3.1.0'
+    ext.vGuava = '18.0'
+    ext.vH2 = '1.3.170'
+    ext.vJava = '1.8'
+    ext.vJunit = '4.12'
+    ext.vFlyway = '3.2.1'
+    ext.vMockito = '1.10.19'
+    ext.vNodePlugin = '0.10'
+    ext.vSl4j = '1.7.12'
+    ext.vSpringBoot = '1.3.0.M2'
+    ext.vSpringLoaded = '1.2.4.RELEASE'
+
+
+    repositories {
+        maven { url springRepoM }
+        maven { url springRepo }
+    }
+
+    dependencies {
+        classpath "com.moowork.gradle:gradle-gulp-plugin:${vNodePlugin}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${vSpringBoot}"
+        classpath "org.springframework:springloaded:${vSpringLoaded}"
+        classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
+
+        classpath "com.h2database:h2:${vH2}"
+    }
+}
+
+
+/*******************************************************************************************
+ * The different plugins used in submodules and dependencies are defined here
+ ******************************************************************************************/
+
+//Default IDE is IntelliJ and we use the jar packaging
+configure(allprojects) {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    targetCompatibility = vJava
+    sourceCompatibility = vJava
+}
+
+//We use gulp to manage the webapp
+configure([ project(':client')]) {
+    apply plugin: 'com.moowork.node'
+}
+
+//Flyway is used to manage the database
+configure([ project(':common')]) {
+    apply plugin: 'org.flywaydb.flyway'
+}
+
+//Uses Spring Boot
+configure([ project(':server')]) {
+    apply plugin: 'spring-boot'
+
+    repositories {
+        maven { url springRepo }
+    }
+
+    dependencies {
+        compile project(':common')
+        compile project(':client')
+
+        compile "org.springframework.boot:spring-boot-starter-web:${vSpringBoot}"
+        compile "org.springframework.boot:spring-boot-starter-hateoas:${vSpringBoot}"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa:${vSpringBoot}"
+        compile "com.google.guava:guava:${vGuava}"
+        compile "org.slf4j:slf4j-api:${vSl4j}"
+        compile "com.h2database:h2:${vH2}"
+
+        testCompile "junit:junit:${vJunit}"
+        testCompile "org.assertj:assertj-core:${vAssertJ}"
+        testCompile "org.mockito:mockito-core:${vMockito}"
+        testCompile "org.springframework:spring-test"
+
+    }
+
+    configurations {
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+        all*.exclude group: 'log4j', module: 'log4j'
+    }
+}

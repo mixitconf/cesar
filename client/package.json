@@ -1,0 +1,47 @@
+{
+  "name": "cesar",
+  "description": "node.js packages for cesar UI.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mix-it/cesar.git"
+  },
+  "dependencies": {
+    "angular": "^1.4.3",
+    "angular-mocks": "^1.4.3",
+    "font-awesome": "^4.3.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.8.0",
+    "connect-modrewrite": "^0.8.1",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^1.0.0",
+    "gulp-html-replace": "^1.5.1",
+    "gulp-if": "^1.2.5",
+    "gulp-jshint": "^1.11.2",
+    "gulp-less": "^3.0.3",
+    "gulp-ng-annotate": "^1.0.0",
+    "gulp-ng-html2js": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "jasmine-core": "^2.3.4",
+    "jshint-stylish": "^2.0.1",
+    "karma": "^0.13.3",
+    "karma-cli": "^0.1.0",
+    "karma-coverage": "^0.4.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-junit-reporter": "^0.3.2",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "merge-stream": "^0.1.8",
+    "phantomjs": "^1.9.17",
+    "serve-static": "^1.10.0",
+    "through2": "^2.0.0"
+  },
+  "scripts": {
+    "build": "gulp build"
+  }
+}

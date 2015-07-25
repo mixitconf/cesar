@@ -1,0 +1,3 @@
+rootProject.name = 'cesar'
+
+include 'common', 'client', 'server'

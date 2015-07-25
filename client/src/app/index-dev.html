@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="cesar" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mix-IT</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- build:css -->
+    <link rel="stylesheet" href="css/main.css"/>
+    <!-- endbuild -->
+
+    <!-- build:vendors -->
+    <script src="/js/vendors.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js -->
+    <script src="/js/app.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:e2e -->
+    <!-- endbuild -->
+</head>
+<body ng-cloak>
+    <img src="img/logo-mixit.png">
+
+
+    <test-directive></test-directive>s
+    <i class="fa fa-question-circle"></i>
+
+    <br>
+    <div ng-controller="MenuCtrl as ctrl">
+        {{ctrl.welcome}}
+
+        <h2>The next speakers</h2>
+        <ul>
+            <li ng-repeat="speaker in ctrl.speakers">{{speaker.firstname}} {{speaker.lastname}}</li>
+        </ul>
+    </div>
+
+</body>
+</html>

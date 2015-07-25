@@ -1,0 +1,13 @@
+/*******************************************************************************************
+ *                              gradle file : SERVER
+ ******************************************************************************************/
+springBoot {
+    mainClass = 'org.mixit.cesar.CesarApplication'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
