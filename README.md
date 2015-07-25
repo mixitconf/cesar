@@ -1,6 +1,10 @@
+![Travis CI](https://travis-ci.org/mix-it/cesar.svg?branch=master)
+
 # Cesar
 
 Cesar est un projet permettant de générer une application permettant de gérer une conférence informatique. Cesar a été développée dans le cadre de la conférence [Mix-IT](http://www.mix-it.fr/)
+
+![Mix-IT](client/src/app/assets/logo/logo-mixit.png)
 
 The project lifecycle is managed with [gradle](https://gradle.org/). You don't need to install Gradle on your host because this project use the [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).  
 
