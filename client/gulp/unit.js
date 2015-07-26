@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var karma = require('karma').Server;
+var coveralls = require('gulp-coveralls');
+
 module.exports = function(gulp, config) {
 
   require('./build.js')(gulp, config);
@@ -13,6 +15,13 @@ module.exports = function(gulp, config) {
       singleRun: true
     }, done).start();
   });
+
+  gulp.task('test:coveralls', ['test'], function (done) {
+    gulp.src('.tmp/reports/coverage/**/lcov.info')
+      .pipe(coveralls());
+  });
+
+
 
   /**
    * unit tests in autowatch mode

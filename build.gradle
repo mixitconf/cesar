@@ -36,6 +36,7 @@ buildscript {
         classpath "org.springframework:springloaded:${vSpringLoaded}"
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
 
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
         classpath "com.h2database:h2:${vH2}"
     }
 }
@@ -67,6 +68,8 @@ configure([ project(':common')]) {
 //Uses Spring Boot
 configure([ project(':server')]) {
     apply plugin: 'spring-boot'
+    apply plugin: 'jacoco'
+    apply plugin: 'com.github.kt3k.coveralls'
 
     repositories {
         maven { url springRepo }
@@ -87,11 +90,11 @@ configure([ project(':server')]) {
         testCompile "org.assertj:assertj-core:${vAssertJ}"
         testCompile "org.mockito:mockito-core:${vMockito}"
         testCompile "org.springframework:spring-test"
-
     }
 
     configurations {
         all*.exclude group: 'commons-logging', module: 'commons-logging'
         all*.exclude group: 'log4j', module: 'log4j'
     }
+
 }
