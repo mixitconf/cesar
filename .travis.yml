@@ -6,8 +6,3 @@ jdk:
 slack: mixit16:qrDQ2JzD6cgLcyc9JPpHjzmN
 notifications:
   email: false
-after_success:
-  - ./gradlew jacocoTestReport coveralls
-env:
-  global:
-    - COVERALLS_REPO_TOKEN=e08O3Ek9UcyTcBgS3J8rFIuBybTwZC4Se
