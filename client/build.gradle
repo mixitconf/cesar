@@ -21,11 +21,4 @@ task npmBuild(dependsOn: npmInstall, type: NpmTask) {
     args = ['run', 'default']
 }
 
-task coveralls(dependsOn: npmInstall, type: NpmTask) {
-    inputs.dir "src"
-    inputs.file "gulpfile.js"
-    outputs.dir "build"
-    args = ['run', 'test:coveralls']
-}
-
 jar.dependsOn npmBuild

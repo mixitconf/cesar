@@ -1,5 +1,5 @@
 ![Travis CI](https://travis-ci.org/mix-it/cesar.svg?branch=master)
-<a href='http://coveralls.io/github/mix-it/cesar?branch=master'><img src='http://coveralls.io/repos/mix-it/cesar/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+
 # Cesar
 
 Cesar est un projet permettant de générer une application permettant de gérer une conférence informatique. Cesar a été développée dans le cadre de la conférence [Mix-IT](http://www.mix-it.fr/)
