@@ -89,9 +89,10 @@ module.exports = function(gulp, config) {
    * Compiles css
    */
   gulp.task('bundle:css', function () {
-    return gulp.src(paths.less)
+    return gulp.src(paths.less.main)
       .pipe(less())
       .pipe(replace('node_modules/font-awesome/less/font-awesome.less', 'fonts'))
+      .pipe(replace('font/material-design-icons', 'fonts/material-design-icons'))
       .pipe(gulp.dest(paths.build.dev + '/css'));
   });
 
@@ -164,7 +165,7 @@ module.exports = function(gulp, config) {
    * Index
    */
   gulp.task('bundle:index', function () {
-    return gulp.src(paths.index)
+    return gulp.src(paths.html)
       .pipe(gulp.dest(paths.build.dev));
   });
 

@@ -4,19 +4,12 @@ module.exports = function(gulp, config) {
 
   var paths = config.paths;
 
-  /**
-   * Index file
-   */
-  gulp.task('index:dev', function () {
-    return gulp.src('app/index.html')
-      .pipe(gulp.dest(config.paths.dev));
-  });
 
   gulp.task('watch', function() {
     gulp.watch(paths.js.app, ['bundle:js']);
     gulp.watch([paths.templates], ['bundle:js']);
-    gulp.watch([paths.index], ['bundle:index']);
-    gulp.watch(paths.less, ['bundle:css']);
+    gulp.watch([paths.html], ['bundle:index']);
+    gulp.watch(paths.less.path, ['bundle:css']);
   });
 
   gulp.task('dev', ['clean', 'watch'], function() {
