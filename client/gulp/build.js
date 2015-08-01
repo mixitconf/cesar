@@ -36,7 +36,7 @@ module.exports = function(gulp, config) {
   var paths = config.paths;
   var timestamp = config.timestamp;
 
-  gulp.task('build', ['jshint', 'dist:css', 'dist:js', 'dist:vendors', 'dist:font', 'dist:images', 'dist:favicon', 'dist:index']);
+  gulp.task('build', ['clean', 'ddescriber', 'jshint', 'dist:css', 'dist:js', 'dist:vendors', 'dist:font', 'dist:images', 'dist:favicon', 'dist:index', 'test']);
 
   gulp.task('bundle', ['bundle:vendors', 'bundle:js', 'bundle:css', 'bundle:font', 'bundle:images', 'bundle:favicon', 'bundle:index']);
 
