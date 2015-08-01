@@ -73,8 +73,6 @@ configure([ project(':server')]) {
     }
 
     dependencies {
-        compile project(':common')
-        compile project(':client')
 
         compile "org.springframework.boot:spring-boot-starter-web:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-hateoas:${vSpringBoot}"

@@ -1,6 +1,11 @@
 /*******************************************************************************************
  *                              gradle file : SERVER
  ******************************************************************************************/
+dependencies {
+    compile project(':common')
+    compile project(':client')
+}
+
 springBoot {
     mainClass = 'org.mixit.cesar.CesarApplication'
 }
