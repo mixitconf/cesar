@@ -2,28 +2,32 @@
  *                              gradle file : ROOT
  ******************************************************************************************/
 group 'org.mixit'
-version '1.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
 }
 
 buildscript {
-    ext.springRepoM = 'http://repo.spring.io/libs-milestone'
-    ext.springRepo = 'http://repo.spring.io/libs-release-remote'
+    ext {
+        springRepoM = 'http://repo.spring.io/libs-milestone'
+        springRepo = 'http://repo.spring.io/libs-release-remote'
 
-    ext.vAssertJ = '3.1.0'
-    ext.vGuava = '18.0'
-    ext.vH2 = '1.3.170'
-    ext.vJava = '1.8'
-    ext.vJunit = '4.12'
-    ext.vFlyway = '3.2.1'
-    ext.vMockito = '1.10.19'
-    ext.vNodePlugin = '0.10'
-    ext.vSl4j = '1.7.12'
-    ext.vSpringBoot = '1.3.0.M2'
-    ext.vSpringLoaded = '1.2.4.RELEASE'
-
+        vAssertJ = '3.1.0'
+        vDbsetup = '1.6.0'
+        vGuava = '18.0'
+        vH2 = '1.3.170'
+        vJava = '1.8'
+        vJunit = '4.12'
+        vJUnitParams = '1.0.4'
+        vFlyway = '3.2.1'
+        vMockito = '1.10.19'
+        vNodePlugin = '0.10'
+        vSl4j = '1.7.12'
+        vSpringBoot = '1.3.0.M2'
+        vSpringLoaded = '1.2.4.RELEASE'
+        vSwagger = '2.0.3'
+    }
 
     repositories {
         maven { url springRepoM }
@@ -80,11 +84,15 @@ configure([ project(':server')]) {
         compile "com.google.guava:guava:${vGuava}"
         compile "org.slf4j:slf4j-api:${vSl4j}"
         compile "com.h2database:h2:${vH2}"
+        compile "io.springfox:springfox-swagger2:${vSwagger}"
+        compile "io.springfox:springfox-swagger-ui:${vSwagger}"
 
         testCompile "junit:junit:${vJunit}"
+        testCompile "pl.pragmatists:JUnitParams:${vJUnitParams}"
         testCompile "org.assertj:assertj-core:${vAssertJ}"
         testCompile "org.mockito:mockito-core:${vMockito}"
         testCompile "org.springframework:spring-test"
+        testCompile "com.ninja-squad:DbSetup:${vDbsetup}"
     }
 
     configurations {
