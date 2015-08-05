@@ -58,8 +58,8 @@ gulp.task('serve', function() {
   gulp.start('dev');
 });
 
-gulp.task('default', ['clean', 'ddescriber'], function() {
-  gulp.start(['test', 'build']);
+gulp.task('default', function() {
+  gulp.start(['build']);
 });
 
 module.exports = {

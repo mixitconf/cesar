@@ -17,8 +17,8 @@ jar {
 task npmBuild(dependsOn: npmInstall, type: NpmTask) {
     inputs.dir "src"
     inputs.file "gulpfile.js"
-    outputs.dir "build"
-    args = ['run', 'default']
+    outputs.dir "build/dist"
+    args = ['run', 'build']
 }
 
 jar.dependsOn npmBuild
