@@ -7,26 +7,34 @@ var paths = {
     dist: 'build/dist'
   },
   js: {
-    app : [
+    app: [
       'src/app/js/**/*.js'
     ],
-    vendor : [
-        'node_modules/angular/angular.js'
-      ]
+    vendor: [
+      'node_modules/angular/angular.js',
+      'node_modules/jquery/dist/jquery.js',
+      'node_modules/materialize-css/bin/materialize.js'
+    ]
   },
   templates: [
     'src/app/js/**/*.html'
   ],
-  less: [
-    'src/app/less/main.less'
-  ],
+  less: {
+    main : 'src/app/less/main.less',
+    path : [
+      'src/app/less/*.less'
+    ]
+  },
+  html : 'src/app/*.html',
   index : 'src/app/index-dev.html',
   assets: {
     fonts: [
-      'node_modules/font-awesome/fonts/*.*'
+      'node_modules/font-awesome/fonts/*.*',
+      'node_modules/materialize-css/font/**/*.*',
+      'node_modules/roboto-fontface/fonts/*.*'
     ],
     images: [
-      'src/app/assets/img/*.*',
+      'src/app/assets/img/**/*.*',
       'src/app/assets/logo/*.*'
     ],
     favicon: [
