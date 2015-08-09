@@ -1,7 +1,12 @@
 var gulp = require('gulp');
+//Removes a directory or a file
+var del = require('del');
+//Run in order
+var gulpSequence = require('gulp-sequence');
 
 var paths = {
   build: {
+    all: 'build',
     dev: 'build/dev',
     test: 'build/test',
     dist: 'build/dist'
@@ -56,19 +61,28 @@ var config = {
   timestamp: Date.now()
 };
 
-require('./gulp/build.js')(gulp, config);
+require('./gulp/build-dev.js')(gulp, config);
+require('./gulp/build-dist.js')(gulp, config);
 require('./gulp/unit.js')(gulp, config);
 require('./gulp/e2e.js')(gulp, config);
-require('./gulp/dev.js')(gulp, config);
 require('./gulp/serve.js')(gulp, config);
 
-gulp.task('serve', function() {
-  gulp.start('dev');
-});
-
-gulp.task('default', function() {
+gulp.task('default', function () {
   gulp.start(['build']);
 });
+
+gulp.task('build', function (callback) {
+  gulpSequence('clean', 'build:dist', callback);
+});
+
+gulp.task('serve', function (callback) {
+  gulpSequence('clean', 'serve:dev', callback);
+});
+
+gulp.task('clean', function (done) {
+  del(paths.build.all, done);
+});
+
 
 module.exports = {
   paths: paths

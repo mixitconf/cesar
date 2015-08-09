@@ -4,14 +4,15 @@
 
 Cesar est un projet permettant de générer une application permettant de gérer une conférence informatique. Cesar a été développée dans le cadre de la conférence [Mix-IT](http://www.mix-it.fr/)
 
-![Mix-IT](client/src/app/assets/logo/logo-mixit.png)
+![Mix-IT](client-ng1/src/app/assets/logo/logo-mixit.png)
 
 The project lifecycle is managed with [gradle](https://gradle.org/). You don't need to install Gradle on your host because this project use the [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).  
 
 ## Project organization 
 
 * [common](common/README.md) Common module with database management
-* [client](client/README.md) UI
+* [client-ng1](client-ng1/README.md) UI Angular 1.4.x
+* [client-ng2](client-ng2/README.md) UI Angular 2.0.x
 * [server](server/README.md) Backend
 
 ## Launch the webapp
@@ -20,7 +21,11 @@ This project uses [Spring Boot](http://docs.spring.io/spring-boot/docs/current/r
 ```
 ./gradlew bootRun
 ```
-, start a web browser and visit [http://localhost:8080](http://localhost:8080) 
+, start a web browser and visit [http://localhost:8080](http://localhost:8080). For the moment we have 2 web clients written in Angular 1 and Angular 2. To used the first one you need to define a paramaeter 
+```
+./gradlew bootRun -Pclient=ng1
+```
+
 
 ## Licence
 

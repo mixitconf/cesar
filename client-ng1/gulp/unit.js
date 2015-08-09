@@ -3,12 +3,12 @@ var karma = require('karma').Server;
 
 module.exports = function(gulp, config) {
 
-  require('./build.js')(gulp, config);
+  require('./build-dev.js')(gulp, config);
 
   /**
    * unit tests once and exit
    */
-  gulp.task('test', ['bundle:js', 'bundle:vendors'], function (done) {
+  gulp.task('test', ['build:dev:js', 'build:dev:vendors'], function (done) {
     new karma({
       configFile: __dirname + '/../karma.conf.js',
       singleRun: true
@@ -20,7 +20,7 @@ module.exports = function(gulp, config) {
   /**
    * unit tests in autowatch mode
    */
-  gulp.task('test:watch', ['bundle:js', 'bundle:vendors'], function (done) {
+  gulp.task('test:watch', ['build:dev:js', 'build:dev:vendors'], function (done) {
     new karma({
       configFile: __dirname + '/../karma.conf.js',
       singleRun: false

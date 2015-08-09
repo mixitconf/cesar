@@ -1,9 +1,17 @@
 /*******************************************************************************************
  *                              gradle file : SERVER
  ******************************************************************************************/
+
+
 dependencies {
     compile project(':common')
-    compile project(':client')
+
+    if (project.properties.containsKey("client") && "ng1".equals(client)) {
+        compile project(':client-ng1')
+    }
+    else{
+        compile project(':client-ng2')
+    }
 }
 
 springBoot {
