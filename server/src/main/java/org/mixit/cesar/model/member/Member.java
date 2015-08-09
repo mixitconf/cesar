@@ -1,24 +1,52 @@
-package org.mixit.cesar.model;
+package org.mixit.cesar.model.member;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
+import org.mixit.cesar.model.security.Role;
 
 @Entity
-public class Member implements Comparable<Member> {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Member<T extends Member> implements Comparable<Member> {
+
+    public enum Type {
+        Member,
+        Participant,
+        Sponsor,
+        Staff,
+        Speaker
+    }
+
+    @Transient
+    protected final Set<Role> ROLES = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     /**
      * Internal login : functional key
      */
@@ -59,118 +87,176 @@ public class Member implements Comparable<Member> {
     @Min(0)
     private long nbConsults;
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    public Set<Interest> interests = new TreeSet<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OrderColumn(name = "ordernum")
+    public List<SharedLink> sharedLinks = new LinkedList<>();
+
     /**
      * true if profile is public (visible not connected)
      */
     @NotNull
     private Boolean publicProfile = Boolean.FALSE;
 
+    public Member() {
+        ROLES.add(Role.Member);
+    }
+
+    public boolean hasRole(Role role) {
+        return ROLES.contains(role);
+    }
+
+
     public Long getId() {
         return id;
     }
 
-    public Member setId(Long id) {
+    public T setId(Long id) {
         this.id = id;
-        return this;
+        return (T) this;
+    }
+
+    public Set<Role> getROLES() {
+        return ROLES;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public Member setLogin(String login) {
+    public T setLogin(String login) {
         this.login = login;
-        return this;
+        return (T) this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public Member setEmail(String email) {
+    public T setEmail(String email) {
         this.email = email;
-        return this;
+        return (T) this;
     }
 
     public String getFirstname() {
         return firstname;
     }
 
-    public Member setFirstname(String firstname) {
+    public T setFirstname(String firstname) {
         this.firstname = firstname;
-        return this;
+        return (T) this;
+    }
+
+    public Set<Interest> getInterests() {
+        return interests;
+    }
+
+    public T addInterest(Interest interest) {
+        this.interests.add(interest);
+        return (T) this;
+    }
+
+    public T removeInterest(Interest interest) {
+        this.interests.remove(interest);
+        return (T) this;
+    }
+
+    public T clearInterests() {
+        this.interests.clear();
+        return (T) this;
+    }
+
+    public List<SharedLink> getSharedLinks() {
+        return sharedLinks;
+    }
+
+    public T addSharedLink(SharedLink interest) {
+        this.sharedLinks.add(interest);
+        return (T) this;
+    }
+
+    public T removeSharedLink(SharedLink interest) {
+        this.sharedLinks.remove(interest);
+        return (T) this;
+    }
+
+    public T clearSharedLinks() {
+        this.sharedLinks.clear();
+        return (T) this;
     }
 
     public String getLastname() {
         return lastname;
     }
 
-    public Member setLastname(String lastname) {
+    public T setLastname(String lastname) {
         this.lastname = lastname;
-        return this;
+        return (T) this;
     }
 
     public String getCompany() {
         return company;
     }
 
-    public Member setCompany(String company) {
+    public T setCompany(String company) {
         this.company = company;
-        return this;
+        return (T) this;
     }
 
     public Boolean getTicketingRegistered() {
         return ticketingRegistered;
     }
 
-    public Member setTicketingRegistered(Boolean ticketingRegistered) {
+    public T setTicketingRegistered(Boolean ticketingRegistered) {
         this.ticketingRegistered = ticketingRegistered;
-        return this;
+        return (T) this;
     }
 
     public Instant getRegisteredAt() {
         return registeredAt;
     }
 
-    public Member setRegisteredAt(Instant registeredAt) {
+    public T setRegisteredAt(Instant registeredAt) {
         this.registeredAt = registeredAt;
-        return this;
+        return (T) this;
     }
 
     public String getShortDescription() {
         return shortDescription;
     }
 
-    public Member setShortDescription(String shortDescription) {
+    public T setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
-        return this;
+        return (T) this;
     }
 
     public String getLongDescription() {
         return longDescription;
     }
 
-    public Member setLongDescription(String longDescription) {
+    public T setLongDescription(String longDescription) {
         this.longDescription = longDescription;
-        return this;
+        return (T) this;
     }
 
     public long getNbConsults() {
         return nbConsults;
     }
 
-    public Member setNbConsults(long nbConsults) {
+    public T setNbConsults(long nbConsults) {
         this.nbConsults = nbConsults;
-        return this;
+        return (T) this;
     }
 
     public Boolean getPublicProfile() {
         return publicProfile;
     }
 
-    public Member setPublicProfile(Boolean publicProfile) {
+    public T setPublicProfile(Boolean publicProfile) {
         this.publicProfile = publicProfile;
-        return this;
+        return (T) this;
     }
 
     @Override
