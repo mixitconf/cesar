@@ -1,0 +1,32 @@
+<!-- index.html -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mix-IT</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- build:css -->
+    <link rel="stylesheet" href="css/main.css"/>
+    <!-- endbuild -->
+
+</head>
+<body>
+    I am an Angular 2 application
+
+    <!-- The app component created in app.ts -->
+    <my-app>Loading...</my-app>
+
+    <!-- ES6-related imports -->
+    <script src="lib/traceur-runtime.js"></script>
+    <script src="lib/system-csp-production.js"></script>
+    <script>
+        //configure system loader
+        System.config({defaultJSExtensions: true});
+    </script>
+    <script src="lib/angular2.min.js"></script>
+
+    <script>System.import('js/app');</script>
+</body>
+</html>

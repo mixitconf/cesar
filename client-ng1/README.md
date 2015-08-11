@@ -3,9 +3,10 @@
 This module holds all web resources (Js, CSS, images...). We use several tools for its own build system
 
 * [Node.js and npm](https://nodejs.org/) : downloads all the required JS libraries
-* [Gulp](http://gulpjs.com/) : builds system used to package the project. The process is defined in the main file [gulpfile.js](gulpfile.js) and in all its sub [config files](gup)
+* [Gulp](http://gulpjs.com/) : builds system used to package the project. The process is defined in the main file [gulpfile.old](gulpfile.old) and in all its sub [config files](gup)
 * [Gradle](https://gradle.org/) : builds a web archive which will be deployed in the final webapp
 
+This module use Angular V1
 
 ## Life cycle Gulp
 
@@ -13,7 +14,7 @@ We use gulp to manage the lifecycle of the web applications
 
 To build the project you can lauch `gulp`. By default the tasks `clean`, `test` and `build` are launched
 
-The main tasks are defined in the gulpfile.js and in the subfiles available in `/gulp`
+The main tasks are defined in the gulpfile.old and in the subfiles available in `/gulp`
 
 * `default` : launch tasks `clean`, `test` and `build`
 * `build` : package app for dev and prod

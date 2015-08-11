@@ -1,0 +1,24 @@
+/*******************************************************************************************
+ *                              gradle file : CLIENT
+ ******************************************************************************************/
+node {
+    version = '0.11.10'
+}
+
+jar {
+    from 'build/dist'
+    eachFile { details ->
+        details.path = details.path.startsWith('META-INF') ?: 'static/'+details.path
+    }
+    includeEmptyDirs = false
+
+}
+
+task npmBuild(dependsOn: npmInstall, type: NpmTask) {
+    inputs.dir "src"
+    inputs.file "gulpfile.js"
+    outputs.dir "build/dist"
+    args = ['run', 'build']
+}
+
+jar.dependsOn npmBuild
