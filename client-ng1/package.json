@@ -11,9 +11,8 @@
   "dependencies": {
     "angular": "^1.4.3",
     "angular-mocks": "^1.4.3",
-    "font-awesome": "^4.3.0",
-    "jquery": "^2.1.4",
-    "materialize-css": "^0.96.1",
+    "material-design-icons": "^2.0.0",
+    "material-design-lite": "^1.0.2",
     "roboto-fontface": "^0.4.2"
   },
   "devDependencies": {

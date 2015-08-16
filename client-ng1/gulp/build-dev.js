@@ -35,11 +35,16 @@ module.exports = function(gulp, config) {
     return gulp.src(paths.assets.favicon)
       .pipe(gulp.dest(paths.build.dev));
   });
-  gulp.task('build:dev:css', function () {
+  gulp.task('build:dev:css:vendors', function () {
+    return gulp.src(paths.css)
+      .pipe(concat('vendors.css'))
+      .pipe(gulp.dest(paths.build.dev+ '/css'));
+  });
+  gulp.task('build:dev:css', ['build:dev:css:vendors'], function () {
     return gulp.src(paths.less.main)
       .pipe(less())
-      .pipe(replace('node_modules/font-awesome/less/font-awesome.less', 'fonts'))
-      .pipe(replace('font/material-design-icons', 'fonts/material-design-icons'))
+      .pipe(replace('assets/img', '../img'))
+      .pipe(replace('../../node_modules/material-design-icons/iconfont', '../fonts'))
       .pipe(gulp.dest(paths.build.dev + '/css'));
   });
 
@@ -47,6 +52,7 @@ module.exports = function(gulp, config) {
    * build:dev JS : concats generated templates and javascript files
    */
   gulp.task('build:dev:js', function() {
+
     var tpl = gulp.src(paths.templates)
       .pipe(html2js({
         moduleName: 'cesar.templates',
@@ -81,9 +87,9 @@ module.exports = function(gulp, config) {
   });
 
   gulp.task('watch', function() {
-    gulp.watch(paths.js.app, ['bundle:js']);
-    gulp.watch([paths.templates], ['bundle:js']);
-    gulp.watch([paths.html], ['bundle:index']);
-    gulp.watch(paths.less.path, ['bundle:css']);
+    gulp.watch(paths.js.app, ['build:dev:js']);
+    gulp.watch([paths.templates], ['build:dev:js']);
+    gulp.watch([paths.html], ['build:dev:index']);
+    gulp.watch(paths.less.path, ['build:dev:css']);
   });
 };
