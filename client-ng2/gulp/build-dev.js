@@ -28,7 +28,7 @@ module.exports = function (gulp, config) {
     'build:dev:vendors',
     'build:dev:ng2',
     'build:dev:js',
-    'build:dev:index'
+    'build:dev:html'
   ]);
 
 
@@ -44,10 +44,16 @@ module.exports = function (gulp, config) {
     return gulp.src(paths.assets.favicon)
       .pipe(gulp.dest(paths.build.dev));
   });
-  gulp.task('build:dev:css', function () {
+  gulp.task('build:dev:css:vendors', function () {
+    return gulp.src(paths.css)
+      .pipe(concat('vendors.css'))
+      .pipe(gulp.dest(paths.build.dev+ '/css'));
+  });
+  gulp.task('build:dev:css', ['build:dev:css:vendors'], function () {
     return gulp.src(paths.less.main)
       .pipe(less())
-      .pipe(replace('node_modules/font-awesome/less/font-awesome.less', 'fonts'))
+      .pipe(replace('assets/img', '../img'))
+      .pipe(replace('../../node_modules/material-design-icons/iconfont', '../fonts'))
       .pipe(gulp.dest(paths.build.dev + '/css'));
   });
 
@@ -79,8 +85,8 @@ module.exports = function (gulp, config) {
     return result.js
       .pipe(gulp.dest(paths.build.dev + '/js'));
   });
-  gulp.task('build:dev:index', function () {
-    return gulp.src(paths.index)
+  gulp.task('build:dev:html', function () {
+    return gulp.src(paths.html)
       .pipe(gulp.dest(paths.build.dev));
   });
 

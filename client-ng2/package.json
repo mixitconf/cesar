@@ -32,7 +32,8 @@
   "dependencies": {
     "angular2": "2.0.0-alpha.34",
     "systemjs": "0.18.4",
-    "font-awesome": "^4.3.0",
+    "material-design-icons": "^2.0.0",
+    "material-design-lite": "^1.0.2",
     "roboto-fontface": "^0.4.2"
   },
   "scripts": {

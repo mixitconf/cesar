@@ -14,7 +14,11 @@ var paths = {
   ts: 'src/app/ts/**/*.ts',
   lib: [
     'node_modules/angular2/node_modules/traceur/bin/traceur-runtime.js',
-    'node_modules/systemjs/dist/system-csp-production.js'
+    'node_modules/systemjs/dist/system-csp-production.js',
+    'node_modules/material-design-lite/material.js'
+  ],
+  css : [
+    'node_modules/material-design-lite/material.css'
   ],
   less: {
     main: 'src/app/less/main.less',
@@ -26,7 +30,7 @@ var paths = {
   index: 'src/app/index-dev.html',
   assets: {
     fonts: [
-      'node_modules/font-awesome/fonts/*.*',
+      'node_modules/material-design-icons/iconfont/*.*',
       'node_modules/roboto-fontface/fonts/*.*'
     ],
     images: [

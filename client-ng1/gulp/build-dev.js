@@ -20,7 +20,7 @@ module.exports = function(gulp, config) {
   var paths = config.paths;
   var timestamp = config.timestamp;
 
-  gulp.task('build:dev', ['build:dev:vendors', 'build:dev:js', 'build:dev:css', 'build:dev:font', 'build:dev:images', 'build:dev:favicon', 'build:dev:index']);
+  gulp.task('build:dev', ['build:dev:vendors', 'build:dev:js', 'build:dev:css', 'build:dev:font', 'build:dev:images', 'build:dev:favicon', 'build:dev:html']);
 
 
   gulp.task('build:dev:font', function () {
@@ -81,7 +81,7 @@ module.exports = function(gulp, config) {
       .pipe(gulp.dest(paths.build.dev + '/js'));
   });
 
-  gulp.task('build:dev:index', function () {
+  gulp.task('build:dev:html', function () {
     return gulp.src(paths.html)
       .pipe(gulp.dest(paths.build.dev));
   });
@@ -89,7 +89,7 @@ module.exports = function(gulp, config) {
   gulp.task('watch', function() {
     gulp.watch(paths.js.app, ['build:dev:js']);
     gulp.watch([paths.templates], ['build:dev:js']);
-    gulp.watch([paths.html], ['build:dev:index']);
+    gulp.watch([paths.html], ['build:dev:html']);
     gulp.watch(paths.less.path, ['build:dev:css']);
   });
 };
