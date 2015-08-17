@@ -1,20 +1,23 @@
 /// <reference path="../../../typings/angular2/angular2.d.ts" />
+/// <reference path="components/menu.ts" />
 
 import {Component, View, bootstrap} from 'angular2/angular2';
+import {CesarMenuComponent} from './components/menu';
 
 // Annotation section
 @Component({
-    selector: 'my-app'
+    selector: 'cesar-app'
 })
 @View({
-    template: '<h1>Hello {{ name }}</h1>'
+    templateUrl: 'views/app.html',
+    directives: [CesarMenuComponent]
 })
 // Component controller
-class MyAppComponent {
+class CesarAppComponent {
     name: string;
     constructor() {
         this.name = 'Alice';
     }
 }
 
-bootstrap(MyAppComponent);
+bootstrap(CesarAppComponent);

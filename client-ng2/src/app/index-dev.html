@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- build:cssvendors -->
+    <!-- build:vendorscss -->
     <link rel="stylesheet" href="css/vendors.css"/>
     <!-- endbuild -->
 
@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="css/main.css"/>
     <!-- endbuild -->
 
+    <!-- ES6-related imports -->
+    <script src="lib/material.js"></script>
+
 </head>
 <body>
-    I am an Angular 2 application
-
-    <!-- The app component created in app.ts -->
-    <my-app>Loading...</my-app>
-
-    <a href="test-index.html">Voir l'exemple de page d'accueil</a>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header ">
+        <!-- The app component created in app.ts -->
+        <cesar-app>Loading...</cesar-app>
+    </div>
 
     <!-- ES6-related imports -->
     <script src="lib/material.js"></script>

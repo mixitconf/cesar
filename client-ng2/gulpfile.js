@@ -26,7 +26,7 @@ var paths = {
       'src/app/less/*.less'
     ]
   },
-  html : 'src/app/*.html',
+  html : 'src/app/**/*.html',
   index: 'src/app/index-dev.html',
   assets: {
     fonts: [
