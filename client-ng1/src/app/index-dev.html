@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- index.html -->
 <html ng-app="cesar" lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,378 +7,397 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <!-- build:vendorscss -->
+    <link rel="stylesheet" href="css/vendors.css"/>
+    <!-- endbuild -->
     <!-- build:css -->
     <link rel="stylesheet" href="css/main.css"/>
     <!-- endbuild -->
-
     <!-- build:vendors -->
     <script src="/js/vendors.js"></script>
     <!-- endbuild -->
-
     <!-- build:js -->
     <script src="/js/app.js"></script>
     <!-- endbuild -->
-
     <!-- build:e2e -->
     <!-- endbuild -->
+
 </head>
-<body id="top" class="scrollspy">
+<body>
 
-<div class="navbar-fixed">
-    <nav class="container__background" role="navigation">
-        <div class="nav-wrapper nav">
-            <a href="#"><img src="img/logo-mixit-transparent.svg" alt="Mix-IT"
-                             class="nav__logo hide-on-med-and-down"></a>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header ">
+    <header class="mdl-layout__header">
+        <div class="cesar-layout__header-row mdl-layout__header-row">
+            <div class="cesar__layout-icon mdl-layout-icon">
+                <img src="img/logo-mixit-transparent.svg" alt="Mix-IT">
+            </div>
 
-            <!-- Sub menus not displayed on mobile -->
-            <ul id="dropdown_program" class="dropdown-content nav__dropdown-content">
-                <li><a href="#!">Planning</a></li>
-                <li><a href="#!">Conférences, ateliers</a></li>
-                <li><a href="#!">Ligthning talks</a></li>
-                <li><a href="#!">Mix-Teen</a></li>
-            </ul>
-            <ul id="dropdown_people" class="dropdown-content nav__dropdown-content">
-                <li><a href="#!">Les speakers</a></li>
-                <li><a href="#!">Les sponsors</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Les membres du staff</a></li>
-            </ul>
-            <ul id="dropdown_infos" class="dropdown-content nav__dropdown-content">
-                <li><a href="#!">A propos de Mix-IT</a></li>
-                <li><a href="#!">Venir à la conférence</a></li>
-                <li><a href="#!">FAQ</a></li>
-                <li><a href="#!">Kit multimédia</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Mix-IT 2015</a></li>
-                <li><a href="#!">Mix-IT 2014</a></li>
-                <li><a href="#!">Mix-IT 2013</a></li>
-                <li><a href="#!">Mix-IT 2012</a></li>
-            </ul>
-            <ul id="dropdown_profile" class="dropdown-content nav__dropdown-content">
-                <li><a href="#!">Mes favoris</a></li>
-                <li><a href="#!">Mon compte</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Se déconnecter</a></li>
-            </ul>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
 
-            <!-- Menus for all devices expect mobiles -->
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Actualités</a></li>
-                <li class="nav__dropdown">
-                    <a class="dropdown-button" data-activates="dropdown_program" data-beloworigin="true"
-                       data-constrainwidth="false">Programme&nbsp;<i class="fa fa-caret-down">&nbsp;</i></a>
-                </li>
-                <li class="nav__dropdown">
-                    <a class="dropdown-button" data-activates="dropdown_people" data-beloworigin="true"
-                       data-constrainwidth="false">Participants&nbsp;<i class="fa fa-caret-down"></i></a>
-                </li>
-                <li class="nav__dropdown">
-                    <a class="dropdown-button" data-activates="dropdown_infos" data-beloworigin="true"
-                       data-constrainwidth="false">Informations pratiques&nbsp;<i class="fa fa-caret-down"></i></a>
-                </li>
-                <li class="nav__dropdown nav__profile">
-                    <img src="img/trash/avatar.jpg" alt="" class="circle">
-                    <a class="dropdown-button" data-activates="dropdown_profile" data-beloworigin="true"
-                       data-constrainwidth="false"> Guilaume EHRET&nbsp;<i class="fa fa-caret-down"></i></a>
-                </li>
-
-            </ul>
-
-            <!-- Menus for mobiles -->
-            <ul id="nav-mobile" class="right side-nav ">
-                <li><a href="">Actualités</a></li>
-                <li><a href="#">Programme</a></li>
-                <li><a href="#">Speakers</a></li>
-                <li><a href="#">Informations pratiques</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-
+                <a class="mdl-navigation__link cesar-navigation__link" href="#">Actualités</a>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" id="mdl-navigation__dropdown-prog">Programme&nbsp;<i
+                        class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-prog">
+                    <li class="mdl-menu__item"><a href="#">Planning</a></li>
+                    <li class="mdl-menu__item"><a href="#">Conférences, ateliers</a></li>
+                    <li class="mdl-menu__item"><a href="#">Ligthning talks</a></li>
+                    <li class="mdl-menu__item"><a href="#">Mix-Teen</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link"
+                   id="mdl-navigation__dropdown-participant">Participants&nbsp;<i class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-participant">
+                    <li class="mdl-menu__item"><a href="#!">Les speakers</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Les sponsors</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Les membres du staff</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" id="mdl-navigation__dropdown-info">Informations
+                    pratiques&nbsp;<i class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-info">
+                    <li class="mdl-menu__item"><a href="#!">A propos de Mix-IT</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Venir à la conférence</a></li>
+                    <li class="mdl-menu__item"><a href="#!">FAQ</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Kit multimédia</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2015</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2014</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2013</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2012</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" id="mdl-navigation__dropdown-profile"><img
+                        src="img/trash/avatar.jpg" alt="" style="border-radius: 50%;max-height: 30px"> Guilaume EHRET&nbsp;<i
+                        class="material-icons">keyboard_arrow_down</i>&nbsp;</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-profile">
+                    <li class="mdl-menu__item"><a href="#!">Mes favoris</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mon compte</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Se déconnecter</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
-</div>
-
-<main>
-
-    <div class="section header no-pad-bot">
-        <div class="container">
-            <h1 class="center header__logo z-depth-2">
-                <img src="img/logo-mixit-transparent.svg">
-                <span>revient en <b>avril 2016</b></span>
-            </h1>
-        </div>
+    </header>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Planning</a>
+            <a class="mdl-navigation__link" href="">Conférences, ateliers</a>
+            <a class="mdl-navigation__link" href="">Ligthning talks</a>
+            <a class="mdl-navigation__link" href="">Venir à la conférence</a>
+            <br>
+            <a class="mdl-navigation__link" href="#!">Mes favoris</a>
+            <a class="mdl-navigation__link" href="#!">Mon compte</a>
+            <hr>
+            <a class="mdl-navigation__link" href="#!">Se déconnecter</a>
+        </nav>
     </div>
 
+    <main class="mdl-layout__content">
 
-    <div id="intro" class="section intro">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h2 class="center text_h2">
-                        Une de nos valeurs est la <span class="span_h2">mixité</span> d'un point de vue technologique,
-                        sur les sujets abordés mais
-                        aussi au niveau des participants.</h2>
+        <div class="cesar-section cesar-headband">
+            <div class="cesar-container">
+                <div class="cesar-headband__content mdl-card mdl-shadow--2dp">
+                    <h1>
+                        <img src="img/logo-mixit-transparent.svg"><br>
+                        revient en <b>avril 2016</b>
+                    </h1>
                 </div>
+            </div>
+        </div>
 
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="large intro__image mdi-social-group"></i>
-                        <h5 class="promo-caption">Agilité</h5>
+        <div class="cesar-section cesar-intro">
+            <div class="cesar-container">
+                <h2>
+                    Une de nos valeurs est la <span class="cesar-blink">mixité</span> d'un point de vue technologique,
+                    sur les sujets abordés mais
+                    aussi au niveau des participants.</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                        <div class="cesar-intro__content">
+                            <i class="material-icons cesar-intro__icon">people</i>
+                            <h4>Agilité</h4>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                        <div class="cesar-intro__content">
+                            <i class="material-icons cesar-intro__icon">keyboard_hide</i>
+                            <h4>Développement</h4>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                        <div class="cesar-intro__content">
+                            <i class="material-icons cesar-intro__icon">flash_on</i>
+                            <h4>Innovation</h4>
+                        </div>
                     </div>
                 </div>
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="large intro__image mdi-hardware-keyboard"></i>
-                        <h5 class="promo-caption">Développement</h5>
+                <p class="cesar-text">
+                    Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du
+                    Web et des logiciels d'aujourd'hui et
+                    de demain qui apportons des idées, les réalisent, et les mettent en production. Venez chercher
+                    l'inspiration, les bonnes pratiques, et
+                    les nouveaux outils : vous les trouverez à Mix-IT ! Mais surtout venez rencontrer et échanger
+                    avec d'autres passionnés.
+                </p>
+
+                <p class="cesar-text">
+                    Si vous avez manqué l'édition précédente voici un petit aperçu
+                </p>
+
+                <div class="cesar-intro__video">
+                    <div class="cesar-intro__video-container">
+                        <div class="cesar-intro__video-content">
+                            <object type="text/html" data="https://www.youtube.com/embed/yyuv-sZ7XSk"></object>
+                        </div>
                     </div>
                 </div>
-                <div class="col s12 m4 l4">
-                    <div class="center">
-                        <i class="large intro__image mdi-image-flash-on"></i>
-                        <h5 class="promo-caption">Innovation</h5>
+                <p>&nbsp;</p>
+            </div>
+
+            <div class="cesar-section cesar-speaker">
+
+                <div class="cesar-container">
+                    <h3 class="center">Les speakers 2016 ne sont pas connus mais voici un panel de ceux que nous avons
+                        pu voir
+                        lors des précédentes éditions </h3>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/north.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Dan North</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/fox.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Pamela Fox</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/bakaus.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Paul Bakaus</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/stokke.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Bodil Stokke</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/holman.png" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Zach Holman</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/nitot.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Tristan Nitot</p>
+                            </div>
+                        </div>
+
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/allen.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Dan Allen</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/bortz.jpg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text"> Stéphane Bortzmeyer</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/schneider.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Matti Schneider</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/levy.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Lan Levy</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/pezziardi.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Pierre Pezziardi</p>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__media">
+                                <img src="img/trash/isakova.jpeg" style="width: 100%">
+                            </div>
+                            <div class="mdl-card__title">
+                                <p class="mdl-card__title-text cesar-text">Svetlana Isakova</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cesar-section cesar-info">
+                <div class="cesar-container">
+                    <h2>Mix-IT c'est aussi...</h2>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
+                            <h4>2 jours de conférences et d'ateliers.</h4>
+
+                            <p>Des conférences pour faire des découvertes, des jeux pour apprendre, des ateliers de
+                                développement ou créatifs,
+                                Mix-IT c'est 2 jours intenses de progrès et de rencontres ! La soirée, ouverte à tous,
+                                est aussi le moment idéal pour faire des connaissances
+                                et s'ouvrir aux autres cultures.</p>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
+                            <h4>500 participants, 50 speakers </h4>
+
+                            <p>Afin de garder une dimension conviviale, le nombre de participants est limité à 500. Nous
+                                nous battons pour vous proposer tout
+                                cela à un prix très abordable, pour que tout un chacun puisse en profiter..</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col s12">
-                    <p>
-                        Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du
-                        Web et des logiciels d'aujourd'hui et
-                        de demain qui apportons des idées, les réalisent, et les mettent en production. Venez chercher
-                        l'inspiration, les bonnes pratiques, et
-                        les nouveaux outils : vous les trouverez à Mix-IT ! Mais surtout venez rencontrer et échanger
-                        avec d'autres passionnés.
-                    </p>
+            </div>
 
-                    <p>
-                        Si vous avez manqué l'édition précédente voici un petit aperçu
-                    </p>
-                </div>
-                <div class="col s12 center-align">
+            <div class="cesar-photos">
+                <a href="https://www.flickr.com/photos/132667704@N02/sets/with/72157652095111126" target="_blank"><img
+                        src="img/panel1.jpg"></a>
+            </div>
 
-                    <div class="intro__video">
-                        <div>
-                            <iframe width="854" height="510" src="https://www.youtube.com/embed/yyuv-sZ7XSk"
-                                    frameborder="0" allowfullscreen></iframe>
+            <div class="cesar-section cesar-sponsors">
+                <div class="cesar-container">
+                    <h2>Merci à nos sponsors qui nous permettent de proposer cet évènement</h2>
+
+                    <p class="cesar-text"><b>SPONSOR GOLD</b></p>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <img src="img/sponsors/gold/logo-cgi.jpg">
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <img src="img/sponsors/gold/logo-elao.jpg">
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <img src="img/sponsors/gold/logo-erdf-linky.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col">
+                            <img src="img/sponsors/gold/logo-fiducial.png">
+                        </div>
+                    </div>
+
+                    <p class="cesar-text"><b>SPONSOR SILVER</b></p>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-alfene.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-atlassian.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-cloudbees.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-clusteredit.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-google.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-isr.jpg">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-mozilla.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-od.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-open.jpg">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-osiatis.png">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-redhat.jpg">
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <img src="img/sponsors/silver/logo-serli.png">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="section speaker">
-        <div class="container">
-            <h3 class="center">Les speakers 2016 ne sont pas connus mais voici un panel de ceux que nous avons pu voir
-                lors des précédentes éditions </h3>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/north.jpeg" class="responsive-img"><br/>
-                        Dan North
-                    </p>
-                </div>
 
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/fox.jpeg" class="responsive-img"><br/>
-                        Pamela Fox
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/bakaus.jpeg" class="responsive-img"><br/>
-                        Paul Bakaus
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/stokke.jpeg" class="responsive-img"><br/>
-                        Bodil Stokke
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/holman.png" class="responsive-img"><br/>
-                        Zach Holman
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/nitot.jpeg" class="responsive-img"><br/>
-                        Tristan Nitot
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/allen.jpeg" class="responsive-img"><br/>
-                        Dan Allen
-                    </p>
+        <div class="cesar-footer">
+            <div class="cesar-container">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
+                        <h3>Qui sommes nous ? </h3>
 
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/bortz.jpg" class="responsive-img"><br/>
-                        Stéphane Bortzmeyer
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/schneider.jpeg" class="responsive-img"><br/>
-                        Matti Schneider
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/levy.jpeg" class="responsive-img"><br/>
-                        Lan Levy
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/pezziardi.jpeg" class="responsive-img"><br/>
-                        Pierre Pezziardi
-                    </p>
-                </div>
-                <div class="col s12 m2">
-                    <p class="speaker__content z-depth-1">
-                        <img src="img/trash/isakova.jpeg" class="responsive-img"><br/>
-                        Svetlana Isakova
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="intro section">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h2 class="center text_h2">Mix-IT c'est aussi...</h2>
-                </div>
-
-                <div class="col s6">
-                    <div class="center">
-                        <h5 class="promo-caption">2 jours de conférences et d'ateliers.</h5>
-                        <p class="light center">Des conférences pour faire des découvertes, des jeux pour apprendre, des ateliers de développement ou créatifs,
-                            Mix-IT c'est 2 jours intenses de progrès et de rencontres ! La soirée, ouverte à tous, est aussi le moment idéal pour faire des connaissances
-                            et s'ouvrir aux autres cultures.</p>
+                        <p>
+                            Mix-IT est une association non lucrative, composée essentiellement de bénévole fondée en
+                            2011 par
+                            des membres du
+                            Lyon Java User Group et du Club Agile Rhône Alpin (<a>plus de détail</a>)
+                        </p>
                     </div>
-                </div>
-                <div class="col s6">
-                    <div class="center">
-                        <h5 class="promo-caption">500 participants, 50 speakers </h5>
-
-                        <p class="light center">Afin de garder une dimension conviviale, le nombre de participants est limité à 500. Nous nous battons pour vous proposer tout
-                            cela à un prix très abordable, pour que tout un chacun puisse en profiter..</p>
-
-
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                        <h3>Nous contacter</h3>
+                        <ul>
+                            <li><a href="#"><img src="img/social/twitter.svg">&nbsp;@mixIT_lyon</a></li>
+                            <li><a href="#"><img src="img/social/google.svg">&nbsp;+mix-IT</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-    <div class="section photos">
-        <a href="https://www.flickr.com/photos/132667704@N02/sets/with/72157652095111126" target="_blank"><img src="img/panel1.jpg"></a>
-    </div>
-    <div class="section sponsors">
-        <div class="container">
-            <h2 class="center text_h2">Merci à nos sponsors qui nous permettent de proposer cet évènement</h2>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <b>SPONSOR GOLD</b>
-                </div>
-                <div class="col s4 m3 l3 sponsor__gold">
-                    <img src="img/sponsors/gold/logo-cgi.jpg" class="responsive-img">
-                </div>
-                <div class="col s4 m3 l3 sponsor__gold">
-                    <img src="img/sponsors/gold/logo-elao.jpg" class="responsive-img">
-                </div>
-                <div class="col s4 m3 l3 sponsor__gold">
-                    <img src="img/sponsors/gold/logo-erdf-linky.png" class="responsive-img">
-                </div>
-                <div class="col s4 m3 l3 sponsor__gold">
-                    <img src="img/sponsors/gold/logo-fiducial.png" class="responsive-img">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <b>SPONSOR SILVER</b>
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-alfene.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-atlassian.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-cloudbees.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-clusteredit.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-google.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-isr.jpg" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-mozilla.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-od.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-open.jpg" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-osiatis.png" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-redhat.jpg" class="responsive-img">
-                </div>
-                <div class="col s3 m2 l1 sponsor__silver">
-                    <img src="img/sponsors/silver/logo-serli.png" class="responsive-img">
+            <div class="cesar-subfooter">
+                <div class="cesar-container cesar-footer__copyright">
+                    © 2015 Copyright Mix-IT
+                    <a class="grey-text text-lighten-4 right" href="#!">Code de bonne conduite</a>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+</div>
 
 
-</main>
-<footer class="page-footer container__background scrollspy footer">
-    <div class="container container__default">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Qui sommes nous ? </h5>
-
-                <p class="grey-text text-lighten-4">
-                    Mix-IT est une association non lucrative, composée essentiellement de bénévole fondée en 2011 par
-                    des membres du
-                    Lyon Java User Group et du Club Agile Rhône Alpin (<a>plus de détail</a>)
-                </p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Nous contacter</h5>
-                <ul>
-                    <li><a class="" href="#!"><i class="small fa fa-twitter white-text"></i>&nbsp;@mixIT_lyon</a></li>
-                    <li><a class="" href="#!"><i class="small fa fa-google-plus white-text"></i>&nbsp;+mix-IT</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container container__default">
-            © 2015 Copyright Mix-IT
-            <a class="grey-text text-lighten-4 right" href="#!">Code de bonne conduite</a>
-        </div>
-    </div>
-    <script>
-        $(document).ready(function () {
-            $(".button-collapse").sideNav();
-        })
-    </script>
-</footer>
 </body>
 </html>

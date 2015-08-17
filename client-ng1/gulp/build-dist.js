@@ -26,7 +26,7 @@ module.exports = function(gulp, config) {
 
   require('./build-dev.js')(gulp, config);
 
-  gulp.task('build:dist', ['build:dev', 'ddescriber', 'jshint', 'build:dist:css', 'build:dist:js', 'build:dist:vendors', 'build:dist:font', 'build:dist:images', 'build:dist:favicon', 'build:dist:index', 'test']);
+  gulp.task('build:dist', ['build:dev', 'ddescriber', 'jshint', 'build:dist:css:vendors', 'build:dist:css', 'build:dist:js', 'build:dist:vendors', 'build:dist:font', 'build:dist:images', 'build:dist:favicon', 'build:dist:index', 'test']);
 
   /**
    * Checks for ddescribe and iit
@@ -53,6 +53,11 @@ module.exports = function(gulp, config) {
   gulp.task('build:dist:favicon', function () {
     return gulp.src(paths.assets.favicon)
       .pipe(gulp.dest(paths.build.dist));
+  });
+  gulp.task('build:dist:css:vendors', ['build:dev:css:vendors'], function(){
+    return gulp.src(paths.build.dev + '/css/vendors.css')
+      .pipe(rename('vendors-' + timestamp + '.min.css'))
+      .pipe(gulp.dest(paths.build.dist + '/css'));
   });
   gulp.task('build:dist:css', ['build:dev:css'], function(){
     return gulp.src(paths.build.dev + '/css/main.css')
@@ -84,7 +89,8 @@ module.exports = function(gulp, config) {
       .pipe(htmlreplace({
         'js': 'js/cesar-' + timestamp + '.min.js',
         'vendors': 'js/vendors-' + timestamp + '.min.js',
-        'css': 'css/cesar-' + timestamp + '.min.css'
+        'css': 'css/cesar-' + timestamp + '.min.css',
+        'vendorscss': 'css/vendors-' + timestamp + '.min.css',
       }))
       .pipe(rename('index.html'))
       .pipe(gulp.dest(paths.build.dist));

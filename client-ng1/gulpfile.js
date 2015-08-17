@@ -17,12 +17,14 @@ var paths = {
     ],
     vendor: [
       'node_modules/angular/angular.js',
-      'node_modules/jquery/dist/jquery.js',
-      'node_modules/materialize-css/bin/materialize.js'
+      'node_modules/material-design-lite/material.js'
     ]
   },
   templates: [
     'src/app/js/**/*.html'
+  ],
+  css : [
+    'node_modules/material-design-lite/material.css'
   ],
   less: {
     main : 'src/app/less/main.less',
@@ -34,9 +36,8 @@ var paths = {
   index : 'src/app/index-dev.html',
   assets: {
     fonts: [
-      'node_modules/font-awesome/fonts/*.*',
-      'node_modules/materialize-css/font/**/*.*',
-      'node_modules/roboto-fontface/fonts/*.*'
+      'node_modules/roboto-fontface/fonts/*.*',
+      'node_modules/material-design-icons/iconfont/*.*'
     ],
     images: [
       'src/app/assets/img/**/*.*',
