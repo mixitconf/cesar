@@ -45,7 +45,7 @@ module.exports = function (gulp, config) {
 
   gulp.task('watch:dev', function() {
     watchPath(paths.ts, 'build:dev:js');
-    watchPath(paths.html, 'build:dev:index');
+    watchPath(paths.html, 'build:dev:html');
     watchPath(paths.less.path, 'build:dev:css');
   });
 };
