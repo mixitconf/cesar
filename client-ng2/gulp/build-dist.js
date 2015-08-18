@@ -22,17 +22,18 @@ module.exports = function(gulp, config) {
     'build:dist:css',
     'build:dist:vendors',
     'build:dist:js',
+    'build:dist:html',
     'build:dist:index'
   ]);
 
 
   gulp.task('build:dist:font', ['build:dev:font'], function () {
-    return gulp.src(paths.build.dev + '/fonts')
-      .pipe(gulp.dest(paths.build.dist + '/fonts'));
+    return gulp.src(paths.build.dev + '/fonts/*.*')
+      .pipe(gulp.dest(paths.build.dist+ '/fonts'));
   });
   gulp.task('build:dist:images', ['build:dev:images'], function () {
-    return gulp.src(paths.build.dev + '/fonts')
-      .pipe(gulp.dest(paths.build.dist + '/img'));
+    return gulp.src(paths.build.dev + '/img/**/*.*')
+      .pipe(gulp.dest(paths.build.dist+ '/img'));
   });
   gulp.task('build:dist:favicon', function () {
     return gulp.src(paths.assets.favicon)
@@ -58,10 +59,24 @@ module.exports = function(gulp, config) {
       .pipe(uglify({output: { 'ascii_only': true }}))   // preserve ascii unicode characters such as \u226E
       .pipe(gulp.dest(paths.build.dist + '/js'));
   });
-  gulp.task('build:dist:index', function () {
+  gulp.task('build:dist:html', ['build:dev:html'], function () {
+    return gulp.src(paths.build.dev + '/views/**/*.html')
+      .pipe(gulp.dest(paths.build.dist));
+  });
+  //TO delete
+  gulp.task('build:dist:maquette', function () {
+    return gulp.src(paths.build.dev  + '/test-index.html')
+      .pipe(htmlreplace({
+        'css': 'css/cesar-' + timestamp + '.min.css',
+        'vendorscss': 'css/vendors-' + timestamp + '.min.css'
+      }))
+      .pipe(gulp.dest(paths.build.dist));
+  });
+  gulp.task('build:dist:index', ['build:dist:maquette'], function () {
     return gulp.src(paths.index)
       .pipe(htmlreplace({
-        'css': 'css/cesar-' + timestamp + '.min.css'
+        'css': 'css/cesar-' + timestamp + '.min.css',
+        'vendorscss': 'css/vendors-' + timestamp + '.min.css'
       }))
       .pipe(rename('index.html'))
       .pipe(gulp.dest(paths.build.dist));
