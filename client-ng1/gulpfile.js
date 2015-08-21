@@ -17,6 +17,7 @@ var paths = {
     ],
     vendor: [
       'node_modules/angular/angular.js',
+      'node_modules/angular-route/angular-route.js',
       'node_modules/material-design-lite/material.js'
     ]
   },
@@ -32,7 +33,7 @@ var paths = {
       'src/app/less/*.less'
     ]
   },
-  html : 'src/app/*.html',
+  html : 'src/app/**/*.html',
   index : 'src/app/index-dev.html',
   assets: {
     fonts: [
