@@ -12,5 +12,5 @@ angular.module('cesar-services').factory('cesarSecurity', function($q){
 
   return {
     getUserConnected: getUserConnected
-  }
+  };
 });

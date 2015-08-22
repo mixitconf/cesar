@@ -1,3 +1,3 @@
-angular.module('cesar-home').controller('HomeCtrl', function($scope){
+angular.module('cesar-home').controller('HomeCtrl', function(){
 
 });
