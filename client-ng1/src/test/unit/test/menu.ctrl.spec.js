@@ -1,21 +1,18 @@
-describe('MainCtrl', function () {
+describe('MemberCtrl', function () {
   var ctrl, $httpBackend;
 
-  beforeEach(module('cesar'));
+  beforeEach(module('cesar-members'));
 
   beforeEach(inject(function ($controller, $injector) {
 
     $httpBackend = $injector.get('$httpBackend');
 
-    ctrl = $controller('MainCtrl', {
+    ctrl = $controller('MemberCtrl', {
       $http : $injector.get('$http')
     });
 
   }));
 
-  it('should expose a variable in scope', function () {
-    expect(ctrl.welcome).toBe('Welcome on mixit');
-  });
 
   it('should read all the users', function () {
     $httpBackend.expectGET('/api/member').respond([

@@ -1,5 +1,4 @@
-
-angular.module('cesar').controller('MainCtrl', function($http){
+angular.module('cesar-members').controller('MemberCtrl', function($http){
   var ctrl = this;
 
   ctrl.welcome = 'Welcome on mixit';
