@@ -1,4 +1,4 @@
-describe('MenuCtrl', function () {
+describe('MainCtrl', function () {
   var ctrl, $httpBackend;
 
   beforeEach(module('cesar'));
@@ -7,7 +7,7 @@ describe('MenuCtrl', function () {
 
     $httpBackend = $injector.get('$httpBackend');
 
-    ctrl = $controller('MenuCtrl', {
+    ctrl = $controller('MainCtrl', {
       $http : $injector.get('$http')
     });
 

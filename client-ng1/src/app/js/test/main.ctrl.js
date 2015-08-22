@@ -1,5 +1,5 @@
 
-angular.module('cesar').controller('MenuCtrl', function($http){
+angular.module('cesar').controller('MainCtrl', function($http){
   var ctrl = this;
 
   ctrl.welcome = 'Welcome on mixit';

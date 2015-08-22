@@ -9,11 +9,12 @@
     "url": "https://github.com/mix-it/cesar/issues"
   },
   "dependencies": {
-    "angular": "^1.4.3",
-    "angular-mocks": "^1.4.3",
-    "material-design-icons": "^2.0.0",
-    "material-design-lite": "^1.0.2",
-    "roboto-fontface": "^0.4.2"
+    "angular": "1.4.4",
+    "angular-route": "1.4.4",
+    "angular-mocks": "1.4.4",
+    "material-design-icons": "2.0.0",
+    "material-design-lite": "1.0.3",
+    "roboto-fontface": "0.4.2"
   },
   "devDependencies": {
     "browser-sync": "^2.8.0",

@@ -23,6 +23,11 @@ h1, h2, h3{
   font-weight: 300;
 }
 
+.cesar-layout__content{
+  width: 100%;
+  position:relative;
+}
+
 @media (max-width: 479px) {
   h1{
     font-size: 36px !important;
@@ -44,9 +49,11 @@ h1, h2, h3{
     padding-top: 1em;
     padding-bottom: 1em;
   }
-
+  .cesar-layout__content{
+    top:55px;
+  }
 }
-@media (min-width: 480px) and (max-width: 839px) {
+@media (min-width: 480px) and (max-width: 1023px) {
   h1{
     font-size: 46px !important;
     line-height: 49px !important;
@@ -67,9 +74,11 @@ h1, h2, h3{
     padding-top: 2em;
     padding-bottom: 2em;
   }
-
+  .cesar-layout__content{
+    top:55px;
+  }
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   h1{
     font-size: 56px !important;
     line-height: 59px !important;
@@ -90,7 +99,9 @@ h1, h2, h3{
     padding-top: 4em;
     padding-bottom: 4em;
   }
-
+  .cesar-layout__content{
+    top:60px
+  }
 }
 
 .cesar-container{
@@ -148,7 +159,13 @@ h1, h2, h3{
     }
   }
 }
-
+//we have to overload material style here
+.mdl-layout__drawer-button{
+  background-color: @primary_color !important;
+  > i {
+    margin-top: 10px;
+  }
+}
 
 
 .cesar-headband{
@@ -241,7 +258,7 @@ h1, h2, h3{
 
 .cesar-photos {
   img {
-    max-width: 100%;
+    min-width: 100%;
   }
 }
 
