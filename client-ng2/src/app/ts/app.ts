@@ -16,6 +16,10 @@ import {CesarMenuComponent} from './components/menu';
 class CesarAppComponent {
     name: string;
     constructor() {
+
+        console.log('GGGGGGGGGGGGGGGGG %o', componentHandler);
+        //Hack to be able dynamic components of Material Design Lite
+        componentHandler.upgradeAllRegistered();
         this.name = 'Alice';
     }
 }

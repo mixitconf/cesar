@@ -1,5 +1,80 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header ">
-    <cesar-menu></cesar-menu>
+    <header class="mdl-layout__header">
+        <div class="cesar-layout__header-row mdl-layout__header-row">
+            <div class="cesar__layout-icon mdl-layout-icon">
+                <img src="img/logo-mixit-transparent.svg" alt="Mix-IT">
+            </div>
+
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+
+                <a class="mdl-navigation__link cesar-navigation__link" href="#">Actualités</a>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
+                   id="mdl-navigation__dropdown-prog">Programme&nbsp;<i
+                        class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-prog">
+                    <li class="mdl-menu__item"><a href="#">Planning</a></li>
+                    <li class="mdl-menu__item"><a href="#">Conférences, ateliers</a></li>
+                    <li class="mdl-menu__item"><a href="#">Ligthning talks</a></li>
+                    <li class="mdl-menu__item"><a href="#">Mix-Teen</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
+                   id="mdl-navigation__dropdown-participant">Participants&nbsp;<i
+                        class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-participant">
+                    <li class="mdl-menu__item"><a href="#!">Les speakers</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Les sponsors</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Les membres du staff</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
+                   id="mdl-navigation__dropdown-info">Informations
+                    pratiques&nbsp;<i class="material-icons">keyboard_arrow_down</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-info">
+                    <li class="mdl-menu__item"><a href="#!">A propos de Mix-IT</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Venir à la conférence</a></li>
+                    <li class="mdl-menu__item"><a href="#!">FAQ</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Kit multimédia</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2015</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2014</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2013</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2012</a></li>
+                </ul>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
+                   id="mdl-navigation__dropdown-profile"><img
+                        src="img/trash/avatar.jpg" alt="" style="border-radius: 50%;max-height: 30px"> Guilaume
+                    EHRET&nbsp;<i
+                            class="material-icons">keyboard_arrow_down</i>&nbsp;</i></a>
+                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    for="mdl-navigation__dropdown-profile">
+                    <li class="mdl-menu__item"><a href="#!">Mes favoris</a></li>
+                    <li class="mdl-menu__item"><a href="#!">Mon compte</a></li>
+                    <li class="cesar-divider"></li>
+                    <li class="mdl-menu__item"><a href="#!">Se déconnecter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Planning</a>
+            <a class="mdl-navigation__link" href="">Conférences, ateliers</a>
+            <a class="mdl-navigation__link" href="">Ligthning talks</a>
+            <a class="mdl-navigation__link" href="">Venir à la conférence</a>
+            <br>
+            <a class="mdl-navigation__link" href="#!">Mes favoris</a>
+            <a class="mdl-navigation__link" href="#!">Mon compte</a>
+            <hr>
+            <a class="mdl-navigation__link" href="#!">Se déconnecter</a>
+        </nav>
+    </div>
     <main class="mdl-layout__content">
 
         <div class="cesar-section cesar-intro">
