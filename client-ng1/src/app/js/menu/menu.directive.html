@@ -12,7 +12,7 @@
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ng-repeat-start="item in menus"
-                   id="{{item.id}}" href="{{item.link}}">
+                   id="{{item.id}}" ui-sref="{{item.link}}">
                     <img ng-if="item.img" ng-src="img/speakers/{{item.img}}" alt="" style="border-radius: 50%;max-height: 30px">
                     {{item.name}}&nbsp;
                     <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
@@ -21,7 +21,7 @@
                     ng-repeat-end="item in menus" ng-if="item.submenus" for="{{item.id}}">
                     <li ng-repeat="subitem in item.submenus"
                         ng-class="(subitem.divider) ? 'cesar-divider' : 'mdl-menu__item'">
-                        <a href="{{subitem.link}}">{{subitem.name}}</a>
+                        <a ui-sref="{{subitem.link}}">{{subitem.name}}</a>
                     </li>
                 </ul>
             </nav>
@@ -33,7 +33,7 @@
         <span class="mdl-layout-title">Mix-IT</span>
         <nav class="mdl-navigation">
             <idx ng-repeat="item in menus">
-                <a class="mdl-navigation__link" ng-repeat-start="subitem in item.submenus" href="{{subitem.link}}" ng-if="!subitem.divider && subitem.mobile">{{subitem.name}}</a>
+                <a class="mdl-navigation__link" ng-repeat-start="subitem in item.submenus" ui-sref="{{subitem.link}}" ng-if="!subitem.divider && subitem.mobile">{{subitem.name}}</a>
                 <hr ng-repeat-end="subitem in item.submenus" ng-if="subitem.divider && subitem.mobile">
             </idx>
         </nav>

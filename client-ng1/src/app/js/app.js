@@ -7,21 +7,26 @@
   angular.module('cesar-services', []);
 
   angular.module('cesar', [
-    'ngRoute',
+    'ui.router',
     'cesar.templates',
     'cesar-menu',
     'cesar-home',
     'cesar-services'
   ]);
 
-  angular.module('cesar').config(function($routeProvider){
+  angular.module('cesar').config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
-    $routeProvider.when('/', {
-      templateUrl: 'views/home.html',
-      controller: 'HomeCtrl',
-      controllerAs: 'home'
-    });
+    $locationProvider.html5Mode();
 
-    $routeProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        controller: 'HomeCtrl',
+        controllerAs: 'home',
+        templateUrl: 'views/home.html'
+      })
+
   });
 })();
