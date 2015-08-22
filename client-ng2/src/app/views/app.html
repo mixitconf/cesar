@@ -1,118 +1,39 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header ">
-    <header class="mdl-layout__header">
-        <div class="cesar-layout__header-row mdl-layout__header-row">
-            <div class="cesar__layout-icon mdl-layout-icon">
-                <img src="img/logo-mixit-transparent.svg" alt="Mix-IT">
-            </div>
+<cesar-menu></cesar-menu>
 
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
+<main class="cesar-layout__content mdl-layout__content">
 
-                <a class="mdl-navigation__link cesar-navigation__link" href="#">Actualités</a>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
-                   id="mdl-navigation__dropdown-prog">Programme&nbsp;<i
-                        class="material-icons">keyboard_arrow_down</i></a>
-                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                    for="mdl-navigation__dropdown-prog">
-                    <li class="mdl-menu__item"><a href="#">Planning</a></li>
-                    <li class="mdl-menu__item"><a href="#">Conférences, ateliers</a></li>
-                    <li class="mdl-menu__item"><a href="#">Ligthning talks</a></li>
-                    <li class="mdl-menu__item"><a href="#">Mix-Teen</a></li>
-                </ul>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
-                   id="mdl-navigation__dropdown-participant">Participants&nbsp;<i
-                        class="material-icons">keyboard_arrow_down</i></a>
-                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                    for="mdl-navigation__dropdown-participant">
-                    <li class="mdl-menu__item"><a href="#!">Les speakers</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Les sponsors</a></li>
-                    <li class="cesar-divider"></li>
-                    <li class="mdl-menu__item"><a href="#!">Les membres du staff</a></li>
-                </ul>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
-                   id="mdl-navigation__dropdown-info">Informations
-                    pratiques&nbsp;<i class="material-icons">keyboard_arrow_down</i></a>
-                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                    for="mdl-navigation__dropdown-info">
-                    <li class="mdl-menu__item"><a href="#!">A propos de Mix-IT</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Venir à la conférence</a></li>
-                    <li class="mdl-menu__item"><a href="#!">FAQ</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Kit multimédia</a></li>
-                    <li class="cesar-divider"></li>
-                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2015</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2014</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2013</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Mix-IT 2012</a></li>
-                </ul>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="#"
-                   id="mdl-navigation__dropdown-profile"><img
-                        src="img/trash/avatar.jpg" alt="" style="border-radius: 50%;max-height: 30px"> Guilaume
-                    EHRET&nbsp;<i
-                            class="material-icons">keyboard_arrow_down</i>&nbsp;</i></a>
-                <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                    for="mdl-navigation__dropdown-profile">
-                    <li class="mdl-menu__item"><a href="#!">Mes favoris</a></li>
-                    <li class="mdl-menu__item"><a href="#!">Mon compte</a></li>
-                    <li class="cesar-divider"></li>
-                    <li class="mdl-menu__item"><a href="#!">Se déconnecter</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-        <span class="mdl-layout-title">Title</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Planning</a>
-            <a class="mdl-navigation__link" href="">Conférences, ateliers</a>
-            <a class="mdl-navigation__link" href="">Ligthning talks</a>
-            <a class="mdl-navigation__link" href="">Venir à la conférence</a>
-            <br>
-            <a class="mdl-navigation__link" href="#!">Mes favoris</a>
-            <a class="mdl-navigation__link" href="#!">Mon compte</a>
-            <hr>
-            <a class="mdl-navigation__link" href="#!">Se déconnecter</a>
-        </nav>
+    <div class="cesar-main">
+        <cesar-home></cesar-home>
     </div>
-    <main class="mdl-layout__content">
 
-        <div class="cesar-section cesar-intro">
-            <div class="cesar-container">
-                <h1>Hello {{ name }}</h1>
 
-                <a href="test-index.html">La vraie maquette</a>
-            </div>
-        </div>
+    <div class="cesar-footer">
+        <div class="cesar-container">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
+                    <h3>Qui sommes nous ? </h3>
 
-        <div class="cesar-footer">
-            <div class="cesar-container">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
-                        <h3>Qui sommes nous ? </h3>
-
-                        <p>
-                            Mix-IT est une association non lucrative, composée essentiellement de bénévole fondée en
-                            2011 par
-                            des membres du
-                            Lyon Java User Group et du Club Agile Rhône Alpin (<a>plus de détail</a>)
-                        </p>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
-                        <h3>Nous contacter</h3>
-                        <ul>
-                            <li><a href="#"><img src="img/social/twitter.svg">&nbsp;@mixIT_lyon</a></li>
-                            <li><a href="#"><img src="img/social/google.svg">&nbsp;+mix-IT</a></li>
-                        </ul>
-                    </div>
+                    <p>
+                        Mix-IT est une association non lucrative, composée essentiellement de bénévole fondée en
+                        2011 par
+                        des membres du
+                        Lyon Java User Group et du Club Agile Rhône Alpin (<a>plus de détail</a>)
+                    </p>
                 </div>
-            </div>
-            <div class="cesar-subfooter">
-                <div class="cesar-container cesar-footer__copyright">
-                    © 2015 Copyright Mix-IT
-                    <a class="grey-text text-lighten-4 right" href="#!">Code de bonne conduite</a>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                    <h3>Nous contacter</h3>
+                    <ul>
+                        <li><a href="#"><img src="img/social/twitter.svg">&nbsp;@mixIT_lyon</a></li>
+                        <li><a href="#"><img src="img/social/google.svg">&nbsp;+mix-IT</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </main>
-</div>
+        <div class="cesar-subfooter">
+            <div class="cesar-container cesar-footer__copyright">
+                © 2015 Copyright Mix-IT
+                <a class="grey-text text-lighten-4 right" href="#!">Code de bonne conduite</a>
+            </div>
+        </div>
+    </div>
+</main>

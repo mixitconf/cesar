@@ -1,8 +1,9 @@
 /// <reference path="../../../typings/angular2/angular2.d.ts" />
-/// <reference path="components/menu.ts" />
+/// <reference path="menu/menu.ts" />
 
 import {Component, View, bootstrap} from 'angular2/angular2';
-import {CesarMenuComponent} from './components/menu';
+import {CesarMenuComponent} from './menu/menu';
+import {CesarHomeComponent} from './home/home';
 
 // Annotation section
 @Component({
@@ -10,14 +11,12 @@ import {CesarMenuComponent} from './components/menu';
 })
 @View({
     templateUrl: 'views/app.html',
-    directives: [CesarMenuComponent]
+    directives: [CesarMenuComponent, CesarHomeComponent]
 })
 // Component controller
 class CesarAppComponent {
     name: string;
     constructor() {
-
-        console.log('GGGGGGGGGGGGGGGGG %o', componentHandler);
         //Hack to be able dynamic components of Material Design Lite
         componentHandler.upgradeAllRegistered();
         this.name = 'Alice';
