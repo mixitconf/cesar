@@ -47,7 +47,7 @@ public abstract class Session<T extends Session> {
     @Size(max = 100)
     private String title;
 
-    @Size(max = 250)
+    @Size(max = 300)
     private String summary;
 
     private Instant addedAt = Instant.now();

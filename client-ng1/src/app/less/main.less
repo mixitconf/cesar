@@ -23,6 +23,10 @@ h1, h2, h3{
   font-weight: 300;
 }
 
+.cesar-textfield--search{
+  float: right;
+}
+
 .cesar-layout__content{
   width: 100%;
   position:relative;
@@ -46,9 +50,15 @@ h1, h2, h3{
     font-size: 16px !important;
     line-height: 18px !important;
   }
-  .cesar-section{
+  .cesar-section--top{
     padding-top: 1em;
+  }
+  .cesar-section--bottom{
     padding-bottom: 1em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
   }
   .cesar-layout__content{
     top:55px;
@@ -71,9 +81,15 @@ h1, h2, h3{
     font-size: 18px !important;
     line-height: 20px !important;
   }
-  .cesar-section{
+  .cesar-section--top{
     padding-top: 2em;
+  }
+  .cesar-section--bottom{
     padding-bottom: 2em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
   }
   .cesar-layout__content{
     top:55px;
@@ -96,12 +112,28 @@ h1, h2, h3{
     font-size: 20px !important;
     line-height: 22px !important;
   }
-  .cesar-section{
+  .cesar-section--top{
     padding-top: 4em;
+  }
+  .cesar-section--bottom{
     padding-bottom: 4em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
   }
   .cesar-layout__content{
     top:63px
+  }
+}
+
+.cesar-button--fab{
+  color: @primary_color;
+  margin-right: 3px;
+  img {
+    padding-top: 9px !important;
+    width: 1em !important;
+    height: 1em !important;
   }
 }
 
@@ -299,5 +331,24 @@ h1, h2, h3{
       line-height: 50px;
     }
   }
+
+  .cesar-footer--social img{
+    fill: #ffffff;
+  }
 }
 
+.cesar-card__title{
+  padding-bottom: 0px !important;
+  .cesar-card__title-text{
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+  }
+}
+.cesar-card__supporting-text{
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+.cesar-card img{
+ max-width: 100%;
+}
