@@ -1,8 +1,11 @@
-angular.module('cesar-home').directive('cesarHomeSpeaker', function(){
-  "use strict";
+(function () {
 
-  return {
-    templateUrl: 'js/home/speaker.directive.html',
-    scope : {}
-  };
-});
+  'use strict';
+
+  angular.module('cesar-home').directive('cesarHomeSpeaker', function () {
+    return {
+      templateUrl: 'js/home/speaker.directive.html',
+      scope: {}
+    };
+  });
+})();

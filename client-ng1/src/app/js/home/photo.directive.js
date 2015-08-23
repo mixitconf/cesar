@@ -1,8 +1,11 @@
-angular.module('cesar-home').directive('cesarHomePhoto', function(){
-  "use strict";
+(function () {
 
-  return {
-    templateUrl: 'js/home/photo.directive.html',
-    scope : {}
-  };
-});
+  'use strict';
+
+  angular.module('cesar-home').directive('cesarHomePhoto', function () {
+    return {
+      templateUrl: 'js/home/photo.directive.html',
+      scope: {}
+    };
+  });
+})();

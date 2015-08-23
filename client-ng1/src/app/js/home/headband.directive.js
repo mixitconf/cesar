@@ -1,8 +1,10 @@
-angular.module('cesar-home').directive('cesarHomeHeadband', function(){
-  "use strict";
+(function () {
 
-  return {
-    templateUrl: 'js/home/headband.directive.html',
-    scope : {}
-  };
-});
+  'use strict';
+  angular.module('cesar-home').directive('cesarHomeHeadband', function () {
+    return {
+      templateUrl: 'js/home/headband.directive.html',
+      scope: {}
+    };
+  });
+})();
