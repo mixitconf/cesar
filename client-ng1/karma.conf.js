@@ -44,6 +44,7 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
+      //The last / is important 
       stripPrefix: 'src/app/',
       moduleName: 'cesar-templates'
     },
