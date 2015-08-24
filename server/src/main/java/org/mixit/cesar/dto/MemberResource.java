@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import org.mixit.cesar.model.member.Interest;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.member.SharedLink;
+import org.mixit.cesar.model.member.Sponsor;
+import org.mixit.cesar.utils.HashUtil;
 import org.mixit.cesar.web.api.MemberController;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -24,6 +26,9 @@ public class MemberResource extends ResourceSupport{
     private String firstname;
     private String lastname;
     private String company;
+    private String level;
+    private String logo;
+    private String hash;
     private String shortDescription;
     private String longDescription;
     private List<Tuple> userLinks = new ArrayList<>();
@@ -38,7 +43,8 @@ public class MemberResource extends ResourceSupport{
                 .setLastname(member.getLastname())
                 .setCompany(member.getCompany())
                 .setShortDescription(member.getShortDescription())
-                .setLongDescription(member.getLongDescription());
+                .setLongDescription(member.getLongDescription())
+                .setHash(HashUtil.md5Hex(member.getEmail()));
 
         Set<Interest> interests = member.getInterests();
         if(!interests.isEmpty()){
@@ -53,6 +59,10 @@ public class MemberResource extends ResourceSupport{
                     .stream()
                     .map(l -> new Tuple().setKey(l.getName()).setValue(l.getURL()))
                     .collect(Collectors.toList()));
+        }
+        if(member instanceof Sponsor){
+            memberResource.setLogo(((Sponsor) member).getLogoUrl());
+            memberResource.setLevel(((Sponsor) member).getLevel().toString());
         }
         memberResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(member.getId()).withSelfRel());
 
@@ -74,6 +84,33 @@ public class MemberResource extends ResourceSupport{
 
     public MemberResource setLogin(String login) {
         this.login = login;
+        return this;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public MemberResource setLevel(String level) {
+        this.level = level;
+        return this;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public MemberResource setLogo(String logo) {
+        this.logo = logo;
+        return this;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public MemberResource setHash(String hash) {
+        this.hash = hash;
         return this;
     }
 

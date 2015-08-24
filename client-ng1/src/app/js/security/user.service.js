@@ -1,16 +1,20 @@
+(function () {
 
-angular.module('cesar-services').factory('cesarSecurity', function($q){
+  'use strict';
 
-  function getUserConnected(){
-    return $q.when({
-      id : 1,
-      name : 'Guillaume EHRET',
-      role : 'ADMIN',
-      img : 'avatar.jpg'
-    });
-  }
+  angular.module('cesar-services').factory('cesarSecurity', function ($q) {
 
-  return {
-    getUserConnected: getUserConnected
-  };
-});
+    function getUserConnected() {
+      return $q.when({
+        id: 1,
+        name: 'Guillaume EHRET',
+        role: 'ADMIN',
+        img: 'avatar.jpg'
+      });
+    }
+
+    return {
+      getUserConnected: getUserConnected
+    };
+  });
+})();

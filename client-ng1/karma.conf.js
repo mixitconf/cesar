@@ -15,6 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/jquery/dist/jquery.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
@@ -34,7 +35,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/app/**/*.js': ['coverage'],
-      'src/app/**/*.html': ['ng-html2js']
+      'src/app/js/**/*.html': ['ng-html2js']
     },
 
     coverageReporter: {
@@ -43,8 +44,9 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/app',
-      moduleName: 'cesar.templates'
+      //The last / is important 
+      stripPrefix: 'src/app/',
+      moduleName: 'cesar-templates'
     },
 
     // test results reporter to use

@@ -1,10 +1,13 @@
-angular.module('cesar-members').controller('MemberCtrl', function($http){
-  var ctrl = this;
+(function () {
 
-  ctrl.welcome = 'Welcome on mixit';
+  'use strict';
 
-  $http.get('/api/member').success(function(data){
-    ctrl.speakers = data;
+  angular.module('cesar-members').controller('MemberCtrl', function ($http, $state) {
+    var ctrl = this;
+
+    $http.get('/api/member/' + $state.current.data.member).then(function (response) {
+      ctrl.members = response.data;
+    });
+
   });
-
-});
+})();

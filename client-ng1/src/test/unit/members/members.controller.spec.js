@@ -8,17 +8,23 @@ describe('MemberCtrl', function () {
     $httpBackend = $injector.get('$httpBackend');
 
     ctrl = $controller('MemberCtrl', {
-      $http : $injector.get('$http')
+      $http : $injector.get('$http'),
+      $state : {
+        current : {
+          data : {
+            member : 'speaker'
+          }
+        }
+      }
     });
-
   }));
 
 
   it('should read all the users', function () {
-    $httpBackend.expectGET('/api/member').respond([
+    $httpBackend.expectGET('/api/member/speaker').respond([
       { firstname : 'James', lastname : 'Gosling'}
     ]);
     $httpBackend.flush();
-    expect(ctrl.speakers.length).toBe(1);
+    expect(ctrl.members.length).toBe(1);
   });
 });

@@ -16,19 +16,19 @@ import org.springframework.data.repository.query.Param;
  */
 public interface MemberRepository extends CrudRepository<Member, Long> {
 
-    @Query(value = "SELECT DISTINCT m FROM Member m left join fetch m.interests i left join fetch m.sharedLinks e")
+    @Query(value = "SELECT DISTINCT m FROM Member m left join fetch m.interests i left join fetch m.sharedLinks l")
     List<Member> findAllMembers();
 
-    @Query(value = "SELECT DISTINCT m FROM Staff m left join fetch m.interests i left join fetch m.sharedLinks e")
+    @Query(value = "SELECT DISTINCT m FROM Staff m left join fetch m.interests i left join fetch m.sharedLinks l")
     List<Staff> findAllStaffs();
 
-    @Query(value = "SELECT DISTINCT m FROM Participant m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks e where e.id = :idEvent")
+    @Query(value = "SELECT DISTINCT m FROM Participant m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Participant> findAllParticipants(@Param("idEvent") Long idEvent);
 
-    @Query(value = "SELECT DISTINCT m FROM Speaker m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks e where e.id = :idEvent")
+    @Query(value = "SELECT DISTINCT m FROM Speaker m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Speaker> findAllSpeakers(@Param("idEvent") Long idEvent);
 
-    @Query(value = "SELECT DISTINCT m FROM Sponsor m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks e where e.id = :idEvent")
+    @Query(value = "SELECT DISTINCT m FROM Sponsor m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Sponsor> findAllSponsors(@Param("idEvent") Long idEvent);
 
 

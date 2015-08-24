@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
@@ -74,11 +75,13 @@ public class Member<T extends Member> implements Comparable<Member> {
     /**
      * User-defined description, potentially as MarkDown
      */
+    @Size(max = 300)
     private String shortDescription;
 
     /**
      * User-defined description, potentially as MarkDown
      */
+    @Lob
     private String longDescription;
 
     /**

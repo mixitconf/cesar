@@ -37,6 +37,8 @@ module.exports = function(gulp, config) {
   });
   gulp.task('build:dev:css:vendors', function () {
     return gulp.src(paths.css)
+      //In Angular Material Lite we don't use the standard primary color
+      .pipe(replace('63,81,181', '69,90,100'))
       .pipe(concat('vendors.css'))
       .pipe(gulp.dest(paths.build.dev+ '/css'));
   });
@@ -55,7 +57,7 @@ module.exports = function(gulp, config) {
 
     var tpl = gulp.src(paths.templates)
       .pipe(html2js({
-        moduleName: 'cesar.templates',
+        moduleName: 'cesar-templates',
         prefix: 'js/'
       }));
 
