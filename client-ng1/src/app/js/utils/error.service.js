@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-services').service('cesarErrorService', function ($rootScope) {
+  angular.module('cesar-utils').service('cesarErrorService', function ($rootScope) {
 
     function throwError(response) {
       $rootScope.$emit('$cesarError', response);

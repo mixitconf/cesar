@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-members').controller('MemberCtrl', function ($scope, $http, $state, cesarErrorService) {
+  angular.module('cesar-members').controller('MemberCtrl', function ($http, $state, cesarErrorService) {
     var ctrl = this;
 
     $http.get('/api/member/' + $state.current.data.member)
