@@ -37,7 +37,7 @@
         params: {
           error: {}
         },
-        controller : function($scope, $stateParams){
+        controller: function ($scope, $stateParams) {
           $scope.error = $stateParams.error;
         }
       })
@@ -47,7 +47,7 @@
         controllerAs: 'ctrl',
         templateUrl: 'views/members/speakers.html',
         data: {
-          member : 'speaker'
+          member: 'speaker'
         }
       })
       .state('sponsors', {
@@ -56,7 +56,7 @@
         controllerAs: 'ctrl',
         templateUrl: 'views/members/sponsors.html',
         data: {
-          member : 'sponsor'
+          member: 'sponsor'
         }
       })
       .state('staff', {
@@ -65,10 +65,10 @@
         controllerAs: 'ctrl',
         templateUrl: 'views/members/staff.html',
         data: {
-          member : 'staff'
+          member: 'staff'
         }
       })
-      .state('member',{
+      .state('member', {
         url: '/member/:type/:id/',
         templateUrl: 'views/members/member.html',
         controller: 'MemberCtrl',
@@ -80,13 +80,17 @@
             });
           }
         }
-      });
+      })
+      .state('multimedia', {
+        url: '/multimedia',
+        templateUrl: 'views/info/multimedia.html'
+      })
   });
 
   angular.module('cesar').run(function ($rootScope, $state) {
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
-      $state.go('error', {error:response});
+      $state.go('error', {error: response});
     });
   });
 
