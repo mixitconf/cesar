@@ -1,4 +1,4 @@
-describe('MemberCtrl', function () {
+describe('MembersCtrl', function () {
   var ctrl, $httpBackend;
 
   beforeEach(module('cesar-members'));
@@ -7,8 +7,7 @@ describe('MemberCtrl', function () {
 
     $httpBackend = $injector.get('$httpBackend');
 
-    ctrl = $controller('MemberCtrl', {
-      $http : $injector.get('$http'),
+    ctrl = $controller('MembersCtrl', {
       $state : {
         current : {
           data : {

@@ -16,9 +16,9 @@
 
         </div>
         <div class="mdl-card__actions mdl-card--border">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab">
+            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="member({id : member.idMember, type : type})">
                 <i class="material-icons">person</i>
-            </button>
+            </a>
             <div style="float: right">
                 <cesar-social-link ng-repeat="link in member.userLinks"
                                    class-names="mdl-js-button mdl-button--fab mdl-button--mini-fab cesar-button--fab"

@@ -9,7 +9,8 @@
         length: '@',
         members: '=',
         search: '=',
-        limitText: '@'
+        limitText: '@',
+        type: '@'
       },
       controller: function ($scope) {
         if (!$scope.limitText) {

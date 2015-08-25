@@ -6,11 +6,11 @@
 dependencies {
     compile project(':common')
 
-    if (project.properties.containsKey("client") && "ng1".equals(client)) {
-        compile project(':client-ng1')
+    if (project.properties.containsKey("client") && "ng2".equals(client)) {
+        compile project(':client-ng2')
     }
     else{
-        compile project(':client-ng2')
+        compile project(':client-ng1')
     }
 }
 
