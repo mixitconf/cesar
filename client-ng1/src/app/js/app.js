@@ -43,8 +43,8 @@
       })
       .state('speakers', {
         url: '/speakers',
-        controller: 'MemberCtrl',
-        controllerAs: 'member',
+        controller: 'MembersCtrl',
+        controllerAs: 'ctrl',
         templateUrl: 'views/members/speakers.html',
         data: {
           member : 'speaker'
@@ -52,8 +52,8 @@
       })
       .state('sponsors', {
         url: '/sponsors',
-        controller: 'MemberCtrl',
-        controllerAs: 'member',
+        controller: 'MembersCtrl',
+        controllerAs: 'ctrl',
         templateUrl: 'views/members/sponsors.html',
         data: {
           member : 'sponsor'
@@ -61,11 +61,24 @@
       })
       .state('staff', {
         url: '/staff',
-        controller: 'MemberCtrl',
-        controllerAs: 'member',
+        controller: 'MembersCtrl',
+        controllerAs: 'ctrl',
         templateUrl: 'views/members/staff.html',
         data: {
           member : 'staff'
+        }
+      })
+      .state('member',{
+        url: '/member/:type/:id/',
+        templateUrl: 'views/members/member.html',
+        controller: 'MemberCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          member: function (MemberService, $stateParams) {
+            return MemberService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
         }
       });
   });

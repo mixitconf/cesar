@@ -2,13 +2,12 @@
 
   'use strict';
 
-  angular.module('cesar-members').controller('MemberCtrl', function ($http, $state) {
+  angular.module('cesar-members').controller('MembersCtrl', function (MemberService, $state) {
     var ctrl = this;
 
-    $http.get('/api/member/' + $state.current.data.member)
-      .then(function (response) {
-        ctrl.members = response.data;
-      });
+    MemberService.getAll($state.current.data.member).then(function (response) {
+      ctrl.members = response.data;
+    });
 
   });
 })();

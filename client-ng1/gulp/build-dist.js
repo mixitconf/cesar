@@ -26,7 +26,20 @@ module.exports = function(gulp, config) {
 
   require('./build-dev.js')(gulp, config);
 
-  gulp.task('build:dist', ['build:dev', 'ddescriber', 'jshint', 'build:dist:css:vendors', 'build:dist:css', 'build:dist:js', 'build:dist:vendors', 'build:dist:font', 'build:dist:images', 'build:dist:favicon', 'build:dist:index', 'test']);
+  gulp.task('build:dist', [
+    'build:dev',
+    'ddescriber',
+    'jshint',
+    'build:dist:css:vendors',
+    'build:dist:css',
+    'build:dist:js',
+    'build:dist:vendors',
+    'build:dist:font',
+    'build:dist:images',
+    'build:dist:favicon',
+    'build:dist:html',
+    'build:dist:index',
+    'test']);
 
   /**
    * Checks for ddescribe and iit
@@ -83,7 +96,10 @@ module.exports = function(gulp, config) {
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.build.dist + '/js'));
   });
-
+  gulp.task('build:dist:html', ['build:dev:html'], function () {
+    return gulp.src(paths.build.dev + '/views/**/*.html')
+      .pipe(gulp.dest(paths.build.dist + '/views'));
+  });
   gulp.task('build:dist:index', function () {
     return gulp.src(paths.index)
       .pipe(htmlreplace({
