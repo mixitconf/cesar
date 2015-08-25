@@ -10,6 +10,7 @@
 
   angular.module('cesar', [
     'ui.router',
+    'ngSanitize',
     'cesar-templates',
     'cesar-menu',
     'cesar-home',
@@ -72,7 +73,7 @@
   angular.module('cesar').run(function ($rootScope, $state) {
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
-      $state.go("error", {error:response});
+      $state.go('error', {error:response});
     });
   });
 
