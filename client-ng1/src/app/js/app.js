@@ -2,6 +2,7 @@
 
   'use strict';
 
+  angular.module('cesar-utils', []);
   angular.module('cesar-menu', ['cesar-templates']);
   angular.module('cesar-home', ['cesar-templates']);
   angular.module('cesar-members', ['cesar-templates']);
@@ -9,11 +10,13 @@
 
   angular.module('cesar', [
     'ui.router',
+    'ngSanitize',
     'cesar-templates',
     'cesar-menu',
     'cesar-home',
     'cesar-members',
-    'cesar-services'
+    'cesar-services',
+    'cesar-utils'
   ]);
 
   angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -23,9 +26,20 @@
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
+
       .state('home', {
         url: '/home',
         templateUrl: 'views/home.html'
+      })
+      .state('error', {
+        url: '/error',
+        templateUrl: 'views/error.html',
+        params: {
+          error: {}
+        },
+        controller : function($scope, $stateParams){
+          $scope.error = $stateParams.error;
+        }
       })
       .state('speakers', {
         url: '/speakers',
@@ -55,4 +69,12 @@
         }
       });
   });
+
+  angular.module('cesar').run(function ($rootScope, $state) {
+    //Error are catched to redirect user on error page
+    $rootScope.$on('$cesarError', function (event, response) {
+      $state.go('error', {error:response});
+    });
+  });
+
 })();

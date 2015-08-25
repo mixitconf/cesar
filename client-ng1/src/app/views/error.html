@@ -1,0 +1,14 @@
+<div class="cesar-container ">
+    <h1><i class="material-icons cesar-bug">bug_report</i> Une erreur a été détectée</h1>
+
+    <p class="cesar-text">Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter
+        l'opération et si cette erreur persiste
+        n'hésitez pas à nous la remonter pour que nous la corrigions</p>
+
+    <h2 ng-if="!error.data">{{error.status}} {{error.statusText}}</h2>
+
+    <div class="cesar-section--bottom">
+        <p ng-bind-html="error.data"></p>
+    </div>
+    <p>&nbsp;</p>
+</div>

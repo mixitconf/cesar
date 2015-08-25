@@ -17,6 +17,7 @@ var paths = {
     ],
     vendor: [
       'node_modules/angular/angular.js',
+      'node_modules/angular-sanitize/angular-sanitize.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/material-design-lite/material.js'
     ]
