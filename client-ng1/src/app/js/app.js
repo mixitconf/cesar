@@ -89,6 +89,10 @@
         url: '/conduite',
         templateUrl: 'views/info/conduite.html'
       })
+        .state('faq', {
+          url: '/faq',
+          templateUrl: 'views/info/faq.html'
+        })
     ;
   });
 
