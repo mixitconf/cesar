@@ -23,7 +23,6 @@
       },
       {
         id: 'info', name: 'Informations pratiques', submenus: [
-        {id: 'sub3.1', name: 'A propos de Mix-IT', link: 'apropos'},
         {id: 'sub3.2', name: 'Venir à la conférence', link: 'venir', mobile: true},
         {id: 'sub3.3', name: 'FAQ', link: 'faq', mobile: true},
         {id: 'sub3.4', name: 'Kit multimédia', link: 'multimedia'},

@@ -2,10 +2,12 @@
 
   'use strict';
 
-  angular.module('cesar-home').directive('cesarHomePhoto', function () {
+  angular.module('cesar-home').directive('cesarPhoto', function () {
     return {
       templateUrl: 'js/home/photo.directive.html',
-      scope: {}
+      scope: {
+        url : '@'
+      }
     };
   });
 })();
