@@ -1,0 +1,18 @@
+<div class="mdl-grid">
+    <div ng-repeat="session in sessions | filter:search"
+         class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--expand">
+            <h3 class="mdl-card__title-text cesar-card__title-text">{{session.title}}</h3>
+
+            <div class="cesar-card-session-action">
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                   ui-sref="member({id : session.idSession, format : session.format})">
+                    <i class="material-icons">person</i>
+                </a>
+            </div>
+        </div>
+        <div class="mdl-card__supporting-text cesar-card__supporting-text">
+            {{session.summary}}<br>&nbsp;
+        </div>
+    </div>
+</div>

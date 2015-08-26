@@ -96,6 +96,8 @@ public abstract class Session<T extends Session> {
     @NotNull   // But nullable : must give language when editing, but not always given on old sessions.
     private SessionLanguage lang = SessionLanguage.fr;
 
+    private Boolean sessionAccepted;
+
     /* true if Staff has given feedback */
     private boolean feedback;
 
@@ -157,32 +159,36 @@ public abstract class Session<T extends Session> {
         return maxAttendees;
     }
 
-    public void setMaxAttendees(Integer maxAttendees) {
+    public T setMaxAttendees(Integer maxAttendees) {
         this.maxAttendees = maxAttendees;
+        return (T) this;
     }
 
     public Level getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public T setLevel(Level level) {
         this.level = level;
+        return (T) this;
     }
 
     public boolean isGuest() {
         return guest;
     }
 
-    public void setGuest(boolean guest) {
+    public T setGuest(boolean guest) {
         this.guest = guest;
+        return (T) this;
     }
 
     public String getMessageForStaff() {
         return messageForStaff;
     }
 
-    public void setMessageForStaff(String messageForStaff) {
+    public T setMessageForStaff(String messageForStaff) {
         this.messageForStaff = messageForStaff;
+        return (T) this;
     }
 
     public String getDescription() {
@@ -312,6 +318,16 @@ public abstract class Session<T extends Session> {
         Session<?> session = (Session<?>) o;
         return Objects.equals(id, session.id);
     }
+
+    public Boolean getSessionAccepted() {
+        return sessionAccepted;
+    }
+
+    public T setSessionAccepted(Boolean sessionAccepted) {
+        this.sessionAccepted = sessionAccepted;
+        return (T) this;
+    }
+
 
     @Override
     public int hashCode() {
