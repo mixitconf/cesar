@@ -84,7 +84,12 @@
       .state('multimedia', {
         url: '/multimedia',
         templateUrl: 'views/info/multimedia.html'
-      });
+      })
+      .state('conduite', {
+        url: '/conduite',
+        templateUrl: 'views/info/conduite.html'
+      })
+    ;
   });
 
   angular.module('cesar').run(function ($rootScope, $state) {
