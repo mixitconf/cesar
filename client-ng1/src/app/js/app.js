@@ -84,7 +84,7 @@
       .state('multimedia', {
         url: '/multimedia',
         templateUrl: 'views/info/multimedia.html'
-      })
+      });
   });
 
   angular.module('cesar').run(function ($rootScope, $state) {
