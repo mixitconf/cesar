@@ -14,7 +14,7 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -33,4 +33,46 @@
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+@media (max-width: 479px) {
+  .cesar-icons-h1 {
+    color: @primary_color;
+    font-size: @h1_mobile_fontsize !important;
+  }
+
+  .cesar-icons-h3 {
+    color: @primary_color;
+    font-size: @h3_mobile_fontsize !important;
+    top: 2px;
+    position: relative;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1023px) {
+  .cesar-icons-h1 {
+    color: @primary_color;
+    font-size: @h1_tablet_fontsize !important;
+  }
+
+  .cesar-icons-h3 {
+    color: @primary_color;
+    font-size: @h3_tablet_fontsize !important;
+    position: relative;
+    top: 4px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cesar-icons-h1 {
+    color: @primary_color;
+    font-size: @h1_screen_fontsize !important;
+  }
+
+  .cesar-icons-h3 {
+    color: @primary_color;
+    font-size: @h3_screen_fontsize !important;
+    position: relative;
+    top: 5px;
+  }
 }

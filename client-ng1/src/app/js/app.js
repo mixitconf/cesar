@@ -89,11 +89,14 @@
         url: '/conduite',
         templateUrl: 'views/info/conduite.html'
       })
-        .state('faq', {
-          url: '/faq',
-          templateUrl: 'views/info/faq.html'
-        })
-    ;
+      .state('faq', {
+        url: '/faq',
+        templateUrl: 'views/info/faq.html'
+      })
+      .state('venir', {
+        url: '/venir',
+        templateUrl: 'views/info/venir.html'
+      });
   });
 
   angular.module('cesar').run(function ($rootScope, $state) {

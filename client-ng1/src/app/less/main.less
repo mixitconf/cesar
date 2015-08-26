@@ -8,6 +8,17 @@
 @secondary_color : #cfd8dc;
 @secondary_color_light : #eceff1;
 
+@h1_mobile_fontsize : 36px;
+@h2_mobile_fontsize : 25px;
+@h3_mobile_fontsize : 17px;
+@h1_tablet_fontsize : 46px;
+@h2_tablet_fontsize : 35px;
+@h3_tablet_fontsize : 25px;
+@h1_screen_fontsize : 56px;
+@h2_screen_fontsize : 45px;
+@h3_screen_fontsize : 35px;
+
+
 body {
   font-family: "Roboto", "Arial", sans-serif !important;
 }
@@ -35,20 +46,16 @@ h1, h2, h3{
 
 @media (max-width: 479px) {
   h1{
-    font-size: 36px !important;
-    line-height: 39px !important;
+    font-size: @h1_mobile_fontsize !important;
+    line-height: (@h1_mobile_fontsize+3) !important;
   }
   h2{
-    font-size: 25px !important;
-    line-height: 28px !important;
+    font-size: @h2_mobile_fontsize !important;
+    line-height: (@h2_mobile_fontsize+3) !important;
   }
   h3{
-    font-size: 17px !important;
-    line-height: 20px !important;
-  }
-  .cesar-bug {
-    color: @primary_color;
-    font-size: 36px !important;
+    font-size: @h3_mobile_fontsize !important;
+    line-height: (@h3_mobile_fontsize+3) !important;
   }
   .cesar-text{
     font-size: 16px !important;
@@ -70,20 +77,16 @@ h1, h2, h3{
 }
 @media (min-width: 480px) and (max-width: 1023px) {
   h1{
-    font-size: 46px !important;
-    line-height: 49px !important;
+    font-size: @h1_tablet_fontsize !important;
+    line-height: (@h1_tablet_fontsize+3) !important;
   }
   h2{
-    font-size: 35px !important;
-    line-height: 38px !important;
+    font-size: @h2_tablet_fontsize !important;
+    line-height: (@h2_tablet_fontsize+3) !important;
   }
   h3{
-    font-size: 25px !important;
-    line-height: 28px !important;
-  }
-  .cesar-bug{
-    color: @primary_color;
-    font-size: 46px !important;
+    font-size: @h3_tablet_fontsize !important;
+    line-height: (@h3_tablet_fontsize+3) !important;
   }
   .cesar-text{
     font-size: 18px !important;
@@ -103,22 +106,19 @@ h1, h2, h3{
     top:55px;
   }
 }
+
 @media (min-width: 1024px) {
   h1{
-    font-size: 56px !important;
-    line-height: 59px !important;
+    font-size: @h1_screen_fontsize !important;
+    line-height: (@h1_screen_fontsize+3) !important;
   }
   h2{
-    font-size: 45px !important;
-    line-height: 48px !important;
+    font-size: @h2_screen_fontsize !important;
+    line-height: (@h2_screen_fontsize+3) !important;
   }
   h3{
-    font-size: 35px !important;
-    line-height: 38px !important;
-  }
-  .cesar-bug{
-    color: @primary_color;
-    font-size: 56px !important;
+    font-size: @h3_screen_fontsize !important;
+    line-height: (@h2_screen_fontsize+3) !important;
   }
   .cesar-text{
     font-size: 20px !important;
