@@ -1,0 +1,42 @@
+<div class="cesar-container">
+
+    <h1><i class="material-icons cesar-icons-h1">{{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}} &nbsp;<span class="mdl-badge" data-badge="{{ctrl.session.lang}}"> &nbsp;</span></h1>
+
+
+
+    <p class="cesar-text">{{ ctrl.session.summary }}</p>
+
+    <p>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent cesar-mdl-button--interests">
+            Salle {{ctrl.session.room | defaultValue}}
+        </a>
+         de <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.start | defaultValue}}</a> à
+        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a>
+    </p>
+
+    <p>{{ ctrl.session.description }}</p>
+
+    <p>
+        <i class="material-icons mdl-badge cesar-badge" data-badge="{{ctrl.session.positiveVotes | defaultValue:0}}" title="{{ctrl.session.positiveVotes | defaultValue:0}} vote pour cette session">assessment</i>
+        <i class="material-icons mdl-badge cesar-badge" data-badge="{{ctrl.session.nbConsults | defaultValue:0}}" title="{{ctrl.session.nbConsults | defaultValue:0}} visiteurs">account_box</i>
+    </p>
+
+    <hr>
+
+    <div class="cesar-section--bottom">
+        <p ng-bind-html="ctrl.member.longDescription"></p>
+
+        <p>
+            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-repeat="interest in ctrl.session.interests" ui-sref="interest(interest)">
+                {{interest}}
+            </a>
+        </p>
+
+        <p class="cesar-text">
+            <ng-pluralize count="ctrl.session.speakers.length" when="{'1': 'Speaker', 'other': '{} speakers'}"></ng-pluralize>
+        </p>
+        <cesar-member-cards members="ctrl.session.speakers"></cesar-member-cards>
+    </div>
+
+    <p>&nbsp;</p>
+</div>

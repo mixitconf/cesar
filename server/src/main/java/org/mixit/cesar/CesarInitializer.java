@@ -136,12 +136,14 @@ public class CesarInitializer {
         );
     }
 
-    private <T extends Session> T addSession(T session, Speaker speaker, Event event, String title, boolean accepted) {
+    private <T extends Session> T addSession(T session, Event event, String title, boolean accepted, Speaker... speaker) {
+        for(Speaker s : speaker) {
+            session.addSpeaker(s);
+        }
         return (T) sessionRepository.save(
                 session
                         .setId(id--)
                         .setTitle(title)
-                        .addSpeaker(speaker)
                         .setEvent(event)
                         .setDescription("description of " + title)
                         .setSessionAccepted(accepted)
@@ -172,7 +174,7 @@ public class CesarInitializer {
     }
 
     private void addSpeakers(Event event) {
-        Speaker speaker;
+        Speaker speaker, speaker1;
 
         speaker = addMember("Martin", "Odersky", "Scala",
                 new Speaker()
@@ -192,17 +194,19 @@ public class CesarInitializer {
                         .setOrdernum(1)
                         .setURL("http://martin.ordersky.com")
         );
-        addSession(new Keynote(), speaker, event, "Le scala c'est super bien", true);
-        addSession(new Keynote(), speaker, event, "Java bashing", false);
-        addSession(new LightningTalk(), speaker, event, "Le scala en 5 minutes", true);
+        addSession(new Keynote(), event, "Le scala c'est super bien", true, speaker);
+        addSession(new Keynote(), event, "Java bashing", false);
+        addSession(new LightningTalk(), event, "Le scala en 5 minutes", true, speaker);
 
-        speaker = addMember("James", "Gosling", "Java",
+        speaker1 = addMember("James", "Gosling", "Java",
                 new Speaker()
                         .addEvent(event)
                         .setSessionType(Format.Workshop)
                         .setShortDescription("Open Web Developer Advocate at Google • Tools, Performance, Animation, UX • HFR enthusiast • Creator of jQuery UI")
                         .setEmail("james.gosling@pipo.com"));
-        addSession(new Workshop(), speaker, event, "Le Java c'est super bien", true);
+        addSession(new Workshop(), event, "Le Java c'est super bien", true, speaker1);
+
+        addSession(new Talk(), event, "Java vs Scala", true, speaker, speaker1);
 
         speaker = addMember("Jean François", "Zobrist", "Agilite",
                 new Speaker()
@@ -211,7 +215,7 @@ public class CesarInitializer {
                         .setShortDescription("Transdisciplinary engineer. Building software, studying humans, designing interactions, thinking society.")
                         .setEmail("jf.zobrist@pipo.com"));
         ;
-        addSession(new Talk(), speaker, event, "Favi l'entreprise libérée", true);
+        addSession(new Talk(), event, "Favi l'entreprise libérée", true, speaker);
     }
 
 

@@ -4,10 +4,15 @@
     <p class="cesar-text">Vous pouvez 3 formats différents, des keynotes en début et fin de journée, des conférences et des ateliers.
     Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécéssaires</p>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar>
+        <div class="cesar-helper hide-on-mobile">
+            <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+            <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+            <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+        </div>
+    </cesar-search-bar>
     <div class="cesar-section--bottom">
         <cesar-session-cards sessions="ctrl.sessions" search="search"></cesar-session-cards>
-
     </div>
     <p>&nbsp;</p>
 </div>
