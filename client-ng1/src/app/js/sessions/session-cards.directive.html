@@ -2,17 +2,31 @@
     <div ng-repeat="session in sessions | filter:search"
          class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--expand">
-            <h3 class="mdl-card__title-text cesar-card__title-text">{{session.title}}</h3>
+            <h3 class="mdl-card__title-text cesar-card__title-text">{{session.title}}</h3>&nbsp;&nbsp;{{session.format}} [{{session.lang}}]
 
-            <div class="cesar-card-session-action">
+            <div class="cesar-card-session-action" ng-if="display==='minimal'">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                   ui-sref="member({id : session.idSession, format : session.format})">
-                    <i class="material-icons">person</i>
+                   ui-sref="session({id : session.idSession, format : session.format})">
+                    <i class="material-icons">nature_people</i>
                 </a>
             </div>
         </div>
         <div class="mdl-card__supporting-text cesar-card__supporting-text">
             {{session.summary}}<br>&nbsp;
+        </div>
+        <div class="mdl-card__actions mdl-card--border" ng-if="display!=='minimal'">
+            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+               ui-sref="session({id : session.idSession, format : session.format})">
+                <i class="material-icons" >nature_people</i></a>
+            <div style="float: right">
+                <div ng-repeat="speaker in session.speakers">
+                    <a  class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" >
+                        <img ng-src="http://www.gravatar.com/avatar/{{speaker.hash}}">
+                    </a>
+                    <a>{{speaker.firstname}} {{speaker.lastname}}</a>&nbsp;
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

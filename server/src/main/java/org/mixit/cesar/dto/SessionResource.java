@@ -36,7 +36,6 @@ public class SessionResource extends ResourceSupport {
     public String room;
     public Date start;
     public Date end;
-    public List<Long> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 
     public static <T extends Session> SessionResource convert(T session){
@@ -73,7 +72,9 @@ public class SessionResource extends ResourceSupport {
         Set<Speaker> speakers = session.getSpeakers();
         speakers
                 .stream()
-                .forEach(s -> sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker")));
+                .forEach(s -> {
+                    sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker"));
+                });
         return sessionResource;
     }
 
@@ -189,15 +190,6 @@ public class SessionResource extends ResourceSupport {
 
     public SessionResource setIdeaForNow(String ideaForNow) {
         this.ideaForNow = ideaForNow;
-        return this;
-    }
-
-    public List<Long> getSpeakers() {
-        return speakers;
-    }
-
-    public SessionResource setSpeakers(List<Long> speakers) {
-        this.speakers = speakers;
         return this;
     }
 

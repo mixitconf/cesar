@@ -7,7 +7,8 @@
       templateUrl: 'js/sessions/session-cards.directive.html',
       scope: {
         sessions: '=',
-        search: '='
+        search: '=',
+        display: '@'
       }
     };
   });
