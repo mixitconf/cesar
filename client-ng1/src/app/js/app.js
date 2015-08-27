@@ -6,6 +6,7 @@
   angular.module('cesar-menu', ['cesar-templates']);
   angular.module('cesar-home', ['cesar-templates']);
   angular.module('cesar-members', ['cesar-templates']);
+  angular.module('cesar-sessions', ['cesar-templates']);
   angular.module('cesar-services', []);
 
   angular.module('cesar', [
@@ -15,6 +16,7 @@
     'cesar-menu',
     'cesar-home',
     'cesar-members',
+    'cesar-sessions',
     'cesar-services',
     'cesar-utils'
   ]);

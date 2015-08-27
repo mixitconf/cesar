@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import org.mixit.cesar.model.member.Interest;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.member.SharedLink;
+import org.mixit.cesar.model.member.Speaker;
 import org.mixit.cesar.model.member.Sponsor;
+import org.mixit.cesar.model.session.Format;
 import org.mixit.cesar.utils.HashUtil;
 import org.mixit.cesar.web.api.MemberController;
 import org.springframework.hateoas.ResourceSupport;
@@ -29,10 +31,12 @@ public class MemberResource extends ResourceSupport{
     private String level;
     private String logo;
     private String hash;
+    private String sessionType;
     private String shortDescription;
     private String longDescription;
     private List<Tuple> userLinks = new ArrayList<>();
     private List<String> interests = new ArrayList<>();
+    private List<Long> sessions = new ArrayList<>();
 
     public static <T extends Member> MemberResource convert(T member){
         MemberResource memberResource = new MemberResource()
@@ -61,8 +65,18 @@ public class MemberResource extends ResourceSupport{
                     .collect(Collectors.toList()));
         }
         if(member instanceof Sponsor){
-            memberResource.setLogo(((Sponsor) member).getLogoUrl());
-            memberResource.setLevel(((Sponsor) member).getLevel().toString());
+            memberResource
+                    .setLogo(((Sponsor) member).getLogoUrl())
+                    .setLevel(((Sponsor) member).getLevel().toString());
+        }
+        else if(member instanceof Speaker){
+            memberResource
+                    .setSessionType(((Speaker) member).getSessionType().toString())
+                    .setSessions(((Speaker) member).getSessions()
+                            .stream()
+                            .filter(s -> Boolean.TRUE.equals(s.getSessionAccepted()))
+                            .map(s -> s.getId())
+                            .collect(Collectors.toList()));
         }
         memberResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(member.getId()).withSelfRel());
 
@@ -183,6 +197,24 @@ public class MemberResource extends ResourceSupport{
 
     public MemberResource setInterests(List<String> interests) {
         this.interests = interests;
+        return this;
+    }
+
+    public String getSessionType() {
+        return sessionType;
+    }
+
+    public MemberResource setSessionType(String sessionType) {
+        this.sessionType = sessionType;
+        return this;
+    }
+
+    public List<Long> getSessions() {
+        return sessions;
+    }
+
+    public MemberResource setSessions(List<Long> sessions) {
+        this.sessions = sessions;
         return this;
     }
 

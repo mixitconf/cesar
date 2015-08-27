@@ -25,8 +25,11 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     @Query(value = "SELECT DISTINCT m FROM Participant m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Participant> findAllParticipants(@Param("idEvent") Long idEvent);
 
-    @Query(value = "SELECT DISTINCT m FROM Speaker m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
+    @Query(value = "SELECT DISTINCT m FROM Speaker m left join fetch m.events e left join fetch m.interests i left join fetch m.sessions s left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Speaker> findAllSpeakers(@Param("idEvent") Long idEvent);
+
+    @Query(value = "SELECT DISTINCT m FROM Speaker m left join fetch m.events e left join fetch m.interests i left join fetch m.sessions s left join fetch m.sharedLinks l where e.id = :idEvent and s.sessionAccepted = 'true'")
+    List<Speaker> findAllAcceptedSpeakers(@Param("idEvent") Long idEvent);
 
     @Query(value = "SELECT DISTINCT m FROM Sponsor m left join fetch m.events e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Sponsor> findAllSponsors(@Param("idEvent") Long idEvent);

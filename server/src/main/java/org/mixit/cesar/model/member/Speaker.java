@@ -20,8 +20,6 @@ public class Speaker extends Participant<Speaker> {
         ROLES.add(Role.Speaker);
     }
 
-    private Boolean sessionAccepted;
-
     /**
      * We want to distinguish the user who just purpose a ligthning talk
      */
@@ -31,15 +29,6 @@ public class Speaker extends Participant<Speaker> {
     @ManyToMany(mappedBy = "speakers")
     public Set<Session> sessions = new HashSet<>();
 
-
-    public Boolean getSessionAccepted() {
-        return sessionAccepted;
-    }
-
-    public Speaker setSessionAccepted(Boolean sessionAccepted) {
-        this.sessionAccepted = sessionAccepted;
-        return this;
-    }
 
     public Format getSessionType() {
         return sessionType;

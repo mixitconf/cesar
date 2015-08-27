@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * In the public API we expose only accepted sessions
+ */
 @Api(value = "Conference sessions",
         description = "Session Api helps you to find all the sessions of the conference (Talk, Workshop, Keynote and ligthning talks)")
 @RestController
@@ -45,30 +48,30 @@ public class SessionController {
     @RequestMapping
     @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllSessions(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/keynote")
     @ApiOperation(value = "Finds all keynotes", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllKeynotes(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllKeynotes(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/talk")
     @ApiOperation(value = "Finds all talks", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllTalks(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllTalks(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/workshop")
     @ApiOperation(value = "Finds all workshop", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllWorkshops(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllWorkshops(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/lightningtalks")
     @ApiOperation(value = "Finds all the lightning talks", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllLightningTalks(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedLightningTalks(eventService.getEvent(year).getId()));
     }
 }

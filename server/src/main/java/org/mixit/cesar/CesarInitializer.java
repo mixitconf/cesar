@@ -14,8 +14,10 @@ import org.mixit.cesar.model.member.Sponsor;
 import org.mixit.cesar.model.member.Staff;
 import org.mixit.cesar.model.session.Format;
 import org.mixit.cesar.model.session.Keynote;
+import org.mixit.cesar.model.session.Level;
 import org.mixit.cesar.model.session.LightningTalk;
 import org.mixit.cesar.model.session.Session;
+import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.model.session.Talk;
 import org.mixit.cesar.model.session.Vote;
 import org.mixit.cesar.model.session.Workshop;
@@ -122,7 +124,7 @@ public class CesarInitializer {
         );
     }
 
-    private <T extends Session> T addSession(T session, Speaker speaker, Event event, String title) {
+    private <T extends Session> T addSession(T session, Speaker speaker, Event event, String title, boolean accepted) {
         return (T) sessionRepository.save(
                 session
                         .setId(id--)
@@ -130,9 +132,30 @@ public class CesarInitializer {
                         .addSpeaker(speaker)
                         .setEvent(event)
                         .setDescription("description of " + title)
+                        .setSessionAccepted(accepted)
                         .addVote(new Vote().setId(id--).setSession(session).setValue(false))
                         .addVote(new Vote().setId(id--).setSession(session).setValue(true))
+                        .setSummary("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                        .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "")
+                        .setIdeaForNow("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                                "")
                         .setValid(true)
+                        .setLevel(Level.Beginner)
+                        .setLang(SessionLanguage.fr)
+                        .setGuest(true)
         );
     }
 
@@ -143,7 +166,6 @@ public class CesarInitializer {
                 new Speaker()
                         .addEvent(event)
                         .setSessionType(Format.Keynote)
-                        .setSessionAccepted(false)
                         .setShortDescription("Sébastien Blanc is software engineer with 10 years of experience. He works at Red Hat and focus on Open Source libraries for Mobile.")
                         .setEmail("martin.odersky@pipo.com"));
         sharedLinkRepository.save(new SharedLink()
@@ -158,27 +180,26 @@ public class CesarInitializer {
                         .setOrdernum(1)
                         .setURL("http://martin.ordersky.com")
         );
-        addSession(new Keynote(), speaker, event, "Le scala c'est super bien");
-        addSession(new LightningTalk(), speaker, event, "Le scala en 5 minutes");
+        addSession(new Keynote(), speaker, event, "Le scala c'est super bien", true);
+        addSession(new Keynote(), speaker, event, "Java bashing", false);
+        addSession(new LightningTalk(), speaker, event, "Le scala en 5 minutes", true);
 
         speaker = addMember("James", "Gosling", "Java",
                 new Speaker()
                         .addEvent(event)
                         .setSessionType(Format.Workshop)
-                        .setSessionAccepted(true)
                         .setShortDescription("Open Web Developer Advocate at Google • Tools, Performance, Animation, UX • HFR enthusiast • Creator of jQuery UI")
                         .setEmail("james.gosling@pipo.com"));
-        addSession(new Workshop(), speaker, event, "Le Java c'est super bien");
+        addSession(new Workshop(), speaker, event, "Le Java c'est super bien", true);
 
         speaker = addMember("Jean François", "Zobrist", "Agilite",
                 new Speaker()
                         .addEvent(event)
                         .setSessionType(Format.Talk)
-                        .setSessionAccepted(true)
                         .setShortDescription("Transdisciplinary engineer. Building software, studying humans, designing interactions, thinking society.")
                         .setEmail("jf.zobrist@pipo.com"));
         ;
-        addSession(new Talk(), speaker, event, "Favi l'entreprise libérée");
+        addSession(new Talk(), speaker, event, "Favi l'entreprise libérée", true);
     }
 
 }

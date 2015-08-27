@@ -68,7 +68,7 @@ public class MemberController {
     @RequestMapping(value = "/speaker")
     @ApiOperation(value="Finds all speakers", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllSpeakers(@RequestParam(required = false) Integer year) {
-        return getAllMembers(memberRepository.findAllSpeakers(eventService.getEvent(year).getId()));
+        return getAllMembers(memberRepository.findAllAcceptedSpeakers(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/sponsor")
