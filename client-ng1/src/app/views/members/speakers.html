@@ -5,13 +5,7 @@
         personnes qui sont
         venues parlées en 2015.</p>
 
-    <div class="mdl-grid">
-        <div class="mdl-textfield mdl-js-textfield mdl-cell--8-col mdl-cell--1-col-phone"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-cell--4-col mdl-cell--11-col-phone">
-            <input class="mdl-textfield__input" type="text" id="search" ng-model="search"/>
-            <label class="mdl-textfield__label" for="search">Recherche rapide...</label>
-        </div>
-    </div>
+    <cesar-search-bar></cesar-search-bar>
     <div class="cesar-section--bottom">
         <div class="mdl-grid">
             <cesar-member-cards members="ctrl.members" search="search" length="4" type="speaker"></cesar-member-cards>

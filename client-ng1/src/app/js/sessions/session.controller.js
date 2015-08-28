@@ -11,7 +11,7 @@
         var speakers = Array.isArray(session._links.speaker) ? session._links.speaker : [session._links.speaker];
         session.speakers = response.data.filter(function (speaker) {
           var found = speakers.filter(function (s) {
-            return Util.extractId(s.href) === (speaker.idMember+"");
+            return Util.extractId(s.href) === (speaker.idMember+'');
           });
           return found.length > 0;
         });

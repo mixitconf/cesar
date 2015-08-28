@@ -4,13 +4,7 @@
     <p class="cesar-text">Vous pouvez 3 formats différents, des keynotes en début et fin de journée, des conférences et des ateliers.
     Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécéssaires</p>
 
-    <div class="mdl-grid">
-        <div class="mdl-textfield mdl-js-textfield mdl-cell--8-col mdl-cell--1-col-phone"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-cell--4-col mdl-cell--11-col-phone">
-            <input class="mdl-textfield__input" type="text" id="search" ng-model="search"/>
-            <label class="mdl-textfield__label" for="search">Recherche rapide...</label>
-        </div>
-    </div>
+    <cesar-search-bar></cesar-search-bar>
     <div class="cesar-section--bottom">
         <cesar-session-cards sessions="ctrl.sessions" search="search"></cesar-session-cards>
 
