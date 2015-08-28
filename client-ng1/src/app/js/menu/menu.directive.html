@@ -18,8 +18,7 @@
                     </a>
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
-                        <img ng-if="item.img" ng-src="img/speakers/{{item.img}}" alt=""
-                             style="border-radius: 50%;max-height: 30px">
+                        <img ng-if="item.img" ng-src="img/speakers/{{item.img}}" class="cesar-img-avatar">
                         {{item.name}}&nbsp;
                         <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
                     </a>

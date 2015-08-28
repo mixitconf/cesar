@@ -27,12 +27,49 @@
 
     $urlRouterProvider.otherwise('/home');
 
+    // State use to list members
+    function stateMember(url, type){
+      return {
+        url: '/' + url,
+        controller: function(members) {
+          this.members = members;
+        },
+        controllerAs: 'ctrl',
+        templateUrl: 'views/members/' + url + '.html',
+        resolve: {
+          members : function (MemberService){
+            return  MemberService.getAll(type).then(function (response) {
+              return response.data;
+            });
+          }
+        }
+      };
+    }
+    // State use to list sessions
+    function stateSessions(url){
+      return {
+        url: '/' + url,
+        controller: 'SessionsCtrl',
+        controllerAs: 'ctrl',
+        templateUrl: 'views/sessions/' + url + '.html',
+        data:{
+          type : url
+        }
+      };
+    }
+
     $stateProvider
 
       .state('home', {
         url: '/home',
         templateUrl: 'views/home.html'
       })
+      .state('speakers', stateMember('speakers', 'speaker'))
+      .state('sponsors', stateMember('sponsors', 'sponsor'))
+      .state('staff', stateMember('staff', 'staff'))
+      .state('talks', stateSessions('talks', 'talk'))
+      .state('lightningtalks', stateSessions('lightningtalks', 'lightningtalks'))
+
       .state('error', {
         url: '/error',
         templateUrl: 'views/error.html',
@@ -41,33 +78,6 @@
         },
         controller: function ($scope, $stateParams) {
           $scope.error = $stateParams.error;
-        }
-      })
-      .state('speakers', {
-        url: '/speakers',
-        controller: 'MembersCtrl',
-        controllerAs: 'ctrl',
-        templateUrl: 'views/members/speakers.html',
-        data: {
-          member: 'speaker'
-        }
-      })
-      .state('sponsors', {
-        url: '/sponsors',
-        controller: 'MembersCtrl',
-        controllerAs: 'ctrl',
-        templateUrl: 'views/members/sponsors.html',
-        data: {
-          member: 'sponsor'
-        }
-      })
-      .state('staff', {
-        url: '/staff',
-        controller: 'MembersCtrl',
-        controllerAs: 'ctrl',
-        templateUrl: 'views/members/staff.html',
-        data: {
-          member: 'staff'
         }
       })
       .state('member', {

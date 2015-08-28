@@ -4,7 +4,7 @@
 
   angular.module('cesar-members').directive('cesarMemberSessionCards', function (SessionService, $log) {
     return {
-      template: '<div><cesar-session-cards sessions="sessions"></cesar-session-cards></div>',
+      template: '<div><cesar-session-cards sessions="sessions" display="minimal"></cesar-session-cards></div>',
       scope: {
         idSessions: '=sessions'
       },

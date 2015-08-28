@@ -10,8 +10,7 @@
         id: 'prog', name: 'Programme', submenus: [
         {id: 'sub1.1', name: 'Planning', link: 'planning', mobile: true},
         {id: 'sub1.2', name: 'Conférences, ateliers', link: 'talks', mobile: true},
-        {id: 'sub1.3', name: 'Ligthning talks', link: 'lightningtalks', mobile: true},
-        {id: 'sub1.4', name: 'Mix-Teen', link: 'mix-teen'}
+        {id: 'sub1.3', name: 'Ligthning talks', link: 'lightningtalks', mobile: true}
       ]
       },
       {
