@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -17,6 +18,7 @@ import org.mixit.cesar.model.member.Member;
  * A comment on e session talk.
  */
 @Entity
+@Table(name = "ARTICLECOMMENT")
 public class ArticleComment {
 
     @Id

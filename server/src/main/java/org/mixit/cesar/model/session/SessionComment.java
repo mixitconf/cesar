@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.mixit.cesar.model.member.Member;
@@ -17,6 +18,7 @@ import org.mixit.cesar.model.member.Member;
  * A comment on a session talk.
  */
 @Entity
+@Table(name = "SESSIONCOMMENT")
 public class SessionComment {
 
     @Id
