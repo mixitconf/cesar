@@ -11,8 +11,8 @@ import com.ninja_squad.dbsetup.operation.Operation;
 public class DataTest {
 
     public static final Operation DELETE_ALL = deleteAllFrom(
-            "SESSION_COMMENT", "SESSION_INTERESTS", "SESSION_SPEAKERS", "VOTE", "SESSION",
-            "SHARED_LINK", "MEMBER_EVENTS", "MEMBER_INTERESTS", "MEMBER",
+            "ARTICLECOMMENT", "ARTICLE", "SESSIONCOMMENT", "SESSION_INTEREST", "SESSION_MEMBER", "VOTE", "SESSION",
+            "SHAREDLINK", "MEMBER_EVENT", "MEMBER_INTEREST", "MEMBER",
             "EVENT", "INTEREST"
             );
 
@@ -28,5 +28,13 @@ public class DataTest {
 
     public static Operation INSERT_INTEREST = Operations.sequenceOf(
             insertInto("INTEREST").columns("name").values("Agilite").values("Java").build()
+    );
+
+    public static Operation INSERT_MEMBER = Operations.sequenceOf(
+            insertInto("MEMBER")
+                    .withGeneratedValue("id", ValueGenerators.sequence())
+                    .columns("DTYPE", "FIRSTNAME", "LASTNAME", "LOGIN", "NBCONSULTS", "PUBLICPROFILE")
+                    .values("Staff", "Guillaume", "EHRET", "guillaume", 1, "true")
+                    .build()
     );
 }

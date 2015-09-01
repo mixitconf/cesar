@@ -1,4 +1,4 @@
-package org.mixit.cesar.dto;
+package org.mixit.cesar.web.api.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,8 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mixit.cesar.model.member.Interest;
-import org.mixit.cesar.model.member.Member;
-import org.mixit.cesar.model.member.SharedLink;
 import org.mixit.cesar.model.member.Speaker;
 import org.mixit.cesar.model.session.Session;
 import org.mixit.cesar.model.session.Vote;
@@ -19,7 +17,7 @@ import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 /**
- * Member DTO
+ * Member DTO for API HATEOAS
  */
 public class SessionResource extends ResourceSupport {
 

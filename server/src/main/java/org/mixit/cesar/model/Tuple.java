@@ -1,4 +1,4 @@
-package org.mixit.cesar.dto;
+package org.mixit.cesar.model;
 
 public class Tuple {
 

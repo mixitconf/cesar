@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.mixit.cesar.dto.SessionResource;
+import org.mixit.cesar.web.api.dto.SessionResource;
 import org.mixit.cesar.model.session.Session;
 import org.mixit.cesar.repository.SessionRepository;
 import org.mixit.cesar.service.EventService;
