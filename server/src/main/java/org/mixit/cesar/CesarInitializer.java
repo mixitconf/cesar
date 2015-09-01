@@ -3,7 +3,10 @@ package org.mixit.cesar;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import javax.xml.stream.events.Comment;
 
+import org.mixit.cesar.model.article.Article;
+import org.mixit.cesar.model.article.ArticleComment;
 import org.mixit.cesar.model.event.Event;
 import org.mixit.cesar.model.member.Interest;
 import org.mixit.cesar.model.member.Member;
@@ -21,6 +24,8 @@ import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.model.session.Talk;
 import org.mixit.cesar.model.session.Vote;
 import org.mixit.cesar.model.session.Workshop;
+import org.mixit.cesar.repository.ArticleCommentRepository;
+import org.mixit.cesar.repository.ArticleRepository;
 import org.mixit.cesar.repository.EventRepository;
 import org.mixit.cesar.repository.InterestRepository;
 import org.mixit.cesar.repository.MemberRepository;
@@ -44,6 +49,11 @@ public class CesarInitializer {
     private SharedLinkRepository sharedLinkRepository;
     @Autowired
     private SessionRepository sessionRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
+    @Autowired
+    private ArticleCommentRepository articleCommentRepository;
+
 
     private Long id = -1L;
     @Autowired
@@ -104,6 +114,7 @@ public class CesarInitializer {
                     new Staff().setEmail("g.alexandre@coactiv.fr"));
             //Speaker
             addSpeakers(event);
+            addArticle();
         }
     }
 
@@ -111,6 +122,7 @@ public class CesarInitializer {
         interestRepository.save(new Interest().setName("Agilite"));
         interestRepository.save(new Interest().setName("Java"));
         interestRepository.save(new Interest().setName("Scala"));
+        interestRepository.save(new Interest().setName("Web"));
     }
 
     private <T extends Member> T addMember(String firstname, String lastname, String interest, T member) {
@@ -202,4 +214,35 @@ public class CesarInitializer {
         addSession(new Talk(), speaker, event, "Favi l'entreprise libérée", true);
     }
 
+
+    private void addArticle() {
+        Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
+
+        Article article = new Article()
+                .setAuthor(author)
+                .setTitle("Ceci est un exemple d'article")
+                .setHeadline("Vous serez tout sur l'IOT ou pas")
+                .setContent("Titre" +
+                        "========" +
+                        "Les fonctions internes des \"Basestars\" (vaisseaux mères cylon) sont contrôlées par un système d'ordinateur central mi biologique, mi machine appelé l'Hybride. L'ensemble des 7 humanoïdes Cylons décidèrent lors du Plan, de mettre l'ensemble des basestars en cluster pour donner la possibilité à tous les Hybrides de calculer les positions de milliers de Raiders (chasseurs cylons) afin d'éviter qu'ils n'entrent en collision lors des attaques.\n" +
+                        "\n" +
+                        "Les technologies utilisées pour implémenter le Plan furent :\n" +
+                        "\n" +
+                        "* Hazelcast et les ExecutorServices pour calculer les coordonnées des Raiders\n" +
+                        "* Jetty pour fournir une interface de monitoring\n" +
+                        "* un broker de message (MQTT)\n" +
+                        "* Golo pour injecter du code dynamiquement\n" +
+                        "*Golo* sera aussi utilisé comme glue syntaxique pour simplifier la programmation d'Hazelcast, de Jetty et des autres composants.\n" +
+                        "\n" +
+                        "Ce sera l'occasion de découvrir des structures caractéristiques du langage et de voir de quelle façon il s'apparie facilement avec Java sur diverses problématiques allant du classique web avec Jetty au calcule parallèle avec Hazelcast.")
+                .setNbConsults(1)
+                .setValid(true);
+
+        ArticleComment comment = new ArticleComment()
+                .setArticle(articleRepository.save(article))
+                .setContent("Cet article est super bien")
+                .setMember(author);
+
+        articleCommentRepository.save(comment);
+    }
 }

@@ -3,10 +3,7 @@ package org.mixit.cesar.web.crud;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import javax.websocket.server.PathParam;
 
-import org.mixit.cesar.dto.MemberResource;
-import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.repository.EventRepository;
 import org.mixit.cesar.repository.InterestRepository;
 import org.mixit.cesar.repository.MemberRepository;

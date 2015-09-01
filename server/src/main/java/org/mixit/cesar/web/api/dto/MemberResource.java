@@ -1,4 +1,4 @@
-package org.mixit.cesar.dto;
+package org.mixit.cesar.web.api.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +11,14 @@ import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.member.SharedLink;
 import org.mixit.cesar.model.member.Speaker;
 import org.mixit.cesar.model.member.Sponsor;
-import org.mixit.cesar.model.session.Format;
 import org.mixit.cesar.utils.HashUtil;
 import org.mixit.cesar.web.api.MemberController;
+import org.mixit.cesar.model.Tuple;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 /**
- * Member DTO
+ * Member DTO for API HATEOAS
  */
 public class MemberResource extends ResourceSupport{
 
