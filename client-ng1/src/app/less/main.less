@@ -8,6 +8,10 @@
 @secondary_color : #cfd8dc;
 @secondary_color_light : #eceff1;
 
+@mobile_fontsize : 13px;
+@tablet_fontsize : 13px;
+@screen_fontsize : 14px;
+
 @h1_mobile_fontsize : 36px;
 @h2_mobile_fontsize : 25px;
 @h3_mobile_fontsize : 17px;
@@ -18,13 +22,15 @@
 @h2_screen_fontsize : 45px;
 @h3_screen_fontsize : 35px;
 
-
 body {
   font-family: "Roboto", "Arial", sans-serif !important;
 }
 
 h1, h2, h3{
   font-weight: 100 !important;
+}
+a{
+  text-decoration: none;
 }
 .right {
   float: right !important;
@@ -45,6 +51,13 @@ h1, h2, h3{
 }
 
 @media (max-width: 479px) {
+  .hide-on-mobile{
+    visibility: hidden;
+    max-height: 0px;
+    max-width: 0px;
+    width: 0px;
+    height: 0px;
+  }
   h1{
     font-size: @h1_mobile_fontsize !important;
     line-height: (@h1_mobile_fontsize+3) !important;
@@ -388,4 +401,55 @@ img{
 
 .cesar-mutimedia-img{
   min-width: 100%;
+}
+
+//Speaker list in session
+@media (max-width: 479px) {
+  .cesar-speaker-session{
+    .cesar-speaker-session-mini-button {
+      visibility: hidden;
+      height: 0px !important;
+      min-width: 0px !important;
+      width: 0px !important;
+    }
+
+    a {
+      font-size: @mobile_fontsize;
+    }
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1023px) {
+  .cesar-speaker-session-mini-button {
+    visibility: visible;
+    height: 30px !important;
+    min-width: 30px !important;
+    width: 30px !important;
+  }
+  a {
+    font-size: @tablet_fontsize;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cesar-speaker-session-mini-button {
+    visibility: visible;
+  }
+}
+
+.cesar-helper{
+  color: @primary_color;
+  span {
+    position: relative;
+    bottom: 4px;
+  }
+}
+
+.cesar-badge{
+  color: @primary_color;
+}
+.cesar-badge[data-badge]:after{
+  right: -8px !important;
+  width: 16px !important;
+  height: 16px !important;
 }
