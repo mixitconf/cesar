@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-utils', []);
+  angular.module('cesar-articles', ['cesar-templates']);
   angular.module('cesar-menu', ['cesar-templates']);
   angular.module('cesar-home', ['cesar-templates']);
   angular.module('cesar-members', ['cesar-templates']);
@@ -13,6 +14,7 @@
     'ui.router',
     'ngSanitize',
     'cesar-templates',
+    'cesar-articles',
     'cesar-menu',
     'cesar-home',
     'cesar-members',
@@ -57,6 +59,17 @@
         }
       };
     }
+    // State old editions
+    function stateOldEdition(url, year){
+      return {
+        url: '/' + url,
+        controller: function(){
+          this.year = year;
+        },
+        controllerAs: 'ctrl',
+        templateUrl: 'views/sessions/oldedition.html'
+      };
+    }
 
     $stateProvider
 
@@ -64,12 +77,19 @@
         url: '/home',
         templateUrl: 'views/home.html'
       })
+      .state('planning', {
+        url: '/planning',
+        templateUrl: 'views/sessions/planning.html'
+      })
       .state('speakers', stateMember('speakers', 'speaker'))
       .state('sponsors', stateMember('sponsors', 'sponsor'))
       .state('staff', stateMember('staff', 'staff'))
       .state('talks', stateSessions('talks', 'talk'))
       .state('lightningtalks', stateSessions('lightningtalks', 'lightningtalks'))
-
+      .state('mixit15', stateOldEdition('mixit15', 2015))
+      .state('mixit14', stateOldEdition('mixit15', 2014))
+      .state('mixit13', stateOldEdition('mixit15', 2013))
+      .state('mixit12', stateOldEdition('mixit15', 2012))
       .state('error', {
         url: '/error',
         templateUrl: 'views/error.html',
@@ -88,6 +108,21 @@
         resolve: {
           member: function (MemberService, $stateParams) {
             return MemberService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        }
+      })
+      .state('articles', {
+        url: '/articles',
+        templateUrl: 'views/info/articles.html',
+        controller: function(articles){
+          this.articles = articles;
+        },
+        controllerAs: 'ctrl',
+        resolve: {
+          articles: function (ArticleService) {
+            return ArticleService.getAll().then(function (response) {
               return response.data;
             });
           }

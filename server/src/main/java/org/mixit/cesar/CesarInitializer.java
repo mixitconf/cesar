@@ -1,5 +1,7 @@
 package org.mixit.cesar;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -114,7 +116,11 @@ public class CesarInitializer {
                     new Staff().setEmail("g.alexandre@coactiv.fr"));
             //Speaker
             addSpeakers(event);
-            addArticle();
+            addArticle(0);
+            addArticle(0);
+            addArticle(1);
+            addArticle(1);
+            addArticle(2);
         }
     }
 
@@ -215,7 +221,7 @@ public class CesarInitializer {
     }
 
 
-    private void addArticle() {
+    private void addArticle(int year) {
         Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
 
         Article article = new Article()
@@ -236,6 +242,7 @@ public class CesarInitializer {
                         "\n" +
                         "Ce sera l'occasion de découvrir des structures caractéristiques du langage et de voir de quelle façon il s'apparie facilement avec Java sur diverses problématiques allant du classique web avec Jetty au calcule parallèle avec Hazelcast.")
                 .setNbConsults(1)
+                .setPostedAt(Instant.now().minus(Duration.ofDays(365*year)))
                 .setValid(true);
 
         ArticleComment comment = new ArticleComment()

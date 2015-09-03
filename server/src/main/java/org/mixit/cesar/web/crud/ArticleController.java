@@ -38,4 +38,10 @@ public class ArticleController {
         return  articleRepository.findAllPublishedArticle();
     }
 
+    @RequestMapping("/year/{year}")
+    @JsonView(FlatView.class)
+    public List<Article> getAllArticleByYear(@PathVariable("year")Integer year) {
+        return  articleRepository.findAllPublishedArticle();
+    }
+
 }
