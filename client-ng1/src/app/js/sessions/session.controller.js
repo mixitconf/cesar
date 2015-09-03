@@ -2,47 +2,20 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state) {
+  angular.module('cesar-sessions').controller('SessionCtrl', function (session, $stateParams, Util, MemberService) {
     var ctrl = this;
-    var type = $state.current.data.type;
 
-    function findSpeaker(response) {
-      ctrl.sessions.forEach(function (session) {
-        var speakers = Array.isArray(session._links.speaker) ? session._links.speaker : [session._links.speaker];
-        session.speakers = response.data.filter(function (speaker) {
-          var found = speakers.filter(function (s) {
-            return Util.extractId(s.href) === (speaker.idMember+'');
-          });
-          return found.length > 0;
-        });
+    ctrl.session = session;
+    ctrl.session.speakers = [];
+    ctrl.type = $stateParams.type;
+
+    var speakers = Array.isArray(session._links.speaker) ? session._links.speaker : [session._links.speaker];
+
+    speakers.forEach(function(speaker){
+      MemberService.getById(Util.extractId(speaker.href)).then(function(response){
+        ctrl.session.speakers.push(response.data);
       });
-    }
-
-    if (type === 'talks') {
-      //we load talks, workshop and keynotes
-      SessionService.getAll('talk')
-        .then(function (response) {
-          ctrl.sessions = response.data;
-          return SessionService.getAll('workshop');
-        })
-        .then(function (response) {
-          Array.prototype.push.apply(ctrl.sessions, response.data);
-          return SessionService.getAll('keynote');
-        })
-        .then(function (response) {
-          Array.prototype.push.apply(ctrl.sessions, response.data);
-          return MemberService.getAll('speaker');
-        })
-        .then(findSpeaker);
-    }
-    else {
-      SessionService.getAll(type)
-        .then(function (response) {
-          ctrl.sessions = response.data;
-          return MemberService.getAll('speaker');
-        })
-        .then(findSpeaker);
-    }
+    });
 
   });
 })();

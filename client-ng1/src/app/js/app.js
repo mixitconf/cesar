@@ -128,6 +128,19 @@
           }
         }
       })
+      .state('session', {
+        url: '/session/:type/:id/',
+        templateUrl: 'views/sessions/session.html',
+        controller: 'SessionCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          session: function (SessionService, $stateParams) {
+            return SessionService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        }
+      })
       .state('multimedia', {
         url: '/multimedia',
         templateUrl: 'views/info/multimedia.html'
