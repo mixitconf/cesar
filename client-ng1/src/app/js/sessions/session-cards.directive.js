@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-members').directive('cesarSessionCards', function () {
+  angular.module('cesar-sessions').directive('cesarSessionCards', function () {
     return {
       templateUrl: 'js/sessions/session-cards.directive.html',
       scope: {

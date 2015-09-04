@@ -23,6 +23,7 @@ module.exports = function (gulp, config) {
           connectModeRewrite([
             //Rewrite for the backend calls
             '^/api/(.*)$ http://localhost:8080/api/$1 [P]',
+            '^/crud/(.*)$ http://localhost:8080/crud/$1 [P]',
             //Rewrite for HML
             '!\\.\\w+$ /index.html [L]'
           ]),

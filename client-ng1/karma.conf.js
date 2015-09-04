@@ -17,13 +17,15 @@ module.exports = function(config) {
     files: [
       'node_modules/jquery/dist/jquery.js',
       'node_modules/angular/angular.js',
+      'node_modules/angular-sanitize/angular-sanitize.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/markdown/lib/markdown.js',
 
       'src/app/js/**/*.js',
       'src/app/js/**/*.html',
 
-      'src/test/unit/**/*.spec.js',
+      'src/test/unit/**/*.spec.js'
     ],
 
 
