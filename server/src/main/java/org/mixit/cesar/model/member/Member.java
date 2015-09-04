@@ -25,8 +25,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
+import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.security.Role;
 
 @Entity
@@ -46,6 +48,7 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
     private Long id;
 
     /**
@@ -60,9 +63,11 @@ public class Member<T extends Member> implements Comparable<Member> {
     private String email;
 
     @Size(max = 100)
+    @JsonView(FlatView.class)
     private String firstname;
 
     @Size(max = 100)
+    @JsonView(FlatView.class)
     private String lastname;
 
     @Size(max = 100)

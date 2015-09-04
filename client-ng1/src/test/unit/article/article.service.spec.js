@@ -28,7 +28,6 @@ describe('ArticleService', function () {
       expect(response.data.title).toBe('Java and you');
     });
     $httpBackend.flush();
-
   });
 
 });

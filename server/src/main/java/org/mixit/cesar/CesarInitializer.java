@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import javax.xml.stream.events.Comment;
 
 import org.mixit.cesar.model.article.Article;
 import org.mixit.cesar.model.article.ArticleComment;
@@ -116,11 +115,12 @@ public class CesarInitializer {
                     new Staff().setEmail("g.alexandre@coactiv.fr"));
             //Speaker
             addSpeakers(event);
-            addArticle(0);
-            addArticle(0);
-            addArticle(1);
-            addArticle(1);
-            addArticle(2);
+            Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
+            addArticle(author, 0);
+            addArticle(author, 0);
+            addArticle(author, 1);
+            addArticle(author, 1);
+            addArticle(author,  2);
         }
     }
 
@@ -225,24 +225,22 @@ public class CesarInitializer {
     }
 
 
-    private void addArticle(int year) {
-        Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
+    private void addArticle(Staff author, int year) {
 
         Article article = new Article()
                 .setAuthor(author)
                 .setTitle("Ceci est un exemple d'article")
                 .setHeadline("Vous serez tout sur l'IOT ou pas")
-                .setContent("Titre" +
-                        "========" +
-                        "Les fonctions internes des \"Basestars\" (vaisseaux mères cylon) sont contrôlées par un système d'ordinateur central mi biologique, mi machine appelé l'Hybride. L'ensemble des 7 humanoïdes Cylons décidèrent lors du Plan, de mettre l'ensemble des basestars en cluster pour donner la possibilité à tous les Hybrides de calculer les positions de milliers de Raiders (chasseurs cylons) afin d'éviter qu'ils n'entrent en collision lors des attaques.\n" +
+                .setContent("#### Titre\n" +
+                        "Les *fonctions internes* des \"Basestars\" (vaisseaux mères cylon) sont contrôlées par un système d'ordinateur central mi biologique, mi machine appelé l'Hybride. L'ensemble des 7 humanoïdes Cylons décidèrent lors du Plan, de mettre l'ensemble des basestars en cluster pour donner la possibilité à tous les Hybrides de calculer les positions de milliers de Raiders (chasseurs cylons) afin d'éviter qu'ils n'entrent en collision lors des attaques.\n" +
                         "\n" +
                         "Les technologies utilisées pour implémenter le Plan furent :\n" +
                         "\n" +
-                        "* Hazelcast et les ExecutorServices pour calculer les coordonnées des Raiders\n" +
-                        "* Jetty pour fournir une interface de monitoring\n" +
-                        "* un broker de message (MQTT)\n" +
-                        "* Golo pour injecter du code dynamiquement\n" +
-                        "*Golo* sera aussi utilisé comme glue syntaxique pour simplifier la programmation d'Hazelcast, de Jetty et des autres composants.\n" +
+                        "\n* Hazelcast et les ExecutorServices pour calculer les coordonnées des Raiders\n" +
+                        "\n* Jetty pour fournir une interface de monitoring\n" +
+                        "\n* un broker de message (MQTT)\n" +
+                        "\n* Golo pour injecter du code dynamiquement\n" +
+                        "\n*Golo* sera aussi utilisé comme glue syntaxique pour simplifier la programmation d'Hazelcast, de Jetty et des autres composants.\n" +
                         "\n" +
                         "Ce sera l'occasion de découvrir des structures caractéristiques du langage et de voir de quelle façon il s'apparie facilement avec Java sur diverses problématiques allant du classique web avec Jetty au calcule parallèle avec Hazelcast.")
                 .setNbConsults(1)
