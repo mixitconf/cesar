@@ -1,6 +1,6 @@
 package org.mixit.cesar.model.session;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class SessionComment {
     public String content;
 
     @NotNull
-    public Instant postedAt = Instant.now();
+    public LocalDateTime postedAt = LocalDateTime.now();
 
     /* true if private comment. A private comment is visible only to admin members and owners of commented entity (like speakers of a Session). */
     @Column(name = "private")
@@ -82,11 +82,11 @@ public class SessionComment {
         return this;
     }
 
-    public Instant getPostedAt() {
+    public LocalDateTime getPostedAt() {
         return postedAt;
     }
 
-    public SessionComment setPostedAt(Instant postedAt) {
+    public SessionComment setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
         return this;
     }

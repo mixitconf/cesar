@@ -5,6 +5,7 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import javax.sql.DataSource;
 
 import com.ninja_squad.dbsetup.DbSetup;
@@ -38,12 +39,12 @@ public class ArticleRepositoryTest {
                                 insertInto("ARTICLE")
                                         .withGeneratedValue("id", ValueGenerators.sequence())
                                         .columns("AUTHOR_ID", "CONTENT", "POSTEDAT", "TITLE", "HEADLINE", "VALID", "NBCONSULTS")
-                                        .values(1, "Content *markdown*", Instant.now(), "title", "intro", true, 1)
+                                        .values(1, "Content *markdown*", LocalDateTime.now(), "title", "intro", true, 1)
                                         .build(),
                                 insertInto("ARTICLECOMMENT")
                                         .withGeneratedValue("id", ValueGenerators.sequence())
                                         .columns("MEMBER_ID", "CONTENT", "POSTEDAT", "ARTICLE_ID")
-                                        .values(1, "Comment *markdown*", Instant.now(), 1)
+                                        .values(1, "Comment *markdown*", LocalDateTime.now(), 1)
                                         .build()
                         )
                 )

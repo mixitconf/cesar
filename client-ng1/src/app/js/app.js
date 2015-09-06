@@ -101,7 +101,6 @@
 
     //Router definition
     $stateProvider
-
       .state('error', {
         url: '/error',
         params: {
@@ -121,7 +120,7 @@
       .state('home', stateSimplePage('home','views/home.html'))
 
       //News
-      .state('articles', {
+      .state('news', {
         url: '/article/:id',
         resolve: {
           articles: function (ArticleService) {
@@ -132,7 +131,25 @@
         },
         views: {
           main: {
-            templateUrl: 'views/info/article.html',
+            templateUrl: 'views/info/news.html',
+            controller: 'ArticleCtrl',
+            controllerAs: 'ctrl'
+          }
+        }
+      })
+      //News
+      .state('articles', {
+        url: '/articles',
+        resolve: {
+          articles: function (ArticleService) {
+            return ArticleService.getAll().then(function (response) {
+              return response.data;
+            });
+          }
+        },
+        views: {
+          main: {
+            templateUrl: 'views/info/articles.html',
             controller: 'ArticleCtrl',
             controllerAs: 'ctrl'
           }

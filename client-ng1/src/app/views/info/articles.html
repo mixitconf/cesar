@@ -1,0 +1,31 @@
+<div class="cesar-container">
+    <h1>Actualités</h1>
+
+    <div class="cesar-section--bottom">
+
+        <cesar-search-bar></cesar-search-bar>
+
+        <div class="mdl-grid">
+            <div ng-repeat="article in ctrl.articles | filter:search"
+                 class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h3 class="mdl-card__title-text cesar-card__title-text">{{article.title}}</h3>
+
+                    <div class="cesar-card-session-action">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="news({id : article.id})">
+                            <i class="material-icons">nature_people</i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mdl-card__supporting-text cesar-card__supporting-text">
+                    {{article.headline}}<br>
+                    le {{article.postedAt | date:'dd/MM/yyyy'}}</a><br>&nbsp;
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p>&nbsp;</p>
+</div>

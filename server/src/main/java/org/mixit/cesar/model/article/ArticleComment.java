@@ -1,6 +1,6 @@
 package org.mixit.cesar.model.article;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +43,7 @@ public class ArticleComment {
 
     @NotNull
     @JsonView(FlatView.class)
-    public Instant postedAt = Instant.now();
+    public LocalDateTime postedAt = LocalDateTime.now();
 
     public Long getId() {
         return id;
@@ -81,11 +81,11 @@ public class ArticleComment {
         return this;
     }
 
-    public Instant getPostedAt() {
+    public LocalDateTime getPostedAt() {
         return postedAt;
     }
 
-    public ArticleComment setPostedAt(Instant postedAt) {
+    public ArticleComment setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
         return this;
     }

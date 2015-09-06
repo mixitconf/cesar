@@ -1,6 +1,5 @@
 package org.mixit.cesar.repository;
 
-import java.time.Instant;
 import java.util.List;
 
 import org.mixit.cesar.model.article.Article;

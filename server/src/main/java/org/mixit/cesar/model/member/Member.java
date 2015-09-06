@@ -1,6 +1,7 @@
 package org.mixit.cesar.model.member;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -75,7 +76,7 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     private Boolean ticketingRegistered;
 
-    private Instant registeredAt = Instant.now();
+    private LocalDateTime registeredAt = LocalDateTime.now();
 
     /**
      * User-defined description, potentially as MarkDown
@@ -222,11 +223,11 @@ public class Member<T extends Member> implements Comparable<Member> {
         return (T) this;
     }
 
-    public Instant getRegisteredAt() {
+    public LocalDateTime getRegisteredAt() {
         return registeredAt;
     }
 
-    public T setRegisteredAt(Instant registeredAt) {
+    public T setRegisteredAt(LocalDateTime registeredAt) {
         this.registeredAt = registeredAt;
         return (T) this;
     }

@@ -5,7 +5,7 @@
   angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope, cesarSecurity) {
 
     $scope.menus = [
-      {id: 'actu', name: 'Actualités', link: 'articles'},
+      {id: 'actu', name: 'Actualités', link: 'news'},
       {
         id: 'prog', name: 'Programme', submenus: [
         {id: 'sub1.1', name: 'Planning', link: 'planning', mobile: true},

@@ -2,6 +2,8 @@ package org.mixit.cesar;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -230,7 +232,7 @@ public class CesarInitializer {
         Article article = new Article()
                 .setAuthor(author)
                 .setTitle("Ceci est un exemple d'article")
-                .setHeadline("Vous serez tout sur l'IOT ou pas")
+                .setHeadline("Vous serez tout sur l'IOT ou pas et cet artice a est lié à l'année 2015 - " + year + " an")
                 .setContent("#### Titre\n" +
                         "Les *fonctions internes* des \"Basestars\" (vaisseaux mères cylon) sont contrôlées par un système d'ordinateur central mi biologique, mi machine appelé l'Hybride. L'ensemble des 7 humanoïdes Cylons décidèrent lors du Plan, de mettre l'ensemble des basestars en cluster pour donner la possibilité à tous les Hybrides de calculer les positions de milliers de Raiders (chasseurs cylons) afin d'éviter qu'ils n'entrent en collision lors des attaques.\n" +
                         "\n" +
@@ -244,7 +246,7 @@ public class CesarInitializer {
                         "\n" +
                         "Ce sera l'occasion de découvrir des structures caractéristiques du langage et de voir de quelle façon il s'apparie facilement avec Java sur diverses problématiques allant du classique web avec Jetty au calcule parallèle avec Hazelcast.")
                 .setNbConsults(1)
-                .setPostedAt(Instant.now().minus(Duration.ofDays(365*year)))
+                .setPostedAt(LocalDateTime.now().minus(Duration.ofDays(365 * year)))
                 .setValid(true);
 
         ArticleComment comment = new ArticleComment()

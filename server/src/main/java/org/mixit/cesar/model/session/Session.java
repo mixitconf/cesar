@@ -1,6 +1,6 @@
 package org.mixit.cesar.model.session;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +50,7 @@ public abstract class Session<T extends Session> {
     @Size(max = 300)
     private String summary;
 
-    private Instant addedAt = Instant.now();
+    private LocalDateTime addedAt = LocalDateTime.now();
 
     private Integer maxAttendees;
 
@@ -146,11 +146,11 @@ public abstract class Session<T extends Session> {
         return (T) this;
     }
 
-    public Instant getAddedAt() {
+    public LocalDateTime getAddedAt() {
         return addedAt;
     }
 
-    public T setAddedAt(Instant addedAt) {
+    public T setAddedAt(LocalDateTime addedAt) {
         this.addedAt = addedAt;
         return (T) this;
     }

@@ -1,20 +1,20 @@
 <div class="cesar-container">
     <div style="float: right">
-        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.displayPreviousButton()"
+        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()" title="Article précédent"
                 ng-click="ctrl.previousArticle()">
             <i class="material-icons">skip_previous</i>
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles">
             Liste des articles
-        </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.displayPreviousButton()"
+        </a>
+        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" title="Article suivant"
                 ng-click="ctrl.nextArticle()">
             <i class="material-icons">skip_next</i>
         </button>
     </div>
 
     <h1>{{ctrl.article.title}}</h1>
-    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt}}</a>
+    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt | date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
     <div class="cesar-section--bottom">
@@ -36,7 +36,7 @@
                 <div class="mdl-card__supporting-text cesar-card__supporting-text">
                     <div ng-repeat="comment in ctrl.article.comments">
                         <p>
-                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt}}</strong><br>
+                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt | date:'dd/MM/yyyy HH:mm'}}</strong><br>
                             {{comment.content}}
                         </p>
                     </div>

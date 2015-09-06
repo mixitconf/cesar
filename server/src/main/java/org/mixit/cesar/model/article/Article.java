@@ -1,6 +1,6 @@
 package org.mixit.cesar.model.article;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.member.Staff;
@@ -37,7 +36,7 @@ public class Article {
 
     @Column
     @JsonView(FlatView.class)
-    public Instant postedAt = Instant.now();
+    public LocalDateTime postedAt = LocalDateTime.now();
 
     @Size(max = 100)
     @JsonView(FlatView.class)
@@ -96,11 +95,11 @@ public class Article {
         return this;
     }
 
-    public Instant getPostedAt() {
+    public LocalDateTime getPostedAt() {
         return postedAt;
     }
 
-    public Article setPostedAt(Instant postedAt) {
+    public Article setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
         return this;
     }

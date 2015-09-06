@@ -3,8 +3,11 @@ package org.mixit.cesar;
 import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -27,6 +30,13 @@ public class CesarConfig extends WebMvcConfigurerAdapter {
                         regex("/api/session.*")
                 ))
                 .build();
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
+        b.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        return b;
     }
 
     private ApiInfo apiInfo() {
