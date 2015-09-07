@@ -7,7 +7,12 @@
    */
   angular.module('cesar-articles').controller('ArticleCtrl', function (articles, $stateParams, $state, ArticleService) {
     var ctrl = this;
-    var id = $stateParams.id ? $stateParams.id : articles[0].id;
+    var id = $stateParams.id;
+
+    if(!$stateParams.id){
+      $state.go('news', {'id': articles[0].id});
+      return;
+    }
 
     ctrl.articles = articles;
     ctrl.id = id;
