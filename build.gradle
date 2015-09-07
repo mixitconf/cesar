@@ -24,7 +24,7 @@ buildscript {
         vMockito = '1.10.19'
         vNodePlugin = '0.10'
         vSl4j = '1.7.12'
-        vSpringBoot = '1.3.0.M4'
+        vSpringBoot = '1.3.0.M5'
         vSpringLoaded = '1.2.4.RELEASE'
         vSwagger = '2.0.3'
     }
