@@ -204,7 +204,7 @@
       .state('multimedia', stateSimplePage('multimedia','views/info/multimedia.html'))
       .state('conduite', stateSimplePage('conduite','views/info/conduite.html'))
       .state('faq', stateSimplePage('faq','views/info/faq.html'))
-      .state('venir', stateSimplePage('planning','views/info/venir.html'))
+      .state('venir', stateSimplePage('venir','views/info/venir.html'))
       .state('mixit15', stateOldEdition('mixit15', 2015))
       .state('mixit14', stateOldEdition('mixit15', 2014))
       .state('mixit13', stateOldEdition('mixit15', 2013))
