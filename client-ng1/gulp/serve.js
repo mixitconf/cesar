@@ -14,9 +14,12 @@ module.exports = function (gulp, config) {
   ];
 
 
-  function browserSyncInit(baseDir, files, startPath) {
-    browserSync.init(files, {
-      startPath: startPath || '/index.html',
+  function browserSyncInit(baseDir) {
+    browserSync.init([
+      paths.build.dev + '/**/*.js',
+      paths.build.dev + '/**/*.css'
+    ], {
+      startPath: '/index.html',
       server: {
         baseDir: baseDir,
         middleware: [
@@ -25,7 +28,8 @@ module.exports = function (gulp, config) {
             '^/api/(.*)$ http://localhost:8080/api/$1 [P]',
             '^/crud/(.*)$ http://localhost:8080/crud/$1 [P]',
             //Rewrite for HML
-            '!\\.\\w+$ /index.html [L]'
+            //'!\\.\\w+$ /index.html [L]'
+            '^[^\\.]*$ /index.html [L]'
           ]),
           serveStatic(paths.build.dist)
         ]
@@ -39,17 +43,11 @@ module.exports = function (gulp, config) {
    * so the live reload in preview still work
    */
   gulp.task('serve:dev', ['build:dev', 'watch'], function () {
-    browserSyncInit(paths.build.dev, [
-      paths.build.dev + '/**/*.js',
-      paths.build.dev + '/**/*.css'
-    ], '/index-dev.html');
+    browserSyncInit(paths.build.dev);
   });
 
   gulp.task('serve:dist', ['build:dist', 'watch'], function () {
-    browserSyncInit(paths.build.dist, [
-      paths.build.dist + '/**/*.js',
-      paths.build.dist + '/**/*.css'
-    ], '/index.html');
+    browserSyncInit(paths.build.dist);
   });
 
 };

@@ -8,6 +8,8 @@ var less = require('gulp-less');
 var merge = require('merge-stream');
 //Changes angular files to prepare minification
 var ngAnnotate = require('gulp-ng-annotate');
+//Rename a file
+var rename = require('gulp-rename');
 //Replaces element in file
 var replace = require('gulp-replace');
 //Writes inline source maps
@@ -84,6 +86,10 @@ module.exports = function(gulp, config) {
   });
 
   gulp.task('build:dev:html', function () {
+    gulp.src(paths.index)
+      .pipe(rename('index.html'))
+      .pipe(gulp.dest(paths.build.dist));
+
     return gulp.src(paths.html)
       .pipe(gulp.dest(paths.build.dev));
   });

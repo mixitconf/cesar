@@ -150,7 +150,7 @@
         views: {
           main: {
             templateUrl: 'views/info/articles.html',
-            controller: 'ArticleCtrl',
+            controller: 'ArticlesCtrl',
             controllerAs: 'ctrl'
           }
         }
