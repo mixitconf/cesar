@@ -16,6 +16,9 @@
 
     ctrl.articles = articles;
     ctrl.id = id;
+    //TODO if I am the creator of an article I need to be able to edit it or delete it
+    //TODO A moderator can delete one article
+    //TODO wait for rigths and profiles
 
     ArticleService.getById(id).then(function (response) {
       ctrl.article = response.data;
@@ -50,5 +53,9 @@
         previous = article;
       });
     };
+
+    ctrl.addComment = function(){
+      console.log("TODO implement this feature");
+    }
   });
 })();
