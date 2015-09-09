@@ -94,7 +94,7 @@ public class Member<T extends Member> implements Comparable<Member> {
      * Number of profile consultations
      */
     @Min(0)
-    private long nbConsults;
+    private long nbConsults=0;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     public Set<Interest> interests = new TreeSet<>();

@@ -42,11 +42,13 @@ public class SessionController {
     @RequestMapping("/{id}")
     @ApiOperation(value = "Finds one session", httpMethod = "GET")
     public ResponseEntity<SessionResource> getSession(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(SessionResource.convert(sessionRepository.findOne(id)), HttpStatus.OK);
+        Session session = sessionRepository.findOne(id);
+        session.setNbConsults(session.getNbConsults()+1);
+        sessionRepository.save(session);
+        return new ResponseEntity<>(SessionResource.convert(session), HttpStatus.OK);
     }
 
     @RequestMapping
-    @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
         return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year).getId()));
     }

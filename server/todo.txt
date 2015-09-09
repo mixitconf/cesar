@@ -1,0 +1,22 @@
+Au niveau du CFP il peut être itéressant d'anticiper les besoins des speakers
+=> voir travail de Mathieu SpeakerPreferences
+=> ces données peuvent être modifiées par la suite pa le speaker quand il revient sur sa proposition
+
+
+Une demande CFP correspond à remplir le détail d'une session
+Les keynotes ne font pas parties du CFP
+Les lightning talks n'entrainent pas de préférence speaker
+
+
+Demande avec données minimale
+
+Etat d'une demande
+
+En cours ->
+Valide prête pour le CFP ->
+Validée pour le CFP ->
+Vlidée par le CFP ->
+Confirmation speaker avec remplissage de leur préférence (facultatif) ->
+Visible sur le site
+
+Une demande est liée à une session mais les infos users rentrent en compte également

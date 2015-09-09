@@ -41,7 +41,10 @@ public class MemberController {
     @RequestMapping("/{id}")
     @ApiOperation(value="Finds one member", httpMethod = "GET")
     public ResponseEntity<MemberResource> getMember(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(MemberResource.convert(memberRepository.findOne(id)), HttpStatus.OK);
+        Member member = memberRepository.findOne(id);
+        member.setNbConsults(member.getNbConsults()+1);
+        memberRepository.save(member);
+        return new ResponseEntity<>(MemberResource.convert(member), HttpStatus.OK);
     }
 
     @RequestMapping

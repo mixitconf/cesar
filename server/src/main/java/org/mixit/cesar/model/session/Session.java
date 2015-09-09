@@ -87,7 +87,7 @@ public abstract class Session<T extends Session> {
     private List<Vote> votes = new ArrayList<>();
 
     /** Number of consultation */
-    private long nbConsults;
+    private long nbConsults=0;
 
     /** Is session validated (publicly visible) */
     protected boolean valid;
