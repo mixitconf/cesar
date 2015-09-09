@@ -55,7 +55,7 @@
     };
 
     ctrl.addComment = function(){
-      console.log("TODO implement this feature");
-    }
+      console.log('TODO implement this feature');
+    };
   });
 })();

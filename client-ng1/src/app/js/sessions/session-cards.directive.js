@@ -8,7 +8,8 @@
       scope: {
         sessions: '=',
         search: '=',
-        display: '@'
+        display: '@',
+        skipIcon : '@'
       }
     };
   });
