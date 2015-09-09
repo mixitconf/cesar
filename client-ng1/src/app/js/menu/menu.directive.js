@@ -8,7 +8,7 @@
       {id: 'actu', name: 'Actualités', link: 'news'},
       {
         id: 'prog', name: 'Programme', submenus: [
-        {id: 'sub1.1', name: 'Planning', link: 'planning', mobile: true},
+        //{id: 'sub1.1', name: 'Planning', link: 'planning', mobile: true},
         {id: 'sub1.2', name: 'Conférences, ateliers', link: 'talks', mobile: true},
         {id: 'sub1.3', name: 'Ligthning talks', link: 'lightningtalks', mobile: true}
       ]
