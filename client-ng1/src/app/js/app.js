@@ -78,12 +78,13 @@
         url: '/' + url,
         views: {
           main: {
-            templateUrl: 'views/sessions/oldedition.html',
-            controller: function () {
-              this.year = year;
-            },
+            templateUrl: 'views/sessions/talks-old-edition.html',
+            controller: 'SessionsClosedCtrl',
             controllerAs: 'ctrl'
           }
+        },
+        data: {
+          year: year
         }
       };
     }

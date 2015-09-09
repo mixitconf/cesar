@@ -4,6 +4,10 @@
 
   angular.module('cesar-sessions').factory('SessionService', function ($http) {
 
+    function getAllByYear(year){
+      return $http.get('/api/session?year=' + year);
+    }
+
     function getAll(type){
       return $http.get('/api/session/' + type);
     }
@@ -14,6 +18,7 @@
 
     return {
       getAll : getAll,
+      getAllByYear : getAllByYear,
       getById : getById
     };
   });

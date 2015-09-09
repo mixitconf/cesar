@@ -3,7 +3,7 @@
          class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--expand">
             <h3 class="mdl-card__title-text cesar-card__title-text">
-                <i class="material-icons cesar-icons-h3">{{session.format | sessionLogo}}</i>&nbsp;
+                <i class="material-icons cesar-icons-h3" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
                 {{session.title}}</h3><span class="mdl-badge" data-badge="{{session.lang}}"> &nbsp;</span>
 
             <div class="cesar-card-session-action" ng-if="display==='minimal'">

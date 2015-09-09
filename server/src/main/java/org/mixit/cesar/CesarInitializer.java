@@ -65,32 +65,36 @@ public class CesarInitializer {
     @PostConstruct
     public void init() {
         if (eventRepository.count() == 0) {
-            Event event = eventRepository.save(new Event().setId(-1L).setYear(2016).setCurrent(true));
+            Event event2016 = eventRepository.save(new Event().setId(-1L).setYear(2016).setCurrent(true));
+            Event event2015 =eventRepository.save(new Event().setId(-2L).setYear(2015));
+            Event event2014 =eventRepository.save(new Event().setId(-3L).setYear(2014));
+            Event event2013 =eventRepository.save(new Event().setId(-4L).setYear(2013));
+            Event event2012 =eventRepository.save(new Event().setId(-5L).setYear(2012));
             addInterests();
 
             //Friend
             addMember("Elodie", "Dupond", "Agilite", new Member());
             //Participant
-            addMember("Laurent", "Gayet", "Java", new Participant().addEvent(event));
-            addMember("Alfred", "Almendra", "Agilite", new Participant().addEvent(event));
+            addMember("Laurent", "Gayet", "Java", new Participant().addEvent(event2016));
+            addMember("Alfred", "Almendra", "Agilite", new Participant().addEvent(event2016));
             //Sponsor
             addMember("Open", "", "Java",
                     new Sponsor()
-                            .addEvent(event)
+                            .addEvent(event2016)
                             .setLevel(Sponsor.Level.GOLD)
                             .setCompany("Open")
                             .setLogoUrl("logo-open.jpg")
                             .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
             addMember("Viseo", "", "Java",
                     new Sponsor()
-                            .addEvent(event)
+                            .addEvent(event2016)
                             .setCompany("Viseo")
                             .setLevel(Sponsor.Level.SILVER)
                             .setLogoUrl("logo-od.png")
                             .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
             addMember("Atlassian", "", "Java",
                     new Sponsor()
-                            .addEvent(event)
+                            .addEvent(event2016)
                             .setCompany("Atlassian")
                             .setLevel(Sponsor.Level.BRONZE)
                             .setLogoUrl("logo-atlassian.png")
@@ -116,7 +120,7 @@ public class CesarInitializer {
             addMember("Gregory", "Alexandre", "Agilite",
                     new Staff().setEmail("g.alexandre@coactiv.fr"));
             //Speaker
-            addSpeakers(event);
+            addSpeakers(event2016, event2015, event2014, event2013, event2012);
             Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
             addArticle(author, 0);
             addArticle(author, 0);
@@ -144,7 +148,7 @@ public class CesarInitializer {
         );
     }
 
-    private <T extends Session> T addSession(T session, Event event, String title, boolean accepted, Speaker... speaker) {
+    private <T extends Session> T addSession(T session, Event event, String title, LocalDateTime createdAt, boolean accepted, Speaker... speaker) {
         for(Speaker s : speaker) {
             session.addSpeaker(s);
         }
@@ -175,18 +179,19 @@ public class CesarInitializer {
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
                                 "")
                         .setValid(true)
+                        .setAddedAt(createdAt)
                         .setLevel(Level.Beginner)
                         .setLang(SessionLanguage.fr)
                         .setGuest(true)
         );
     }
 
-    private void addSpeakers(Event event) {
+    private void addSpeakers(Event event2016, Event event2015,Event event2014, Event event2013, Event event2012) {
         Speaker speaker, speaker1;
 
         speaker = addMember("Martin", "Odersky", "Scala",
                 new Speaker()
-                        .addEvent(event)
+                        .addEvent(event2016)
                         .setSessionType(Format.Keynote)
                         .setShortDescription("Sébastien Blanc is software engineer with 10 years of experience. He works at Red Hat and focus on Open Source libraries for Mobile.")
                         .setEmail("martin.odersky@pipo.com"));
@@ -202,28 +207,32 @@ public class CesarInitializer {
                         .setOrdernum(1)
                         .setURL("http://martin.ordersky.com")
         );
-        addSession(new Keynote(), event, "Le scala c'est super bien", true, speaker);
-        addSession(new Keynote(), event, "Java bashing", false);
-        addSession(new LightningTalk(), event, "Le scala en 5 minutes", true, speaker);
+        addSession(new Keynote(), event2016, "Le scala c'est super bien", LocalDateTime.now(), true, speaker);
+        addSession(new Keynote(), event2015, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365)), true, speaker);
+        addSession(new Keynote(), event2014, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365*2)), true, speaker);
+        addSession(new Keynote(), event2013, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365*3)), true, speaker);
+        addSession(new Keynote(), event2012, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365*4)), true, speaker);
+        addSession(new Keynote(), event2016, "Java bashing", LocalDateTime.now(), false);
+        addSession(new LightningTalk(), event2016, "Le scala en 5 minutes", LocalDateTime.now(), true, speaker);
 
         speaker1 = addMember("James", "Gosling", "Java",
                 new Speaker()
-                        .addEvent(event)
+                        .addEvent(event2016)
                         .setSessionType(Format.Workshop)
                         .setShortDescription("Open Web Developer Advocate at Google • Tools, Performance, Animation, UX • HFR enthusiast • Creator of jQuery UI")
                         .setEmail("james.gosling@pipo.com"));
-        addSession(new Workshop(), event, "Le Java c'est super bien", true, speaker1);
+        addSession(new Workshop(), event2016, "Le Java c'est super bien", LocalDateTime.now(), true, speaker1);
 
-        addSession(new Talk(), event, "Java vs Scala", true, speaker, speaker1);
+        addSession(new Talk(), event2016, "Java vs Scala", LocalDateTime.now(), true, speaker, speaker1);
 
         speaker = addMember("Jean François", "Zobrist", "Agilite",
                 new Speaker()
-                        .addEvent(event)
+                        .addEvent(event2016)
                         .setSessionType(Format.Talk)
                         .setShortDescription("Transdisciplinary engineer. Building software, studying humans, designing interactions, thinking society.")
                         .setEmail("jf.zobrist@pipo.com"));
         ;
-        addSession(new Talk(), event, "Favi l'entreprise libérée", true, speaker);
+        addSession(new Talk(), event2016, "Favi l'entreprise libérée", LocalDateTime.now(), true, speaker);
     }
 
 
