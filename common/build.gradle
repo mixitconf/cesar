@@ -2,8 +2,19 @@
  *                              gradle file : COMMON
  ******************************************************************************************/
 flyway {
-    url = "jdbc:h2:file:$buildDir/../../server/build/cesar"
-    user = 'sa'
+
+    if (project.properties.containsKey("database") && "mysql".equals(database)) {
+        url = "jdbc:mysql://localhost:3306/mixit"
+        user = 'mixit'
+        password = 'mixit'
+        locations = ["classpath:db/migration/mysql"]
+    }
+    else{
+        url = "jdbc:h2:file:$buildDir/../../server/build/cesar"
+        user = 'sa'
+        locations = ["db.migration.h2"]
+    }
+
 }
 
 jar.dependsOn flywayMigrate

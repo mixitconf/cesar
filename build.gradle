@@ -23,6 +23,7 @@ buildscript {
         vFlyway = '3.2.1'
         vMockito = '1.10.19'
         vNodePlugin = '0.10'
+        vMysql = '5.1.36'
         vSl4j = '1.7.12'
         vSpringBoot = '1.3.0.M5'
         vSpringLoaded = '1.2.4.RELEASE'
@@ -41,6 +42,8 @@ buildscript {
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
 
         classpath "com.h2database:h2:${vH2}"
+        classpath "mysql:mysql-connector-java:${vMysql}"
+
     }
 }
 
@@ -85,6 +88,7 @@ configure([ project(':server')]) {
         compile "com.google.guava:guava:${vGuava}"
         compile "org.slf4j:slf4j-api:${vSl4j}"
         compile "com.h2database:h2:${vH2}"
+        compile "mysql:mysql-connector-java:${vMysql}"
         compile "io.springfox:springfox-swagger2:${vSwagger}"
         compile "io.springfox:springfox-swagger-ui:${vSwagger}"
 

@@ -5,7 +5,7 @@ Cesar backend is a Spring Boot application. We use [Gradle](https://gradle.org/)
 
 ## Develop UI
 
-To launch the webapp you can use `../gradlew booRun`
+To launch the webapp you can use `../gradlew bootRun`
 
 ## Hack Mi-IT
 
