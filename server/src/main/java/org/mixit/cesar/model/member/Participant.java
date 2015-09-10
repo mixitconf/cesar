@@ -17,25 +17,4 @@ public class Participant<T extends Participant> extends Member<T> {
         ROLES.add(Role.Participant);
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    public Set<Event> events = new TreeSet<>();
-
-    public Set<Event> getEvents() {
-        return events;
-    }
-
-    public T clearEvents() {
-        this.events.clear();
-        return (T) this;
-    }
-
-    public T addEvent(Event event) {
-        this.events.add(event);
-        return (T) this;
-    }
-
-    public T removeSharedLink(Event event) {
-        this.events.remove(event);
-        return (T) this;
-    }
 }

@@ -2,6 +2,7 @@ package org.mixit.cesar.model.member;
 
 import java.time.LocalDateTime;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Transient;
@@ -30,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.model.FlatView;
+import org.mixit.cesar.model.event.Event;
 import org.mixit.cesar.model.security.Role;
 
 @Entity
@@ -103,6 +106,9 @@ public class Member<T extends Member> implements Comparable<Member> {
     @OrderColumn(name = "ordernum")
     public List<SharedLink> sharedLinks = new LinkedList<>();
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    public Set<Event> events = new TreeSet<>();
+
     /**
      * true if profile is public (visible not connected)
      */
@@ -155,6 +161,25 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     public T setFirstname(String firstname) {
         this.firstname = firstname;
+        return (T) this;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public T clearEvents() {
+        this.events.clear();
+        return (T) this;
+    }
+
+    public T addEvent(Event event) {
+        this.events.add(event);
+        return (T) this;
+    }
+
+    public T removeSharedLink(Event event) {
+        this.events.remove(event);
         return (T) this;
     }
 
