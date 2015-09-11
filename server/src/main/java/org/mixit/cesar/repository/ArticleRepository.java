@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ArticleRepository extends CrudRepository<Article, Long> {
 
-    @Query(value = "SELECT a FROM Article a where a.valid=true")
+    @Query(value = "SELECT a FROM Article a where a.valid=true order by a.postedAt desc")
     List<Article> findAllPublishedArticle();
 
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c left join c.member where a.id=:idArticle and a.valid=true")

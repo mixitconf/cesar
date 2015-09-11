@@ -14,7 +14,7 @@
         <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a>
     </p>
 
-    <p>{{ ctrl.session.description }}</p>
+    <p marked="ctrl.session.description"></p>
 
     <p>
         <i class="material-icons mdl-badge cesar-badge" data-badge="{{ctrl.session.positiveVotes | defaultValue:0}}" title="{{ctrl.session.positiveVotes | defaultValue:0}} vote pour cette session">assessment</i>
@@ -24,7 +24,7 @@
     <hr>
 
     <div class="cesar-section--bottom">
-        <p ng-bind-html="ctrl.member.longDescription"></p>
+        <p marked="ctrl.member.longDescription"></p>
 
         <p>
             <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-repeat="interest in ctrl.session.interests" ui-sref="interest(interest)">

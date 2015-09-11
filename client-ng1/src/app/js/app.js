@@ -20,7 +20,8 @@
     'cesar-members',
     'cesar-sessions',
     'cesar-services',
-    'cesar-utils'
+    'cesar-utils',
+    'hc.marked'
   ]);
 
   angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
