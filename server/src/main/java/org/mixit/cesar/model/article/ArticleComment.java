@@ -7,10 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.annotations.Type;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.member.Member;
 
@@ -18,7 +18,6 @@ import org.mixit.cesar.model.member.Member;
  * A comment on e session talk.
  */
 @Entity
-@Table(name = "ARTICLECOMMENT")
 public class ArticleComment {
 
     @Id
@@ -43,6 +42,7 @@ public class ArticleComment {
 
     @NotNull
     @JsonView(FlatView.class)
+    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     public LocalDateTime postedAt = LocalDateTime.now();
 
     public Long getId() {

@@ -144,7 +144,7 @@ public class CesarInitializer {
                         .setLogin(UUID.randomUUID().toString())
                         .setLastname(lastname)
                         .setFirstname(firstname)
-                        .addInterest(interestRepository.findOne(interest))
+                        .addInterest(interestRepository.findByName(interest))
         );
     }
 

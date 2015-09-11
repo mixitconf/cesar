@@ -30,6 +30,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.collect.ComparisonChain;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.event.Event;
@@ -79,6 +80,7 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     private Boolean ticketingRegistered;
 
+    @org.hibernate.annotations.Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
     /**
@@ -206,13 +208,13 @@ public class Member<T extends Member> implements Comparable<Member> {
         return sharedLinks;
     }
 
-    public T addSharedLink(SharedLink interest) {
-        this.sharedLinks.add(interest);
+    public T addSharedLink(SharedLink link) {
+        this.sharedLinks.add(link);
         return (T) this;
     }
 
-    public T removeSharedLink(SharedLink interest) {
-        this.sharedLinks.remove(interest);
+    public T removeSharedLink(SharedLink link) {
+        this.sharedLinks.remove(link);
         return (T) this;
     }
 

@@ -2,8 +2,13 @@ package org.mixit.cesar.model.member;
 
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.model.FlatView;
 
 /**
  * Member Interest
@@ -12,8 +17,21 @@ import javax.validation.constraints.Size;
 public class Interest implements Comparable<Interest> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
+    private Long id;
+
     @Size(max = 50)
     public String name;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Interest setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getName() {
         return name;

@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * {@link Interest}
  */
-public interface InterestRepository extends CrudRepository<Interest, String> {
+public interface InterestRepository extends CrudRepository<Interest, Long> {
 
+    Interest findByName(String name);
 }

@@ -9,16 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.mixit.cesar.model.member.Member;
 
 /**
  * A comment on a session talk.
  */
 @Entity
-@Table(name = "SESSIONCOMMENT")
 public class SessionComment {
 
     @Id
@@ -39,6 +38,7 @@ public class SessionComment {
     public String content;
 
     @NotNull
+    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     public LocalDateTime postedAt = LocalDateTime.now();
 
     /* true if private comment. A private comment is visible only to admin members and owners of commented entity (like speakers of a Session). */

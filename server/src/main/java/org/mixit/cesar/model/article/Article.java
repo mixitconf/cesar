@@ -13,9 +13,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.annotations.Type;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.member.Staff;
 
@@ -36,6 +38,7 @@ public class Article {
 
     @Column
     @JsonView(FlatView.class)
+    @Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     public LocalDateTime postedAt = LocalDateTime.now();
 
     @Size(max = 100)

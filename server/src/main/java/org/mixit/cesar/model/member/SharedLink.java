@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
  * An URL shared by a member on his profile
  */
 @Entity
-@Table(name = "SHAREDLINK")
 public class SharedLink {
 
     @Id

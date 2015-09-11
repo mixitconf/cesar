@@ -25,6 +25,7 @@ import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.mixit.cesar.model.event.Event;
 import org.mixit.cesar.model.member.Interest;
 import org.mixit.cesar.model.member.Speaker;
@@ -50,6 +51,7 @@ public abstract class Session<T extends Session> {
     @Size(max = 300)
     private String summary;
 
+    @Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime addedAt = LocalDateTime.now();
 
     private Integer maxAttendees;

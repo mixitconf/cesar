@@ -91,6 +91,7 @@ configure([ project(':server')]) {
         compile "mysql:mysql-connector-java:${vMysql}"
         compile "io.springfox:springfox-swagger2:${vSwagger}"
         compile "io.springfox:springfox-swagger-ui:${vSwagger}"
+        compile "org.jadira.usertype:usertype.extended:3.2.0.GA"
 
         testCompile "junit:junit:${vJunit}"
         testCompile "pl.pragmatists:JUnitParams:${vJUnitParams}"
