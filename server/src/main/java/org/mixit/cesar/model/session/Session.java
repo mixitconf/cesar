@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.model.event.Event;
 import org.mixit.cesar.model.member.Interest;
-import org.mixit.cesar.model.member.Speaker;
+import org.mixit.cesar.model.member.Member;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -51,7 +51,7 @@ public abstract class Session<T extends Session> {
     @Size(max = 300)
     private String summary;
 
-    @Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime addedAt = LocalDateTime.now();
 
     private Integer maxAttendees;
@@ -59,8 +59,10 @@ public abstract class Session<T extends Session> {
     @Enumerated(EnumType.STRING)
     private Level level;
 
-    /** Is this session a guest session **/
-    private boolean guest=false;
+    /**
+     * Is this session a guest session
+     **/
+    private boolean guest = false;
 
     @Lob
     private String messageForStaff;
@@ -75,12 +77,14 @@ public abstract class Session<T extends Session> {
 
     @ManyToMany
     @NotNull
-    private Set<Speaker> speakers = new HashSet<Speaker>();
+    private Set<Member> speakers = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Interest> interests = new TreeSet<Interest>();
 
-    /** Eventual comments */
+    /**
+     * Eventual comments
+     */
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     @OrderBy("postedAt ASC")
     private List<SessionComment> comments = new ArrayList<>();
@@ -88,14 +92,17 @@ public abstract class Session<T extends Session> {
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
 
-    /** Number of consultation */
-    private long nbConsults=0;
+    /**
+     * Number of consultation
+     */
+    private long nbConsults = 0;
 
-    /** Is session validated (publicly visible) */
+    /**
+     * Is session validated (publicly visible)
+     */
     protected boolean valid;
 
     @Enumerated(EnumType.STRING)
-    @NotNull   // But nullable : must give language when editing, but not always given on old sessions.
     private SessionLanguage lang = SessionLanguage.fr;
 
     private Boolean sessionAccepted;
@@ -211,16 +218,16 @@ public abstract class Session<T extends Session> {
         return (T) this;
     }
 
-    public Set<Speaker> getSpeakers() {
+    public Set<Member> getSpeakers() {
         return speakers;
     }
 
-    public T addSpeaker(Speaker speaker) {
+    public T addSpeaker(Member speaker) {
         this.speakers.add(speaker);
         return (T) this;
     }
 
-    public T removeSpeaker(Speaker speaker) {
+    public T removeSpeaker(Member speaker) {
         this.speakers.remove(speaker);
         return (T) this;
     }

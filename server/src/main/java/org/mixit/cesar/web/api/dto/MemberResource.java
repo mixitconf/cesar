@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import org.mixit.cesar.model.member.Interest;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.member.SharedLink;
-import org.mixit.cesar.model.member.Speaker;
 import org.mixit.cesar.model.member.Sponsor;
+import org.mixit.cesar.model.session.Session;
 import org.mixit.cesar.utils.HashUtil;
 import org.mixit.cesar.web.api.MemberController;
 import org.mixit.cesar.model.Tuple;
@@ -38,7 +38,8 @@ public class MemberResource extends ResourceSupport{
     private List<String> interests = new ArrayList<>();
     private List<Long> sessions = new ArrayList<>();
 
-    public static <T extends Member> MemberResource convert(T member){
+    public static <T extends Member<T>> MemberResource convert(T member){
+
         MemberResource memberResource = new MemberResource()
                 .setIdMember(member.getId())
                 .setLogin(member.getLogin())
@@ -50,6 +51,13 @@ public class MemberResource extends ResourceSupport{
                 .setLongDescription(member.getLongDescription())
                 .setHash(HashUtil.md5Hex(member.getEmail()));
 
+        if(!member.getSessions().isEmpty()) {
+            memberResource.setSessions(member.getSessions()
+                    .stream()
+                    .filter(s -> Boolean.TRUE.equals(s.getSessionAccepted()))
+                    .map(s -> s.getId())
+                    .collect(Collectors.toList()));
+        }
         Set<Interest> interests = member.getInterests();
         if(!interests.isEmpty()){
             memberResource.setInterests(interests
@@ -68,15 +76,6 @@ public class MemberResource extends ResourceSupport{
             memberResource
                     .setLogo(((Sponsor) member).getLogoUrl())
                     .setLevel(((Sponsor) member).getLevel().toString());
-        }
-        else if(member instanceof Speaker){
-            memberResource
-                    .setSessionType(((Speaker) member).getSessionType().toString())
-                    .setSessions(((Speaker) member).getSessions()
-                            .stream()
-                            .filter(s -> Boolean.TRUE.equals(s.getSessionAccepted()))
-                            .map(s -> s.getId())
-                            .collect(Collectors.toList()));
         }
         memberResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(member.getId()).withSelfRel());
 

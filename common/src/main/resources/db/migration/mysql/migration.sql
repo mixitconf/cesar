@@ -71,3 +71,5 @@ DELETE FROM mixit.Session_Member where  speakers_id in (168);
 INSERT INTO mixit.Member_Event (MEMBER_ID, EVENTS_ID)
 SELECT DISTINCT speakers_id, 5
 FROM mixit.Session_Member;
+
+UPDATE mixit.Session SET lang='fr' WHERE lang is null or lang='';
