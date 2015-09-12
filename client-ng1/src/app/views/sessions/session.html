@@ -7,11 +7,12 @@
     <p class="cesar-text">{{ ctrl.session.summary }}</p>
 
     <p>
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent cesar-mdl-button--interests">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent cesar-mdl-button--interests" ng-if="ctrl.session.room">
             Salle {{ctrl.session.room | defaultValue}}
         </a>
+        <span ng-if="ctrl.session.start">
          de <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.start | defaultValue}}</a> à
-        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a>
+        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a></span>
     </p>
 
     <p marked="ctrl.session.description"></p>
