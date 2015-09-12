@@ -8,12 +8,17 @@
       return $http.get('/api/member/' + type);
     }
 
+    function getAllLigthningtalkSpeakers(){
+      return $http.get('/api/member/speaker/lightningtalks');
+    }
+
     function getById(id){
       return $http.get('/api/member/' + id);
     }
 
     return {
       getAll : getAll,
+      getAllLigthningtalkSpeakers: getAllLigthningtalkSpeakers,
       getById : getById
     };
   });

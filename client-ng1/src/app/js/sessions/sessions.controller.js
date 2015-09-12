@@ -39,7 +39,7 @@
       SessionService.getAll(type)
         .then(function (response) {
           ctrl.sessions = response.data;
-          return MemberService.getAll('speaker');
+          return MemberService.getAllLigthningtalkSpeakers();
         })
         .then(findSpeaker);
     }

@@ -65,6 +65,12 @@ public class MemberController {
         return getAllMembers(memberRepository.findAllAcceptedSpeakers(eventService.getEvent(year).getId()));
     }
 
+    @RequestMapping(value = "/speaker/lightningtalks")
+    @ApiOperation(value = "Finds all lightningtalk speakers", httpMethod = "GET")
+    public ResponseEntity<List<MemberResource>> getAllLightningtalksSpeakers(@RequestParam(required = false) Integer year) {
+        return getAllMembers(memberRepository.findAllLigthningtalkSpeakers(eventService.getEvent(year).getId()));
+    }
+
     @RequestMapping(value = "/sponsor")
     @ApiOperation(value = "Finds all sponsors", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllSponsors(@RequestParam(required = false) Integer year) {
