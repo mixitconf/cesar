@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.mixit.cesar.web.api.dto.MemberResource;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.EventService;
+import org.mixit.cesar.web.api.dto.MemberResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value ="Conference members",
+@Api(value = "Conference members",
         description = "Member Api helps you to find all the persons linked with the conference. Members have an account " +
                 "on our website, participants have a ticket for the conference. You can also find informations about the " +
                 "speakers, the staff and the sponsors")
@@ -31,7 +31,7 @@ public class MemberController {
     @Autowired
     EventService eventService;
 
-    private <T extends Member> ResponseEntity<List<MemberResource>> getAllMembers(List<T> members) {
+    private <T extends Member<T>> ResponseEntity<List<MemberResource>> getAllMembers(List<T> members) {
         return new ResponseEntity<>(members
                 .stream()
                 .map(m -> MemberResource.convert(m))
@@ -39,40 +39,34 @@ public class MemberController {
     }
 
     @RequestMapping("/{id}")
-    @ApiOperation(value="Finds one member", httpMethod = "GET")
+    @ApiOperation(value = "Finds one member", httpMethod = "GET")
     public ResponseEntity<MemberResource> getMember(@PathVariable("id") Long id) {
         Member member = memberRepository.findOne(id);
-        member.setNbConsults(member.getNbConsults()+1);
+        member.setNbConsults(member.getNbConsults() + 1);
         memberRepository.save(member);
         return new ResponseEntity<>(MemberResource.convert(member), HttpStatus.OK);
     }
 
     @RequestMapping
-    @ApiOperation(value="Finds all members", httpMethod = "GET")
+    @ApiOperation(value = "Finds all members", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllMembers() {
         return getAllMembers(memberRepository.findAllMembers());
     }
 
     @RequestMapping(value = "/staff")
-    @ApiOperation(value="Finds Mix-IT staff", httpMethod = "GET")
+    @ApiOperation(value = "Finds Mix-IT staff", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllStaffs() {
         return getAllMembers(memberRepository.findAllStaffs());
     }
 
-    @RequestMapping(value = "/participant")
-    @ApiOperation(value="Finds all participants", httpMethod = "GET")
-    public ResponseEntity<List<MemberResource>> getAllParticipants(@RequestParam(required = false) Integer year) {
-        return getAllMembers(memberRepository.findAllParticipants(eventService.getEvent(year).getId()));
-    }
-
     @RequestMapping(value = "/speaker")
-    @ApiOperation(value="Finds all speakers", httpMethod = "GET")
+    @ApiOperation(value = "Finds all speakers", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllSpeakers(@RequestParam(required = false) Integer year) {
         return getAllMembers(memberRepository.findAllAcceptedSpeakers(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/sponsor")
-    @ApiOperation(value="Finds all sponsors", httpMethod = "GET")
+    @ApiOperation(value = "Finds all sponsors", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllSponsors(@RequestParam(required = false) Integer year) {
         return getAllMembers(memberRepository.findAllSponsors(eventService.getEvent(year).getId()));
     }

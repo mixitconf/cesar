@@ -12,7 +12,7 @@ import org.mixit.cesar.model.security.Role;
  * A Mix-IT sponsor, giving a fucking load of money to buy better sandwiches than the ones given at WSN Paris.
  */
 @Entity
-public class Sponsor extends Participant<Sponsor> {
+public class Sponsor extends Member<Sponsor> {
 
     public Sponsor() {
         ROLES.add(Role.Member);

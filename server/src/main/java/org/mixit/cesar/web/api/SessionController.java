@@ -32,7 +32,7 @@ public class SessionController {
     @Autowired
     EventService eventService;
 
-    private <T extends Session> ResponseEntity<List<SessionResource>> getAllSessions(List<T> sessions) {
+    private <T extends Session<T>> ResponseEntity<List<SessionResource>> getAllSessions(List<T> sessions) {
         return new ResponseEntity<>(sessions
                 .stream()
                 .map(m -> SessionResource.convert(m))

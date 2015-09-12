@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mixit.cesar.model.member.Interest;
-import org.mixit.cesar.model.member.Speaker;
 import org.mixit.cesar.model.session.Session;
 import org.mixit.cesar.model.session.Vote;
 import org.mixit.cesar.web.api.MemberController;
@@ -36,7 +35,7 @@ public class SessionResource extends ResourceSupport {
     public Date end;
     public List<String> interests = new ArrayList<>();
 
-    public static <T extends Session> SessionResource convert(T session){
+    public static <T extends Session<T>> SessionResource convert(T session) {
         //TODO room + start + end
         SessionResource sessionResource = new SessionResource()
                 .setIdSession(session.getId())
@@ -49,7 +48,7 @@ public class SessionResource extends ResourceSupport {
                 .setNbConsults(session.getNbConsults());
 
         List<Vote> votes = session.getVotes();
-        if(!votes.isEmpty()){
+        if (!votes.isEmpty()) {
             votes.stream().forEach(v -> {
                 sessionResource.setVotes(sessionResource.getVotes() + 1);
                 if (Boolean.TRUE.equals(v.getValue())) {
@@ -59,7 +58,7 @@ public class SessionResource extends ResourceSupport {
         }
 
         Set<Interest> interests = session.getInterests();
-        if(!interests.isEmpty()){
+        if (!interests.isEmpty()) {
             sessionResource.setInterests(interests
                     .stream()
                     .map(Interest::getName)
@@ -67,8 +66,7 @@ public class SessionResource extends ResourceSupport {
         }
 
         sessionResource.add(ControllerLinkBuilder.linkTo(SessionController.class).slash(session.getId()).withSelfRel());
-        Set<Speaker> speakers = session.getSpeakers();
-        speakers
+        session.getSpeakers()
                 .stream()
                 .forEach(s -> {
                     sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker"));

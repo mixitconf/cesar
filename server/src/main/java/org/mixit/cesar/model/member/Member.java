@@ -35,6 +35,7 @@ import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.event.Event;
 import org.mixit.cesar.model.security.Role;
+import org.mixit.cesar.model.session.Session;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -111,6 +112,9 @@ public class Member<T extends Member> implements Comparable<Member> {
     @ManyToMany(cascade = CascadeType.PERSIST)
     public Set<Event> events = new TreeSet<>();
 
+    @ManyToMany(mappedBy = "speakers")
+    public Set<Session> sessions = new HashSet<>();
+
     /**
      * true if profile is public (visible not connected)
      */
@@ -164,6 +168,25 @@ public class Member<T extends Member> implements Comparable<Member> {
     public T setFirstname(String firstname) {
         this.firstname = firstname;
         return (T) this;
+    }
+
+    public Set<Session> getSessions() {
+        return sessions;
+    }
+
+    public T clearSessions() {
+        this.sessions.clear();
+        return (T)this;
+    }
+
+    public T addSession(Session session) {
+        this.sessions.add(session);
+        return (T)this;
+    }
+
+    public T removeSharedLink(Session session) {
+        this.sessions.remove(session);
+        return (T)this;
     }
 
     public Set<Event> getEvents() {
