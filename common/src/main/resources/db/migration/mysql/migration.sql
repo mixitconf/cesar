@@ -66,3 +66,8 @@ FROM ad_32609ed48478829.sharedlink;
 INSERT INTO mixit.Vote (ID,VALUE,MEMBER_ID,SESSION_ID)
 SELECT id, value, member_id, session_id
 FROM ad_32609ed48478829.vote;
+
+DELETE FROM mixit.Session_Member where  speakers_id in (168);
+INSERT INTO mixit.Member_Event (MEMBER_ID, EVENTS_ID)
+SELECT DISTINCT speakers_id, 5
+FROM mixit.Session_Member;
