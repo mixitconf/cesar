@@ -157,7 +157,7 @@ a{
 }
 
 .cesar-button--fab{
-  color: @primary_color;
+  color: @primary_color !important;
   margin-right: 3px;
   img {
     padding-top: 9px !important;
@@ -165,6 +165,13 @@ a{
     height: 1em !important;
   }
 }
+
+.cesar-button--fab-pimary, .cesar-button--fab-pimary:hover{
+  color: white !important;
+  background-color: @primary_color;
+
+}
+
 
 .cesar-container{
   width: 90% !important;
@@ -378,6 +385,12 @@ a{
   padding-bottom: 0px !important;
   padding-top: 0px !important;
 }
+
+.cesar-session__container{
+  width: 100%;
+  height: auto !important;
+  min-height: 60px !important;
+}
 .cesar-card-session.mdl-card{
   height: auto !important;
   min-height: 60px !important;
@@ -436,9 +449,9 @@ img{
 @media (min-width: 480px) and (max-width: 1023px) {
   .cesar-speaker-session-mini-button {
     visibility: visible;
-    height: 30px !important;
-    min-width: 30px !important;
-    width: 30px !important;
+    height: 1em !important;
+    min-width: 1em !important;
+    width: 1em !important;
   }
   a {
     font-size: @tablet_fontsize;
@@ -448,6 +461,10 @@ img{
 @media (min-width: 1024px) {
   .cesar-speaker-session-mini-button {
     visibility: visible;
+    height: 1em !important;
+    min-width: 1em !important;
+    width: 1em !important;
+    margin-bottom: 4px;
   }
 }
 
