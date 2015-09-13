@@ -7,7 +7,7 @@
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--4-col">
                     <img src="http://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
-                    <img ng-src="img/sponsors/{{member.level | lowercase}}/{{member.logo}}" ng-if="member.logo" />
+                    <img ng-src="img/{{member.logo}}" ng-if="member.logo" />
                 </div>
                 <div class="mdl-cell mdl-cell--8-col">
                     {{member.shortDescription | limitTo:limitText}}

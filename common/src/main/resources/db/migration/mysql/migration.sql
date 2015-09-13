@@ -73,3 +73,5 @@ SELECT DISTINCT speakers_id, 5
 FROM mixit.Session_Member;
 
 UPDATE mixit.Session SET lang='fr' WHERE lang is null or lang='';
+
+UPDATE mixit.Member SET LOGOURL=REPLACE(LOGOURL,'/public/images/', 'sponsors/') where LOGOURL is not null;
