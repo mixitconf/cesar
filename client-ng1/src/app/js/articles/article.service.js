@@ -5,11 +5,11 @@
   angular.module('cesar-articles').factory('ArticleService', function ($http) {
 
     function getAll(){
-      return $http.get('/crud/article');
+      return $http.get('/api/article');
     }
 
     function getById(id){
-      return $http.get('/crud/article/' + id);
+      return $http.get('/api/article/' + id);
     }
 
     return {

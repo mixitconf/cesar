@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope, cesarSecurity) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope, $q) {
 
     $scope.menus = [
       {id: 'actu', name: 'Actualités', link: 'news'},
@@ -34,7 +34,13 @@
       }
     ];
 
-    cesarSecurity.getUserConnected().then(function (response) {
+    //TODO change
+    $q.when({
+      id: 1,
+      name: 'Guillaume EHRET',
+      role: 'ADMIN',
+      img: 'avatar.jpg'
+    }).then(function (response) {
       $scope.userConnected = response;
       $scope.menus.push(
         {

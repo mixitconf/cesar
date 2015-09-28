@@ -1,0 +1,55 @@
+<div class="cesar-container">
+
+    <h1>Connexion</h1>
+
+    <p class="cesar-text">
+        Certaines fonctionnalités du site sont sécurisées. Utilisez votre compte ou créez un compte.
+    </p>
+
+    <p>
+        Vous avez la possibilité de créer un site avec un nom d'utilisateur et un mot de passe. Nous vous conseillons
+        plutôt de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> afin de ne pas
+        stocker
+        votre mot de passe sur nos serveurs. Les mots de passe sont bien évidemment cryptés et sécurisés. Conformément
+        à la loi Informatique et Liberté vous bénéficiez des droits de voir et de modifier vos données. Vous pouvez
+        aussi nous demander par simple demande de supprimer votre compte
+    </p>
+
+    <div class="cesar-section">
+        <div class="cesar-error" ng-if="errorMessage">
+            {{errorMessage}}
+        </div>
+        <form novalidate class="cesar-form" name="frm">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col">&nbsp;</div>
+                <div class="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title mdl-card--expand cesar-card__title">
+                        <h3 class="mdl-card__title-text cesar-card__title-text">Authentification</h3>
+                    </div>
+                    <div class="mdl-card__supporting-text cesar-card__supporting-text">
+
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="username" ng-required="true" ng-model="ctrl.credentials.username"/>
+                            <label class="mdl-textfield__label" for="username">Identifiant</label>
+                        </div>
+                        <br>
+
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="password" ng-required="true" ng-model="ctrl.credentials.password"/>
+                            <label class="mdl-textfield__label" for="password">Mot de passe</label>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.login()">
+                                <i class="material-icons">vpn_key</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">&nbsp;</div>
+            </div>
+
+        </form>
+    </div>
+    <p>&nbsp;</p>
+</div>

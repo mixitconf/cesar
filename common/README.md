@@ -30,6 +30,6 @@ And if you want to delete the database you can used
 If you want to use a mysql database you can use this command
 
 ```
-../gradlew flywayMigrate -Pdatabase=mysql
+../gradlew  
 ```
 

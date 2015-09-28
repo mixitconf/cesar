@@ -14,6 +14,9 @@ import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.member.SharedLink;
 import org.mixit.cesar.model.member.Sponsor;
 import org.mixit.cesar.model.member.Staff;
+import org.mixit.cesar.model.security.Account;
+import org.mixit.cesar.model.security.Authority;
+import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.model.session.Keynote;
 import org.mixit.cesar.model.session.Level;
 import org.mixit.cesar.model.session.LightningTalk;
@@ -22,8 +25,10 @@ import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.model.session.Talk;
 import org.mixit.cesar.model.session.Vote;
 import org.mixit.cesar.model.session.Workshop;
+import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.ArticleCommentRepository;
 import org.mixit.cesar.repository.ArticleRepository;
+import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.EventRepository;
 import org.mixit.cesar.repository.InterestRepository;
 import org.mixit.cesar.repository.MemberRepository;
@@ -51,6 +56,10 @@ public class CesarInitializer {
     private ArticleRepository articleRepository;
     @Autowired
     private ArticleCommentRepository articleCommentRepository;
+    @Autowired
+    private AuthorityRepository authorityRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
 
     private Long id = -1L;
@@ -122,6 +131,8 @@ public class CesarInitializer {
             addArticle(author, 1);
             addArticle(author, 1);
             addArticle(author, 2);
+
+            addSecurity();
         }
     }
 
@@ -256,5 +267,18 @@ public class CesarInitializer {
                 .setMember(author);
 
         articleCommentRepository.save(comment);
+    }
+
+    private void addSecurity(){
+        Authority authority = authorityRepository.save(new Authority().setName(Authority.Role.ROLE_ADMIN));
+        authorityRepository.save(new Authority().setName(Authority.Role.ROLE_MEMBRE));
+        authorityRepository.save(new Authority().setName(Authority.Role.ROLE_SPEAKER));
+        Account account = accountRepository.save(new Account()
+                        .setName("Guillaume")
+                        .setLogin("user")
+                        .setPassword("password")
+                        .setProvider(OAuthProvider.CESAR));
+        account.addAuthority(authority);
+
     }
 }
