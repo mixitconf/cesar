@@ -1,8 +1,6 @@
 package org.mixit.cesar.model.member;
 
 import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,8 +9,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +16,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Transient;
@@ -30,7 +25,6 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.collect.ComparisonChain;
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.event.Event;
@@ -40,14 +34,6 @@ import org.mixit.cesar.model.session.Session;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Member<T extends Member> implements Comparable<Member> {
-
-    public enum Type {
-        Member,
-        Participant,
-        Sponsor,
-        Staff,
-        Speaker
-    }
 
     @Transient
     protected final Set<Role> ROLES = new HashSet<>();
@@ -81,7 +67,7 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     private Boolean ticketingRegistered;
 
-    @org.hibernate.annotations.Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
     /**
@@ -100,7 +86,7 @@ public class Member<T extends Member> implements Comparable<Member> {
      * Number of profile consultations
      */
     @Min(0)
-    private long nbConsults=0;
+    private long nbConsults = 0;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     public Set<Interest> interests = new TreeSet<>();
@@ -176,17 +162,17 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     public T clearSessions() {
         this.sessions.clear();
-        return (T)this;
+        return (T) this;
     }
 
     public T addSession(Session session) {
         this.sessions.add(session);
-        return (T)this;
+        return (T) this;
     }
 
     public T removeSharedLink(Session session) {
         this.sessions.remove(session);
-        return (T)this;
+        return (T) this;
     }
 
     public Set<Event> getEvents() {

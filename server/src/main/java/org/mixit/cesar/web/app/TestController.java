@@ -1,4 +1,4 @@
-package org.mixit.cesar.web.crud;
+package org.mixit.cesar.web.app;
 
 import java.util.List;
 import java.util.stream.Collectors;

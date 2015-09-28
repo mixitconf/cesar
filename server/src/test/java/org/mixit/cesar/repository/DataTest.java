@@ -11,13 +11,13 @@ import com.ninja_squad.dbsetup.operation.Operation;
 public class DataTest {
 
     public static final Operation DELETE_ALL = deleteAllFrom(
-            "ARTICLECOMMENT", "ARTICLE", "SESSIONCOMMENT", "SESSION_INTEREST", "SESSION_MEMBER", "VOTE", "SESSION",
-            "SHAREDLINK", "MEMBER_EVENT", "MEMBER_INTEREST", "MEMBER",
-            "EVENT", "INTEREST"
+            "ArticleComment", "Article", "SessionComment", "Session_Interest", "Session_Member", "Vote", "Session",
+            "SharedLink", "Member_Event", "Member_Interest", "Account_Authority", "Authority", "Account", "Member",
+            "Event", "Interest"
             );
 
     public static Operation INSERT_EVENT = Operations.sequenceOf(
-            insertInto("EVENT")
+            insertInto("Event")
                     .withGeneratedValue("id", ValueGenerators.sequence())
                     .columns("year", "current")
                     .values("2014", false)
@@ -27,11 +27,11 @@ public class DataTest {
     );
 
     public static Operation INSERT_INTEREST = Operations.sequenceOf(
-            insertInto("INTEREST").columns("name").values("Agilite").values("Java").build()
+            insertInto("Interest").columns("name").values("Agilite").values("Java").build()
     );
 
     public static Operation INSERT_MEMBER = Operations.sequenceOf(
-            insertInto("MEMBER")
+            insertInto("Member")
                     .withGeneratedValue("id", ValueGenerators.sequence())
                     .columns("DTYPE", "FIRSTNAME", "LASTNAME", "LOGIN", "NBCONSULTS", "PUBLICPROFILE")
                     .values("Staff", "Guillaume", "EHRET", "guillaume", 1, "true")
