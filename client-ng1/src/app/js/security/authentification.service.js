@@ -12,7 +12,7 @@
         removeSession();
       }
       else {
-        Session.create(response.data.login, response.data.firstName, response.data.lastName, response.data.email, response.data.roles);
+        Session.create(response.data.login, response.data.name, response.data.email, response.data.roles);
         var date = new Date();
         var expireAt = new Date(date.getFullYear(), date.getMonth(), date.getDay(), date.getHours(), date.getMinutes()+25);
         $cookies.put('cesarTokenCookie', response.data.token);
@@ -41,20 +41,32 @@
     }
 
     function valid(authorizedRoles) {
+
+      //We call the server to know if the user is authenticated
+      $http
+          .get('app/authenticated', {
+            ignoreErrorRedirection: 'ignoreErrorRedirection',
+            headers : { 'Cesar-Ignore-40' : true }}
+          )
+          .then(function () {
+            console.log('authenticated session %o %o', Session.login, authorizedRoles);
+            if (!Session.login) {
+              console.log('authenticated verify %o', Session.login);
+              $http.get('app/login').then(createSession);
+            }
+          })
+          .catch(function(response){
+            if(!authorizedRoles || authorizedRoles.indexOf(USER_ROLES.all)>=0){
+              return;
+            }
+            removeSession(response);
+          });
+
       console.log('valid %o', authorizedRoles);
       if(!authorizedRoles || authorizedRoles.indexOf(USER_ROLES.all)>=0){
         return;
       }
-      $http
-        .get('app/authenticated', { ignoreErrorRedirection: 'ignoreErrorRedirection'})
-        .then(function () {
-          console.log('authenticated session %o', Session.login);
-          if (!Session.login) {
-            console.log('authenticated verify %o', Session.login);
-            $http.get('app/login').then(createSession);
-          }
-        })
-        .catch(removeSession);
+
     }
 
     function isAuthorized(authorizedRoles) {
