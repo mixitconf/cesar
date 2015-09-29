@@ -11,10 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.mixit.cesar.model.security.Account;
-import org.mixit.cesar.model.security.Authority;
-import org.mixit.cesar.model.security.BadRequestException;
-import org.mixit.cesar.model.security.OAuthProvider;
+import org.mixit.cesar.model.security.*;
 import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
@@ -105,7 +102,7 @@ public class AuthenticationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CurrentUser> authenticate(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<Credentials> authenticate(HttpServletRequest request, HttpServletResponse response) {
         String[] username = request.getParameterValues("username");
         String[] password = request.getParameterValues("password");
 
@@ -119,18 +116,18 @@ public class AuthenticationController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(setCookieInResponse(response, account), HttpStatus.OK);
+        return new ResponseEntity<>(Credentials.build(setCookieInResponse(response, account)), HttpStatus.OK);
     }
 
     /**
      * Request to check if the current user is authenticated
      */
     @RequestMapping(value = "/authenticated")
-    public CurrentUser isAuthenticated() {
+    public ResponseEntity<Credentials> isAuthenticated() {
         if(currentUser.getLogin() == null){
-            throw new BadRequestException("Invalid state");
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        return currentUser;
+        return new ResponseEntity<>(Credentials.build(currentUser), HttpStatus.OK);
     }
 
 

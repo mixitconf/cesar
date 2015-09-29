@@ -15,12 +15,13 @@
         Session.create(response.data.login, response.data.firstName, response.data.lastName, response.data.email, response.data.roles);
         var date = new Date();
         var expireAt = new Date(date.getFullYear(), date.getMonth(), date.getDay(), date.getHours(), date.getMinutes()+25);
-        $cookies.put('cesarTokenCookie', response.data.token, {expire : expireAt});
+        $cookies.put('cesarTokenCookie', response.data.token);
         $rootScope.$broadcast('event:auth-loginConfirmed', Session);
       }
     }
 
-    function removeSession(){
+    function removeSession(response){
+      console.log(response);
       Session.invalidate();
       $rootScope.$broadcast('event:auth-loginRequired');
     }

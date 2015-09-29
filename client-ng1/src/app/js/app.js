@@ -297,6 +297,7 @@
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       console.log('event logout');
+     delete  $rootScope.account;
     //  $location.path('/login');
     });
 
