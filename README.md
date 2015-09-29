@@ -26,6 +26,20 @@ This project uses [Spring Boot](http://docs.spring.io/spring-boot/docs/current/r
 ./gradlew bootRun -Pclient=ng2 -Pdatabase=mysql
 ```
 
+## Setup DB 
+
+Install MySQL (version ?)
+
+Connect : 
+```
+mysql -u root -p
+```
+Then
+```
+CREATE DATABASE mixit;
+CREATE USER 'mixit'@'localhost' IDENTIFIED BY 'mixit';
+GRANT ALL on mixit.* TO 'mixit'@'localhost'
+```
 
 ## Licence
 
