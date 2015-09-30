@@ -20,7 +20,7 @@
       }
     }
 
-    function removeSession(response){
+    function removeLocaleSession(response){
       console.log(response);
       Session.invalidate();
       $rootScope.$broadcast('event:auth-loginRequired');
@@ -37,29 +37,30 @@
           ignoreErrorRedirection: 'ignoreErrorRedirection'
         })
         .then(createSession)
-        .catch(removeSession);
+        .catch(removeLocaleSession);
     }
 
     function valid(authorizedRoles) {
-
       //We call the server to know if the user is authenticated
       $http
           .get('app/authenticated', {
             ignoreErrorRedirection: 'ignoreErrorRedirection',
             headers : { 'Cesar-Ignore-40' : true }}
           )
-          .then(function () {
-            console.log('authenticated session %o %o', Session.login, authorizedRoles);
+          .then(function (response) {
+            console.log('authenticated session %o %o', Session.login, response);
             if (!Session.login) {
               console.log('authenticated verify %o', Session.login);
-              $http.get('app/login').then(createSession);
+              createSession(response);
             }
           })
           .catch(function(response){
+            //If action is authorized for all no problem
             if(!authorizedRoles || authorizedRoles.indexOf(USER_ROLES.all)>=0){
               return;
             }
-            removeSession(response);
+            //Else we have a problem
+            removeLocaleSession(response);
           });
 
       console.log('valid %o', authorizedRoles);

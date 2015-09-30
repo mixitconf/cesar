@@ -34,31 +34,31 @@
       }
     ];
 
-    //TODO change
-    $q.when({
-      id: 1,
-      name: 'Guillaume EHRET',
-      role: 'ADMIN',
-      img: 'avatar.jpg'
-    }).then(function (response) {
-      $scope.userConnected = response;
-      $scope.menus.push(
-        {
-          id: 'secure', name: response.name, img: response.img, submenus: [
-          {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
-          {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
-          {id: 'sub4.3', divider: 'true', mobile: true},
-          {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
-        ]
-        }
-      );
+    $scope.$watch('userConnected', function(newValue){
+
+      var lastIndex = $scope.menus.length-1;
+      if($scope.menus[lastIndex].id === 'secure'){
+        $scope.menus.splice(lastIndex, 1);
+      }
+
+      if(newValue && newValue.login){
+        $scope.menus.push(
+          {
+            id: 'secure', name: newValue.name, img: newValue.hash, submenus: [
+            {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
+            {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
+            {id: 'sub4.3', divider: 'true', mobile: true},
+            {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
+          ]
+          }
+        );
+      }
     });
   });
 
   angular.module('cesar-menu').directive('cesarMenu', function () {
     return {
       templateUrl: 'js/menu/menu.directive.html',
-      scope: {},
       controller: 'cesarMenuCtrl'
     };
   });

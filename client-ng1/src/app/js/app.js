@@ -268,7 +268,7 @@
     $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
       console.log('loginConfirmed %o', next);
 
-      $rootScope.account = next;
+      $rootScope.userConnected = next;
       if ($location.path() === "/authent") {
         var search = $location.search();
         if (search.redirect !== undefined) {
@@ -281,7 +281,7 @@
 
     //// Call when the 401 response is returned by the server
     $rootScope.$on('event:auth-loginRequired', function (rejection) {
-      console.log('loginRequired %o', $rootScope.account);
+      console.log('loginRequired %o', $rootScope.userConnected);
       if ($location.path() !== '/authent') {
         var redirect = $location.path();
         $location.path('/authent').search('redirect', redirect).replace();
@@ -297,7 +297,7 @@
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       console.log('event logout');
-     delete  $rootScope.account;
+      delete  $rootScope.userConnected;
     //  $location.path('/login');
     });
 
