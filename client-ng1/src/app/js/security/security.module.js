@@ -15,13 +15,6 @@
     // alternatively, register the interceptor via an anonymous factory
     $httpProvider.interceptors.push(function ($q, $rootScope, $cookies) {
       return {
-        'request': function(request) {
-          if($cookies.get('cesarTokenCookie')){
-            request.headers['Cesar-Token'] = $cookies.get('cesarTokenCookie');
-          }
-          return request;
-        }
-        ,
         'responseError': function (response) {
           if (response.status === 401 && !response.config.ignoreErrorRedirection) {
             var deferred = $q.defer();

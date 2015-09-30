@@ -17,9 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
-    public final static String TOKEN_REQUEST_HEADER = "Cesar-Token";
-    public final static String TOKEN_REQUEST_IGNORE_401 = "Cesar-Ignore-401";
-    public final static String TOKEN_COOKIE = "cesarTokenCookie";
+    public final static String TOKEN_REQUEST_HEADER = "X-XSRF-TOKEN";
+    public final static String TOKEN_COOKIE = "XSRF-TOKEN";
 
     @Autowired
     private CurrentUser currentUser;
@@ -30,7 +29,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader(TOKEN_REQUEST_HEADER);
-        String ignore401 = request.getHeader(TOKEN_REQUEST_IGNORE_401);
 
         if (token != null) {
             Account account = accountRepository.findByToken(token);

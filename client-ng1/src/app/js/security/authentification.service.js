@@ -15,7 +15,6 @@
         Session.create(response.data.login, response.data.name, response.data.email, response.data.roles);
         var date = new Date();
         var expireAt = new Date(date.getFullYear(), date.getMonth(), date.getDay(), date.getHours(), date.getMinutes()+25);
-        $cookies.put('cesarTokenCookie', response.data.token);
         $rootScope.$broadcast('event:auth-loginConfirmed', Session);
       }
     }
@@ -43,10 +42,7 @@
     function valid(authorizedRoles) {
       //We call the server to know if the user is authenticated
       $http
-          .get('app/authenticated', {
-            ignoreErrorRedirection: 'ignoreErrorRedirection',
-            headers : { 'Cesar-Ignore-40' : true }}
-          )
+          .get('app/authenticated', {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function (response) {
             console.log('authenticated session %o %o', Session.login, response);
             if (!Session.login) {
@@ -90,7 +86,6 @@
 
     function logout() {
       console.log('logout');
-      $cookies.remove('cesarTokenCookie');
       $http.get('app/logout');
       Session.invalidate();
       $rootScope.$broadcast('event:auth-loginCancelled');
