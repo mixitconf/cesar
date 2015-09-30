@@ -33,3 +33,8 @@ If you want to use a mysql database you can use this command
 ../gradlew  
 ```
 
+If you want to use a mysql database you can use this command
+
+```
+../gradlew flywayClean flywayMigrate -Pdatabase=mysql
+```

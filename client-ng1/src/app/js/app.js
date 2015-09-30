@@ -234,8 +234,8 @@
       .state('logout', {
         url: '/logout',
         authorizedRoles: [USER_ROLES.all],
-        controller: function (authService, $location) {
-          authService.logout();
+        controller: function (AuthenticationService, $location) {
+          AuthenticationService.logout();
           $location.path('/').replace();
         }
       })
@@ -245,10 +245,10 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, authService, USER_ROLES) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, AuthenticationService, USER_ROLES) {
 
     //This function is used to mask elements in the template for user who are not authorized
-    $rootScope.isAuthorized = authService.isAuthorized;
+    $rootScope.isAuthorized = AuthenticationService.isAuthorized;
     $rootScope.userRoles = USER_ROLES;
 
     //Error are catched to redirect user on error page
@@ -260,16 +260,14 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      console.log('%o %o', event, next);
-      authService.valid(next.authorizedRoles);
+      AuthenticationService.valid(next.authorizedRoles);
     });
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
-      console.log('loginConfirmed %o', next);
-
       $rootScope.userConnected = next;
-      if ($location.path() === "/authent") {
+
+      if ($location.path() === '/authent') {
         var search = $location.search();
         if (search.redirect !== undefined) {
           $location.path(search.redirect).search('redirect', null).replace();
@@ -280,26 +278,29 @@
     });
 
     //// Call when the 401 response is returned by the server
-    $rootScope.$on('event:auth-loginRequired', function (rejection) {
-      console.log('loginRequired %o', $rootScope.userConnected);
+    $rootScope.$on('event:auth-loginRequired', function () {
       if ($location.path() !== '/authent') {
         var redirect = $location.path();
         $location.path('/authent').search('redirect', redirect).replace();
       }
     });
 
-    //
-    // Call when the 403 response is returned by the server
-    $rootScope.$on('event:auth-error', function (rejection) {
-      $rootScope.errorMessage = 'Erreur lors de la connexion. Le login ou le mot de passe sont incorrects';
-    });
-    //
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       console.log('event logout');
       delete  $rootScope.userConnected;
-    //  $location.path('/login');
+      //TODO
+      //  $location.path('/login');
     });
+
+
+    // Call when the 403 response is returned by the server
+    $rootScope.$on('event:auth-error', function () {
+      $rootScope.errorMessage = 'Erreur lors de la connexion. Le login ou le mot de passe sont incorrects';
+      //TODO
+    });
+    //
+
 
 
   });

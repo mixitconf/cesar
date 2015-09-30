@@ -2,12 +2,12 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('SecurityCtrl', function (authService) {
+  angular.module('cesar-security').controller('SecurityCtrl', function (AuthenticationService) {
 
     var ctrl = this;
 
     ctrl.login = function(){
-      authService.login(ctrl.credentials);
+      AuthenticationService.login(ctrl.credentials);
     };
 
   });

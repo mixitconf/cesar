@@ -1,6 +1,5 @@
 package org.mixit.cesar.security.authentification;
 
-import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,8 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
-    public final static String TOKEN_REQUEST_HEADER = "X-XSRF-TOKEN";
-    public final static String TOKEN_COOKIE = "XSRF-TOKEN";
+    public final static String TOKEN_REQUEST_HEADER_PARAM = "X-XSRF-TOKEN";
+    public final static String TOKEN_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
     private CurrentUser currentUser;
@@ -28,27 +27,22 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String token = request.getHeader(TOKEN_REQUEST_HEADER);
+        String token = request.getHeader(TOKEN_REQUEST_HEADER_PARAM);
 
         if (token != null) {
             Account account = accountRepository.findByToken(token);
             if (account != null) {
-                currentUser
-                        .setEmail(account.getEmail())
-                        .setLogin(account.getLogin())
-                        .setName(account.getName())
-                        .setToken(account.getToken())
-                        .setRoles(account.getAuthorities().stream().map(a -> a.getName().toString()).collect(Collectors.toList()));
+                currentUser.setCredentials(Credentials.build(account));
                 return true;
             }
         }
 
-        if(request.getServletPath()!=null && request.getServletPath().equals("app/authenticated")){
+        if (request.getServletPath() != null && request.getServletPath().equals("app/authenticated")) {
             //For this request type we just want to know if the user is authenticated
             return true;
         }
         response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
-        currentUser.clear();
+        currentUser.setCredentials(null);
         return false;
     }
 

@@ -13,7 +13,7 @@
   angular.module('cesar-security').config(function ($httpProvider) {
 
     // alternatively, register the interceptor via an anonymous factory
-    $httpProvider.interceptors.push(function ($q, $rootScope, $cookies) {
+    $httpProvider.interceptors.push(function ($q, $rootScope) {
       return {
         'responseError': function (response) {
           if (response.status === 401 && !response.config.ignoreErrorRedirection) {

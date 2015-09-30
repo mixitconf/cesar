@@ -6,12 +6,13 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.mixit.cesar.model.security.*;
+import org.mixit.cesar.model.security.Account;
+import org.mixit.cesar.model.security.Authority;
+import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
@@ -76,13 +77,13 @@ public class AuthenticationController {
         if (oauthId.isPresent()) {
             Account account = accountRepository.findByOauthProviderAndId(provider, oauthId.get());
             if (account == null) {
-                account =  accountRepository.save(
+                account = accountRepository.save(
                         new Account()
                                 .setProvider(provider)
                                 .setOauthId(oauthId.get())
                                 .setRegisteredAt(LocalDateTime.now())
                                 .setDefaultLanguage(SessionLanguage.fr)
-                        );
+                );
                 account.addAuthority(authorityRepository.findByName(Authority.Role.ROLE_MEMBRE.toString()));
             }
 
@@ -96,6 +97,7 @@ public class AuthenticationController {
 
     /**
      * Authenticates the user and returns the user token which has to be sent in the header of every request
+     *
      * @see AuthenticationInterceptor
      */
     @RequestMapping(value = "/login",
@@ -106,17 +108,17 @@ public class AuthenticationController {
         String[] username = request.getParameterValues("username");
         String[] password = request.getParameterValues("password");
 
-        if(username == null || password==null){
+        if (username == null || password == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Account account = accountRepository.findByLogin(username[0]);
 
-        if(account==null || !account.getPassword().equals(password[0])){
+        if (account == null || !account.getPassword().equals(password[0])) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(Credentials.build(setCookieInResponse(response, account)), HttpStatus.OK);
+        return new ResponseEntity<>(setCookieInResponse(response, account), HttpStatus.OK);
     }
 
     /**
@@ -124,10 +126,10 @@ public class AuthenticationController {
      */
     @RequestMapping(value = "/authenticated")
     public ResponseEntity<Credentials> isAuthenticated() {
-        if(currentUser.getLogin() == null){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if (currentUser.getCredentials() != null || currentUser.getCredentials().getLogin() != null) {
+            return new ResponseEntity<>(currentUser.getCredentials(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(Credentials.build(currentUser), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     /**
@@ -137,10 +139,10 @@ public class AuthenticationController {
     public void logout(HttpServletRequest request) {
         String[] username = request.getParameterValues("username");
 
-        if(username != null){
+        if (username != null) {
             Account account = accountRepository.findByLogin(username[0]);
             //the token is changed
-            if(account!=null){
+            if (account != null) {
                 account.setToken(UUID.randomUUID().toString());
             }
         }
@@ -149,21 +151,16 @@ public class AuthenticationController {
     /**
      * Create token if it does'nt exist
      */
-    private CurrentUser setCookieInResponse(HttpServletResponse response, Account account) {
+    private Credentials setCookieInResponse(HttpServletResponse response, Account account) {
         if (account.getToken() == null) {
             account.setToken(UUID.randomUUID().toString());
         }
 
-        Cookie cookie = new Cookie(AuthenticationInterceptor.TOKEN_COOKIE, account.getToken());
+        Cookie cookie = new Cookie(AuthenticationInterceptor.TOKEN_COOKIE_NAME, account.getToken());
         cookie.setPath("/");
         cookie.setMaxAge((int) Duration.of(1, ChronoUnit.HOURS).getSeconds());
         response.addCookie(cookie);
-        return new CurrentUser()
-                .setToken(account.getToken())
-                .setLogin(account.getLogin())
-                .setName(account.getName())
-                .setEmail(account.getEmail())
-                .setRoles(account.getAuthorities().stream().map(a -> a.getName().toString()).collect(Collectors.toList()));
+        return Credentials.build(account);
     }
 
     private OAuthProvider toProvider(String pathVariable) {

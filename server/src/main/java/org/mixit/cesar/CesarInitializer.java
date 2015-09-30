@@ -123,6 +123,7 @@ public class CesarInitializer {
 
             addMember("Gregory", "Alexandre", "Agilite",
                     new Staff().setEmail("g.alexandre@coactiv.fr"));
+
             //Speaker
             addSpeakers(event2016, event2015, event2014, event2013, event2012);
             Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
@@ -132,7 +133,7 @@ public class CesarInitializer {
             addArticle(author, 1);
             addArticle(author, 2);
 
-            addSecurity();
+            addSecurity(addMember("Guillaume", "EHRET", "Java",new Member().setEmail("guillaume@dev-mind.fr")));
         }
     }
 
@@ -269,7 +270,7 @@ public class CesarInitializer {
         articleCommentRepository.save(comment);
     }
 
-    private void addSecurity(){
+    private void addSecurity(Member member){
         Authority authority = authorityRepository.save(new Authority().setName(Authority.Role.ROLE_ADMIN));
         authorityRepository.save(new Authority().setName(Authority.Role.ROLE_MEMBRE));
         authorityRepository.save(new Authority().setName(Authority.Role.ROLE_SPEAKER));
@@ -277,8 +278,10 @@ public class CesarInitializer {
                         .setName("Guillaume")
                         .setLogin("user")
                         .setPassword("password")
-                        .setProvider(OAuthProvider.CESAR));
+                        .setProvider(OAuthProvider.CESAR)
+                        .setMember(member));
         account.addAuthority(authority);
+        accountRepository.save(account);
 
     }
 }
