@@ -136,7 +136,6 @@
       //News
       .state('news', {
         url: '/article/:id',
-        authorizedRoles: [USER_ROLES.all],
         resolve: {
           articles: function (ArticleService) {
             return ArticleService.getAll().then(function (response) {
@@ -242,9 +241,7 @@
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
-      if(!response.config || !response.config.ignoreErrorRedirection){
-        $state.go('error', {error: response});
-      }
+      $state.go('error', {error: response});
     });
 
     //When a ui-router state change we watch if user is authorized
