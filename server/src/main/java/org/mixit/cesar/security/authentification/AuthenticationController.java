@@ -122,33 +122,6 @@ public class AuthenticationController {
     }
 
     /**
-     * Request to check if the current user is authenticated
-     */
-    @RequestMapping(value = "/authenticated")
-    public ResponseEntity<Credentials> isAuthenticated() {
-        if (currentUser.getCredentials() != null || currentUser.getCredentials().getLogin() != null) {
-            return new ResponseEntity<>(currentUser.getCredentials(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    }
-
-    /**
-     * Request to check if the current user is authenticated
-     */
-    @RequestMapping(value = "/logout", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void logout(HttpServletRequest request) {
-        String[] username = request.getParameterValues("username");
-
-        if (username != null) {
-            Account account = accountRepository.findByLogin(username[0]);
-            //the token is changed
-            if (account != null) {
-                account.setToken(UUID.randomUUID().toString());
-            }
-        }
-    }
-
-    /**
      * Create token if it does'nt exist
      */
     private Credentials setCookieInResponse(HttpServletResponse response, Account account) {

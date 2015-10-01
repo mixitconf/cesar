@@ -44,7 +44,7 @@
       if(newValue && newValue.login){
         $scope.menus.push(
           {
-            id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, img: newValue.hash, submenus: [
+            id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, hash: newValue.hash, submenus: [
             {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
             {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
             {id: 'sub4.3', divider: 'true', mobile: true},
@@ -52,6 +52,9 @@
           ]
           }
         );
+      }
+      else{
+        $scope.menus.push({id: 'secure', icon: 'vpn_key', link: 'authent', mobile: true});
       }
     });
   });

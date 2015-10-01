@@ -231,25 +231,14 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('compte', stateSimplePage('compte', 'views/user/compte.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('logout', {
-        url: '/logout',
-        authorizedRoles: [USER_ROLES.all],
-        controller: function (AuthenticationService, $location) {
-          AuthenticationService.logout();
-          $location.path('/').replace();
-        }
-      })
+      .state('logout', { url: '/logout'})
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
 
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, AuthenticationService, USER_ROLES) {
-
-    //This function is used to mask elements in the template for user who are not authorized
-    $rootScope.isAuthorized = AuthenticationService.isAuthorized;
-    $rootScope.userRoles = USER_ROLES;
+  angular.module('cesar').run(function ($rootScope, $state, $location, AuthenticationService) {
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
@@ -260,6 +249,10 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
+      if(next.url === '/logout'){
+        AuthenticationService.logout();
+        $state.go('home');
+      }
       AuthenticationService.valid(next.authorizedRoles);
     });
 
@@ -287,10 +280,7 @@
 
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
-      console.log('event logout');
       delete  $rootScope.userConnected;
-      //TODO
-      //  $location.path('/login');
     });
 
 

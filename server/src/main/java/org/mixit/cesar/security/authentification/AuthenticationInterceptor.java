@@ -37,10 +37,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
         }
 
-        if (request.getServletPath() != null && request.getServletPath().equals("app/authenticated")) {
-            //For this request type we just want to know if the user is authenticated
-            return true;
-        }
         response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
         currentUser.setCredentials(null);
         return false;

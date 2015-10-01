@@ -12,13 +12,13 @@
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <temp ng-repeat="item in menus">
-                    <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link"
-                       ui-sref="{{item.link}}">
+                    <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="{{item.link}}">
                         {{item.name}}&nbsp;
+                        <i class="material-icons">{{item.icon}}</i>
                     </a>
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
-                        <img ng-if="item.img" ng-src="http://www.gravatar.com/avatar/{{item.img}}" class="cesar-img-avatar">
+                        <img ng-if="item.hash" ng-src="http://www.gravatar.com/avatar/{{item.hash}}" class="cesar-img-avatar"/>
                         {{item.name}}&nbsp;
                         <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
                     </a>

@@ -2,21 +2,16 @@
 
   'use strict';
 
-  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $cookies, USER_ROLES) {
+  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $cookies, USER_ROLES, LocalStorageService) {
 
-    var currentUser;
 
     function loginConfirmed(response){
-      if(!response.data.login){
-        loginRequired();
-      }
-      else {
-        $rootScope.$broadcast('event:auth-loginConfirmed', response.data);
-      }
+      LocalStorageService.put('current-user', response.data);
+      $rootScope.$broadcast('event:auth-loginConfirmed', LocalStorageService.get('current-user'));
     }
 
     function loginRequired(){
-      currentUser = null;
+      LocalStorageService.remove('current-user');
       $rootScope.$broadcast('event:auth-loginRequired');
     }
 
@@ -34,19 +29,26 @@
     }
 
     function valid(authorizedRoles) {
-      //We call the server to know if the user is authenticated
-      $http
-          .get('app/authenticated', {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-          .then(loginConfirmed)
-          .catch(function(response){
-            //If action is authorized for all no problem
-            if(authorizedRoles && authorizedRoles.indexOf(USER_ROLES.all)<0) {
-              loginRequired(response);
-            }
-          });
+      //We don't need to call the server at everytime. We see if user is stored in local storage
+      var currentUser = LocalStorageService.get('current-user');
+      //If screen has a restrictive access we need to control the rights
+      if(authorizedRoles && authorizedRoles.indexOf(USER_ROLES.all)<0) {
+        //If user is not present the user has to login
+        if(!currentUser || !currentUser.roles){
+          loginRequired();
+          return;
+        }
+        //If user has'nt the right an exception is thrown
+        if(!isAuthorized(authorizedRoles, currentUser)){
+          $rootScope.$broadcast('event:auth-notAuthorized');
+        }
+      }
+      //If user has no right for the screen an event is launched just before. We also need to pass
+      //the current user to the app
+      loginConfirmed({ data : currentUser});
     }
 
-    function isAuthorized(authorizedRoles) {
+    function isAuthorized(authorizedRoles, currentUser) {
       if (!angular.isArray(authorizedRoles)) {
         authorizedRoles = [authorizedRoles];
       }
@@ -62,17 +64,14 @@
       return isAuth;
     }
 
-
     function logout() {
-      console.log('logout');
-      $http.get('app/logout');
+      LocalStorageService.remove('current-user');
       $rootScope.$broadcast('event:auth-loginCancelled');
     }
 
     return {
       'login': login,
       'valid': valid,
-      'isAuthorized': isAuthorized,
       'logout': logout
     };
   });
