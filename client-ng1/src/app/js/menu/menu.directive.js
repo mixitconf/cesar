@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope, cesarSecurity) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope) {
 
     $scope.menus = [
       {id: 'actu', name: 'Actualités', link: 'news'},

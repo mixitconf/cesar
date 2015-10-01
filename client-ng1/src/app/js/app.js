@@ -230,7 +230,7 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('compte', stateSimplePage('compte', 'views/user/compte.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('logout', { url: '/logout'})
+      .state('logout', {url : '/logout'})
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
 
@@ -246,11 +246,12 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      if(next.url === '/logout'){
+      if(next.name === 'logout'){
         AuthenticationService.logout();
-        $state.go('home');
       }
-      AuthenticationService.valid(next.authorizedRoles);
+      else{
+        AuthenticationService.valid(next.authorizedRoles);
+      }
     });
 
     // Call when the the client is confirmed
@@ -278,6 +279,7 @@
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       delete  $rootScope.userConnected;
+      $location.path('/home').replace();
     });
 
 
