@@ -256,7 +256,9 @@
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
-      $rootScope.userConnected = next;
+      if(!$rootScope.userConnected || (next && next.login!==$rootScope.userConnected.login)){
+        $rootScope.userConnected = next;
+      }
 
       if ($location.path() === '/authent') {
         var search = $location.search();
