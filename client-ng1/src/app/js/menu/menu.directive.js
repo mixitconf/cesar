@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope, cesarSecurity) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope) {
 
     $scope.menus = [
       {id: 'actu', name: 'Actualités', link: 'news'},
@@ -34,25 +34,34 @@
       }
     ];
 
-    cesarSecurity.getUserConnected().then(function (response) {
-      $scope.userConnected = response;
-      $scope.menus.push(
-        {
-          id: 'secure', name: response.name, img: response.img, submenus: [
-          {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
-          {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
-          {id: 'sub4.3', divider: 'true', mobile: true},
-          {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
-        ]
-        }
-      );
+    $scope.$watch('userConnected', function(newValue){
+
+      var lastIndex = $scope.menus.length-1;
+      if($scope.menus[lastIndex].id === 'secure'){
+        $scope.menus.splice(lastIndex, 1);
+      }
+
+      if(newValue && newValue.login){
+        $scope.menus.push(
+          {
+            id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, hash: newValue.hash, submenus: [
+            {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
+            {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
+            {id: 'sub4.3', divider: 'true', mobile: true},
+            {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
+          ]
+          }
+        );
+      }
+      else{
+        $scope.menus.push({id: 'secure', icon: 'vpn_key', link: 'authent', mobile: true});
+      }
     });
   });
 
   angular.module('cesar-menu').directive('cesarMenu', function () {
     return {
       templateUrl: 'js/menu/menu.directive.html',
-      scope: {},
       controller: 'cesarMenuCtrl'
     };
   });

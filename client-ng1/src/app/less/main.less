@@ -4,6 +4,7 @@
 @link__font-size : 15px;
 @large-screen__width : 1024px;
 @primary_color : #455a64;
+@primary_color_flash : rgb(255,64,129);
 @background_color_light : rgba(207, 216, 220, 0.6);
 @secondary_color : #cfd8dc;
 @secondary_color_light : #eceff1;
@@ -502,4 +503,21 @@ img{
   right: -8px !important;
   width: 16px !important;
   height: 16px !important;
+}
+
+.cesar-form{
+  .mdl-textfield{
+    width: 100%;
+  }
+  input{
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+}
+
+.cesar-error{
+  color: @primary_color_flash;
+  font-weight: bold;
+  text-align: center;
 }

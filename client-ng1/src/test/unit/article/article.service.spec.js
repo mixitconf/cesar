@@ -10,7 +10,7 @@ describe('ArticleService', function () {
 
 
   it('should read all the articles', function () {
-    $httpBackend.expectGET('/crud/article').respond([
+    $httpBackend.expectGET('/api/article').respond([
       { title : 'Java and you'}
     ]);
     service.getAll().then(function(response){
@@ -21,7 +21,7 @@ describe('ArticleService', function () {
   });
 
   it('should read an article', function () {
-    $httpBackend.expectGET('/crud/article/1').respond(
+    $httpBackend.expectGET('/api/article/1').respond(
       { title : 'Java and you'}
     );
     service.getById('1').then(function(response){
