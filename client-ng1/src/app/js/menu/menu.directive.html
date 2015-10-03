@@ -14,7 +14,9 @@
                 <temp ng-repeat="item in menus">
                     <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="{{item.link}}">
                         {{item.name}}&nbsp;
+                        <button ng-if="item.icon" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                         <i class="material-icons">{{item.icon}}</i>
+                        </button>
                     </a>
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
