@@ -230,7 +230,7 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('compte', stateSimplePage('compte', 'views/user/compte.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('logout', {url : '/logout'})
+      .state('logout', stateSimplePage('home','views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
 
@@ -281,7 +281,6 @@
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       delete  $rootScope.userConnected;
-      $location.path('/home').replace();
     });
 
 
