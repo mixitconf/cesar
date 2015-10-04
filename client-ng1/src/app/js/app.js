@@ -237,7 +237,7 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, AuthenticationService) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout,  AuthenticationService) {
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
@@ -289,8 +289,13 @@
       $rootScope.errorMessage = 'Erreur lors de la connexion. Le login ou le mot de passe sont incorrects';
       //TODO
     });
-    //
 
+    //Refresh material design lite
+    $rootScope.$on('$viewContentLoaded', function() {
+      $timeout(function() {
+        componentHandler.upgradeAllRegistered();
+      });
+    });
 
 
   });
