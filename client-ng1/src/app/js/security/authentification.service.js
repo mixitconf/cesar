@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $cookies, USER_ROLES, LocalStorageService) {
+  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window,  USER_ROLES, LocalStorageService) {
 
 
     function loginConfirmed(response){
@@ -13,19 +13,6 @@
     function loginRequired(){
       LocalStorageService.remove('current-user');
       $rootScope.$broadcast('event:auth-loginRequired');
-    }
-
-    function login(param) {
-      var data = 'username=' + encodeURIComponent(param.username) + '&password=' + encodeURIComponent(param.password);
-      $http
-        .post('app/login', data, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          ignoreErrorRedirection: 'ignoreErrorRedirection'
-        })
-        .then(loginConfirmed)
-        .catch(loginRequired);
     }
 
     function valid(authorizedRoles) {
@@ -69,8 +56,32 @@
       $rootScope.$broadcast('event:auth-loginCancelled');
     }
 
+    function login(param) {
+      var data = 'username=' + encodeURIComponent(param.username) + '&password=' + encodeURIComponent(param.password);
+      $http
+        .post('app/login', data, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          ignoreErrorRedirection: 'ignoreErrorRedirection'
+        })
+        .then(loginConfirmed)
+        .catch(loginRequired);
+    }
+
+
+    function loginWithGoogle() {
+      $window.alert('Todo');
+    }
+
+    function loginWithTwitter() {
+      $window.alert('Todo');
+    }
+
     return {
       'login': login,
+      'loginWithGoogle' : loginWithGoogle,
+      'loginWithTwitter' : loginWithTwitter,
       'valid': valid,
       'logout': logout
     };

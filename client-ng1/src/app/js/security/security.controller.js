@@ -6,9 +6,9 @@
 
     var ctrl = this;
 
-    ctrl.login = function(){
-      AuthenticationService.login(ctrl.credentials);
-    };
+    ctrl.login = AuthenticationService.login;
+    ctrl.loginWithGoogle = AuthenticationService.loginWithGoogle;
+    ctrl.loginWithTwitter = AuthenticationService.loginWithTwitter;
 
   });
 
