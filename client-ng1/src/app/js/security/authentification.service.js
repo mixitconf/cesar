@@ -70,18 +70,17 @@
     }
 
 
-    function loginWithGoogle() {
-      $window.alert('Todo');
-    }
-
-    function loginWithTwitter() {
-      $window.alert('Todo');
+    function loginWithProvider(provider) {
+      $http.get('app/login-with/' + provider, {headers : {ignoreErrorRedirection: 'ignoreErrorRedirection'}})
+        .then(function(response){
+          console.log(response);
+        })
+        .catch(loginRequired);
     }
 
     return {
       'login': login,
-      'loginWithGoogle' : loginWithGoogle,
-      'loginWithTwitter' : loginWithTwitter,
+      'loginWithProvider' : loginWithProvider,
       'valid': valid,
       'logout': logout
     };

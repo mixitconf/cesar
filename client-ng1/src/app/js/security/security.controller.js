@@ -7,8 +7,14 @@
     var ctrl = this;
 
     ctrl.login = AuthenticationService.login;
-    ctrl.loginWithGoogle = AuthenticationService.loginWithGoogle;
-    ctrl.loginWithTwitter = AuthenticationService.loginWithTwitter;
+
+    ctrl.loginWithGoogle = function(){
+      AuthenticationService.loginWithProvider('GOOGLE');
+    }
+
+    ctrl.loginWithTwitter = function(){
+      AuthenticationService.loginWithProvider('TWITTER');
+    }
 
   });
 
