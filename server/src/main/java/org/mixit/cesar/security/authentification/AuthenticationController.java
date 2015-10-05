@@ -36,20 +36,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/app")
 public class AuthenticationController {
 
-    @Autowired
     private AccountRepository accountRepository;
-
-    @Autowired
     private AuthorityRepository authorityRepository;
-
-    @Autowired
-    private CurrentUser currentUser;
-
-    @Autowired
     private OAuthFactory oauthFactory;
+    private RequestedPath requestedPathBean;
+
 
     @Autowired
-    private RequestedPath requestedPathBean;
+    public AuthenticationController(AccountRepository accountRepository, AuthorityRepository authorityRepository, OAuthFactory oauthFactory, RequestedPath requestedPathBean) {
+        this.accountRepository = accountRepository;
+        this.authorityRepository = authorityRepository;
+        this.oauthFactory = oauthFactory;
+        this.requestedPathBean = requestedPathBean;
+    }
 
     /**
      * Starts the OAuth dance or authenticate user if he has a standard account
