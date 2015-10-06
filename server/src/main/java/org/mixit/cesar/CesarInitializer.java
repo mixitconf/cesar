@@ -17,6 +17,7 @@ import org.mixit.cesar.model.member.Staff;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.Authority;
 import org.mixit.cesar.model.security.OAuthProvider;
+import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.model.session.Keynote;
 import org.mixit.cesar.model.session.Level;
 import org.mixit.cesar.model.session.LightningTalk;
@@ -271,12 +272,13 @@ public class CesarInitializer {
     }
 
     private void addSecurity(Member member){
-        Authority authority = authorityRepository.save(new Authority().setName(Authority.Role.ROLE_ADMIN));
-        authorityRepository.save(new Authority().setName(Authority.Role.ROLE_MEMBRE));
-        authorityRepository.save(new Authority().setName(Authority.Role.ROLE_SPEAKER));
+        Authority authority = authorityRepository.save(new Authority().setName(Role.ADMIN));
+        authorityRepository.save(new Authority().setName(Role.MEMBER));
+        authorityRepository.save(new Authority().setName(Role.SPEAKER));
         Account account = accountRepository.save(new Account()
                         .setName("Guillaume")
                         .setLogin("user")
+                        .setOauthId("aaaa")
                         .setPassword("password")
                         .setProvider(OAuthProvider.CESAR)
                         .setMember(member));

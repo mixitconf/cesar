@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -20,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class CesarConfig extends WebMvcConfigurerAdapter {
+public class CesarConfig  {
                    
                    
     @Bean
@@ -43,21 +45,28 @@ public class CesarConfig extends WebMvcConfigurerAdapter {
         return b;
     }
 
-    /**
-     * Adds an interceptor to handle authentication. All the HTTP requests must have a header Custom-Authentication with their
-     * login as value to be able to access the resource. Otherwise, a 401 response is sent back. The only URLs that are
-     * not intercepted are /users (used to register) and /authentication (used to authenticate)
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor())
-                .addPathPatterns("/app/**/*")
-                .excludePathPatterns("/app/login", "/app/logout");
-    }
-
     @Bean
     public HandlerInterceptor authenticationInterceptor() {
         return new AuthenticationInterceptor();
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+
+            /**
+             * Adds an interceptor to handle authentication. All the HTTP requests must have a header Custom-Authentication with their
+             * login as value to be able to access the resource. Otherwise, a 401 response is sent back. The only URLs that are
+             * not intercepted are /users (used to register) and /authentication (used to authenticate)
+             */
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(authenticationInterceptor())
+                        .addPathPatterns("/app/**/*")
+                        .excludePathPatterns("/app/login", "/app/login-with/*", "/app/logout", "/app/oauth/*");
+            }
+
+        };
     }
 
     private ApiInfo apiInfo() {

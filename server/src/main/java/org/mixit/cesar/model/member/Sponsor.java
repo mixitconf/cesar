@@ -15,9 +15,8 @@ import org.mixit.cesar.model.security.Role;
 public class Sponsor extends Member<Sponsor> {
 
     public Sponsor() {
-        ROLES.add(Role.Member);
-        ROLES.add(Role.Participant);
-        ROLES.add(Role.Sponsor);
+        ROLES.add(Role.MEMBER);
+        ROLES.add(Role.SPONSOR);
     }
 
     public enum Level{

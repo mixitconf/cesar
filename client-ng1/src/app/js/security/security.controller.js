@@ -10,11 +10,11 @@
 
     ctrl.loginWithGoogle = function(){
       AuthenticationService.loginWithProvider('GOOGLE');
-    }
+    };
 
     ctrl.loginWithTwitter = function(){
       AuthenticationService.loginWithProvider('TWITTER');
-    }
+    };
 
   });
 

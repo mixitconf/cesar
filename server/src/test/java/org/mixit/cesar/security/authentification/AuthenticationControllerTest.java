@@ -13,6 +13,7 @@ import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.security.oauth.OAuthFactory;
+import org.mixit.cesar.web.AbsoluteUrlFactory;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
@@ -37,10 +38,12 @@ public class AuthenticationControllerTest {
     private OAuthFactory oauthFactory;
     @Mock
     private RequestedPath requestedPathBean;
+    @Mock
+    private AbsoluteUrlFactory urlFactory;
 
     @Before
     public void setUp() {
-        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, requestedPathBean);
+        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, requestedPathBean, urlFactory);
         mockMvc = standaloneSetup(authenticationController).build();
     }
 

@@ -1,6 +1,7 @@
 package org.mixit.cesar.security.authentification;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.mixit.cesar.model.security.Account;
@@ -17,8 +18,8 @@ public class CurrentUser {
 
     private Credentials credentials;
 
-    public Credentials getCredentials() {
-        return credentials;
+    public Optional<Credentials> getCredentials() {
+        return Optional.ofNullable(credentials);
     }
 
     public void setCredentials(Credentials credentials) {

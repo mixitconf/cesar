@@ -13,16 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.Authority;
 import org.mixit.cesar.model.security.OAuthProvider;
+import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.security.oauth.OAuthFactory;
+import org.mixit.cesar.web.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,14 +43,15 @@ public class AuthenticationController {
     private AuthorityRepository authorityRepository;
     private OAuthFactory oauthFactory;
     private RequestedPath requestedPathBean;
-
+    private AbsoluteUrlFactory urlFactory;
 
     @Autowired
-    public AuthenticationController(AccountRepository accountRepository, AuthorityRepository authorityRepository, OAuthFactory oauthFactory, RequestedPath requestedPathBean) {
+    public AuthenticationController(AccountRepository accountRepository, AuthorityRepository authorityRepository, OAuthFactory oauthFactory, RequestedPath requestedPathBean, AbsoluteUrlFactory urlFactory) {
         this.accountRepository = accountRepository;
         this.authorityRepository = authorityRepository;
         this.oauthFactory = oauthFactory;
         this.requestedPathBean = requestedPathBean;
+        this.urlFactory = urlFactory;
     }
 
     /**
@@ -83,14 +87,16 @@ public class AuthenticationController {
                                 .setRegisteredAt(LocalDateTime.now())
                                 .setDefaultLanguage(SessionLanguage.fr)
                 );
-                account.addAuthority(authorityRepository.findByName(Authority.Role.ROLE_MEMBRE.toString()));
+                account.addAuthority(authorityRepository.findByName(Role.MEMBER));
+                accountRepository.save(account);
             }
 
             setCookieInResponse(response, account);
-            return "redirect:" + requestedPathBean.getValue();
-        } else {
-            // TODO go to an authentication failed page
-            return "redirect:/error";
+            return String.format("redirect:%s/compte?redirect=%s", urlFactory.getBaseUrl(), requestedPathBean.getValue());
+        }
+        else {
+            response.sendError(500, String.format("Error when you try to authenticate via %s. Try again", providerName));
+            return String.format("redirect:%s/error", urlFactory.getBaseUrl());
         }
     }
 
@@ -126,6 +132,7 @@ public class AuthenticationController {
     private Credentials setCookieInResponse(HttpServletResponse response, Account account) {
         if (account.getToken() == null) {
             account.setToken(UUID.randomUUID().toString());
+            accountRepository.save(account);
         }
 
         Cookie cookie = new Cookie(AuthenticationInterceptor.TOKEN_COOKIE_NAME, account.getToken());

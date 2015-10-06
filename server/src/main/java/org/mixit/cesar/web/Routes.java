@@ -10,28 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Routes {
 
     @RequestMapping({
-            "/home",
             "/article/{id:\\w+}",
             "/articles",
-            "/planning",
-            "/talks",
-            "/lightningtalks",
-            "/session",
-            "/speakers",
-            "/sponsors",
-            "/staff",
-            "/member",
-            "/multimedia",
+            "/authent",
             "/conduite",
+            "/compte",
+            "/error",
             "/faq",
-            "/venir",
+            "/favoris",
+            "/home",
+            "/lightningtalks",
+            "/member",
             "/mixit15",
             "/mixit14",
             "/mixit13",
             "/mixit12",
-            "/favoris",
-            "/compte",
-            "/authent"
+            "/multimedia",
+            "/planning",
+            "/session",
+            "/speakers",
+            "/sponsors",
+            "/staff",
+            "/talks",
+            "/venir"
     })
     public String index() {
         return "forward:/index.html";

@@ -256,7 +256,7 @@
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
-      if(!$rootScope.userConnected || (next && next.login!==$rootScope.userConnected.login)){
+      if(!$rootScope.userConnected || (next && next.oauthId!==$rootScope.userConnected.oauthId)){
         $rootScope.userConnected = next;
       }
 

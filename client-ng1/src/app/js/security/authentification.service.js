@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window,  USER_ROLES, LocalStorageService) {
+  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window, USER_ROLES, LocalStorageService) {
 
 
     function loginConfirmed(response){
@@ -42,7 +42,7 @@
 
       var isAuth = false;
       angular.forEach(authorizedRoles, function (authorizedRole) {
-        var authorized = (!!currentUser.login && currentUser.roles.indexOf(authorizedRole) !== -1);
+        var authorized = (!!currentUser.oauthId && currentUser.roles.indexOf(authorizedRole) !== -1);
         if (authorized || authorizedRole === '*') {
           isAuth = true;
         }
@@ -71,11 +71,7 @@
 
 
     function loginWithProvider(provider) {
-      $http.get('app/login-with/' + provider, {headers : {ignoreErrorRedirection: 'ignoreErrorRedirection'}})
-        .then(function(response){
-          console.log(response);
-        })
-        .catch(loginRequired);
+      $window.location.href = '/app/login-with/' + provider;
     }
 
     return {
