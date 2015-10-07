@@ -6,18 +6,23 @@
 
 
     function loginConfirmed(response){
+      if(response.data===null){
+        $http.get('app/login-finalize').then(loginConfirmed);
+      }
+
       LocalStorageService.put('current-user', response.data);
       $rootScope.$broadcast('event:auth-loginConfirmed', LocalStorageService.get('current-user'));
     }
 
-    function loginRequired(){
+    function loginRequired(response){
       LocalStorageService.remove('current-user');
-      $rootScope.$broadcast('event:auth-loginRequired');
+      $rootScope.$broadcast('event:auth-loginRequired', response);
     }
 
     function valid(authorizedRoles) {
       //We don't need to call the server at everytime. We see if user is stored in local storage
       var currentUser = LocalStorageService.get('current-user');
+
       //If screen has a restrictive access we need to control the rights
       if(authorizedRoles && authorizedRoles.indexOf(USER_ROLES.all)<0) {
         //If user is not present the user has to login
@@ -32,7 +37,9 @@
       }
       //If user has no right for the screen an event is launched just before. We also need to pass
       //the current user to the app
-      loginConfirmed({ data : currentUser});
+      if(currentUser!==null && currentUser){
+        loginConfirmed({ data : currentUser});
+      }
     }
 
     function isAuthorized(authorizedRoles, currentUser) {

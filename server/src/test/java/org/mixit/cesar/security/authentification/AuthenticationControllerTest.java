@@ -37,13 +37,13 @@ public class AuthenticationControllerTest {
     @Mock
     private OAuthFactory oauthFactory;
     @Mock
-    private RequestedPath requestedPathBean;
+    private CurrentUser currentUser;
     @Mock
     private AbsoluteUrlFactory urlFactory;
 
     @Before
     public void setUp() {
-        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, requestedPathBean, urlFactory);
+        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, currentUser, urlFactory);
         mockMvc = standaloneSetup(authenticationController).build();
     }
 

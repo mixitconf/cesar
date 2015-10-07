@@ -132,6 +132,7 @@ CREATE TABLE Account
     token VARCHAR(255),
     login VARCHAR(255),
     email VARCHAR(255),
+    valid BOOLEAN,
     registeredAt TIMESTAMP,
     defaultLanguage VARCHAR(5),
     MEMBER_ID BIGINT

@@ -134,6 +134,7 @@ CREATE TABLE Account
     email VARCHAR(255),
     registeredAt DATETIME,
     defaultLanguage VARCHAR(5),
+    valid BOOLEAN,
     MEMBER_ID BIGINT
 );
 CREATE TABLE Account_Authority

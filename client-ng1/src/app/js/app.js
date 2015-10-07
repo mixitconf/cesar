@@ -106,7 +106,7 @@
           }
         }
       };
-      if(ctrlName){
+      if (ctrlName) {
         state.views.main.controller = ctrlName;
         state.views.main.controllerAs = 'ctrl';
       }
@@ -131,7 +131,7 @@
       })
 
       //Home Page
-      .state('home', stateSimplePage('home','views/home.html'))
+      .state('home', stateSimplePage('home', 'views/home.html'))
 
       //News
       .state('news', {
@@ -172,7 +172,7 @@
       })
 
       //Program
-      .state('planning', stateSimplePage('planning','views/sessions/planning.html'))
+      .state('planning', stateSimplePage('planning', 'views/sessions/planning.html'))
       .state('talks', stateSessions('talks', 'talk'))
       .state('lightningtalks', stateSessions('lightningtalks', 'lightningtalks'))
       .state('session', {
@@ -218,10 +218,10 @@
       })
 
       //Infos
-      .state('multimedia', stateSimplePage('multimedia','views/info/multimedia.html'))
-      .state('conduite', stateSimplePage('conduite','views/info/conduite.html'))
-      .state('faq', stateSimplePage('faq','views/info/faq.html'))
-      .state('venir', stateSimplePage('venir','views/info/venir.html'))
+      .state('multimedia', stateSimplePage('multimedia', 'views/info/multimedia.html'))
+      .state('conduite', stateSimplePage('conduite', 'views/info/conduite.html'))
+      .state('faq', stateSimplePage('faq', 'views/info/faq.html'))
+      .state('venir', stateSimplePage('venir', 'views/info/venir.html'))
       .state('mixit15', stateOldEdition('mixit15', 2015))
       .state('mixit14', stateOldEdition('mixit15', 2014))
       .state('mixit13', stateOldEdition('mixit15', 2013))
@@ -230,7 +230,8 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('compte', stateSimplePage('compte', 'views/user/compte.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('logout', stateSimplePage('home','views/home.html'))
+      .state('creercompte', stateSimplePage('creercompte', 'views/user/creercompte.html'))
+      .state('logout', stateSimplePage('home', 'views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
 
@@ -246,17 +247,20 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      if(next.name === 'logout'){
+      if (next.name === 'logout') {
         AuthenticationService.logout();
       }
-      else{
+      else if (next.name === 'creercompte') {
+        console.log('creer compte')
+      }
+      else {
         AuthenticationService.valid(next.authorizedRoles);
       }
     });
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
-      if(!$rootScope.userConnected || (next && next.oauthId!==$rootScope.userConnected.oauthId)){
+      if (!$rootScope.userConnected || (next && next.oauthId !== $rootScope.userConnected.oauthId)) {
         $rootScope.userConnected = next;
       }
 
@@ -271,10 +275,28 @@
     });
 
     //// Call when the 401 response is returned by the server
-    $rootScope.$on('event:auth-loginRequired', function () {
+    $rootScope.$on('event:auth-loginRequired', function (event, next) {
       if ($location.path() !== '/authent') {
         var redirect = $location.path();
         $location.path('/authent').search('redirect', redirect).replace();
+      }
+      else {
+        if (next && next.data && next.data.type) {
+          switch (next.data.type) {
+            case 'BAD_CREDENTIALS':
+              $rootScope.errorMessage = 'Le mot de passe est incorrect';
+              break;
+            case   'REQUIRED_ARGS':
+              $rootScope.errorMessage = 'Le login et le mot de passe son obligatoires';
+              break;
+            case   'USER_NOT_FOUND':
+              $rootScope.errorMessage = 'Ce login n\'existe pas. Veuillez créer un compte pour vous connecter';
+              break;
+            default:
+              $rootScope.errorMessage = 'Erreur lors de l\authentification';
+          }
+
+        }
       }
     });
 
@@ -282,21 +304,6 @@
     $rootScope.$on('event:auth-loginCancelled', function () {
       delete  $rootScope.userConnected;
     });
-
-
-    // Call when the 403 response is returned by the server
-    $rootScope.$on('event:auth-error', function () {
-      $rootScope.errorMessage = 'Erreur lors de la connexion. Le login ou le mot de passe sont incorrects';
-      //TODO
-    });
-
-    //Refresh material design lite
-    $rootScope.$on('$viewContentLoaded', function() {
-      $timeout(function() {
-        componentHandler.upgradeAllRegistered();
-      });
-    });
-
 
   });
 

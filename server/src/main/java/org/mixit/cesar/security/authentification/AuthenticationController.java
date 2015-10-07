@@ -17,6 +17,7 @@ import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
+import org.mixit.cesar.security.autorisation.AuthenticationRequiredException;
 import org.mixit.cesar.security.oauth.OAuthFactory;
 import org.mixit.cesar.web.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,20 @@ public class AuthenticationController {
     private AccountRepository accountRepository;
     private AuthorityRepository authorityRepository;
     private OAuthFactory oauthFactory;
-    private RequestedPath requestedPathBean;
+    private CurrentUser currentUser;
     private AbsoluteUrlFactory urlFactory;
 
     @Autowired
-    public AuthenticationController(AccountRepository accountRepository, AuthorityRepository authorityRepository, OAuthFactory oauthFactory, RequestedPath requestedPathBean, AbsoluteUrlFactory urlFactory) {
+    public AuthenticationController(
+            AccountRepository accountRepository,
+            AuthorityRepository authorityRepository,
+            OAuthFactory oauthFactory,
+            CurrentUser currentUser,
+            AbsoluteUrlFactory urlFactory) {
         this.accountRepository = accountRepository;
         this.authorityRepository = authorityRepository;
         this.oauthFactory = oauthFactory;
-        this.requestedPathBean = requestedPathBean;
+        this.currentUser = currentUser;
         this.urlFactory = urlFactory;
     }
 
@@ -61,7 +67,6 @@ public class AuthenticationController {
     public String startOAuthDance(@PathVariable("provider") String providerName,
                                   @RequestParam(value = "to", defaultValue = "/") String requestedPath,
                                   HttpServletRequest request) throws IOException {
-        requestedPathBean.setValue(requestedPath);
         OAuthProvider provider = toProvider(providerName);
         return "redirect:" + oauthFactory.create(provider).getRedirectUrl(request);
     }
@@ -76,6 +81,7 @@ public class AuthenticationController {
                                 HttpServletResponse response) throws IOException {
         OAuthProvider provider = toProvider(providerName);
         Optional<String> oauthId = oauthFactory.create(provider).getOAuthId(request);
+        boolean newAccount= false;
 
         if (oauthId.isPresent()) {
             Account account = accountRepository.findByOauthProviderAndId(provider, oauthId.get());
@@ -86,18 +92,33 @@ public class AuthenticationController {
                                 .setOauthId(oauthId.get())
                                 .setRegisteredAt(LocalDateTime.now())
                                 .setDefaultLanguage(SessionLanguage.fr)
+                                .setValid(false)
                 );
                 account.addAuthority(authorityRepository.findByName(Role.MEMBER));
                 accountRepository.save(account);
+                newAccount = true;
             }
 
             setCookieInResponse(response, account);
-            return String.format("redirect:%s/compte?redirect=%s", urlFactory.getBaseUrl(), requestedPathBean.getValue());
+            if(newAccount){
+                return String.format("redirect:%s/creercompte", urlFactory.getBaseUrl());
+            }
+            else{
+                return String.format("redirect:%s/compte", urlFactory.getBaseUrl());
+            }
         }
         else {
             response.sendError(500, String.format("Error when you try to authenticate via %s. Try again", providerName));
             return String.format("redirect:%s/error", urlFactory.getBaseUrl());
         }
+    }
+
+    /**
+     * Receives the OAuth callback and authenticates, or signs up, the user
+     */
+    @RequestMapping(value = "/login-finalize", method = RequestMethod.GET)
+    public Credentials oauthCallback() {
+        return currentUser.getCredentials().orElse(new Credentials());
     }
 
     /**
@@ -114,13 +135,16 @@ public class AuthenticationController {
         String[] password = request.getParameterValues("password");
 
         if (username == null || password == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new IllegalArgumentException("User and password are required");
         }
 
         Account account = accountRepository.findByLogin(username[0]);
 
-        if (account == null || !account.getPassword().equals(password[0])) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (account == null){
+            throw new UserNotFoundException();
+        }
+        else if(!account.getPassword().equals(password[0])) {
+            throw new BadCredentialsException();
         }
 
         return new ResponseEntity<>(setCookieInResponse(response, account), HttpStatus.OK);

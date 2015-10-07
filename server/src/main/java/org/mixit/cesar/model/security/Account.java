@@ -65,6 +65,8 @@ public class Account {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Authority> authorities = new HashSet<>();
 
+    private boolean valid;
+
     public Long getId() {
         return id;
     }
@@ -178,6 +180,14 @@ public class Account {
         return this;
     }
 
+    public boolean isValid() {
+        return valid;
+    }
+
+    public Account setValid(boolean valid) {
+        this.valid = valid;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {

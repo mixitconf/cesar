@@ -6,15 +6,15 @@
         Certaines fonctionnalités du site sont sécurisées.
     </p>
 
-    <div class="cesar-error" ng-if="errorMessage">
-        {{errorMessage}}
-    </div>
-
     <p>
          Conformément
         à la loi Informatique et Liberté vous bénéficiez des droits de voir et de modifier vos données. Vous pouvez
         aussi nous demander par simple demande de supprimer votre compte
     </p>
+
+    <div class="cesar-error" ng-if="errorMessage">
+        {{errorMessage}}
+    </div>
 
     <div class="cesar-section--bottom">
 
@@ -48,10 +48,7 @@
                         <h3 class="mdl-card__title-text cesar-card__title-text">Classique</h3>
                     </div>
                     <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                        <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                        Vous avez la possibilité de créer un compte avec un nom d'utilisateur et un mot de passe. Les mots de passe sont
-                        bien évidemment cryptés et sécurisés.
-                        </div>
+
                         <div class="mdl-textfield mdl-js-textfield">
                             <input class="mdl-textfield__input" type="text" id="username" ng-required="true"
                                    ng-model="ctrl.credentials.username"/>
@@ -65,6 +62,11 @@
                             <label class="mdl-textfield__label" for="password">Mot de passe</label>
                         </div>
                         <br>
+                        <div class="mdl-card__supporting-text cesar-card__supporting-text">
+                            Vous avez la possibilité de <a ui-sref="creercompte">créer un compte</a> avec un nom d'utilisateur et un mot de passe. Les mots de passe sont
+                            bien évidemment cryptés et sécurisés.
+
+                        </div>
 
                         <div class="mdl-card__actions mdl-card--border">
                             <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"

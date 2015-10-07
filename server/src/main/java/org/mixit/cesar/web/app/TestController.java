@@ -52,6 +52,7 @@ public class TestController {
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @NeedsRole({Role.MEMBER})
     @RequestMapping(value = "sessions")
     public ResponseEntity<List<String>> sessions(){
         return new ResponseEntity<>(
