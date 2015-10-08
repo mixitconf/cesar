@@ -1,0 +1,103 @@
+<div class="cesar-container">
+
+    <h1>Création de compte</h1>
+
+    <p class="cesar-text">
+        Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous
+        contacter. Les informations minimales
+        sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à
+        des tierces personnes et si vous
+        voulez que votre nom/prénom ne soient pas affichés sur le site vous pouvez choisir de garder un compte privé
+    </p>
+
+    <form novalidate class="cesar-form" name="frm">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>
+            <div class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__supporting-text cesar-card__supporting-text">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="username" ng-required="true"
+                                       ng-model="ctrl.credentials.username"/>
+                                <label class="mdl-textfield__label" for="username">Identifiant</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true"
+                                       ng-model="ctrl.credentials.lastname"/>
+                                <label class="mdl-textfield__label" for="lastname">Nom</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
+                                       ng-model="ctrl.credentials.firstname"/>
+                                <label class="mdl-textfield__label" for="firstname">Prénom</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="password" id="password" ng-required="true"
+                                       ng-model="ctrl.credentials.password"/>
+                                <label class="mdl-textfield__label" for="password">Mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="password" id="passwordconfirm"
+                                       ng-required="true"
+                                       ng-model="ctrl.credentials.passwordconfirm"/>
+                                <label class="mdl-textfield__label" for="passwordconfirm">Confirmation mot de
+                                    passe</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="email" id="mail" ng-required="true"
+                                       ng-model="ctrl.credentials.mail"/>
+                                <label class="mdl-textfield__label" for="mail">E-mail</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-card__supporting-text cesar-card__supporting-text">
+                                Vous avez la possibilité de masquer votre compte aux autres utilisateurs en cliquant sur
+                                l'option suivante
+                                <br>
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="private">
+                                    <input type="checkbox" id="private" class="mdl-checkbox__input"
+                                           ng-model="ctrl.credentials.private"/>
+                                    <span class="mdl-checkbox__label">Je souhaite masquer mon compte et ne pas être visible des autres personnes</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-card__actions mdl-card--border">
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                                ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.createUserAccount(ctrl.credentials)">
+                            <i class="material-icons">save</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>
+            <p>&nbsp;</p>
+        </div>
+
+    </form>
+
+</div>

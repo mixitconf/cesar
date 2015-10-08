@@ -229,8 +229,9 @@
 
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('compte', stateSimplePage('compte', 'views/user/compte.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('creercompte', stateSimplePage('creercompte', 'views/user/creercompte.html'))
+      .state('account', stateSimplePage('account', 'views/user/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('createaccount', stateSimplePage('createaccount', 'views/user/create-social-account.html'))
+      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user_account.html'))
       .state('logout', stateSimplePage('home', 'views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
@@ -251,7 +252,7 @@
         AuthenticationService.logout();
       }
       else {
-        AuthenticationService.valid(next.authorizedRoles, next.name === 'creercompte' || next.name === 'compte');
+        AuthenticationService.valid(next.authorizedRoles, next.name === 'createaccount' || next.name === 'account');
       }
     });
 
