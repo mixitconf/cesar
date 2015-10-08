@@ -17,6 +17,7 @@ import org.mixit.cesar.web.AbsoluteUrlFactory;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -37,13 +38,13 @@ public class AuthenticationControllerTest {
     @Mock
     private OAuthFactory oauthFactory;
     @Mock
-    private CurrentUser currentUser;
+    private ApplicationContext applicationContext;
     @Mock
     private AbsoluteUrlFactory urlFactory;
 
     @Before
     public void setUp() {
-        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, currentUser, urlFactory);
+        AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, applicationContext, urlFactory);
         mockMvc = standaloneSetup(authenticationController).build();
     }
 

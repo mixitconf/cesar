@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public final static String TOKEN_COOKIE_NAME = "XSRF-TOKEN";
 
     @Autowired
-    private CurrentUser currentUser;
+    private ApplicationContext applicationContext;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -32,13 +33,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (token != null) {
             Account account = accountRepository.findByToken(token);
             if (account != null) {
+                CurrentUser currentUser  = applicationContext.getBean(CurrentUser.class);
                 currentUser.setCredentials(Credentials.build(account));
                 return true;
             }
         }
-
         response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
-        currentUser.setCredentials(null);
         return false;
     }
 

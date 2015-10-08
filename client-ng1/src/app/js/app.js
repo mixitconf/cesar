@@ -250,11 +250,8 @@
       if (next.name === 'logout') {
         AuthenticationService.logout();
       }
-      else if (next.name === 'creercompte') {
-        console.log('creer compte')
-      }
       else {
-        AuthenticationService.valid(next.authorizedRoles);
+        AuthenticationService.valid(next.authorizedRoles, next.name === 'creercompte' || next.name === 'compte');
       }
     });
 

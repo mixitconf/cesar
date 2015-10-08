@@ -16,6 +16,11 @@
       AuthenticationService.loginWithProvider('TWITTER');
     };
 
+    ctrl.createNewAccount = function(){
+      //We need to logout the user
+      AuthenticationService.logout();
+    };
+
   });
 
 })();

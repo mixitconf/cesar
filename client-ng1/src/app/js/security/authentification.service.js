@@ -6,10 +6,6 @@
 
 
     function loginConfirmed(response){
-      if(response.data===null){
-        $http.get('app/login-finalize').then(loginConfirmed);
-      }
-
       LocalStorageService.put('current-user', response.data);
       $rootScope.$broadcast('event:auth-loginConfirmed', LocalStorageService.get('current-user'));
     }
@@ -19,7 +15,11 @@
       $rootScope.$broadcast('event:auth-loginRequired', response);
     }
 
-    function valid(authorizedRoles) {
+    function valid(authorizedRoles, preLoadSecurity) {
+      if(preLoadSecurity){
+        $http.get('app/login-finalize').then(loginConfirmed);
+      }
+
       //We don't need to call the server at everytime. We see if user is stored in local storage
       var currentUser = LocalStorageService.get('current-user');
 

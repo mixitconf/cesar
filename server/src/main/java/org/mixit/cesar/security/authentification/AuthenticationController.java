@@ -21,6 +21,7 @@ import org.mixit.cesar.security.autorisation.AuthenticationRequiredException;
 import org.mixit.cesar.security.oauth.OAuthFactory;
 import org.mixit.cesar.web.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class AuthenticationController {
     private AccountRepository accountRepository;
     private AuthorityRepository authorityRepository;
     private OAuthFactory oauthFactory;
-    private CurrentUser currentUser;
+    private ApplicationContext applicationContext;
     private AbsoluteUrlFactory urlFactory;
 
     @Autowired
@@ -51,12 +52,12 @@ public class AuthenticationController {
             AccountRepository accountRepository,
             AuthorityRepository authorityRepository,
             OAuthFactory oauthFactory,
-            CurrentUser currentUser,
+            ApplicationContext applicationContext,
             AbsoluteUrlFactory urlFactory) {
         this.accountRepository = accountRepository;
         this.authorityRepository = authorityRepository;
         this.oauthFactory = oauthFactory;
-        this.currentUser = currentUser;
+        this.applicationContext = applicationContext;
         this.urlFactory = urlFactory;
     }
 
@@ -64,13 +65,10 @@ public class AuthenticationController {
      * Starts the OAuth dance or authenticate user if he has a standard account
      */
     @RequestMapping(value = "/login-with/{provider}", method = RequestMethod.GET)
-    public String startOAuthDance(@PathVariable("provider") String providerName,
-                                  @RequestParam(value = "to", defaultValue = "/") String requestedPath,
-                                  HttpServletRequest request) throws IOException {
+    public String startOAuthDance(@PathVariable("provider") String providerName, HttpServletRequest request) throws IOException {
         OAuthProvider provider = toProvider(providerName);
         return "redirect:" + oauthFactory.create(provider).getRedirectUrl(request);
     }
-
 
     /**
      * Receives the OAuth callback and authenticates, or signs up, the user
@@ -118,7 +116,7 @@ public class AuthenticationController {
      */
     @RequestMapping(value = "/login-finalize", method = RequestMethod.GET)
     public Credentials oauthCallback() {
-        return currentUser.getCredentials().orElse(new Credentials());
+        return applicationContext.getBean(CurrentUser.class).getCredentials().orElse(new Credentials());
     }
 
     /**

@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.mixit.cesar.security.authentification.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -17,17 +18,18 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class SecurityAspect {
     @Autowired
-    private CurrentUser currentUser;
+    private ApplicationContext applicationContext;
 
     @Before("@annotation(authenticated)")
     public void checkAccess(JoinPoint joinPoint, Authenticated authenticated) {
-        if (!currentUser.getCredentials().isPresent()) {
+        if (!applicationContext.getBean(CurrentUser.class).getCredentials().isPresent()) {
             throw new AuthenticationRequiredException();
         }
     }
 
     @Before("@annotation(needsRole)")
     public void checkAccess(JoinPoint joinPoint, NeedsRole needsRole) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         if (!currentUser.getCredentials().isPresent()) {
             throw new AuthenticationRequiredException();
         }
