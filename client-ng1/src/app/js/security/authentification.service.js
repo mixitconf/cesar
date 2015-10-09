@@ -84,7 +84,12 @@
     function createUserAccount(credentials){
       delete credentials.confirmpassword;
       $http
-        .post('app/account/create', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .post('app/account/create', credentials, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          ignoreErrorRedirection: 'ignoreErrorRedirection'
+        })
         .then(loginConfirmed)
         .catch(loginRequired);
     }

@@ -49,12 +49,7 @@
         views: {
           main: {
             templateUrl: 'views/members/' + url + '.html',
-            controller: function (MemberService) {
-              var ctrl = this;
-              MemberService.getAll(type).then(function (response) {
-                ctrl.members = response.data;
-              });
-            },
+            controller: 'MembersCtrl',
             controllerAs: 'ctrl'
           }
         }
@@ -166,7 +161,10 @@
         views: {
           main: {
             templateUrl: 'views/info/articles.html',
-            controller: 'ArticlesCtrl',
+            controller: function(articles){
+              var ctrl = this;
+              ctrl.articles = articles;
+            },
             controllerAs: 'ctrl'
           }
         }
@@ -265,7 +263,8 @@
         var search = $location.search();
         if (search.redirect !== undefined) {
           $location.path(search.redirect).search('redirect', null).replace();
-        } else {
+        }
+        else {
           $location.path('/').replace();
         }
       }
