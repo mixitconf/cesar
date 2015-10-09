@@ -76,4 +76,10 @@ UPDATE mixit.Session SET lang='fr' WHERE lang is null or lang='';
 
 UPDATE mixit.Member SET LOGOURL=REPLACE(LOGOURL,'/public/images/', 'sponsors/') where LOGOURL is not null;
 
+
+INSERT INTO mixit.Authority (ID,NAME) VALUES (1, 'ADMIN');
+INSERT INTO mixit.Authority (ID,NAME) VALUES (2, 'MEMBER');
+INSERT INTO mixit.Authority (ID,NAME) VALUES (3, 'SPEAKER');
+INSERT INTO mixit.Authority (ID,NAME) VALUES (4, 'SPONSOR');
+
 /* TODO migrate table account */

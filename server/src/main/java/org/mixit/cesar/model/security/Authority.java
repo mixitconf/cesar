@@ -21,12 +21,6 @@ import org.mixit.cesar.model.FlatView;
 @Entity
 public class Authority implements Serializable {
 
-    public enum Role {
-        ROLE_ADMIN,
-        ROLE_SPEAKER,
-        ROLE_MEMBRE
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(FlatView.class)

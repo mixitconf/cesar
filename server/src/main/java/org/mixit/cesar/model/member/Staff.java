@@ -8,11 +8,10 @@ import org.mixit.cesar.model.security.Role;
 public class Staff extends Member<Staff> {
 
     public Staff() {
-        ROLES.add(Role.Admin);
-        ROLES.add(Role.Member);
-        ROLES.add(Role.Participant);
-        ROLES.add(Role.Sponsor);
-        ROLES.add(Role.Speaker);
+        ROLES.add(Role.ADMIN);
+        ROLES.add(Role.MEMBER);
+        ROLES.add(Role.SPONSOR);
+        ROLES.add(Role.SPEAKER);
     }
 
 }

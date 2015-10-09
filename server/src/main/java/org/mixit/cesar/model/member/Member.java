@@ -108,7 +108,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     private Boolean publicProfile = Boolean.FALSE;
 
     public Member() {
-        ROLES.add(Role.Member);
+        ROLES.add(Role.MEMBER);
     }
 
     public boolean hasRole(Role role) {

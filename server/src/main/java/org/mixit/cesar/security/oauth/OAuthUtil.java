@@ -17,6 +17,6 @@ public final class OAuthUtil {
      * http://localhost:8080/oauth/google.
      */
     public static String getRedirectUrl(String baseRedirectUrl, OAuthProvider provider) {
-        return baseRedirectUrl + "/oauth/" + provider.name().toLowerCase();
+        return baseRedirectUrl + "/app/oauth/" + provider.name().toLowerCase();
     }
 }

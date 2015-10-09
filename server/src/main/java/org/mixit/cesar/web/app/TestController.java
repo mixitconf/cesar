@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.repository.EventRepository;
 import org.mixit.cesar.repository.InterestRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.repository.SessionRepository;
 import org.mixit.cesar.repository.SharedLinkRepository;
+import org.mixit.cesar.security.autorisation.NeedsRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ public class TestController {
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @NeedsRole({Role.ADMIN})
     @RequestMapping(value = "events")
     public ResponseEntity<List<String>> events(){
         return new ResponseEntity<>(
@@ -49,6 +52,7 @@ public class TestController {
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @NeedsRole({Role.MEMBER})
     @RequestMapping(value = "sessions")
     public ResponseEntity<List<String>> sessions(){
         return new ResponseEntity<>(

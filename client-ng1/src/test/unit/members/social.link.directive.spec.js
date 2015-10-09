@@ -1,6 +1,6 @@
 "use strict";
 
-describe('cesarSocialLink', function () {
+describe('Directive cesarSocialLink', function () {
 
   var $compile, $scope, element;
 

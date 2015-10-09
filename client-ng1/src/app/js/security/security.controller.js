@@ -6,10 +6,24 @@
 
     var ctrl = this;
 
-    ctrl.login = function(){
-      AuthenticationService.login(ctrl.credentials);
+    ctrl.login = AuthenticationService.login;
+
+    ctrl.loginWithGoogle = function(){
+      AuthenticationService.loginWithProvider('GOOGLE');
     };
 
+    ctrl.loginWithTwitter = function(){
+      AuthenticationService.loginWithProvider('TWITTER');
+    };
+
+    ctrl.createNewAccount = function(){
+      //We need to logout the user
+      AuthenticationService.logout();
+    };
+
+    ctrl.createUserAccount = function(){
+      AuthenticationService.createUserAccount(angular.copy(ctrl.credentials));
+    };
   });
 
 })();

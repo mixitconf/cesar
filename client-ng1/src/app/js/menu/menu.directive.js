@@ -46,7 +46,7 @@
           {
             id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, hash: newValue.hash, submenus: [
             {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
-            {id: 'sub4.2', name: 'Mon compte', link: 'compte'},
+            {id: 'sub4.2', name: 'Mon compte', link: 'account'},
             {id: 'sub4.3', divider: 'true', mobile: true},
             {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
           ]

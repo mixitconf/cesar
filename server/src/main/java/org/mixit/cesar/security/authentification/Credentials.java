@@ -10,6 +10,8 @@ import org.mixit.cesar.utils.HashUtil;
  * @author GET <guillaume@dev-mind.fr>
  */
 public class Credentials {
+
+    private String oauthId;
     private String login;
     private String token;
     private String firstname;
@@ -20,11 +22,14 @@ public class Credentials {
 
     public static Credentials build(Account account) {
         Credentials credentials = new Credentials()
+                .setOauthId(account.getOauthId())
                 .setToken(account.getToken())
                 .setEmail(account.getEmail())
-                .setHash(HashUtil.md5Hex(account.getEmail()))
                 .setLogin(account.getLogin());
 
+        if(account.getEmail()!=null){
+            credentials.setHash(HashUtil.md5Hex(account.getEmail()));
+        }
         if (account.getAuthorities() != null) {
             credentials.setRoles(account.getAuthorities().stream().map(a -> a.getName().toString()).collect(Collectors.toList()));
         }
@@ -33,9 +38,18 @@ public class Credentials {
                     .setFirstname(account.getMember().getFirstname())
                     .setHash(HashUtil.md5Hex(account.getMember().getEmail()));
         } else {
-            credentials.setLastname(account.getName());
+            credentials.setLastname(account.getLastname()).setFirstname(account.getFirstname());
         }
         return credentials;
+    }
+
+    public String getOauthId() {
+        return oauthId;
+    }
+
+    public Credentials setOauthId(String oauthId) {
+        this.oauthId = oauthId;
+        return this;
     }
 
     public String getHash() {

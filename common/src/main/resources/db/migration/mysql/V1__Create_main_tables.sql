@@ -128,12 +128,15 @@ CREATE TABLE Account
     oauthId VARCHAR(255),
     provider VARCHAR(255),
     name VARCHAR(255),
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
     password VARCHAR(255),
     token VARCHAR(255),
     login VARCHAR(255),
     email VARCHAR(255),
     registeredAt DATETIME,
     defaultLanguage VARCHAR(5),
+    valid BOOLEAN,
     MEMBER_ID BIGINT
 );
 CREATE TABLE Account_Authority

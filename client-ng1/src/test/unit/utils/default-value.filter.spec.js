@@ -1,4 +1,4 @@
-describe('defaultValue', function(){
+describe('Filter defaultValue', function(){
   var defaultValue;
 
   beforeEach(module('cesar-utils'));

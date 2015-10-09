@@ -1,4 +1,4 @@
-describe('SessionService', function () {
+describe('Service SessionService', function () {
   var service, $httpBackend;
 
   beforeEach(module('cesar-sessions'));
