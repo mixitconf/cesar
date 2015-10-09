@@ -1,4 +1,9 @@
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container">
+    <thead ng-show="false">
+        <tr>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
     <tbody>
     <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})">
         <td class="mdl-data-table__cell--non-numeric">

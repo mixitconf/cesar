@@ -231,7 +231,7 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('account', stateSimplePage('account', 'views/user/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user_account.html',[USER_ROLES.all], 'SecurityCtrl'))
+      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user_account.html', [USER_ROLES.all], 'SecurityCtrl'))
       .state('logout', stateSimplePage('home', 'views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
@@ -239,7 +239,7 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout,  AuthenticationService) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, AuthenticationService) {
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
       $state.go('error', {error: response});
@@ -300,6 +300,14 @@
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {
       delete  $rootScope.userConnected;
+    });
+
+
+    //Refresh material design lite
+    $rootScope.$on('$viewContentLoaded', function () {
+      $timeout(function () {
+        componentHandler.upgradeAllRegistered();
+      });
     });
 
   });
