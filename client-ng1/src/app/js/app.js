@@ -25,10 +25,26 @@
     'cesar-services',
     'cesar-utils',
     'hc.marked',
-    'cesar-security'
+    'cesar-security',
+    'pascalprecht.translate'
   ]);
 
-  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
+  angular.module('cesar').constant('LANGUAGES', {
+    fr: 'fr_FR',
+    us: 'us_US'
+  });
+
+  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider, USER_ROLES, LANGUAGES) {
+
+    // Initialize angular-translate
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'i18n/',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage(LANGUAGES.fr);
+    $translateProvider.useCookieStorage();
+    $translateProvider.useSanitizeValueStrategy('sanitize');
 
     $locationProvider.html5Mode(true);
 
@@ -238,6 +254,7 @@
    * Event handlers for errors (internal, security...)
    */
   angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, AuthenticationService) {
+
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
       $state.go('error', {error: response});
