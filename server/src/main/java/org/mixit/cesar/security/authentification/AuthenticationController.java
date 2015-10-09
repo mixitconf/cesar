@@ -29,6 +29,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,10 +100,10 @@ public class AuthenticationController {
 
             setCookieInResponse(response, account);
             if(newAccount){
-                return String.format("redirect:%s/creercompte", urlFactory.getBaseUrl());
+                return String.format("redirect:%s/createuseraccount", urlFactory.getBaseUrl());
             }
             else{
-                return String.format("redirect:%s/compte", urlFactory.getBaseUrl());
+                return String.format("redirect:%s/account", urlFactory.getBaseUrl());
             }
         }
         else {
@@ -167,4 +168,5 @@ public class AuthenticationController {
     private OAuthProvider toProvider(String pathVariable) {
         return OAuthProvider.valueOf(pathVariable.toUpperCase());
     }
+
 }

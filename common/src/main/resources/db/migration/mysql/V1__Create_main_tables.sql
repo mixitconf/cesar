@@ -128,6 +128,8 @@ CREATE TABLE Account
     oauthId VARCHAR(255),
     provider VARCHAR(255),
     name VARCHAR(255),
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
     password VARCHAR(255),
     token VARCHAR(255),
     login VARCHAR(255),

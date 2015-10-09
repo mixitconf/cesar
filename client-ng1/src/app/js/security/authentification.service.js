@@ -81,11 +81,20 @@
       $window.location.href = '/app/login-with/' + provider;
     }
 
+    function createUserAccount(credentials){
+      delete credentials.confirmpassword;
+      $http
+        .post('app/account/create', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .then(loginConfirmed)
+        .catch(loginRequired);
+    }
+
     return {
       'login': login,
       'loginWithProvider' : loginWithProvider,
       'valid': valid,
-      'logout': logout
+      'logout': logout,
+      'createUserAccount': createUserAccount
     };
   });
 

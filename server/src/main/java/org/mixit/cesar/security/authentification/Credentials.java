@@ -10,6 +10,7 @@ import org.mixit.cesar.utils.HashUtil;
  * @author GET <guillaume@dev-mind.fr>
  */
 public class Credentials {
+
     private String oauthId;
     private String login;
     private String token;
@@ -37,7 +38,7 @@ public class Credentials {
                     .setFirstname(account.getMember().getFirstname())
                     .setHash(HashUtil.md5Hex(account.getMember().getEmail()));
         } else {
-            credentials.setLastname(account.getName());
+            credentials.setLastname(account.getLastname()).setFirstname(account.getFirstname());
         }
         return credentials;
     }

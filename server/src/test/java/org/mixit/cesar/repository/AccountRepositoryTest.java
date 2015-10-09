@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mixit.cesar.model.security.OAuthProvider;
+import org.mixit.cesar.model.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -38,13 +39,13 @@ public class AccountRepositoryTest {
                                 DataTest.INSERT_MEMBER,
                                 insertInto("Account")
                                         .withGeneratedValue("id", ValueGenerators.sequence())
-                                        .columns("oauthId", "login", "name", "password", "token", "provider", "email", "MEMBER_ID")
-                                        .values("oauthId", "devmind", "Guillaume EHRET", "toto", "token", "CESAR", "test@gmail.com", 1)
+                                        .columns("oauthId", "login", "lastname", "firstname", "password", "token", "provider", "email", "MEMBER_ID", "valid")
+                                        .values("oauthId", "devmind", "EHRET", "Guillaume", "toto", "token", "CESAR", "test@gmail.com", 1, true)
                                         .build(),
                                 insertInto("Authority")
                                         .withGeneratedValue("id", ValueGenerators.sequence())
                                         .columns("name")
-                                        .values("ROLE_ADMIN")
+                                        .values(Role.ADMIN.toString())
                                         .build(),
                                 insertInto("Account_Authority")
                                         .columns("ACCOUNT_ID", "AUTHORITIES_ID")

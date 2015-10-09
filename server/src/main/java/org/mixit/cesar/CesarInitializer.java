@@ -276,8 +276,9 @@ public class CesarInitializer {
         authorityRepository.save(new Authority().setName(Role.MEMBER));
         authorityRepository.save(new Authority().setName(Role.SPEAKER));
         Account account = accountRepository.save(new Account()
-                        .setName("Guillaume")
-                        .setLogin("user")
+                        .setFirstname("Guillaume")
+                .setLastname("Guillaume")
+                .setLogin("user")
                         .setOauthId("aaaa")
                         .setPassword("password")
                         .setProvider(OAuthProvider.CESAR)

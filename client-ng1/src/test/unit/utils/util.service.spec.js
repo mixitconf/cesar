@@ -1,4 +1,4 @@
-describe('Util', function () {
+describe('Service Util', function () {
   var service;
 
   beforeEach(module('cesar-utils'));

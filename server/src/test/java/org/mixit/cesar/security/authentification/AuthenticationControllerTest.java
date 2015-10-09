@@ -1,5 +1,6 @@
 package org.mixit.cesar.security.authentification;
 
+import static org.mixit.cesar.utils.ControlAdviceForTest.createContextForTest;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -45,7 +46,9 @@ public class AuthenticationControllerTest {
     @Before
     public void setUp() {
         AuthenticationController authenticationController = new AuthenticationController(accountRepository, authorityRepository, oauthFactory, applicationContext, urlFactory);
-        mockMvc = standaloneSetup(authenticationController).build();
+        mockMvc = standaloneSetup(authenticationController)
+                .setHandlerExceptionResolvers(createContextForTest().handlerExceptionResolver())
+                .build();
     }
 
     @Test

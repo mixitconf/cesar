@@ -38,7 +38,10 @@ public class Account {
     private String login;
 
     @Size(max = 255)
-    private String name;
+    private String lastname;
+
+    @Size(max = 255)
+    private String firstname;
 
     @Size(max = 255)
     private String password;
@@ -103,12 +106,21 @@ public class Account {
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public Account setName(String name) {
-        this.name = name;
+    public Account setLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public Account setFirstname(String firstname) {
+        this.firstname = firstname;
         return this;
     }
 
@@ -207,7 +219,7 @@ public class Account {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 }

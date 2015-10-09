@@ -21,6 +21,9 @@
       AuthenticationService.logout();
     };
 
+    ctrl.createUserAccount = function(){
+      AuthenticationService.createUserAccount(angular.copy(ctrl.credentials));
+    };
   });
 
 })();

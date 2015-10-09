@@ -1,4 +1,4 @@
-describe('ArticleService', function () {
+describe('Service ArticleService', function () {
   var service, $httpBackend;
 
   beforeEach(module('cesar-articles'));

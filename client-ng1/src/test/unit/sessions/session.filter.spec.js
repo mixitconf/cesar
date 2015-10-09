@@ -1,4 +1,4 @@
-describe('sessionLogo', function(){
+describe('Filter sessionLogo', function(){
   var sessionLogo;
 
   beforeEach(module('cesar-sessions'));

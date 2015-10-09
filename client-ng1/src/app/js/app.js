@@ -1,6 +1,7 @@
 (function () {
 
   'use strict';
+  /*global componentHandler */
 
   angular.module('cesar-utils', ['ngSanitize']);
   angular.module('cesar-articles', ['cesar-templates']);
@@ -230,8 +231,7 @@
       //Connected
       .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
       .state('account', stateSimplePage('account', 'views/user/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('createaccount', stateSimplePage('createaccount', 'views/user/create-social-account.html'))
-      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user_account.html'))
+      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user_account.html',[USER_ROLES.all], 'SecurityCtrl'))
       .state('logout', stateSimplePage('home', 'views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'SecurityCtrl'));
   });
@@ -240,7 +240,6 @@
    * Event handlers for errors (internal, security...)
    */
   angular.module('cesar').run(function ($rootScope, $state, $location, $timeout,  AuthenticationService) {
-
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
       $state.go('error', {error: response});
@@ -248,7 +247,7 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      if (next.name === 'logout') {
+      if (next.name === 'logout' || next.name === 'createuseraccount') {
         AuthenticationService.logout();
       }
       else {
@@ -306,4 +305,3 @@
   });
 
 })();
-

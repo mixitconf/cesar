@@ -63,7 +63,7 @@ public class CesarConfig  {
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(authenticationInterceptor())
                         .addPathPatterns("/app/**/*")
-                        .excludePathPatterns("/app/login", "/app/login-with/*", "/app/logout", "/app/oauth/*");
+                        .excludePathPatterns("/app/login", "/app/login-with/*", "/app/logout", "/app/oauth/*", "/app/account/check/*", "/app/account/create", "/app/account/create-finalize");
             }
 
         };
