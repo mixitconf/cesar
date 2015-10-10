@@ -20,7 +20,6 @@
     "marked": "^0.3.5",
     "material-design-icons": "2.0.0",
     "material-design-lite": "1.0.5",
-    "protractor": "^2.5.1",
     "roboto-fontface": "0.4.2"
   },
   "devDependencies": {
@@ -37,6 +36,7 @@
     "gulp-ng-annotate": "^1.0.0",
     "gulp-ng-html2js": "^0.2.0",
     "gulp-plumber": "^1.0.1",
+    "gulp-protractor": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.3",
     "gulp-sequence": "^0.4.0",
@@ -55,6 +55,7 @@
     "karma-phantomjs-launcher": "^0.2.0",
     "merge-stream": "^0.1.8",
     "phantomjs": "^1.9.17",
+    "protractor": "^2.5.1",
     "serve-static": "^1.10.0",
     "through2": "^2.0.0"
   },

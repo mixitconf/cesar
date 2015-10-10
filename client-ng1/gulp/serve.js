@@ -34,12 +34,17 @@ module.exports = function (gulp, config) {
           ])
         ]
       },
-      port : port
+      port : port,
+      notify: false
     });
-
-    console.log('Server started http://localhost:12001');
   }
 
+  gulp.task('watch', function() {
+    gulp.watch(paths.js.app, ['build:dev:js']);
+    gulp.watch([paths.templates], ['build:dev:js']);
+    gulp.watch([paths.html], ['build:dev:index']);
+    gulp.watch(paths.less.path, ['build:dev:css']);
+  });
 
   /**
    * This task is not working with the WebSocket connection, but SockJS falls back on long-polling
@@ -56,4 +61,5 @@ module.exports = function (gulp, config) {
   gulp.task('serve:e2e', ['build:e2e'], function () {
     browserSyncInit(paths.build.e2e, 12001);
   });
+
 };

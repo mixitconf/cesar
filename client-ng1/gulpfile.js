@@ -26,22 +26,32 @@ var paths = {
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/material-design-lite/material.js',
       'node_modules/marked/lib/marked.js'
+    ],
+    unit: [
+      'src/test/unit/**/*.spec.js'
+    ],
+    e2e: [
+      'src/test/e2e/*.spec.js'
+    ],
+    libe2e: [
+      'node_modules/angular-mocks/angular-mocks.js',
+      'src/test/e2e/e2eConfig.js',
     ]
   },
   templates: [
     'src/app/js/**/*.html'
   ],
-  css : [
+  css: [
     'node_modules/material-design-lite/material.css'
   ],
   less: {
-    main : 'src/app/less/main.less',
-    path : [
+    main: 'src/app/less/main.less',
+    path: [
       'src/app/less/*.less'
     ]
   },
-  html : 'src/app/**/*.html',
-  index : 'src/app/index-dev.html',
+  html: 'src/app/**/*.html',
+  index: 'src/app/index-dev.html',
   assets: {
     fonts: [
       'node_modules/roboto-fontface/fonts/*.*',
@@ -56,15 +66,6 @@ var paths = {
     ],
     favicon: [
       'src/app/assets/favicon.ico'
-    ]
-  },
-  tests:{
-    unit : [
-      'src/test/unit/**/*.spec.js'
-    ],
-    e2e: [
-      'node_modules/angular-mocks/angular-mocks.js',
-      'src/test/e2e/e2eConfig.js',
     ]
   }
 };

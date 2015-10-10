@@ -20,7 +20,6 @@ var utils = require('gulp-util');
 
 module.exports = function(gulp, config) {
   var paths = config.paths;
-  var timestamp = config.timestamp;
 
   gulp.task('build:dev', [
     'build:dev:vendors',

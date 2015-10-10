@@ -46,7 +46,7 @@ module.exports = function(gulp, config) {
    * Checks for ddescribe and iit
    */
   gulp.task('ddescriber', function () {
-    return gulp.src(paths.tests.unit)
+    return gulp.src(paths.js.unit)
       .pipe(ddescriber());
   });
   gulp.task('jshint', function(){

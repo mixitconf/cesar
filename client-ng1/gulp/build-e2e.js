@@ -24,7 +24,7 @@ module.exports = function(gulp, config) {
   });
 
   gulp.task('build:e2e:js', function () {
-    return gulp.src(paths.tests.e2e)
+    return gulp.src(paths.js.libe2e)
       .pipe(concat('e2e.js'))
       .pipe(gulp.dest(paths.build.e2e + '/js'));
   });
@@ -42,4 +42,5 @@ module.exports = function(gulp, config) {
       .pipe(rename('index-e2e.html'))
       .pipe(gulp.dest(paths.build.e2e));
   });
+
 };
