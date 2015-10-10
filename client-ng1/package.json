@@ -60,7 +60,6 @@
     "through2": "^2.0.0"
   },
   "scripts": {
-    "build": "gulp build",
-    "postinstall": "npm ./node_modules/protractor/bin/webdriver-manager update"
+    "build": "gulp build"
   }
 }
