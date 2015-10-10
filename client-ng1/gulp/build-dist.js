@@ -56,15 +56,15 @@ module.exports = function(gulp, config) {
       .pipe(jshint.reporter('fail'));
   });
 
-  gulp.task('build:dist:font', function () {
+  gulp.task('build:dist:font', ['build:dev:font'], function () {
     return gulp.src(paths.assets.fonts)
       .pipe(gulp.dest(paths.build.dist + '/fonts'));
   });
-  gulp.task('build:dist:i18n', function () {
+  gulp.task('build:dist:i18n', ['build:dev:i18n'], function () {
     return gulp.src(paths.assets.i18n)
       .pipe(gulp.dest(paths.build.dist + '/i18n'));
   });
-  gulp.task('build:dist:images', function () {
+  gulp.task('build:dist:images', ['build:dev:favicon', 'build:dev:images'], function () {
     return gulp.src(paths.assets.images)
       .pipe(gulp.dest(paths.build.dist + '/img'));
   });

@@ -8,7 +8,7 @@ var paths = {
   build: {
     all: 'build',
     dev: 'build/dev',
-    test: 'build/test',
+    e2e: 'build/e2e',
     dist: 'build/dist'
   },
   js: {
@@ -63,7 +63,8 @@ var paths = {
       'src/test/unit/**/*.spec.js'
     ],
     e2e: [
-
+      'node_modules/angular-mocks/angular-mocks.js',
+      'src/test/e2e/e2eConfig.js',
     ]
   }
 };
@@ -75,6 +76,7 @@ var config = {
 
 require('./gulp/build-dev.js')(gulp, config);
 require('./gulp/build-dist.js')(gulp, config);
+require('./gulp/build-e2e.js')(gulp, config);
 require('./gulp/unit.js')(gulp, config);
 require('./gulp/e2e.js')(gulp, config);
 require('./gulp/serve.js')(gulp, config);

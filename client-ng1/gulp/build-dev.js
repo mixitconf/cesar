@@ -101,8 +101,7 @@ module.exports = function(gulp, config) {
   gulp.task('build:dev:html', function () {
     gulp.src(paths.index)
       .pipe(rename('index.html'))
-      .pipe(gulp.dest(paths.build.dist));
-
+      .pipe(gulp.dest(paths.build.dev));
     return gulp.src(paths.html)
       .pipe(gulp.dest(paths.build.dev));
   });

@@ -6,10 +6,10 @@ module.exports = function(gulp, config) {
 
 
   gulp.task('watch', function() {
-    gulp.watch(paths.js.app, ['bundle:js']);
-    gulp.watch([paths.templates], ['bundle:js']);
-    gulp.watch([paths.html], ['bundle:index']);
-    gulp.watch(paths.less.path, ['bundle:css']);
+    gulp.watch(paths.js.app, ['build:dev:js']);
+    gulp.watch([paths.templates], ['build:dev:js']);
+    gulp.watch([paths.html], ['build:dev:index']);
+    gulp.watch(paths.less.path, ['build:dev:css']);
   });
 
   gulp.task('dev', ['clean', 'watch'], function() {
