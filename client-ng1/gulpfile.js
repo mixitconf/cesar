@@ -17,12 +17,15 @@ var paths = {
     ],
     vendor: [
       'node_modules/angular/angular.js',
-      'node_modules/angular-sanitize/angular-sanitize.js',
       'node_modules/angular-cookies/angular-cookies.js',
+      'node_modules/angular-marked/angular-marked.js',
+      'node_modules/angular-sanitize/angular-sanitize.js',
+      'node_modules/angular-translate/dist/angular-translate.js',
+      'node_modules/angular-translate/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
+      'node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/material-design-lite/material.js',
-      'node_modules/marked/lib/marked.js',
-      'node_modules/angular-marked/angular-marked.js'
+      'node_modules/marked/lib/marked.js'
     ]
   },
   templates: [
@@ -47,6 +50,9 @@ var paths = {
     images: [
       'src/app/assets/img/**/*.*',
       'src/app/assets/logo/*.*'
+    ],
+    i18n: [
+      'src/app/assets/i18n/**/*.*'
     ],
     favicon: [
       'src/app/assets/favicon.ico'

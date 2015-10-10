@@ -1,5 +1,5 @@
 <div class="cesar-container">
-    <h1>Actualités</h1>
+    <h1 translate="view.news.title"></h1>
 
     <div class="cesar-section--bottom">
 
@@ -21,7 +21,7 @@
 
                 <div class="mdl-card__supporting-text cesar-card__supporting-text">
                     {{article.headline}}<br>
-                    le {{article.postedAt | date:'dd/MM/yyyy'}}</a><br>&nbsp;
+                    <span translate="view.news.at"></span> {{article.postedAt | date:'dd/MM/yyyy'}}</a><br>&nbsp;
                 </div>
             </div>
         </div>

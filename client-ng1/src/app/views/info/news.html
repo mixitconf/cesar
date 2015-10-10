@@ -4,9 +4,7 @@
                 ng-click="ctrl.previousArticle()">
             <i class="material-icons">skip_previous</i>
         </button>
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles">
-            Liste des articles
-        </a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles" translate="view.news.list"></a>
         <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" title="Article suivant"
                 ng-click="ctrl.nextArticle()">
             <i class="material-icons">skip_next</i>
@@ -26,7 +24,7 @@
         <div marked="ctrl.article.content">
         </div>
 
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff">La team Mix-IT</a></div>
+        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
         <p>&nbsp;</p>
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--2dp">

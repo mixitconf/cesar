@@ -1,0 +1,179 @@
+{
+  "menu": {
+    "news": "Actualités",
+    "program": "Programme",
+    "planning": "Planning",
+    "talks": "Conférences, ateliers",
+    "ligthningtalks": "Ligthning talks",
+    "members": "Participants",
+    "speakers": "Les speakers",
+    "sponsors": "Les sponsors",
+    "staff": "Les membres du staff",
+    "info": "Informations pratiques",
+    "come": "Venir à la conférence",
+    "faq": "FAQ",
+    "kit": "Kit multimédia",
+    "mixit15": "Mix-IT 2015",
+    "mixit14": "Mix-IT 2014",
+    "mixit13": "Mix-IT 2013",
+    "mixit12": "Mix-IT 2012",
+    "favorites": "Mes favoris",
+    "account": "Mon compte",
+    "logout": "Se déconnecter",
+    "login": "Se connecter"
+  },
+  "home": {
+    "headband": {
+      "comeback": "revient les <b>21 et 22 avril 2016</b>"
+    },
+    "info": {
+      "title": "Mix-IT c'est aussi...",
+      "section1": "2 jours de conférences et d'ateliers.",
+      "section2": "500 participants, 50 speakers",
+      "section1content": "Des conférences pour faire des découvertes, des jeux pour apprendre, des ateliers de développement ou créatifs, Mix-IT c'est 2 jours intenses de progrès et de rencontres ! La soirée, ouverte à tous, est aussi le moment idéal pour faire des connaissances et s'ouvrir aux autres cultures.",
+      "section2content": "Afin de garder une dimension conviviale, le nombre de participants est limité à 500. Nous nous battons pour vous proposer tout cela à un prix très abordable, pour que tout un chacun puisse en profiter.."
+    },
+    "intro": {
+      "title": "Une de nos valeurs est la <span class=\"cesar-blink\">mixité</span> d'un point de vue technologique, sur les sujets abordés mais aussi au niveau des participants.",
+      "agile": "Agilité",
+      "dev": "Développement",
+      "innovation": "Innovation",
+      "p1" : "Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du Web et des logiciels d'aujourd'hui et de demain qui apportons des idées, les réalisent, et les mettent en production. Venez chercher l'inspiration, les bonnes pratiques, et les nouveaux outils : vous les trouverez à Mix-IT ! Mais surtout venez rencontrer et échanger avec d'autres passionnés.",
+      "p2" : "Si vous avez manqué l'édition précédente voici un petit aperçu"
+    },
+    "speaker": {
+      "title": "Les speakers 2016 ne sont pas connus mais voici un panel de ceux que nous avons pu voir lors des précédentes éditions"
+    },
+    "sponsor": {
+      "title": "Devenez sponsor de l'édition 2016",
+      "annonce": "Profitez de cet évenement pour mettre en avant votre société. Nous proposons différents niveaux de partenariats qui sont détaillés dans la plaquette suivante. Retournez nous le",
+      "form": "formulaire de sponsoring",
+      "at": "à"
+    }
+  },
+  "view": {
+    "news": {
+      "title": "Actualités",
+      "at": "le"
+    },
+    "conduite": {
+      "title": "Code de conduite",
+      "p1": "Les principes qu'il faut respecter si vous venez à Mix-IT",
+      "p2": "Vous avez été géniaux les années précédentes, et nous espérons que cette année encore la conférence se déroulera sans incidents. Néanmoins d'autres exemples de conférences montrent qu'un dérapage peut toujours arriver. Nous avons donc décidé de mettre en place un Code de Conduite et de contribuer à faire de nos communautés un endroit agréable pour tous les participants quels que soient leur origine, sexe, age, sexualité... Profitez de ces deux jours et continuez à faire de Mix-IT la conférence que nous aimons. De toute évidence, ces principes nous semblent naturels, et ils devraient être appliqués dans cette conférence comme dans la vie de tous les jours sans qu'on ait besoin de les rappeler.",
+      "p3": "Notre code de conduite collaboratif"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": {
+        "title": "Comment acheter son billet ?",
+        "content": "La vente de billets à généralement lieu un mois avant la conférence. Nous annonçons l'évènement sur le site, sur notre compte <a href=\"https:\/\/twitter.com\/mixit_lyon\" target=\"social\">Twitter<\/a> et <a href=\"https:\/\/plus.google.com\/106629477368826686108\/about\" target=\"social\">Google+<\/a>"
+      },
+      "q2": {
+        "title": "Quelles sont les horaires de la conférence ?",
+        "content": "La conférence se déroule sur 2 jours. Nous vous accueillons pour chaque journée à partir de 8H30. Les sessions du matin débutent à 9h30. La fin de journée est entre 18h et 18h30."
+      },
+      "q3": {
+        "title": "Comment obtenir une facture pour ma place MiX-iT ?",
+        "content": "Pour obtenir votre facture, vous devez vous connecter sur le site de notre partenaire billeterie : yurplan.com. Dans la section 'Mes Billets', vous trouverez un bouton permettant d'éditer votre facture. NB : Cette facture ne présente pas de TVA ni de montant HT, cela est tout à fait normal : la conférence est portée par une association loi 1901 qui ne collecte pas la TVA, nous ne pouvons donc pas la faire apparaître sur la facture."
+      },
+      "q4": {
+        "title": "Est-il possible de participer à Mix-IT au titre de la formation ?",
+        "content": "Cette année ce sera notre sponsor Viseo qui gèrera cet aspect. Ce partenaire vous fera signer chaque jour sur place une feuille de présence et vous remettra une attestation de formation. Lors de l'achat de vos places, une case à cocher vous permettra d'indiquer cette volonté. Nous vous invitons à vous rapprocher de notre partenaire pour toute question relative à ce sujet."
+      },
+      "q5": {
+        "title": "Est-il possible d'utiliser mon CPF pour m'inscrire à Mix-IT ?",
+        "content": "Mix-IT n'est pas recensée dans le référentiel des formations éligibles à l'utilisation de votre Compte Personnel de Formation (CPF). Néanmoins, notre partenaire Viseo vous délivrera sur place une attestation de formation rendant possible l'inscription au titre de la formation professionnelle. Nous vous invitons à vous rapprocher de notre partenaire pour toute question relative à ce sujet."
+      },
+      "q6": {
+        "title": "Comment changer l'image de son profil ?",
+        "content": "Les avatars sont gérés par Gravatar. Nous affichons l'avatar correspondant à l'email que vous nous indiquez sur votre profil. Connectez-vous sur le site Gravatar pour créer ou modifier votre image."
+      },
+      "q7": {
+        "title": "Réseaux sociaux",
+        "content": "Nous communiquons principalement via sur notre compte Twitter <a href=\"https:\/\/twitter.com\/mixit_lyon\" target=\"social\">@MixIT_Lyon<\/a> mais si vous voulez parler de la prochaine édition utilisez le hastag <a>#mixit16"
+      }
+    },
+    "multimedia": {
+      "title": "Kit Multimedia",
+      "content": "Si vous voulez utiliser les logos Mix-IT voici ceux que vous pouvez utiliser. Si vous êtes une entreprise et que vous n'êtes pas partenaire de Mix-IT, vous ne pouvez pas exploiter ce logo. Pour le faire veuillez consulter la page",
+      "svg": "Format SVG",
+      "png": "Format PNG"
+    },
+    "news": {
+      "title": "",
+      "team": "La team Mix-IT",
+      "list": "Liste des articles",
+      "comment": "Commentaires"
+    },
+    "come": {
+      "title": "Comment venir à Mix-IT",
+      "openmap": "Ouvrir la carte",
+      "accroche": "Nous vous convions à privilégier les transports en commun, les vélos ou la marche pour venir à la conférence. Votre journée n'en sera que plus verte !",
+      "bike": {
+        "title": "Vélo",
+        "content" : " Lyon possède un réseau de Vélo en libre service : <a target=\"blank\" href=\"http://www.velov.grandlyon.com/\">les Vélo'V</a>.  Les stations les plus proches de CPE Lyon sont les stations <strong>10084 - La Doua / Avenue des Arts</strong> (Avenue des Arts, Villeurbanne) et <strong>10102 - DOUA / Gaston Berger</strong> (Avenue Gaston Berger, Villeurbanne)."
+      },
+      "common": {
+        "title": "Transports en commun",
+        "content" : "Voir les itinéraires précis sur le site du <a target=\"_blank\" href=\"http://www.tcl.fr/\">réseau TCL</a> (Tram, Métro, Bus). La station de tram la plus proche de CPE Lyon est <strong>La Doua Gaston-Berger</strong> sur les <strong>lignes T1 et T4</strong> : <br> Descendez à <strong>La Doua Gaston-Berger</strong>, tournez à droite Rue Gaston Berger, passez l'immeuble \"ASTREE\" puis prenez la première à gauche,  rue Victor Grignard : CPE est à quelques mètres à votre droite (environ 5 min de marche du tram, le parcours sera fléché)."
+      },
+      "train": {
+        "title": "Train",
+        "content1" : "A partir de <strong>la Gare de Part-Dieu</strong>, prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>.",
+        "content2" : "A partir de <strong>la Gare Perrache</strong>, prendre le métro Ligne A, direction <strong>Vaulx-en-Velin la Soie</strong>, changer à la station <strong>Charpennes</strong> et prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>."
+      },
+      "plane": {
+        "title": "Avion",
+        "content1" : "<a target=\"_blank\" href=\"http://www.lyonaeroports.com/\">L'aéroport de Saint-Exupéry</a> est l'aéroport le plus proche de lyon. Grâce à la ligne de train express <a target=\"blank\" href=\"http://www.rhonexpress.fr/\">Rhône Express</a> (un train toutes les 15 minutes), vous êtes en 30 minutes au centre de Lyon, à la Gare Part-Dieu.",
+        "content2": "A partir de <strong>la Gare de Part-Dieu</strong>, prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong> La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>."
+      },
+      "car": {
+        "title": "Voiture",
+        "content" : "Entrez l'adresse suivante dans votre GPS :<br><strong> Rue Victor Grignard<br> Villeurbanne</strong>"
+      }
+    },
+    "speakers" : {
+      "title" : "Les speakers",
+      "p1" : "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parlées en 2015."
+    },
+    "sponsors" : {
+      "title" : "Les sponsors 2015"
+    },
+    "staff" : {
+      "title" : "L'équipe Mix-IT",
+      "mixit" : {
+        "p1" : "Mix-IT est une belle aventure débutée en 2011 et née de la collaboration entre le Lyon Java User Group et le Club Agile Rhône-Alpes. 2016 sera la 6ème édition et un des premiers principes, proposer une conférence à Lyon accessible à tous est toujours d'actualité.",
+        "p2" : "Même si cette conférence a été crée par le Lyon Jug et le CARA vous n'entendrez pas parler que d'agilité ou de l'écosystème Java pendant ces deux jours. Le but est de vous proposer des sessions qui tournent sur le développement au sens large, management, entreprenariat, développement desktop, mobile et web...",
+        "p3" : "Comme chaque année nous sommes fier de vous accueillir pour des sessions d’expertise, des jeux et des rencontres. Entrepreneurs, Chefs de Projet, développeurs vous trouverez forcément des idées pour vos projets ! Les conférences peuvent être aussi bien en français qu'en anglais."
+      },
+      "benevole" :"Mix-IT est organisé exclusivement par des bénévoles"
+    },
+    "lightningtalks" : {
+      "title" : "Lightningtalks",
+      "p1" : "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus"
+    },
+    "planning" : {
+      "title" : "Planning"
+    },
+    "talks" : {
+      "title" : "Conférences et ateliers",
+      "p1" : "Vous pouvez 3 formats différents, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécéssaires"
+    },
+    "speakers" : {
+      "title" : "",
+      "" : ""
+    },
+    "error": {
+      "title": "Une erreur a été détectée",
+      "explanation": "Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter l'opération et si cette erreur persiste n'hésitez pas à nous la remonter pour que nous la corrigions"
+    }
+  },
+  "footer": {
+    "whoarewe": {
+      "title": "Qui sommes nous ?",
+      "content": "Mix-IT est une association non lucrative, composée essentiellement de bénévole fondée en 2011 par des membres du Lyon Java User Group et du Club Agile Rhône Alpin"
+    },
+    "contactus": "Nous contacter",
+    "codeofconduct": "Code de bonne conduite"
+  }
+}

@@ -2,38 +2,49 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($scope) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($translate, $filter, LANGUAGES) {
+    var ctrl = this;
 
-    $scope.menus = [
+    ctrl.languages = LANGUAGES;
+    ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
+
+    ctrl.toggleLanguage = function () {
+      ctrl.currentLanguage = ($translate.use() === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us;
+      $translate.use(ctrl.currentLanguage);
+    };
+
+
+    ctrl.menus = [
       //TODO will be used in the next version
-      //{id: 'actu', name: 'Actualités', link: 'news'},
+      //{id: 'menu.news', link: 'news'},
       //{
-      //  id: 'prog', name: 'Programme', submenus: [
-      //  //{id: 'sub1.1', name: 'Planning', link: 'planning', mobile: true},
-      //  {id: 'sub1.2', name: 'Conférences, ateliers', link: 'talks', mobile: true},
-      //  {id: 'sub1.3', name: 'Ligthning talks', link: 'lightningtalks', mobile: true}
+      //  id: 'menu.program', submenus: [
+      //  //{id: 'planning', link: 'planning', mobile: true},
+      //  {id: 'menu.talks', link: 'talks', mobile: true},
+      //  {id: 'menu.ligthningtalks', link: 'lightningtalks', mobile: true}
       //]
       //},
       //{
-      //  id: 'partic', name: 'Participants', submenus: [
-      //  {id: 'sub2.1', name: 'Les speakers', link: 'speakers'},
-      //  {id: 'sub2.2', name: 'Les sponsors', link: 'sponsors'},
-      //  {id: 'sub2.3', name: 'Les membres du staff', link: 'staff'}
+      //  id: 'menu.members', submenus: [
+      //  {id: 'menu.speakers', link: 'speakers'},
+      //  {id: 'menu.sponsors', link: 'sponsors'},
+      //  {id: 'menu.staff', link: 'staff'}
       //]
       //},
       {
-        id: 'info', name: 'Informations pratiques', submenus: [
-        {id: 'sub3.2', name: 'Venir à la conférence', link: 'venir', mobile: true},
-        {id: 'sub3.3', name: 'FAQ', link: 'faq', mobile: true},
-        {id: 'sub3.4', name: 'Kit multimédia', link: 'multimedia'},
+        id: 'menu.info', submenus: [
+        {id: 'menu.come', link: 'venir', mobile: true},
+        {id: 'menu.faq', link: 'faq', mobile: true},
+        {id: 'menu.kit', link: 'multimedia'},
         {id: 'sub3.5', divider: 'true'},
-        {id: 'sub3.6', name: 'Mix-IT 2015', link: 'mixit15', mobile: true},
-        {id: 'sub3.7', name: 'Mix-IT 2014', link: 'mixit14', mobile: true},
-        {id: 'sub3.8', name: 'Mix-IT 2013', link: 'mixit13'},
-        {id: 'sub3.9', name: 'Mix-IT 2012', link: 'mixit12'}
+        {id: 'menu.mixit15', link: 'mixit15', mobile: true},
+        {id: 'menu.mixit14', link: 'mixit14', mobile: true},
+        {id: 'menu.mixit13', link: 'mixit13'},
+        {id: 'menu.mixit12', link: 'mixit12'}
       ]
       }
     ];
+
 
     //TODO will be used in the next version
     //$scope.$watch('userConnected', function(newValue){
@@ -47,10 +58,10 @@
     //    $scope.menus.push(
     //      {
     //        id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, hash: newValue.hash, submenus: [
-    //        {id: 'sub4.1', name: 'Mes favoris', link: 'favoris', mobile: true},
-    //        {id: 'sub4.2', name: 'Mon compte', link: 'account'},
-    //        {id: 'sub4.3', divider: 'true', mobile: true},
-    //        {id: 'sub4.4', name: 'Se déconnecter', link: 'logout', mobile: true}
+    //        {id: 'menu.favorites', link: 'favoris', mobile: true},
+    //        {id: 'menu.account', link: 'account'},
+    //        {id: 'sub4.1', mobile: true},
+    //        {id: 'menu.logout', link: 'logout', mobile: true}
     //      ]
     //      }
     //    );
@@ -64,7 +75,8 @@
   angular.module('cesar-menu').directive('cesarMenu', function () {
     return {
       templateUrl: 'js/menu/menu.directive.html',
-      controller: 'cesarMenuCtrl'
+      controller: 'cesarMenuCtrl',
+      controllerAs: 'ctrl'
     };
   });
 })();

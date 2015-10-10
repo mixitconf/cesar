@@ -11,9 +11,9 @@
 
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <temp ng-repeat="item in menus">
+                <temp ng-repeat="item in ctrl.menus">
                     <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="{{item.link}}">
-                        {{item.name}}&nbsp;
+                        <span translate="{{item.id}}"></span>&nbsp;
                         <button ng-if="item.icon" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                         <i class="material-icons">{{item.icon}}</i>
                         </button>
@@ -21,17 +21,25 @@
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
                         <img ng-if="item.hash" ng-src="http://www.gravatar.com/avatar/{{item.hash}}" class="cesar-img-avatar"/>
-                        {{item.name}}&nbsp;
+                        <span translate="{{item.id}}"></span>&nbsp;
                         <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
                     </a>
                     <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
                         ng-if="item.submenus" for="{{item.id}}">
                         <li ng-repeat="subitem in item.submenus"
                             ng-class="(subitem.divider) ? 'cesar-divider' : 'mdl-menu__item'">
-                            <a ng-if="subitem.link" ui-sref="{{subitem.link}}">{{subitem.name}}</a>
+                            <a ng-if="subitem.link" ui-sref="{{subitem.link}}"><span translate="{{subitem.id}}"></span></a>
                         </li>
                     </ul>
                 </temp>
+                <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
+                    <button ng-if="ctrl.currentLanguage===ctrl.languages.us" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.toggleLanguage()">
+                        <img src="img/lang/fr.svg" class="cesar-menu__lang">
+                    </button>
+                    <button ng-if="ctrl.currentLanguage===ctrl.languages.fr" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.toggleLanguage()">
+                        <img src="img/lang/us.svg" class="cesar-menu__lang">
+                    </button>
+                </div>
             </nav>
         </div>
 
@@ -40,13 +48,22 @@
     <div class="mdl-layout__drawer mdl-layout--small-screen-only">
         <span class="mdl-layout-title">Mix-IT</span>
         <nav class="mdl-navigation">
-            <temp ng-repeat="item in menus">
+            <temp ng-repeat="item in ctrl.menus">
                 <temp ng-repeat="subitem in item.submenus">
                     <a class="mdl-navigation__link" ui-sref="{{subitem.link}}"
-                       ng-if="!subitem.divider && subitem.mobile && subitem.link">{{subitem.name}}</a>
+                       ng-if="!subitem.divider && subitem.mobile && subitem.link"><span translate="{{subitem.id}}"></span></a>
                     <hr ng-if="subitem.divider && subitem.mobile">
                 </temp>
             </temp>
+            <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
+                <button ng-if="ctrl.currentLanguage===ctrl.languages.us" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.toggleLanguage()">
+                    <img src="img/lang/fr.svg" class="cesar-menu__lang">
+                </button>
+                <button ng-if="ctrl.currentLanguage===ctrl.languages.fr" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.toggleLanguage()">
+                    <img src="img/lang/us.svg" class="cesar-menu__lang">
+                </button>
+            </div>
         </nav>
     </div>
 </div>
+

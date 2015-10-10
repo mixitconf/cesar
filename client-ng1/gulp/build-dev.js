@@ -22,12 +22,25 @@ module.exports = function(gulp, config) {
   var paths = config.paths;
   var timestamp = config.timestamp;
 
-  gulp.task('build:dev', ['build:dev:vendors', 'build:dev:js', 'build:dev:css', 'build:dev:font', 'build:dev:images', 'build:dev:favicon', 'build:dev:html']);
+  gulp.task('build:dev', [
+    'build:dev:vendors',
+    'build:dev:js',
+    'build:dev:css',
+    'build:dev:font',
+    'build:dev:images',
+    'build:dev:i18n',
+    'build:dev:favicon',
+    'build:dev:html'
+  ]);
 
 
   gulp.task('build:dev:font', function () {
     return gulp.src(paths.assets.fonts)
       .pipe(gulp.dest(paths.build.dev + '/fonts'));
+  });
+  gulp.task('build:dev:i18n', function () {
+    return gulp.src(paths.assets.i18n)
+      .pipe(gulp.dest(paths.build.dev + '/i18n'));
   });
   gulp.task('build:dev:images', function () {
     return gulp.src(paths.assets.images)
@@ -99,5 +112,6 @@ module.exports = function(gulp, config) {
     gulp.watch([paths.templates], ['build:dev:js']);
     gulp.watch([paths.html], ['build:dev:html']);
     gulp.watch(paths.less.path, ['build:dev:css']);
+    gulp.watch(paths.assets.i18n, ['build:dev:i18n']);
   });
 };
