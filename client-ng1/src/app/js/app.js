@@ -97,7 +97,7 @@
         authorizedRoles: [USER_ROLES.all],
         views: {
           main: {
-            templateUrl: 'views/sessions/talks-old-edition.html',
+            templateUrl: 'views/sessions/talks.html',
             controller: 'SessionsClosedCtrl',
             controllerAs: 'ctrl'
           }
