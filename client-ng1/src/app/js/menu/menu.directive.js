@@ -2,12 +2,13 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($translate, $filter, LANGUAGES) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($translate, $filter, $timeout, LANGUAGES) {
     var ctrl = this;
 
     ctrl.languages = LANGUAGES;
-    ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
-
+    $timeout(function(){
+      ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
+    })
     ctrl.toggleLanguage = function () {
       ctrl.currentLanguage = ($translate.use() === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us;
       $translate.use(ctrl.currentLanguage);
