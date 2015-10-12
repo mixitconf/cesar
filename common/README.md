@@ -38,3 +38,9 @@ If you want to use a mysql database you can use this command
 ```
 ../gradlew flywayClean flywayMigrate -Pdatabase=mysql
 ```
+
+If you want to use your own database params to launch flyway you can use
+```
+../gradlew flywayClean flywayMigrate -Dflyway.url=jdbc:mysql://localhost:3306/mixit -Dflyway.user=mixit -Dflyway.password=mixit -Dflyway.locations=[classpath:db/migration/mysql]
+```
+
