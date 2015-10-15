@@ -28,6 +28,7 @@ module.exports = function(gulp, config) {
 
   gulp.task('build:dist', [
     'build:dev',
+    'build:e2e',
     'ddescriber',
     'jshint',
     'build:dist:css:vendors',
