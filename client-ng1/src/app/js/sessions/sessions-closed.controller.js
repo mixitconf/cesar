@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-sessions').controller('SessionsClosedCtrl', function ($state, SessionService) {
+    'ngInject';
+
     var ctrl = this;
     var year = $state.current.data.year;
 

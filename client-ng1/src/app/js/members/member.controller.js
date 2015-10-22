@@ -6,6 +6,8 @@
    * member is resolved in app.js
    */
   angular.module('cesar-members').controller('MemberCtrl', function (member, $stateParams) {
+    'ngInject';
+
     var ctrl = this;
 
     ctrl.member = member;

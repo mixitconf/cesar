@@ -11,6 +11,7 @@
 
 
   angular.module('cesar-security').config(function ($httpProvider) {
+    'ngInject';
 
     // alternatively, register the interceptor via an anonymous factory
     $httpProvider.interceptors.push(function ($q, $rootScope) {

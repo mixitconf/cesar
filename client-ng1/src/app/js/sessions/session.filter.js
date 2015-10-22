@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-sessions').filter('sessionLogo', function () {
+    'ngInject';
+
     return function(input){
       switch(input){
         case 'Talk':

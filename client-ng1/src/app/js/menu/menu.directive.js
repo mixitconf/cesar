@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-menu').controller('cesarMenuCtrl', function ($translate, $filter, $timeout, LANGUAGES) {
+    'ngInject';
+
     var ctrl = this;
 
     ctrl.languages = LANGUAGES;

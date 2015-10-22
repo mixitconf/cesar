@@ -3,7 +3,7 @@
   'use strict';
 
   angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window, USER_ROLES, LocalStorageService) {
-
+    'ngInject';
 
     function loginConfirmed(response){
       LocalStorageService.put('current-user', response.data);
@@ -83,15 +83,8 @@
 
     function createUserAccount(credentials){
       delete credentials.confirmpassword;
-      $http
-        .post('app/account/create', credentials, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          ignoreErrorRedirection: 'ignoreErrorRedirection'
-        })
-        .then(loginConfirmed)
-        .catch(loginRequired);
+      return $http
+        .post('app/account/create', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'});
     }
 
     return {

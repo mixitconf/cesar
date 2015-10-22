@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-members').factory('MemberService', function ($http) {
+    'ngInject';
 
     function getAll(type){
       return $http.get('/api/member/' + type);

@@ -33,8 +33,8 @@ public class DataTest {
     public static Operation INSERT_MEMBER = Operations.sequenceOf(
             insertInto("Member")
                     .withGeneratedValue("id", ValueGenerators.sequence())
-                    .columns("DTYPE", "FIRSTNAME", "LASTNAME", "LOGIN", "NBCONSULTS", "PUBLICPROFILE")
-                    .values("Staff", "Guillaume", "EHRET", "guillaume", 1, "true")
+                    .columns("DTYPE", "FIRSTNAME", "LASTNAME", "LOGIN", "NBCONSULTS", "PUBLICPROFILE", "EMAIL")
+                    .values("Staff", "Guillaume", "EHRET", "guillaume", 1, "true", "guillaume@dev-mind.fr")
                     .build()
     );
 }

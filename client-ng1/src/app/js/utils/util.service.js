@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-utils').factory('Util', function () {
+    'ngInject';
 
     return {
       extractId: function(url){

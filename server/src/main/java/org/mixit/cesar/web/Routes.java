@@ -15,7 +15,6 @@ public class Routes {
             "/authent",
             "/conduite",
             "/compte",
-            "/error",
             "/faq",
             "/favoris",
             "/home",

@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-members').directive('cesarSocialLink', function () {
+    'ngInject';
+
     return {
       templateUrl: 'js/members/social-link.directive.html',
       scope: {

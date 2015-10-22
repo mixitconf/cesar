@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-sessions').factory('SessionService', function ($http) {
+    'ngInject';
 
     function getAllByYear(year){
       return $http.get('/api/session?year=' + year);

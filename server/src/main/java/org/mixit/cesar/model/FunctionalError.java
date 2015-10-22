@@ -9,8 +9,13 @@ public class FunctionalError {
         BAD_CREDENTIALS,
         REQUIRED_ARGS,
         USER_NOT_FOUND,
+        USER_EXIST,
         UNAUTHORIZED,
-        FORBIDDEN
+        NEED_VALIDATION,
+        FORBIDDEN,
+        INVALID_TOKEN,
+        EMAIL_EXIST,
+        EXPIRED_TOKEN
     }
 
     private String type;

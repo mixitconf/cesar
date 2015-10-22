@@ -1,7 +1,16 @@
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}
   crypto:
-    salt: XXXXX-S ecretKey-XXXXX
+    salt: ${CESAR_CRYPTO_SALT:XXXXX-S ecretKey-XXXXX}
+  mail:
+    smtp:
+      host: ${CESAR_MAIL_HOST:smtp.gmail.com}
+      user: ${CESAR_MAIL_USER:contact@mix-it.fr}
+      password: ${CESAR_MAIL_PASSWORD:XXXXX-SecretKey-XXXXX}
+      auth: true
+      port: ${CESAR_MAIL_PORT:587}
+      starttls: true
+    from: Mix-IT <contact@mix-it.fr>
 
 spring:
   datasource:
@@ -18,11 +27,11 @@ spring:
     validationQuery : SELECT 1
 oauth:
   google:
-    apiKey: XXXXX-SecretKey-XXXXX
-    clientSecret: XXXXX-SecretKey-XXXXX
+    apiKey: ${OAUTH_GOOGLE_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_GOOGLE_SECRET:XXXXX-SecretKey-XXXXX}
   twitter:
-    apiKey: XXXXX-SecretKey-XXXXX
-    clientSecret: XXXXX-SecretKey-XXXXX
+    apiKey: ${OAUTH_TWITTER_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_TWITTER_SECRET:XXXXX-SecretKey-XXXXX}
 ---
 spring:
   profiles: default

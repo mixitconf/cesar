@@ -10,7 +10,7 @@ import org.mixit.cesar.repository.InterestRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.repository.SessionRepository;
 import org.mixit.cesar.repository.SharedLinkRepository;
-import org.mixit.cesar.security.autorisation.NeedsRole;
+import org.mixit.cesar.service.autorisation.NeedsRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

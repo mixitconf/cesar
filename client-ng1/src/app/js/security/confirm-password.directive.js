@@ -2,6 +2,8 @@
   'use strict';
 
   angular.module('cesar-security').directive('cesarConfirmPassword', function () {
+    'ngInject';
+
     return {
       require: 'ngModel',
       restrict: 'A',

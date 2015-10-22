@@ -1,5 +1,6 @@
 @import "../../../node_modules/roboto-fontface/css/roboto-fontface.less";
 @import "material-icons.less";
+@import "text.less";
 
 @link__font-size : 15px;
 @large-screen__width : 1024px;
@@ -13,33 +14,15 @@
 @tablet_fontsize : 13px;
 @screen_fontsize : 14px;
 
-@h1_mobile_fontsize : 36px;
-@h2_mobile_fontsize : 25px;
-@h3_mobile_fontsize : 17px;
-@h1_tablet_fontsize : 46px;
-@h2_tablet_fontsize : 35px;
-@h3_tablet_fontsize : 25px;
-@h1_screen_fontsize : 56px;
-@h2_screen_fontsize : 45px;
-@h3_screen_fontsize : 35px;
-
-
 body {
   font-family: "Roboto", "Arial", sans-serif !important;
 }
 
-h1, h2, h3{
-  font-weight: 100 !important;
-}
 a{
   text-decoration: none;
 }
 .right {
   float: right !important;
-}
-
-.cesar-text{
-  font-weight: 300;
 }
 
 .cesar-textfield--search{
@@ -59,22 +42,6 @@ a{
     max-width: 0px;
     width: 0px;
     height: 0px;
-  }
-  h1{
-    font-size: @h1_mobile_fontsize !important;
-    line-height: (@h1_mobile_fontsize+3) !important;
-  }
-  h2{
-    font-size: @h2_mobile_fontsize !important;
-    line-height: (@h2_mobile_fontsize+3) !important;
-  }
-  h3{
-    font-size: @h3_mobile_fontsize !important;
-    line-height: (@h3_mobile_fontsize+3) !important;
-  }
-  .cesar-text{
-    font-size: 16px !important;
-    line-height: 18px !important;
   }
   .cesar-section--top{
     padding-top: 1em;
@@ -98,22 +65,6 @@ a{
     width: 0px;
     height: 0px;
   }
-  h1{
-    font-size: @h1_tablet_fontsize !important;
-    line-height: (@h1_tablet_fontsize+3) !important;
-  }
-  h2{
-    font-size: @h2_tablet_fontsize !important;
-    line-height: (@h2_tablet_fontsize+3) !important;
-  }
-  h3{
-    font-size: @h3_tablet_fontsize !important;
-    line-height: (@h3_tablet_fontsize+3) !important;
-  }
-  .cesar-text{
-    font-size: 18px !important;
-    line-height: 20px !important;
-  }
   .cesar-section--top{
     padding-top: 2em;
   }
@@ -136,22 +87,6 @@ a{
     max-width: 0px;
     width: 0px;
     height: 0px;
-  }
-  h1{
-    font-size: @h1_screen_fontsize !important;
-    line-height: (@h1_screen_fontsize+3) !important;
-  }
-  h2{
-    font-size: @h2_screen_fontsize !important;
-    line-height: (@h2_screen_fontsize+3) !important;
-  }
-  h3{
-    font-size: @h3_screen_fontsize !important;
-    line-height: (@h2_screen_fontsize+3) !important;
-  }
-  .cesar-text{
-    font-size: 20px !important;
-    line-height: 22px !important;
   }
   .cesar-section--top{
     padding-top: 4em;
