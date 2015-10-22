@@ -1,7 +1,179 @@
 {
+  "menu": {
+    "news": "News",
+    "program": "Program",
+    "planning": "Agenda",
+    "talks": "Talks, workshops",
+    "ligthningtalks": "Ligthning talks",
+    "members": "Participants",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "staff": "Staff members",
+    "info": "Information",
+    "come": "How to come to the conference?",
+    "faq": "Q&A",
+    "kit": "Multimedia content",
+    "mixit15": "Mix-IT 2015",
+    "mixit14": "Mix-IT 2014",
+    "mixit13": "Mix-IT 2013",
+    "mixit12": "Mix-IT 2012",
+    "favorites": "My favorites",
+    "account": "My account",
+    "logout": "Disconnect",
+    "login": "Connect"
+  },
   "home": {
     "headband": {
-      "comeback": "come back on the <b>21 and 22 April 2016</b>"
+      "comeback": "returns on <b>April 21st and 22nd, 2016</b>"
+    },
+    "info": {
+      "title": "Mix-IT is also...",
+      "section1": "2 days of conference and workshops.",
+      "section2": "600 participants, 50 speakers",
+      "section1content": "Conference to discover, games to learn, development or creative workshops. Mix-IT, it's 2 intense days of headway and meets ! The party, open to everyone, is also the ideal moment to meet new people and open to other cultures.",
+      "section2content": "In order to keep a friendly atmosphere, the number of participant is limited to 600 people. We fight to offer you a very affordable price, in order to allow everyone to enjoy the event..."
+    },
+    "intro": {
+      "title": "One of our values is <span class=\"cesar-blink\">diversity</span> from a technological point of view, about the covered subjects but also about our participants.",
+      "agile": "Agile",
+      "dev": "Development",
+      "innovation": "Innovation",
+      "p1": "We have exciting jobs with so many things to learn. We are the Web and software actors of today and tomorrow, we bring ideas, we realise and release its. You are looking for inspiration, good practices and new tools? You will find those at Mix-IT! Come meet and share with other enthusiats.",
+      "p2": "If you missed previous editions, here is a quick overview"
+    },
+    "speaker": {
+      "title": "2016 speakers aren't known yet but here is a focus of some we have seen during the previous editions"
+    },
+    "sponsor": {
+      "title": "Became sponsor of the 2016 edition",
+      "annonce": "Take advantage of this event to promote you company. We propose different partnership levels which are detailed in the following leaflet. Send it back to us",
+      "form": "sponsoring form",
+      "at": "to"
     }
+  },
+  "view": {
+    "news": {
+      "title": "News",
+      "at": "the"
+    },
+    "conduite": {
+      "title": "Code of conduct",
+      "p1": "Principles you have to follow if you come to Mix-IT",
+      "p2": "You have been awsome the previous years and we hope that this year, the conference will take place without any trouble. Nevertheless, other examples of conference showed that problem can always happen. We thus decided to set a code of conduct and contribute to make of our communities a pleasant place for everyone about is their origins, age, sex and sexuality... Enjoy these two days and continue to make Mix-IT the conference we all love. Obviously, these principles are natural for us and they should be applied in this conference as in the everyday life without the need to remind them.",
+      "p3": "Our collaborative code of conduct"
+    },
+    "faq": {
+      "title": "Frequently-asked question",
+      "q1": {
+        "title": "How to buy its ticket?",
+        "content": "The ticket selling usually takes place a month before the conference. We announce the event on our website, on our <a href=\"https:\/\/twitter.com\/mixit_lyon\" target=\"social\">Twitter account<\/a> and <a href=\"https:\/\/plus.google.com\/106629477368826686108\/about\" target=\"social\">Google+ account<\/a> accounts"
+      },
+      "q2": {
+        "title": "What are the schedules of the conference?",
+        "content": "The conference takes place during 2 days. We welcome you for each day from 08:30 am. Morning sessions begin at 09:30 am. The end of the day is between 6 pm and 06:30 pm."
+      },
+      "q3": {
+        "title": "How to get a bill for ma Mix-IT ticket?",
+        "content": "In order to get your bill, you have to connect to our partner's ticketing website : yurplan.com. In the 'My tickets' section, you'll find a button allowing you to edit your bill. Please note that this bill does not show any VAT nor amount excluding tax, this is normal : the conference is organized by an association subdued to the french law 1901. The association does not collect any VAT so we cannot show it on the bills."
+      },
+      "q4": {
+        "title": "Is it possible to participate to Mix-IT as a training?",
+        "content": "This year, our sponsor Viseo will manage this part. This partner will make you sign, everyday and on site, a sign-in sheet and will give you a certificate of training. During the buying of your tickets, a checkbox will allow you to indicate the will to declare it as a training. We invite you to see with our partner for any other linked question about this subject."
+      },
+      "q5": {
+        "title": "Is it possible to use my 'Compte Personnel de Formation' (CPF) to subscribe to Mix-IT?",
+        "content": "Mix-IT is not referenced in the 'Compte Personnel de Formation' list. Nevertheless, our partner Viseo will give you on site a certificate of training which will allow you to subscribe the event as a professional training. We invite you to see with our partner for any other linked question about this subject."
+      },
+      "q6": {
+        "title": "How can I change my profile picture?",
+        "content": "Avatars are managed by Gravatar. We show the avatar corresponding to the email you set in your profile. You will have to connect to Gravatar in order to modify your image."
+      },
+      "q7": {
+        "title": "Social network",
+        "content": "We usually indicate through our Twitter account <a href=\"https:\/\/twitter.com\/mixit_lyon\" target=\"social\">@MixIT_Lyon<\/a> but if you also want to talk about the next edition, use the hashtag <a>#mixit16</a>"
+      }
+    },
+    "multimedia": {
+      "title": "Multimedia content",
+      "content": "If you want to use Mix-IT logos, here are those you can use. If you are a company and you want to be a Mix-IT partner, vous cannot use this logo. If you want so, please consult the page,",
+      "svg": "SVG format",
+      "png": "PNG format"
+    },
+    "news": {
+      "title": "",
+      "team": "Mix-IT Team",
+      "list": "List of articles",
+      "comment": "Comments"
+    },
+    "come": {
+      "title": "How to come to Mix-IT?",
+      "openmap": "Open the map",
+      "accroche": "We invite you to use public transportation, bikes or walking if you want to come to the conference. Your day will be so much greener!",
+      "bike": {
+        "title": "Bike",
+        "content": "Lyon has a great self-service bike system : <a target=\"blank\" href=\"http://www.velov.grandlyon.com/\">Vélo'V</a>. The nearer stations from CPE Lyon are stations <strong>10084 - La Doua / Avenue des Arts</strong> (Avenue des Arts, Villeurbanne) and <strong>10102 - DOUA / Gaston Berger</strong> (Avenue Gaston Berger, Villeurbanne)."
+      },
+      "common": {
+        "title": "Public transportation",
+        "content": "See precise routes on the <a target=\"_blank\" href=\"http://www.tcl.fr/\">TCL network</a> website (Tramway, Subway, Bus). The closest tramway station from CPE Lyon is <strong>La Doua Gaston-Berger</strong> on the <strong>lines T1 and T4</strong> : <br> Stop at <strong>La Doua Gaston-Berger</strong>, turn right on Rue Gaston Berger, pass the building \"ASTREE\" then take the first left, rue Victor Grignard : CPE is few meters away on your right (about 5 min walking from the tramway, the path will be indicated with signs)."
+      },
+      "train": {
+        "title": "Train",
+        "content1": "From the <strong>Part-Dieu station</strong>, take the tramway T1, in the direction of <strong>IUT - Feyssine</strong>, or tramway T4, in the direction <strong>La Doua G. Berger</strong>. Stop at <strong>La Doua Gaston-Berger</strong> (terminus  of all the T4).",
+        "content2": "From <strong>Perrache station</strong>, take the A line of the subway, direction <strong>Vaulx-en-Velin la Soie</strong>, change at <strong>Charpennes station</strong> and take the tramway T1, direction <strong>IUT - Feyssine</strong>, or tramway T4, direction <strong>La Doua G. Berger</strong>. Stop at <strong>La Doua Gaston-Berger</strong> (terminus  of all the T4)."
+      },
+      "plane": {
+        "title": "Plane",
+        "content1": "<a target=\"_blank\" href=\"http://www.lyonaeroports.com/\">Saint-Exupéry Airport</a> is the closest airport from Lyon. Thanks to the express line<a target=\"blank\" href=\"http://www.rhonexpress.fr/\">Rhône Express</a> (a train every 15 minutes), you are at 30 minutes from the centre of Lyon, Part-Dieu station.",
+        "content2": "From the <strong>Part-Dieu station</strong>, take the tramway T1, in the direction of <strong>IUT - Feyssine</strong>, or tramway T4, in the direction <strong>La Doua G. Berger</strong>. Stop at <strong>La Doua Gaston-Berger</strong> (terminus  of all the T4)."
+      },
+      "car": {
+        "title": "Car",
+        "content": "Set the following address in your GPS :<br><strong> Rue Victor Grignard<br> Villeurbanne</strong>"
+      }
+    },
+    "speakers": {
+      "title": "Speakers",
+      "p1": "It is kind of soon to announce speakers of the 2016 edition but here is the list of people who came to talk on 2015."
+    },
+    "sponsors": {
+      "title": "2015 Sponsors"
+    },
+    "staff": {
+      "title": "Mix-IT team",
+      "mixit": {
+        "p1": "Mix-IT is a beautiful story began in 2011 and born from the collaboration of the Lyon Java User Group and the Club Agile Rhône-Alpes. 2016 will be the 6th edition and one of the first principle, give an accessible conference to everyone is always in the agenda.",
+        "p2": "Even if this conference has been created by Lyon JUG and CARA, you will not hear only about Agile and Java. Our goal is to give session which talk about the development in the broad sense, management, project, entrepreneurship, desktop development, mobile phone and web...",
+        "p3": "Like each year, we are proud to welcome you for expert session, games and encountering. Entrepreneurs, project managers, developer, you will find ideas for your project! Conference can be as well in french as in english."
+      },
+      "benevole": "Mix-IT is organised exclusively by volunteers"
+    },
+    "lightningtalks": {
+      "title": "Lightningtalks",
+      "p1": "You can suggest talks of 5 minutes for the conference. Only the best rated will be selected"
+    },
+    "planning": {
+      "title": "Agenda"
+    },
+    "talks": {
+      "title": "Talks and workshops",
+      "p1": "You can suggest 3 different formats, keynotes at the beginning and the end of the day, conference and workshops. For the last one, please follow the instructions in order to know if some prerequisites are necessary."
+    },
+    "speakers": {
+      "title": "",
+      "": ""
+    },
+    "error": {
+      "title": "An error has been detected",
+      "explanation": "An error occured. Please try again and if the error is still there, do not hesitate to contact us in order to allow us to correct it"
+    }
+  },
+  "footer": {
+    "whoarewe": {
+      "title": "Who are we?",
+      "content": "Mix-IT is a non profit-making association created in 2011 by members of Lyon Java User Group and Club Agile Rhône Alpe. Mix-IT is mostly composed by volunteers,"
+    },
+    "contactus": "Contact us",
+    "codeofconduct": "Code of conduct"
   }
 }
