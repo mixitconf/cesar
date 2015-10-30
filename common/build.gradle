@@ -18,3 +18,12 @@ flyway {
 }
 
 jar.dependsOn flywayMigrate
+
+//Copy driver jdbc
+task copyDriver(type: Copy) {
+    into "$buildDir/drivers"
+    from configurations.runtime
+    include '**/mysql*.jar'
+}
+
+assemble.dependsOn copyDriver
