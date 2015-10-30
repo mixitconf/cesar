@@ -1,3 +1,5 @@
+//Prefix CSS with Autoprefixer to be compatible with all browsers
+var autoprefixer = require('gulp-autoprefixer');
 //Concats files
 var concat = require('gulp-concat');
 //Convert HTML teplates in JS
@@ -61,6 +63,10 @@ module.exports = function(gulp, config) {
       .pipe(less())
       .pipe(replace('assets/img', '../img'))
       .pipe(replace('../../node_modules/material-design-icons/iconfont', '../fonts'))
+      .pipe(autoprefixer({
+        browsers: ['> 5%'],
+        cascade: false
+      }))
       .pipe(gulp.dest(paths.build.dev + '/css'));
   });
 
