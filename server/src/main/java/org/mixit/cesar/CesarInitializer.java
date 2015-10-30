@@ -36,12 +36,14 @@ import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.repository.SessionRepository;
 import org.mixit.cesar.repository.SharedLinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
  * Initialize data if db is empty
  */
 @Component
+@Profile("default")
 public class CesarInitializer {
     @Autowired
     private EventRepository eventRepository;

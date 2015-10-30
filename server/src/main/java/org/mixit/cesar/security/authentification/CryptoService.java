@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 public class CryptoService {
 
-    @Value("${crypto.salt}")
+    @Value("${cesar.crypto.salt}")
     private String salt;
 
 
