@@ -1,0 +1,41 @@
+cesar:
+  baseurl: ${CESAR_BASEURL:http://localhost:8080}
+  crypto :
+    salt : XXXXX-S ecretKey-XXXXX
+
+spring:
+  datasource:
+    driver-class-name : ${CESAR_DATABASE_DRIVER:com.mysql.jdbc.Driver}
+    url : jdbc:mysql://${CESAR_DATABASE_HOST:localhost}:${CESAR_DATABASE_PORT:3306}/${CESAR_DATABASE_NAME:mixit}
+    username : ${CESAR_DATABASE_USERNAME:mixit}
+    password : ${CESAR_DATABASE_PASSWORD:mixit}
+
+  jpa :
+    ddl-auto : validate
+    hibernate.naming_strategy : org.hibernate.cfg.EJB3NamingStrategy
+    database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
+
+oauth:
+  google:
+    apiKey : XXXXX-SecretKey-XXXXX
+    clientSecret : XXXXX-SecretKey-XXXXX
+  twitter:
+    apiKey : XXXXX-SecretKey-XXXXX
+    clientSecret : XXXXX-SecretKey-XXXXX
+
+---
+spring:
+  profiles: default
+cesar:
+  initializeDataWhenDbEmpty : true
+---
+spring:
+  profiles: staging
+server:
+  port: 80
+
+---
+spring:
+  profiles: prod
+server:
+  port: 80
