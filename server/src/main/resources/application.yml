@@ -31,11 +31,15 @@ cesar:
 ---
 spring:
   profiles: staging
+  datasource:
+      url : jdbc:mysql://${CESAR_DATABASE_HOST:localhost}:${CESAR_DATABASE_PORT:3306}/${CESAR_DATABASE_NAME:mixit}?sslca=${CESAR_DATABASE_SSL_CA:/conf/ssl/cleardb-ca-cert.pem}&sslcert=${CESAR_DATABASE_SSL_CERT:/conf/ssl/cleardb-cert.pem}&sslkey=${CESAR_DATABASE_SSL_KEY:/conf/ssl/cleardb_id-key.pem}&reconnect=true
 server:
   port: 80
 
 ---
 spring:
   profiles: prod
+  datasource:
+      url : jdbc:mysql://${CESAR_DATABASE_HOST:localhost}:${CESAR_DATABASE_PORT:3306}/${CESAR_DATABASE_NAME:mixit}?sslca=${CESAR_DATABASE_SSL_CA:/conf/ssl/cleardb-ca-cert.pem}&sslcert=${CESAR_DATABASE_SSL_CERT:/conf/ssl/cleardb-cert.pem}&sslkey=${CESAR_DATABASE_SSL_KEY:/conf/ssl/cleardb_id-key.pem}&reconnect=true
 server:
   port: 80
