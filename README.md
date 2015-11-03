@@ -28,18 +28,8 @@ This project uses [Spring Boot](http://docs.spring.io/spring-boot/docs/current/r
 
 ## Setup DB 
 
-Install MySQL (version ?)
+Go in the module [common](common/README.md) 
 
-Connect : 
-```
-mysql -u root -p
-```
-Then
-```
-CREATE DATABASE mixit;
-CREATE USER 'mixit'@'localhost' IDENTIFIED BY 'mixit';
-GRANT ALL on mixit.* TO 'mixit'@'localhost'
-```
 
 ## Licence
 
