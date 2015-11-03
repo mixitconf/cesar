@@ -14,7 +14,8 @@ spring:
     ddl-auto : validate
     hibernate.naming_strategy : org.hibernate.cfg.EJB3NamingStrategy
     database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
-
+    testOnBorrow : true
+    validationQuery : SELECT 1
 oauth:
   google:
     apiKey: XXXXX-SecretKey-XXXXX
