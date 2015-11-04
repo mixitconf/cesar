@@ -6,6 +6,8 @@
    * member is resolved in app.js
    */
   angular.module('cesar-articles').controller('ArticleCtrl', function (articles, $stateParams, $state, ArticleService) {
+    'ngInject';
+
     var ctrl = this;
     var id = $stateParams.id;
 

@@ -1,5 +1,6 @@
 package org.mixit.cesar.model.security;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -48,6 +49,9 @@ public class Account {
 
     @Size(max = 255)
     private String token;
+
+    @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    private LocalDateTime tokenExpiration;
 
     @Enumerated(EnumType.STRING)
     private OAuthProvider provider;
@@ -198,6 +202,15 @@ public class Account {
 
     public Account setValid(boolean valid) {
         this.valid = valid;
+        return this;
+    }
+
+    public LocalDateTime getTokenExpiration() {
+        return tokenExpiration;
+    }
+
+    public Account setTokenExpiration(LocalDateTime tokenExpiration) {
+        this.tokenExpiration = tokenExpiration;
         return this;
     }
 

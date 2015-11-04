@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-members').directive('cesarSocialLink', function () {
+
     return {
       templateUrl: 'js/members/social-link.directive.html',
       scope: {
@@ -10,6 +11,8 @@
         url: '='
       },
       controller: function ($scope) {
+        'ngInject';
+
         if ($scope.url && $scope.url.indexOf('twitter') > 0) {
           $scope.imgtype = 'twitter';
         }

@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-sessions').controller('SessionCtrl', function (session, $stateParams, Util, MemberService) {
+    'ngInject';
+
     var ctrl = this;
 
     ctrl.session = session;

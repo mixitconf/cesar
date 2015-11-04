@@ -40,7 +40,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Initialize data if db is empty
+ * Initialize data if db is empty (only in dev)
  */
 @Component
 @Profile("default")

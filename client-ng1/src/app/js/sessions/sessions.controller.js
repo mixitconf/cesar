@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state) {
+    'ngInject';
+
     var ctrl = this;
     var type = $state.current.data.type;
 

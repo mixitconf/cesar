@@ -34,8 +34,9 @@ public class Authority implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public Authority setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Role getName() {

@@ -3,6 +3,8 @@
   'use strict';
 
   angular.module('cesar-members').directive('cesarMemberCards', function () {
+    'ngInject';
+
     return {
       templateUrl: 'js/members/member-cards.directive.html',
       scope: {
@@ -13,6 +15,7 @@
         type: '@'
       },
       controller: function ($scope) {
+
         if (!$scope.limitText) {
           $scope.limitText = 300;
         }

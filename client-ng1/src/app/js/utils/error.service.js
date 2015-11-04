@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-utils').factory('cesarErrorInterceptor', function ($rootScope, $q) {
+    'ngInject';
 
     function isFunctionalError(response) {
       return response.headers && response.headers('Content-Type') &&

@@ -22,7 +22,7 @@ module.exports = function(gulp, config) {
    */
   gulp.task('test:watch', ['build:dev:js', 'build:dev:vendors'], function (done) {
     new karma({
-      configFile: __dirname + '/../karma.conf.js',
+      configFile: __dirname + '/../src/test/unit/karma.conf.js',
       singleRun: false
     }, done).start();
   });

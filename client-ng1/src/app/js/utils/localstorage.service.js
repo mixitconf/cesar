@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-utils').factory('LocalStorageService', function ($window) {
+    'ngInject';
 
     var put = function(key, value){
       $window.localStorage.setItem(key, angular.toJson(value));

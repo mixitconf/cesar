@@ -3,6 +3,7 @@
   'use strict';
 
   angular.module('cesar-articles').factory('ArticleService', function ($http) {
+    'ngInject';
 
     function getAll(){
       return $http.get('/api/article');

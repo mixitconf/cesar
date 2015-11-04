@@ -3,6 +3,9 @@
   'use strict';
 
   angular.module('cesar-security').directive('cesarLogin', function ($http, $rootScope, $q) {
+
+    'ngInject';
+
     return {
       require: 'ngModel',
       restrict: 'A',
