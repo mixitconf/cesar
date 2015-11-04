@@ -43,8 +43,12 @@ public class MailBuilder {
             case CESAR_ACCOUNT_VALIDATION:
             case SOCIAL_ACCOUNT_VALIDATION:
                 message.append("<p>Vous venez de créer un compte sur le site de <a href=\"")
-                        .append(urlFactory)
-                        .append("\">Mix-IT</a>. Pour le valider veuillez cliquer sur ce lien <a href=\"\">")
+                        .append(urlFactory.getBaseUrl())
+                        .append("\">Mix-IT</a>. Pour le valider veuillez cliquer sur ce lien <a href=\"")
+                        .append(urlFactory.getBaseUrl())
+                        .append("/app/account/valid?token=")
+                        .append(credentials.getToken())
+                        .append("\">")
                         .append(urlFactory.getBaseUrl())
                         .append("/app/account/valid?token=")
                         .append(credentials.getToken())

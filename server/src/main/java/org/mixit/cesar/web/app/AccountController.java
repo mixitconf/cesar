@@ -3,6 +3,7 @@ package org.mixit.cesar.web.app;
 import org.mixit.cesar.model.Tuple;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
+import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.user.AccountService;
@@ -27,6 +28,9 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private AbsoluteUrlFactory urlFactory;
 
     /**
      * Authenticates the user and returns the user token which has to be sent in the header of every request
@@ -58,7 +62,8 @@ public class AccountController {
      * @see AuthenticationInterceptor
      */
     @RequestMapping(value = "valid", method = RequestMethod.GET)
-    public Credentials finalizeCreation(@RequestParam String token) {
-        return accountService.validateAccountAfterMailReception(token);
+    public String finalizeCreation(@RequestParam String token) {
+        Credentials credentials = accountService.validateAccountAfterMailReception(token);
+        return String.format("redirect:%s/", urlFactory.getBaseUrl());
     }
 }
