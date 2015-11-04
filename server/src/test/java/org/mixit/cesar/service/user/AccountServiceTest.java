@@ -144,7 +144,7 @@ public class AccountServiceTest {
         accountService.createNormalAccount(new Account());
     }
 
-    @Test(expected = EmailExistException.class)
+    @Test(expected = LoginExistException.class)
     public void createNormalAccount_should_throw_UserExistException_when_login_already_exists() {
         when(accountRepository.findByLogin(anyString())).thenReturn(new Account());
         accountService.createNormalAccount(new Account());

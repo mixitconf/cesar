@@ -29,7 +29,7 @@
             else {
               ctrl.errorMessage = 'Erreur détectée. Veuillez réessayer ou contacter l\'équipe Mix-IT pour nous remonter ce bug';
             }
-          })
+          });
       }
     };
   });

@@ -15,6 +15,7 @@
         type: '@'
       },
       controller: function ($scope) {
+
         if (!$scope.limitText) {
           $scope.limitText = 300;
         }
