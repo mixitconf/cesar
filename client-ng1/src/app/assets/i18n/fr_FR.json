@@ -167,6 +167,34 @@
     "error": {
       "title": "Une erreur a été détectée",
       "explanation": "Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter l'opération et si cette erreur persiste n'hésitez pas à nous la remonter pour que nous la corrigions"
+    },
+    "account": {
+      "creation" : {
+        "title": "Création de compte",
+        "description" : "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Les informations minimales sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à des tierces personnes et si vous voulez que votre nom/prénom ne soient pas affichés sur le site vous pouvez choisir de garder un compte privé",
+        "uniqueLogin" : "Cet identifiant est déjà utilisé",
+        "validPassword" : "La confirmation de mot de passe ne correspond pas au mot de passe saisi",
+        "minlength" : "Le mot de passe doit faire au moins 8 caractères",
+        "id": "Identifiant",
+        "lastname" : "Nom",
+        "firstname" : "Firstname",
+        "mail" : "Email",
+        "password" : "Mot de passe",
+        "confirmpassword" : "Confirmation de mot de passe"
+      },
+      "login" : {
+        "title": "Authentification",
+        "secure": "Certaines fonctionnalités du site sont sécurisées.",
+        "cnil": " Conformément à la loi Informatique et Liberté vous bénéficiez des droits de voir et de modifier vos données. Vous pouvez aussi nous demander par simple demande de supprimer votre compte",
+        "advice": "Nous vous conseillons de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> afin de ne pas stocker votre mot de passe sur nos serveurs.",
+        "social" : "Avec un réseau social",
+        "legacy" : "Classique",
+        "id" : "Identifiant",
+        "password" : "Mot de passe",
+        "newaccount1" : "Vous avez la possibilité de  ",
+        "newaccount2" : "créer un compte",
+        "newaccount3" : " avec un nom d'utilisateur et un mot de passe. Les mots de passe sont bien évidemment cryptés et sécurisés."
+      }
     }
   },
   "footer": {
