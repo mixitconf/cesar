@@ -12,6 +12,5 @@ fi
 
 ./gradlew clean release -Prelease.useAutomaticVersion=true -PreleaseVersion=${releaseVersion} -PnewVersion=${newVersion}
 
-git push --tags
 
 
