@@ -180,7 +180,9 @@
         "firstname" : "Firstname",
         "mail" : "Email",
         "password" : "Mot de passe",
-        "confirmpassword" : "Confirmation de mot de passe"
+        "confirmpassword" : "Confirmation de mot de passe",
+        "confirmation" : "Merci d'avoir créer un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer vore adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
+        "back" : "Retourner sur la page d'accueil"
       },
       "login" : {
         "title": "Authentification",
