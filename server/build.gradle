@@ -24,3 +24,7 @@ idea {
         outputDir = file("$buildDir/classes/main/")
     }
 }
+
+jar{
+    version ""
+}

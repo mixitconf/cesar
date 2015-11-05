@@ -2,7 +2,6 @@
  *                              gradle file : ROOT
  ******************************************************************************************/
 group 'org.mixit'
-version '2.0-SNAPSHOT'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
@@ -40,6 +39,7 @@ buildscript {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${vSpringBoot}"
         classpath "org.springframework:springloaded:${vSpringLoaded}"
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
+        classpath 'net.researchgate:gradle-release:2.3.3'
 
         classpath "com.h2database:h2:${vH2}"
         classpath "mysql:mysql-connector-java:${vMysql}"
@@ -47,6 +47,7 @@ buildscript {
     }
 }
 
+apply plugin: 'net.researchgate.release'
 
 /*******************************************************************************************
  * The different plugins used in submodules and dependencies are defined here
