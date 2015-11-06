@@ -84,7 +84,7 @@
     function createUserAccount(credentials){
       delete credentials.confirmpassword;
       return $http
-        .post('app/account/create', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'});
+        .post('app/account', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'});
     }
 
     return {

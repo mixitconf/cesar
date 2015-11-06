@@ -14,7 +14,7 @@ import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.service.oauth.OAuthFactory;
-import org.mixit.cesar.service.user.AccountService;
+import org.mixit.cesar.service.account.AccountService;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.web.app.AuthenticationController;
 import org.mockito.Mock;

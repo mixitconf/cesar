@@ -102,7 +102,7 @@
     //Router definition
     $stateProvider
       .state('error', {
-        url: '/error',
+        url: '/error/{type}',
         params: {
           error: {}
         },
@@ -111,6 +111,7 @@
             templateUrl: 'views/error.html',
             controller: function ($scope, $stateParams) {
               $scope.error = $stateParams.error;
+              $scope.type = $stateParams.type;
             }
           }
         }
@@ -222,7 +223,8 @@
       .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
       .state('useraccountcreated', stateSimplePage('useraccountcreated', 'views/user/user-account-created.html'))
       .state('logout', stateSimplePage('home', 'views/home.html'))
-      .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'LoginCtrl'));
+      .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'LoginCtrl'))
+      .state('passwordlost', stateSimplePage('passwordlost', 'views/user/password-lost.html', [USER_ROLES.all], 'ReinitPasswordAccountCtrl'));
   });
 
 })();

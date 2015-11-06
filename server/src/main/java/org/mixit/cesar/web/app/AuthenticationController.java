@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.repository.AccountRepository;
-import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.service.authentification.AccountMustBeConfirmedException;
 import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.BadCredentialsException;
@@ -20,7 +19,7 @@ import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.authentification.UserNotFoundException;
 import org.mixit.cesar.service.oauth.OAuthFactory;
-import org.mixit.cesar.service.user.AccountService;
+import org.mixit.cesar.service.account.AccountService;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -90,10 +89,10 @@ public class AuthenticationController {
 
             setCookieInResponse(response, account);
             if(newAccount){
-                return String.format("redirect:%s/createuseraccount", urlFactory.getBaseUrl());
+                return "redirect:/createuseraccount";
             }
             else{
-                return String.format("redirect:%s/account", urlFactory.getBaseUrl());
+                return "redirect:/account";
             }
         }
         else {

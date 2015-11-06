@@ -1,8 +1,11 @@
-package org.mixit.cesar.service.user;
+package org.mixit.cesar.service.account;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
 import org.mixit.cesar.model.member.Member;
@@ -45,13 +48,20 @@ public class AccountService {
      * Generate a new token
      */
     public void generateNewToken(Account account) {
-        Preconditions.checkNotNull(account);
-        Preconditions.checkNotNull(account.getOauthId());
-
+        Objects.requireNonNull(account);
+        Objects.requireNonNull(account.getOauthId());
         account.setToken(UUID.randomUUID().toString());
-        account.setTokenExpiration(LocalDateTime.now().plus(Duration.ofHours(3)));
+        reinitTokenValidity(account);
     }
 
+
+    /**
+     * Reinit token validity
+     */
+    public void reinitTokenValidity(Account account) {
+        Objects.requireNonNull(account);
+        account.setTokenExpiration(LocalDateTime.now().plus(Duration.ofHours(3)));
+    }
 
     /**
      * Create an account linked to a social network {@link OAuthProvider}
@@ -73,6 +83,14 @@ public class AccountService {
         accountRepository.save(account);
         return account;
 
+    }
+
+    /**
+     * Update an account to add email
+     */
+    public Account updateSocialAccount(OAuthProvider provider, Account account) {
+        //TODO
+        return null;
     }
 
     /**
@@ -109,12 +127,12 @@ public class AccountService {
         account.addAuthority(authorityRepository.findByName(Role.MEMBER));
         accountRepository.save(account);
 
-        //Step7: a mail with a token is send to the user. He has to confirm it before 24h
+        //Step7: a mail with a token is send to the user. He has to confirm it before 3
         Credentials credentials = Credentials.build(account);
         mailerService.send(
                 credentials.getEmail(),
                 "Account validation",
-                mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, credentials));
+                mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, credentials, Optional.empty()));
 
         //Token is not send to the frontend because account is not validated
         credentials.setToken(null);
@@ -123,19 +141,60 @@ public class AccountService {
     }
 
 
+    /**
+     * Send a mail with a token for a person who lost his password
+     */
+    public void startReinitPassword(String email) {
+        //We have only one member for an email
+        Optional<Member> member = memberRepository.findByEmail(email).stream().findAny();
+        member.orElseThrow(EmailExistException::new);
+
+        //The old users can have several accounts. It's not the same case for newers
+        Stream<Account> accounts  = accountRepository.findByMemberId(member.get().getId()).stream();
+
+        Optional<Account> account = accounts.filter(o -> o.getProvider().equals(OAuthProvider.CESAR)).findAny();
+
+        //If user has a classic account we send him the mail to reinitialize his password
+        if(account.isPresent()){
+            generateNewToken(account.get());
+            mailerService.send(
+                    email,
+                    "Password reinitialization",
+                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, Credentials.build(account.get()), Optional.of(account.get().getProvider())));
+        }
+        else{
+            account = accounts.findAny();
+            reinitTokenValidity(account.get());
+            //If the user use a social network to connect to the application we don't need to send him an email
+            mailerService.send(
+                    email,
+                    "Account validation",
+                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, Credentials.build(account.get()), Optional.of(account.get().getProvider())));
+        }
+    }
+
     public Credentials validateAccountAfterMailReception(String token) {
+        Account account = checkToken(token);
+        account.setValid(true);
+        return Credentials.build(account);
+    }
+
+    /**
+     * Chek user with token
+     */
+    public Account checkToken(String token) {
         Account account = accountRepository.findByToken(token);
 
         //Step1: we check the token and its validity
         if (account == null) {
             throw new InvalidTokenException();
         }
+        //Step2: the token is only valid during 3 hours
         if (LocalDateTime.now().minus(Duration.ofHours(3)).compareTo(account.getTokenExpiration()) > 0) {
             throw new ExpiredTokenException();
         }
-        account.setValid(true);
-        return Credentials.build(account);
-    }
 
+        return account;
+    }
 
 }

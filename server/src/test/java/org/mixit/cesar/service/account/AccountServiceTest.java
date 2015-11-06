@@ -1,4 +1,4 @@
-package org.mixit.cesar.service.user;
+package org.mixit.cesar.service.account;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -155,7 +155,7 @@ public class AccountServiceTest {
     public void createNormalAccount_should_send_mail_to_confirm_validation() {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
         accountService.createNormalAccount(new Account());
-        verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Credentials.class));
+        verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Credentials.class), any());
     }
 
 

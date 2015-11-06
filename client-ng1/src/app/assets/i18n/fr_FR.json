@@ -196,8 +196,17 @@
         "newaccount1" : "Vous avez la possibilité de  ",
         "newaccount2" : "créer un compte",
         "newaccount3" : " avec un nom d'utilisateur et un mot de passe. Les mots de passe sont bien évidemment cryptés et sécurisés."
+      },
+      "passwordlost" : {
+        "title": "Mot de passe perdu",
+        "description": "Si vous avez perdu votre mot de passe ou si votre compte n'est pas actif veuillez indiquer l'adresse e-mail que vous avez utilisée pur créer votre compte",
+        "explication": "Vous allez recevoir un e-mail à cette adresse avec un lien qui vous permettra d'accéder à une page pour réinitialiser votre mot de passe"
       }
     }
+  },
+  "error" : {
+    "INVALID_TOKEN" : "Les données d'identification sont incorrectes. Veuillez créer un compte à partir de la page d'identification",
+    "EXPIRED_TOKEN" : "Les données d'identification contenues dans le lien sur lequel vous venez de cliquer sont expirées. Veuillez réinitialiser votre mot de passe sur la page d'identification"
   },
   "footer": {
     "whoarewe": {
