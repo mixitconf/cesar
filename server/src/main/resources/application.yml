@@ -40,5 +40,12 @@ cesar:
 ---
 spring:
   profiles: cloud
+  datasource:
+    min-idle: 1
+    max-idle: 5
+    max-active: 10
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
 server:
   port: 80
