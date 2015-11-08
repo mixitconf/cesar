@@ -2,32 +2,34 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('CreateUserAccountCtrl', function (AuthenticationService, $scope, $state) {
+  angular.module('cesar-security').controller('CreateUserAccountCtrl', function ($http, $scope, $state) {
     'ngInject';
 
     var ctrl = this;
 
     ctrl.createUserAccount = function () {
       if (ctrl.credentials) {
-        AuthenticationService
-          .createUserAccount(angular.copy(ctrl.credentials))
+        var credentialsTosend = angular.copy(ctrl.credentials);
+        delete credentialsTosend.confirmpassword;
+
+        $http
+          .post('app/account/cesar', credentialsTosend, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
             $state.go('useraccountcreated');
           })
           .catch(function (response) {
-            console.log('Error %o', response);
             if (response.data.type) {
               switch (response.data.type) {
                 case 'USER_EXIST':
-                  ctrl.errorMessage = 'Ce login est déjà utilisé';
+                  ctrl.errorMessage = 'LOGIN_ALREADY_USED';
                   break;
                 case   'EMAIL_EXIST':
-                  ctrl.errorMessage = 'Cet email est déjà utilisé. Si c\'est le votre cliquez sur le lien pour réinitialiser votre mot de passe sur la page de login';
+                  ctrl.errorMessage = 'EMAIL_ALREADY_USED';
                   break;
               }
             }
             else {
-              ctrl.errorMessage = 'Erreur détectée. Veuillez réessayer ou contacter l\'équipe Mix-IT pour nous remonter ce bug';
+              ctrl.errorMessage = 'UNDEFINED';
             }
           });
       }

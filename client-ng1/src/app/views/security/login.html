@@ -6,8 +6,7 @@
 
     <p translate="view.account.login.cnil"></p>
 
-    <div class="cesar-error" ng-if="errorMessage">
-        {{errorMessage}}
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
     </div>
 
     <div class="cesar-section--bottom">
@@ -21,7 +20,7 @@
                     </div>
 
                     <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                        <div class="mdl-card__supporting-text cesar-card__supporting-text" translate="view.account.login.social"></div>
+                        <div class="mdl-card__supporting-text cesar-card__supporting-text" translate="view.account.login.advice"></div>
                         <div class="mdl-card__actions mdl-card--border">
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored cesar-button-twitter" ng-click="ctrl.loginWithTwitter()">
                                 <img src="img/social/twitter.svg"> Twitter
@@ -51,10 +50,15 @@
                         </div>
                         <br>
                         <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                            <span translate="view.account.login.newaccount1"></span>
-                            <a ui-sref="createuseraccount" translate="view.account.login.newaccount2"></a>
-                            <span translate="view.account.login.newaccount3"></span>
-
+                            <p>
+                                <span translate="view.account.login.newaccount1"></span>
+                                <a ui-sref="createaccount" translate="view.account.login.newaccount2"></a>
+                                <span translate="view.account.login.newaccount3"></span>
+                            </p>
+                            <p>
+                                <span translate="view.account.login.newpassword"></span>
+                                <a ui-sref="passwordlost" translate="view.account.login.newpassword1"></a>
+                            </p>
                         </div>
 
                         <div class="mdl-card__actions mdl-card--border">

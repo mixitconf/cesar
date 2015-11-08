@@ -101,8 +101,8 @@
 
     //Router definition
     $stateProvider
-      .state('error', {
-        url: '/error/{type}',
+      .state('cerror', {
+        url: '/cerror/{type}',
         params: {
           error: {}
         },
@@ -218,13 +218,19 @@
       .state('mixit12', stateOldEdition('mixit15', 2012))
 
       //Connected
-      .state('favoris', stateSimplePage('favoris', 'views/user/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('account', stateSimplePage('account', 'views/user/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('createuseraccount', stateSimplePage('createuseraccount', 'views/user/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
-      .state('useraccountcreated', stateSimplePage('useraccountcreated', 'views/user/user-account-created.html'))
-      .state('logout', stateSimplePage('home', 'views/home.html'))
-      .state('authent', stateSimplePage('authent', 'views/user/login.html', [USER_ROLES.all], 'LoginCtrl'))
-      .state('passwordlost', stateSimplePage('passwordlost', 'views/user/password-lost.html', [USER_ROLES.all], 'ReinitPasswordAccountCtrl'));
+      .state('favoris', stateSimplePage('favoris', 'views/security/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('account', stateSimplePage('account', 'views/security/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+
+      //Security
+      .state('createaccount', stateSimplePage('createuseraccount', 'views/security/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
+      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/security/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
+      .state('useraccountcreated', stateSimplePage('useraccountcreated', 'views/security/user-account-created.html'))
+
+      .state('logout', stateSimplePage('logout', 'views/home.html'))
+      .state('authent', stateSimplePage('authent', 'views/security/login.html', [USER_ROLES.all], 'LoginCtrl'))
+      .state('passwordlost', stateSimplePage('passwordlost', 'views/security/password-lost.html', [USER_ROLES.all], 'PasswordLostCtrl'))
+      .state('passwordlostconfirm', stateSimplePage('passwordlost', 'views/security/password-lost-confirm.html'))
+      .state('passwordreinit', stateSimplePage('passwordreinit', 'views/security/password-reinit.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'PasswordReinitCtrl'));
   });
 
 })();

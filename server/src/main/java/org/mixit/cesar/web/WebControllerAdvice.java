@@ -9,13 +9,14 @@ import org.mixit.cesar.model.FunctionalError;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
-import org.mixit.cesar.service.account.EmailExistException;
-import org.mixit.cesar.service.account.LoginExistException;
-import org.mixit.cesar.service.authentification.AccountMustBeConfirmedException;
-import org.mixit.cesar.service.authentification.BadCredentialsException;
-import org.mixit.cesar.service.authentification.UserNotFoundException;
-import org.mixit.cesar.service.autorisation.AuthenticationRequiredException;
-import org.mixit.cesar.service.autorisation.ForbiddenException;
+import org.mixit.cesar.service.authentification.Credentials;
+import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
+import org.mixit.cesar.service.exception.AuthenticationRequiredException;
+import org.mixit.cesar.service.exception.BadCredentialsException;
+import org.mixit.cesar.service.exception.EmailExistException;
+import org.mixit.cesar.service.exception.ForbiddenException;
+import org.mixit.cesar.service.exception.LoginExistException;
+import org.mixit.cesar.service.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class WebControllerAdvice {
     }
 
     /**
-     * Error launch if login is incorrect {@link org.mixit.cesar.web.app.AuthenticationController#authenticate(HttpServletRequest, HttpServletResponse)}
+     * Error launch if login is incorrect {@link org.mixit.cesar.web.app.LoginWithCesarAccountController#authenticate(HttpServletRequest, HttpServletResponse)}
      */
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<FunctionalError> handleException(BadCredentialsException exception) {
@@ -52,7 +53,7 @@ public class WebControllerAdvice {
     }
 
     /**
-     * Error launch if user is not found on login {@link org.mixit.cesar.web.app.AuthenticationController#authenticate(HttpServletRequest, HttpServletResponse)}
+     * Error launch if user is not found on login {@link org.mixit.cesar.web.app.LoginWithCesarAccountController#authenticate(HttpServletRequest, HttpServletResponse)}
      */
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<FunctionalError> handleException(UserNotFoundException exception) {
@@ -61,8 +62,8 @@ public class WebControllerAdvice {
     }
 
     /**
-     * Error launch if email already exists {@link org.mixit.cesar.service.account.AccountService#createNormalAccount(Account)} or
-     * {@link org.mixit.cesar.service.account.AccountService#updateSocialAccount(OAuthProvider, Account)}
+     * Error launch if email already exists {@link org.mixit.cesar.service.account.CreateCesarAccountService#createNormalAccount(Account)} or
+     * {@link org.mixit.cesar.service.account.CreateSocialAccountService#updateAccount(Account, Credentials)}
      */
     @ExceptionHandler(EmailExistException.class)
     public ResponseEntity<FunctionalError> handleException(EmailExistException exception) {
@@ -71,7 +72,7 @@ public class WebControllerAdvice {
     }
 
     /**
-     * Error launch if login already exists {@link org.mixit.cesar.service.account.AccountService#createNormalAccount(Account)}
+     * Error launch if login already exists {@link org.mixit.cesar.service.account.CreateCesarAccountService#createNormalAccount(Account)}
      */
     @ExceptionHandler(LoginExistException.class)
     public ResponseEntity<FunctionalError> handleException(LoginExistException exception) {
@@ -80,7 +81,7 @@ public class WebControllerAdvice {
     }
 
     /**
-     * Error launch when user has to validate his email {@link org.mixit.cesar.web.app.AuthenticationController#authenticate(HttpServletRequest, HttpServletResponse)}
+     * Error launch when user has to validate his email {@link org.mixit.cesar.web.app.LoginWithCesarAccountController#authenticate(HttpServletRequest, HttpServletResponse)}
      */
     @ExceptionHandler(AccountMustBeConfirmedException.class)
     public ResponseEntity<FunctionalError> handleException(AccountMustBeConfirmedException exception) {

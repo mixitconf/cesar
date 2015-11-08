@@ -1,4 +1,4 @@
-package org.mixit.cesar.service.autorisation;
+package org.mixit.cesar.service.exception;
 
 
 public class AuthenticationRequiredException extends RuntimeException{

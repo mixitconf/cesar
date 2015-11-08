@@ -1,4 +1,4 @@
-package org.mixit.cesar.service.account;
+package org.mixit.cesar.service.exception;
 
 public class LoginExistException extends RuntimeException{
 

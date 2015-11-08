@@ -41,14 +41,15 @@ public class MailBuilder {
         String url = String.format("%s/app/account/valid?token=%s", urlFactory.getBaseUrl(), credentials.getToken());
         switch (typeMail) {
             case REINIT_PASSWORD:
-                message.append("<p>Vous nous avez demandé de réinitialiser votre passe. Pour celà veuillez suivre le lien suivant <a href=\"")
-                        .append(urlFactory.getBaseUrl())
-                        .append("/app/account/reinitpassword?token=")
-                        .append(credentials.getToken())
+                url = String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), credentials.getToken());
+                message.append("<p>Vous nous avez demandé de réinitialiser votre mot de passe. Pour celà veuillez suivre le lien suivant <a href=\"")
+                        .append(url)
+                        .append("\">")
+                        .append(url)
                         .append("</a></p>");
                 break;
             case ACCOUND_NEW_VALIDATION:
-                message.append("<p>Vous nous avez demandé de réinitialiser votre passe mais vous utilisez une connexion via le reseau social ")
+                message.append("<p>Vous nous avez demandé de réinitialiser votre mot de passe mais vous utilisez une connexion via le reseau social ")
                         .append(provider.orElse(OAuthProvider.TWITTER))
                         .append(". Nous ne pouvons pas changer le mot de passe. Si vous souhaitez à nouveau valider votre adresse email cliquez sur le lien suivant <a href=\"")
                         .append(url)

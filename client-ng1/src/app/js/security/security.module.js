@@ -4,9 +4,9 @@
 
   angular.module('cesar-security').constant('USER_ROLES', {
     all: '*',
-    admin: 'ROLE_ADMIN',
-    speaker: 'ROLE_SPEAKER',
-    member: 'ROLE_MEMBRE'
+    admin: 'ADMIN',
+    speaker: 'SPEAKER',
+    member: 'MEMBER'
   });
 
 
@@ -17,13 +17,15 @@
     $httpProvider.interceptors.push(function ($q, $rootScope) {
       return {
         'responseError': function (response) {
-          if (response.status === 401 && !response.config.ignoreErrorRedirection) {
+          if ((response.status === 401 || response.status === 403) && !response.config.ignoreErrorRedirection) {
             var deferred = $q.defer();
-            $rootScope.$broadcast('event:auth-loginRequired', response);
+            $rootScope.$emit('event:auth-loginRequired', response);
             return deferred.promise;
           }
-          else if (response.status === 403 && !response.config.ignoreErrorRedirection) {
-            $rootScope.$broadcast('event:auth-notAuthorized', response);
+          else if (response.status === 423 && !response.config.ignoreErrorRedirection) {
+            //var deferred = $q.defer()
+            $rootScope.$emit('event:$cesarError', {type : 'ACCOUNT_NOT_VALID'});
+            //return deferred.promise;
           }
           // otherwise, default behaviour
           return $q.reject(response);

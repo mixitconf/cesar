@@ -7,6 +7,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.mixit.cesar.service.authentification.CurrentUser;
+import org.mixit.cesar.service.exception.AuthenticationRequiredException;
+import org.mixit.cesar.service.exception.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.Ordered;

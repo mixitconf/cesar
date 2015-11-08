@@ -1,4 +1,4 @@
-package org.mixit.cesar.service.authentification;
+package org.mixit.cesar.service.exception;
 
 
 /**

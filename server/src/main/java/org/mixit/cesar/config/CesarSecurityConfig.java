@@ -34,9 +34,10 @@ public class CesarSecurityConfig {
                                 "/app/login-with/*",
                                 "/app/logout",
                                 "/app/oauth/*",
-                                "/app/account/check/*",
-                                "/app/account/create",
-                                "/app/account/valid");
+                                "/app/account/cesar",
+                                "/app/account/cesar/*",
+                                "/app/account/valid",
+                                "/app/account/password");
             }
 
         };

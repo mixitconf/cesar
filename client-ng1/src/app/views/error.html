@@ -3,7 +3,7 @@
 
     <p class="cesar-text" translate="view.error.explanation"></p>
 
-    <div ng-if="!type">
+    <div ng-if="!type && error.type">
         <h2>{{error.status}} {{error.statusText}}</h2>
 
         <div class="cesar-section--bottom">
@@ -13,6 +13,10 @@
 
     <div ng-if="type">
         <span translate="error.{{type}}"></span>
+    </div>
+
+    <div ng-if="error.type">
+        <span translate="error.{{error.type}}"></span>
     </div>
     <p>&nbsp;</p>
 

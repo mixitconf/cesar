@@ -31,31 +31,31 @@ public class MailBuilderTest {
     MailBuilder mailBuilder;
 
     @Test(expected = NullPointerException.class)
-    public void should_throw_exception_when_type_is_null(){
+    public void throw_exception_when_type_is_null(){
         mailBuilder.createHtmlMail(null, new Credentials(), Optional.empty());
     }
 
     @Test(expected = NullPointerException.class)
-    public void should_throw_exception_when_credentials_are_null(){
+    public void throw_exception_when_credentials_are_null(){
         mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, null, Optional.empty());
     }
 
     @Test
-    public void should_generate_mail_for_reinit_password_with_token(){
+    public void generate_mail_for_reinit_password_with_token(){
         when(urlFactory.getBaseUrl()).thenReturn("http://mix-it");
         assertThat(mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, new Credentials().setToken("MY-TOKEN-SECURED"), Optional.empty()))
-                .contains("http://mix-it/app/account/reinitpassword?token=MY-TOKEN-SECURED");
+                .contains("http://mix-it/app/account/password?token=MY-TOKEN-SECURED");
    }
 
     @Test
-    public void should_generate_mail_for_cesar_account_validation_with_token(){
+    public void generate_mail_for_cesar_account_validation_with_token(){
         when(urlFactory.getBaseUrl()).thenReturn("http://mix-it");
         assertThat(mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, new Credentials().setToken("MY-TOKEN-SECURED"), Optional.empty()))
                 .contains("http://mix-it/app/account/valid?token=MY-TOKEN-SECURED");
     }
 
     @Test
-    public void should_generate_mail_for_social_account_validation_with_token(){
+    public void generate_mail_for_social_account_validation_with_token(){
         when(urlFactory.getBaseUrl()).thenReturn("http://mix-it");
         assertThat(mailBuilder.createHtmlMail(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, new Credentials().setToken("MY-TOKEN-SECURED"), Optional.empty()))
                 .contains("http://mix-it/app/account/valid?token=MY-TOKEN-SECURED");

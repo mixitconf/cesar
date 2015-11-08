@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class Routes {
 
     @RequestMapping({
+            "/account",
             "/article/{id:\\w+}",
             "/articles",
             "/authent",
             "/conduite",
             "/compte",
+            "/createaccount/*",
+            "/createaccountsocial",
             "/faq",
             "/favoris",
             "/home",
-            "/error",
+            "/cerror/*",
             "/lightningtalks",
             "/member",
             "/mixit15",
