@@ -24,7 +24,7 @@ describe('Directive login', function () {
   });
 
   it('should be invalid when login already exists', function () {
-    $httpBackend.expectGET('/app/account/check/test').respond({ exists : 'true'});
+    $httpBackend.expectGET('/app/account/test').respond({ exists : 'true'});
 
     $scope.credentials.login = "test";
     $scope.$digest();
@@ -33,7 +33,7 @@ describe('Directive login', function () {
   });
 
   it('should be valid when login not exists', function () {
-    $httpBackend.expectGET('/app/account/check/test').respond(500, '');
+    $httpBackend.expectGET('/app/account/test').respond(500, '');
 
     $scope.credentials.login = "test";
     $scope.$digest();

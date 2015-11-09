@@ -38,8 +38,8 @@
       "agile": "Agilité",
       "dev": "Développement",
       "innovation": "Innovation",
-      "p1" : "Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du Web et des logiciels d'aujourd'hui et de demain qui apportons des idées, les réalisent, et les mettent en production. Venez chercher l'inspiration, les bonnes pratiques, et les nouveaux outils : vous les trouverez à Mix-IT ! Mais surtout venez rencontrer et échanger avec d'autres passionnés.",
-      "p2" : "Si vous avez manqué l'édition précédente voici un petit aperçu"
+      "p1": "Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du Web et des logiciels d'aujourd'hui et de demain qui apportons des idées, les réalisent, et les mettent en production. Venez chercher l'inspiration, les bonnes pratiques, et les nouveaux outils : vous les trouverez à Mix-IT ! Mais surtout venez rencontrer et échanger avec d'autres passionnés.",
+      "p2": "Si vous avez manqué l'édition précédente voici un petit aperçu"
     },
     "speaker": {
       "title": "Les speakers 2016 ne sont pas connus mais voici un panel de ceux que nous avons pu voir lors des précédentes éditions"
@@ -111,63 +111,118 @@
       "accroche": "Nous vous convions à privilégier les transports en commun, les vélos ou la marche pour venir à la conférence. Votre journée n'en sera que plus verte !",
       "bike": {
         "title": "Vélo",
-        "content" : " Lyon possède un réseau de Vélo en libre service : <a target=\"blank\" href=\"http://www.velov.grandlyon.com/\">les Vélo'V</a>.  Les stations les plus proches de CPE Lyon sont les stations <strong>10084 - La Doua / Avenue des Arts</strong> (Avenue des Arts, Villeurbanne) et <strong>10102 - DOUA / Gaston Berger</strong> (Avenue Gaston Berger, Villeurbanne)."
+        "content": " Lyon possède un réseau de Vélo en libre service : <a target=\"blank\" href=\"http://www.velov.grandlyon.com/\">les Vélo'V</a>.  Les stations les plus proches de CPE Lyon sont les stations <strong>10084 - La Doua / Avenue des Arts</strong> (Avenue des Arts, Villeurbanne) et <strong>10102 - DOUA / Gaston Berger</strong> (Avenue Gaston Berger, Villeurbanne)."
       },
       "common": {
         "title": "Transports en commun",
-        "content" : "Voir les itinéraires précis sur le site du <a target=\"_blank\" href=\"http://www.tcl.fr/\">réseau TCL</a> (Tram, Métro, Bus). La station de tram la plus proche de CPE Lyon est <strong>La Doua Gaston-Berger</strong> sur les <strong>lignes T1 et T4</strong> : <br> Descendez à <strong>La Doua Gaston-Berger</strong>, tournez à droite Rue Gaston Berger, passez l'immeuble \"ASTREE\" puis prenez la première à gauche,  rue Victor Grignard : CPE est à quelques mètres à votre droite (environ 5 min de marche du tram, le parcours sera fléché)."
+        "content": "Voir les itinéraires précis sur le site du <a target=\"_blank\" href=\"http://www.tcl.fr/\">réseau TCL</a> (Tram, Métro, Bus). La station de tram la plus proche de CPE Lyon est <strong>La Doua Gaston-Berger</strong> sur les <strong>lignes T1 et T4</strong> : <br> Descendez à <strong>La Doua Gaston-Berger</strong>, tournez à droite Rue Gaston Berger, passez l'immeuble \"ASTREE\" puis prenez la première à gauche,  rue Victor Grignard : CPE est à quelques mètres à votre droite (environ 5 min de marche du tram, le parcours sera fléché)."
       },
       "train": {
         "title": "Train",
-        "content1" : "A partir de <strong>la Gare de Part-Dieu</strong>, prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>.",
-        "content2" : "A partir de <strong>la Gare Perrache</strong>, prendre le métro Ligne A, direction <strong>Vaulx-en-Velin la Soie</strong>, changer à la station <strong>Charpennes</strong> et prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>."
+        "content1": "A partir de <strong>la Gare de Part-Dieu</strong>, prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>.",
+        "content2": "A partir de <strong>la Gare Perrache</strong>, prendre le métro Ligne A, direction <strong>Vaulx-en-Velin la Soie</strong>, changer à la station <strong>Charpennes</strong> et prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong>La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>."
       },
       "plane": {
         "title": "Avion",
-        "content1" : "<a target=\"_blank\" href=\"http://www.lyonaeroports.com/\">L'aéroport de Saint-Exupéry</a> est l'aéroport le plus proche de lyon. Grâce à la ligne de train express <a target=\"blank\" href=\"http://www.rhonexpress.fr/\">Rhône Express</a> (un train toutes les 15 minutes), vous êtes en 30 minutes au centre de Lyon, à la Gare Part-Dieu.",
+        "content1": "<a target=\"_blank\" href=\"http://www.lyonaeroports.com/\">L'aéroport de Saint-Exupéry</a> est l'aéroport le plus proche de lyon. Grâce à la ligne de train express <a target=\"blank\" href=\"http://www.rhonexpress.fr/\">Rhône Express</a> (un train toutes les 15 minutes), vous êtes en 30 minutes au centre de Lyon, à la Gare Part-Dieu.",
         "content2": "A partir de <strong>la Gare de Part-Dieu</strong>, prendre le tram T1, direction <strong>IUT - Feyssine</strong>, ou tram T4, direction <strong> La Doua G. Berger</strong>. Descendre à l'arrêt (ou terminus pour les T4) <strong>La Doua Gaston-Berger</strong>."
       },
       "car": {
         "title": "Voiture",
-        "content" : "Entrez l'adresse suivante dans votre GPS :<br><strong> Rue Victor Grignard<br> Villeurbanne</strong>"
+        "content": "Entrez l'adresse suivante dans votre GPS :<br><strong> Rue Victor Grignard<br> Villeurbanne</strong>"
       }
     },
-    "speakers" : {
-      "title" : "Les speakers",
-      "p1" : "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parlées en 2015."
+    "speakers": {
+      "title": "Les speakers",
+      "p1": "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parler en 2015."
     },
-    "sponsors" : {
-      "title" : "Les sponsors 2015"
+    "sponsors": {
+      "title": "Les sponsors 2015"
     },
-    "staff" : {
-      "title" : "L'équipe Mix-IT",
-      "mixit" : {
-        "p1" : "Mix-IT est une belle aventure débutée en 2011 et née de la collaboration entre le Lyon Java User Group et le Club Agile Rhône-Alpes. 2016 sera la 6ème édition et un des premiers principes, proposer une conférence à Lyon accessible à tous est toujours d'actualité.",
-        "p2" : "Même si cette conférence a été crée par le Lyon Jug et le CARA vous n'entendrez pas parler que d'agilité ou de l'écosystème Java pendant ces deux jours. Le but est de vous proposer des sessions qui tournent sur le développement au sens large, management, entreprenariat, développement desktop, mobile et web...",
-        "p3" : "Comme chaque année nous sommes fier de vous accueillir pour des sessions d’expertise, des jeux et des rencontres. Entrepreneurs, Chefs de Projet, développeurs vous trouverez forcément des idées pour vos projets ! Les conférences peuvent être aussi bien en français qu'en anglais."
+    "staff": {
+      "title": "L'équipe Mix-IT",
+      "mixit": {
+        "p1": "Mix-IT est une belle aventure débutée en 2011 et née de la collaboration entre le Lyon Java User Group et le Club Agile Rhône-Alpes. 2016 sera la 6ème édition et un des premiers principes, proposer une conférence à Lyon accessible à tous, est toujours d'actualité.",
+        "p2": "Cette conférence a été créée par le Lyon Jug et le CARA. Mais vous n'entendrez pas uniquement parler d'agilité ou de l'écosystème Java pendant ces deux jours. Le but est de vous proposer des sessions qui abordent tant le développement au sens large, que le management, etc...",
+        "p3": "Comme chaque année nous sommes fiers de vous accueillir pour des sessions d’expertise, des jeux et des rencontres. Entrepreneurs, Chefs de Projet, développeurs vous trouverez forcément des idées pour vos projets ! Les conférences peuvent être aussi bien en français qu'en anglais."
       },
-      "benevole" :"Mix-IT est organisé exclusivement par des bénévoles"
+      "benevole": "Mix-IT est organisé exclusivement par des bénévoles"
     },
-    "lightningtalks" : {
-      "title" : "Lightningtalks",
-      "p1" : "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus"
+    "lightningtalks": {
+      "title": "Lightningtalks",
+      "p1": "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus"
     },
-    "planning" : {
-      "title" : "Planning"
+    "planning": {
+      "title": "Planning"
     },
-    "talks" : {
-      "title" : "Conférences et ateliers",
-      "p1" : "Vous pouvez 3 formats différents, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécéssaires",
-      "oldedition" : "Voici la liste des sessions et des speakers présant à Mix-IT en {{years}}"
+    "talks": {
+      "title": "Conférences et ateliers",
+      "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
+      "oldedition": "Voici la liste des sessions et des speakers présant à Mix-IT en {{years}}"
     },
-    "speakers" : {
-      "title" : "",
-      "" : ""
+    "speakers": {
+      "title": "",
+      "": ""
     },
     "error": {
       "title": "Une erreur a été détectée",
       "explanation": "Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter l'opération et si cette erreur persiste n'hésitez pas à nous la remonter pour que nous la corrigions"
+    },
+    "account": {
+      "creation": {
+        "title": "Création de compte",
+        "description": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Les informations minimales sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à des tierces personnes.",
+        "descriptionsocial": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Votre mail ne sera jamais communiqué à des tierces personnes.",
+        "id": "Identifiant",
+        "lastname": "Nom",
+        "firstname": "Firstname",
+        "mail": "Email",
+        "password": "Mot de passe",
+        "confirmpassword": "Confirmation de mot de passe",
+        "actualpassword": "Mot de passe actuel",
+        "confirmation": "Merci d'avoir créé un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer votre adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
+        "back": "Retourner sur la page d'accueil"
+      },
+      "login": {
+        "title": "Authentification",
+        "secure": "Certaines fonctionnalités du site sont sécurisées.",
+        "cnil": " Conformément à la loi Informatique et Liberté vous bénéficiez des droits de voir et de modifier vos données. Vous pouvez aussi nous demander par simple demande de supprimer votre compte",
+        "advice": "Nous vous conseillons de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> afin de ne pas stocker votre mot de passe sur nos serveurs.",
+        "social": "Avec un réseau social",
+        "legacy": "Classique",
+        "id": "Identifiant",
+        "password": "Mot de passe",
+        "newaccount1": "Vous avez la possibilité de  ",
+        "newaccount2": "créer un compte",
+        "newaccount3": " avec un nom d'utilisateur et un mot de passe. Les mots de passe sont bien évidemment cryptés et sécurisés.",
+        "newpassword": "Si vous avez perdu votre mot de passe, vous pouvez le régénérer en cliquant sur ",
+        "newpassword1": "le lient suivant."
+      },
+      "passwordlost": {
+        "title": "Mot de passe perdu",
+        "description": "Si vous avez perdu votre mot de passe ou si votre compte n'est pas actif veuillez indiquer l'adresse e-mail que vous avez utilisée pour créer votre compte",
+        "explication": "Vous allez recevoir un e-mail à cette adresse avec un lien qui vous permettra d'accéder à une page pour réinitialiser votre mot de passe",
+        "confirmation": "Nous venons de vous envoyer un mail avec un lien qui vous permettra de réinitialiser votre mot de passe.",
+        "back": "Retourner sur la page d'accueil"
+      }
     }
+  },
+  "error": {
+    "INVALID_TOKEN": "Les données d'identification sont incorrectes. Veuillez créer un compte à partir de la page d'identification",
+    "EXPIRED_TOKEN": "Les données d'identification contenues dans le lien sur lequel vous venez de cliquer sont expirées. Veuillez réinitialiser votre mot de passe sur la page d'identification",
+    "LOGIN_GOOGLE": "Une erreur est survenue lorsque nous avons essayé de contacter Google+ pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
+    "LOGIN_TWITTER": "Une erreur est survenue lorsque nous avons essayé de contacter Twitter pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
+    "EMAIL_ALREADY_USED": "Cet email est déjà utilisé. Si c'est le vôtre cliquez sur le lien pour réinitialiser votre mot de passe sur la page de login",
+    "UNDEFINED": "Erreur détectée. Veuillez réessayer ou contacter l'équipe Mix-IT pour nous remonter ce bug",
+    "LOGIN_ALREADY_USED": "Ce login est déjà utilisé",
+    "ACCOUNT_NOT_VALID": "Vous devez valider votre compte avant d'effectuer cette action. Consultez votre boite de messagerie et cliquez sur le lien contenu dans le mail que nous vous avons envoyé et intitulé Account validation",
+    "BAD_CREDENTIALS": "Le mot de passe est incorrect",
+    "REQUIRED_ARGS": "Le login et le mot de passe sont obligatoires",
+    "USER_NOT_FOUND": "Ce login n'existe pas. Veuillez créer un compte pour vous connecter",
+    "EMAIL_NOT_EXIST": "Cet email ne correspond à aucun compte sur notre site",
+    "UNIQUE_LOGIN": "Cet identifiant est déjà utilisé",
+    "VALID_PASSWORD": "La confirmation de mot de passe ne correspond pas au mot de passe saisi",
+    "MIN_LENGTH": "Le mot de passe doit faire au moins 8 caractères"
   },
   "footer": {
     "whoarewe": {

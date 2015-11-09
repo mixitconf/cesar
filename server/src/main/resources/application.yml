@@ -12,6 +12,14 @@ cesar:
       starttls: true
     from: Mix-IT <contact@mix-it.fr>
 
+oauth:
+  google:
+    apiKey: ${OAUTH_GOOGLE_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_GOOGLE_SECRET:XXXXX-SecretKey-XXXXX}
+  twitter:
+    apiKey: ${OAUTH_TWITTER_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_TWITTER_SECRET:XXXXX-SecretKey-XXXXX}
+
 spring:
   datasource:
     driver-class-name: ${CESAR_DATABASE_DRIVER:com.mysql.jdbc.Driver}
@@ -25,13 +33,7 @@ spring:
     database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
     testOnBorrow : true
     validationQuery : SELECT 1
-oauth:
-  google:
-    apiKey: ${OAUTH_GOOGLE_APIKEY:XXXXX-SecretKey-XXXXX}
-    clientSecret: ${OAUTH_GOOGLE_SECRET:XXXXX-SecretKey-XXXXX}
-  twitter:
-    apiKey: ${OAUTH_TWITTER_APIKEY:XXXXX-SecretKey-XXXXX}
-    clientSecret: ${OAUTH_TWITTER_SECRET:XXXXX-SecretKey-XXXXX}
+
 ---
 spring:
   profiles: default

@@ -28,6 +28,7 @@ module.exports = function (gulp, config) {
             //Rewrite for the backend calls
             '^/api/(.*)$ http://localhost:8080/api/$1 [P]',
             '^/app/(.*)$ http://localhost:8080/app/$1 [P]',
+            '^/app/(.*)$ http://localhost:8080/oauth/$1 [P]',
             //Rewrite for HML
             //'!\\.\\w+$ /index.html [L]'
             '^[^\\.]*$ /index.html [L]'

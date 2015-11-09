@@ -11,16 +11,16 @@
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
-      $state.go('error', {error: response});
+      $state.go('cerror', {error: response});
     });
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      if (next.name === 'logout' || next.name === 'createuseraccount') {
+      if (next.name === 'logout' || next.name === 'createaccount') {
         AuthenticationService.logout();
       }
       else {
-        AuthenticationService.valid(next.authorizedRoles, next.name === 'createaccount' || next.name === 'account');
+        AuthenticationService.valid(next.authorizedRoles);
       }
     });
 
@@ -48,21 +48,11 @@
         $location.path('/authent').search('redirect', redirect).replace();
       }
       else {
-        switch (next.data.type) {
-          case 'BAD_CREDENTIALS':
-            $rootScope.errorMessage = 'Le mot de passe est incorrect';
-            break;
-          case   'REQUIRED_ARGS':
-            $rootScope.errorMessage = 'Le login et le mot de passe son obligatoires';
-            break;
-          case   'USER_NOT_FOUND':
-            $rootScope.errorMessage = 'Ce login n\'existe pas. Veuillez créer un compte pour vous connecter';
-            break;
-          default:
-            $rootScope.errorMessage = 'Erreur détectée. Veuillez réessayer ou contacter l\'équipe Mix-IT pour nous remonter ce bug';
-        }
+        $rootScope.errorMessage = next.data.type;
       }
     });
+
+
 
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function () {

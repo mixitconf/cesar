@@ -3,10 +3,22 @@
 
     <p class="cesar-text" translate="view.error.explanation"></p>
 
-    <h2>{{error.status}} {{error.statusText}}</h2>
+    <div ng-if="!type && error.type">
+        <h2>{{error.status}} {{error.statusText}}</h2>
 
-    <div class="cesar-section--bottom">
-        <p ng-bind-html="error.data"></p>
+        <div class="cesar-section--bottom">
+            <p ng-bind-html="error.data"></p>
+        </div>
+    </div>
+
+    <div ng-if="type">
+        <span translate="error.{{type}}"></span>
+    </div>
+
+    <div ng-if="error.type">
+        <span translate="error.{{error.type}}"></span>
     </div>
     <p>&nbsp;</p>
+
+
 </div>

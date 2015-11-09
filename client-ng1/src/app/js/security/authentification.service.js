@@ -15,11 +15,7 @@
       $rootScope.$broadcast('event:auth-loginRequired', response);
     }
 
-    function valid(authorizedRoles, preLoadSecurity) {
-      if(preLoadSecurity){
-        $http.get('app/login-finalize').then(loginConfirmed);
-      }
-
+    function valid(authorizedRoles) {
       //We don't need to call the server at everytime. We see if user is stored in local storage
       var currentUser = LocalStorageService.get('current-user');
 
@@ -27,18 +23,15 @@
       if(authorizedRoles && authorizedRoles.indexOf(USER_ROLES.all)<0) {
         //If user is not present the user has to login
         if(!currentUser || !currentUser.roles){
-          loginRequired();
+          $http.get('app/login-required')
+            .then(loginConfirmed)
+            .catch(loginRequired);
           return;
         }
         //If user has'nt the right an exception is thrown
         if(!isAuthorized(authorizedRoles, currentUser)){
-          $rootScope.$broadcast('event:auth-notAuthorized');
+          $rootScope.$broadcast('event:auth-loginRequired');
         }
-      }
-      //If user has no right for the screen an event is launched just before. We also need to pass
-      //the current user to the app
-      if(currentUser!==null && currentUser){
-        loginConfirmed({ data : currentUser});
       }
     }
 
@@ -59,6 +52,7 @@
     }
 
     function logout() {
+      $http.get('app/logout');
       LocalStorageService.remove('current-user');
       $rootScope.$broadcast('event:auth-loginCancelled');
     }
@@ -77,22 +71,15 @@
     }
 
 
-    function loginWithProvider(provider) {
-      $window.location.href = '/app/login-with/' + provider;
-    }
-
-    function createUserAccount(credentials){
-      delete credentials.confirmpassword;
-      return $http
-        .post('app/account/create', credentials, {ignoreErrorRedirection: 'ignoreErrorRedirection'});
+    function loginWithProvider(provider, redirect) {
+      $window.location.href = '/app/login-with/' + provider + (redirect ? '?to=' + redirect : '');
     }
 
     return {
       'login': login,
       'loginWithProvider' : loginWithProvider,
       'valid': valid,
-      'logout': logout,
-      'createUserAccount': createUserAccount
+      'logout': logout
     };
   });
 

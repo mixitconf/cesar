@@ -9,7 +9,7 @@ public class CryptoServiceTest {
     private CryptoService cryptoService = new CryptoService();
 
     @Test
-    public void should_encrypt_password(){
+    public void encrypt_password(){
         assertThat(cryptoService.passwordHash("test")).isNotEmpty();
     }
 

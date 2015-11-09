@@ -1,4 +1,4 @@
-package org.mixit.cesar.service.user;
+package org.mixit.cesar.service.exception;
 
 /**
  * Created by ehret_g on 21/10/15.

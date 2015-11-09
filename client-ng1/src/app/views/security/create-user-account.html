@@ -1,8 +1,8 @@
 <div class="cesar-container">
 
-    <h1>Création de compte</h1>
+    <h1 translate="view.account.creation.title">Création de compte</h1>
 
-    <p class="cesar-text">
+    <p class="cesar-text" translate="view.account.creation.description">
         Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous
         contacter. Les informations minimales
         sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à
@@ -10,13 +10,12 @@
         voulez que votre nom/prénom ne soient pas affichés sur le site vous pouvez choisir de garder un compte privé
     </p>
 
-    <div class="cesar-error" ng-if="ctrl.errorMessage">
-        {{ctrl.errorMessage}}
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
     </div>
 
-    <div class="cesar-error" ng-if="frm.login.$error.uniqueLogin">Cet identifiant est déjà utilisé</div>
-    <div class="cesar-error" ng-if="frm.confirmpassword.$error.validPassword">La confirmation de mot de passe ne correspond pas au mot de passe saisi</div>
-    <div class="cesar-error" ng-if="frm.password.$error.minlength">Le mot de passe doit faire au moins 8 caractères</div>
+    <div class="cesar-error" ng-if="frm.login.$error.uniqueLogin" translate="error.UNIQUE_LOGIN">Cet identifiant est déjà utilisé</div>
+    <div class="cesar-error" ng-if="frm.confirmpassword.$error.validPassword" translate="error.VALID_PASSWORD">La confirmation de mot de passe ne correspond pas au mot de passe saisi</div>
+    <div class="cesar-error" ng-if="frm.password.$error.minlength" translate="error.MIN_LENGTH">Le mot de passe doit faire au moins 8 caractères</div>
 
     <form novalidate class="cesar-form" name="frm">
         <div class="mdl-grid">
@@ -29,7 +28,7 @@
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="login" ng-required="true" cesar-login name="login"
                                        ng-model="ctrl.credentials.login"/>
-                                <label class="mdl-textfield__label" for="login">Identifiant</label>
+                                <label class="mdl-textfield__label" for="login" translate="view.account.creation.id">Identifiant</label>
                             </div>
                         </div>
                     </div>
@@ -39,14 +38,14 @@
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true"
                                        ng-model="ctrl.credentials.lastname"/>
-                                <label class="mdl-textfield__label" for="lastname">Nom</label>
+                                <label class="mdl-textfield__label" for="lastname" translate="view.account.creation.lastname">Nom</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
                                        ng-model="ctrl.credentials.firstname"/>
-                                <label class="mdl-textfield__label" for="firstname">Prénom</label>
+                                <label class="mdl-textfield__label" for="firstname" translate="view.account.creation.firstname">Prénom</label>
                             </div>
                         </div>
                     </div>
@@ -56,7 +55,7 @@
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="password" id="password" name="password" ng-required="true" ng-minlength="1"
                                        ng-model="ctrl.credentials.password"/>
-                                <label class="mdl-textfield__label" for="password">Mot de passe</label>
+                                <label class="mdl-textfield__label" for="password" translate="view.account.creation.password">Mot de passe</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
@@ -64,7 +63,7 @@
                                 <input class="mdl-textfield__input" type="password" id="confirmpassword" cesar-confirm-password name="confirmpassword"
                                        ng-required="true" password="ctrl.credentials.password" ng-minlength="1"
                                        ng-model="ctrl.credentials.confirmpassword"/>
-                                <label class="mdl-textfield__label" for="confirmpassword">Confirmation mot de
+                                <label class="mdl-textfield__label" for="confirmpassword" translate="view.account.creation.confirmpassword">Confirmation mot de
                                     passe</label>
                             </div>
                         </div>
@@ -75,7 +74,7 @@
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="email" id="email" ng-required="true"
                                        ng-model="ctrl.credentials.email"/>
-                                <label class="mdl-textfield__label" for="email">E-mail</label>
+                                <label class="mdl-textfield__label" for="email" translate="view.account.creation.mail">E-mail</label>
                             </div>
                         </div>
                     </div>
