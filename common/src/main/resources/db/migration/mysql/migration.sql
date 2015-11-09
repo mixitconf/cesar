@@ -82,4 +82,6 @@ INSERT INTO mixit.Authority (ID,NAME) VALUES (2, 'MEMBER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (3, 'SPEAKER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (4, 'SPONSOR');
 
+update mixit.Session set format='LightningTalk' where DTYPE='LightningTalk';
+update mixit.Session set DTYPE=format;
 /* TODO migrate table account */
