@@ -134,7 +134,7 @@
     },
     "speakers": {
       "title": "Les speakers",
-      "p1": "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parlées en 2015."
+      "p1": "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parler en 2015."
     },
     "sponsors": {
       "title": "Les sponsors 2015"
@@ -142,9 +142,9 @@
     "staff": {
       "title": "L'équipe Mix-IT",
       "mixit": {
-        "p1": "Mix-IT est une belle aventure débutée en 2011 et née de la collaboration entre le Lyon Java User Group et le Club Agile Rhône-Alpes. 2016 sera la 6ème édition et un des premiers principes, proposer une conférence à Lyon accessible à tous est toujours d'actualité.",
-        "p2": "Même si cette conférence a été crée par le Lyon Jug et le CARA vous n'entendrez pas parler que d'agilité ou de l'écosystème Java pendant ces deux jours. Le but est de vous proposer des sessions qui tournent sur le développement au sens large, management, entreprenariat, développement desktop, mobile et web...",
-        "p3": "Comme chaque année nous sommes fier de vous accueillir pour des sessions d’expertise, des jeux et des rencontres. Entrepreneurs, Chefs de Projet, développeurs vous trouverez forcément des idées pour vos projets ! Les conférences peuvent être aussi bien en français qu'en anglais."
+        "p1": "Mix-IT est une belle aventure débutée en 2011 et née de la collaboration entre le Lyon Java User Group et le Club Agile Rhône-Alpes. 2016 sera la 6ème édition et un des premiers principes, proposer une conférence à Lyon accessible à tous, est toujours d'actualité.",
+        "p2": "Cette conférence a été créée par le Lyon Jug et le CARA. Mais vous n'entendrez pas uniquement parler d'agilité ou de l'écosystème Java pendant ces deux jours. Le but est de vous proposer des sessions qui abordent tant le développement au sens large, que le management, etc...",
+        "p3": "Comme chaque année nous sommes fiers de vous accueillir pour des sessions d’expertise, des jeux et des rencontres. Entrepreneurs, Chefs de Projet, développeurs vous trouverez forcément des idées pour vos projets ! Les conférences peuvent être aussi bien en français qu'en anglais."
       },
       "benevole": "Mix-IT est organisé exclusivement par des bénévoles"
     },
@@ -157,7 +157,7 @@
     },
     "talks": {
       "title": "Conférences et ateliers",
-      "p1": "Vous pouvez 3 formats différents, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécéssaires",
+      "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
       "oldedition": "Voici la liste des sessions et des speakers présant à Mix-IT en {{years}}"
     },
     "speakers": {
@@ -172,7 +172,7 @@
       "creation": {
         "title": "Création de compte",
         "description": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Les informations minimales sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à des tierces personnes.",
-        "descriptionsocial": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter.Votre mail ne sera jamais communiqué à des tierces personnes.",
+        "descriptionsocial": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Votre mail ne sera jamais communiqué à des tierces personnes.",
         "id": "Identifiant",
         "lastname": "Nom",
         "firstname": "Firstname",
@@ -180,7 +180,7 @@
         "password": "Mot de passe",
         "confirmpassword": "Confirmation de mot de passe",
         "actualpassword": "Mot de passe actuel",
-        "confirmation": "Merci d'avoir créer un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer vore adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
+        "confirmation": "Merci d'avoir créé un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer votre adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
         "back": "Retourner sur la page d'accueil"
       },
       "login": {
@@ -210,19 +210,19 @@
   "error": {
     "INVALID_TOKEN": "Les données d'identification sont incorrectes. Veuillez créer un compte à partir de la page d'identification",
     "EXPIRED_TOKEN": "Les données d'identification contenues dans le lien sur lequel vous venez de cliquer sont expirées. Veuillez réinitialiser votre mot de passe sur la page d'identification",
-    "LOGIN_GOOGLE": "Une erreur est survenue lorsque nous avons essayer de contacter Google+ pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
-    "LOGIN_TWITTER": "Une erreur est survenue lorsque nous avons essayer de contacter Twitter pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
-    "EMAIL_ALREADY_USED": "Cet email est déjà utilisé. Si c'est le votre cliquez sur le lien pour réinitialiser votre mot de passe sur la page de login",
+    "LOGIN_GOOGLE": "Une erreur est survenue lorsque nous avons essayé de contacter Google+ pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
+    "LOGIN_TWITTER": "Une erreur est survenue lorsque nous avons essayé de contacter Twitter pour vous connecter. Veuillez réessayer plus tard ou changer de provider pour l'authentification",
+    "EMAIL_ALREADY_USED": "Cet email est déjà utilisé. Si c'est le vôtre cliquez sur le lien pour réinitialiser votre mot de passe sur la page de login",
     "UNDEFINED": "Erreur détectée. Veuillez réessayer ou contacter l'équipe Mix-IT pour nous remonter ce bug",
     "LOGIN_ALREADY_USED": "Ce login est déjà utilisé",
     "ACCOUNT_NOT_VALID": "Vous devez valider votre compte avant d'effectuer cette action. Consultez votre boite de messagerie et cliquez sur le lien contenu dans le mail que nous vous avons envoyé et intitulé Account validation",
     "BAD_CREDENTIALS": "Le mot de passe est incorrect",
-    "REQUIRED_ARGS": "Le login et le mot de passe son obligatoires",
+    "REQUIRED_ARGS": "Le login et le mot de passe sont obligatoires",
     "USER_NOT_FOUND": "Ce login n'existe pas. Veuillez créer un compte pour vous connecter",
     "EMAIL_NOT_EXIST": "Cet email ne correspond à aucun compte sur notre site",
     "UNIQUE_LOGIN": "Cet identifiant est déjà utilisé",
     "VALID_PASSWORD": "La confirmation de mot de passe ne correspond pas au mot de passe saisi",
-    "minlength": "Le mot de passe doit faire au moins 8 caractères"
+    "MIN_LENGTH": "Le mot de passe doit faire au moins 8 caractères"
   },
   "footer": {
     "whoarewe": {

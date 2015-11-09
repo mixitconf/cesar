@@ -20,7 +20,7 @@
         AuthenticationService.logout();
       }
       else {
-        AuthenticationService.valid(next.authorizedRoles, next.name === 'account');
+        AuthenticationService.valid(next.authorizedRoles);
       }
     });
 
