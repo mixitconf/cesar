@@ -82,6 +82,37 @@ INSERT INTO mixit.Authority (ID,NAME) VALUES (2, 'MEMBER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (3, 'SPEAKER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (4, 'SPONSOR');
 
-update mixit.Session set format='LightningTalk' where DTYPE='LightningTalk';
-update mixit.Session set DTYPE=format;
-/* TODO migrate table account */
+
+INSERT INTO mixit.Account (ID, oauthId, provider,  password, token, defaultLanguage, valid, MEMBER_ID)
+SELECT id, googleId, CASE provider WHEN 'Google' THEN 'GOOGLE' WHEN 'LinkIt' THEN 'CESAR' WHEN 'Twitter' THEN 'TWITTER' END AS provider, password, token, CASE lang WHEN 'fr' THEN 'fr' WHEN 'en' THEN 'en' ELSE 'fr'  END AS lang, 1, member_id
+FROM ad_32609ed48478829.authaccount
+WHERE provider<>'LinkedIn';
+
+/* login is in the table account */
+UPDATE mixit.Account a set a.LOGIN=(SELECT b.screenName from ad_32609ed48478829.account b where a.member_id=b.member_id and b.screenName is not null);
+UPDATE mixit.Account a set a.LOGIN=(SELECT b.googleId from ad_32609ed48478829.account b where a.member_id=b.member_id and b.googleId is not null) where a.login is null;
+UPDATE mixit.Account a set a.LOGIN=a.oauthId where a.login is null;
+UPDATE mixit.Account a set a.LOGIN=(SELECT b.login from ad_32609ed48478829.member b where a.member_id=b.id and b.login is not null) where a.login is null;
+
+UPDATE mixit.Account a set a.oauthId=(SELECT b.googleId from ad_32609ed48478829.account b where a.member_id=b.member_id and b.googleId is not null)  where oauthId is null;
+UPDATE mixit.Account a set a.oauthId=(SELECT b.screenName from ad_32609ed48478829.account b where a.member_id=b.member_id and b.screenName is not null) where oauthId is null;
+UPDATE mixit.Account a set a.oauthId=a.login where oauthId is null;
+
+UPDATE mixit.`Member` set REGISTEREDAT=CURRENT_DATE where REGISTEREDAT is null;
+UPDATE mixit.Account a set a.registeredAt=(SELECT b.registeredAt from mixit.Member b where a.member_id=b.id);
+UPDATE mixit.Account a set a.email=(SELECT b.email from mixit.Member b where a.member_id=b.id);
+UPDATE mixit.Account a set a.firstname=(SELECT b.firstname from mixit.Member b where a.member_id=b.id);
+UPDATE mixit.Account a set a.lastname=(SELECT b.lastname from mixit.Member b where a.member_id=b.id);
+UPDATE mixit.Account a set a.name=CONCAT(a.firstname, ' ', a.lastname);
+
+INSERT INTO mixit.Account_Authority (ACCOUNT_ID,AUTHORITIES_ID)
+SELECT id, 2
+FROM mixit.Account;
+
+INSERT INTO mixit.Account_Authority (ACCOUNT_ID,AUTHORITIES_ID)
+SELECT a.id, 1
+FROM mixit.Account a inner join mixit.Member b on a.member_id=b.id where b.DTYPE='Staff';
+
+
+
+
