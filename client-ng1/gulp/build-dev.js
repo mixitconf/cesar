@@ -30,6 +30,7 @@ module.exports = function(gulp, config) {
     'build:dev:font',
     'build:dev:images',
     'build:dev:i18n',
+    'build:dev:docs',
     'build:dev:favicon',
     'build:dev:html'
   ]);
@@ -42,6 +43,10 @@ module.exports = function(gulp, config) {
   gulp.task('build:dev:i18n', function () {
     return gulp.src(paths.assets.i18n)
       .pipe(gulp.dest(paths.build.dev + '/i18n'));
+  });
+  gulp.task('build:dev:docs', function () {
+    return gulp.src(paths.assets.docs)
+        .pipe(gulp.dest(paths.build.dev + '/docs'));
   });
   gulp.task('build:dev:images', function () {
     return gulp.src(paths.assets.images)
