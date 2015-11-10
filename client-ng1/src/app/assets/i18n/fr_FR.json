@@ -158,7 +158,7 @@
     "talks": {
       "title": "Conférences et ateliers",
       "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
-      "oldedition": "Voici la liste des sessions et des speakers présant à Mix-IT en {{years}}"
+      "oldedition": "Voici la liste des sessions et des speakers présent à Mix-IT en {{years}}"
     },
     "speakers": {
       "title": "",

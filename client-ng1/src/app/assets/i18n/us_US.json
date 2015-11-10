@@ -157,6 +157,7 @@
     },
     "talks": {
       "title": "Talks and workshops",
+      "oldedition": "Sessions and speakers in {{years}}",
       "p1": "You can suggest 3 different formats, keynotes at the beginning and the end of the day, conference and workshops. For the last one, please follow the instructions in order to know if some prerequisites are necessary."
     },
     "speakers": {
