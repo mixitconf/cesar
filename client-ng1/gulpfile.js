@@ -64,6 +64,9 @@ var paths = {
     i18n: [
       'src/app/assets/i18n/**/*.*'
     ],
+    docs: [
+      'src/app/assets/docs/**/*.*'
+    ],
     favicon: [
       'src/app/assets/favicon.ico'
     ]
