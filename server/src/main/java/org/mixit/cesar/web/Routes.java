@@ -1,13 +1,21 @@
 package org.mixit.cesar.web;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.mixit.cesar.service.AbsoluteUrlFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Maps all AngularJS routes to index so that they work with direct linking.
  */
-@RestController
+@Controller
 public class Routes {
+
+    @Autowired
+    private AbsoluteUrlFactory urlFactory;
 
     @RequestMapping({
             "/account",
@@ -37,7 +45,7 @@ public class Routes {
             "/talks",
             "/venir"
     })
-    public String index() {
+    public String index(HttpServletResponse response) {
         return "forward:/";
     }
 }
