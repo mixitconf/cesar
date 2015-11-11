@@ -3,7 +3,7 @@
  You have to install the prod backup on a local mysql, create the new shema (mixit) with flyway and use this scripts
  */
 
-INSERT INTO mixit.Event (ID,CURRENT,YEAR) VALUES (2, FALSE ,2012), (3, FALSE ,2013), (4, FALSE ,2014), (5, FALSE ,2015);
+INSERT INTO mixit.Event (ID,CURRENT,YEAR) VALUES (2, FALSE ,2012), (3, FALSE ,2013), (4, FALSE ,2014), (5, TRRUE ,2015);
 
 INSERT INTO mixit.Interest (id, name)
 SELECT id, name
@@ -112,7 +112,3 @@ FROM mixit.Account;
 INSERT INTO mixit.Account_Authority (ACCOUNT_ID,AUTHORITIES_ID)
 SELECT a.id, 1
 FROM mixit.Account a inner join mixit.Member b on a.member_id=b.id where b.DTYPE='Staff';
-
-
-
-
