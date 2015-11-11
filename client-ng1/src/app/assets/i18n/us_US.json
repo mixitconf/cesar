@@ -24,7 +24,7 @@
   },
   "home": {
     "headband": {
-      "comeback": "returns on <b>April 21st and 22nd, 2016</b>"
+      "comeback": "returns on <span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
     },
     "info": {
       "title": "Mix-IT is also...",
