@@ -18,6 +18,7 @@ import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.authentification.Credentials;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.exception.ExpiredTokenException;
 import org.mixit.cesar.service.exception.InvalidTokenException;
@@ -51,6 +52,9 @@ public class CreateCesarAccountService {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private CryptoService cryptoService;
+
     /**
      * Create an account with user password
      */
@@ -81,8 +85,10 @@ public class CreateCesarAccountService {
                 .setPublicProfile(Boolean.TRUE));
 
         //Step5 : account is created
-        account.setMember(member);
-        account.addAuthority(authorityRepository.findByName(Role.MEMBER));
+        account
+                .setMember(member)
+                .addAuthority(authorityRepository.findByName(Role.MEMBER))
+                .setPassword(cryptoService.passwordHash(account.getPassword()));
         accountRepository.save(account);
 
         //Step6: a mail with a token is send to the user. He has to confirm it before 3

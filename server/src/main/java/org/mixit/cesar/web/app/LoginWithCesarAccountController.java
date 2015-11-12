@@ -9,6 +9,7 @@ import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.Credentials;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
 import org.mixit.cesar.service.exception.BadCredentialsException;
 import org.mixit.cesar.service.exception.ExpiredTokenException;
@@ -38,6 +39,8 @@ public class LoginWithCesarAccountController {
     @Autowired
     private CookieService cookieService;
 
+    @Autowired
+    private CryptoService cryptoService;
 
     /**
      * Authenticates the user and returns the user token which has to be sent in the header of every request
@@ -61,7 +64,7 @@ public class LoginWithCesarAccountController {
         if (account == null) {
             throw new UserNotFoundException();
         }
-        else if (!account.getPassword().equals(password[0])) {
+        else if (!account.getPassword().equals(cryptoService.passwordHash(password[0]))) {
             throw new BadCredentialsException();
         }
         else if (!account.isValid()) {

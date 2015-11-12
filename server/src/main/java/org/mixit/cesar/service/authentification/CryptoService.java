@@ -5,10 +5,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 /**
  * Cryptography utils
  */
+@Service
 public class CryptoService {
 
     @Value("${cesar.crypto.salt}")

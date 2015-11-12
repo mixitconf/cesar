@@ -10,6 +10,7 @@ import org.mixit.cesar.service.account.ResetPasswordService;
 import org.mixit.cesar.service.account.TokenService;
 import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.autorisation.Authenticated;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
@@ -47,6 +48,9 @@ public class ResetPasswordController {
 
     @Autowired
     private CookieService cookieService;
+
+    @Autowired
+    private CryptoService cryptoService;
 
     /**
      * Send an email to reinit password
@@ -93,7 +97,7 @@ public class ResetPasswordController {
         currentUser.getCredentials().orElseThrow(AuthenticationRequiredException::new);
 
         Account account = accountRepository.findByToken(currentUser.getCredentials().get().getToken());
-        if (!account.getPassword().equals(password)) {
+        if (!account.getPassword().equals(cryptoService.passwordHash(password))) {
             throw new BadCredentialsException();
         }
         return true;
