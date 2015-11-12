@@ -12,7 +12,7 @@ The project lifecycle is managed with [gradle](https://gradle.org/). You don't n
 
 * [common](common/README.md) Common module with database management
 * [client-ng1](client-ng1/README.md) UI Angular 1.4.x
-* [client-ng2](client-ng2/README.md) UI Angular 2.0.x
+* [client-ng2](client-ng2/README.md) UI Angular 2.0.x (todo)
 * [server](server/README.md) Backend
 
 ## Launch the webapp
