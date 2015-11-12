@@ -5,24 +5,24 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})">
+    <tr ng-repeat="session in sessions | filter:search | orderBy:order track by session.idSession" ui-sref="session({id : session.idSession, format : session.format})">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
-                <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
-                {{session.title}} </p><br>
-                {{session.summary}}<br>&nbsp;<br>
+                <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;
+                {{::session.title}} </p><br>
+                {{::session.summary}}<br>&nbsp;<br>
                 <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                     <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
-                        <img ng-src="http://www.gravatar.com/avatar/{{speaker.hash}}">
+                        <img ng-src="http://www.gravatar.com/avatar/{{::speaker.hash}}">
                     </a>
-                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})">{{speaker.firstname}} {{speaker.lastname}}</a>&nbsp;
+                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})">{{::speaker.firstname}} {{::speaker.lastname}}</a>&nbsp;
                 </span>
         </td>
         <td>
             <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab">
-                <i class="material-icons mdl-badge" data-badge="{{session.lang}}">nature_people</i>
+                <i class="material-icons mdl-badge" data-badge="{{::session.lang}}">nature_people</i>
             </a>
-            <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{session.positiveVotes}}</button></div>
+            <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{::session.positiveVotes}}</button></div>
         </td>
     </tr>
     </tbody>
