@@ -19,6 +19,7 @@ import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.authentification.Credentials;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.exception.LoginExistException;
 import org.mixit.cesar.service.mail.MailBuilder;
@@ -53,6 +54,9 @@ public class CreateCesarAccountServiceTest {
 
     @Mock
     public MailBuilder mailBuilder;
+
+    @Mock
+    public CryptoService cryptoService;
 
     @Mock
     public TokenService tokenService;
