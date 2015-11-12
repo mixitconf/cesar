@@ -19,7 +19,7 @@
           }
           else {
             // Lookup user by username
-            $http.get('/app/account/' + viewValue)
+            $http.get('/app/account/cesar/' + viewValue)
               .then(function (response) {
                 if (response.data.value === null || response.data.value === 'null') {
                   deferred.resolve(true);
