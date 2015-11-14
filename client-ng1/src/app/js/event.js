@@ -25,11 +25,7 @@
     });
 
     // Call when the the client is confirmed
-    $rootScope.$on('event:auth-loginConfirmed', function (event, next) {
-      if (!$rootScope.userConnected || (next && next.oauthId !== $rootScope.userConnected.oauthId)) {
-        $rootScope.userConnected = next;
-      }
-
+    $rootScope.$on('event:auth-loginConfirmed', function () {
       if ($location.path() === '/authent') {
         var search = $location.search();
         if (search.redirect !== undefined) {
@@ -50,13 +46,6 @@
       else {
         $rootScope.errorMessage = next.data.type;
       }
-    });
-
-
-
-    // Call when the user logs out
-    $rootScope.$on('event:auth-loginCancelled', function () {
-      delete  $rootScope.userConnected;
     });
 
 

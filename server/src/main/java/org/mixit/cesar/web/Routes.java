@@ -43,6 +43,7 @@ public class Routes {
             "/sponsors",
             "/staff",
             "/talks",
+            "/valid",
             "/venir"
     })
     public String index(HttpServletResponse response) {

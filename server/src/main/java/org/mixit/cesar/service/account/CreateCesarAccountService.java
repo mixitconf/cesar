@@ -1,31 +1,24 @@
 package org.mixit.cesar.service.account;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
-import com.google.common.base.Preconditions;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.model.security.Role;
-import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
-import org.mixit.cesar.service.exception.ExpiredTokenException;
-import org.mixit.cesar.service.exception.InvalidTokenException;
 import org.mixit.cesar.service.exception.LoginExistException;
+import org.mixit.cesar.service.exception.UserNotFoundException;
 import org.mixit.cesar.service.mail.MailBuilder;
 import org.mixit.cesar.service.mail.MailerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -58,7 +51,7 @@ public class CreateCesarAccountService {
     /**
      * Create an account with user password
      */
-    public Credentials createNormalAccount(Account account) {
+    public Account createNormalAccount(Account account) {
         //Step1: Account ids are generated
         account.setProvider(OAuthProvider.CESAR);
         account.setOauthId(UUID.randomUUID().toString());
@@ -81,8 +74,7 @@ public class CreateCesarAccountService {
                 .setLogin(account.getLogin())
                 .setEmail(account.getEmail())
                 .setFirstname(account.getFirstname())
-                .setLastname(account.getLastname())
-                .setPublicProfile(Boolean.TRUE));
+                .setLastname(account.getLastname()));
 
         //Step5 : account is created
         account
@@ -92,16 +84,49 @@ public class CreateCesarAccountService {
         accountRepository.save(account);
 
         //Step6: a mail with a token is send to the user. He has to confirm it before 3
-        Credentials credentials = Credentials.build(account);
         mailerService.send(
-                credentials.getEmail(),
+                account.getEmail(),
                 "Account validation",
-                mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, credentials, Optional.empty()));
+                mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, account, Optional.empty()));
 
-        //Token is not send to the frontend because account is not validated
-        credentials.setToken(null);
-
-        return credentials;
+        return account;
     }
 
+    /**
+     * Update an account
+     */
+    public Account updateAccount(Account account) {
+        //Step1: we read account in database
+        Account accountDb = accountRepository.findByOauthProviderAndId(account.getProvider(), account.getOauthId());
+
+        if (accountDb == null) {
+            throw new UserNotFoundException();
+        }
+
+        boolean emailChanged = !accountDb.getEmail().equals(account.getEmail());
+
+        //Data are updated
+        accountDb
+                .setEmail(account.getEmail())
+                .setLastname(account.getLastname())
+                .setFirstname(account.getFirstname())
+                .setDefaultLanguage(account.getDefaultLanguage());
+
+        //Member linked to the account is also updated
+        accountDb.getMember()
+                .setEmail(account.getEmail())
+                .setLastname(account.getLastname())
+                .setFirstname(account.getFirstname());
+
+
+        //An email is send if mail changes
+        if (emailChanged) {
+            mailerService.send(
+                    account.getEmail(),
+                    "Email changed",
+                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.EMAIL_CHANGED, account, Optional.empty()));
+        }
+
+        return accountRepository.save(accountDb);
+    }
 }

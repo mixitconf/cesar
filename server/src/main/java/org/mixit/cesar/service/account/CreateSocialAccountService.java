@@ -13,7 +13,6 @@ import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.exception.InvalidTokenException;
 import org.mixit.cesar.service.mail.MailBuilder;
@@ -67,9 +66,9 @@ public class CreateSocialAccountService {
     /**
      * Update an account to add email
      */
-    public void updateAccount(Account account, Credentials credentials) {
+    public void updateAccount(Account account, String token, String oauthId) {
 
-        Account partial = accountRepository.findByToken(credentials.getToken());
+        Account partial = accountRepository.findByToken(token);
 
         if (partial == null) {
             throw new InvalidTokenException();
@@ -83,7 +82,7 @@ public class CreateSocialAccountService {
         List<Member> member = memberRepository.findByEmail(account.getEmail());
 
         if (!member.isEmpty()) {
-            //Accout can be linked to a member but an email ccan't be used twice
+            //Accout can be linked to a member but an email can't be used twice
             if (partial.getMember() == null ||
                     (partial.getMember() != null && !partial.getMember().getId().equals(member.stream().findFirst().get().getId()))) {
                 throw new EmailExistException();
@@ -97,7 +96,7 @@ public class CreateSocialAccountService {
         }
         else {
             partial.setMember(memberRepository.save(new Member()
-                    .setLogin(credentials.getOauthId())
+                    .setLogin(oauthId)
                     .setEmail(account.getEmail())
                     .setFirstname(account.getFirstname())
                     .setLastname(account.getLastname())
@@ -105,15 +104,14 @@ public class CreateSocialAccountService {
         }
 
         partial.addAuthority(authorityRepository.findByName(Role.MEMBER));
-        tokenService.reinitTokenValidity(account);
+        tokenService.reinitTokenValidity(partial);
         accountRepository.save(partial);
 
-        //Step6: a mail with a token is send to the user. He has to confirm it before 3
-        credentials = Credentials.build(partial);
+        //Step6: a mail with a token is send to the user. He has to confirm it before 3 3020151625
         mailerService.send(
-                credentials.getEmail(),
+                partial.getEmail(),
                 "Account validation",
-                mailBuilder.createHtmlMail(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, credentials, Optional.empty()));
+                mailBuilder.createHtmlMail(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, partial, Optional.empty()));
 
     }
 

@@ -1,4 +1,8 @@
 {
+  "lang" : {
+    "fr" : "Français",
+    "en" : "Anglais"
+  },
   "menu": {
     "news": "Actualités",
     "program": "Programme",
@@ -169,17 +173,29 @@
       "explanation": "Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter l'opération et si cette erreur persiste n'hésitez pas à nous la remonter pour que nous la corrigions"
     },
     "account": {
+      "company": "Société",
+      "id": "Identifiant",
+      "lastname": "Nom",
+      "firstname": "Prénom",
+      "mail": "Email",
+      "password": "Mot de passe",
+      "confirmpassword": "Confirmation de mot de passe",
+      "actualpassword": "Mot de passe actuel",
+      "defaultLanguage" : "Langage par défaut",
+
+      "update": {
+        "title": "Compte",
+        "description" : "Vous pouvez à tout moment modifier vos données personnelles",
+        "registeredAt" : "Vous avez créé votre compte le {{registeredAt}}.",
+        "markdown" : "Vous pouvez formater votre messages en utilisant du markdown",
+        "interests" : "Vos centres d'intérêt.",
+        "sharedLinks" : "Les liens que vous souhaitez partager"
+      },
+
       "creation": {
         "title": "Création de compte",
         "description": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Les informations minimales sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à des tierces personnes.",
         "descriptionsocial": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Votre mail ne sera jamais communiqué à des tierces personnes.",
-        "id": "Identifiant",
-        "lastname": "Nom",
-        "firstname": "Firstname",
-        "mail": "Email",
-        "password": "Mot de passe",
-        "confirmpassword": "Confirmation de mot de passe",
-        "actualpassword": "Mot de passe actuel",
         "confirmation": "Merci d'avoir créé un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer votre adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
         "back": "Retourner sur la page d'accueil"
       },
@@ -190,8 +206,6 @@
         "advice": "Nous vous conseillons de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> afin de ne pas stocker votre mot de passe sur nos serveurs.",
         "social": "Avec un réseau social",
         "legacy": "Classique",
-        "id": "Identifiant",
-        "password": "Mot de passe",
         "newaccount1": "Vous avez la possibilité de ",
         "newaccount2": "créer un compte",
         "newaccount3": "avec un nom d'utilisateur et un mot de passe. Les mots de passe sont bien évidemment cryptés et sécurisés.",

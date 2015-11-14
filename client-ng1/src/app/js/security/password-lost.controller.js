@@ -12,7 +12,7 @@
 
         $http.delete('/app/account/password?email=' + ctrl.credentials.email)
           .then(function () {
-            $state.go('passwordlostconfirm');
+            $state.go('doneaction', {title : 'view.account.passwordlost.title', description : 'view.account.passwordlost.confirmation'});
           })
           .catch(function (response) {
             if (response.data.type==='EMAIL_EXIST'){

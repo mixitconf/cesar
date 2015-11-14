@@ -1,4 +1,8 @@
 {
+  "lang" : {
+    "fr" : "French",
+    "en" : "English"
+  },
   "menu": {
     "news": "News",
     "program": "Program",
@@ -170,17 +174,31 @@
     }
   },
   "account": {
+    "company": "Company",
+    "id": "Login",
+    "lastname": "Lastname",
+    "firstname": "Firstname",
+    "mail": "Email",
+    "password": "Password",
+    "confirmpassword": "Password Confirmation",
+    "actualpassword": "Current Password",
+    "defaultLanguage" : "Langage par défaut",
+    "shortDescription" : "Summary",
+    "longDescription" : "Description",
+
+    "update": {
+      "title": "Account",
+      "description" : "You can update your personnal data",
+      "registeredAt" : "You had created your account on the {{registeredAt}}",
+      "markdown" : "Markdown can be used when you define your description",
+      "interests" : "Your interests",
+      "sharedLinks" : "You can share several links"
+    },
+
     "creation": {
       "title": "Account creation",
       "description": "To create an account, we need to know some information that will allow us to contact you. The minimum information includes an email to confirm, a login ID and your full name. Your email address will never be disclosed to third parties.",
       "descriptionsocial": "To create an account, we need to know some information that will allow us to contact you. Your email address will never be disclosed to third parties.",
-      "id": "Login",
-      "lastname": "Lastname",
-      "firstname": "Firstname",
-      "mail": "Email",
-      "password": "Password",
-      "confirmpassword": "Password Confirmation",
-      "actualpassword": "Current Password",
       "confirmation": "Thank you for creating an account on the Mix-IT website. We have just sent you an email to confirm your email address. Click the link in the email to validate your account and you can use all the features of the website such as managing your favorites ...",
       "back": "Return to the home page"
     },
@@ -191,8 +209,6 @@
       "advice": "We recommend you to go through a provider such as <strong> Google + </ strong> or <strong> Twitter </ strong> so you do not store your password on our servers.",
       "social": "With a social network",
       "legacy": "Classical",
-      "id": "Login",
-      "password": "Password",
       "newaccount1": "You have the option of ",
       "newaccount2": "create an account",
       "newaccount3": " with a username and a password. The passwords are obviously encrypted and secure.",

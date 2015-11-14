@@ -1,23 +1,15 @@
 package org.mixit.cesar.service.account;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Stream;
 
-import com.google.common.base.Preconditions;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.OAuthProvider;
-import org.mixit.cesar.model.security.Role;
-import org.mixit.cesar.model.session.SessionLanguage;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.exception.EmailExistException;
-import org.mixit.cesar.service.exception.LoginExistException;
 import org.mixit.cesar.service.mail.MailBuilder;
 import org.mixit.cesar.service.mail.MailerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +61,7 @@ public class ResetPasswordService {
             mailerService.send(
                     email,
                     "Password reinitialization",
-                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, Credentials.build(account.get()), Optional.of(account.get().getProvider())));
+                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, account.get(), Optional.of(account.get().getProvider())));
             accountRepository.save(account.get());
         }
         else{
@@ -82,7 +74,7 @@ public class ResetPasswordService {
             mailerService.send(
                     email,
                     "Account validation",
-                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, Credentials.build(account.get()), Optional.of(account.get().getProvider())));
+                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, account.get(), Optional.of(account.get().getProvider())));
         }
     }
 

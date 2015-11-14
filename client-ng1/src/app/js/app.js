@@ -10,11 +10,13 @@
   angular.module('cesar-sessions', ['cesar-templates']);
   angular.module('cesar-services', []);
   angular.module('cesar-security', ['ngCookies']);
+  angular.module('cesar-account', []);
 
   angular.module('cesar', [
     'ui.router',
     'ngSanitize',
     'ngCookies',
+    'cesar-account',
     'cesar-templates',
     'cesar-articles',
     'cesar-menu',

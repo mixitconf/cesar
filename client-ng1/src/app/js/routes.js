@@ -119,6 +119,17 @@
 
       //Home Page
       .state('home', stateSimplePage('home', 'views/home.html'))
+      .state('valid', {
+        url: '/valid',
+        views: {
+          main: {
+            templateUrl: 'views/home.html',
+            controller: function (AuthenticationService) {
+              AuthenticationService.checkUser();
+            }
+          }
+        }
+      })
 
       //News
       .state('news', {
@@ -218,19 +229,55 @@
       .state('mixit12', stateOldEdition('mixit15', 2012))
 
       //Connected
-      .state('favoris', stateSimplePage('favoris', 'views/security/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('account', stateSimplePage('account', 'views/security/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('favoris', stateSimplePage('favoris', 'views/sessions/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('account', {
+        url: '/account',
+        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker],
+        resolve: {
+          account: function (AuthenticationService, $http) {
+            var currentUser = AuthenticationService.currentUser();
+            if (currentUser) {
+              return $http.get('app/account/' + currentUser.oauthId).then(function (response) {
+                  return response.data;
+              });
+            }
+          }
+        },
+        views: {
+          main: {
+            templateUrl: 'views/account/account.html',
+            controller: 'AccountCtrl',
+            controllerAs: 'ctrl'
+          }
+        }
+      })
 
       //Security
-      .state('createaccount', stateSimplePage('createuseraccount', 'views/security/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
-      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/security/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
-      .state('useraccountcreated', stateSimplePage('useraccountcreated', 'views/security/user-account-created.html'))
+      .state('createaccount', stateSimplePage('createuseraccount', 'views/account/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
+      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/account/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
 
       .state('logout', stateSimplePage('logout', 'views/home.html'))
       .state('authent', stateSimplePage('authent', 'views/security/login.html', [USER_ROLES.all], 'LoginCtrl'))
       .state('passwordlost', stateSimplePage('passwordlost', 'views/security/password-lost.html', [USER_ROLES.all], 'PasswordLostCtrl'))
-      .state('passwordlostconfirm', stateSimplePage('passwordlost', 'views/security/password-lost-confirm.html'))
-      .state('passwordreinit', stateSimplePage('passwordreinit', 'views/security/password-reinit.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'PasswordReinitCtrl'));
+      .state('passwordreinit', stateSimplePage('passwordreinit', 'views/security/password-reinit.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'PasswordReinitCtrl'))
+
+      .state('doneaction', {
+        url: '/doneaction',
+        authorizedRoles: [USER_ROLES.all],
+        params: {
+          title: null,
+          description: null
+        },
+        views: {
+          main: {
+            templateUrl: 'views/security/done-action.html',
+            controller: 'DoneActionCtrl',
+            controllerAs: 'ctrl'
+          }
+        }
+      });
+
+
   });
 
 })();

@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('CreateUserAccountCtrl', function ($http, $scope, $state) {
+  angular.module('cesar-account').controller('CreateUserAccountCtrl', function ($http, $state) {
     'ngInject';
 
     var ctrl = this;
@@ -15,7 +15,7 @@
         $http
           .post('app/account/cesar', credentialsTosend, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
-            $state.go('useraccountcreated');
+            $state.go('doneaction', {title : 'view.account.creation.title', description : 'view.account.creation.confirmation'});
           })
           .catch(function (response) {
             if (response.data.type) {
