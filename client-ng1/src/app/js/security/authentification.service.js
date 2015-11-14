@@ -5,9 +5,13 @@
   angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window, USER_ROLES, LocalStorageService) {
     'ngInject';
 
+    function currentUser(){
+      return LocalStorageService.get('current-user');
+    }
+
     function loginConfirmed(response){
       LocalStorageService.put('current-user', response.data);
-      $rootScope.$broadcast('event:auth-loginConfirmed', LocalStorageService.get('current-user'));
+      $rootScope.$broadcast('event:auth-loginConfirmed');
     }
 
     function loginRequired(response){
@@ -54,7 +58,6 @@
     function logout() {
       $http.get('app/logout');
       LocalStorageService.remove('current-user');
-      $rootScope.$broadcast('event:auth-loginCancelled');
     }
 
     function login(param) {
@@ -76,6 +79,7 @@
     }
 
     return {
+      'currentUser': currentUser,
       'login': login,
       'loginWithProvider' : loginWithProvider,
       'valid': valid,

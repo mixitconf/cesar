@@ -2,10 +2,12 @@ package org.mixit.cesar.service.autorisation;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
 import org.mixit.cesar.service.exception.ForbiddenException;
@@ -31,11 +33,12 @@ public class SecurityAspect {
 
     @Before("@annotation(needsRole)")
     public void checkAccess(JoinPoint joinPoint, NeedsRole needsRole) {
+
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         if (!currentUser.getCredentials().isPresent()) {
             throw new AuthenticationRequiredException();
         }
-        List<String> userRoles = currentUser.getCredentials().get().getRoles();
+        List<Role> userRoles = currentUser.getCredentials().get().getRoles().stream().map(r -> Role.valueOf(r)).collect(Collectors.toList());
         if (Arrays.stream(needsRole.value()).noneMatch(userRoles::contains)) {
             throw new ForbiddenException();
         }

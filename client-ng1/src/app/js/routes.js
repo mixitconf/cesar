@@ -218,12 +218,12 @@
       .state('mixit12', stateOldEdition('mixit15', 2012))
 
       //Connected
-      .state('favoris', stateSimplePage('favoris', 'views/security/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('account', stateSimplePage('account', 'views/security/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('favoris', stateSimplePage('favoris', 'views/sessions/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
+      .state('account', stateSimplePage('account', 'views/account/account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'AccountCtrl'))
 
       //Security
-      .state('createaccount', stateSimplePage('createuseraccount', 'views/security/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
-      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/security/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
+      .state('createaccount', stateSimplePage('createuseraccount', 'views/account/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
+      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/account/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
       .state('useraccountcreated', stateSimplePage('useraccountcreated', 'views/security/user-account-created.html'))
 
       .state('logout', stateSimplePage('logout', 'views/home.html'))

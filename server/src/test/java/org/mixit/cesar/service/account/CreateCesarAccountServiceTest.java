@@ -18,7 +18,6 @@ import org.mixit.cesar.model.security.Role;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.exception.LoginExistException;
@@ -93,7 +92,7 @@ public class CreateCesarAccountServiceTest {
     public void create_account_send_mail_to_confirm_validation() {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
         createCesarAccountService.createNormalAccount(new Account());
-        verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Credentials.class), any());
+        verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Account.class), any());
     }
 
 }

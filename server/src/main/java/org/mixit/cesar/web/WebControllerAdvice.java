@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mixit.cesar.model.FunctionalError;
 import org.mixit.cesar.model.security.Account;
-import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
 import org.mixit.cesar.service.exception.BadCredentialsException;
@@ -63,7 +61,7 @@ public class WebControllerAdvice {
 
     /**
      * Error launch if email already exists {@link org.mixit.cesar.service.account.CreateCesarAccountService#createNormalAccount(Account)} or
-     * {@link org.mixit.cesar.service.account.CreateSocialAccountService#updateAccount(Account, Credentials)}
+     * {@link org.mixit.cesar.service.account.CreateSocialAccountService#updateAccount(Account, String, String)})}
      */
     @ExceptionHandler(EmailExistException.class)
     public ResponseEntity<FunctionalError> handleException(EmailExistException exception) {

@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('CreateUserAccountCtrl', function ($http, $scope, $state) {
+  angular.module('cesar-account').controller('CreateUserAccountCtrl', function ($http, $state) {
     'ngInject';
 
     var ctrl = this;

@@ -1,10 +1,12 @@
 package org.mixit.cesar.model.security;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,10 +14,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,25 +24,29 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.model.session.SessionLanguage;
+import org.mixit.cesar.utils.HashUtil;
 
 @Entity
-public class Account {
+public class Account implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(FlatView.class)
     private Long id;
 
     @Size(max = 255)
+    @JsonView(FlatView.class)
     private String oauthId;
 
     @Size(max = 255)
+    @JsonView(FlatView.class)
     private String login;
 
     @Size(max = 255)
+    @JsonView(FlatView.class)
     private String lastname;
 
     @Size(max = 255)
+    @JsonView(FlatView.class)
     private String firstname;
 
     @Size(max = 255)
@@ -57,12 +62,14 @@ public class Account {
     private OAuthProvider provider;
 
     @Size(max = 255)
+    @JsonView(FlatView.class)
     private String email;
 
     @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private SessionLanguage defaultLanguage = SessionLanguage.fr;
 
     @ManyToOne(optional = false)
@@ -71,6 +78,14 @@ public class Account {
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Authority> authorities = new HashSet<>();
+
+    @JsonView(FlatView.class)
+    @Transient
+    private String hash;
+
+    @JsonView(FlatView.class)
+    @Transient
+    private List<String> roles;
 
     private boolean valid;
 
@@ -214,6 +229,24 @@ public class Account {
         return this;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public Account setHash(String hash) {
+        this.hash = hash;
+        return this;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public Account setRoles(List<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -235,4 +268,32 @@ public class Account {
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
+
+    public Account prepareForView() {
+        try {
+            return ((Account) this.clone())
+                    .setHash(HashUtil.md5Hex(Optional.of(email).orElse("cesar")))
+                    .setRoles(this.getAuthorities().stream().map(Authority::getName).map(Role::toString).collect(Collectors.toList()));
+        }
+        catch (CloneNotSupportedException e) {
+            //we can't have an exception
+            return null;
+        }
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+
+        //When we clone data we only clone data used in Flatview
+        return ((Account) super.clone())
+                .setOauthId(this.oauthId)
+                .setLogin(this.login)
+                .setLastname(this.lastname)
+                .setFirstname(this.firstname)
+                .setValid(this.valid)
+                .setEmail(this.email)
+                .setDefaultLanguage(this.defaultLanguage);
+    }
+
+
 }

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
-import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -27,9 +26,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Autowired
-    private AbsoluteUrlFactory urlFactory;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader(TOKEN_REQUEST_HEADER_PARAM);
@@ -38,7 +34,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             Account account = accountRepository.findByToken(token);
             if (account != null) {
                 CurrentUser currentUser  = applicationContext.getBean(CurrentUser.class);
-                currentUser.setCredentials(Credentials.build(account));
+                currentUser.setCredentials(account.prepareForView());
                 return true;
             }
         }

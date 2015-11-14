@@ -1,15 +1,15 @@
-package org.mixit.cesar.service.authentification;
+package org.mixit.cesar.model.security;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.utils.HashUtil;
 
 /**
- * @author GET <guillaume@dev-mind.fr>
+ * This element is not serialized in database.
  */
-public class Credentials {
+public class Credentials implements Serializable{
 
     private String oauthId;
     private String login;
@@ -18,6 +18,7 @@ public class Credentials {
     private String lastname;
     private String email;
     private String hash;
+    private String language;
     private List<String> roles;
 
     public static Credentials build(Account account) {
@@ -25,7 +26,8 @@ public class Credentials {
                 .setOauthId(account.getOauthId())
                 .setToken(account.getToken())
                 .setEmail(account.getEmail())
-                .setLogin(account.getLogin());
+                .setLogin(account.getLogin())
+                .setLanguage(account.getDefaultLanguage()!=null ? account.getDefaultLanguage().name() : "fr");
 
         if(account.getEmail()!=null){
             credentials.setHash(HashUtil.md5Hex(account.getEmail()));
@@ -111,6 +113,15 @@ public class Credentials {
 
     public Credentials setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public Credentials setLanguage(String language) {
+        this.language = language;
         return this;
     }
 }

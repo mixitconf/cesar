@@ -2,10 +2,11 @@ package org.mixit.cesar.web.app;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.authentification.CookieService;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,21 +37,19 @@ public class CheckAccountController {
      * When user want to access to a secure page we see if he is already connected on backend
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Credentials> oauthCallback(HttpServletResponse response) {
+    @JsonView(FlatView.class)
+    public ResponseEntity<Account> oauthCallback(HttpServletResponse response) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
 
         //If no current user we want an authentication
         currentUser.getCredentials().orElseThrow(AuthenticationRequiredException::new);
 
         Account account = accountRepository.findByToken(currentUser.getCredentials().get().getToken());
-
         if (account == null) {
             throw new AuthenticationRequiredException();
         }
-        else {
-            cookieService.setCookieInResponse(response, account);
-        }
-        return new ResponseEntity<>(cookieService.setCookieInResponse(response, account), HttpStatus.OK);
+        cookieService.setCookieInResponse(response, account);
+        return new ResponseEntity<>(account.prepareForView(), HttpStatus.OK);
     }
 
 }

@@ -1,0 +1,61 @@
+<div class="cesar-container">
+
+    <h1 translate="view.account.update.title"></h1>
+
+    <p class="cesar-text" translate="view.account.update.description"></p>
+
+    <div class="cesar-section--bottom">
+        <form novalidate class="cesar-form" name="frm">
+            <p translate="view.account.update.registeredAt" translate-values="{ registeredAt : 'tets' }"></p>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.login">
+                <input class="mdl-textfield__input" type="text" id="login" ng-required="true" name="login"
+                       ng-maxlength="100"
+                       ng-model="ctrl.account.login" readonly/>
+                <label class="mdl-textfield__label" for="login" translate="view.account.id"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true" ng-maxlength="100"
+                       ng-model="ctrl.account.lastname"/>
+                <label class="mdl-textfield__label" for="lastname" translate="view.account.lastname"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true" ng-maxlength="100"
+                       ng-model="ctrl.account.firstname"/>
+                <label class="mdl-textfield__label" for="firstname" translate="view.account.firstname"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="email" ng-required="true" ng-maxlength="250"
+                       ng-model="ctrl.account.email"/>
+                <label class="mdl-textfield__label" for="email" translate="view.account.mail"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                <input class="mdl-textfield__input" type="text" id="defaultLanguage" ng-show="false"
+                       ng-model="ctrl.account.defaultLanguage"/>
+                <label class="mdl-textfield__label" for="defaultLanguage"
+                       translate="view.account.defaultLanguage"></label>
+
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
+                    <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
+                           ng-model="ctrl.account.defaultLanguage">
+                    <span class="mdl-radio__label" translate="lang.en">First</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
+                    <input type="radio" id="language-2" class="mdl-radio__button" name="options" value="fr"
+                           ng-model="ctrl.account.defaultLanguage">
+                    <span class="mdl-radio__label" translate="lang.fr">Second</span>
+                </label>
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.login(ctrl.credentials)">
+                <i class="material-icons">vpn_key</i>
+            </button>
+        </form>
+        <p>&nbsp;</p>
+
+    </div>
+
+</div>
+

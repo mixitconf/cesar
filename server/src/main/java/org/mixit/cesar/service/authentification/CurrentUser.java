@@ -2,6 +2,7 @@ package org.mixit.cesar.service.authentification;
 
 import java.util.Optional;
 
+import org.mixit.cesar.model.security.Account;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -13,13 +14,13 @@ import org.springframework.stereotype.Component;
 @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 public class CurrentUser {
 
-    private Credentials credentials;
+    private Account account;
 
-    public Optional<Credentials> getCredentials() {
-        return Optional.ofNullable(credentials);
+    public Optional<Account> getCredentials() {
+        return Optional.ofNullable(account);
     }
 
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
+    public void setCredentials(Account account) {
+        this.account = account;
     }
 }

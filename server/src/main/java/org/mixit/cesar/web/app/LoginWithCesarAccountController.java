@@ -1,19 +1,17 @@
 package org.mixit.cesar.web.app;
 
-import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
-import org.mixit.cesar.service.authentification.Credentials;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
 import org.mixit.cesar.service.exception.BadCredentialsException;
-import org.mixit.cesar.service.exception.ExpiredTokenException;
-import org.mixit.cesar.service.exception.InvalidTokenException;
 import org.mixit.cesar.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller used to authenticate users
@@ -51,7 +48,8 @@ public class LoginWithCesarAccountController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Credentials> authenticate(HttpServletRequest request, HttpServletResponse response) {
+    @JsonView(FlatView.class)
+    public ResponseEntity<Account> authenticate(HttpServletRequest request, HttpServletResponse response) {
         String[] username = request.getParameterValues("username");
         String[] password = request.getParameterValues("password");
 
@@ -70,7 +68,9 @@ public class LoginWithCesarAccountController {
         else if (!account.isValid()) {
             throw new AccountMustBeConfirmedException();
         }
-        return new ResponseEntity<>(cookieService.setCookieInResponse(response, account), HttpStatus.OK);
+
+        cookieService.setCookieInResponse(response, account);
+        return new ResponseEntity<>(account.prepareForView(), HttpStatus.OK);
     }
 
 }
