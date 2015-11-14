@@ -15,9 +15,14 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @EnableCaching
 public class CesarCacheConfig {
 
+    public static final String CACHE_SECURITY = "security";
+    public static final String CACHE_MEMBER = "member";
+    public static final String CACHE_SESSION = "session";
+    public static final String CACHE_ARTICLE = "article";
+
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("security", "member", "session", "article");
+        return new ConcurrentMapCacheManager(CACHE_SECURITY, CACHE_MEMBER, CACHE_SESSION, CACHE_ARTICLE);
     }
 
 

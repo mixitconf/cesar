@@ -1,7 +1,10 @@
 package org.mixit.cesar.repository;
 
+import static org.mixit.cesar.config.CesarCacheConfig.CACHE_ARTICLE;
+
 import java.util.List;
 
+import org.mixit.cesar.config.CesarCacheConfig;
 import org.mixit.cesar.model.article.Article;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.Query;
@@ -13,11 +16,11 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ArticleRepository extends CrudRepository<Article, Long> {
 
-    @Cacheable("article")
+    @Cacheable(CACHE_ARTICLE)
     @Query(value = "SELECT a FROM Article a where a.valid=true order by a.postedAt desc")
     List<Article> findAllPublishedArticle();
 
-    @Cacheable("article")
+    @Cacheable(CACHE_ARTICLE)
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c left join c.member where a.id=:idArticle and a.valid=true")
     Article findArticleById(@Param("idArticle") Long idArticle);
 }

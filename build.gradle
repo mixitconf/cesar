@@ -38,6 +38,7 @@ buildscript {
         classpath "org.springframework:springloaded:${vSpringLoaded}"
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
         classpath 'net.researchgate:gradle-release:2.3.3'
+        classpath 'org.ajoberstar:gradle-git:0.6.3'
 
         classpath "com.h2database:h2:${vH2}"
         classpath "mysql:mysql-connector-java:${vMysql}"
@@ -88,6 +89,7 @@ configure([ project(':server')]) {
 
     dependencies {
 
+        compile "org.springframework.boot:spring-boot-starter-actuator:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-web:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-hateoas:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-data-jpa:${vSpringBoot}"

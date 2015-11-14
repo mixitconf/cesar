@@ -1,5 +1,7 @@
 package org.mixit.cesar.repository;
 
+import static org.mixit.cesar.config.CesarCacheConfig.CACHE_SESSION;
+
 import java.util.List;
 
 import org.mixit.cesar.model.session.Keynote;
@@ -32,23 +34,23 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true ")
     List<LightningTalk> findAllLightningTalks(@Param("idEvent") Long idEvent);
 
-    @Cacheable("session")
+    @Cacheable(CACHE_SESSION)
     @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<Session> findAllAcceptedSessions(@Param("idEvent") Long idEvent);
 
-    @Cacheable("session")
+    @Cacheable(CACHE_SESSION)
     @Query(value = "SELECT DISTINCT s FROM Keynote s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<Keynote> findAllAcceptedKeynotes(@Param("idEvent") Long idEvent);
 
-    @Cacheable("session")
+    @Cacheable(CACHE_SESSION)
     @Query(value = "SELECT DISTINCT s FROM Talk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<Talk> findAllAcceptedTalks(@Param("idEvent") Long idEvent);
 
-    @Cacheable("session")
+    @Cacheable(CACHE_SESSION)
     @Query(value = "SELECT DISTINCT s FROM Workshop s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<Workshop> findAllAcceptedWorkshops(@Param("idEvent") Long idEvent);
 
-    @Cacheable("session")
+    @Cacheable(CACHE_SESSION)
     @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<LightningTalk> findAllAcceptedLightningTalks(@Param("idEvent") Long idEvent);
 }

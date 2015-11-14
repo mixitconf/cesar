@@ -1,3 +1,8 @@
+project:
+  artifactId: cesar
+  name: Cesar
+  description: Mix-IT website
+
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}
   crypto:
