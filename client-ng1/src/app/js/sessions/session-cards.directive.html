@@ -5,7 +5,7 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in sessions | filter:search | orderBy:order track by session.idSession" ui-sref="session({id : session.idSession, format : session.format})">
+    <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;

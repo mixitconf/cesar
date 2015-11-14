@@ -164,10 +164,6 @@
       "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
       "oldedition": "Voici la liste des sessions et des speakers présents à Mix-IT en {{years}}"
     },
-    "speakers": {
-      "title": "",
-      "": ""
-    },
     "error": {
       "title": "Une erreur a été détectée",
       "explanation": "Une erreur s'est produite suite à l'action que vous venez de faire. Veuillez retenter l'opération et si cette erreur persiste n'hésitez pas à nous la remonter pour que nous la corrigions"

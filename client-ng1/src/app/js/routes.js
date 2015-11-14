@@ -24,260 +24,195 @@
 
     $urlRouterProvider.otherwise('/home');
 
-    // State use to list members
-    function stateMember(url, type) {
-      return {
-        url: '/' + url,
-        authorizedRoles: [USER_ROLES.all],
-        resolve: {
-          members: function (MemberService) {
-            return MemberService.getAll(type).then(function (response) {
-              return response.data;
-            });
-          }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/members/' + url + '.html',
-            controller: 'MembersCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      };
+
+
+    /* @ngInject */
+    function getAllArticles(ArticleService) {
+      return ArticleService.getAll().then(function (response) {
+        return response.data;
+      });
     }
 
-    // State use to list sessions
-    function stateSessions(url) {
-      return {
-        url: '/' + url,
-        authorizedRoles: [USER_ROLES.all],
-        views: {
-          main: {
-            templateUrl: 'views/sessions/' + url + '.html',
-            controller: 'SessionsCtrl',
-            controllerAs: 'ctrl'
-          }
-        },
-        data: {
-          type: url
-        }
-      };
-    }
-
-    // State old editions
-    function stateOldEdition(url, year) {
-      return {
-        url: '/' + url,
-        authorizedRoles: [USER_ROLES.all],
-        views: {
-          main: {
-            templateUrl: 'views/sessions/talks.html',
-            controller: 'SessionsClosedCtrl',
-            controllerAs: 'ctrl'
-          }
-        },
-        data: {
-          year: year
-        }
-      };
-    }
-
-    function stateSimplePage(url, template, roles, ctrlName) {
-      var state = {
-        url: '/' + url,
-        authorizedRoles: roles ? roles : [USER_ROLES.all],
-        views: {
-          main: {
-            templateUrl: template
-          }
-        }
-      };
-      if (ctrlName) {
-        state.views.main.controller = ctrlName;
-        state.views.main.controllerAs = 'ctrl';
-      }
-      return state;
+    /* @ngInject */
+    function getAllMembers(MemberService, type) {
+      return MemberService.getAll(type).then(function (response) {
+        return response.data;
+      });
     }
 
     //Router definition
     $stateProvider
-      .state('cerror', {
-        url: '/cerror/{type}',
-        params: {
+
+      //Home and error route
+      .state('home', new State(USER_ROLES, 'home', 'views/home.html').build())
+
+      .state('valid', new State(USER_ROLES, 'valid', 'views/home.html')
+        .controller(
+        /* @ngInject */
+        function (AuthenticationService) {
+          AuthenticationService.checkUser();
+        })
+        .build())
+
+      .state('cerror', new State(USER_ROLES, 'cerror/{type}', 'views/error.html')
+        .params({
           error: {}
-        },
-        views: {
-          main: {
-            templateUrl: 'views/error.html',
-            controller: function ($scope, $stateParams) {
-              $scope.error = $stateParams.error;
-              $scope.type = $stateParams.type;
-            }
-          }
-        }
-      })
-
-      //Home Page
-      .state('home', stateSimplePage('home', 'views/home.html'))
-      .state('valid', {
-        url: '/valid',
-        views: {
-          main: {
-            templateUrl: 'views/home.html',
-            controller: function (AuthenticationService) {
-              AuthenticationService.checkUser();
-            }
-          }
-        }
-      })
+        })
+        .controller(
+        /* @ngInject */
+        function ($scope, $stateParams) {
+          $scope.error = $stateParams.error;
+          $scope.type = $stateParams.type;
+        })
+        .build())
 
       //News
-      .state('news', {
-        url: '/article/:id',
-        resolve: {
-          articles: function (ArticleService) {
-            return ArticleService.getAll().then(function (response) {
-              return response.data;
-            });
-          }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/info/news.html',
-            controller: 'ArticleCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      })
-      //News
-      .state('articles', {
-        url: '/articles',
-        authorizedRoles: [USER_ROLES.all],
-        resolve: {
-          articles: function (ArticleService) {
-            return ArticleService.getAll().then(function (response) {
-              return response.data;
-            });
-          }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/info/articles.html',
-            controller: function(articles){
-              var ctrl = this;
-              ctrl.articles = articles;
-            },
-            controllerAs: 'ctrl'
-          }
-        }
-      })
+      .state('news', new State(USER_ROLES, 'article/:id', 'views/info/news.html')
+        .controller('ArticleCtrl')
+        .resolve({articles: getAllArticles})
+        .build())
+
+      .state('articles', new State(USER_ROLES, 'articles', 'views/info/articles.html')
+        .controller(
+        /* @ngInject */
+        function (articles) {
+          var ctrl = this;
+          ctrl.articles = articles;
+        })
+        .resolve({articles: getAllArticles})
+        .build())
 
       //Program
-      .state('planning', stateSimplePage('planning', 'views/sessions/planning.html'))
-      .state('talks', stateSessions('talks', 'talk'))
-      .state('lightningtalks', stateSessions('lightningtalks', 'lightningtalks'))
-      .state('session', {
-        url: '/session/:type/:id',
-        authorizedRoles: [USER_ROLES.all],
-        resolve: {
+      .state('planning', new State(USER_ROLES, 'planning', 'views/sessions/planning.html').build())
+      .state('talks', new State(USER_ROLES, 'talks', 'views/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
+      .state('lightningtalks', new State(USER_ROLES, 'lightningtalks', 'views/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
+      .state('mixit15', new State(USER_ROLES, 'mixit15', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
+      .state('mixit14', new State(USER_ROLES, 'mixit14', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
+      .state('mixit13', new State(USER_ROLES, 'mixit13', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
+      .state('mixit12', new State(USER_ROLES, 'mixit12', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
+      .state('session', new State(USER_ROLES, 'session/:id', 'views/sessions/session.html').controller('SessionCtrl')
+        .resolve({
+          /* @ngInject */
           session: function (SessionService, $stateParams) {
             return SessionService.getById($stateParams.id).then(function (response) {
               return response.data;
             });
           }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/sessions/session.html',
-            controller: 'SessionCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      })
+        })
+        .build())
 
       //Participants
-      .state('speakers', stateMember('speakers', 'speaker'))
-      .state('sponsors', stateMember('sponsors', 'sponsor'))
-      .state('staff', stateMember('staff', 'staff'))
-      .state('member', {
-        url: '/member/:type/:id',
-        authorizedRoles: [USER_ROLES.all],
-        resolve: {
+      .state('speakers', new State(USER_ROLES, 'speakers', 'views/members/speakers.html').controller('MembersCtrl')
+        .resolve({
+          members: getAllMembers, type: function () {
+            return 'speaker';
+          }
+        })
+        .build())
+      .state('sponsors', new State(USER_ROLES, 'sponsors', 'views/members/sponsors.html').controller('MembersCtrl')
+        .resolve({
+          members: getAllMembers, type: function () {
+            return 'sponsor';
+          }
+        })
+        .build())
+      .state('staff', new State(USER_ROLES, 'staff', 'views/members/staff.html').controller('MembersCtrl')
+        .resolve({
+          members: getAllMembers, type: function () {
+            return 'staff';
+          }
+        })
+        .build())
+      .state('member', new State(USER_ROLES, 'member/:type/:id', 'views/members/member.html').controller('MemberCtrl')
+        .resolve({
           member: function (MemberService, $stateParams) {
             return MemberService.getById($stateParams.id).then(function (response) {
               return response.data;
             });
           }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/members/member.html',
-            controller: 'MemberCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      })
+        })
+        .build())
 
       //Infos
-      .state('multimedia', stateSimplePage('multimedia', 'views/info/multimedia.html'))
-      .state('conduite', stateSimplePage('conduite', 'views/info/conduite.html'))
-      .state('faq', stateSimplePage('faq', 'views/info/faq.html'))
-      .state('venir', stateSimplePage('venir', 'views/info/venir.html'))
-      .state('mixit15', stateOldEdition('mixit15', 2015))
-      .state('mixit14', stateOldEdition('mixit15', 2014))
-      .state('mixit13', stateOldEdition('mixit15', 2013))
-      .state('mixit12', stateOldEdition('mixit15', 2012))
+      .state('multimedia', new State(USER_ROLES, 'multimedia', 'views/info/multimedia.html').build())
+      .state('conduite', new State(USER_ROLES, 'conduite', 'views/info/conduite.html').build())
+      .state('faq', new State(USER_ROLES, 'faq', 'views/info/faq.html').build())
+      .state('venir', new State(USER_ROLES, 'venir', 'views/info/venir.html').build())
 
-      //Connected
-      .state('favoris', stateSimplePage('favoris', 'views/sessions/favoris.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker]))
-      .state('account', {
-        url: '/account',
-        authorizedRoles: [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker],
-        resolve: {
+
+      //Account
+      .state('account', new State(USER_ROLES, 'account', 'views/account/account.html')
+        .controller('AccountCtrl')
+        .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
+        .resolve({
           account: function (AuthenticationService, $http) {
             var currentUser = AuthenticationService.currentUser();
             if (currentUser) {
               return $http.get('app/account/' + currentUser.oauthId).then(function (response) {
-                  return response.data;
+                return response.data;
               });
             }
           }
-        },
-        views: {
-          main: {
-            templateUrl: 'views/account/account.html',
-            controller: 'AccountCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      })
+        })
+        .build())
+      .state('createaccount', new State(USER_ROLES, 'createaccount', 'views/account/create-user-account.html')
+        .controller('CreateUserAccountCtrl')
+        .build())
+      .state('createaccountsocial', new State(USER_ROLES, 'createaccountsocial', 'views/account/create-social-account.html')
+        .controller('CreateSocialAccountCtrl')
+        .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
+        .build())
+
 
       //Security
-      .state('createaccount', stateSimplePage('createuseraccount', 'views/account/create-user-account.html', [USER_ROLES.all], 'CreateUserAccountCtrl'))
-      .state('createaccountsocial', stateSimplePage('createaccountsocial', 'views/account/create-social-account.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'CreateSocialAccountCtrl'))
-
-      .state('logout', stateSimplePage('logout', 'views/home.html'))
-      .state('authent', stateSimplePage('authent', 'views/security/login.html', [USER_ROLES.all], 'LoginCtrl'))
-      .state('passwordlost', stateSimplePage('passwordlost', 'views/security/password-lost.html', [USER_ROLES.all], 'PasswordLostCtrl'))
-      .state('passwordreinit', stateSimplePage('passwordreinit', 'views/security/password-reinit.html', [USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker], 'PasswordReinitCtrl'))
-
-      .state('doneaction', {
-        url: '/doneaction',
-        authorizedRoles: [USER_ROLES.all],
-        params: {
+      .state('logout', new State(USER_ROLES, 'logout', 'views/home.html').build())
+      .state('authent', new State(USER_ROLES, 'authent', 'views/security/login.html').controller('LoginCtrl').build())
+      .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'views/security/password-lost.html').controller('PasswordLostCtrl').build())
+      .state('passwordreinit', new State(USER_ROLES, 'passwordreinit', 'views/security/password-reinit.html')
+        .controller('PasswordReinitCtrl')
+        .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
+        .build())
+      .state('doneaction', new State(USER_ROLES, 'doneaction', 'views/security/done-action.html')
+        .controller('DoneActionCtrl')
+        .params({
           title: null,
           description: null
-        },
-        views: {
-          main: {
-            templateUrl: 'views/security/done-action.html',
-            controller: 'DoneActionCtrl',
-            controllerAs: 'ctrl'
-          }
-        }
-      });
-
+        })
+        .build());
 
   });
 
+  //Create an object to use a fluent API to define routes
+  function State(USER_ROLES, url, view) {
+    this.state = {
+      url: '/' + url,
+      templateUrl: view,
+      authorizedRoles: [USER_ROLES.all]
+    };
+  }
+
+  State.prototype.roles = function (rights) {
+    this.state.authorizedRoles = rights;
+    return this;
+  };
+  State.prototype.resolve = function (resolve) {
+    this.state.resolve = resolve;
+    return this;
+  };
+  State.prototype.params = function (params) {
+    this.state.params = params;
+    return this;
+  };
+  State.prototype.data = function (data) {
+    this.state.data = data;
+    return this;
+  };
+  State.prototype.controller = function (controller) {
+    this.state.controller = controller;
+    this.state.controllerAs = 'ctrl';
+    return this;
+  };
+  State.prototype.build = function () {
+    return this.state;
+  };
 })();
