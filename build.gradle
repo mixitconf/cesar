@@ -9,7 +9,6 @@ task wrapper(type: Wrapper) {
 
 buildscript {
     ext {
-        springRepoM = 'http://repo.spring.io/libs-milestone'
         springRepo = 'http://repo.spring.io/libs-release-remote'
 
         vAssertJ = '3.1.0'
@@ -30,7 +29,6 @@ buildscript {
     }
 
     repositories {
-        maven { url springRepoM }
         maven { url springRepo }
     }
 
@@ -93,8 +91,7 @@ configure([ project(':server')]) {
         compile "org.springframework.boot:spring-boot-starter-web:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-hateoas:${vSpringBoot}"
         compile "org.springframework.boot:spring-boot-starter-data-jpa:${vSpringBoot}"
-        compile "org.springframework:spring-context-support"
-        compile "org.springframework:spring-context"
+        compile "org.springframework.boot:spring-boot-starter-cache:${vSpringBoot}"
 
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1"
         compile "com.google.guava:guava:${vGuava}"
