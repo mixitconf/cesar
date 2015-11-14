@@ -10,9 +10,9 @@
     ctrl.createSocialAccount = function () {
       if (ctrl.credentials) {
         $http
-          .post('app/account/social', angular.copy(ctrl.credentials), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+          .put('app/account/social', angular.copy(ctrl.credentials), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
-            $state.go('useraccountcreated');
+            $state.go('doneaction', {title : 'view.account.creation.title', description : 'view.account.creation.confirmation'});
           })
           .catch(function (response) {
             if (response.data.type && response.data.type === 'EMAIL_EXIST'){

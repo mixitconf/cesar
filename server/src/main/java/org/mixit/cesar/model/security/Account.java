@@ -59,6 +59,7 @@ public class Account implements Cloneable {
     private LocalDateTime tokenExpiration;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private OAuthProvider provider;
 
     @Size(max = 255)
@@ -272,7 +273,7 @@ public class Account implements Cloneable {
     public Account prepareForView() {
         try {
             return ((Account) this.clone())
-                    .setHash(HashUtil.md5Hex(Optional.of(email).orElse("cesar")))
+                    .setHash(HashUtil.md5Hex(Optional.ofNullable(email).orElse("cesar")))
                     .setRoles(this.getAuthorities().stream().map(Authority::getName).map(Role::toString).collect(Collectors.toList()));
         }
         catch (CloneNotSupportedException e) {
@@ -289,6 +290,7 @@ public class Account implements Cloneable {
                 .setOauthId(this.oauthId)
                 .setLogin(this.login)
                 .setLastname(this.lastname)
+                .setProvider(this.provider)
                 .setFirstname(this.firstname)
                 .setValid(this.valid)
                 .setEmail(this.email)

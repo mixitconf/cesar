@@ -15,7 +15,7 @@
         $http
           .post('app/account/cesar', credentialsTosend, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
-            $state.go('useraccountcreated');
+            $state.go('doneaction', {title : 'view.account.creation.title', description : 'view.account.creation.confirmation'});
           })
           .catch(function (response) {
             if (response.data.type) {

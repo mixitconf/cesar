@@ -14,9 +14,11 @@ import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.exception.LoginExistException;
+import org.mixit.cesar.service.exception.UserNotFoundException;
 import org.mixit.cesar.service.mail.MailBuilder;
 import org.mixit.cesar.service.mail.MailerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -95,10 +97,10 @@ public class CreateCesarAccountService {
      */
     public Account updateAccount(Account account) {
         //Step1: we read account in database
-        Account accountDb = accountRepository.findByLogin(account.getLogin());
+        Account accountDb = accountRepository.findByOauthProviderAndId(account.getProvider(), account.getOauthId());
 
         if (accountDb == null) {
-            throw new LoginExistException();
+            throw new UserNotFoundException();
         }
 
         boolean emailChanged = !accountDb.getEmail().equals(account.getEmail());
@@ -125,6 +127,6 @@ public class CreateCesarAccountService {
                     mailBuilder.createHtmlMail(MailBuilder.TypeMail.EMAIL_CHANGED, account, Optional.empty()));
         }
 
-        return accountDb;
+        return accountRepository.save(accountDb);
     }
 }

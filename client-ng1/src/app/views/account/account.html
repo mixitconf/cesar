@@ -4,12 +4,15 @@
 
     <p class="cesar-text" translate="view.account.update.description"></p>
 
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
+    </div>
+
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
             <p translate="view.account.update.registeredAt" translate-values="{ registeredAt : 'tets' }"></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.login">
-                <input class="mdl-textfield__input" type="text" id="login" ng-required="true" name="login"
+                <input class="mdl-textfield__input" type="text" id="login" name="login"
                        ng-maxlength="100"
                        ng-model="ctrl.account.login" readonly/>
                 <label class="mdl-textfield__label" for="login" translate="view.account.id"></label>
@@ -30,26 +33,22 @@
                 <label class="mdl-textfield__label" for="email" translate="view.account.mail"></label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-
-                <input class="mdl-textfield__input" type="text" id="defaultLanguage" ng-show="false"
-                       ng-model="ctrl.account.defaultLanguage"/>
-                <label class="mdl-textfield__label" for="defaultLanguage"
-                       translate="view.account.defaultLanguage"></label>
+                <label class="mdl-textfield__label cesar-textfield__radio-label" translate="view.account.defaultLanguage"></label>
 
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
                     <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
                            ng-model="ctrl.account.defaultLanguage">
-                    <span class="mdl-radio__label" translate="lang.en">First</span>
+                    <span class="mdl-radio__label" translate="lang.en">en</span>
                 </label>
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
                     <input type="radio" id="language-2" class="mdl-radio__button" name="options" value="fr"
                            ng-model="ctrl.account.defaultLanguage">
-                    <span class="mdl-radio__label" translate="lang.fr">Second</span>
+                    <span class="mdl-radio__label" translate="lang.fr">fr</span>
                 </label>
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.login(ctrl.credentials)">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab "
+                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.updateAccount(ctrl.account)">
                 <i class="material-icons">vpn_key</i>
             </button>
         </form>
