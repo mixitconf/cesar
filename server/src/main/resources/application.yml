@@ -3,6 +3,15 @@ project:
   name: Cesar
   description: Mix-IT website
 
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+  app:
+    name: ${project.name}
+    version: ${project.version}
+
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}
   crypto:
@@ -39,6 +48,14 @@ spring:
     testOnBorrow : true
     validationQuery : SELECT 1
 
+management:
+  context-path: /monitoring
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,text/css,application/javascript
+    min-response-size: 2048
 ---
 spring:
   profiles: default
