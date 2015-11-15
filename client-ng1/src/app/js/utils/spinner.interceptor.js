@@ -5,7 +5,7 @@
   /**
    * This interceptor is used to display a spinner when a request is executed
    */
-  angular.module('cesar-utils').factory('cesarSpinnerInterceptor', function ($rootScope) {
+  angular.module('cesar-utils').factory('cesarSpinnerInterceptor', function ($rootScope, $q) {
     'ngInject';
 
     return {
