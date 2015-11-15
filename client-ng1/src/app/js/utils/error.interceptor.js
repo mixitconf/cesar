@@ -21,7 +21,4 @@
     };
   });
 
-  angular.module('cesar-utils').config(function($httpProvider) {
-    $httpProvider.interceptors.push('cesarErrorInterceptor');
-  });
 })();
