@@ -89,11 +89,11 @@ configure([ project(':server')]) {
 
     dependencies {
 
-        compile "org.springframework.boot:spring-boot-starter-actuator:${vSpringBoot}"
-        compile "org.springframework.boot:spring-boot-starter-web:${vSpringBoot}"
-        compile "org.springframework.boot:spring-boot-starter-hateoas:${vSpringBoot}"
-        compile "org.springframework.boot:spring-boot-starter-data-jpa:${vSpringBoot}"
-        compile "org.springframework.boot:spring-boot-starter-cache:${vSpringBoot}"
+        compile "org.springframework.boot:spring-boot-starter-actuator"
+        compile "org.springframework.boot:spring-boot-starter-web"
+        compile "org.springframework.boot:spring-boot-starter-hateoas"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa"
+        compile "org.springframework.boot:spring-boot-starter-cache"
 
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1"
         compile "com.google.guava:guava:${vGuava}"

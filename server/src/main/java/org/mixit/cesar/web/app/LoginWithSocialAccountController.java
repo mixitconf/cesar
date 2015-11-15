@@ -11,7 +11,6 @@ import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.account.CreateSocialAccountService;
 import org.mixit.cesar.service.authentification.CookieService;
-import org.mixit.cesar.service.authentification.RequestedPath;
 import org.mixit.cesar.service.oauth.OAuthFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Transactional
 @RequestMapping("/app")
 public class LoginWithSocialAccountController {
-
-    @Autowired
-    private RequestedPath requestedPath;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -55,8 +51,6 @@ public class LoginWithSocialAccountController {
             @PathVariable("provider") String providerName,
             @RequestParam(value = "to", defaultValue = "/") String redirect,
             HttpServletRequest request) throws IOException {
-
-        requestedPath.setValue(redirect);
         OAuthProvider provider = toProvider(providerName);
         return "redirect:" + oauthFactory.create(provider).getRedirectUrl(request);
     }
@@ -84,7 +78,7 @@ public class LoginWithSocialAccountController {
                 response.sendRedirect(urlFactory.getBaseUrl() + "/createaccountsocial");
             }
             else {
-                response.sendRedirect(urlFactory.getBaseUrl() + requestedPath.getValue());
+                response.sendRedirect(urlFactory.getBaseUrl() + "/home");
             }
         }
         else {

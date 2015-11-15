@@ -178,6 +178,11 @@
           title: null,
           description: null
         })
+        .build())
+
+      .state('monitor', new State(USER_ROLES, 'monitor', 'views/admin/monitoring.html')
+        .controller('MonitoringCtrl')
+        .roles([USER_ROLES.admin])
         .build());
 
   });

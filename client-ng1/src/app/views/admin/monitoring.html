@@ -1,0 +1,42 @@
+<div class="cesar-container">
+    <h1>Server monitoring</h1>
+
+    <div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('info')">
+            Info
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('beans')">
+            Beans
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('trace')">
+            Trace
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('metrics')">
+            Metrics
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('env')">
+            Environment
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('health')">
+            Health
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('mappings')">
+            Mappings
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('dump')">
+            Dump
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('autoconfig')">
+            autoconfig
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.monitor('configprops')">
+            configprops
+        </button>
+    </div>
+    <p>&nbsp;</p>
+    <p class="cesar-text">Report <strong>{{ctrl.report}}</strong></p>
+    <pre>{{ctrl.result | json}}</pre>
+
+    <p>&nbsp;</p>
+</div>
+<p>&nbsp;</p>
