@@ -23,8 +23,7 @@ buildscript {
         vNodePlugin = '0.10'
         vMysql = '5.1.36'
         vSl4j = '1.7.12'
-        vSpringBoot = '1.3.0.RC1'
-        vSpringLoaded = '1.2.4.RELEASE'
+        vSpringBoot = '1.3.0.RELEASE'
         vSwagger = '2.0.3'
     }
 
@@ -35,7 +34,6 @@ buildscript {
     dependencies {
         classpath "com.moowork.gradle:gradle-gulp-plugin:${vNodePlugin}"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${vSpringBoot}"
-        classpath "org.springframework:springloaded:${vSpringLoaded}"
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
         classpath 'net.researchgate:gradle-release:2.3.3'
         classpath 'org.ajoberstar:gradle-git:0.6.3'
