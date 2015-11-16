@@ -13,7 +13,6 @@ import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.account.CreateCesarAccountService;
 import org.mixit.cesar.service.account.CreateSocialAccountService;
 import org.mixit.cesar.service.account.TokenService;
-import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.autorisation.NeedsRole;
