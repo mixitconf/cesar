@@ -192,14 +192,14 @@
         "title": "Création de compte",
         "description": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Les informations minimales sont un email à confirmer, un identifiant de login et votre nom, prénom. Votre mail ne sera jamais communiqué à des tierces personnes.",
         "descriptionsocial": "Pour créer un compte nous avons besoin de connaître certaines informations qui nous permettrons de vous contacter. Votre mail ne sera jamais communiqué à des tierces personnes.",
-        "confirmation": "Merci d'avoir créé un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer votre adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
+        "confirmation": "Merci d'avoir créé un compte sur le site de Mix-IT. Nous venons de vous envoyer un mail afin de confirmer votre adresse e-mail. Cliquez sur le lien dans le mail pour valider votre compte et vous pourrez alors utiliser toutes les fonctionnalités du site comme par exemple la gestion de vos favoris...",
         "back": "Retourner sur la page d'accueil"
       },
       "login": {
         "title": "Authentification",
         "secure": "Certaines fonctionnalités du site sont sécurisées.",
         "cnil": " Conformément à la loi Informatique et Liberté vous bénéficiez des droits de voir et de modifier vos données. Vous pouvez aussi nous demander par simple demande de supprimer votre compte",
-        "advice": "Nous vous conseillons de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> afin de ne pas stocker votre mot de passe sur nos serveurs.",
+        "advice": "Nous vous conseillons de passer par un provider tel que <strong>Google +</strong> ou <strong>Twitter</strong> pour ne pas avoir un nouveau mot de passe à mémoriser, et le faire stocker sur nos serveurs.",
         "social": "Avec un réseau social",
         "legacy": "Classique",
         "newaccount1": "Vous avez la possibilité de ",
