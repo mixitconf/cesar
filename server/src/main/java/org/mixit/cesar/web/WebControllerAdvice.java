@@ -1,7 +1,9 @@
 package org.mixit.cesar.web;
 
 import static org.mixit.cesar.model.FunctionalError.Type.*;
+import static org.springframework.http.HttpStatus.GATEWAY_TIMEOUT;
 
+import java.net.UnknownHostException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

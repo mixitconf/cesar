@@ -232,7 +232,8 @@
     "EMAIL_NOT_EXIST": "Cet email ne correspond à aucun compte sur notre site",
     "UNIQUE_LOGIN": "Cet identifiant est déjà utilisé",
     "VALID_PASSWORD": "La confirmation de mot de passe ne correspond pas au mot de passe saisi",
-    "MIN_LENGTH": "Le mot de passe doit faire au moins 8 caractères"
+    "MIN_LENGTH": "Le mot de passe doit faire au moins 8 caractères",
+    "CONNEXION_REFUSED": "Impossible de communiquer avec le serveur distant pour le moment. Veuillez réessayer plus tard..."
   },
   "footer": {
     "whoarewe": {

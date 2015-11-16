@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 public class CesarErrorConfig {
 
     @Bean
-    public EmbeddedServletContainerCustomizer containerCustomizer(AbsoluteUrlFactory urlFactory) {
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
 
         return (container -> {
             container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/cerror/404"));

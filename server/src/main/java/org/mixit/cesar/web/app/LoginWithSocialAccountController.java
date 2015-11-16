@@ -1,6 +1,7 @@
 package org.mixit.cesar.web.app;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,9 @@ import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.account.CreateSocialAccountService;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.oauth.OAuthFactory;
+import org.scribe.exceptions.OAuthConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,11 +52,18 @@ public class LoginWithSocialAccountController {
     @RequestMapping(value = "/login-with/{provider}", method = RequestMethod.GET)
     public String startOAuthDance(
             @PathVariable("provider") String providerName,
-            @RequestParam(value = "to", defaultValue = "/") String redirect,
+            HttpServletResponse response,
             HttpServletRequest request) throws IOException {
         OAuthProvider provider = toProvider(providerName);
-        return "redirect:" + oauthFactory.create(provider).getRedirectUrl(request);
+        try {
+            return "redirect:" + oauthFactory.create(provider).getRedirectUrl(request);
+        }
+        catch (OAuthConnectionException exception){
+            response.sendRedirect(urlFactory.getBaseUrl() + "/cerror/CONNEXION_REFUSED");
+            return null;
+        }
     }
+
 
     /**
      * Receives the OAuth callback and authenticates, or signs up, the user
