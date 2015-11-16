@@ -7,6 +7,9 @@
 
     var ctrl = this;
 
+    ctrl.account = {
+      defaultLanguage : 'fr'
+    };
     ctrl.createUserAccount = function () {
       if (ctrl.credentials) {
         var credentialsTosend = angular.copy(ctrl.credentials);

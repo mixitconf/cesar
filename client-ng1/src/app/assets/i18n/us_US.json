@@ -198,6 +198,7 @@
       "confirmation": "Thank you for creating an account on the Mix-IT website. We have just sent you an email to confirm your email address. Click the link in the email to validate your account and you can use all the features of the website such as managing your favorites ...",
       "back": "Return to the home page"
     },
+
     "login": {
       "title": "Authentication",
       "secure": "Some features of the site are secure.",
@@ -237,7 +238,7 @@
     "MIN_LENGTH": "The password must be at least 8 characters"
   },    
   "footer": {
-    "whoarewe": {
+    "wgihoarewe": {
       "title": "Who are we?",
       "content": "Mix-IT is a non profit association created in 2011 by volunteers coming from technological and agile user groups in Lyon"
     },

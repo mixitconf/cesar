@@ -13,9 +13,15 @@
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
     </div>
 
-    <div class="cesar-error" ng-if="frm.login.$error.uniqueLogin" translate="error.UNIQUE_LOGIN">Cet identifiant est déjà utilisé</div>
-    <div class="cesar-error" ng-if="frm.confirmpassword.$error.validPassword" translate="error.VALID_PASSWORD">La confirmation de mot de passe ne correspond pas au mot de passe saisi</div>
-    <div class="cesar-error" ng-if="frm.password.$error.minlength" translate="error.MIN_LENGTH">Le mot de passe doit faire au moins 8 caractères</div>
+    <div class="cesar-error" ng-if="frm.login.$error.uniqueLogin" translate="error.UNIQUE_LOGIN">Cet identifiant est
+        déjà utilisé
+    </div>
+    <div class="cesar-error" ng-if="frm.confirmpassword.$error.validPassword" translate="error.VALID_PASSWORD">La
+        confirmation de mot de passe ne correspond pas au mot de passe saisi
+    </div>
+    <div class="cesar-error" ng-if="frm.password.$error.minlength" translate="error.MIN_LENGTH">Le mot de passe doit
+        faire au moins 8 caractères
+    </div>
 
     <form novalidate class="cesar-form" name="frm">
         <div class="mdl-grid">
@@ -26,9 +32,11 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="login" ng-required="true" cesar-login name="login" ng-maxlength="100"
+                                <input class="mdl-textfield__input" type="text" id="login" ng-required="true"
+                                       cesar-login name="login" ng-maxlength="100"
                                        ng-model="ctrl.credentials.login"/>
-                                <label class="mdl-textfield__label" for="login" translate="view.account.id">Identifiant</label>
+                                <label class="mdl-textfield__label" for="login"
+                                       translate="view.account.id">Identifiant</label>
                             </div>
                         </div>
                     </div>
@@ -36,14 +44,17 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true" ng-maxlength="100"
+                                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true"
+                                       ng-maxlength="100"
                                        ng-model="ctrl.credentials.lastname"/>
-                                <label class="mdl-textfield__label" for="lastname" translate="view.account.lastname">Nom</label>
+                                <label class="mdl-textfield__label" for="lastname"
+                                       translate="view.account.lastname">Nom</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true" ng-maxlength="100"
+                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
+                                       ng-maxlength="100"
                                        ng-model="ctrl.credentials.firstname"/>
                                 <label class="mdl-textfield__label" for="firstname" translate="view.account.firstname">Prénom</label>
                             </div>
@@ -53,17 +64,22 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="password" id="password" name="password" ng-required="true" ng-minlength="8" ng-maxlength="50"
+                                <input class="mdl-textfield__input" type="password" id="password" name="password"
+                                       ng-required="true" ng-minlength="8" ng-maxlength="50"
                                        ng-model="ctrl.credentials.password"/>
-                                <label class="mdl-textfield__label" for="password" translate="view.account.password">Mot de passe</label>
+                                <label class="mdl-textfield__label" for="password" translate="view.account.password">Mot
+                                    de passe</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="password" id="confirmpassword" cesar-confirm-password name="confirmpassword"
-                                       ng-required="true" password="ctrl.credentials.password" ng-minlength="8" ng-maxlength="50"
+                                <input class="mdl-textfield__input" type="password" id="confirmpassword"
+                                       cesar-confirm-password name="confirmpassword"
+                                       ng-required="true" password="ctrl.credentials.password" ng-minlength="8"
+                                       ng-maxlength="50"
                                        ng-model="ctrl.credentials.confirmpassword"/>
-                                <label class="mdl-textfield__label" for="confirmpassword" translate="view.account.confirmpassword">Confirmation mot de
+                                <label class="mdl-textfield__label" for="confirmpassword"
+                                       translate="view.account.confirmpassword">Confirmation mot de
                                     passe</label>
                             </div>
                         </div>
@@ -72,17 +88,37 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="email" id="email" ng-required="true" ng-maxlength="250"
+                                <input class="mdl-textfield__input" type="email" id="email" ng-required="true"
+                                       ng-maxlength="250"
                                        ng-model="ctrl.credentials.email"/>
-                                <label class="mdl-textfield__label" for="email" translate="view.account.mail">E-mail</label>
+                                <label class="mdl-textfield__label" for="email"
+                                       translate="view.account.mail">E-mail</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
+                                    <input type="radio" id="language-1" class="mdl-radio__button" name="options"
+                                           value="en"
+                                           ng-model="ctrl.account.defaultLanguage">
+                                    <span class="mdl-radio__label" translate="lang.en">en</span>
+                                </label>
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
+                                    <input type="radio" id="language-2" class="mdl-radio__button" name="options"
+                                           value="fr"
+                                           ng-model="ctrl.account.defaultLanguage">
+                                    <span class="mdl-radio__label" translate="lang.fr">fr</span>
+                                </label>
                             </div>
                         </div>
                     </div>
 
-
                     <div class="mdl-card__actions mdl-card--border">
                         <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"
-                                      on-click="ctrl.createUserAccount()" spinner="spinner" google-icon="save"></cesar-button>
+                                      on-click="ctrl.createUserAccount()" spinner="spinner"
+                                      google-icon="save"></cesar-button>
                     </div>
                 </div>
             </div>
