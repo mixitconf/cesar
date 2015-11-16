@@ -8,8 +8,9 @@
     var ctrl = this;
     ctrl.account = account;
 
-    ctrl.updateAccount = function () {
-      $http
+    if(ctrl.account){
+      ctrl.updateAccount = function () {
+        $http
           .put('app/account', angular.copy(ctrl.account), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
             $state.go('home');
@@ -22,7 +23,9 @@
               ctrl.errorMessage = 'UNDEFINED';
             }
           });
-    };
+      };
+    }
+
 
   });
 

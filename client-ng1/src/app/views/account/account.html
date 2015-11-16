@@ -47,10 +47,9 @@
                 </label>
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab "
-                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.updateAccount(ctrl.account)">
-                <i class="material-icons">vpn_key</i>
-            </button>
+            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'"
+                          on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
+            </cesar-button>
         </form>
         <p>&nbsp;</p>
 
