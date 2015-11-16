@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('AccountCtrl', function ($http, $state, account) {
+  angular.module('cesar-account').controller('AccountCtrl', function ($http, $state, $translate, account, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
@@ -13,6 +13,9 @@
         $http
           .put('app/account', angular.copy(ctrl.account), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
+            if(ctrl.account.defaultLanguage){
+              $translate.use((ctrl.account.defaultLanguage === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us);
+            }
             $state.go('home');
           })
           .catch(function (response) {
