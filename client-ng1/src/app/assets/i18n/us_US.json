@@ -238,7 +238,7 @@
     "MIN_LENGTH": "The password must be at least 8 characters"
   },    
   "footer": {
-    "wgihoarewe": {
+    "whoarewe": {
       "title": "Who are we?",
       "content": "Mix-IT is a non profit association created in 2011 by volunteers coming from technological and agile user groups in Lyon"
     },
