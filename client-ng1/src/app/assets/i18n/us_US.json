@@ -168,56 +168,56 @@
       "title": "An error has been detected",
       "explanation": "An error occured. Please try again and if the error is still there, do not hesitate to contact us in order to allow us to correct it"
     }
-  },
-  "account": {
-    "company": "Company",
-    "id": "Login",
-    "lastname": "Lastname",
-    "firstname": "Firstname",
-    "mail": "Email",
-    "password": "Password",
-    "confirmpassword": "Password Confirmation",
-    "actualpassword": "Current Password",
-    "defaultLanguage" : "Langage par défaut",
-    "shortDescription" : "Summary",
-    "longDescription" : "Description",
+    "account": {
+      "company": "Company",
+      "id": "Login",
+      "lastname": "Lastname",
+      "firstname": "Firstname",
+      "mail": "Email",
+      "password": "Password",
+      "confirmpassword": "Password Confirmation",
+      "actualpassword": "Current Password",
+      "defaultLanguage" : "Langage par défaut",
+      "shortDescription" : "Summary",
+      "longDescription" : "Description",
 
-    "update": {
-      "title": "Account",
-      "description" : "You can update your personnal data",
-      "registeredAt" : "You had created your account on the {{registeredAt}}",
-      "markdown" : "Markdown can be used when you define your description",
-      "interests" : "Your interests",
-      "sharedLinks" : "You can share several links"
-    },
+      "update": {
+        "title": "Account",
+        "description" : "You can update your personnal data",
+        "registeredAt" : "You had created your account on the {{registeredAt}}",
+        "markdown" : "Markdown can be used when you define your description",
+        "interests" : "Your interests",
+        "sharedLinks" : "You can share several links"
+      },
 
-    "creation": {
-      "title": "Account creation",
-      "description": "To create an account, we need to know some information that will allow us to contact you. The minimum information includes an email to confirm, a login ID and your full name. Your email address will never be disclosed to third parties.",
-      "descriptionsocial": "To create an account, we need to know some information that will allow us to contact you. Your email address will never be disclosed to third parties.",
-      "confirmation": "Thank you for creating an account on the Mix-IT website. We have just sent you an email to confirm your email address. Click the link in the email to validate your account and you can use all the features of the website such as managing your favorites ...",
-      "back": "Return to the home page"
-    },
+      "creation": {
+        "title": "Account creation",
+        "description": "To create an account, we need to know some information that will allow us to contact you. The minimum information includes an email to confirm, a login ID and your full name. Your email address will never be disclosed to third parties.",
+        "descriptionsocial": "To create an account, we need to know some information that will allow us to contact you. Your email address will never be disclosed to third parties.",
+        "confirmation": "Thank you for creating an account on the Mix-IT website. We have just sent you an email to confirm your email address. Click the link in the email to validate your account and you can use all the features of the website such as managing your favorites ...",
+        "back": "Return to the home page"
+      },
 
-    "login": {
-      "title": "Authentication",
-      "secure": "Some features of the site are secure.",
-      "cnil": " In accordance with the Data Protection Act you have the rights to view and edit your data. You can also ask by request to delete your account",
-      "advice": "We recommend you to go through a provider such as <strong> Google + </ strong> or <strong> Twitter </ strong> so you do not store your password on our servers.",
-      "social": "With a social network",
-      "legacy": "Classical",
-      "newaccount1": "You have the option of ",
-      "newaccount2": "create an account",
-      "newaccount3": " with a username and a password. The passwords are obviously encrypted and secure.",
-      "newpassword": "If you have lost your password, you can regenerate it by clicking ",
-      "newpassword1": "the following link."
-    },
-    "passwordlost": {
-      "title": "Lost password",
-      "description": "If you have lost your password or if your account is not active please enter the email address you used to create your account",
-      "explication": "You will receive an email to this address with a link that will allow you to access a page to reset your password",
-      "confirmation": "We have just sent you an email with a link that lets you reset your password.",
-      "back": "Return to the home page"
+      "login": {
+        "title": "Authentication",
+        "secure": "Some features of the site are secure.",
+        "cnil": " In accordance with the Data Protection Act you have the rights to view and edit your data. You can also ask by request to delete your account",
+        "advice": "We recommend you to go through a provider such as <strong> Google + </ strong> or <strong> Twitter </ strong> so you do not store your password on our servers.",
+        "social": "With a social network",
+        "legacy": "Classical",
+        "newaccount1": "You have the option of ",
+        "newaccount2": "create an account",
+        "newaccount3": " with a username and a password. The passwords are obviously encrypted and secure.",
+        "newpassword": "If you have lost your password, you can regenerate it by clicking ",
+        "newpassword1": "the following link."
+      },
+      "passwordlost": {
+        "title": "Lost password",
+        "description": "If you have lost your password or if your account is not active please enter the email address you used to create your account",
+        "explication": "You will receive an email to this address with a link that will allow you to access a page to reset your password",
+        "confirmation": "We have just sent you an email with a link that lets you reset your password.",
+        "back": "Return to the home page"
+      }
     }
   },
   "error": {
