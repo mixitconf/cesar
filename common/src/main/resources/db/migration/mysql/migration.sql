@@ -3,7 +3,7 @@
  You have to install the prod backup on a local mysql, create the new shema (mixit) with flyway and use this scripts
  */
 
-INSERT INTO mixit.Event (ID,CURRENT,YEAR) VALUES (2, FALSE ,2012), (3, FALSE ,2013), (4, FALSE ,2014), (5, TRRUE ,2015);
+INSERT INTO mixit.Event (ID,CURRENT,YEAR) VALUES (2, FALSE ,2012), (3, FALSE ,2013), (4, FALSE ,2014), (5, TRUE ,2015);
 
 INSERT INTO mixit.Interest (id, name)
 SELECT id, name
@@ -82,13 +82,12 @@ INSERT INTO mixit.Authority (ID,NAME) VALUES (2, 'MEMBER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (3, 'SPEAKER');
 INSERT INTO mixit.Authority (ID,NAME) VALUES (4, 'SPONSOR');
 
-
+/*
 INSERT INTO mixit.Account (ID, oauthId, provider,  password, token, defaultLanguage, valid, MEMBER_ID)
 SELECT id, googleId, CASE provider WHEN 'Google' THEN 'GOOGLE' WHEN 'LinkIt' THEN 'CESAR' WHEN 'Twitter' THEN 'TWITTER' END AS provider, password, token, CASE lang WHEN 'fr' THEN 'fr' WHEN 'en' THEN 'en' ELSE 'fr'  END AS lang, 1, member_id
 FROM ad_32609ed48478829.authaccount
 WHERE provider<>'LinkedIn';
 
-/* login is in the table account */
 UPDATE mixit.Account a set a.LOGIN=(SELECT b.screenName from ad_32609ed48478829.account b where a.member_id=b.member_id and b.screenName is not null);
 UPDATE mixit.Account a set a.LOGIN=(SELECT b.googleId from ad_32609ed48478829.account b where a.member_id=b.member_id and b.googleId is not null) where a.login is null;
 UPDATE mixit.Account a set a.LOGIN=a.oauthId where a.login is null;
@@ -112,3 +111,4 @@ FROM mixit.Account;
 INSERT INTO mixit.Account_Authority (ACCOUNT_ID,AUTHORITIES_ID)
 SELECT a.id, 1
 FROM mixit.Account a inner join mixit.Member b on a.member_id=b.id where b.DTYPE='Staff';
+*/

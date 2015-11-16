@@ -167,7 +167,7 @@
     "error": {
       "title": "An error has been detected",
       "explanation": "An error occured. Please try again and if the error is still there, do not hesitate to contact us in order to allow us to correct it"
-    }
+    },
     "account": {
       "company": "Company",
       "id": "Login",
