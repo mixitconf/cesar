@@ -8,7 +8,6 @@ import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
 import org.mixit.cesar.service.account.ResetPasswordService;
 import org.mixit.cesar.service.account.TokenService;
-import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.authentification.CurrentUser;
@@ -55,7 +54,7 @@ public class ResetPasswordController {
     /**
      * Send an email to reinit password
      *
-     * @see AuthenticationInterceptor
+     * @see org.mixit.cesar.service.authentification.AuthenticationFilter
      */
     @RequestMapping(method = RequestMethod.DELETE)
     public void sendMailForPasswordReinit(@RequestParam(value = "email") String email) {
@@ -66,7 +65,7 @@ public class ResetPasswordController {
     /**
      * Redirect user on password reinit page if token is valid. We need to authenticate the user to do that
      *
-     * @see AuthenticationInterceptor
+     * @see org.mixit.cesar.service.authentification.AuthenticationFilter
      */
     @RequestMapping
     public void passwordReinit(@RequestParam String token, HttpServletResponse response) throws IOException {
@@ -86,7 +85,7 @@ public class ResetPasswordController {
     /**
      * Redirect user on password reinit page if token is valid. We need to authenticate the user to do that
      *
-     * @see AuthenticationInterceptor
+     * @see org.mixit.cesar.service.authentification.AuthenticationFilter
      */
     @RequestMapping(value = "/check")
     @Authenticated

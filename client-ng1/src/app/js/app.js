@@ -30,4 +30,10 @@
     'pascalprecht.translate'
   ]);
 
+  angular.module('cesar').config(function($httpProvider) {
+    $httpProvider.interceptors.push('cesarErrorInterceptor', 'cesarSpinnerInterceptor');
+  });
+
 })();
+
+

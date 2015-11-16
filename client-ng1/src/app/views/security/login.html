@@ -6,7 +6,7 @@
 
     <p translate="view.account.login.cnil"></p>
 
-    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
+    <div class="cesar-error" ng-if="errorMessage" translate="error.{{errorMessage}}">
     </div>
 
     <div class="cesar-section--bottom">
@@ -22,10 +22,12 @@
                     <div class="mdl-card__supporting-text cesar-card__supporting-text">
                         <div class="mdl-card__supporting-text cesar-card__supporting-text" translate="view.account.login.advice"></div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored cesar-button-twitter" ng-click="ctrl.loginWithTwitter()">
+                            <button class="mdl-button mdl-js-button mdl-button--raised" ng-click="ctrl.loginWithTwitter()"
+                                    ng-disabled="spinner==='on'" ng-class="{'cesar-button-twitter' : spinner==='off','mdl-button--colored' : spinner==='off'}">
                                 <img src="img/social/twitter.svg"> Twitter
                             </button>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored cesar-button-google" ng-click="ctrl.loginWithGoogle()">
+                            <button class="mdl-button mdl-js-button mdl-button--raised " ng-click="ctrl.loginWithGoogle()"
+                                    ng-disabled="spinner==='on'" ng-class="{'cesar-button-google' : spinner==='off','mdl-button--colored' : spinner==='off'}">
                                 <img src="img/social/google.svg"> Google+
                             </button>
                         </div>
@@ -62,10 +64,8 @@
                         </div>
 
                         <div class="mdl-card__actions mdl-card--border">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                                    ng-disabled="!frm.$pristine && frm.$invalid" ng-click="ctrl.login(ctrl.credentials)">
-                                <i class="material-icons">vpn_key</i>
-                            </button>
+                            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"
+                                          on-click="ctrl.login()" spinner="spinner" google-icon="vpn_key"></cesar-button>
                         </div>
                     </div>
                 </div>

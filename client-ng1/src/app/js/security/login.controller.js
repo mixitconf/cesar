@@ -7,7 +7,11 @@
 
     var ctrl = this;
 
-    ctrl.login = AuthenticationService.login;
+    ctrl.login = function(){
+      if(ctrl.credentials){
+        AuthenticationService.login(ctrl.credentials);
+      }
+    };
 
     ctrl.loginWithGoogle = function(){
       AuthenticationService.loginWithProvider('GOOGLE', $state.redirect);

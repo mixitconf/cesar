@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
-import org.mixit.cesar.service.authentification.AuthenticationInterceptor;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
@@ -42,7 +41,7 @@ public class LoginWithCesarAccountController {
     /**
      * Authenticates the user and returns the user token which has to be sent in the header of every request
      *
-     * @see AuthenticationInterceptor
+     * @see org.mixit.cesar.service.authentification.AuthenticationFilter
      */
     @RequestMapping(value = "/login",
             method = RequestMethod.POST,

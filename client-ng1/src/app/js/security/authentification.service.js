@@ -39,6 +39,7 @@
 
 
     function loginWithProvider(provider, redirect) {
+      $rootScope.spinner='on';
       $window.location.href = '/app/login-with/' + provider + (redirect ? '?to=' + redirect : '');
     }
 

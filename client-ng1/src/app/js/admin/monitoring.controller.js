@@ -12,8 +12,8 @@
         .then(function (response) {
           ctrl.report = key;
           ctrl.result = response.data;
-        })
-    }
+        });
+    };
 
     ctrl.monitor('info');
   });
