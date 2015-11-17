@@ -1,6 +1,7 @@
 package org.mixit.cesar.web.api;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.Api;
@@ -9,6 +10,7 @@ import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.article.Article;
 import org.mixit.cesar.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +30,10 @@ public class ArticleController {
     @ApiOperation(value = "Finds one article", httpMethod = "GET")
     @JsonView(FlatView.class)
     public ResponseEntity<Article> getArticle(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(articleRepository.findArticleById(id), HttpStatus.OK);
+        return ResponseEntity
+                .ok()
+                .cacheControl(CacheControl.maxAge(4, TimeUnit.DAYS))
+                .body(articleRepository.findArticleById(id));
     }
 
     @RequestMapping

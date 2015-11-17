@@ -1,6 +1,7 @@
 package org.mixit.cesar.web.api;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -10,6 +11,7 @@ import org.mixit.cesar.model.session.Session;
 import org.mixit.cesar.repository.SessionRepository;
 import org.mixit.cesar.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,10 +35,12 @@ public class SessionController {
     EventService eventService;
 
     private <T extends Session<T>> ResponseEntity<List<SessionResource>> getAllSessions(List<T> sessions) {
-        return new ResponseEntity<>(sessions
+        return ResponseEntity
+                .ok()
+                .body(sessions
                 .stream()
                 .map(m -> SessionResource.convert(m))
-                .collect(Collectors.toList()), HttpStatus.OK);
+                .collect(Collectors.toList()));
     }
 
     @RequestMapping("/{id}")
@@ -45,7 +49,9 @@ public class SessionController {
         Session session = sessionRepository.findOne(id);
         session.setNbConsults(session.getNbConsults()+1);
         sessionRepository.save(session);
-        return new ResponseEntity<>(SessionResource.convert(session), HttpStatus.OK);
+        return ResponseEntity
+                .ok()
+                .body(SessionResource.convert(session));
     }
 
     @RequestMapping

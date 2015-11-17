@@ -1,6 +1,7 @@
 package org.mixit.cesar.web.api;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -9,7 +10,9 @@ import org.mixit.cesar.model.member.Member;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.EventService;
 import org.mixit.cesar.web.api.dto.MemberResource;
+import org.mixit.cesar.web.api.dto.SessionResource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,10 +35,13 @@ public class MemberController {
     EventService eventService;
 
     private <T extends Member<T>> ResponseEntity<List<MemberResource>> getAllMembers(List<T> members) {
-        return new ResponseEntity<>(members
-                .stream()
-                .map(m -> MemberResource.convert(m))
-                .collect(Collectors.toList()), HttpStatus.OK);
+        return ResponseEntity
+                .ok()
+                .cacheControl(CacheControl.maxAge(4, TimeUnit.DAYS))
+                .body(members
+                        .stream()
+                        .map(m -> MemberResource.convert(m))
+                        .collect(Collectors.toList()));
     }
 
     @RequestMapping("/{id}")
@@ -44,7 +50,9 @@ public class MemberController {
         Member member = memberRepository.findOne(id);
         member.setNbConsults(member.getNbConsults() + 1);
         memberRepository.save(member);
-        return new ResponseEntity<>(MemberResource.convert(member), HttpStatus.OK);
+        return ResponseEntity
+                .ok()
+                .body(MemberResource.convert(member));
     }
 
     @RequestMapping
