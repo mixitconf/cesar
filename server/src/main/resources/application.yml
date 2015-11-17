@@ -47,6 +47,12 @@ spring:
     database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
     testOnBorrow : true
     validationQuery : SELECT 1
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
 
 management:
   context-path: /monitoring
