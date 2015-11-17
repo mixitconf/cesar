@@ -3,10 +3,6 @@
  ******************************************************************************************/
 group 'org.mixit'
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
-}
-
 buildscript {
     ext {
         springRepo = 'http://repo.spring.io/libs-release-remote'
@@ -45,6 +41,10 @@ buildscript {
 }
 
 apply plugin: 'net.researchgate.release'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
 
 /*******************************************************************************************
  * The different plugins used in submodules and dependencies are defined here
