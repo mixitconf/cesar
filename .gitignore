@@ -11,5 +11,4 @@ client
 node_modules/
 npm-debug.log
 target
-gradle.properties
 
