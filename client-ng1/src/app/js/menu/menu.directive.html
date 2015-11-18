@@ -13,7 +13,7 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <temp ng-repeat="item in ctrl.menus">
                     <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="{{item.link}}">
-                        <span translate="{{item.id}}"></span>&nbsp;
+                        <span class="link" translate="{{item.id}}"></span>&nbsp;
                         <button ng-if="item.icon" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                         <i class="material-icons">{{item.icon}}</i>
                         </button>
@@ -21,12 +21,12 @@
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
                         <img ng-if="item.hash" ng-src="http://www.gravatar.com/avatar/{{item.hash}}" class="cesar-img-avatar"/>
-                        <span translate="{{item.id}}"></span>&nbsp;
+                        <span class="link" translate="{{item.id}}"></span>&nbsp;
                         <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
                     </a>
                     <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
                         ng-if="item.submenus" for="{{item.id}}">
-                        <li ng-repeat="subitem in item.submenus"
+                        <li ng-repeat="subitem in item.submenus" ui-sref="{{subitem.link}}"
                             ng-class="(subitem.divider) ? 'cesar-divider' : 'mdl-menu__item'">
                             <a ng-if="subitem.link" ui-sref="{{subitem.link}}"><span translate="{{subitem.id}}"></span></a>
                         </li>
