@@ -5,26 +5,35 @@
   angular.module('cesar-security').controller('PasswordReinitCtrl', function () {
     'ngInject';
 
-    //var ctrl = this;
+    var ctrl = this;
 
-    //changePasword
-    //ctrl.reinitPassword = function () {
-    //  if (ctrl.credentials && ctrl.credentials.email) {
-    //
-    //    $http.delete('/app/account/password?email=' + ctrl.credentials.email)
-    //      .then(function () {
-    //        $state.go('passwordlostconfirm');
-    //      })
-    //      .catch(function (response) {
-    //        if (response.data.type==='EMAIL_EXIST'){
-    //          ctrl.errorMessage = 'EMAIL_NOT_EXIST';
-    //        }
-    //        else {
-    //          ctrl.errorMessage = 'UNDEFINED';
-    //        }
-    //      });
-    //  }
-    //};
+    ctrl.changePasword = function () {
+      if (ctrl.credentials && ctrl.credentials.email) {
+        $http
+          .post('/app/account/password',
+          {
+            actualpassword : ctrl.credentials.actualpassword,
+            newpassword : ctrl.credentials.password
+          },
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            ignoreErrorRedirection: 'ignoreErrorRedirection'
+          })
+          .then(function () {
+            $state.go('home');
+          })
+          .catch(function (response) {
+            if (response.data.type==='EMAIL_EXIST'){
+              ctrl.errorMessage = 'EMAIL_NOT_EXIST';
+            }
+            else {
+              ctrl.errorMessage = 'UNDEFINED';
+            }
+          });
+      }
+    };
   });
 
 })();

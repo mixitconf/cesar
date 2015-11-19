@@ -6,6 +6,7 @@ import com.google.common.base.Preconditions;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.model.security.OAuthProvider;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class MailBuilder {
 
     @Autowired
     private AbsoluteUrlFactory urlFactory;
+    @Autowired
+    private CryptoService cryptoService;
 
     public enum TypeMail {
         REINIT_PASSWORD,
@@ -42,7 +45,10 @@ public class MailBuilder {
                         .append(url)
                         .append("\">")
                         .append(url)
-                        .append("</a></p>");
+                        .append("</a></p><p>Sur cette page vous devrez renseigner ce mot de passe provisoire <b>")
+                        .append(cryptoService.generateRandomPassword())
+                        .append("</b>pour pouvoir en définir un nouveau. ")
+                        .append("Si vous n'êtes pas à l'origine de cette action veuillez nous tenir informer</p>");
                 break;
             case EMAIL_CHANGED:
                 url = String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), account.getToken());

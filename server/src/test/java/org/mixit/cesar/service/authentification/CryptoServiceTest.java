@@ -13,4 +13,8 @@ public class CryptoServiceTest {
         assertThat(cryptoService.passwordHash("test")).isNotEmpty();
     }
 
+    @Test
+    public void genereate_password() {
+        assertThat(cryptoService.generateRandomPassword()).isNotEmpty().hasSize(9);
+    }
 }

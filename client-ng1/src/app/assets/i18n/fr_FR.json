@@ -211,9 +211,13 @@
       "passwordlost": {
         "title": "Mot de passe perdu",
         "description": "Si vous avez perdu votre mot de passe ou si votre compte n'est pas actif veuillez indiquer l'adresse e-mail que vous avez utilisée pour créer votre compte",
-        "explication": "Vous allez recevoir un e-mail à cette adresse avec un lien qui vous permettra d'accéder à une page pour réinitialiser votre mot de passe",
+        "explication": "Vous allez recevoir un e-mail à cette adresse avec un lien qui vous permettra d'accéder à une page pour réinitialiser votre mot de passe.",
         "confirmation": "Nous venons de vous envoyer un mail avec un lien qui vous permettra de réinitialiser votre mot de passe.",
         "back": "Retourner sur la page d'accueil"
+      },
+      "passwordreinit": {
+        "title": "Changement de mot de passe",
+        "description": "Veuillez renseigner votre mot de passe actuel (si vous avez demandé une réinitialisation vous l'avez reçu par mail) et le nouveau mot de passe que vous souhaitez utiliser"
       }
     }
   },

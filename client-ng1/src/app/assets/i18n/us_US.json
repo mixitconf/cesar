@@ -216,6 +216,10 @@
         "explication": "You'll receive an email with a link to reset your password",
         "confirmation": "We have just sent you an email with a link to reset your password.",
         "back": "Return to the home page"
+      },
+      "passwordreinit": {
+        "title": "Change password",
+        "description": "Enter your actual password (if you had asked for a re-initialization, a temporary password has been sent you by email) and the new one..."
       }
     }
   },

@@ -64,6 +64,13 @@ public class CreateSocialAccountService {
     }
 
     /**
+     * We had'nt be able to keep the old accounts when we migrated to the new website. When a user sign in for the
+     * first time on the new website, we try to link his old member infos
+     */
+    public Member tryToLinkWithActualMember(String email){
+        return null;
+    }
+    /**
      * Update an account to add email
      */
     public void updateAccount(Account account, String token, String oauthId) {
