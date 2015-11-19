@@ -15,8 +15,6 @@ public class MailBuilder {
 
     @Autowired
     private AbsoluteUrlFactory urlFactory;
-    @Autowired
-    private CryptoService cryptoService;
 
     public enum TypeMail {
         REINIT_PASSWORD,
@@ -46,8 +44,8 @@ public class MailBuilder {
                         .append("\">")
                         .append(url)
                         .append("</a></p><p>Sur cette page vous devrez renseigner ce mot de passe provisoire <b>")
-                        .append(cryptoService.generateRandomPassword())
-                        .append("</b>pour pouvoir en définir un nouveau. ")
+                        .append(account.getPassword())
+                        .append("</b> pour pouvoir en définir un nouveau. ")
                         .append("Si vous n'êtes pas à l'origine de cette action veuillez nous tenir informer</p>");
                 break;
             case EMAIL_CHANGED:

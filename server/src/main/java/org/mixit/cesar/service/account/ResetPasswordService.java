@@ -9,6 +9,7 @@ import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.repository.AuthorityRepository;
 import org.mixit.cesar.repository.MemberRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
+import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.exception.EmailExistException;
 import org.mixit.cesar.service.mail.MailBuilder;
 import org.mixit.cesar.service.mail.MailerService;
@@ -28,9 +29,6 @@ public class ResetPasswordService {
     private AccountRepository accountRepository;
 
     @Autowired
-    private AuthorityRepository authorityRepository;
-
-    @Autowired
     private MemberRepository memberRepository;
 
     @Autowired
@@ -38,6 +36,9 @@ public class ResetPasswordService {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private CryptoService cryptoService;
 
 
     /**
@@ -58,10 +59,12 @@ public class ResetPasswordService {
         //If user has a classic account we send him the mail to reinitialize his password
         if(account.isPresent()){
             tokenService.generateNewToken(account.get());
+            account.get().setPassword(cryptoService.generateRandomPassword());
             mailerService.send(
                     email,
                     "Password reinitialization",
                     mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, account.get(), Optional.of(account.get().getProvider())));
+            account.get().setPassword(cryptoService.passwordHash(account.get().getPassword()));
             accountRepository.save(account.get());
         }
         else{
