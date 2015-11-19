@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('PasswordReinitCtrl', function () {
+  angular.module('cesar-security').controller('PasswordReinitCtrl', function ($http, $state) {
     'ngInject';
 
     var ctrl = this;
