@@ -48,6 +48,14 @@ public class CreateCesarAccountService {
     @Autowired
     private CryptoService cryptoService;
 
+    private Member updateMember(Member member, Account account){
+        member.setLogin(account.getLogin())
+                .setEmail(account.getEmail())
+                .setFirstname(account.getFirstname())
+                .setLastname(account.getLastname());
+        return member;
+    }
+
     /**
      * Create an account with user password
      */
@@ -67,14 +75,7 @@ public class CreateCesarAccountService {
 
         //Step4: a member is created but invalid
         account.setValid(false);
-
-        if(member==null) {
-            member = memberRepository.save(new Member()
-                    .setLogin(account.getLogin())
-                    .setEmail(account.getEmail())
-                    .setFirstname(account.getFirstname())
-                    .setLastname(account.getLastname()));
-        }
+        member = memberRepository.save(updateMember(member==null ? new Member() : member, account));
 
         //Step5 : account is created
         account
