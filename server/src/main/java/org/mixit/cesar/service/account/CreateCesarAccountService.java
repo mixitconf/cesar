@@ -63,18 +63,18 @@ public class CreateCesarAccountService {
         }
 
         //Step3: we check if a member exist with the same email
-        if (!memberRepository.findByEmail(account.getEmail()).isEmpty()) {
-            throw new EmailExistException();
-        }
+        Member member = tokenService.tryToLinkWithActualMember(account.getEmail());
 
         //Step4: a member is created but invalid
         account.setValid(false);
 
-        Member member = memberRepository.save(new Member()
-                .setLogin(account.getLogin())
-                .setEmail(account.getEmail())
-                .setFirstname(account.getFirstname())
-                .setLastname(account.getLastname()));
+        if(member==null) {
+            member = memberRepository.save(new Member()
+                    .setLogin(account.getLogin())
+                    .setEmail(account.getEmail())
+                    .setFirstname(account.getFirstname())
+                    .setLastname(account.getLastname()));
+        }
 
         //Step5 : account is created
         account

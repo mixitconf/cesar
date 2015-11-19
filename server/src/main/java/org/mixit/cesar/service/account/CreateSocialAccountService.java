@@ -64,13 +64,6 @@ public class CreateSocialAccountService {
     }
 
     /**
-     * We had'nt be able to keep the old accounts when we migrated to the new website. When a user sign in for the
-     * first time on the new website, we try to link his old member infos
-     */
-    public Member tryToLinkWithActualMember(String email){
-        return null;
-    }
-    /**
      * Update an account to add email
      */
     public void updateAccount(Account account, String token, String oauthId) {
@@ -86,23 +79,24 @@ public class CreateSocialAccountService {
                 .setFirstname(account.getFirstname())
                 .setLastname(account.getLastname());
 
-        List<Member> member = memberRepository.findByEmail(account.getEmail());
-
-        if (!member.isEmpty()) {
-            //Accout can be linked to a member but an email can't be used twice
-            if (partial.getMember() == null ||
-                    (partial.getMember() != null && !partial.getMember().getId().equals(member.stream().findFirst().get().getId()))) {
-                throw new EmailExistException();
-            }
-        }
 
         if (partial.getMember() != null) {
+            Optional<Member> member = memberRepository.findByEmail(account.getEmail()).stream().findFirst();
+            if (member.isPresent()) {
+                //Accout can be linked to a member but an email can't be used twice
+                if (partial.getMember() == null ||
+                        (partial.getMember() != null && !partial.getMember().getId().equals(member.get().getId()))) {
+                    throw new EmailExistException();
+                }
+            }
             partial.getMember().setEmail(account.getEmail())
                     .setFirstname(account.getFirstname())
                     .setLastname(account.getLastname());
         }
         else {
-            partial.setMember(memberRepository.save(new Member()
+            Member member = tokenService.tryToLinkWithActualMember(account.getEmail());
+
+            partial.setMember(member!=null ? member : memberRepository.save(new Member()
                     .setLogin(oauthId)
                     .setEmail(account.getEmail())
                     .setFirstname(account.getFirstname())
