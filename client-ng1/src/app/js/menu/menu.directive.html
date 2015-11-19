@@ -26,7 +26,7 @@
                     </a>
                     <ul class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
                         ng-if="item.submenus" for="{{item.id}}">
-                        <li ng-repeat="subitem in item.submenus" ui-sref="{{subitem.link}}"
+                        <li ng-repeat="subitem in item.submenus" ng-click="ctrl.go(subitem.link)"
                             ng-class="(subitem.divider) ? 'cesar-divider' : 'mdl-menu__item'">
                             <a ng-if="subitem.link" ui-sref="{{subitem.link}}"><span translate="{{subitem.id}}"></span></a>
                         </li>

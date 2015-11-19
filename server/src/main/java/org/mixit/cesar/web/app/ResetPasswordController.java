@@ -1,8 +1,11 @@
 package org.mixit.cesar.web.app;
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.model.FlatView;
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
 import org.mixit.cesar.service.AbsoluteUrlFactory;
@@ -12,12 +15,17 @@ import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.CryptoService;
 import org.mixit.cesar.service.authentification.CurrentUser;
 import org.mixit.cesar.service.autorisation.Authenticated;
+import org.mixit.cesar.service.exception.AccountMustBeConfirmedException;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
 import org.mixit.cesar.service.exception.BadCredentialsException;
 import org.mixit.cesar.service.exception.ExpiredTokenException;
 import org.mixit.cesar.service.exception.InvalidTokenException;
+import org.mixit.cesar.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -100,6 +108,30 @@ public class ResetPasswordController {
             throw new BadCredentialsException();
         }
         return true;
+    }
+
+
+    @RequestMapping(value = "/reinit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @Authenticated
+    public ResponseEntity<Account> authenticate(HttpServletRequest request) {
+        String[] actualpassword = request.getParameterValues("actualpassword");
+        String[] newpassword = request.getParameterValues("newpassword");
+
+        if (actualpassword == null || newpassword == null) {
+            throw new IllegalArgumentException("Password is required");
+        }
+
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        Account account = accountRepository.findByLogin(currentUser.getCredentials().get().getLogin());
+        if (account == null) {
+            throw new UserNotFoundException();
+        }
+        else if (!account.getPassword().equals(cryptoService.passwordHash(actualpassword[0]))) {
+            throw new BadCredentialsException();
+        }
+        accountRepository.save(account.setPassword(cryptoService.passwordHash(newpassword[0])));
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

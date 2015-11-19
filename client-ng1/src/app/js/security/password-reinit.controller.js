@@ -7,15 +7,11 @@
 
     var ctrl = this;
 
-    ctrl.changePasword = function () {
-      if (ctrl.credentials && ctrl.credentials.email) {
+    ctrl.changePassword = function () {
+      if (ctrl.credentials) {
+        var data = 'actualpassword=' + encodeURIComponent(ctrl.credentials.actualpassword) + '&newpassword=' + encodeURIComponent(ctrl.credentials.password);
         $http
-          .post('/app/account/password',
-          {
-            actualpassword : ctrl.credentials.actualpassword,
-            newpassword : ctrl.credentials.password
-          },
-          {
+          .post('/app/account/password/reinit', data, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -25,8 +21,9 @@
             $state.go('home');
           })
           .catch(function (response) {
-            if (response.data.type==='EMAIL_EXIST'){
-              ctrl.errorMessage = 'EMAIL_NOT_EXIST';
+            console.log(response.data.type)
+            if (response.data.type==='BAD_CREDENTIALS'){
+              ctrl.errorMessage = 'BAD_CREDENTIALS';
             }
             else {
               ctrl.errorMessage = 'UNDEFINED';

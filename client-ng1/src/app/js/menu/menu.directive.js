@@ -2,10 +2,14 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($translate, $filter, $timeout, LANGUAGES) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
+
+    ctrl.go = function(page){
+      $state.go(page);
+    }
 
     ctrl.languages = LANGUAGES;
     $timeout(function(){

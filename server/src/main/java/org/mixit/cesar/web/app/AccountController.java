@@ -15,6 +15,7 @@ import org.mixit.cesar.service.account.CreateSocialAccountService;
 import org.mixit.cesar.service.account.TokenService;
 import org.mixit.cesar.service.authentification.CookieService;
 import org.mixit.cesar.service.authentification.CurrentUser;
+import org.mixit.cesar.service.autorisation.Authenticated;
 import org.mixit.cesar.service.autorisation.NeedsRole;
 import org.mixit.cesar.service.exception.AuthenticationRequiredException;
 import org.mixit.cesar.service.exception.ExpiredTokenException;
@@ -75,8 +76,10 @@ public class AccountController {
     @RequestMapping(value = "/{oauthid}")
     @NeedsRole(Role.MEMBER)
     @JsonView(FlatView.class)
+    @Authenticated
     public ResponseEntity<Account> find(@PathVariable(value = "oauthid") String oauthid) {
-        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+
+            CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         if (oauthid.equals(currentUser.getCredentials().get().getOauthId())) {
             return new ResponseEntity<>(currentUser.getCredentials().get(), HttpStatus.OK);
         }
