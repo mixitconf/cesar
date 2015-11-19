@@ -9,7 +9,7 @@
 
     ctrl.go = function(page){
       $state.go(page);
-    }
+    };
 
     ctrl.languages = LANGUAGES;
     $timeout(function(){

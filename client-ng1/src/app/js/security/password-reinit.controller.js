@@ -21,7 +21,6 @@
             $state.go('home');
           })
           .catch(function (response) {
-            console.log(response.data.type)
             if (response.data.type==='BAD_CREDENTIALS'){
               ctrl.errorMessage = 'BAD_CREDENTIALS';
             }
