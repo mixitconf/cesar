@@ -15,11 +15,11 @@
     $timeout(function(){
       ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
     });
+
     ctrl.toggleLanguage = function () {
       ctrl.currentLanguage = ($translate.use() === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us;
       $translate.use(ctrl.currentLanguage);
     };
-
 
     ctrl.menus = [
       //TODO will be used in the next version
