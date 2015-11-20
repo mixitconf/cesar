@@ -6,7 +6,7 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, AuthenticationService) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout,$document, AuthenticationService) {
     'ngInject';
 
     //Error are catched to redirect user on error page
@@ -16,6 +16,12 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
+
+      //Patch to hide the drawer panel when a user click on a link (bug Material Design Lite)
+      var node = document.querySelector('cesar-menu');
+      angular.element(node.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
+      angular.element(node.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
+
       if (next.name === 'logout' || next.name === 'createaccount') {
         AuthenticationService.logout();
       }
@@ -55,6 +61,7 @@
         componentHandler.upgradeAllRegistered();
       });
     });
+
 
   });
 
