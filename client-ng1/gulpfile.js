@@ -54,7 +54,7 @@ var paths = {
   index: 'src/app/index-dev.html',
   assets: {
     fonts: [
-      'node_modules/roboto-fontface/fonts/*.*',
+      'src/app/assets/fonts/**/*.*',
       'node_modules/material-design-icons/iconfont/*.*'
     ],
     images: [
