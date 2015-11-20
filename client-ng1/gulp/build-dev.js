@@ -59,6 +59,7 @@ module.exports = function(gulp, config) {
   gulp.task('build:dev:css:vendors', function () {
     return gulp.src(paths.css)
       //In Angular Material Lite we don't use the standard primary color
+      .pipe(replace('"Roboto","Helvetica","Arial",sans-serif', '"Roboto","Arial"'))
       .pipe(replace('63,81,181', '69,90,100'))
       .pipe(concat('vendors.css'))
       .pipe(gulp.dest(paths.build.dev+ '/css'));
