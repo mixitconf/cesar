@@ -1,11 +1,13 @@
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container">
+ng-repeat="session in sessions | filter:search | orderBy:order" | filter:search | orderBy:order
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container" ui-scroll-viewport>
     <thead ng-show="false">
         <tr>
             <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})">
+    <tr ui-scroll="session in sessionscroller"
+        ui-sref="session({id : session.idSession, format : session.format})">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;

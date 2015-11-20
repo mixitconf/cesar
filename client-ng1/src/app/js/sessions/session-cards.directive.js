@@ -2,6 +2,18 @@
 
   'use strict';
 
+  angular.module('cesar-sessions').factory( 'sessionscroller', function($timeout){
+    return {
+      get : function(index, count, success){
+        $timeout(function(){
+          var result = []
+          result.push("item ##{i}")
+          success(result);
+        }, 100)
+      }
+    }
+  }
+
   angular.module('cesar-sessions').directive('cesarSessionCards', function () {
     'ngInject';
 
