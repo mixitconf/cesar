@@ -10,9 +10,12 @@
 
     function findSpeaker(response) {
       ctrl.sessions.forEach(function (session) {
-        var speakers = Array.isArray(session._links.speaker) ? session._links.speaker : [session._links.speaker];
+        var links = Array.isArray(session.links) ? session.links : [session.links];
         session.speakers = response.data.filter(function (speaker) {
-          var found = speakers.filter(function (s) {
+          var found = links.filter(function (s) {
+            if(s.rel!=='speaker'){
+              return false;
+            }
             return Util.extractId(s.href) === (speaker.idMember+'');
           });
           return found.length > 0;

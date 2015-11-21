@@ -1,13 +1,11 @@
-ng-repeat="session in sessions | filter:search | orderBy:order" | filter:search | orderBy:order
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container" ui-scroll-viewport>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container">
     <thead ng-show="false">
         <tr>
             <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
-    <tr ui-scroll="session in sessionscroller"
-        ui-sref="session({id : session.idSession, format : session.format})">
+    <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})" ng-if="displayItem($index)">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;
@@ -29,3 +27,13 @@ ng-repeat="session in sessions | filter:search | orderBy:order" | filter:search 
     </tr>
     </tbody>
 </table>
+
+<div style="width: 100%;text-align: center;margin: 1em;">
+    <button ng-repeat="n in [].constructor(pagination.pages) track by $index"
+            class="mdl-button mdl-js-button mdl-button--primary"
+            ng-click="pagination.current = $index + 1"
+            ng-disabled="pagination.current === $index + 1">
+        {{ $index + 1 }}
+    </button>
+</div>
+

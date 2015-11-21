@@ -13,6 +13,5 @@
     SessionService.getAllByYear(year).then(function(response){
       ctrl.sessions = response.data;
     });
-
   });
 })();

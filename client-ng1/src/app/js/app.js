@@ -14,7 +14,6 @@
 
   angular.module('cesar', [
     'ui.router',
-    'ui.scroll',
     'ngSanitize',
     'ngCookies',
     'cesar-account',
