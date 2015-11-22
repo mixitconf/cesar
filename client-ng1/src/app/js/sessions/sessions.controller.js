@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state, $rootScope) {
     'ngInject';
 
     var ctrl = this;
@@ -10,9 +10,12 @@
 
     function findSpeaker(response) {
       ctrl.sessions.forEach(function (session) {
-        var speakers = Array.isArray(session._links.speaker) ? session._links.speaker : [session._links.speaker];
+        var links = Array.isArray(session.links) ? session.links : [session.links];
         session.speakers = response.data.filter(function (speaker) {
-          var found = speakers.filter(function (s) {
+          var found = links.filter(function (s) {
+            if(s.rel!=='speaker'){
+              return false;
+            }
             return Util.extractId(s.href) === (speaker.idMember+'');
           });
           return found.length > 0;
@@ -20,6 +23,7 @@
       });
     }
 
+    $rootScope.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
       SessionService.getAll('talk')
@@ -35,7 +39,8 @@
           Array.prototype.push.apply(ctrl.sessions, response.data);
           return MemberService.getAll('speaker');
         })
-        .then(findSpeaker);
+        .then(findSpeaker)
+        .finally($rootScope.stopWaiting);
     }
     else {
       SessionService.getAll(type)
@@ -43,7 +48,8 @@
           ctrl.sessions = response.data;
           return MemberService.getAllLigthningtalkSpeakers();
         })
-        .then(findSpeaker);
+        .then(findSpeaker)
+        .finally($rootScope.stopWaiting);
     }
 
   });

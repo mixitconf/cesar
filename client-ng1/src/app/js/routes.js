@@ -1,30 +1,15 @@
 (function () {
-
   'use strict';
 
-  angular.module('cesar').constant('LANGUAGES', {
-    fr: 'fr_FR',
-    us: 'us_US'
-  });
-
-  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, $translateProvider, USER_ROLES, LANGUAGES) {
+  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
     'ngInject';
 
-    // Initialize angular-translate
-    $translateProvider.useStaticFilesLoader({
-      prefix: 'i18n/',
-      suffix: '.json'
+    $locationProvider.html5Mode({
+      enabled: true,
+      rewriteLinks: false
     });
 
-    $translateProvider.preferredLanguage(LANGUAGES.fr);
-    $translateProvider.useCookieStorage();
-    $translateProvider.useSanitizeValueStrategy('sanitize');
-
-    $locationProvider.html5Mode(true);
-
     $urlRouterProvider.otherwise('/home');
-
-
 
     /* @ngInject */
     function getAllArticles(ArticleService) {
