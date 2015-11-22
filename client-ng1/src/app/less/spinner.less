@@ -1,4 +1,5 @@
 .cesar-spinner {
+  display: table;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
@@ -6,10 +7,35 @@
   height: 100%;
   width: 100%;
   z-index: 99;
-  -webkit-transition-property: background-color;
   transition-property: background-color;
-  -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
-  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  .cesar-spinner__box {
+    position: absolute;
+    top:25%;
+    width: 100%;
+  }
+
+  .cesar-spinner__box-inner{
+    text-align: center;
+    margin: auto;
+    max-width: 120px;
+    background-color: white;
+    padding: 2em;
+    border-radius: 4px;
+  }
 }
+//
+//.mdl-spinner--single-color .mdl-spinner__layer-1 {
+//  border-color: @primary_color_flash;
+//}
+//.mdl-spinner--single-color .mdl-spinner__layer-2 {
+//  border-color: @primary_color_flash;
+//}
+//.mdl-spinner--single-color .mdl-spinner__layer-3 {
+//  border-color: @primary_color_flash;
+//}
+//.mdl-spinner--single-color .mdl-spinner__layer-4 {
+//  border-color: @primary_color_flash;
+//}

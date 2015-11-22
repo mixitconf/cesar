@@ -6,8 +6,29 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout,$document, AuthenticationService) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService) {
     'ngInject';
+
+    var waitinPopupTimeout;
+    $rootScope.waitingPopup = false;
+
+    $rootScope.wait = function() {
+      if(!waitinPopupTimeout){
+        waitinPopupTimeout = $timeout(function(){
+          //document.location.href='#top';
+          $rootScope.waitingPopup = true;
+          angular.element(document.querySelector('body')).addClass('no-scrollable');
+        }, 100);
+      }
+    };
+
+    $rootScope.stopWaiting = function() {
+      $rootScope.waitingPopup = false;
+      if(waitinPopupTimeout){
+        angular.element(document.querySelector('body')).removeClass('no-scrollable');
+        $timeout.cancel(waitinPopupTimeout);
+      }
+    };
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {

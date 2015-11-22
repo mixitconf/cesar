@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state, $rootScope) {
     'ngInject';
 
     var ctrl = this;
@@ -23,6 +23,7 @@
       });
     }
 
+    $rootScope.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
       SessionService.getAll('talk')
@@ -38,7 +39,8 @@
           Array.prototype.push.apply(ctrl.sessions, response.data);
           return MemberService.getAll('speaker');
         })
-        .then(findSpeaker);
+        .then(findSpeaker)
+        .finally($rootScope.stopWaiting);
     }
     else {
       SessionService.getAll(type)
@@ -46,7 +48,8 @@
           ctrl.sessions = response.data;
           return MemberService.getAllLigthningtalkSpeakers();
         })
-        .then(findSpeaker);
+        .then(findSpeaker)
+        .finally($rootScope.stopWaiting);
     }
 
   });
