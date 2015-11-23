@@ -62,6 +62,11 @@
           $location.path('/').replace();
         }
       }
+      $rootScope.userConnected = true;
+    });
+
+    $rootScope.$on('event:auth-logoutConfirmed', function () {
+      $rootScope.userConnected = false;
     });
 
     //// Call when the 401 response is returned by the server

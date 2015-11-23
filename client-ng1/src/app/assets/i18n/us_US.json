@@ -239,7 +239,8 @@
     "UNIQUE_LOGIN": "This login is already used",
     "VALID_PASSWORD": "The password confirmation does not match the entered password",
     "MIN_LENGTH": "The password must be at least 8 characters",
-    "CONNEXION_REFUSED": "The remote host is not available for the moment. Please try again later..."
+    "CONNEXION_REFUSED": "The remote host is not available for the moment. Please try again later...",
+    "NEED_VALIDATION": "You received an email to valid your account. If you don't have this email, ask a password reinitilization."
   },
   "footer": {
     "whoarewe": {

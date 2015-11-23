@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, LANGUAGES) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, LANGUAGES, AuthenticationService) {
     'ngInject';
 
     var ctrl = this;
@@ -53,30 +53,35 @@
     ];
 
 
-    //TODO will be used in the next version
-    //$scope.$watch('userConnected', function(newValue){
-    //
-    //  var lastIndex = $scope.menus.length-1;
-    //  if($scope.menus[lastIndex].id === 'secure'){
-    //    $scope.menus.splice(lastIndex, 1);
-    //  }
-    //
-    //  if(newValue && newValue.login){
-    //    $scope.menus.push(
-    //      {
-    //        id: 'secure', name: newValue.firstname + ' ' + newValue.lastname, hash: newValue.hash, submenus: [
-    //        {id: 'menu.favorites', link: 'favoris', mobile: true},
-    //        {id: 'menu.account', link: 'account'},
-    //        {id: 'sub4.1', mobile: true},
-    //        {id: 'menu.logout', link: 'logout', mobile: true}
-    //      ]
-    //      }
-    //    );
-    //  }
-    //  else{
-    //    $scope.menus.push({id: 'secure', icon: 'vpn_key', link: 'authent', mobile: true});
-    //  }
-    //});
+    function updateUserSection(){
+      var currentUser = AuthenticationService.currentUser();
+
+      if(currentUser){
+        $scope.userConnected = true;
+        ctrl.security = {
+          authentified : true,
+          hash: currentUser.hash,
+          name: currentUser.firstname,
+          submenus: [
+            //{id: 'menu.favorites', link: 'favoris', mobile: true},
+            {id: 'menu.account', link: 'account', mobile : 'true'},
+            {id: 'sub4.1', divider: true},
+            {id: 'menu.logout', link: 'logout', mobile: true}
+          ]
+        };
+        ctrl.authentified=true;
+      }
+      else{
+        $scope.userConnected = false;
+        ctrl.security = {
+          authentified : false
+        };
+      }
+    }
+
+    $scope.$watch('userConnected', function(){
+      updateUserSection();
+    });
   });
 
   angular.module('cesar-menu').directive('cesarMenu', function () {
