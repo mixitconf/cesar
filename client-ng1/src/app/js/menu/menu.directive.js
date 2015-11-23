@@ -54,32 +54,30 @@
 
 
     function updateUserSection(){
-      var currentUser = AuthenticationService.currentUser();
-
-      if(currentUser){
-        $scope.userConnected = true;
-        ctrl.security = {
-          authentified : true,
-          hash: currentUser.hash,
-          name: currentUser.firstname,
-          submenus: [
-            //{id: 'menu.favorites', link: 'favoris', mobile: true},
-            {id: 'menu.account', link: 'account', mobile : 'true'},
-            {id: 'sub4.1', divider: true},
-            {id: 'menu.logout', link: 'logout', mobile: true}
-          ]
-        };
-        ctrl.authentified=true;
-      }
-      else{
-        $scope.userConnected = false;
-        ctrl.security = {
-          authentified : false
-        };
-      }
+      AuthenticationService.currentUser().then(function(currentUser){
+        if(currentUser){
+          ctrl.security = {
+            authentified : true,
+            hash: currentUser.hash,
+            name: currentUser.firstname,
+            submenus: [
+              //{id: 'menu.favorites', link: 'favoris', mobile: true},
+              {id: 'menu.account', link: 'account', mobile : 'true'},
+              {id: 'sub4.1', divider: true},
+              {id: 'menu.logout', link: 'logout', mobile: true}
+            ]
+          };
+        }
+        else{
+          delete ctrl.security;
+          ctrl.security = {
+            authentified : false
+          };
+        }
+      });
     }
 
-    $scope.$watch('userConnected', function(){
+    $scope.$watch('userRefreshed', function(){
       updateUserSection();
     });
   });

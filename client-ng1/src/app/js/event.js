@@ -62,11 +62,15 @@
           $location.path('/').replace();
         }
       }
-      $rootScope.userConnected = true;
+      $rootScope.userRefreshed = !$rootScope.userRefreshed;
+    });
+
+    $rootScope.$on('event:auth-changed', function () {
+      $rootScope.userRefreshed = !$rootScope.userRefreshed;
     });
 
     $rootScope.$on('event:auth-logoutConfirmed', function () {
-      $rootScope.userConnected = false;
+      $rootScope.userRefreshed = !$rootScope.userRefreshed;
     });
 
     //// Call when the 401 response is returned by the server
