@@ -8,10 +8,13 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 /**
  * Cryptography utils
  */
 @Service
+@Transactional
 public class CryptoService {
 
     @Value("${cesar.crypto.salt}")

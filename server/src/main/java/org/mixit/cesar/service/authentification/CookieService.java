@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.mixit.cesar.model.security.Account;
 import org.mixit.cesar.repository.AccountRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class CookieService {
 
     @Autowired
