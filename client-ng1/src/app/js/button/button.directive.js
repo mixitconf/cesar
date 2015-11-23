@@ -14,7 +14,11 @@
         disabled: '=',
         onClick: '&',
         spinner: '=',
-        googleIcon: '@'
+        googleIcon: '@',
+        default: '@'
+      },
+      controller: function($scope){
+        $scope.type = $scope.default ? 'submit' : 'button';
       }
     };
   });
