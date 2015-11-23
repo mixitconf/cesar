@@ -55,7 +55,6 @@
 
     function updateUserSection(){
       var currentUser = AuthenticationService.currentUser();
-      var lastIndex = ctrl.menus.length-1;
 
       if(currentUser){
         $scope.userConnected = true;
