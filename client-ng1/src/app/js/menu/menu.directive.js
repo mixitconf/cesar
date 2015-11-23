@@ -65,7 +65,7 @@
           name: currentUser.firstname,
           submenus: [
             //{id: 'menu.favorites', link: 'favoris', mobile: true},
-            {id: 'menu.account', link: 'account'},
+            {id: 'menu.account', link: 'account', mobile : 'true'},
             {id: 'sub4.1', divider: true},
             {id: 'menu.logout', link: 'logout', mobile: true}
           ]
@@ -79,13 +79,10 @@
         };
       }
     }
-    console.log($scope.userConnected)
+
     $scope.$watch('userConnected', function(){
-      console.log($scope.userConnected)
       updateUserSection();
     });
-
-    updateUserSection();
   });
 
   angular.module('cesar-menu').directive('cesarMenu', function () {
