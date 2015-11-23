@@ -14,13 +14,9 @@
                 <temp ng-repeat="item in ctrl.menus">
                     <a ng-if="item.link" class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="{{item.link}}">
                         <span class="link" translate="{{item.id}}"></span>&nbsp;
-                        <button ng-if="item.icon" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-                        <i class="material-icons">{{item.icon}}</i>
-                        </button>
                     </a>
                     <a ng-if="!item.link" id="{{item.id}}"
                        class="cesar-menu mdl-navigation__link cesar-navigation__link">
-                        <img ng-if="item.hash" ng-src="http://www.gravatar.com/avatar/{{item.hash}}" class="cesar-img-avatar"/>
                         <span class="link" translate="{{item.id}}"></span>&nbsp;
                         <i class="material-icons" ng-if="item.submenus">keyboard_arrow_down</i>
                     </a>
@@ -32,7 +28,23 @@
                         </li>
                     </ul>
                 </temp>
+                <!-- Security -->
+                <a ng-if="ctrl.security.authentified" id="security" class="cesar-menu mdl-navigation__link cesar-navigation__link">
+                    <img ng-src="http://www.gravatar.com/avatar/{{ctrl.security.hash}}" class="cesar-img-avatar"/>
+                    <span class="link">{{ctrl.security.name}}</span>&nbsp;
+                    <i class="material-icons">keyboard_arrow_down</i>
+                </a>
+                <ul ng-if="ctrl.security.authentified" class="cesar-menu mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="security">
+                    <li ng-repeat="subitem in ctrl.security.submenus" ng-click="ctrl.go(subitem.link)" ng-class="(subitem.divider) ? 'cesar-divider' : 'mdl-menu__item'">
+                        <a ng-if="subitem.link" ui-sref="{{subitem.link}}"><span translate="{{subitem.id}}"></span></a>
+                    </li>
+                </ul>
                 <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
+                    <!-- Security -->
+                    <button ng-if="!ctrl.security.authentified" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.go('authent')">
+                        <i class="material-icons" style="color: white">vpn_key</i>
+                    </button>
+                    <!-- i18n -->
                     <button ng-if="ctrl.currentLanguage===ctrl.languages.us" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab french-flag" ng-click="ctrl.toggleLanguage()">
                         <img src="img/lang/fr.svg" class="cesar-menu__lang">
                     </button>

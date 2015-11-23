@@ -25,6 +25,7 @@
     function logout() {
       $http.get('app/logout');
       LocalStorageService.remove('current-user');
+      $rootScope.$broadcast('event:auth-logoutConfirmed');
     }
 
     function login(param) {
