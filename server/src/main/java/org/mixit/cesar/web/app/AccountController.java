@@ -79,7 +79,7 @@ public class AccountController {
     @Authenticated
     public ResponseEntity<Account> find(@PathVariable(value = "oauthid") String oauthid) {
 
-            CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         if (oauthid.equals(currentUser.getCredentials().get().getOauthId())) {
             return new ResponseEntity<>(currentUser.getCredentials().get(), HttpStatus.OK);
         }

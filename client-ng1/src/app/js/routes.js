@@ -130,13 +130,10 @@
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
-          account: function (AuthenticationService, $http) {
-            var currentUser = AuthenticationService.currentUser();
-            if (currentUser) {
-              return $http.get('app/account/' + currentUser.oauthId).then(function (response) {
-                return response.data;
-              });
-            }
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function(currentUser){
+              return currentUser;
+            });
           }
         })
         .build())

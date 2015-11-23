@@ -6,12 +6,19 @@
     'ngInject';
 
     function currentUser(){
-      return LocalStorageService.get('current-user');
+      return $http.get('app/account/check', {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .then(function(response){
+          LocalStorageService.put('current-user', response.data);
+          return response.data;
+        })
+        .catch(function(){
+          return undefined;
+        });
     }
 
     function loginConfirmed(response){
       if(response.data && response.data.defaultLanguage){
-        $translate.use((response.data.defaultLanguage === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us);
+        $translate.use((response.data.defaultLanguage === LANGUAGES.us) ? LANGUAGES.us : LANGUAGES.us);
       }
       LocalStorageService.put('current-user', response.data);
       $rootScope.$broadcast('event:auth-loginConfirmed');

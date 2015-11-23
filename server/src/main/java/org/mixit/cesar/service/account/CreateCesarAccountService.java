@@ -74,7 +74,7 @@ public class CreateCesarAccountService {
         }
 
         //Step3: we check if a member exist with the same email
-        Member member = tokenService.tryToLinkWithActualMember(account.getEmail());
+        Member member = tokenService.tryToLinkWithActualMember(account);
 
         //Step4: a member is created but invalid
         account.setValid(false);

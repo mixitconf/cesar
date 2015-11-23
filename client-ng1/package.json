@@ -61,5 +61,9 @@
   },
   "scripts": {
     "build": "gulp build"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mix-it/cesar/issues"
   }
 }

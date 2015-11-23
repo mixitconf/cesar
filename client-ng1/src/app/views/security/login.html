@@ -21,12 +21,12 @@
 
                     <div class="mdl-card__supporting-text cesar-card__supporting-text">
                         <div class="mdl-card__supporting-text cesar-card__supporting-text" translate="view.account.login.advice"></div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <button class="mdl-button mdl-js-button mdl-button--raised" ng-click="ctrl.loginWithTwitter()"
+                        <div class="mdl-card__actions mdl-card--border" style="text-align: center">
+                            <button class="mdl-button mdl-js-button mdl-button--raised" ng-click="ctrl.loginWithTwitter()" type="button"
                                     ng-disabled="spinner==='on'" ng-class="{'cesar-button-twitter' : spinner==='off','mdl-button--colored' : spinner==='off'}">
                                 <img src="img/social/twitter.svg"> Twitter
                             </button>
-                            <button class="mdl-button mdl-js-button mdl-button--raised " ng-click="ctrl.loginWithGoogle()"
+                            <button class="mdl-button mdl-js-button mdl-button--raised " ng-click="ctrl.loginWithGoogle()" type="button"
                                     ng-disabled="spinner==='on'" ng-class="{'cesar-button-google' : spinner==='off','mdl-button--colored' : spinner==='off'}">
                                 <img src="img/social/google.svg"> Google+
                             </button>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="mdl-card__actions mdl-card--border">
-                            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"
+                            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'" default="true"
                                           on-click="ctrl.login()" spinner="spinner" google-icon="vpn_key"></cesar-button>
                         </div>
                     </div>
