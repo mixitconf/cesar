@@ -97,7 +97,7 @@ public class CreateSocialAccountService {
                     .setLastname(account.getLastname());
         }
         else {
-            Member member = tokenService.tryToLinkWithActualMember(account.getEmail());
+            Member member = tokenService.tryToLinkWithActualMember(partial);
 
             partial.setMember(member!=null ? member : memberRepository.save(new Member()
                     .setLogin(oauthId)

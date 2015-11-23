@@ -19,7 +19,6 @@ public class CesarSecurityConfig {
                 .excludePathPatterns(
                         "/app/login",
                         "/app/login-with/*",
-                        "/app/logout",
                         "/app/oauth/*",
                         "/app/account/cesar",
                         "/app/account/cesar/*",

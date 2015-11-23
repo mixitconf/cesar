@@ -78,7 +78,7 @@ public class CreateCesarAccountServiceTest {
 
     @Test(expected = EmailExistException.class)
     public void throw_exception_when_mail_already_exists_on_account_creation() {
-        when(tokenService.tryToLinkWithActualMember(anyString())).thenThrow(EmailExistException.class);
+        when(tokenService.tryToLinkWithActualMember(any(Account.class))).thenThrow(EmailExistException.class);
         createCesarAccountService.createNormalAccount(new Account());
     }
 

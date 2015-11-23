@@ -80,19 +80,19 @@ public class TokenService {
      * We had'nt be able to keep the old accounts when we migrated to the new website. When a user sign in for the
      * first time on the new website, we try to link his old member infos
      */
-    public Member tryToLinkWithActualMember(String email){
-        List<Account> accounts = accountRepository.findByEmail(email);
+    public Member tryToLinkWithActualMember(Account account){
+        List<Account> accounts = accountRepository.findByEmail(account.getEmail());
 
-        if(!accounts.isEmpty()){
+        if(!accounts.isEmpty() && !accounts.get(0).getOauthId().equals(account.getOauthId())){
             //We can't have to account with the same email
             throw new EmailExistException();
         }
 
-        Optional<Member> member = memberRepository.findByEmail(email).stream().findFirst();
+        Optional<Member> member = memberRepository.findByEmail(account.getEmail()).stream().findFirst();
 
         if(member.isPresent()){
-            Account account = accountRepository.findByMember(member.get().getId());
-            if(account!=null) {
+            Account acc = accountRepository.findByMember(member.get().getId());
+            if(acc!=null) {
                 //We can't have a member linked with 2 accounts
                 throw new EmailExistException();
             }
