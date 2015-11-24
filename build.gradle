@@ -25,6 +25,9 @@ buildscript {
 
     repositories {
         maven { url springRepo }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
@@ -32,18 +35,23 @@ buildscript {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${vSpringBoot}"
         classpath "org.flywaydb:flyway-gradle-plugin:${vFlyway}"
         classpath 'net.researchgate:gradle-release:2.3.3'
-        classpath 'org.ajoberstar:gradle-git:0.6.3'
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.7"
 
         classpath "com.h2database:h2:${vH2}"
         classpath "mysql:mysql-connector-java:${vMysql}"
-
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
+apply plugin: 'com.gorylenko.gradle-git-properties'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
+}
+
+gitProperties {
+    gitPropertiesDir = new File("${project.rootDir}")
 }
 
 /*******************************************************************************************
