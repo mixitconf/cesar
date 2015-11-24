@@ -18,7 +18,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"org.mixit.cesar.site.repository"})
+@EnableJpaRepositories(basePackages = {
+        "org.mixit.cesar.site.repository",
+        "org.mixit.cesar.cfp.repository",
+        "org.mixit.cesar.security.repository"
+})
 @PropertySource("classpath:application.properties")
 public class DataSourceTestConfig {
 
@@ -49,7 +53,7 @@ public class DataSourceTestConfig {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setJpaDialect(new HibernateJpaDialect());
-        factory.setPackagesToScan("org.mixit.cesar.site.model");
+        factory.setPackagesToScan("org.mixit.cesar.site.model", "org.mixit.cesar.cfp.model", "org.mixit.cesar.security.model");
         factory.setDataSource(dataSource());
         // This will trigger the creation of the entity manager factory
         factory.afterPropertiesSet();
