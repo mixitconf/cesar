@@ -43,15 +43,13 @@ If you want to use your own database params to launch flyway you can use
 
 ## Database used when you launch the app
 
-By default the app needs a MySQL DB. If you want to use the H2 database you need to override the Spring Boot configuration and used ths args when you launch the jar
+By default the app needs a MySQL DB. If you want to use the H2 database you need to override the Spring Boot configuration and used these args when you launch the jar
 ```java
---spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password=
+./gradlew bootRun --spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password=
 ```
 
 The database is not created automatically when you start the application. If you want to generate the database you can use flyway or add these arguments. 
-```                                                                                                                                                          
---spring.jpa.hibernate.ddl-auto=create
---spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
+```                                                                                                                ./gradlew bootRun --spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password= --spring.jpa.hibernate.ddl-auto=create --spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
 ```
 
 If you want to use MySQL, install a version > 5.x
