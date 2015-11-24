@@ -44,6 +44,14 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
+                                       ng-maxlength="100"
+                                       ng-model="ctrl.credentials.firstname"/>
+                                <label class="mdl-textfield__label" for="firstname" translate="view.account.firstname">Prénom</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true"
                                        ng-maxlength="100"
                                        ng-model="ctrl.credentials.lastname"/>
@@ -51,14 +59,7 @@
                                        translate="view.account.lastname">Nom</label>
                             </div>
                         </div>
-                        <div class="mdl-cell mdl-cell--6-col">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
-                                       ng-maxlength="100"
-                                       ng-model="ctrl.credentials.firstname"/>
-                                <label class="mdl-textfield__label" for="firstname" translate="view.account.firstname">Prénom</label>
-                            </div>
-                        </div>
+
                     </div>
 
                     <div class="mdl-grid">
