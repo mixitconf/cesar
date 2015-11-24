@@ -138,8 +138,13 @@ textarea {
   width: 90% !important;
   max-width: 1200px;
   margin:0 auto;
+  min-height: 400px;
 }
-
+@media (max-width: 479px) {
+  .cesar-container{
+    min-height: 0;
+  }
+}
 .cesar-blink{
   color: @primary_color_logo;
   font-weight: 300;
