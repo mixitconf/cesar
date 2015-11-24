@@ -110,6 +110,7 @@
         .build())
       .state('member', new State(USER_ROLES, 'member/:type/:id', 'views/members/member.html').controller('MemberCtrl')
         .resolve({
+          /* @ngInject */
           member: function (MemberService, $stateParams) {
             return MemberService.getById($stateParams.id).then(function (response) {
               return response.data;
@@ -130,6 +131,7 @@
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
+          /* @ngInject */
           account: function (AuthenticationService) {
             return AuthenticationService.currentUser().then(function(currentUser){
               return currentUser;

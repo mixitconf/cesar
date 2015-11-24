@@ -1,9 +1,5 @@
 package org.mixit.cesar;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.mixit.cesar.site.service.AbsoluteUrlFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class Routes {
-
-    @Autowired
-    private AbsoluteUrlFactory urlFactory;
 
     @RequestMapping({
             "/account",
@@ -45,7 +38,7 @@ public class Routes {
             "/valid",
             "/venir"
     })
-    public String index(HttpServletResponse response) {
+    public String index() {
         return "forward:/";
     }
 }
