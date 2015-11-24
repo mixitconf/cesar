@@ -74,7 +74,7 @@ public class MailBuilder {
                         .append(url)
                         .append("\">")
                         .append(url)
-                        .append("</a>. Vous pourrez ensuite la partie sécurisée du site.</p>");
+                        .append("</a>. Vous pourrez ensuite utiliser la partie sécurisée du site.</p>");
                 break;
         }
 

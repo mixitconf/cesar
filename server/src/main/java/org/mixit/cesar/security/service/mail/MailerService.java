@@ -28,7 +28,7 @@ public class MailerService {
         MimeMessage message = mailSender.createMimeMessage();
 
         try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, false, "utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
             message.setContent(html, "text/html");
             helper.setTo(to);
             helper.setSubject(subject);
