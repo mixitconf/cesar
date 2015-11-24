@@ -62,7 +62,7 @@
             name: currentUser.firstname,
             submenus: [
               //{id: 'menu.favorites', link: 'favoris', mobile: true},
-              {id: 'menu.account', link: 'account', mobile : 'true'},
+              {id: 'menu.account', link: 'account', mobile : true},
               {id: 'sub4.1', divider: true},
               {id: 'menu.logout', link: 'logout', mobile: true}
             ]
