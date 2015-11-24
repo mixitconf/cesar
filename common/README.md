@@ -12,13 +12,13 @@ We use Flyway to manage the databases. All the SQL scripts to create the databas
 To avoid to launch all the Gradle phases go in the directory ~/Workspace/cesar and to manage your database used these commands
 
 
-Yo migrate your schema 
+To migrate your schema 
 
 ```
 ../gradlew flywayMigrate
 ```
 
-If you want have more informations on your database version launch
+If you want to have more informations on your database version launch
 
 ```
 ../gradlew flywayInfo
@@ -28,12 +28,6 @@ And if you want to delete the database you can used
 
 ```
 ../gradlew flywayClean
-```
-
-If you want to use a mysql database you can use this command
-
-```
-../gradlew  
 ```
 
 If you want to use a mysql database you can use this command
@@ -50,10 +44,18 @@ If you want to use your own database params to launch flyway you can use
 ## Database used when you launch the app
 
 By default the app needs a MySQL DB. If you want to use the H2 database you need to override the Spring Boot configuration and used ths args when you launch the jar
-```
+```java
 --spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password=
 ```
+
+The database is not created automatically when you start the application. If you want to generate the database you can use flyway or add these arguments. 
+```                                                                                                                                                          
+--spring.jpa.hibernate.ddl-auto=create
+--spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
+```
+
 If you want to use MySQL, install a version > 5.x
+
 
 Connect : 
 ```

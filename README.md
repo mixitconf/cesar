@@ -20,10 +20,7 @@ This project uses [Spring Boot](http://docs.spring.io/spring-boot/docs/current/r
 ```
 ./gradlew bootRun
 ```
-, start a web browser and visit [http://localhost:8080](http://localhost:8080). For the moment we have 2 web clients written in Angular 1 and Angular 2. To used Angular 2 one you need to define a parameter 
-```
-./gradlew bootRun -Pclient=ng2 -Pdatabase=mysql
-```
+, start a web browser and visit [http://localhost:8080](http://localhost:8080).  
 
 ## Setup DB 
 
