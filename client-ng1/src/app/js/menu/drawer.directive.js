@@ -2,9 +2,9 @@
 
   'use strict';
 
-  angular.module('cesar-menu').directive('cesarMenu', function () {
+  angular.module('cesar-menu').directive('cesarDrawer', function () {
     return {
-      templateUrl: 'js/menu/menu.directive.html',
+      templateUrl: 'js/menu/drawer.directive.html',
       controller: 'cesarMenuCtrl',
       controllerAs: 'ctrl'
     };

@@ -1,0 +1,34 @@
+<div>
+<span class="cesar-menu__title mdl-layout-title">Mix-IT</span>
+<nav class="mdl-navigation">
+    <temp ng-repeat="item in ctrl.menus">
+        <temp ng-repeat="subitem in item.submenus">
+            <a class="mdl-navigation__link" ui-sref="{{subitem.link}}"
+               ng-if="!subitem.divider && subitem.mobile && subitem.link"><span
+                    translate="{{subitem.id}}"></span></a>
+            <hr ng-if="subitem.divider && subitem.mobile">
+        </temp>
+    </temp>
+    <temp ng-if="ctrl.security.authentified" ng-repeat="subitem in ctrl.security.submenus">
+        <a class="mdl-navigation__link" ui-sref="{{subitem.link}}"
+           ng-if="subitem.mobile && subitem.link"><span translate="{{subitem.id}}"></span></a>
+    </temp>
+    <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
+        <!-- Security -->
+        <button ng-if="!ctrl.security.authentified"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ng-click="ctrl.go('authent')">
+            <i class="material-icons" style="color: slategrey">vpn_key</i>
+        </button>
+        <button ng-if="ctrl.currentLanguage===ctrl.languages.us"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab french-flag"
+                ng-click="ctrl.toggleLanguage()">
+            <img src="img/lang/fr.svg" class="cesar-menu__lang">
+        </button>
+        <button ng-if="ctrl.currentLanguage===ctrl.languages.fr"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab american-flag"
+                ng-click="ctrl.toggleLanguage()">
+            <img src="img/lang/us.svg" class="cesar-menu__lang">
+        </button>
+    </div>
+</nav>
+</div>

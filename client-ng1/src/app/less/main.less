@@ -1,7 +1,11 @@
 @import "roboto-fontface.less";
 @import "material-icons.less";
+@import "home.less";
+@import "main.less";
 @import "text.less";
 @import "spinner.less";
+@import "header.less";
+@import "footer.less";
 
 @link__font-size : 15px;
 @large-screen__width : 1024px;
@@ -20,10 +24,6 @@
 
 body {
   font-family: "Roboto", "Arial", sans-serif !important;
-}
-
-.no-scrollable{
-  overflow:hidden;
 }
 
 a{
@@ -76,9 +76,6 @@ textarea {
     .cesar-section--top;
     .cesar-section--bottom;
   }
-  .cesar-layout__content{
-    top:55px;
-  }
 }
 @media (min-width: 480px) and (max-width: 1023px) {
   .visible-on-mobile{
@@ -97,9 +94,6 @@ textarea {
   .cesar-section{
     .cesar-section--top;
     .cesar-section--bottom;
-  }
-  .cesar-layout__content{
-    top:55px;
   }
 }
 
@@ -120,12 +114,6 @@ textarea {
   .cesar-section{
     .cesar-section--top;
     .cesar-section--bottom;
-  }
-  .cesar-layout__content{
-    top:63px
-  }
-  .cesar-layout__content{
-    min-height: 650px;
   }
 }
 
@@ -169,213 +157,6 @@ textarea {
   max-height: 60%;
   vertical-align: middle;
   padding-left: 2em;
-}
-
-.cesar-layout__header-row{
-  padding-left: 60px !important;
-  background-color: @primary_color;
-  @media only screen and (min-width: @large-screen__width) {
-    padding-left: 0px !important;
-  }
-
-  .cesar__layout-icon img{
-    max-width: 60%;
-    max-height: 60%;
-    vertical-align: middle;
-    padding-left: 1em;
-  }
-
-  .cesar-navigation__link {
-    font-size: @link__font-size;
-    font-weight: 400 !important;
-    cursor: hand;
-  }
-
-  .cesar-menu{
-    a {
-      text-decoration: none;
-      color: @primary_color_text;
-      font-weight: 400 !important;
-    }
-    i{
-      font-size: @link__font-size;
-    }
-    .link{
-      cursor: pointer !important;
-    }
-  }
-
-  .cesar-menu__lang {
-    max-width: 80% !important;
-    max-height: 18px !important;
-  }
-}
-//we have to overload material style here
-.mdl-layout__drawer-button{
-  background-color: @primary_color !important;
-  > i {
-    margin-top: 10px;
-  }
-}
-.cesar-layout__drawer {
-  display: table !important;
-}
-
-.cesar-headband{
-  background-size: cover;
-
-  .cesar-headband-blink{
-    font-weight: bold;
-    color : @primary_color_dark;
-  }
-  .cesar-headband__content{
-    width: 80% !important;
-    background-color: @background_color_light;
-    text-align: center;
-    margin:0 auto;
-  }
-
-  @media only screen and (min-width: 0) {
-    background-image: url("assets/img/home1_500.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 100%;
-        min-width: 100%;
-      }
-    }
-  }
-  @media only screen and (min-width: 480px) and (max-width: 1023px) {
-    background-image: url("assets/img/home1_1000.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 100%;
-        min-width: 100%;
-      }
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    background-image: url("assets/img/home1_1500.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 70%;
-        min-width: 70%;
-      }
-    }
-  }
-}
-
-.cesar-intro {
-  text-align: center;
-
-  .cesar-text{
-    text-align: justify;
-  }
-  .cesar-intro__content{
-    text-align: center;
-
-    .cesar-intro__icon{
-      color: @primary_color_logo;
-      font-size: 6rem;
-    }
-  }
-  .cesar-intro__video{
-    text-align: center;
-
-    .cesar-intro__video-container{
-      width: 80%;
-      margin:0 auto;
-    }
-
-    .cesar-intro__video-content{
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%;
-    }
-
-    object {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
-.cesar-speaker{
-  background-color: @secondary_color;
-  text-align: center;
-}
-
-.cesar-info{
-  @media only screen and (min-width: 0) {
-    .cesar-info__content{
-      padding: 0em;
-    }
-  }
-  @media only screen and (min-width: 1024px) {
-    .cesar-info__content{
-      padding: 2em;
-    }
-  }
-
-}
-
-.cesar-photos {
-  img {
-    min-width: 100%;
-  }
-  @media only screen and (min-width: 0) {
-    background-image: url("assets/img/panel1_500.jpg");
-  }
-  @media only screen and (min-width: 480px) and (max-width: 1023px) {
-    background-image: url("assets/img/panel1_1000.jpg");
-  }
-  @media only screen and (min-width: 1024px) {
-    background-image: url("assets/img/panel1_1500.jpg");
-  }
-}
-
-.cesar-sponsors{
-  img{
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-.cesar-footer{
-  background-color: @primary_color;
-  color: white;
-
-  p{
-    font-weight: 300;
-  }
-
-  li{
-    list-style-type:none;
-  }
-
-
-  a{
-    text-decoration: none;
-    font-weight: 300;
-    color: white;
-  }
-
-  .cesar-subfooter{
-    background-color: rgba(51, 51, 51, 0.08);
-
-    .cesar-footer__copyright{
-      overflow: hidden;
-      height: 50px;
-      line-height: 50px;
-    }
-  }
-
-  .cesar-footer--social img{
-    fill: #ffffff;
-  }
 }
 
 .cesar-card__title{

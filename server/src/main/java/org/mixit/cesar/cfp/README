@@ -1,0 +1,18 @@
+Au niveau du CFP le but est d'écrire l'appli en Angular 2. Le but du CFP est d'enregistrer les propositions de speaker
+* enregistrer => authent
+* speaker => members
+* proposition => talk proposition
+
+Pour la partie authent c'est la même que pour le site
+Au niveau des membres ont demande quelques infos en plus comme une photo, une description, des liens...
+[pour les liens et les centres d'intér ajouter les mêmes fonctionnalités sur la partie account classique]
+
+Au niveau proposition on ne veut pas pourrir les talks donc on créé une table à côté que la personne viendra compléter
+Un talk est valide pour une édition
+
+
+Workflow
+1) le user se connecte il a la posssibilité de modifier ses informations personnelles. Une proposition ne peut être valide si les données ne sont pas complètes
+2) il voit aussi la liste de ses propositions
+3) chaque proposition peut être modifiée ou supprimée
+

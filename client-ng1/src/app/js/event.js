@@ -17,7 +17,6 @@
         waitinPopupTimeout = $timeout(function(){
           //document.location.href='#top';
           $rootScope.waitingPopup = true;
-          angular.element(document.querySelector('body')).addClass('no-scrollable');
         }, 100);
       }
     };
@@ -25,7 +24,6 @@
     $rootScope.stopWaiting = function() {
       $rootScope.waitingPopup = false;
       if(waitinPopupTimeout){
-        angular.element(document.querySelector('body')).removeClass('no-scrollable');
         $timeout.cancel(waitinPopupTimeout);
       }
     };
@@ -37,11 +35,9 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
-
       //Patch to hide the drawer panel when a user click on a link (bug Material Design Lite)
-      var node = document.querySelector('cesar-menu');
-      angular.element(node.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
-      angular.element(node.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
+       angular.element(document.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
+      angular.element(document.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
 
       if (next.name === 'logout' || next.name === 'createaccount') {
         AuthenticationService.logout();
