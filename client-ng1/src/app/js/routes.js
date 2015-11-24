@@ -127,7 +127,7 @@
 
 
       //Account
-      .state('account', new State(USER_ROLES, 'myaccount', 'views/account/account.html')
+      .state('account', new State(USER_ROLES, 'account', 'views/account/account.html')
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
