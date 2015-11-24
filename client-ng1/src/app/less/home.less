@@ -1,0 +1,122 @@
+.cesar-headband{
+  background-size: cover;
+
+  .cesar-headband-blink{
+    font-weight: bold;
+    color : @primary_color_dark;
+  }
+  .cesar-headband__content{
+    width: 80% !important;
+    background-color: @background_color_light;
+    text-align: center;
+    margin:0 auto;
+  }
+
+  @media only screen and (min-width: 0) {
+    background-image: url("assets/img/home1_500.jpg");
+    .cesar-headband__content{
+      img{
+        max-width: 100%;
+        min-width: 100%;
+      }
+    }
+  }
+  @media only screen and (min-width: 480px) and (max-width: 1023px) {
+    background-image: url("assets/img/home1_1000.jpg");
+    .cesar-headband__content{
+      img{
+        max-width: 100%;
+        min-width: 100%;
+      }
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    background-image: url("assets/img/home1_1500.jpg");
+    .cesar-headband__content{
+      img{
+        max-width: 70%;
+        min-width: 70%;
+      }
+    }
+  }
+}
+
+.cesar-intro {
+  text-align: center;
+
+  .cesar-text{
+    text-align: justify;
+  }
+  .cesar-intro__content{
+    text-align: center;
+
+    .cesar-intro__icon{
+      color: @primary_color_logo;
+      font-size: 6rem;
+    }
+  }
+  .cesar-intro__video{
+    text-align: center;
+
+    .cesar-intro__video-container{
+      width: 80%;
+      margin:0 auto;
+    }
+
+    .cesar-intro__video-content{
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+    }
+
+    object {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.cesar-speaker{
+  background-color: @secondary_color;
+  text-align: center;
+}
+
+.cesar-info{
+  @media only screen and (min-width: 0) {
+    .cesar-info__content{
+      padding: 0em;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .cesar-info__content{
+      padding: 2em;
+    }
+  }
+
+}
+
+.cesar-photos {
+  img {
+    min-width: 100%;
+  }
+  @media only screen and (min-width: 0) {
+    background-image: url("assets/img/panel1_500.jpg");
+  }
+  @media only screen and (min-width: 480px) and (max-width: 1023px) {
+    background-image: url("assets/img/panel1_1000.jpg");
+  }
+  @media only screen and (min-width: 1024px) {
+    background-image: url("assets/img/panel1_1500.jpg");
+  }
+}
+
+.cesar-sponsors{
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+}
