@@ -4,6 +4,7 @@
     "en" : "Anglais"
   },
   "menu": {
+    "admin": "Admin",
     "news": "Actualités",
     "program": "Programme",
     "planning": "Planning",
@@ -24,7 +25,8 @@
     "favorites": "Mes favoris",
     "account": "Mon compte",
     "logout": "Se déconnecter",
-    "login": "Se connecter"
+    "login": "Se connecter",
+    "monitor": "Monitoring"
   },
   "home": {
     "headband": {

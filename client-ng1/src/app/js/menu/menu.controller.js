@@ -54,6 +54,10 @@
 
 
     function updateUserSection(){
+      var lastIndex = ctrl.menus.length-1;
+      if(ctrl.menus[lastIndex].id === 'admin'){
+        ctrl.menus.splice(lastIndex, 1);
+      }
       AuthenticationService.currentUser().then(function(currentUser){
         if(currentUser){
           ctrl.security = {
@@ -67,6 +71,12 @@
               {id: 'menu.logout', link: 'logout', mobile: true}
             ]
           };
+          ctrl.menus.push(
+            {
+              id: 'menu.admin', name: 'admin', submenus: [
+              {id: 'menu.monitor', link: 'monitor'}
+            ]}
+          );
         }
         else{
           delete ctrl.security;
