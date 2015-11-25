@@ -45,6 +45,8 @@ apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 
+group 'org.mixit'
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
 }
@@ -55,20 +57,6 @@ task wrapper(type: Wrapper) {
 gitProperties {
     gitPropertiesDir = new File("${project.rootDir}")
 }
-/*
- * Gets the version name from the latest Git tag
- */
-def getVersionName = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'describe', '--tags'
-        standardOutput = stdout
-    }
-    println "Git " + stdout.toString().trim()
-    return stdout.toString().trim()
-}
-group 'org.mixit'
-version = getVersionName()
 
 /*******************************************************************************************
  * The different plugins used in submodules and dependencies are defined here
