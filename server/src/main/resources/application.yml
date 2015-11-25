@@ -8,9 +8,12 @@ info:
     artifact: ${project.artifactId}
     name: ${project.name}
     description: ${project.description}
+  git:
+    branch: %git.branch%
+    id: %git.commit.id%
   app:
     name: ${project.name}
-    version: ${project.version}
+    version: @version@
 
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}

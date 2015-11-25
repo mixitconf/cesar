@@ -1,7 +1,6 @@
 /*******************************************************************************************
  *                              gradle file : ROOT
  ******************************************************************************************/
-group 'org.mixit'
 
 buildscript {
     ext {
@@ -46,10 +45,15 @@ apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 
+group 'org.mixit'
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
 }
 
+/**
+ * Manage git version
+ */
 gitProperties {
     gitPropertiesDir = new File("${project.rootDir}")
 }
@@ -68,12 +72,12 @@ configure(allprojects) {
 }
 
 //We use gulp to manage the webapp
-configure([ project(':client-ng1'), project(':client-ng2')]) {
+configure([project(':client-ng1'), project(':client-ng2')]) {
     apply plugin: 'com.moowork.node'
 }
 
 //Flyway is used to manage the database
-configure([ project(':common')]) {
+configure([project(':common')]) {
     apply plugin: 'org.flywaydb.flyway'
 
     repositories {
@@ -86,7 +90,7 @@ configure([ project(':common')]) {
 }
 
 //Uses Spring Boot
-configure([ project(':server')]) {
+configure([project(':server')]) {
     apply plugin: 'spring-boot'
 
     repositories {
