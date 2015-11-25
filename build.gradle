@@ -1,7 +1,6 @@
 /*******************************************************************************************
  *                              gradle file : ROOT
  ******************************************************************************************/
-group 'org.mixit'
 
 buildscript {
     ext {
@@ -50,9 +49,26 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.4'
 }
 
+/**
+ * Manage git version
+ */
 gitProperties {
     gitPropertiesDir = new File("${project.rootDir}")
 }
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+    println "Git " + stdout.toString().trim()
+    return stdout.toString().trim()
+}
+group 'org.mixit'
+version = getVersionName()
 
 /*******************************************************************************************
  * The different plugins used in submodules and dependencies are defined here
@@ -68,12 +84,12 @@ configure(allprojects) {
 }
 
 //We use gulp to manage the webapp
-configure([ project(':client-ng1'), project(':client-ng2')]) {
+configure([project(':client-ng1'), project(':client-ng2')]) {
     apply plugin: 'com.moowork.node'
 }
 
 //Flyway is used to manage the database
-configure([ project(':common')]) {
+configure([project(':common')]) {
     apply plugin: 'org.flywaydb.flyway'
 
     repositories {
@@ -86,7 +102,7 @@ configure([ project(':common')]) {
 }
 
 //Uses Spring Boot
-configure([ project(':server')]) {
+configure([project(':server')]) {
     apply plugin: 'spring-boot'
 
     repositories {
