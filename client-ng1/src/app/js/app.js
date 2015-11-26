@@ -34,6 +34,14 @@
     $httpProvider.interceptors.push('cesarErrorInterceptor', 'cesarSpinnerInterceptor');
   });
 
+  /**
+   * On startup we read info on application
+   */
+  angular.module('cesar').run(function($http, $rootScope) {
+    $http.get('/api/cesar').then(function(response){
+      $rootScope.cesar = response.data;
+    });
+  });
 })();
 
 

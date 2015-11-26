@@ -1,8 +1,13 @@
 package org.mixit.cesar.site.web.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.mixit.cesar.site.model.Tuple;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +21,13 @@ public class CesarController {
 
     @RequestMapping
     @ApiOperation(value = "Return the number version", httpMethod = "GET")
-    public String getVersion() {
-        return version;
+    public ResponseEntity<Map<String, String>> getVersion() {
+        Map<String, String> params = new HashMap<>();
+        params.put("version", version);
+
+        return ResponseEntity
+                .ok()
+                .body(params);
     }
 
 }
