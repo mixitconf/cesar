@@ -52,7 +52,7 @@
         .build())
 
       //News
-      .state('news', new State(USER_ROLES, 'article/:id', 'views/info/news.html')
+      .state('news', new State(USER_ROLES, 'article/:id/:title', 'views/info/news.html')
         .controller('ArticleCtrl')
         .resolve({articles: getAllArticles})
         .build())
@@ -75,7 +75,7 @@
       .state('mixit14', new State(USER_ROLES, 'mixit14', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
       .state('mixit13', new State(USER_ROLES, 'mixit13', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
       .state('mixit12', new State(USER_ROLES, 'mixit12', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
-      .state('session', new State(USER_ROLES, 'session/:id', 'views/sessions/session.html').controller('SessionCtrl')
+      .state('session', new State(USER_ROLES, 'session/:id/:title', 'views/sessions/session.html').controller('SessionCtrl')
         .resolve({
           /* @ngInject */
           session: function (SessionService, $stateParams) {
