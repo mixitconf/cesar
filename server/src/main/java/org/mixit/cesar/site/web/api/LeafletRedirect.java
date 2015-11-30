@@ -30,7 +30,7 @@ public class LeafletRedirect {
 
     @RequestMapping(value = "/docs/sponsor/form/{language}")
     public void sponsorForm(@PathVariable("language") String language, HttpServletResponse response) throws IOException {
-        if (SessionLanguage.en.equals(language.toLowerCase())) {
+        if ("en".equals(language.toLowerCase())) {
             response.sendRedirect("https://drive.google.com/open?id=" + sponsorFormEn);
         }
         else {
@@ -40,21 +40,21 @@ public class LeafletRedirect {
 
     @RequestMapping(value = "/docs/sponsor/leaflet/{language}")
     public void sponsorLeaflet(@PathVariable("language") String language, HttpServletResponse response) throws IOException {
-        if (SessionLanguage.en.equals(language.toLowerCase())) {
-            response.sendRedirect("https://drive.google.com/open?id=" + sponsorFormFr);
+        if ("en".equals(language.toLowerCase())) {
+            response.sendRedirect("https://drive.google.com/open?id=" + sponsorLeafletEn);
         }
         else {
-            response.sendRedirect("https://drive.google.com/open?id=" + sponsorFormFr);
+            response.sendRedirect("https://drive.google.com/open?id=" + sponsorLeafletFr);
         }
     }
 
     @RequestMapping(value = "/docs/speaker/leaflet/{language}")
     public void speakerLeaflet(@PathVariable("language") String language, HttpServletResponse response) throws IOException {
-        if (SessionLanguage.en.equals(language.toLowerCase())) {
-            response.sendRedirect("https://drive.google.com/open?id=" + sponsorFormFr);
+        if ("en".equals(language.toLowerCase())) {
+            response.sendRedirect("https://drive.google.com/open?id=" + speakerLeafletEn);
         }
         else {
-            response.sendRedirect("https://drive.google.com/open?id=" + sponsorFormFr);
+            response.sendRedirect("https://drive.google.com/open?id=" + speakerLeafletFr);
         }
     }
 }
