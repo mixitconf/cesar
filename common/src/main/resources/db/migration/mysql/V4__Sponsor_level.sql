@@ -1,0 +1,2 @@
+UPDATE mixit.Member SET LEVEL='GOLD' where LEVEL='SILVER';
+UPDATE mixit.Member SET LEVEL='SILVER' where LEVEL='BRONZE';
