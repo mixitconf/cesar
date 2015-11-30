@@ -5,8 +5,8 @@
   angular.module('cesar-members').factory('MemberService', function ($http) {
     'ngInject';
 
-    function getAll(type){
-      return $http.get('/api/member/' + type);
+    function getAll(type, year){
+      return $http.get('/api/member/' + type + (year ? '?year=' + year : ''));
     }
 
     function getAllLigthningtalkSpeakers(){

@@ -118,6 +118,19 @@
           }
         })
         .build())
+        .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'views/members/member.html').controller('MemberCtrl')
+          .resolve({
+            type : function(){
+              return 'sponsor'
+            },
+            /* @ngInject */
+            member: function (MemberService, $stateParams) {
+              return MemberService.getById($stateParams.id).then(function (response) {
+                return response.data;
+              });
+            }
+          })
+        .build())
 
       //Infos
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'views/info/multimedia.html').build())
