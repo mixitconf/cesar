@@ -6,11 +6,12 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService, $translate) {
     'ngInject';
 
     var waitinPopupTimeout;
     $rootScope.waitingPopup = false;
+    $rootScope.lang = $translate.preferredLanguage().slice(0,2);
 
     $rootScope.wait = function() {
       if(!waitinPopupTimeout){
@@ -88,6 +89,9 @@
       });
     });
 
+    $rootScope.$on('event:language-changed', function (event, next) {
+      $rootScope.lang = next.slice(0,2);
+    });
 
   });
 

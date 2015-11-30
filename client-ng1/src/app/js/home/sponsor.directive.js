@@ -7,7 +7,9 @@
 
     return {
       templateUrl: 'js/home/sponsor.directive.html',
-      scope: {}
+      scope: {
+        lang : '='
+      }
     };
   });
 })();

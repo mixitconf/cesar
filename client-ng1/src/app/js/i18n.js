@@ -19,7 +19,6 @@
     $translateProvider.preferredLanguage(LANGUAGES.fr);
     $translateProvider.useCookieStorage();
     $translateProvider.useSanitizeValueStrategy('sanitize');
-
   });
 
 })();

@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, LANGUAGES, AuthenticationService) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, $rootScope, LANGUAGES, AuthenticationService) {
     'ngInject';
 
     var ctrl = this;
@@ -19,6 +19,7 @@
     ctrl.toggleLanguage = function () {
       ctrl.currentLanguage = ($translate.use() === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us;
       $translate.use(ctrl.currentLanguage);
+      $rootScope.$broadcast('event:language-changed', ctrl.currentLanguage);
     };
 
     ctrl.menus = [
