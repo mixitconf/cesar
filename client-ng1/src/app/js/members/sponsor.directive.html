@@ -1,0 +1,6 @@
+<a ng-repeat="member in sponsors | | filter:level | orderBy: 'level'"
+   class="mdl-button mdl-js-button mdl-button--raised cesar-sponsor-{{member.level}}"
+   title="{{member.lastname}} - {{member.level}}"
+   ui-sref="sponsor({{member.idMember}})">
+    {{member.lastname}} {{member.level}} {{member.idMember}}
+</a>

@@ -121,7 +121,7 @@
         .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'views/members/member.html').controller('MemberCtrl')
           .resolve({
             type : function(){
-              return 'sponsor'
+              return 'sponsor';
             },
             /* @ngInject */
             member: function (MemberService, $stateParams) {
