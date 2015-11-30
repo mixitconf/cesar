@@ -14,7 +14,7 @@ info:
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}
   crypto:
-    salt: ${CESAR_CRYPTO_SALT:XXXXX-S ecretKey-XXXXX}
+    salt: ${CESAR_CRYPTO_SALT:XXXXX-SecretKey-XXXXX}
   mail:
     smtp:
       host: ${CESAR_MAIL_HOST:smtp.gmail.com}
@@ -24,6 +24,19 @@ cesar:
       port: ${CESAR_MAIL_PORT:587}
       starttls: true
     from: Mix-IT <contact@mix-it.fr>
+
+drive:
+  sponsor:
+    form:
+      fr: ${DRIVE_SPONSOR_FORM_FR:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
+      en: ${DRIVE_SPONSOR_FORM_EN:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
+    leaflet:
+      fr: ${DRIVE_SPONSOR_LEAFLET_FR:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
+      en: ${DRIVE_SPONSOR_LEAFLET_EN:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
+  speaker:
+    leaflet:
+      fr: ${DRIVE_SPEAKER_LEAFLET_FR:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
+      en: ${DRIVE_SPEAKER_LEAFLET_EN:0B43BPeaKpurvc1ZCN0xFLXJDSzA}
 
 oauth:
   google:

@@ -16,12 +16,9 @@
     </div>
 
     <p class="cesar-text"  translate="view.talks.sponsor"></p>
-    <a title="{{member.lastname}} - {{member.level}}"
-       ng-repeat="member in ctrl.sponsors | orderBy: 'level'"
-       class="mdl-button mdl-js-button mdl-button--raised cesar-sponsor-{{member.level}}"
-       ui-sref="sponsor({{member.idMember}})">
-        {{member.lastname}} {{member.level}} {{member.idMember}}
-    </a>
+
+    <cesar-sponsor members="ctrl.sponsors" level="GOLD"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="SILVER"></cesar-sponsor>
 
     <p>&nbsp;</p>
 </div>
