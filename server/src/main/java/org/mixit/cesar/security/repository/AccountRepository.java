@@ -2,15 +2,14 @@ package org.mixit.cesar.security.repository;
 
 import java.util.List;
 
-import org.mixit.cesar.site.model.member.SharedLink;
-import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.model.OAuthProvider;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 /**
- * {@link SharedLink}
+ * {@link Account}
  */
 public interface AccountRepository extends CrudRepository<Account, Long> {
 

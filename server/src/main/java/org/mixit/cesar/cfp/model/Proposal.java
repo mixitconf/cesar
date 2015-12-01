@@ -90,15 +90,11 @@ public class Proposal {
     @OrderBy("postedAt ASC")
     private List<ProposalComment> comments = new ArrayList<>();
 
-    /**
-     * Is session validated (publicly visible)
-     */
-    protected boolean valid;
-
     @Enumerated(EnumType.STRING)
     private SessionLanguage lang = SessionLanguage.fr;
 
-    private Boolean sessionAccepted;
+    @Enumerated(EnumType.STRING)
+    private ProposalStatus status;
 
     /* true if Staff has given feedback */
     private boolean feedback;
@@ -258,15 +254,6 @@ public class Proposal {
         return this;
     }
 
-    public boolean isValid() {
-        return valid;
-    }
-
-    public Proposal setValid(boolean valid) {
-        this.valid = valid;
-        return this;
-    }
-
     public SessionLanguage getLang() {
         return lang;
     }
@@ -285,21 +272,20 @@ public class Proposal {
         return this;
     }
 
+    public ProposalStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProposalStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Proposal session = (Proposal) o;
         return Objects.equals(id, session.id);
-    }
-
-    public Boolean getSessionAccepted() {
-        return sessionAccepted;
-    }
-
-    public Proposal setSessionAccepted(Boolean sessionAccepted) {
-        this.sessionAccepted = sessionAccepted;
-        return this;
     }
 
 

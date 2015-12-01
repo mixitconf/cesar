@@ -9,7 +9,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.common.io.BaseEncoding;
-import org.mixit.cesar.security.model.BadRequestException;
+import org.mixit.cesar.security.service.exception.BadRequestException;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.LinkedMultiValueMap;
