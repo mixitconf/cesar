@@ -1,9 +1,9 @@
 <p>
     {{level}}<br>
     <a ng-repeat="member in members | filter:{level : level} | orderBy: 'level'"
-       class="mdl-button mdl-js-button mdl-button--raised cesar-sponsor-{{member.level}}"
+       class="cesar-sponsor-{{member.level}}"
        title="{{member.lastname}} - {{member.level}}"
        ui-sref="sponsor({id : member.idMember})">
-        {{member.lastname}} {{member.level}} {{member.idMember}}
+        <img src="img/{{member.logo}}">
     </a>
 </p>
