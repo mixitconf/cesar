@@ -42,6 +42,9 @@ public class Proposal {
     @Enumerated(EnumType.STRING)
     protected Format format;
 
+    @Enumerated(EnumType.STRING)
+    protected ProposalCategory category;
+
     @ManyToOne
     private Event event;
 
@@ -115,6 +118,14 @@ public class Proposal {
     public Proposal setFormat(Format format) {
         this.format = format;
         return this;
+    }
+
+    public ProposalCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProposalCategory category) {
+        this.category = category;
     }
 
     public Event getEvent() {
