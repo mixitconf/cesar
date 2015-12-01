@@ -86,7 +86,7 @@ public class Proposal {
     /**
      * Eventual comments
      */
-    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     @OrderBy("postedAt ASC")
     private List<ProposalComment> comments = new ArrayList<>();
 
