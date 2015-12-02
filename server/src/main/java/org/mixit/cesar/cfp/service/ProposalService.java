@@ -32,11 +32,11 @@ public class ProposalService {
         return errors;
     }
 
-    public ProposalStatus computeProposalState(Proposal proposal){
+    public void computeValidity(Proposal proposal){
         Set<ProposalError> errors = check(proposal);
         proposal.getSpeakers().forEach(speaker -> errors.addAll(memberService.checkSpeakerData(speaker)));
 
-      //  if(errors.isEmpty())
+        proposal.setValid(errors.isEmpty());
     }
 
     public void save(){
