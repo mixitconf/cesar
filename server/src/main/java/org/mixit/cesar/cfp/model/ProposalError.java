@@ -1,22 +1,28 @@
 package org.mixit.cesar.cfp.model;
 
 public class ProposalError {
-    private String code;
-    private String message;
+    public enum Code {
+        REQUIRED
+    };
 
-    public String getCode() {
+    private Code code;
+    private String property;
+
+    public Code getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public ProposalError setCode(Code code) {
         this.code = code;
+        return this;
     }
 
-    public String getMessage() {
-        return message;
+    public String getProperty() {
+        return property;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public ProposalError setProperty(String property) {
+        this.property = property;
+        return this;
     }
 }

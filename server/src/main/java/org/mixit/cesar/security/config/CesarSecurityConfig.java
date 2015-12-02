@@ -14,6 +14,7 @@ public class CesarSecurityConfig {
         return new AuthenticationFilter()
                 .addPathPatterns(
                         "/app/**/*",
+                        "/cfp/**/*",
                         "/monitoring/**/*"
                 )
                 .excludePathPatterns(

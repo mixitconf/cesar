@@ -102,6 +102,8 @@ public class Proposal {
     /* true if Staff has given feedback */
     private boolean feedback;
 
+    private boolean valid;
+
     public Long getId() {
         return id;
     }
@@ -289,6 +291,14 @@ public class Proposal {
 
     public void setStatus(ProposalStatus status) {
         this.status = status;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     @Override
