@@ -124,6 +124,9 @@ public class ProposalService {
         if (proposalPersisted.isValid()) {
             proposalPersisted.setStatus(ProposalStatus.VALID);
         }
+        else{
+            proposalPersisted.setStatus(ProposalStatus.CREATED);
+        }
 
         if (newProposal) {
             proposalPersisted.getSpeakers()
