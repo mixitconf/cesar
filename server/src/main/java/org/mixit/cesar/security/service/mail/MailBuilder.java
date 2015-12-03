@@ -20,7 +20,10 @@ public class MailBuilder {
         ACCOUND_NEW_VALIDATION,
         SOCIAL_ACCOUNT_VALIDATION,
         CESAR_ACCOUNT_VALIDATION,
-        EMAIL_CHANGED
+        EMAIL_CHANGED,
+        SESSION_SUBMITION,
+        SESSION_REJECTED,
+        SESSION_ACCEPTED
     }
 
     public String createHtmlMail(TypeMail typeMail, Account account, Optional<OAuthProvider> provider) {
@@ -75,6 +78,11 @@ public class MailBuilder {
                         .append("\">")
                         .append(url)
                         .append("</a>. Vous pourrez ensuite utiliser la partie sécurisée du site.</p>");
+                break;
+            case SESSION_ACCEPTED:
+            case SESSION_REJECTED:
+            case SESSION_SUBMITION:
+                message.append("<p>TODO à faire et à gérer correctement ces mails");
                 break;
         }
 

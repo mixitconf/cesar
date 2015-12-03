@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
-import org.mixit.cesar.security.model.BadRequestException;
+import org.mixit.cesar.security.service.exception.BadRequestException;
 import org.mixit.cesar.security.model.OAuthProvider;
 
 /**

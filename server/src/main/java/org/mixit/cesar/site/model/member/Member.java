@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -26,9 +26,9 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
+import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.event.Event;
-import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.site.model.session.Session;
 
 @Entity
@@ -89,14 +89,14 @@ public class Member<T extends Member> implements Comparable<Member> {
     private long nbConsults = 0;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    public Set<Interest> interests = new TreeSet<>();
+    public Set<Interest> interests = new HashSet<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @OrderColumn(name = "ordernum")
     public List<SharedLink> sharedLinks = new LinkedList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    public Set<Event> events = new TreeSet<>();
+    public Set<Event> events = new HashSet<>();
 
     @ManyToMany(mappedBy = "speakers")
     public Set<Session> sessions = new HashSet<>();

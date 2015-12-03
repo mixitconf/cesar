@@ -1,4 +1,4 @@
-package org.mixit.cesar.security.model;
+package org.mixit.cesar.security.service.exception;
 
 public class BadRequestException extends RuntimeException {
 

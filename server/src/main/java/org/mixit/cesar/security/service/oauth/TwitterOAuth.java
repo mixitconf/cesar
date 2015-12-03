@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.mixit.cesar.security.model.BadRequestException;
+import org.mixit.cesar.security.service.exception.BadRequestException;
 import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.scribe.builder.ServiceBuilder;
