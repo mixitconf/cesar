@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.service;
 
 import static org.mixit.cesar.cfp.model.ProposalError.Code.REQUIRED;
+import static org.mixit.cesar.cfp.model.ProposalError.Entity.MEMBER;
 
 import java.util.Objects;
 import java.util.Set;
@@ -42,19 +43,19 @@ public class MemberService {
         //before like lastname, firstname, login, mail... He can't change his email and his login on this screen
         //because these fields help to link an account and a member. But he can change other fields
         if (Objects.isNull(member.getFirstname())) {
-            errors.add(new ProposalError().setCode(REQUIRED).setProperty("firstname"));
+            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("firstname"));
         }
         if (Objects.isNull(member.getLastname())) {
-            errors.add(new ProposalError().setCode(REQUIRED).setProperty("lastname"));
+            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("lastname"));
         }
         if (Objects.isNull(member.getShortDescription())) {
-            errors.add(new ProposalError().setCode(REQUIRED).setProperty("shortDescription"));
+            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("shortDescription"));
         }
         if (Objects.isNull(member.getLongDescription())) {
-            errors.add(new ProposalError().setCode(REQUIRED).setProperty("longDescription"));
+            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("longDescription"));
         }
         if (member.getEmail()==null || !Gravatar.imageExist(member.getEmail())) {
-            errors.add(new ProposalError().setCode(REQUIRED).setProperty("image"));
+            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("image"));
         }
 
         return errors;
@@ -66,9 +67,6 @@ public class MemberService {
     public Member save(Member<Member> member) {
         Objects.requireNonNull(member, "member is required");
 
-        if (Objects.isNull(member.getId())) {
-            throw new UserNotFoundException();
-        }
         Member persistedMember = memberRepository.findOne(member.getId());
         if (Objects.isNull(persistedMember)) {
             throw new UserNotFoundException();

@@ -72,7 +72,6 @@ public class Proposal {
     private String messageForStaff;
 
     @Lob
-    @NotNull
     private String description;
 
     @Column
@@ -80,11 +79,10 @@ public class Proposal {
     private String ideaForNow;
 
     @ManyToMany
-    @NotNull
     private Set<Member> speakers = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Set<Interest> interests = new TreeSet<Interest>();
+    private Set<Interest> interests = new HashSet<>();
 
     /**
      * Eventual comments
@@ -126,8 +124,9 @@ public class Proposal {
         return category;
     }
 
-    public void setCategory(ProposalCategory category) {
+    public Proposal setCategory(ProposalCategory category) {
         this.category = category;
+        return this;
     }
 
     public Event getEvent() {
@@ -289,16 +288,18 @@ public class Proposal {
         return status;
     }
 
-    public void setStatus(ProposalStatus status) {
+    public Proposal setStatus(ProposalStatus status) {
         this.status = status;
+        return this;
     }
 
     public boolean isValid() {
         return valid;
     }
 
-    public void setValid(boolean valid) {
+    public Proposal setValid(boolean valid) {
         this.valid = valid;
+        return this;
     }
 
     @Override
