@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </temp>
-        <!-- Security
+        <!-- Security -->
         <a ng-if="ctrl.security.authentified" id="security"
            class="cesar-menu mdl-navigation__link cesar-navigation__link">
             <img ng-src="http://www.gravatar.com/avatar/{{ctrl.security.hash}}" class="cesar-img-avatar"/>
@@ -40,15 +40,14 @@
                 <a ng-if="subitem.link" ui-sref="{{subitem.link}}"><span translate="{{subitem.id}}"></span></a>
             </li>
         </ul>
-        -->
+
         <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
-            <!-- Security
+            <!-- Security -->
             <button ng-if="!ctrl.security.authentified"
                     class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                     ng-click="ctrl.go('authent')">
                 <i class="material-icons" style="color: white">vpn_key</i>
             </button>
-            -->
             <!-- i18n -->
             <button ng-if="ctrl.currentLanguage===ctrl.languages.us"
                     class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab french-flag"
