@@ -143,7 +143,13 @@
       "p1": "It is kind of soon to announce speakers of the 2016 edition but here is the list of people who came to talk on 2015."
     },
     "sponsors": {
-      "title": "2015 Sponsors"
+      "title": "2016 Sponsors",
+      "level_GOLD": "Level GOLD",
+      "level_SILVER": "Level SILVER",
+      "level_LANYARD": "Lanyard",
+      "level_PARTY": "Party",
+      "level_BREAKFAST": "Breakfast",
+      "level_LUNCH": "Lunch"
     },
     "staff": {
       "title": "Mix-IT team",
