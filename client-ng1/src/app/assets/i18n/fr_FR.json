@@ -140,10 +140,16 @@
     },
     "speakers": {
       "title": "Les speakers",
-      "p1": "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parler en 2015."
+      "p1": "Il est un peu tôt pour vous annoncer les speakers de l'édition 2016, mais voici la liste des personnes qui sont venues parler en ."
     },
     "sponsors": {
-      "title": "Les sponsors 2015"
+      "title": "Les sponsors 2016",
+      "level_GOLD": "Niveau GOLD",
+      "level_SILVER": "Niveau SILVER",
+      "level_LANYARD": "Tour de cou",
+      "level_PARTY": "Soirée",
+      "level_BREAKFAST": "Petit déjeuner",
+      "level_LUNCH": "Repas"
     },
     "staff": {
       "title": "L'équipe Mix-IT",
@@ -159,7 +165,7 @@
       "p1": "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus."
     },
     "planning": {
-      "title": "Planning"
+   "title": "Planning"
     },
     "talks": {
       "title": "Conférences et ateliers",

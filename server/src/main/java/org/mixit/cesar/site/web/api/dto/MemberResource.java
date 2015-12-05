@@ -59,7 +59,7 @@ public class MemberResource extends ResourceSupport {
             memberResource.setLevel(member
                     .getMemberEvents()
                     .stream()
-                    .map(e -> e.getLevel().toString())
+                    .map(e -> Objects.toString(e.getLevel(), ""))
                     .collect(Collectors.toList()));
         }
         if (!member.getInterests().isEmpty()) {

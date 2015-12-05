@@ -23,22 +23,22 @@
     };
 
     ctrl.menus = [
-      //TODO will be used in the next version
+
       //{id: 'menu.news', link: 'news'},
       //{
       //  id: 'menu.program', submenus: [
-      //  //{id: 'planning', link: 'planning', mobile: true},
-      //  {id: 'menu.talks', link: 'talks', mobile: true},
-      //  {id: 'menu.ligthningtalks', link: 'lightningtalks', mobile: true}
-      //]
+      //    //{id: 'planning', link: 'planning', mobile: true},
+      //    {id: 'menu.talks', link: 'talks', mobile: true},
+      //    {id: 'menu.ligthningtalks', link: 'lightningtalks', mobile: true}
+      //  ]
       //},
-      //{
-      //  id: 'menu.members', submenus: [
-      //  {id: 'menu.speakers', link: 'speakers'},
-      //  {id: 'menu.sponsors', link: 'sponsors'},
-      //  {id: 'menu.staff', link: 'staff'}
-      //]
-      //},
+      {
+        id: 'menu.members', submenus: [
+        //{id: 'menu.speakers', link: 'speakers'},
+        {id: 'menu.sponsors', link: 'sponsors'},
+        {id: 'menu.staff', link: 'staff'}
+      ]
+      },
       {
         id: 'menu.info', submenus: [
         {id: 'menu.come', link: 'venir', mobile: true},

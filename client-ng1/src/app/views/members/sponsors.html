@@ -1,17 +1,32 @@
 <cesar-home-sponsor></cesar-home-sponsor>
 <div class="cesar-container">
 
-
     <h1 translate="view.sponsors.title"></h1>
 
 
     <div class="cesar-section--bottom">
-        <h2>Niveau GOLD</h2>
-        <cesar-member-cards members="ctrl.members" search="{level:'GOLD'}" length="6" type="sponsor"
+        <h2 translate="view.sponsors.level_GOLD"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'GOLD'}" length="4" type="sponsor"
                             limit-text="250"></cesar-member-cards>
 
-        <h2>Niveau SILVER</h2>
-        <cesar-member-cards members="ctrl.members" search="{level:'SILVER'}" length="4" type="sponsor"
+        <h2 translate="view.sponsors.level_SILVER"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'SILVER'}" length="3" type="sponsor"
+                            limit-text="150"></cesar-member-cards>
+
+        <h2 translate="view.sponsors.level_LANYARD"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'LANYARD'}" length="3" type="sponsor"
+                            limit-text="150"></cesar-member-cards>
+
+        <h2 translate="view.sponsors.level_PARTY"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'PARTY'}" length="3" type="sponsor"
+                            limit-text="150"></cesar-member-cards>
+
+        <h2 translate="view.sponsors.level_BREAKFAST"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'BREAKFAST'}" length="3" type="sponsor"
+                            limit-text="150"></cesar-member-cards>
+
+        <h2 translate="view.sponsors.level_LUNCH"></h2>
+        <cesar-member-cards members="ctrl.members" search="{level:'LUNCH'}" length="3" type="sponsor"
                             limit-text="150"></cesar-member-cards>
 
     </div>
