@@ -11,20 +11,21 @@ FROM ad_32609ed48478829.interest;
 
 INSERT INTO mixit.Member (
     DTYPE,  ID,     COMPANY,    EMAIL,  FIRSTNAME,  LASTNAME,   LOGIN,  LONGDESCRIPTION,    NBCONSULTS,
-    PUBLICPROFILE,  REGISTEREDAT,   SHORTDESCRIPTION,   TICKETINGREGISTERED,    LEVEL,  LOGOURL)
+    PUBLICPROFILE,  REGISTEREDAT,   SHORTDESCRIPTION,   TICKETINGREGISTERED,    LOGOURL)
 SELECT
     DTYPE,  id,     company,    email,  firstname,  lastname,   login,  longDescription,    nbConsults,
-    publicProfile,  registeredAt,   shortDescription,   false,  level,  logoUrl
+    publicProfile,  registeredAt,   shortDescription,   false,  logoUrl
 FROM ad_32609ed48478829.member;
 
 INSERT INTO mixit.Member_Interest (MEMBER_ID, INTERESTS_ID)
 SELECT Member_id,	interests_id
 FROM ad_32609ed48478829.member_interest;
 
-INSERT INTO mixit.Member_Event (MEMBER_ID, EVENTS_ID)
+INSERT INTO mixit.MemberEvent (MEMBER_ID, EVENT_ID)
 SELECT sponsor_id, CASE events WHEN 'mixit12' THEN 2 WHEN 'mixit13' THEN 3 WHEN 'mixit14' THEN 4 WHEN 'mixit15' THEN 5 ELSE 6 END AS EVENTS_ID
 FROM ad_32609ed48478829.sponsor_events;
 
+UPDATE mixit.MemberEvent me set me.level=(SELECT m.level from ad_32609ed48478829.member m where m.id=me.member_id);
 
 INSERT INTO mixit.Article (ID,CONTENT,HEADLINE,NBCONSULTS,POSTEDAT,TITLE,VALID,AUTHOR_ID)
 SELECT id, content, headline, nbConsults, postedAt, title, valid, author_id
@@ -68,7 +69,7 @@ SELECT id, value, member_id, session_id
 FROM ad_32609ed48478829.vote;
 
 DELETE FROM mixit.Session_Member where  speakers_id in (168);
-INSERT INTO mixit.Member_Event (MEMBER_ID, EVENTS_ID)
+INSERT INTO mixit.MemberEvent (MEMBER_ID, EVENT_ID)
 SELECT DISTINCT speakers_id, 5
 FROM mixit.Session_Member;
 
@@ -112,3 +113,6 @@ INSERT INTO mixit.Account_Authority (ACCOUNT_ID,AUTHORITIES_ID)
 SELECT a.id, 1
 FROM mixit.Account a inner join mixit.Member b on a.member_id=b.id where b.DTYPE='Staff';
 */
+
+UPDATE MemberEvent SET LEVEL='GOLD' where LEVEL='SILVER';
+UPDATE MemberEvent SET LEVEL='SILVER' where LEVEL='BRONZE';

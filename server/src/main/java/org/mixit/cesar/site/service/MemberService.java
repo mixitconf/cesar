@@ -11,6 +11,7 @@ import org.mixit.cesar.cfp.model.ProposalError;
 import org.mixit.cesar.security.service.exception.UserNotFoundException;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
+import org.mixit.cesar.site.model.member.MemberEvent;
 import org.mixit.cesar.site.model.member.SharedLink;
 import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
@@ -64,10 +65,10 @@ public class MemberService {
     /**
      * Save a member
      */
-    public Member save(Member<Member> member) {
+    public <T extends Member> Member save(Member<T> member) {
         Objects.requireNonNull(member, "member is required");
 
-        Member persistedMember = memberRepository.findOne(member.getId());
+        Member<T> persistedMember = memberRepository.findOne(member.getId());
         if (Objects.isNull(persistedMember)) {
             throw new UserNotFoundException();
         }
@@ -83,8 +84,8 @@ public class MemberService {
                 .clearSharedLinks();
 
         //If the user is not linked to the current event we do that
-        if (!persistedMember.getEvents().stream().anyMatch(e -> EventService.getCurrent().equals(e))) {
-            persistedMember.getEvents().add(EventService.getCurrent());
+        if (!persistedMember.getMemberEvents().stream().anyMatch(e -> EventService.getCurrent().equals(e.getEvent()))) {
+            persistedMember.getMemberEvents().add(new MemberEvent().setMember(persistedMember).setEvent(EventService.getCurrent()));
         }
 
         member.getSharedLinks().stream().forEach(link ->
