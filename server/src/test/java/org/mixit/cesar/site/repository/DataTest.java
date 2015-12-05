@@ -12,7 +12,7 @@ public class DataTest {
 
     public static final Operation DELETE_ALL = deleteAllFrom(
             "ArticleComment", "Article", "SessionComment", "Session_Interest", "Session_Member", "Vote", "Session",
-            "SharedLink", "Member_Event", "Member_Interest", "Account_Authority", "Authority", "Account", "Member",
+            "SharedLink", "MemberEvent", "Member_Interest", "Account_Authority", "Authority", "Account", "Member",
             "Event", "Interest"
             );
 

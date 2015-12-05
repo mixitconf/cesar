@@ -3,23 +3,21 @@ package org.mixit.cesar.site.web.api.dto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
-import org.mixit.cesar.site.model.member.SharedLink;
 import org.mixit.cesar.site.model.member.Sponsor;
 import org.mixit.cesar.site.utils.HashUtil;
 import org.mixit.cesar.site.web.api.MemberController;
-import org.mixit.cesar.site.model.Tuple;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 /**
  * Member DTO for API HATEOAS
  */
-public class MemberResource extends ResourceSupport{
+public class MemberResource extends ResourceSupport {
 
     private Long idMember;
     private String login;
@@ -27,7 +25,6 @@ public class MemberResource extends ResourceSupport{
     private String firstname;
     private String lastname;
     private String company;
-    private String level;
     private String logo;
     private String hash;
     private String sessionType;
@@ -36,8 +33,9 @@ public class MemberResource extends ResourceSupport{
     private List<Tuple> userLinks = new ArrayList<>();
     private List<String> interests = new ArrayList<>();
     private List<Long> sessions = new ArrayList<>();
+    private List<String> level = new ArrayList<>();
 
-    public static <T extends Member<T>> MemberResource convert(T member){
+    public static <T extends Member<T>> MemberResource convert(T member) {
 
         MemberResource memberResource = new MemberResource()
                 .setIdMember(member.getId())
@@ -50,31 +48,35 @@ public class MemberResource extends ResourceSupport{
                 .setLongDescription(member.getLongDescription())
                 .setHash(HashUtil.md5Hex(member.getEmail()));
 
-        if(!member.getSessions().isEmpty()) {
+        if (!member.getSessions().isEmpty()) {
             memberResource.setSessions(member.getSessions()
                     .stream()
                     .filter(s -> Boolean.TRUE.equals(s.getSessionAccepted()))
                     .map(s -> s.getId())
                     .collect(Collectors.toList()));
         }
-        Set<Interest> interests = member.getInterests();
-        if(!interests.isEmpty()){
-            memberResource.setInterests(interests
+        if (!member.getMemberEvents().isEmpty()) {
+            memberResource.setLevel(member
+                    .getMemberEvents()
+                    .stream()
+                    .map(e -> e.getLevel().toString())
+                    .collect(Collectors.toList()));
+        }
+        if (!member.getInterests().isEmpty()) {
+            memberResource.setInterests(member.getInterests()
                     .stream()
                     .map(Interest::getName)
                     .collect(Collectors.toList()));
         }
-        List<SharedLink> links = member.getSharedLinks();
-        if(!links.isEmpty()){
-            memberResource.setUserLinks(links
+        if (!member.getSharedLinks().isEmpty()) {
+            memberResource.setUserLinks(member.getSharedLinks()
                     .stream()
                     .map(l -> new Tuple().setKey(l.getName()).setValue(l.getURL()))
                     .collect(Collectors.toList()));
         }
-        if(member instanceof Sponsor){
+        if (member instanceof Sponsor) {
             memberResource
-                    .setLogo(((Sponsor) member).getLogoUrl())
-                    .setLevel(((Sponsor) member).getLevel().toString());
+                    .setLogo(((Sponsor) member).getLogoUrl());
         }
         memberResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(member.getId()).withSelfRel());
 
@@ -96,15 +98,6 @@ public class MemberResource extends ResourceSupport{
 
     public MemberResource setLogin(String login) {
         this.login = login;
-        return this;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public MemberResource setLevel(String level) {
-        this.level = level;
         return this;
     }
 
@@ -177,6 +170,15 @@ public class MemberResource extends ResourceSupport{
 
     public MemberResource setLongDescription(String longDescription) {
         this.longDescription = longDescription;
+        return this;
+    }
+
+    public List<String> getLevel() {
+        return level;
+    }
+
+    public MemberResource setLevel(List<String> level) {
+        this.level = level;
         return this;
     }
 

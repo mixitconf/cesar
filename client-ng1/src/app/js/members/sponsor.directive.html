@@ -1,8 +1,8 @@
 <p>
     {{level}}<br>
     <a ng-repeat="member in members | filter:{level : level} | orderBy: 'level'"
-       class="cesar-sponsor-{{member.level}}"
-       title="{{member.lastname}} - {{member.level}}"
+       class="cesar-sponsor-{{level}}"
+       title="{{member.lastname}} - {{level}}"
        ui-sref="sponsor({id : member.idMember})">
         <img src="img/{{member.logo}}">
     </a>

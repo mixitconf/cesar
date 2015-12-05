@@ -17,7 +17,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -95,8 +94,8 @@ public class Member<T extends Member> implements Comparable<Member> {
     @OrderColumn(name = "ordernum")
     public List<SharedLink> sharedLinks = new LinkedList<>();
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    public Set<Event> events = new HashSet<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    public Set<MemberEvent> memberEvents = new HashSet<>();
 
     @ManyToMany(mappedBy = "speakers")
     public Set<Session> sessions = new HashSet<>();
@@ -175,22 +174,22 @@ public class Member<T extends Member> implements Comparable<Member> {
         return (T) this;
     }
 
-    public Set<Event> getEvents() {
-        return events;
+    public Set<MemberEvent> getMemberEvents() {
+        return memberEvents;
     }
 
-    public T clearEvents() {
-        this.events.clear();
+    public T clearMemberEvent() {
+        this.memberEvents.clear();
         return (T) this;
     }
 
-    public T addEvent(Event event) {
-        this.events.add(event);
+    public T addMemberEvent(MemberEvent event) {
+        this.memberEvents.add(event);
         return (T) this;
     }
 
-    public T removeSharedLink(Event event) {
-        this.events.remove(event);
+    public T removeMemberEvent(MemberEvent event) {
+        this.memberEvents.remove(event);
         return (T) this;
     }
 

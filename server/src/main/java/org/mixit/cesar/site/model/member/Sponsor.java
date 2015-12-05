@@ -19,16 +19,9 @@ public class Sponsor extends Member<Sponsor> {
         ROLES.add(Role.SPONSOR);
     }
 
-    public enum Level{
-      GOLD, SILVER, BRONZE
-    }
-
     @NotNull
     @Size(max = 250)
     public String logoUrl;
-
-    @Enumerated(EnumType.STRING)
-    public Level level;
 
     public String getLogoUrl() {
         return logoUrl;
@@ -39,12 +32,5 @@ public class Sponsor extends Member<Sponsor> {
         return this;
     }
 
-    public Level getLevel() {
-        return level;
-    }
 
-    public Sponsor setLevel(Level level) {
-        this.level = level;
-        return this;
-    }
 }

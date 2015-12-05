@@ -6,18 +6,21 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
+import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.model.Authority;
+import org.mixit.cesar.security.model.OAuthProvider;
+import org.mixit.cesar.security.model.Role;
+import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.security.repository.AuthorityRepository;
 import org.mixit.cesar.site.model.article.Article;
 import org.mixit.cesar.site.model.article.ArticleComment;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
+import org.mixit.cesar.site.model.member.MemberEvent;
 import org.mixit.cesar.site.model.member.SharedLink;
 import org.mixit.cesar.site.model.member.Sponsor;
 import org.mixit.cesar.site.model.member.Staff;
-import org.mixit.cesar.security.model.Account;
-import org.mixit.cesar.security.model.Authority;
-import org.mixit.cesar.security.model.OAuthProvider;
-import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.site.model.session.Keynote;
 import org.mixit.cesar.site.model.session.Level;
 import org.mixit.cesar.site.model.session.LightningTalk;
@@ -26,12 +29,11 @@ import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.model.session.Talk;
 import org.mixit.cesar.site.model.session.Vote;
 import org.mixit.cesar.site.model.session.Workshop;
-import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.site.repository.ArticleCommentRepository;
 import org.mixit.cesar.site.repository.ArticleRepository;
-import org.mixit.cesar.security.repository.AuthorityRepository;
 import org.mixit.cesar.site.repository.EventRepository;
 import org.mixit.cesar.site.repository.InterestRepository;
+import org.mixit.cesar.site.repository.MemberEventRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SharedLinkRepository;
@@ -63,7 +65,8 @@ public class CesarInitializer {
     private AuthorityRepository authorityRepository;
     @Autowired
     private AccountRepository accountRepository;
-
+    @Autowired
+    private MemberEventRepository memberEventRepository;
 
     private Long id = -1L;
     @Autowired
@@ -80,32 +83,29 @@ public class CesarInitializer {
             addInterests();
 
             //Friend
-            addMember("Elodie", "Dupond", "Agilite", new Member());
+            addMember("Elodie", "Dupond", "Agilite", new Member(), event2016, null);
             //Participant
-            addMember("Laurent", "Gayet", "Java", new Member().addEvent(event2016));
-            addMember("Alfred", "Almendra", "Agilite", new Member().addEvent(event2016));
+            addMember("Laurent", "Gayet", "Java", new Member(), event2016, null);
+            addMember("Alfred", "Almendra", "Agilite", new Member(), event2016, null);
             //Sponsor
             addMember("Open", "", "Java",
                     new Sponsor()
-                            .addEvent(event2016)
-                            .setLevel(Sponsor.Level.GOLD)
                             .setCompany("Open")
                             .setLogoUrl("logo-open.jpg")
-                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
+                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                    event2016, MemberEvent.Level.GOLD);
             addMember("Viseo", "", "Java",
                     new Sponsor()
-                            .addEvent(event2016)
                             .setCompany("Viseo")
-                            .setLevel(Sponsor.Level.SILVER)
                             .setLogoUrl("logo-od.png")
-                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
+                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                    event2016, MemberEvent.Level.GOLD);
             addMember("Atlassian", "", "Java",
                     new Sponsor()
-                            .addEvent(event2016)
                             .setCompany("Atlassian")
-                            .setLevel(Sponsor.Level.BRONZE)
                             .setLogoUrl("logo-atlassian.png")
-                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
+                            .setShortDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                    event2016, MemberEvent.Level.GOLD);
             //Staff
             addMember("Agnes",
                     "Crepet",
@@ -122,21 +122,21 @@ public class CesarInitializer {
                                     "\n" +
                                     "Et parce que les nuits sont courtes, elle garde un peu de temps pour l'association Avataria dont elle est présidente, qui organise des concerts, festivals ou Linux Party, dans des lieux du patrimoine industriel de sa ville !\n" +
                                     "\n")
-                            .setEmail("agnes.crepet@gmail.com"));
+                            .setEmail("agnes.crepet@gmail.com"), event2016, null);
 
             addMember("Gregory", "Alexandre", "Agilite",
-                    new Staff().setEmail("g.alexandre@coactiv.fr"));
+                    new Staff().setEmail("g.alexandre@coactiv.fr"), event2016, null);
 
             //Speaker
             addSpeakers(event2016, event2015, event2014, event2013, event2012);
-            Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"));
+            Staff author = addMember("Philippe", "Charrière", "Web", new Staff().setEmail("ph.charriere@gmail.com"), event2016, null);
             addArticle(author, 0);
             addArticle(author, 0);
             addArticle(author, 1);
             addArticle(author, 1);
             addArticle(author, 2);
 
-            addSecurity(addMember("Guillaume", "EHRET", "Java", new Member().setEmail("guillaume@dev-mind.fr")));
+            addSecurity(addMember("Guillaume", "EHRET", "Java", new Member().setEmail("guillaume@dev-mind.fr"), event2016, null));
         }
     }
 
@@ -147,8 +147,8 @@ public class CesarInitializer {
         interestRepository.save(new Interest().setName("Web"));
     }
 
-    private <T extends Member> T addMember(String firstname, String lastname, String interest, T member) {
-        return (T) memberRepository.save(
+    private <T extends Member> T addMember(String firstname, String lastname, String interest, T member, Event event, MemberEvent.Level level) {
+        T persisted = (T) memberRepository.save(
                 member
                         .setId(id--)
                         .setLogin(UUID.randomUUID().toString())
@@ -156,6 +156,9 @@ public class CesarInitializer {
                         .setFirstname(firstname)
                         .addInterest(interestRepository.findByName(interest))
         );
+        memberEventRepository.save(new MemberEvent().setEvent(event).setMember(persisted).setLevel(level));
+
+        return persisted;
     }
 
     private <T extends Session> T addSession(T session, Event event, String title, LocalDateTime createdAt, boolean accepted, Member... speaker) {
@@ -201,9 +204,8 @@ public class CesarInitializer {
 
         speaker = addMember("Martin", "Odersky", "Scala",
                 new Member()
-                        .addEvent(event2016)
                         .setShortDescription("Sébastien Blanc is software engineer with 10 years of experience. He works at Red Hat and focus on Open Source libraries for Mobile.")
-                        .setEmail("martin.odersky@pipo.com"));
+                        .setEmail("martin.odersky@pipo.com"), event2016, null);
         sharedLinkRepository.save(new SharedLink()
                         .setName("Twitter")
                         .setMember(speaker)
@@ -226,18 +228,16 @@ public class CesarInitializer {
 
         speaker1 = addMember("James", "Gosling", "Java",
                 new Member()
-                        .addEvent(event2016)
                         .setShortDescription("Open Web Developer Advocate at Google • Tools, Performance, Animation, UX • HFR enthusiast • Creator of jQuery UI")
-                        .setEmail("james.gosling@pipo.com"));
+                        .setEmail("james.gosling@pipo.com"), event2016, null);
         addSession(new Workshop(), event2016, "Le Java c'est super bien", LocalDateTime.now(), true, speaker1);
 
         addSession(new Talk(), event2016, "Java vs Scala", LocalDateTime.now(), true, speaker, speaker1);
 
         speaker = addMember("Jean François", "Zobrist", "Agilite",
                 new Member()
-                        .addEvent(event2016)
                         .setShortDescription("Transdisciplinary engineer. Building software, studying humans, designing interactions, thinking society.")
-                        .setEmail("jf.zobrist@pipo.com"));
+                        .setEmail("jf.zobrist@pipo.com"), event2016, null);
         ;
         addSession(new Talk(), event2016, "Favi l'entreprise libérée", LocalDateTime.now(), true, speaker);
     }
