@@ -27,6 +27,7 @@ import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.session.Session;
 
@@ -39,7 +40,7 @@ public class Member<T extends Member> implements Comparable<Member> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private Long id;
 
     /**
@@ -62,36 +63,43 @@ public class Member<T extends Member> implements Comparable<Member> {
     private String lastname;
 
     @Size(max = 100)
+    @JsonView({FlatView.class, UserView.class})
     private String company;
 
     private Boolean ticketingRegistered;
 
     @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @JsonView(UserView.class)
     private LocalDateTime registeredAt = LocalDateTime.now();
 
     /**
      * User-defined description, potentially as MarkDown
      */
     @Size(max = 300)
+    @JsonView({FlatView.class, UserView.class})
     private String shortDescription;
 
     /**
      * User-defined description, potentially as MarkDown
      */
     @Lob
+    @JsonView(UserView.class)
     private String longDescription;
 
     /**
      * Number of profile consultations
      */
     @Min(0)
+    @JsonView(UserView.class)
     private long nbConsults = 0;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
+    @JsonView(UserView.class)
     public Set<Interest> interests = new HashSet<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @OrderColumn(name = "ordernum")
+    @JsonView(UserView.class)
     public List<SharedLink> sharedLinks = new LinkedList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

@@ -187,6 +187,10 @@
       "confirmpassword": "Confirmation de mot de passe",
       "actualpassword": "Mot de passe actuel",
       "defaultLanguage" : "Langage par défaut",
+      "shortDescription" : "Présentation",
+      "longDescription" : "Description",
+      "links" : "Liens",
+      "interests" : "Intérêts",
 
       "update": {
         "title": "Compte",
@@ -194,7 +198,8 @@
         "registeredAt" : "Vous avez créé votre compte le {{registeredAt}}.",
         "markdown" : "Vous pouvez formater votre messages en utilisant du markdown",
         "interests" : "Vos centres d'intérêt.",
-        "sharedLinks" : "Les liens que vous souhaitez partager"
+        "sharedLinks" : "Les liens que vous souhaitez partager",
+        "characterNumber" : "{{nbcarac}} car."
       },
 
       "creation": {

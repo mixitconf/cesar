@@ -189,6 +189,8 @@
       "defaultLanguage" : "Default language",
       "shortDescription" : "Summary",
       "longDescription" : "Description",
+      "links" : "Links",
+      "interests" : "Interests",
 
       "update": {
         "title": "Account",
@@ -196,7 +198,8 @@
         "registeredAt" : "You registered on the {{registeredAt}}",
         "markdown" : "Markdown can be used to format your description",
         "interests" : "Your interests",
-        "sharedLinks" : "You can share several links"
+        "sharedLinks" : "You can share several links",
+        "characterNumber" : "{{nbcarac}} char."
       },
 
       "creation": {

@@ -2,11 +2,15 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('AccountCtrl', function ($rootScope, $http, $state, $translate, account, LANGUAGES) {
+  angular.module('cesar-account').controller('AccountCtrl', function ($rootScope, $http, $state, $translate, $filter, account, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
     ctrl.account = account;
+
+    ctrl.getDate = function(date){
+      return $filter('date')(date, "dd/MM/yyyy")
+    };
 
     if(ctrl.account){
       ctrl.updateAccount = function () {

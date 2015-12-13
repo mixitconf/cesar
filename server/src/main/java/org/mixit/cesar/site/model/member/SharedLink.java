@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.UserView;
+
 /**
  * An URL shared by a member on his profile
  */
@@ -17,17 +20,20 @@ public class SharedLink {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(UserView.class)
     private Long id;
 
     public int ordernum;
 
     @NotNull
     @Size(max = 50)
+    @JsonView(UserView.class)
     public String name;
 
     @Size(max = 250)
     @org.hibernate.validator.constraints.URL
     @NotNull
+    @JsonView(UserView.class)
     public String URL;
 
     @ManyToOne(optional = false)
