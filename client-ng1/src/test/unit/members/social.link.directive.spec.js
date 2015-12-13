@@ -49,6 +49,6 @@ describe('Directive cesarSocialLink', function () {
     $scope.link = 'https://toto.com/about';
     element = $compile('<cesar-social-link url="link"></cesar-social-link>')($scope);
     $scope.$digest();
-    expect(element.find('i').text()).toBe('nature_people');
+    expect(element.find('img').attr('src')).toBe('http://www.google.com/s2/favicons?domain_url=https://toto.com/about');
   });
 });
