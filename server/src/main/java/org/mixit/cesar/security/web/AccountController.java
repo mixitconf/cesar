@@ -4,12 +4,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import org.mixit.cesar.site.model.FlatView;
-import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
-import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.security.service.account.CreateCesarAccountService;
 import org.mixit.cesar.security.service.account.CreateSocialAccountService;
 import org.mixit.cesar.security.service.account.TokenService;
@@ -20,6 +17,10 @@ import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.security.service.exception.AuthenticationRequiredException;
 import org.mixit.cesar.security.service.exception.ExpiredTokenException;
 import org.mixit.cesar.security.service.exception.InvalidTokenException;
+import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.Tuple;
+import org.mixit.cesar.site.model.UserView;
+import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -147,7 +148,7 @@ public class AccountController {
      * When user wants to access to a secure page we see if he is already connected on backend
      */
     @RequestMapping(value = "/check", method = RequestMethod.GET)
-    @JsonView(FlatView.class)
+    @JsonView(UserView.class)
     public ResponseEntity<Account> oauthCallback(HttpServletResponse response) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
 

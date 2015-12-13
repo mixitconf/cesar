@@ -9,7 +9,7 @@
 
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
-            <p translate="view.account.update.registeredAt" translate-values="{ registeredAt : 'tets' }"></p>
+            <p translate="view.account.update.registeredAt" translate-values="{ registeredAt : ctrl.getDate(ctrl.account.member.registeredAt)  }"></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.login">
                 <input class="mdl-textfield__input" type="text" id="login" name="login"
@@ -47,6 +47,34 @@
                     <span class="mdl-radio__label" translate="lang.fr">fr</span>
                 </label>
             </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="company" ng-maxlength="100"
+                       ng-model="ctrl.account.member.company"/>
+                <label class="mdl-textfield__label" for="company" translate="view.account.company"></label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="shortDescription" ng-maxlength="250"
+                        ng-model="ctrl.account.member.shortDescription"></textarea>
+                <label class="mdl-textfield__label" for="shortDescription" translate="view.account.shortDescription"></label>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows= "10" id="longDescription" ng-maxlength="3000"
+                          ng-model="ctrl.account.member.longDescription"></textarea>
+                <label class="mdl-textfield__label" for="longDescription" translate="view.account.longDescription"></label>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+        </form>
 
             <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'"
                           on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">

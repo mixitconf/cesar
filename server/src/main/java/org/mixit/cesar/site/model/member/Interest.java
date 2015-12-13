@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.UserView;
 
 /**
  * Member Interest
@@ -18,10 +19,11 @@ public class Interest implements Comparable<Interest> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private Long id;
 
     @Size(max = 50)
+    @JsonView(UserView.class)
     public String name;
 
     public Long getId() {

@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.utils.HashUtil;
@@ -34,19 +35,19 @@ public class Account implements Cloneable {
     private Long id;
 
     @Size(max = 255)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private String oauthId;
 
     @Size(max = 255)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private String login;
 
     @Size(max = 255)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private String lastname;
 
     @Size(max = 255)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private String firstname;
 
     @Size(max = 255)
@@ -59,32 +60,33 @@ public class Account implements Cloneable {
     private LocalDateTime tokenExpiration;
 
     @Enumerated(EnumType.STRING)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private OAuthProvider provider;
 
     @Size(max = 255)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private String email;
 
     @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime registeredAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     private SessionLanguage defaultLanguage = SessionLanguage.fr;
 
     @ManyToOne(optional = false)
+    @JsonView(UserView.class)
     public Member member;
 
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Authority> authorities = new HashSet<>();
 
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     @Transient
     private String hash;
 
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, UserView.class})
     @Transient
     private List<String> roles;
 

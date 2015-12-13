@@ -100,6 +100,7 @@ public class CreateCesarAccountService {
     public Account updateAccount(Account account) {
         //Step1: we read account in database
         Account accountDb = accountRepository.findByOauthProviderAndId(account.getProvider(), account.getOauthId());
+        Member member = Optional.ofNullable(account.getMember()).orElse(new Member());
 
         if (accountDb == null) {
             throw new UserNotFoundException();
@@ -118,7 +119,10 @@ public class CreateCesarAccountService {
         accountDb.getMember()
                 .setEmail(account.getEmail())
                 .setLastname(account.getLastname())
-                .setFirstname(account.getFirstname());
+                .setFirstname(account.getFirstname())
+                .setCompany(member.getCompany())
+                .setShortDescription(member.getShortDescription())
+                .setLongDescription(member.getLongDescription());
 
 
         //An email is send if mail changes
