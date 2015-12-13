@@ -58,14 +58,20 @@
                 <textarea class="mdl-textfield__input" type="text" rows= "3" id="shortDescription" ng-maxlength="250"
                         ng-model="ctrl.account.member.shortDescription"></textarea>
                 <label class="mdl-textfield__label" for="shortDescription" translate="view.account.shortDescription"></label>
-                <small class="cesar-length-field" translate="view.account.update.characterNumber" translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"> </small>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows= "10" id="longDescription" ng-maxlength="3000"
                           ng-model="ctrl.account.member.longDescription"></textarea>
                 <label class="mdl-textfield__label" for="longDescription" translate="view.account.longDescription"></label>
-                <small class="cesar-length-field" translate="view.account.update.characterNumber" translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"> </small>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
             </div>
 
         </form>
