@@ -17,7 +17,7 @@ VALUES ('Sponsor', 5032, 'Free slot', 'contact@mix-it.fr', null, 'Mix-IT', 'mixi
  ('Sponsor', 5042, 'Free slot', 'contact@mix-it.fr', null, 'Mix-IT', 'mixit', NULL, 1, TRUE, NULL, 'Soutenez Mix-IT 2016', 'sponsors/undefined.svg', NULL),
  ('Sponsor', 5043, 'Free slot', 'contact@mix-it.fr', null, 'Mix-IT', 'mixit', NULL, 1, TRUE, NULL, 'Soutenez Mix-IT 2016', 'sponsors/undefined.svg', NULL);
 
-INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5032, 6, 'GOLD');
+INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(1661, 6, 'GOLD');
 INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5033, 6, 'GOLD');
 INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5034, 6, 'GOLD');
 INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5035, 6, 'GOLD');
@@ -49,4 +49,3 @@ INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5033, 6, 'BREAKFAST'
 
 INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5032, 6, 'LUNCH');
 INSERT INTO MemberEvent (MEMBER_ID, EVENT_ID, LEVEL) VALUES(5033, 6, 'LUNCH');
-
