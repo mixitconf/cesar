@@ -9,7 +9,7 @@
     ctrl.account = account;
 
     ctrl.getDate = function(date){
-      return $filter('date')(date, "dd/MM/yyyy")
+      return $filter('date')(date, 'dd/MM/yyyy');
     };
 
     if(ctrl.account){
