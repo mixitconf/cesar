@@ -1,12 +1,14 @@
-package org.mixit.cesar.site.config;
+package org.mixit.cesar.security.config;
 
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.velocity.VelocityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 
 @Configuration
 public class CesarMailConfig {
@@ -25,7 +27,7 @@ public class CesarMailConfig {
     private String smtpPassword;
 
     @Bean
-    public JavaMailSender mailSender(){
+    public JavaMailSender mailSender() {
         Properties properties = new Properties();
         properties.put("mail.smtp.port", smtpPort);
         properties.put("mail.smtp.auth", smtpAuth);
@@ -39,6 +41,4 @@ public class CesarMailConfig {
         sender.setJavaMailProperties(properties);
         return sender;
     }
-
-
 }

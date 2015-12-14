@@ -1,19 +1,27 @@
 package org.mixit.cesar.security.service.mail;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import com.google.common.base.Preconditions;
+import org.apache.velocity.app.VelocityEngine;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
+import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 
 @Service
 public class MailBuilder {
 
     @Autowired
     private AbsoluteUrlFactory urlFactory;
+
+    @Autowired
+    private VelocityEngine velocityEngine;
 
     public enum TypeMail {
         REINIT_PASSWORD,
@@ -30,67 +38,52 @@ public class MailBuilder {
         Preconditions.checkNotNull(typeMail, "type is required");
         Preconditions.checkNotNull(account, "credentials are required");
 
-        StringBuilder message = new StringBuilder();
+        String lang = account.getDefaultLanguage().equals(SessionLanguage.en) ? "en" : "fr";
 
-        message.append("<div style=\"font-family: Arial;color: #424242;margin:2em\">");
-        message.append("<p>Bonjour <b>").append(account.getFirstname()).append(" ").append(account.getLastname()).append("</b></p>");
-        message.append("<h2>Vos informations d'identification Mix-IT</h2>");
+        Map<String, Object> model = new HashMap<>();
+        model.put("account", account);
 
-        //TODO i18n
-        String url = String.format("%s/app/account/valid?token=%s", urlFactory.getBaseUrl(), account.getToken());
         switch (typeMail) {
             case REINIT_PASSWORD:
-                url = String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), account.getToken());
-                message.append("<p>Vous nous avez demandé de réinitialiser votre mot de passe. Pour celà veuillez suivre le lien suivant <a href=\"")
-                        .append(url)
-                        .append("\">")
-                        .append(url)
-                        .append("</a></p><p>Sur cette page vous devrez renseigner ce mot de passe provisoire <b>")
-                        .append(account.getPassword())
-                        .append("</b> pour pouvoir en définir un nouveau. ")
-                        .append("Si vous n'êtes pas à l'origine de cette action veuillez nous tenir informer</p>");
-                break;
+                model.put("url", String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), account.getToken()));
+                return VelocityEngineUtils.mergeTemplateIntoString(
+                        this.velocityEngine,
+                        String.format("email-reinit-password-%s.vm", lang),
+                        "UTF-8",
+                        model);
+
             case EMAIL_CHANGED:
-                url = String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), account.getToken());
-                message.append("<p>Vous venez de changer votre adresse email pour utiliser ")
-                        .append(account.getEmail())
-                        .append(". Pour celà veuillez suivre le lien suivant <a href=\"")
-                        .append(url)
-                        .append("\">")
-                        .append(url)
-                        .append("</a></p>");
-                break;
+                model.put("url", String.format("%s/app/account/password?token=%s", urlFactory.getBaseUrl(), account.getToken()));
+                return VelocityEngineUtils.mergeTemplateIntoString(
+                        this.velocityEngine,
+                        String.format("email-change-email-%s.vm", lang),
+                        "UTF-8",
+                        model);
+
             case ACCOUND_NEW_VALIDATION:
-                message.append("<p>Vous nous avez demandé de réinitialiser votre mot de passe mais vous utilisez une connexion via le reseau social ")
-                        .append(provider.orElse(OAuthProvider.TWITTER))
-                        .append(". Nous ne pouvons pas changer le mot de passe. Si vous souhaitez à nouveau valider votre adresse email cliquez sur le lien suivant <a href=\"")
-                        .append(url)
-                        .append("\">")
-                        .append(url)
-                        .append("</a></p>");
-                break;
+                model.put("provider", provider.orElse(OAuthProvider.TWITTER).toString());
+                return VelocityEngineUtils.mergeTemplateIntoString(
+                        this.velocityEngine,
+                        String.format("email-account-validation-%s.vm", lang),
+                        "UTF-8",
+                        model);
+
             case CESAR_ACCOUNT_VALIDATION:
             case SOCIAL_ACCOUNT_VALIDATION:
-                message.append("<p>Vous venez de créer un compte sur le site de <a href=\"")
-                        .append(urlFactory.getBaseUrl())
-                        .append("\">Mix-IT</a>. Pour le valider veuillez cliquer sur ce lien <a href=\"")
-                        .append(url)
-                        .append("\">")
-                        .append(url)
-                        .append("</a>. Vous pourrez ensuite utiliser la partie sécurisée du site.</p>");
-                break;
+                model.put("url", String.format("%s/app/account/valid?token=%s", urlFactory.getBaseUrl(), account.getToken()));
+                return VelocityEngineUtils.mergeTemplateIntoString(
+                        this.velocityEngine,
+                        String.format("email-account-new-%s.vm", lang),
+                        "UTF-8",
+                        model);
+
             case SESSION_ACCEPTED:
             case SESSION_REJECTED:
             case SESSION_SUBMITION:
-                message.append("<p>TODO à faire et à gérer correctement ces mails");
-                break;
+                return "<p>TODO à faire et à gérer correctement ces mails";
         }
 
-        message.append("<p>Attention, ce code n'est valable que pendant trois heures. Passé ce délai, vous devrez soumettre une nouvelle demande de modification de vos informations d'identification.</p>");
-        message.append("<b>La team Mix-IT</b>");
-        message.append("</div>");
-
-        return message.toString();
+        return null;
     }
 
 }

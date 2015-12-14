@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mix-IT : account valication</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div style="font-family: Arial;color: #424242;margin:2em">
+    <p>Hello <b>${account.firstname}</b></p>
+
+    <h2>Your credentials on Mix-IT website</h2>
+
+    <p>Vous nous avez demandé de réinitialiser votre mot de passe mais vous utilisez une connexion via le reseau social ${provider}. Nous ne pouvons pas changer le mot de passe. Si vous souhaitez à nouveau valider
+        votre adresse email cliquez sur le lien suivant<a href="${url}">${url}</a></p>
+
+    <p>Be careful, this code is only good for three hours. After, you must submit a new request on Mix-IT website.</p>
+
+    <p><b>Mix-IT team</b></p>
+</div>
+</body>
+</html>
