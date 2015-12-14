@@ -13,7 +13,7 @@
                     <img src="http://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
                     <img ng-src="img/{{member.logo}}" ng-if="member.logo" ng-class="{'cesar-card__logo-inactive': member.login==='mixit'}"/>
                 </div>
-                <div class="mdl-cell mdl-cell--8-col" ng-bind-html="member.shortDescription"></div>
+                <div class="mdl-cell mdl-cell--8-col" ng-bind-html="member.shortDescription | markdown">{{}}</div>
             </div>
         </div>
         <div class="mdl-card__actions mdl-card--border">

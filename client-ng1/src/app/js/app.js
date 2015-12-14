@@ -6,8 +6,8 @@
   angular.module('cesar-articles', ['cesar-templates']);
   angular.module('cesar-menu', ['cesar-templates']);
   angular.module('cesar-home', ['cesar-templates']);
-  angular.module('cesar-members', ['cesar-templates']);
-  angular.module('cesar-sessions', ['cesar-templates']);
+  angular.module('cesar-members', ['cesar-templates', 'cesar-utils']);
+  angular.module('cesar-sessions', ['cesar-templates', 'cesar-utils']);
   angular.module('cesar-services', []);
   angular.module('cesar-security', ['ngCookies']);
   angular.module('cesar-account', []);
