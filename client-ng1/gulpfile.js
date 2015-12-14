@@ -25,7 +25,7 @@ var paths = {
       'node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       'node_modules/material-design-lite/material.js',
-      'node_modules/marked/lib/marked.js'
+      'node_modules/markdown/lib/markdown.js'
     ],
     unit: [
       'src/test/unit/**/*.spec.js'
