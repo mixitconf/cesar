@@ -20,7 +20,8 @@ public class CurrentUser {
         return Optional.ofNullable(account);
     }
 
-    public void setCredentials(Account account) {
+    public CurrentUser setCredentials(Account account) {
         this.account = account;
+        return this;
     }
 }

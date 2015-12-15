@@ -123,6 +123,7 @@ configure([project(':server')]) {
         testCompile "org.mockito:mockito-core:${vMockito}"
         testCompile "org.springframework:spring-test"
         testCompile "com.ninja-squad:DbSetup:${vDbsetup}"
+        testCompile "com.jayway.jsonpath:json-path-assert:0.8.1"
     }
 
     configurations {
