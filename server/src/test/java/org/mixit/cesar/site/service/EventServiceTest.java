@@ -38,11 +38,8 @@ public class EventServiceTest {
 
 
     @Test
-    public void should_throw_BeanInitializationException_when_no_current_event(){
+    public void should_not_throw_BeanInitializationException_when_no_current_event(){
         when(eventRepository.findByCurrent(true)).thenReturn(new ArrayList<>());
-        expectedException.expect(BeanInitializationException.class);
-        expectedException.expectMessage("There's no current event in database");
-
         eventService.initCurrentEvent();
     }
 

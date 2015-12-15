@@ -18,7 +18,7 @@
           .put('app/account', angular.copy(ctrl.account), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
             if(ctrl.account.defaultLanguage){
-              $translate.use((ctrl.account.defaultLanguage === LANGUAGES.us) ? LANGUAGES.us : LANGUAGES.fr);
+              $translate.use((ctrl.account.defaultLanguage === 'en') ? LANGUAGES.en : LANGUAGES.fr);
             }
             $rootScope.$broadcast('event:auth-changed');
             $state.go('home');

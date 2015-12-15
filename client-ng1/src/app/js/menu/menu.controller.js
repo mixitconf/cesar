@@ -17,7 +17,7 @@
     });
 
     ctrl.toggleLanguage = function () {
-      ctrl.currentLanguage = ($translate.use() === LANGUAGES.us) ? LANGUAGES.fr : LANGUAGES.us;
+      ctrl.currentLanguage = ($translate.use() === LANGUAGES.en) ? LANGUAGES.fr : LANGUAGES.en;
       $translate.use(ctrl.currentLanguage);
       $rootScope.$broadcast('event:language-changed', ctrl.currentLanguage);
     };
@@ -55,10 +55,12 @@
 
 
     function updateUserSection(){
-      var lastIndex = ctrl.menus.length-1;
-      if(ctrl.menus[lastIndex].id === 'admin'){
-        ctrl.menus.splice(lastIndex, 1);
-      }
+      ctrl.menus.forEach(function(elt, index){
+        if(elt.id === 'menu.admin'){
+          ctrl.menus.splice(index, 1);
+        }
+      });
+
       AuthenticationService.currentUser().then(function(currentUser){
         if(currentUser){
           ctrl.security = {

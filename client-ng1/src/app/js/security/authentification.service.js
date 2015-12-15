@@ -18,7 +18,7 @@
 
     function loginConfirmed(response){
       if(response.data && response.data.defaultLanguage){
-        $translate.use((response.data.defaultLanguage === LANGUAGES.us) ? LANGUAGES.us : LANGUAGES.us);
+        $translate.use((response.data.defaultLanguage === 'en') ? LANGUAGES.en : LANGUAGES.fr);
       }
       LocalStorageService.put('current-user', response.data);
       $rootScope.$broadcast('event:auth-loginConfirmed');
