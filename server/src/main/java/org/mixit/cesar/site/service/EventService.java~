@@ -3,8 +3,6 @@ package org.mixit.cesar.site.service;
 import com.google.common.annotations.VisibleForTesting;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.repository.EventRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -19,8 +17,6 @@ import java.util.List;
 @DependsOn("cesarInitializer")
 public class EventService {
 
-    private static final Logger logger = LoggerFactory.getLogger(EventService.class);
-
     private static Event currentEvent;
     private static int min, max;
     @Autowired
@@ -28,25 +24,20 @@ public class EventService {
 
     @PostConstruct
     public void initBean() {
-        if(currentEvent!=null) {
-            initCurrentEvent();
-            initMinMaxEvent();
-        }
+        initCurrentEvent();
+        initMinMaxEvent();
     }
 
     @VisibleForTesting
     protected void initCurrentEvent() {
         List<Event> event = eventRepository.findByCurrent(true);
         if (event.isEmpty()) {
-            logger.error("Error on init event service", new BeanInitializationException("There's no current event in database"));
-        }
-        else{
-            currentEvent = event.get(0);
+            throw new BeanInitializationException("There's no current event in database");
         }
         if (event.size() > 1) {
             throw new BeanInitializationException("There's more than one current event in database");
         }
-
+        currentEvent = event.get(0);
     }
 
     @VisibleForTesting

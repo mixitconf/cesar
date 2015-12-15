@@ -1,10 +1,14 @@
 package org.mixit.cesar.security.service.mail;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mixit.cesar.CesarApplication;
 import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.session.SessionLanguage;
+import org.mixit.cesar.site.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
