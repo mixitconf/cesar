@@ -5,6 +5,7 @@ import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.repository.EventRepository;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@DependsOn("cesarInitializer")
 public class EventService {
 
     private static Event currentEvent;

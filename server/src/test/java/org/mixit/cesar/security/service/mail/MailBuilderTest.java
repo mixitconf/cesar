@@ -1,27 +1,19 @@
 package org.mixit.cesar.security.service.mail;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
-import static org.mockito.Mockito.when;
-
-import java.util.Optional;
-
-import org.apache.velocity.app.VelocityEngine;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mixit.cesar.CesarApplication;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.site.model.session.SessionLanguage;
-import org.mixit.cesar.site.service.AbsoluteUrlFactory;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
  * Test de {@link MailBuilder}
@@ -31,8 +23,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @WebIntegrationTest(randomPort = true)
 @DirtiesContext
 public class MailBuilderTest {
-
-
 
     @Autowired
     MailBuilder mailBuilder;

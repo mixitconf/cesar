@@ -44,7 +44,7 @@ import org.springframework.stereotype.Component;
 /**
  * Initialize data if db is empty (only in dev)
  */
-@Component
+@Component("cesarInitializer")
 @Profile("default")
 public class CesarInitializer {
     @Autowired
@@ -69,12 +69,10 @@ public class CesarInitializer {
     private MemberEventRepository memberEventRepository;
 
     private Long id = -1L;
-    @Autowired
-    private DataSource dataSource;
 
     @PostConstruct
     public void init() {
-        if (eventRepository.count() == 0) {
+        if (authorityRepository.count() == 0) {
             Event event2016 = eventRepository.save(new Event().setId(-1L).setYear(2016).setCurrent(true));
             Event event2015 = eventRepository.save(new Event().setId(-2L).setYear(2015));
             Event event2014 = eventRepository.save(new Event().setId(-3L).setYear(2014));
