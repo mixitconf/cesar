@@ -1,11 +1,5 @@
 package org.mixit.cesar;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.UUID;
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
-
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.Authority;
 import org.mixit.cesar.security.model.OAuthProvider;
@@ -15,31 +9,17 @@ import org.mixit.cesar.security.repository.AuthorityRepository;
 import org.mixit.cesar.site.model.article.Article;
 import org.mixit.cesar.site.model.article.ArticleComment;
 import org.mixit.cesar.site.model.event.Event;
-import org.mixit.cesar.site.model.member.Interest;
-import org.mixit.cesar.site.model.member.Member;
-import org.mixit.cesar.site.model.member.MemberEvent;
-import org.mixit.cesar.site.model.member.SharedLink;
-import org.mixit.cesar.site.model.member.Sponsor;
-import org.mixit.cesar.site.model.member.Staff;
-import org.mixit.cesar.site.model.session.Keynote;
-import org.mixit.cesar.site.model.session.Level;
-import org.mixit.cesar.site.model.session.LightningTalk;
-import org.mixit.cesar.site.model.session.Session;
-import org.mixit.cesar.site.model.session.SessionLanguage;
-import org.mixit.cesar.site.model.session.Talk;
-import org.mixit.cesar.site.model.session.Vote;
-import org.mixit.cesar.site.model.session.Workshop;
-import org.mixit.cesar.site.repository.ArticleCommentRepository;
-import org.mixit.cesar.site.repository.ArticleRepository;
-import org.mixit.cesar.site.repository.EventRepository;
-import org.mixit.cesar.site.repository.InterestRepository;
-import org.mixit.cesar.site.repository.MemberEventRepository;
-import org.mixit.cesar.site.repository.MemberRepository;
-import org.mixit.cesar.site.repository.SessionRepository;
-import org.mixit.cesar.site.repository.SharedLinkRepository;
+import org.mixit.cesar.site.model.member.*;
+import org.mixit.cesar.site.model.session.*;
+import org.mixit.cesar.site.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Initialize data if db is empty (only in dev)
@@ -73,7 +53,10 @@ public class CesarInitializer {
     @PostConstruct
     public void init() {
         if (authorityRepository.count() == 0) {
-            Event event2016 = eventRepository.save(new Event().setId(-1L).setYear(2016).setCurrent(true));
+            Event event2016 = eventRepository.findByYear(2016);
+            if (event2016 == null) {
+                event2016 = eventRepository.save(new Event().setId(-1L).setYear(2016).setCurrent(true));
+            }
             Event event2015 = eventRepository.save(new Event().setId(-2L).setYear(2015));
             Event event2014 = eventRepository.save(new Event().setId(-3L).setYear(2014));
             Event event2013 = eventRepository.save(new Event().setId(-4L).setYear(2013));

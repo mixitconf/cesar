@@ -41,6 +41,24 @@
                         </div>
                     </div>
 
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
+                                    <input type="radio" id="language-1" class="mdl-radio__button" name="options"
+                                           value="en"
+                                           ng-model="ctrl.credentials.defaultLanguage">
+                                    <span class="mdl-radio__label" translate="lang.en">en</span>
+                                </label>
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
+                                    <input type="radio" id="language-2" class="mdl-radio__button" name="options"
+                                           value="fr"
+                                           ng-model="ctrl.credentials.defaultLanguage">
+                                    <span class="mdl-radio__label" translate="lang.fr">fr</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="mdl-card__actions mdl-card--border">
                          <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"

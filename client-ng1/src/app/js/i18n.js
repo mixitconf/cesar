@@ -4,7 +4,7 @@
 
   angular.module('cesar').constant('LANGUAGES', {
     fr: 'fr_FR',
-    us: 'us_US'
+    en: 'us_US'
   });
 
   angular.module('cesar').config(function ($translateProvider, LANGUAGES) {
