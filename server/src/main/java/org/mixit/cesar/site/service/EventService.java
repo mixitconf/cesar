@@ -28,8 +28,8 @@ public class EventService {
 
     @PostConstruct
     public void initBean() {
+        initCurrentEvent();
         if(currentEvent!=null) {
-            initCurrentEvent();
             initMinMaxEvent();
         }
     }
