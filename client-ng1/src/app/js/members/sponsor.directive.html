@@ -1,6 +1,6 @@
 <p>
     {{level}}<br>
-    <a ng-repeat="member in members | filter:{level : level} | orderBy: 'level'"
+    <a ng-repeat="member in members | filter:{level : {key : level}} | orderBy: 'level[0].value'"
        class="cesar-sponsor-{{level}}"
        title="{{member.lastname}} - {{level}}"
        ui-sref="sponsor({id : member.idMember})">
