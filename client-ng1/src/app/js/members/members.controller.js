@@ -10,5 +10,6 @@
 
     var ctrl = this;
     ctrl.members = members;
+
   });
 })();

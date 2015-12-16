@@ -33,7 +33,7 @@ public class MemberResource extends ResourceSupport {
     private List<Tuple> userLinks = new ArrayList<>();
     private List<String> interests = new ArrayList<>();
     private List<Long> sessions = new ArrayList<>();
-    private List<String> level = new ArrayList<>();
+    private List<Tuple> level = new ArrayList<>();
 
     public static <T extends Member<T>> MemberResource convert(T member) {
 
@@ -59,7 +59,7 @@ public class MemberResource extends ResourceSupport {
             memberResource.setLevel(member
                     .getMemberEvents()
                     .stream()
-                    .map(e -> Objects.toString(e.getLevel(), ""))
+                    .map(e -> new Tuple().setKey(Objects.toString(e.getLevel(), "")).setValue(e.getRegisteredAt()))
                     .collect(Collectors.toList()));
         }
         if (!member.getInterests().isEmpty()) {
@@ -173,11 +173,11 @@ public class MemberResource extends ResourceSupport {
         return this;
     }
 
-    public List<String> getLevel() {
+    public List<Tuple> getLevel() {
         return level;
     }
 
-    public MemberResource setLevel(List<String> level) {
+    public MemberResource setLevel(List<Tuple> level) {
         this.level = level;
         return this;
     }

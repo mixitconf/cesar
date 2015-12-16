@@ -12,6 +12,22 @@
           return elements[elements.length-1];
         }
         return undefined;
+      },
+
+      compareStr : function(a, b) {
+        if(a && !b){
+          return 1;
+        }
+        if(!a && b){
+          return -1;
+        }
+        if(!a && !b || a.toLowerCase()===b.toLowerCase()){
+          return 0;
+        }
+        if(a.toLowerCase()>b.toLowerCase()){
+          return 1;
+        }
+        return -1;
       }
     };
   });

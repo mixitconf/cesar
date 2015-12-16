@@ -1,5 +1,6 @@
 package org.mixit.cesar.site.model.member;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.event.Event;
 
 /**
@@ -39,6 +42,10 @@ public class MemberEvent {
 
     @Enumerated(EnumType.STRING)
     public Level level;
+
+    @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @JsonView(UserView.class)
+    private LocalDateTime registeredAt = LocalDateTime.now();
 
     public Long getId() {
         return id;
@@ -73,6 +80,15 @@ public class MemberEvent {
 
     public MemberEvent setLevel(Level level) {
         this.level = level;
+        return this;
+    }
+
+    public LocalDateTime getRegisteredAt() {
+        return registeredAt;
+    }
+
+    public MemberEvent setRegisteredAt(LocalDateTime registeredAt) {
+        this.registeredAt = registeredAt;
         return this;
     }
 }
