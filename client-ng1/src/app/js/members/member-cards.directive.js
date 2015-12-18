@@ -14,7 +14,7 @@
         limitText: '@',
         type: '@'
       },
-      controller: function ($scope, Util) {
+      controller: function ($scope) {
         $scope.order = $scope.type === 'sponsor' ? 'level[0].value' : 'firstname';
         if (!$scope.limitText) {
           $scope.limitText = 300;
