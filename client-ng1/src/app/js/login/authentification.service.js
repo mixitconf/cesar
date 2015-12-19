@@ -101,6 +101,7 @@
     return {
       'currentUser': currentUser,
       'checkUser': checkUser,
+      'isAuthorized': isAuthorized,
       'login': login,
       'loginWithProvider' : loginWithProvider,
       'valid': valid,

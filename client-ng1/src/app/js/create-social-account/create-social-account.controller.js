@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('CreateSocialAccountCtrl', function ($http, $state, $translate, LANGUAGES) {
+  angular.module('cesar-account').controller('CreateSocialAccountCtrl', function ($rootScope, $scope, $http, $state, $translate, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
@@ -28,6 +28,25 @@
           });
       }
     };
+
+    var stateName = $state.current.name;
+    var state;
+    var onRouteChangeOff = $rootScope.$on('$stateChangeStart', routeChangeHandler);
+
+    function routeChangeHandler(event, newState) {
+      if (newState.name.indexOf(stateName) !== -1 && newState.url===state) {
+        // we don't care about internal state change
+        return;
+      }
+      state = newState.url;
+      ctrl.errorMessage = 'CONFIRM_EXIT_FROM_CREATION_ACCOUNT';
+      event.preventDefault();
+    }
+
+    // remove route event listener
+    $scope.$on('$destroy', function () {
+      onRouteChangeOff();
+    });
   });
 
 })();
