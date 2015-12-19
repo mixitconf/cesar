@@ -3,6 +3,7 @@ package org.mixit.cesar.security.service.account;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.mixit.cesar.security.service.exception.EmailExistException;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
@@ -108,6 +109,16 @@ public class CreateCesarAccountService {
         }
 
         boolean emailChanged = !accountDb.getEmail().equals(account.getEmail());
+
+        if(emailChanged){
+            //We check that the email is not used by another account
+            tokenService.tryToLinkWithActualMember(accountDb);
+            memberRepository.findByEmail(account.getEmail()).stream().forEach(m -> {
+                if(m.getId().equals(member.getId())){
+                    throw new EmailExistException();
+                }
+            });
+        }
 
         //Data are updated
         accountDb
