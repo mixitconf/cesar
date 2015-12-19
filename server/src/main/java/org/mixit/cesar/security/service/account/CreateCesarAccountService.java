@@ -81,9 +81,9 @@ public class CreateCesarAccountService {
         //Step5 : account is created
         account
                 .setMember(member)
-                .addAuthority(authorityRepository.findByName(Role.MEMBER))
                 .setPassword(cryptoService.passwordHash(account.getPassword()));
-        accountRepository.save(account);
+
+        accountRepository.save(account).addAuthority(authorityRepository.findByName(Role.MEMBER));
 
         //Step6: a mail with a token is send to the user. He has to confirm it before 3
         mailerService.send(
