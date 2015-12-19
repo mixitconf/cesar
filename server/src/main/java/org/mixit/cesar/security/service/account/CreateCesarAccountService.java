@@ -74,18 +74,22 @@ public class CreateCesarAccountService {
 
         //Step3: we check if a member exist with the same email
         Member member = tokenService.tryToLinkWithActualMember(account);
+        if(member==null){
+            member = memberRepository.save(updateMember(new Member(), account));
+        }
+        else{
+            member.getROLES().clear();
+            updateMember(member, account);
+        }
 
         //Step4: a member is created but invalid
-        account.setValid(false);
-        member = memberRepository.save(updateMember(member==null ? new Member() : member, account));
-
         //Step5 : account is created
         account
+                .setValid(false)
                 .setMember(member)
-                .addAuthority(authorityRepository.findByName(Role.MEMBER))
                 .setPassword(cryptoService.passwordHash(account.getPassword()));
 
-        accountRepository.save(account);
+        accountRepository.save(account).addAuthority(authorityRepository.findByName(Role.MEMBER));
 
         //Step6: a mail with a token is send to the user. He has to confirm it before 3
         mailerService.send(

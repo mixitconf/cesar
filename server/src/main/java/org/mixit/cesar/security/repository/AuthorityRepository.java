@@ -11,6 +11,6 @@ import org.springframework.data.repository.CrudRepository;
  * {@link Authority}
  */
 public interface AuthorityRepository extends CrudRepository<Authority, Long> {
-    @Cacheable(CACHE_SECURITY)
+
     Authority findByName(Role name);
 }
