@@ -2,14 +2,14 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('CreateUserAccountCtrl', function ($http, $state) {
+  angular.module('cesar-account').controller('CreateUserAccountCtrl', function ($http, $state, $translate, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
-
     ctrl.credentials = {
-      defaultLanguage : 'fr'
+      defaultLanguage : ($translate.proposedLanguage()===LANGUAGES.en ? 'en' : 'fr')
     };
+
     ctrl.createUserAccount = function () {
       if (ctrl.credentials) {
         var credentialsTosend = angular.copy(ctrl.credentials);
