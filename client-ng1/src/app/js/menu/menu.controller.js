@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, $rootScope, LANGUAGES, AuthenticationService) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, $rootScope, LANGUAGES, USER_ROLES, AuthenticationService) {
     'ngInject';
 
     var ctrl = this;
@@ -15,8 +15,7 @@
     $timeout(function(){
       ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
     });
-
-    ctrl.toggleLanguage = function () {
+    ctrl.toggleLanguage = function () {USER_ROLES,
       ctrl.currentLanguage = ($translate.use() === LANGUAGES.en) ? LANGUAGES.fr : LANGUAGES.en;
       $translate.use(ctrl.currentLanguage);
       $rootScope.$broadcast('event:language-changed', ctrl.currentLanguage);
@@ -74,12 +73,14 @@
               {id: 'menu.logout', link: 'logout', mobile: true}
             ]
           };
-          ctrl.menus.push(
-            {
-              id: 'menu.admin', name: 'admin', submenus: [
-              {id: 'menu.monitor', link: 'monitor'}
-            ]}
-          );
+          if(AuthenticationService.isAuthorized(USER_ROLES.admin, currentUser)){
+            ctrl.menus.push(
+              {
+                id: 'menu.admin', name: 'admin', submenus: [
+                {id: 'menu.monitor', link: 'monitor'}
+              ]}
+            );
+          }
         }
         else{
           delete ctrl.security;
