@@ -17,6 +17,12 @@
                        ng-model="ctrl.account.login" readonly/>
                 <label class="mdl-textfield__label" for="login" translate="view.account.id"></label>
             </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.provider">
+                <input class="mdl-textfield__input" type="text" id="login" name="login"
+                       ng-maxlength="100"
+                       ng-model="ctrl.account.provider" readonly/>
+                <label class="mdl-textfield__label" for="login" translate="view.account.provider"></label>
+            </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true" ng-maxlength="100"
                        ng-model="ctrl.account.firstname"/>

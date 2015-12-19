@@ -184,6 +184,7 @@
       "firstname": "Prénom",
       "mail": "Email",
       "password": "Mot de passe",
+      "provider" : "Type de compte",
       "confirmpassword": "Confirmation de mot de passe",
       "actualpassword": "Mot de passe actuel",
       "defaultLanguage" : "Langage par défaut",

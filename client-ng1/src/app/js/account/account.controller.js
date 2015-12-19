@@ -27,6 +27,9 @@
             if (response.data.type && response.data.type === 'USER_NOT_FOUND'){
               ctrl.errorMessage = 'USER_NOT_FOUND';
             }
+            else if (response.data.type && response.data.type==='EMAIL_EXIST'){
+              ctrl.errorMessage = 'EMAIL_ALREADY_USED';
+            }
             else {
               ctrl.errorMessage = 'UNDEFINED';
             }
