@@ -106,7 +106,6 @@ public class CreateSocialAccountService {
                     .setPublicProfile(Boolean.TRUE)));
         }
 
-        partial.addAuthority(authorityRepository.findByName(Role.MEMBER));
         tokenService.reinitTokenValidity(partial);
         accountRepository.save(partial);
 
