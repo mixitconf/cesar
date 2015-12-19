@@ -29,9 +29,9 @@
     $stateProvider
 
       //Home and error route
-      .state('home', new State(USER_ROLES, 'home', 'views/home.html').build())
+      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').build())
 
-      .state('valid', new State(USER_ROLES, 'valid', 'views/home.html')
+      .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
         /* @ngInject */
         function (AuthenticationService) {
@@ -39,7 +39,7 @@
         })
         .build())
 
-      .state('cerror', new State(USER_ROLES, 'cerror/{type}', 'views/error.html')
+      .state('cerror', new State(USER_ROLES, 'cerror/{type}', 'js/error/error.html')
         .params({
           error: {}
         })
@@ -52,12 +52,12 @@
         .build())
 
       //News
-      .state('news', new State(USER_ROLES, 'article/:id/:title', 'views/info/news.html')
+      .state('news', new State(USER_ROLES, 'article/:id/:title', 'js/article/article.html')
         .controller('ArticleCtrl')
         .resolve({articles: getAllArticles})
         .build())
 
-      .state('articles', new State(USER_ROLES, 'articles', 'views/info/articles.html')
+      .state('articles', new State(USER_ROLES, 'articles', 'js/articles/articles.html')
         .controller(
         /* @ngInject */
         function (articles) {
@@ -68,14 +68,14 @@
         .build())
 
       //Program
-      .state('planning', new State(USER_ROLES, 'planning', 'views/sessions/planning.html').build())
-      .state('talks', new State(USER_ROLES, 'talks', 'views/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
-      .state('lightningtalks', new State(USER_ROLES, 'lightningtalks', 'views/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
-      .state('mixit15', new State(USER_ROLES, 'mixit15', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
-      .state('mixit14', new State(USER_ROLES, 'mixit14', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
-      .state('mixit13', new State(USER_ROLES, 'mixit13', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
-      .state('mixit12', new State(USER_ROLES, 'mixit12', 'views/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
-      .state('session', new State(USER_ROLES, 'session/:id/:title', 'views/sessions/session.html').controller('SessionCtrl')
+      .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
+      .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
+      .state('lightningtalks', new State(USER_ROLES, 'lightningtalks', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
+      .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
+      .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
+      .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
+      .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
+      .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           /* @ngInject */
           session: function (SessionService, $stateParams) {
@@ -87,28 +87,28 @@
         .build())
 
       //Participants
-      .state('speakers', new State(USER_ROLES, 'speakers', 'views/members/speakers.html').controller('MembersCtrl')
+      .state('speakers', new State(USER_ROLES, 'speakers', 'js/members/speakers.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers, type: function () {
             return 'speaker';
           }
         })
         .build())
-      .state('sponsors', new State(USER_ROLES, 'sponsors', 'views/members/sponsors.html').controller('MembersCtrl')
+      .state('sponsors', new State(USER_ROLES, 'sponsors', 'js/members/sponsors.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers, type: function () {
             return 'sponsor';
           }
         })
         .build())
-      .state('staff', new State(USER_ROLES, 'staff', 'views/members/staff.html').controller('MembersCtrl')
+      .state('staff', new State(USER_ROLES, 'staff', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers, type: function () {
             return 'staff';
           }
         })
         .build())
-      .state('member', new State(USER_ROLES, 'member/:type/:id', 'views/members/member.html').controller('MemberCtrl')
+      .state('member', new State(USER_ROLES, 'member/:type/:id', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
           /* @ngInject */
           member: function (MemberService, $stateParams) {
@@ -118,7 +118,7 @@
           }
         })
         .build())
-        .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'views/members/member.html').controller('MemberCtrl')
+        .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'js/member/member.html').controller('MemberCtrl')
           .resolve({
             type : function(){
               return 'sponsor';
@@ -133,14 +133,14 @@
         .build())
 
       //Infos
-      .state('multimedia', new State(USER_ROLES, 'multimedia', 'views/info/multimedia.html').build())
-      .state('conduite', new State(USER_ROLES, 'conduite', 'views/info/conduite.html').build())
-      .state('faq', new State(USER_ROLES, 'faq', 'views/info/faq.html').build())
-      .state('venir', new State(USER_ROLES, 'venir', 'views/info/venir.html').build())
+      .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())
+      .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html').build())
+      .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html').build())
+      .state('venir', new State(USER_ROLES, 'venir', 'js/venir/venir.html').build())
 
 
       //Account
-      .state('account', new State(USER_ROLES, 'account', 'views/account/account.html')
+      .state('account', new State(USER_ROLES, 'account', 'js/account/account.html')
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
@@ -152,24 +152,24 @@
           }
         })
         .build())
-      .state('createaccount', new State(USER_ROLES, 'createaccount', 'views/account/create-user-account.html')
+      .state('createaccount', new State(USER_ROLES, 'createaccount', 'js/create-user-account/create-user-account.html')
         .controller('CreateUserAccountCtrl')
         .build())
-      .state('createaccountsocial', new State(USER_ROLES, 'createaccountsocial', 'views/account/create-social-account.html')
+      .state('createaccountsocial', new State(USER_ROLES, 'createaccountsocial', 'js/create-social-account/create-social-account.html')
         .controller('CreateSocialAccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .build())
 
 
       //Security
-      .state('logout', new State(USER_ROLES, 'logout', 'views/home.html').build())
-      .state('authent', new State(USER_ROLES, 'authent', 'views/security/login.html').controller('LoginCtrl').build())
-      .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'views/security/password-lost.html').controller('PasswordLostCtrl').build())
-      .state('passwordreinit', new State(USER_ROLES, 'passwordreinit', 'views/security/password-reinit.html')
+      .state('logout', new State(USER_ROLES, 'logout', 'js/home/home.html').build())
+      .state('authent', new State(USER_ROLES, 'authent', 'js/login/login.html').controller('LoginCtrl').build())
+      .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'js/password-lost/password-lost.html').controller('PasswordLostCtrl').build())
+      .state('passwordreinit', new State(USER_ROLES, 'passwordreinit', 'js/password-reinit/password-reinit.html')
         .controller('PasswordReinitCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .build())
-      .state('doneaction', new State(USER_ROLES, 'doneaction', 'views/security/done-action.html')
+      .state('doneaction', new State(USER_ROLES, 'doneaction', 'js/done-action/done-action.html')
         .controller('DoneActionCtrl')
         .params({
           title: null,
@@ -177,7 +177,7 @@
         })
         .build())
 
-      .state('monitor', new State(USER_ROLES, 'monitor', 'views/admin/monitoring.html')
+      .state('monitor', new State(USER_ROLES, 'monitor', 'js/monitoring/monitoring.html')
         .controller('MonitoringCtrl')
         .roles([USER_ROLES.admin])
         .build());
