@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('CreateSocialAccountCtrl', function ($rootScope, $scope, $http, $state) {
+  angular.module('cesar-account').controller('CreateSocialAccountCtrl', function ($rootScope, $scope, $http, $state, $translate, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;

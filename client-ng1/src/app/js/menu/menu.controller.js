@@ -15,7 +15,7 @@
     $timeout(function(){
       ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
     });
-    ctrl.toggleLanguage = function () {USER_ROLES,
+    ctrl.toggleLanguage = function () {
       ctrl.currentLanguage = ($translate.use() === LANGUAGES.en) ? LANGUAGES.fr : LANGUAGES.en;
       $translate.use(ctrl.currentLanguage);
       $rootScope.$broadcast('event:language-changed', ctrl.currentLanguage);
