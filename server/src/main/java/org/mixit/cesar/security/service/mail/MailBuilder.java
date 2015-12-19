@@ -62,6 +62,7 @@ public class MailBuilder {
 
             case ACCOUND_NEW_VALIDATION:
                 model.put("provider", provider.orElse(OAuthProvider.TWITTER).toString());
+                model.put("url", String.format("%s/app/account/valid?token=%s", urlFactory.getBaseUrl(), account.getToken()));
                 return VelocityEngineUtils.mergeTemplateIntoString(
                         this.velocityEngine,
                         String.format("email-account-validation-%s.vm", lang),

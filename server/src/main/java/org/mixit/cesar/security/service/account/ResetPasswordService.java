@@ -74,7 +74,8 @@ public class ResetPasswordService {
                     .findByMemberId(member.get().getId())
                     .stream()
                     .findAny();
-            tokenService.reinitTokenValidity(account.get());
+
+            tokenService.reinitTokenValidity(account.orElseThrow(EmailExistException::new));
             //If the user use a social network to connect to the application we don't need to send him an email
             mailerService.send(
                     email,
