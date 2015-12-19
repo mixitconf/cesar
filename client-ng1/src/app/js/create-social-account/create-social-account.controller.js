@@ -34,7 +34,7 @@
     var onRouteChangeOff = $rootScope.$on('$stateChangeStart', routeChangeHandler);
 
     function routeChangeHandler(event, newState) {
-      if (newState.name.indexOf(stateName) !== -1 && newState.url===state) {
+      if (newState.name==='doneaction' || (newState.name.indexOf(stateName) !== -1 && newState.url===state)) {
         // we don't care about internal state change
         return;
       }
