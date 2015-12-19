@@ -7,7 +7,7 @@
 
     var ctrl = this;
 
-    ctrl.account = {
+    ctrl.credentials = {
       defaultLanguage : 'fr'
     };
     ctrl.createUserAccount = function () {
