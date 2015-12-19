@@ -3,7 +3,9 @@ package org.mixit.cesar.security.web;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.security.service.account.TokenService;
 import org.mixit.cesar.security.service.authentification.CookieService;
 import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,15 @@ public class LogoutController {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @RequestMapping
     public void logout(HttpServletResponse response) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         currentUser.getCredentials().ifPresent(credentials -> {
                     Account account = accountRepository.findByToken(credentials.getToken());
-                    account.setToken(null);
-
+                    tokenService.generateNewToken(account);
                 }
         );
 
