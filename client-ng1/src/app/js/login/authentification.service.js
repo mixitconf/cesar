@@ -30,9 +30,13 @@
     }
 
     function logout() {
-      $http.get('app/logout');
-      LocalStorageService.remove('current-user');
-      $rootScope.$broadcast('event:auth-logoutConfirmed');
+      currentUser().then(function(currentUser) {
+        if (currentUser) {
+          $http.get('app/logout');
+          LocalStorageService.remove('current-user');
+          $rootScope.$broadcast('event:auth-logoutConfirmed');
+        }
+      });
     }
 
     function login(param) {

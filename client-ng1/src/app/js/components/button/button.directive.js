@@ -9,7 +9,7 @@
     'ngInject';
 
     return {
-      templateUrl: 'js/button/button.directive.html',
+      templateUrl: 'js/components/button/button.directive.html',
       scope: {
         disabled: '=',
         onClick: '&',

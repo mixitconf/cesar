@@ -6,7 +6,7 @@
     'ngInject';
 
     return {
-      templateUrl: 'js/members/member-cards.directive.html',
+      templateUrl: 'js/member/member-cards.directive.html',
       scope: {
         length: '@',
         members: '=',

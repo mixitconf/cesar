@@ -5,7 +5,7 @@
   angular.module('cesar-members').directive('cesarSocialLink', function () {
 
     return {
-      templateUrl: 'js/members/social-link.directive.html',
+      templateUrl: 'js/components/social-link/social-link.directive.html',
       scope: {
         classNames: '@',
         url: '='
