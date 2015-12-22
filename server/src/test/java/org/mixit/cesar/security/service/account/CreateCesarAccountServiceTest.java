@@ -65,12 +65,14 @@ public class CreateCesarAccountServiceTest {
     @Test
     public void create_account_and_generate_oauthid() {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
+        when(accountRepository.save(any(Account.class))).thenReturn(new Account());
         assertThat(createCesarAccountService.createNormalAccount(new Account()).getOauthId()).isNotEmpty();
     }
 
     @Test
     public void create_account_and_return_a_token_null_to_user() {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
+        when(accountRepository.save(any(Account.class))).thenReturn(new Account());
         assertThat(createCesarAccountService.createNormalAccount(new Account()).getToken()).isNull();
     }
 
@@ -89,6 +91,7 @@ public class CreateCesarAccountServiceTest {
     @Test
     public void create_account_send_mail_to_confirm_validation() {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
+        when(accountRepository.save(any(Account.class))).thenReturn(new Account());
         createCesarAccountService.createNormalAccount(new Account());
         verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Account.class), any());
     }

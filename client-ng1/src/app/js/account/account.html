@@ -9,7 +9,8 @@
 
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
-            <p translate="view.account.update.registeredAt" translate-values="{ registeredAt : ctrl.getDate(ctrl.account.member.registeredAt)  }"></p>
+            <p translate="view.account.update.registeredAt"
+               translate-values="{ registeredAt : ctrl.getDate(ctrl.account.member.registeredAt)  }"></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.login">
                 <input class="mdl-textfield__input" type="text" id="login" name="login"
@@ -18,10 +19,10 @@
                 <label class="mdl-textfield__label" for="login" translate="view.account.id"></label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-if="ctrl.account.provider">
-                <input class="mdl-textfield__input" type="text" id="login" name="login"
+                <input class="mdl-textfield__input" type="text" id="provider" name="provider"
                        ng-maxlength="100"
                        ng-model="ctrl.account.provider" readonly/>
-                <label class="mdl-textfield__label" for="login" translate="view.account.provider"></label>
+                <label class="mdl-textfield__label" for="provider" translate="view.account.provider"></label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true" ng-maxlength="100"
@@ -40,7 +41,8 @@
                 <label class="mdl-textfield__label" for="email" translate="view.account.mail"></label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" translate="view.account.defaultLanguage"></label>
+                <label class="mdl-textfield__label cesar-textfield__radio-label"
+                       translate="view.account.defaultLanguage"></label>
 
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
                     <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
@@ -61,34 +63,52 @@
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "3" id="shortDescription" ng-maxlength="250"
-                        ng-model="ctrl.account.member.shortDescription"></textarea>
-                <label class="mdl-textfield__label" for="shortDescription" translate="view.account.shortDescription"></label>
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="shortDescription" ng-maxlength="250"
+                          ng-model="ctrl.account.member.shortDescription"></textarea>
+                <label class="mdl-textfield__label" for="shortDescription"
+                       translate="view.account.shortDescription"></label>
                 <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"></span>
+                    <span translate="view.account.update.characterNumber"
+                          translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"></span>
                     (<span translate="view.account.update.markdown"></span>)
                 </small>
             </div>
-
+            <p>&nbsp;</p>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "10" id="longDescription" ng-maxlength="3000"
+                <textarea class="mdl-textfield__input" type="text" rows="10" id="longDescription" ng-maxlength="3000"
                           ng-model="ctrl.account.member.longDescription"></textarea>
-                <label class="mdl-textfield__label" for="longDescription" translate="view.account.longDescription"></label>
+                <label class="mdl-textfield__label" for="longDescription"
+                       translate="view.account.longDescription"></label>
                 <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber" translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"></span>
+                    <span translate="view.account.update.characterNumber"
+                          translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"></span>
                     (<span translate="view.account.update.markdown"></span>)
                 </small>
             </div>
+            <p>&nbsp;</p>
 
-        </form>
+            <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
 
-            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'"
+
+
+            <div>
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                   ng-repeat="interest in ctrl.account.member.interests" style="padding: 0 4px">
+                    <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeInterest(interest)">
+                        <i class="material-icons">remove_circle_outline</i>
+                    </button>
+                    {{interest.name}}
+                </a>
+            </div>
+            <p>&nbsp;</p>
+            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'" id="action1"
                           on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
             </cesar-button>
+            <div class="mdl-tooltip" for="action1" translate="action.save"></div>
         </form>
         <p>&nbsp;</p>
 
     </div>
-
+{{ctrl.interests}}
 </div>
 

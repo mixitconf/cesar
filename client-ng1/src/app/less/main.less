@@ -6,6 +6,7 @@
 @import "spinner.less";
 @import "header.less";
 @import "footer.less";
+@import "autocomplete.less";
 
 @link__font-size : 15px;
 @large-screen__width : 1024px;
@@ -217,8 +218,17 @@ img{
   line-height: 22px !important;
   font-size: 12px;
   color: @primary_color;
-  padding: 0px !important;
+  padding: 0px 5px !important;
   margin: 5px;
+
+  button {
+    min-width: 20px;
+    height: 20px;
+    width: 20px ;
+  }
+  .material-icons{
+    font-size: 18px;
+  }
 }
 
 .cesar-mutimedia-img{

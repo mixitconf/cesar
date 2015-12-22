@@ -3,6 +3,10 @@
     "fr" : "French",
     "en" : "English"
   },
+  "action" : {
+    "save" : "Save",
+    "add" : "Add"
+  },
   "menu": {
     "admin": "Admin",
     "news": "News",

@@ -3,6 +3,11 @@
     "fr" : "Français",
     "en" : "Anglais"
   },
+  "action" : {
+    "save" : "Enregistrer"
+    "add" : "Ajouter"
+
+  },
   "menu": {
     "admin": "Admin",
     "news": "Actualités",

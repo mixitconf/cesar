@@ -1,15 +1,20 @@
 package org.mixit.cesar.security.service.account;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import org.mixit.cesar.security.service.exception.EmailExistException;
+import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.repository.AuthorityRepository;
+import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.security.service.authentification.CryptoService;
@@ -40,6 +45,9 @@ public class CreateCesarAccountService {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private InterestRepository interestRepository;
 
     @Autowired
     public AbsoluteUrlFactory urlFactory;
@@ -74,18 +82,22 @@ public class CreateCesarAccountService {
 
         //Step3: we check if a member exist with the same email
         Member member = tokenService.tryToLinkWithActualMember(account);
+        if(member==null){
+            member = memberRepository.save(updateMember(new Member(), account));
+        }
+        else{
+            member.getROLES().clear();
+            updateMember(member, account);
+        }
 
         //Step4: a member is created but invalid
-        account.setValid(false);
-        member = memberRepository.save(updateMember(member==null ? new Member() : member, account));
-
         //Step5 : account is created
         account
+                .setValid(false)
                 .setMember(member)
-                .addAuthority(authorityRepository.findByName(Role.MEMBER))
                 .setPassword(cryptoService.passwordHash(account.getPassword()));
 
-        accountRepository.save(account);
+        accountRepository.save(account).addAuthority(authorityRepository.findByName(Role.MEMBER));
 
         //Step6: a mail with a token is send to the user. He has to confirm it before 3
         mailerService.send(
@@ -136,6 +148,8 @@ public class CreateCesarAccountService {
                 .setShortDescription(member.getShortDescription())
                 .setLongDescription(member.getLongDescription());
 
+        //We need to update interests
+        updateMemberInterest(accountDb.getMember(), member);
 
         //An email is send if mail changes
         if (emailChanged) {
@@ -147,4 +161,35 @@ public class CreateCesarAccountService {
 
         return accountRepository.save(accountDb);
     }
+
+    /**
+     * Helper to update the interest list
+     */
+    protected void updateMemberInterest(Member<Member> memberDb, Member<Member> member){
+        List<Interest> interestToDelete = new ArrayList<>();
+        memberDb.getInterests()
+                .stream()
+                .forEach(inter -> {
+                    Optional<Interest> interest = member.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findAny();
+                    if(!interest.isPresent()){
+                        interestToDelete.add(inter);
+                    }
+                });
+        memberDb.getInterests().removeAll(interestToDelete);
+
+        member
+                .getInterests()
+                .stream()
+                .forEach(inter -> {
+                    Optional<Interest> interest = memberDb.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findAny();
+                    if(!interest.isPresent()){
+                        Interest interes = interestRepository.findByName(inter.getName());
+                        if(interes==null){
+                            interes = interestRepository.save(new Interest().setName(inter.getName()));
+                        }
+                        memberDb.addInterest(interes);
+                    }
+                });
+    }
+
 }
