@@ -4,9 +4,8 @@
     "en" : "Anglais"
   },
   "action" : {
-    "save" : "Enregistrer"
+    "save" : "Enregistrer",
     "add" : "Ajouter"
-
   },
   "menu": {
     "admin": "Admin",
