@@ -35,7 +35,9 @@
 
         $scope.add = function(selected){
           $scope.value = selected;
+          $scope.addInterest({value:selected});
           $scope.close();
+          $scope.reset();
         };
 
         $scope.reset = function(){
