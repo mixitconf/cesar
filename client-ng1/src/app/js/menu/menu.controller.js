@@ -1,6 +1,7 @@
 (function () {
 
   'use strict';
+  /*global componentHandler */
 
   angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, $rootScope, LANGUAGES, USER_ROLES, AuthenticationService) {
     'ngInject';
@@ -59,7 +60,6 @@
           ctrl.menus.splice(index, 1);
         }
       });
-
       AuthenticationService.currentUser().then(function(currentUser){
         if(currentUser){
           ctrl.security = {
@@ -81,6 +81,9 @@
               ]}
             );
           }
+          $timeout(function () {
+            componentHandler.upgradeAllRegistered();
+          });
         }
         else{
           delete ctrl.security;
