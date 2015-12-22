@@ -190,7 +190,7 @@
       "password": "Password",
       "provider" : "Acount type",
       "confirmpassword": "Password Confirmation",
-      "actualpassword": "Current Password",
+      "actualpassword": "Password received by email",
       "defaultLanguage" : "Default language",
       "shortDescription" : "Summary",
       "longDescription" : "Description",

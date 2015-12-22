@@ -190,7 +190,7 @@
       "password": "Mot de passe",
       "provider" : "Type de compte",
       "confirmpassword": "Confirmation de mot de passe",
-      "actualpassword": "Mot de passe actuel",
+      "actualpassword": "Mot de passe reçu par email",
       "defaultLanguage" : "Langage par défaut",
       "shortDescription" : "Présentation",
       "longDescription" : "Description",
