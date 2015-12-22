@@ -37,6 +37,27 @@
       };
     }
 
+    ctrl.addInterest = function(value){
+      if(value){
+        var canPush;
+        if(!ctrl.account.member.interests){
+          canPush = true;
+        }
+        else{
+          canPush = ctrl.account.member.interests.filter(function(elt){
+            return elt.name === value;
+          }).length==0;
+        }
+        if(canPush){
+          ctrl.account.member.interests.push({name : value});
+        }
+
+      }
+    };
+
+    ctrl.removeInterest = function(value){
+      ctrl.account.member.interests.splice(ctrl.account.member.interests.indexOf(value),1);
+    };
 
   });
 

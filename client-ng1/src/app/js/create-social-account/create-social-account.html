@@ -61,9 +61,10 @@
                     </div>
 
                     <div class="mdl-card__actions mdl-card--border">
-                         <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"
+                         <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'" id="action1"
                                       on-click="ctrl.createSocialAccount()" spinner="spinner" google-icon="save">
                         </cesar-button>
+                        <div class="mdl-tooltip" for="action1" translate="action.save"></div>
                     </div>
                 </div>
             </div>

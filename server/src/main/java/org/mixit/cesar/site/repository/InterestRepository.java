@@ -12,4 +12,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface InterestRepository extends CrudRepository<Interest, Long> {
     @Cacheable(CACHE_SESSION)
     Interest findByName(String name);
+
+    @Cacheable(CACHE_SESSION)
+    @Override
+    Iterable<Interest> findAll();
 }
