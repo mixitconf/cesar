@@ -46,7 +46,7 @@
         else{
           canPush = ctrl.account.member.interests.filter(function(elt){
             return elt.name === value;
-          }).length==0;
+          }).length===0;
         }
         if(canPush){
           ctrl.account.member.interests.push({name : value});
