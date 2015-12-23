@@ -1,4 +1,4 @@
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cesar-autocomplete__field">
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cesar-autocomplete__field" ng-class="{'is-dirty' : value}">
     <input class="mdl-textfield__input" type="text" id="{{typeId}}" ng-maxlength="50" ng-model="value" autocomplete="off"
            ng-focus="open();autocomplete(value)"
            ng-change="autocomplete(value)"
