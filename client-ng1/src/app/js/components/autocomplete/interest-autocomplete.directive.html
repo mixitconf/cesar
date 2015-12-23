@@ -15,7 +15,7 @@
             </ul>
         </div>
     </div>
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="actionAddInterest" ng-click="addInterest({value:value});reset()">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="actionAddInterest" ng-click="addInterest({value:value});reset()" ng-if="value">
         <i class="material-icons">add</i>
     </button>
     <div class="mdl-tooltip" for="actionAddInterest" translate="action.add" ></div>
