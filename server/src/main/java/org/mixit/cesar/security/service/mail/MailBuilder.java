@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 import org.apache.velocity.app.VelocityEngine;
 import org.mixit.cesar.security.model.Account;
@@ -119,5 +120,10 @@ public class MailBuilder {
         }
 
         return "[Mix-IT] " + title;
+    }
+
+    @VisibleForTesting
+    protected void setVelocityEngine(VelocityEngine velocityEngine) {
+        this.velocityEngine = velocityEngine;
     }
 }
