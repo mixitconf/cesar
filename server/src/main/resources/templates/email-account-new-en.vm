@@ -10,7 +10,7 @@
 
     <h2>Your credentials on Mix-IT website</h2>
 
-    <p>You just created a new account our website. To validate it please click on this link <a href="${url}">${url}</a>.</p>
+    <p>You just created a new account our website. To validate it please click on this link : <a href="${url}">${url}</a>.</p>
 
     <p>Be careful, this code is only good for three hours. After, you must submit a new request on Mix-IT website.</p>
 
