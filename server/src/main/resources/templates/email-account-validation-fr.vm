@@ -10,10 +10,10 @@
 
     <h2>Vos informations d'identification Mix-IT</h2>
 
-    <p>Vous nous avez demandé de réinitialiser votre mot de passe mais vous utilisez une connexion via le reseau social ${provider}. Nous ne pouvons pas changer le mot de passe. Si vous souhaitez à nouveau valider
+    <p>Vous nous avez demand&eacute; de r&eacute;initialiser votre mot de passe mais vous utilisez une connexion via le reseau social ${provider}. Nous ne pouvons pas changer le mot de passe. Si vous souhaitez &agrave; nouveau valider
         votre adresse email cliquez sur le lien suivant <a href="${url}">${url}</a> </p>
 
-    <p>Attention, ce code n'est valable que pendant trois heures. Passé ce délai, vous devrez soumettre une nouvelle demande de modification de vos informations d'identification.</p>
+    <p>Attention, ce code n'est valable que pendant trois heures. Pass&eacute; ce d&eacute;lai, vous devrez soumettre une nouvelle demande de modification de vos informations d'identification.</p>
 
     <p><b>La team Mix-IT</b></p>
 </div>
