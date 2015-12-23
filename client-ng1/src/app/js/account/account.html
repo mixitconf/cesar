@@ -88,9 +88,6 @@
             <p>&nbsp;</p>
 
             <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
-
-
-
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
                    ng-repeat="interest in ctrl.account.member.interests" style="padding: 0 4px">
@@ -101,6 +98,26 @@
                 </a>
             </div>
             <p>&nbsp;</p>
+
+            <div translate="view.account.linkdesc">Vous pouvez définir au maximum 4 liens vers des sites externes</div>
+
+            <div ng-repeat="link in ctrl.account.member.sharedLinks">
+                <div class="cesar-grid">
+                    <div class="cesar-grid__cell">
+                        <cesar-type-link-autocomplete value="link.name" type-id="type{{$index}}"></cesar-type-link-autocomplete>
+                    </div>
+                    <div class="cesar-grid__cell">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="url" id="link{{$index}}" ng-maxlength="100"
+                                   ng-model="link.URL"/>
+                            <label class="mdl-textfield__label" for="link{{$index}}" translate="view.account.link"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+
+
             <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'" id="action1"
                           on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
             </cesar-button>

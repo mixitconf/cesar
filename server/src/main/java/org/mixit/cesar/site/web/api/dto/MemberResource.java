@@ -71,6 +71,7 @@ public class MemberResource extends ResourceSupport {
         if (!member.getSharedLinks().isEmpty()) {
             memberResource.setUserLinks(member.getSharedLinks()
                     .stream()
+                    .limit(4)
                     .map(l -> new Tuple().setKey(l.getName()).setValue(l.getURL()))
                     .collect(Collectors.toList()));
         }

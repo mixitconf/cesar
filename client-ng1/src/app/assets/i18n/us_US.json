@@ -5,7 +5,8 @@
   },
   "action" : {
     "save" : "Save",
-    "add" : "Add"
+    "add" : "Add",
+    "clear" : "Remove"
   },
   "menu": {
     "admin": "Admin",
@@ -195,6 +196,9 @@
       "shortDescription" : "Summary",
       "longDescription" : "Description",
       "links" : "Links",
+      "linktype" : "Link type",
+      "link" : "Link",
+      "linkdesc" : "You can add 4 links to your profile",
       "interests" : "Interests",
 
       "update": {

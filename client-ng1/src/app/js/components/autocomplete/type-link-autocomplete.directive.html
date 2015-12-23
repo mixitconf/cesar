@@ -1,0 +1,15 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cesar-autocomplete__field">
+    <input class="mdl-textfield__input" type="text" id="{{typeId}}" ng-maxlength="50" ng-model="value" autocomplete="off"
+           ng-focus="open();autocomplete(value)"
+           ng-change="autocomplete(value)"
+           ng-blur="close()"/>
+    <label class="mdl-textfield__label" for="{{typeId}}" translate="view.account.linktype"></label>
+
+    <div ng-if="subselect">
+        <ul class="cesar-autocomplete__container mdl-shadow--4dp">
+            <li ng-repeat="subitem in subselect" class="cesar-autocomplete__item" ng-click="add(subitem)">
+                <span ng-click="add(subitem)">{{subitem}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
