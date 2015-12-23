@@ -35,8 +35,9 @@
       {
         id: 'menu.members', submenus: [
         //{id: 'menu.speakers', link: 'speakers'},
-        {id: 'menu.sponsors', link: 'sponsors'},
-        {id: 'menu.staff', link: 'staff'}
+        {id: 'menu.sponsors', link: 'sponsors', mobile: true},
+        {id: 'menu.staff', link: 'staff', mobile: true},
+        {id: 'sub2.5', divider: 'true', mobile: true},
       ]
       },
       {

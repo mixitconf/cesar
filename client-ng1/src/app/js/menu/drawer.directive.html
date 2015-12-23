@@ -3,7 +3,7 @@
 <nav class="mdl-navigation">
     <temp ng-repeat="item in ctrl.menus">
         <temp ng-repeat="subitem in item.submenus">
-            <a class="mdl-navigation__link" ui-sref="{{subitem.link}}"
+            <a class="mdl-navigation__link cesar-navigation__link-drawer" ui-sref="{{subitem.link}}"
                ng-if="!subitem.divider && subitem.mobile && subitem.link"><span
                     translate="{{subitem.id}}"></span></a>
             <hr ng-if="subitem.divider && subitem.mobile">
@@ -11,7 +11,7 @@
     </temp>
     <!-- Security -->
     <temp ng-if="ctrl.security.authentified" ng-repeat="subitem in ctrl.security.submenus">
-        <a class="mdl-navigation__link" ui-sref="{{subitem.link}}"
+        <a class="mdl-navigation__link cesar-navigation__link-drawer" ui-sref="{{subitem.link}}"
            ng-if="subitem.mobile && subitem.link"><span translate="{{subitem.id}}"></span></a>
     </temp>
     <div class="cesar-menu mdl-navigation__link cesar-navigation__link">
