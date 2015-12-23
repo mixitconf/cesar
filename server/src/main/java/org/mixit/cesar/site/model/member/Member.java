@@ -22,7 +22,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
 import org.mixit.cesar.security.model.Role;

@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+import com.google.common.base.Strings;
 import org.mixit.cesar.security.service.exception.EmailExistException;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -14,8 +15,10 @@ import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.repository.AuthorityRepository;
+import org.mixit.cesar.site.model.member.SharedLink;
 import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
+import org.mixit.cesar.site.repository.SharedLinkRepository;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.security.service.authentification.CryptoService;
 import org.mixit.cesar.security.service.exception.LoginExistException;
@@ -48,6 +51,9 @@ public class CreateCesarAccountService {
 
     @Autowired
     private InterestRepository interestRepository;
+
+    @Autowired
+    private SharedLinkRepository sharedLinkRepository;
 
     @Autowired
     public AbsoluteUrlFactory urlFactory;
@@ -126,7 +132,7 @@ public class CreateCesarAccountService {
             //We check that the email is not used by another account
             tokenService.tryToLinkWithActualMember(accountDb);
             memberRepository.findByEmail(account.getEmail()).stream().forEach(m -> {
-                if(m.getId().equals(member.getId())){
+                if (m.getId().equals(member.getId())) {
                     throw new EmailExistException();
                 }
             });
@@ -150,6 +156,9 @@ public class CreateCesarAccountService {
 
         //We need to update interests
         updateMemberInterest(accountDb.getMember(), member);
+
+        //And links
+        updateMemberShareLinks(accountDb.getMember(), member);
 
         //An email is send if mail changes
         if (emailChanged) {
@@ -175,6 +184,8 @@ public class CreateCesarAccountService {
                         interestToDelete.add(inter);
                     }
                 });
+
+        //We can delete old references
         memberDb.getInterests().removeAll(interestToDelete);
 
         member
@@ -192,4 +203,34 @@ public class CreateCesarAccountService {
                 });
     }
 
+    /**
+     * Helper to update the user links (we delete all of them who have an empty URL
+     */
+    protected void updateMemberShareLinks(Member<Member> memberDb, Member<Member> member){
+        List<SharedLink> sharedLinksToDelete = new ArrayList<>();
+        memberDb.getSharedLinks()
+                .stream()
+                .forEach(sl -> {
+                    //We search the reference in the links sent by user
+                    Optional<SharedLink> sharedLink = member.getSharedLinks().stream().filter(i -> i.getId().equals(sl.getId())).findAny();
+                    if ( sharedLink.isPresent() && !Strings.isNullOrEmpty(sharedLink.get().getURL())){
+                        sl.setName(sharedLink.get().getName()).setURL(sharedLink.get().getURL());
+                    }
+                    else{
+                        sharedLinksToDelete.add(sl);
+                    }
+                });
+
+        //We can delete old references
+        memberDb.getSharedLinks().removeAll(sharedLinksToDelete);
+        sharedLinkRepository.delete(sharedLinksToDelete);
+
+        //We need to find the new occurrences to create
+        member
+                .getSharedLinks()
+                .stream()
+                .filter(sl -> sl.getId() == null && !Strings.isNullOrEmpty(sl.getURL()))
+                .forEach(sl -> memberDb.addSharedLink(sharedLinkRepository.save(new SharedLink().setName(sl.getName()).setURL(sl.getURL()).setMember(memberDb))));
+
+    }
 }

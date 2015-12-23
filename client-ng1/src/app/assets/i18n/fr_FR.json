@@ -5,7 +5,8 @@
   },
   "action" : {
     "save" : "Enregistrer",
-    "add" : "Ajouter"
+    "add" : "Ajouter",
+    "clear" : "Supprimer"
   },
   "menu": {
     "admin": "Admin",
@@ -195,6 +196,9 @@
       "shortDescription" : "Présentation",
       "longDescription" : "Description",
       "links" : "Liens",
+      "linktype" : "Type de lien",
+      "link" : "Lien",
+      "linkdesc" : "Vous pouvez définir au maximum 4 liens vers des sites externes",
       "interests" : "Intérêts",
 
       "update": {

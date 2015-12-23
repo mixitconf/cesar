@@ -35,6 +35,13 @@
             }
           });
       };
+
+      if(!account.member.sharedLinks){
+        account.member.sharedLinks= [];
+      }
+      for(var i=account.member.sharedLinks.length ; i<4 ; i++){
+        account.member.sharedLinks.push({name : ''});
+      }
     }
 
     ctrl.addInterest = function(value){
