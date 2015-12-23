@@ -6,9 +6,10 @@
     'ngInject';
 
     return {
-      templateUrl: 'js/member/member-cards.directive.html',
+      templateUrl: 'js/members/member-cards.directive.html',
       scope: {
         length: '@',
+        lengthPhone:'@',
         members: '=',
         search: '=',
         limitText: '@',
@@ -21,6 +22,9 @@
         }
         if (!$scope.length) {
           $scope.length = 4;
+        }
+        if(!$scope.lengthPhone){
+          $scope.lengthPhone=$scope.length;
         }
       }
     };

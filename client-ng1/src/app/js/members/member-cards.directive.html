@@ -1,28 +1,28 @@
 <div class="mdl-grid">
     <div ng-repeat="member in members | filter:search | orderBy: order"
-         class="mdl-cell mdl-cell--{{length}}-col cesar-card mdl-card mdl-shadow--4dp"
+         class="mdl-cell mdl-cell--{{length}}-col mdl-cell--{{lengthPhone}}-col-phone cesar-card mdl-card mdl-shadow--4dp"
             ng-class="{'cesar-card__inactive': member.login==='mixit'}">
         <div class="mdl-card__title mdl-card--expand cesar-card__title">
             <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type!=='sponsor'">{{member.firstname}} {{member.lastname}}</h3>
             <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type==='sponsor'">{{member.company}}</h3>
         </div>
-        <div class="mdl-card__supporting-text cesar-card__supporting-text">
+        <div class="mdl-card__supporting-text cesar-card__supporting-text" ng-class="{'hide-on-mobile': length<=4 && member.login==='mixit'}">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--4-col" >
                     <img src="http://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
                     <img ng-src="img/{{member.logo}}" ng-if="member.logo" ng-class="{'cesar-card__logo-inactive': member.login==='mixit'}"/>
                 </div>
-                <div class="mdl-cell mdl-cell--8-col" ng-bind-html="member.shortDescription | markdown">{{}}</div>
+                <div class="mdl-cell mdl-cell--8-col" ng-class="{'hide-on-mobile': lengthPhone<=4}" ng-bind-html="member.shortDescription | markdown">{{}}</div>
             </div>
         </div>
-        <div class="mdl-card__actions mdl-card--border">
+        <div class="mdl-card__actions mdl-card--border" ng-class="{'hide-on-mobile': lengthPhone<=4 && member.login==='mixit'}">
             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-if="member.login!=='mixit'" ui-sref="member({id : member.idMember, type : type})">
                 <i class="material-icons">person</i>
             </a>
             <a class="mdl-button mdl-js-button mdl-button--fab  mdl-button--mini-fab"  ng-if="member.login==='mixit'" ng-href="/docs/sponsor/leaflet/fr" target="sponsor">
                 <i class="material-icons">person</i>
             </a>
-            <div style="float: right">
+            <div style="float: right"  ng-class="{'hide-on-mobile': lengthPhone<=4}">
                 <cesar-social-link ng-repeat="link in member.userLinks"
                                    class-names="mdl-js-button mdl-button--fab mdl-button--mini-fab cesar-button--fab"
                                    url="link.value"></cesar-social-link>
