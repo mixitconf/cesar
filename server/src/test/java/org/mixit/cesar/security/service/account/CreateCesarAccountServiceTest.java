@@ -93,7 +93,7 @@ public class CreateCesarAccountServiceTest {
         when(authorityRepository.findByName(Role.MEMBER)).thenReturn(new Authority().setId(1L).setName(Role.MEMBER));
         when(accountRepository.save(any(Account.class))).thenReturn(new Account());
         createCesarAccountService.createNormalAccount(new Account());
-        verify(mailBuilder).createHtmlMail(any(MailBuilder.TypeMail.class), any(Account.class), any());
+        verify(mailBuilder).buildContent(any(MailBuilder.TypeMail.class), any(Account.class), any());
     }
 
 }

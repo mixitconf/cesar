@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 import com.google.common.base.Strings;
 import org.mixit.cesar.security.service.exception.EmailExistException;
@@ -108,8 +107,8 @@ public class CreateCesarAccountService {
         //Step6: a mail with a token is send to the user. He has to confirm it before 3
         mailerService.send(
                 account.getEmail(),
-                "Account validation",
-                mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, account, Optional.empty()));
+                mailBuilder.getTitle(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, account),
+                mailBuilder.buildContent(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, account, Optional.empty()));
 
         return account;
     }
@@ -164,8 +163,8 @@ public class CreateCesarAccountService {
         if (emailChanged) {
             mailerService.send(
                     account.getEmail(),
-                    "Email changed",
-                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.EMAIL_CHANGED, account, Optional.empty()));
+                    mailBuilder.getTitle(MailBuilder.TypeMail.EMAIL_CHANGED, account),
+                    mailBuilder.buildContent(MailBuilder.TypeMail.EMAIL_CHANGED, account, Optional.empty()));
         }
 
         return accountRepository.save(accountDb);

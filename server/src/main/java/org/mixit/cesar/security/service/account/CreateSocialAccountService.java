@@ -112,8 +112,8 @@ public class CreateSocialAccountService {
         //Step6: a mail with a token is send to the user. He has to confirm it before 3 3020151625
         mailerService.send(
                 partial.getEmail(),
-                "Account validation",
-                mailBuilder.createHtmlMail(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, partial, Optional.empty()));
+                mailBuilder.getTitle(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, partial),
+                mailBuilder.buildContent(MailBuilder.TypeMail.SOCIAL_ACCOUNT_VALIDATION, partial, Optional.empty()));
 
     }
 

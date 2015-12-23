@@ -34,7 +34,7 @@ public class MailBuilder {
         SESSION_ACCEPTED
     }
 
-    public String createHtmlMail(TypeMail typeMail, Account account, Optional<OAuthProvider> provider) {
+    public String buildContent(TypeMail typeMail, Account account, Optional<OAuthProvider> provider) {
         Preconditions.checkNotNull(typeMail, "type is required");
         Preconditions.checkNotNull(account, "credentials are required");
 
@@ -87,4 +87,37 @@ public class MailBuilder {
         return null;
     }
 
+    public String getTitle(TypeMail typeMail, Account account) {
+        Preconditions.checkNotNull(typeMail, "type is required");
+        Preconditions.checkNotNull(account, "credentials are required");
+
+        String lang = account.getDefaultLanguage().equals(SessionLanguage.en) ? "en" : "fr";
+        String title;
+
+        switch (typeMail) {
+            case REINIT_PASSWORD:
+                title = lang.equals("en") ? "Password reinitialization" : "Réinitialisation de votre mot de passe";
+                break;
+
+            case EMAIL_CHANGED:
+                title = lang.equals("en") ? "Email changed" : "Modification de votre mot de passe";
+                break;
+
+            case CESAR_ACCOUNT_VALIDATION:
+            case SOCIAL_ACCOUNT_VALIDATION:
+            case ACCOUND_NEW_VALIDATION:
+                title = lang.equals("en") ? "Account validation" : "Validation de votre compte";
+                break;
+
+            case SESSION_ACCEPTED:
+            case SESSION_REJECTED:
+            case SESSION_SUBMITION:
+                title = "Session on Mix-IT CFP";
+
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return "[Mix-IT] " + title;
+    }
 }

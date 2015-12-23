@@ -133,8 +133,8 @@ public class ProposalService {
                     .stream()
                     .forEach(speaker -> mailerService.send(
                                     speaker.getEmail(),
-                                    "Mix-IT soumission",
-                                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.CESAR_ACCOUNT_VALIDATION, null, Optional.empty()))
+                                    mailBuilder.getTitle(MailBuilder.TypeMail.SESSION_SUBMITION, null),
+                                    mailBuilder.buildContent(MailBuilder.TypeMail.SESSION_SUBMITION, null, Optional.empty()))
                     );
         }
 

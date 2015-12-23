@@ -1,21 +1,20 @@
 package org.mixit.cesar.security.service.account;
 
 import java.util.Optional;
+import javax.transaction.Transactional;
 
-import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
 import org.mixit.cesar.security.repository.AccountRepository;
-import org.mixit.cesar.site.repository.MemberRepository;
-import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.security.service.authentification.CryptoService;
 import org.mixit.cesar.security.service.exception.EmailExistException;
 import org.mixit.cesar.security.service.mail.MailBuilder;
 import org.mixit.cesar.security.service.mail.MailerService;
+import org.mixit.cesar.site.model.member.Member;
+import org.mixit.cesar.site.repository.MemberRepository;
+import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 @Transactional
@@ -52,24 +51,24 @@ public class ResetPasswordService {
         member.orElseThrow(EmailExistException::new);
 
         //The old users can have several accounts. It's not the same case for newers
-       Optional<Account> account = accountRepository
+        Optional<Account> account = accountRepository
                 .findByMemberId(member.get().getId())
                 .stream()
                 .filter(o -> o.getProvider().equals(OAuthProvider.CESAR))
                 .findAny();
 
         //If user has a classic account we send him the mail to reinitialize his password
-        if(account.isPresent()){
+        if (account.isPresent()) {
             tokenService.generateNewToken(account.get());
             account.get().setPassword(cryptoService.generateRandomPassword());
             mailerService.send(
                     email,
-                    "Password reinitialization",
-                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.REINIT_PASSWORD, account.get(), Optional.of(account.get().getProvider())));
+                    mailBuilder.getTitle(MailBuilder.TypeMail.REINIT_PASSWORD, account.get()),
+                    mailBuilder.buildContent(MailBuilder.TypeMail.REINIT_PASSWORD, account.get(), Optional.of(account.get().getProvider())));
             account.get().setPassword(cryptoService.passwordHash(account.get().getPassword()));
             accountRepository.save(account.get());
         }
-        else{
+        else {
             account = accountRepository
                     .findByMemberId(member.get().getId())
                     .stream()
@@ -79,8 +78,8 @@ public class ResetPasswordService {
             //If the user use a social network to connect to the application we don't need to send him an email
             mailerService.send(
                     email,
-                    "Account validation",
-                    mailBuilder.createHtmlMail(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, account.get(), Optional.of(account.get().getProvider())));
+                    mailBuilder.getTitle(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, account.get()),
+                    mailBuilder.buildContent(MailBuilder.TypeMail.ACCOUND_NEW_VALIDATION, account.get(), Optional.of(account.get().getProvider())));
         }
     }
 
