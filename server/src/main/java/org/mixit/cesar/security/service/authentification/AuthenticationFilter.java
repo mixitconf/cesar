@@ -51,7 +51,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 Account account = accountRepository.findByToken(token);
                 if (account != null) {
                     CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-                    currentUser.setCredentials(account.prepareForView());
+                    currentUser.setCredentials(account.prepareForView(false));
                     filterChain.doFilter(request, response);
                 }
                 else {

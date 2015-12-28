@@ -49,7 +49,8 @@ By default the app needs a MySQL DB. If you want to use the H2 database you need
 ```
 
 The database is not created automatically when you start the application. If you want to generate the database you can use flyway or add these arguments. 
-```                                                                                                                ./gradlew bootRun --spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password= --spring.jpa.hibernate.ddl-auto=create --spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
+```                                                                             
+./gradlew bootRun --spring.datasource.driver-class-name=org.h2.Driver --spring.datasource.url=jdbc:h2:file:cesar --spring.datasource.username=sa --spring.datasource.password= --spring.jpa.hibernate.ddl-auto=create --spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
 ```
 
 If you want to use MySQL, install a version > 5.x

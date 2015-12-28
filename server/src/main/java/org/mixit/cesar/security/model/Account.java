@@ -272,11 +272,17 @@ public class Account implements Cloneable {
                 '}';
     }
 
-    public Account prepareForView() {
+    public Account prepareForView(boolean addMember) {
         try {
-            return ((Account) this.clone())
+            Account account = ((Account) this.clone())
                     .setHash(HashUtil.md5Hex(Optional.ofNullable(email).orElse("cesar")))
                     .setRoles(this.getAuthorities().stream().map(Authority::getName).map(Role::toString).collect(Collectors.toList()));
+
+            if(addMember){
+                account.setMember(member);
+            }
+
+            return account;
         }
         catch (CloneNotSupportedException e) {
             //we can't have an exception

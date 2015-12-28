@@ -160,6 +160,6 @@ public class AccountController {
             throw new AuthenticationRequiredException();
         }
         cookieService.setCookieInResponse(response, account);
-        return new ResponseEntity<>(account.prepareForView(), HttpStatus.OK);
+        return new ResponseEntity<>(account.prepareForView(true), HttpStatus.OK);
     }
 }

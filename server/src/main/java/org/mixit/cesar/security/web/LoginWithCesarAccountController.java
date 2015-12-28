@@ -69,7 +69,7 @@ public class LoginWithCesarAccountController {
         }
 
         cookieService.setCookieInResponse(response, account);
-        return new ResponseEntity<>(account.prepareForView(), HttpStatus.OK);
+        return new ResponseEntity<>(account.prepareForView(false), HttpStatus.OK);
     }
 
 }
