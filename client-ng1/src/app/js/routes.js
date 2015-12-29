@@ -29,7 +29,7 @@
     $stateProvider
 
       //Home and error route
-      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').build())
+      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').controller('HomeCtrl').build())
 
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
