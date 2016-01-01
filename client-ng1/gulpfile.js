@@ -59,7 +59,7 @@ var paths = {
     ],
     images: [
       'src/app/assets/img/**/*.*',
-      'src/app/assets/logo/*.*'
+      'src/app/assets/logo/**/*.*'
     ],
     i18n: [
       'src/app/assets/i18n/**/*.*'

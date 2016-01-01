@@ -19,6 +19,7 @@ var sourcemaps = require('gulp-sourcemaps');
 //several class utils for gulp
 var utils = require('gulp-util');
 
+var pagespeed = require('psi').output;
 
 module.exports = function(gulp, config) {
   var paths = config.paths;
@@ -126,5 +127,16 @@ module.exports = function(gulp, config) {
     gulp.watch([paths.html], ['build:dev:html']);
     gulp.watch(paths.less.path, ['build:dev:css']);
     gulp.watch(paths.assets.i18n, ['build:dev:i18n']);
+  });
+
+  // Run PageSpeed Insights
+  gulp.task('pagespeed',function(cb){
+    // Update the below URL to the public URL of your site
+    pagespeed('www.mix-it.fr', {
+      strategy: 'mobile'
+      // By default we use the PageSpeed Insights free (no API key) tier.
+      // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
+      // key: 'YOUR_API_KEY'
+    }, cb);
   });
 };
