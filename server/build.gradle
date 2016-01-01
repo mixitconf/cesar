@@ -5,13 +5,8 @@
 
 dependencies {
     compile project(':common')
-
-    if (project.properties.containsKey("client") && "ng2".equals(client)) {
-        compile project(':client-ng2')
-    }
-    else{
-        compile project(':client-ng1')
-    }
+    compile project(':client-ng1')
+    compile project(':client-ng2')
 }
 
 springBoot {

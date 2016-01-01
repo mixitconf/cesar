@@ -1,0 +1,188 @@
+@import "common.less";
+
+body {
+  font-family: "Roboto", "Arial", sans-serif !important;
+}
+
+a{
+  text-decoration: none;
+}
+.right {
+  float: right !important;
+}
+
+.cesar-layout__content{
+  width: 100%;
+  position:relative;
+  min-height: 450px;
+}
+
+@media (max-width: 479px) {
+  .hide-on-mobile{
+    visibility: hidden;
+    max-height: 0px;
+    max-width: 0px;
+    width: 0px;
+    height: 0px;
+  }
+  .cesar-section--top{
+    padding-top: 1em;
+  }
+  .cesar-section--bottom{
+    padding-bottom: 1em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
+  }
+}
+@media (min-width: 480px) and (max-width: 1023px) {
+  .visible-on-mobile{
+    visibility: hidden;
+    max-height: 0px;
+    max-width: 0px;
+    width: 0px;
+    height: 0px;
+  }
+  .cesar-section--top{
+    padding-top: 2em;
+  }
+  .cesar-section--bottom{
+    padding-bottom: 2em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
+  }
+}
+
+@media (min-width: @large-screen__width) {
+  .visible-on-mobile{
+    visibility: hidden;
+    max-height: 0px;
+    max-width: 0px;
+    width: 0px;
+    height: 0px;
+  }
+  .cesar-section--top{
+    padding-top: 4em;
+  }
+  .cesar-section--bottom{
+    padding-bottom: 4em;
+  }
+  .cesar-section{
+    .cesar-section--top;
+    .cesar-section--bottom;
+  }
+}
+
+.cesar-container{
+  width: 90% !important;
+  max-width: 1200px;
+  margin:0 auto;
+  min-height: 400px;
+}
+@media (max-width: 479px) {
+  .cesar-container{
+    min-height: 0;
+  }
+}
+
+.roboto-font(@type, @weight, @style) {
+  @font-face {
+    font-family: 'Roboto';
+    src: url('@{roboto-font-path}/Roboto-@{type}.eot');
+    src: url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
+    url('@{roboto-font-path}/Roboto-@{type}.woff') format('woff'),
+    url('@{roboto-font-path}/Roboto-@{type}.ttf') format('truetype'),
+    url('@{roboto-font-path}/Roboto-@{type}.svg#Roboto') format('svg');
+    font-weight: @weight;
+    font-style: @style;
+  }
+
+  @font-face {
+    font-family: 'Roboto-@{type}';
+    src: url('@{roboto-font-path}/Roboto-@{type}.eot');
+    src: url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
+    url('@{roboto-font-path}/Roboto-@{type}.woff') format('woff'),
+    url('@{roboto-font-path}/Roboto-@{type}.ttf') format('truetype'),
+    url('@{roboto-font-path}/Roboto-@{type}.svg#Roboto') format('svg');
+  }
+}
+
+.roboto-font-pair(@type, @weight) {
+  .roboto-font('@{type}', @weight, normal);
+  .roboto-font('@{type}Italic', @weight, italic);
+}
+
+.roboto-font-pair('Light', 300);
+.roboto-font-pair('Regular', 400);
+
+h1, h2, h3{
+  font-weight: 100 !important;
+}
+
+.cesar-text{
+  font-weight: 300;
+}
+
+.cesar-text-center {
+  text-align: center;
+}
+
+@media (max-width: @medium-screen__width - 1) {
+  h1{
+    font-size: @h1_mobile_fontsize !important;
+    line-height: (@h1_mobile_fontsize+3) !important;
+  }
+  h2{
+    font-size: @h2_mobile_fontsize !important;
+    line-height: (@h2_mobile_fontsize+3) !important;
+  }
+  h3{
+    font-size: @h3_mobile_fontsize !important;
+    line-height: (@h3_mobile_fontsize+3) !important;
+  }
+  .cesar-text{
+    font-size: @text_head_mobile !important;
+    line-height: (@text_head_mobile+2) !important;
+  }
+}
+@media (min-width: @medium-screen__width) and (max-width: @large-screen__width - 1) {
+  h1{
+    font-size: @h1_tablet_fontsize !important;
+    line-height: (@h1_tablet_fontsize+3) !important;
+  }
+  h2{
+    font-size: @h2_tablet_fontsize !important;
+    line-height: (@h2_tablet_fontsize+3) !important;
+  }
+  h3{
+    font-size: @h3_tablet_fontsize !important;
+    line-height: (@h3_tablet_fontsize+3) !important;
+  }
+  .cesar-text{
+    font-size: @text_head_tablet !important;
+    line-height: (@text_head_tablet+2) !important;
+  }
+}
+
+@media (min-width: @large-screen__width) {
+  h1{
+    font-size: @h1_screen_fontsize !important;
+    line-height: (@h1_screen_fontsize+3) !important;
+  }
+  h2{
+    font-size: @h2_screen_fontsize !important;
+    line-height: (@h2_screen_fontsize+3) !important;
+  }
+  h3{
+    font-size: @h3_screen_fontsize !important;
+    line-height: (@h2_screen_fontsize+3) !important;
+  }
+  .cesar-text{
+    font-size: @text_head_screen !important;
+    line-height: (@text_head_screen+2) !important;
+  }
+}
+

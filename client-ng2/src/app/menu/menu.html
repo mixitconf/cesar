@@ -1,0 +1,22 @@
+<div class="cesar-layout__header-row mdl-layout__header-row">
+    <div class="cesar-layout__icon mdl-layout-icon">
+        <a [routerLink]="['/Home']"><img src="img/logo-mixit-transparent.svg" alt="Mix-IT"></a>
+    </div>
+
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+
+    <!-- Navigation. We hide it in small screens. -->
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+
+        <a class="cesar-menu mdl-navigation__link cesar-navigation__link" [routerLink]="['/Home']">
+            <span class="link">Home</span>&nbsp;
+        </a>
+        <a class="cesar-menu mdl-navigation__link cesar-navigation__link"  [routerLink]="['/Profile']">
+            <span class="link">Mon profil</span>&nbsp;
+        </a>
+        <a class="cesar-menu mdl-navigation__link cesar-navigation__link"  [routerLink]="['/Talks']">
+            <span class="link">Mes talks</span>&nbsp;
+        </a>
+    </nav>
+</div>

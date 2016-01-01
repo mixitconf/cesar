@@ -1,4 +1,25 @@
 /*******************************************************************************************
  *                              gradle file : CLIENT
  ******************************************************************************************/
-// This app is not used for the moment
+node {
+    version = '0.12.7'
+    download = true
+}
+
+jar {
+    from 'build/dist'
+    eachFile { details ->
+        details.path = details.path.startsWith('META-INF') ?: 'static/cfp/'+details.path
+    }
+    includeEmptyDirs = false
+
+}
+
+task npmBuild(dependsOn: npmInstall, type: NpmTask) {
+    inputs.dir "src"
+    inputs.file "gulpfile.babel.js"
+    outputs.dir "build/dist"
+    args = ['run', 'build']
+}
+
+jar.dependsOn npmBuild
