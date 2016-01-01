@@ -42,7 +42,7 @@ var paths = {
     'src/app/js/**/*.html'
   ],
   css: [
-    'node_modules/material-design-lite/material.min.css'
+    'node_modules/material-design-lite/dist/material.indigo-pink.min.css'
   ],
   less: {
     main: 'src/app/less/main.less',
