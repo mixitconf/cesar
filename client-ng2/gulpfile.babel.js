@@ -35,6 +35,7 @@ import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
+import connectModeRewrite from 'connect-modrewrite';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -61,21 +62,29 @@ const paths = {
   },
   assets: {
     images: [
-      'src/assets/img/**/*.*'
+      'src/cfp/assets/img/**/*.*'
     ],
     fonts: [
-      'src/assets/fonts/**/*.*',
+      'src/cfp/assets/fonts/**/*.*',
       'node_modules/material-design-icons/iconfont/*.*'
     ],
   },
-  templates: ['src/**/*.html'],
+  templates: ['src/cfp/**/*.html'],
   build: {
     root : 'dist',
-    images : 'dist/img',
-    fonts : 'dist/fonts',
-    scripts : 'dist/scripts',
-    styles: 'dist',
-  }
+    images : 'dist/cfp/assets/img',
+    fonts : 'dist/cfp/assets/fonts',
+    scripts : 'dist/cfp/scripts',
+    styles: 'dist/cfp',
+  },
+  urlRewrite:[
+      //Rewrite for the backend calls
+      '^/api/(.*)$ http://localhost:8080/api/$1 [P]',
+      '^/app/(.*)$ http://localhost:8080/app/$1 [P]',
+      //Rewrite for HML
+      //'!\\.\\w+$ /index.html [L]'
+      '^[^\\.]*$ /cfp/index.html [L]'
+  ]
 };
 
 // Lint JavaScript
@@ -103,14 +112,12 @@ gulp.task('fonts', () =>  {
 // Copy all files at the root level (src)
 gulp.task('copy', () =>
   gulp.src([
-    'src/favicon.ico',
-    '!src/**/*.html',
-    'src/manifest.*',
-    'src/robots.txt',
-    'node_modules/apache-server-configs/dist/.htaccess'
+    'src/cfp/favicon.ico',
+    '!src/cfp/**/*.html',
+    'src/cfp/manifest.*'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'))
+  }).pipe(gulp.dest('dist/cfp'))
     .pipe($.size({title: 'copy'}))
 );
 
@@ -136,8 +143,8 @@ gulp.task('styles', () => {
     .pipe($.replace('"Roboto","Arial",sans-serif', '"Roboto","Arial"'))
     .pipe($.replace('63,81,181', '69,90,100'))
     .pipe($.concat('vendors.css'))
-    .pipe(gulp.dest('.tmp'))
-    .pipe(gulp.dest(paths.build.root));
+    .pipe(gulp.dest('.tmp/cfp'))
+    .pipe(gulp.dest(paths.build.styles));
 
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src(paths.less)
@@ -157,7 +164,7 @@ gulp.task('styles', () => {
 
 gulp.task('ts',  () => {
   return gulp.src(paths.ts)
-    .pipe($.newer('.tmp/scripts'))
+    .pipe($.newer('.tmp/cfp/scripts'))
     .pipe($.typescript({
       'declaration': false,
       'experimentalDecorators': true,
@@ -181,12 +188,12 @@ gulp.task('ts',  () => {
 // `.babelrc` file.
 gulp.task('vendors', () =>
     gulp.src(paths.vendor.js)
-      .pipe($.newer('.tmp/scripts'))
+      .pipe($.newer('.tmp/cfp/scripts'))
       .pipe($.sourcemaps.init())
       .pipe($.babel())
       .pipe($.sourcemaps.write())
       .pipe($.concat('vendor.min.js'))
-      .pipe(gulp.dest('.tmp/scripts'))
+      .pipe(gulp.dest('.tmp/cfp/scripts'))
       //.pipe($.uglify())
       // Output files
       .pipe($.size({title: 'scripts'}))
@@ -195,12 +202,12 @@ gulp.task('vendors', () =>
 );
 gulp.task('polyfill', () =>
   gulp.src(paths.vendor.polyfill)
-    .pipe($.newer('.tmp/scripts'))
+    .pipe($.newer('.tm/cfpp/scripts'))
     .pipe($.sourcemaps.init())
     .pipe($.babel())
     .pipe($.sourcemaps.write())
     .pipe($.concat('polyfill.min.js'))
-    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(gulp.dest('.tmp/cfp/scripts'))
     //.pipe($.uglify())
     // Output files
     .pipe($.size({title: 'scripts'}))
@@ -210,12 +217,12 @@ gulp.task('polyfill', () =>
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {
-  return gulp.src('src/**/*.html')
+  return gulp.src('src/cfp/**/*.html')
     .pipe($.useref({searchPath: '{.tmp,src}'}))
     // Remove any unused CSS
     .pipe($.if('*.css', $.uncss({
       html: [
-        'src/index.html'
+        'src/cfp/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: []
@@ -226,14 +233,16 @@ gulp.task('html', () => {
     .pipe($.if('*.css', $.minifyCss()))
 
     // Minify any HTML
-    .pipe($.if('*.html', $.minifyHtml()))
+    //TODO we have to desactivate the minification for Angular (see this problem later)
+    //.pipe($.if('*.html', $.minifyHtml()))
+
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/cfp'));
 });
 
 // Clean output directory
-gulp.task('clean', cb => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
+gulp.task('clean', cb => del(['.tmp', 'dist/*', '!dist/cfp.git'], {dot: true}));
 
 // Watch files for changes & reload
 gulp.task('serve', ['vendors', 'polyfill', 'ts', 'styles'], () => {
@@ -245,11 +254,17 @@ gulp.task('serve', ['vendors', 'polyfill', 'ts', 'styles'], () => {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'src', 'src/assets'],
-    port: 3000
+    server: {
+      baseDir: ['.tmp', 'src'],
+      middleware: [
+        connectModeRewrite(paths.urlRewrite)
+      ]
+    },
+    port: 3000,
+    startPath: "/cfp/index.html"
   });
 
-  gulp.watch(['src/**/*.html'], reload);
+  gulp.watch(['src/cfp/**/*.html'], reload);
   gulp.watch(paths.less, ['styles', reload]);
   gulp.watch(paths.ts, ['lint', 'ts']);
   gulp.watch(paths.assets.images, reload);
@@ -266,15 +281,19 @@ gulp.task('serve:dist', ['default'], () =>
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: 'dist',
-    port: 3001
+    server: {
+      baseDir: ['dist'],
+      middleware: [
+        connectModeRewrite(paths.urlRewrite)
+      ]
+    },
+    port: 3001,
+    startPath: "/cfp/index.html"
   })
 );
 
 // Build production files, the default task
-gulp.task('default', ['build']);
-
-gulp.task('build', ['clean'], cb =>
+gulp.task('default',  ['clean'], cb =>
   runSequence(
     'styles',
     ['lint', 'html', 'vendors', 'polyfill', 'ts', 'images', 'fonts', 'copy'],

@@ -7,9 +7,9 @@ node {
 }
 
 jar {
-    from 'build/dist'
+    from 'dist'
     eachFile { details ->
-        details.path = details.path.startsWith('META-INF') ?: 'static/cfp/'+details.path
+        details.path = details.path.startsWith('META-INF') ?: 'static/'+details.path
     }
     includeEmptyDirs = false
 

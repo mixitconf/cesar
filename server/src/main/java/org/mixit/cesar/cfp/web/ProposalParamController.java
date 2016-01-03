@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller used to return the parameters used in the CFP
  */
 @RestController
-@RequestMapping("/cfp/param")
+@RequestMapping("/app/cfp/param")
 public class ProposalParamController {
 
 
