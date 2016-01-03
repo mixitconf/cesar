@@ -1,0 +1,49 @@
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <div class="android-header mdl-layout__header">
+        <cesar-menu></cesar-menu>
+    </div>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only cesar-layout__drawer">
+        <cesar-drawer></cesar-drawer>
+    </div>
+
+    <main class="mdl-layout__content">
+        <div class="cesar-layout__content">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="cesar-footer">
+            <div class="cesar-container">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
+                        <h3 translate="footer.whoarewe.title"></h3>
+
+                        <p translate="footer.whoarewe.content"></p>
+                        <p class="cesar-footer__hosted">Hosted on <a href="http://pivotal.io/" target="new"><img
+                                src="assets/img/sponsors/logo-pivotal.svg"/></a></p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                        <h3 translate="footer.contactus"></h3>
+                        <ul class="cesar-footer--social">
+                            <li><a href="https://twitter.com/mixit_lyon/" target="social"><img
+                                    src="assets/img/social/twitter.svg"/>&nbsp;@mixIT_lyon</a>
+                            </li>
+                            <li><a href="https://plus.google.com/106629477368826686108/about/" target="social"><img
+                                    src="assets/img/social/google.svg"/>&nbsp;+mix-IT</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cesar-subfooter">
+                <div class="cesar-container cesar-footer__copyright">
+                    © 2015 Copyright Mix-IT
+                    <a class="grey-text text-lighten-4 right" ui-sref="conduite"><span
+                            translate="footer.codeofconduct"></span></a>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>

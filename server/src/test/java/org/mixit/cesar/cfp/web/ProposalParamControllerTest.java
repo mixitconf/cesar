@@ -27,7 +27,7 @@ public class ProposalParamControllerTest {
     @Test
     public void should_find_categories() throws Exception {
         mockMvc
-                .perform(get("/cfp/param/category"))
+                .perform(get("/app/cfp/param/category"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("[\"AGILE\",\"BIGDATA\",\"CLOUD\",\"JAVA\",\"LEAN_STARTUP\",\"MICROSOFT\",\"WEB\"]"))
                 .andExpect(content().encoding("UTF-8"));
@@ -36,7 +36,7 @@ public class ProposalParamControllerTest {
     @Test
     public void should_find_status() throws Exception {
         mockMvc
-                .perform(get("/cfp/param/status"))
+                .perform(get("/app/cfp/param/status"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("[\"ACCEPTED\",\"CREATED\",\"REJECTED\",\"VALID\"]"))
                 .andExpect(content().encoding("UTF-8"));
@@ -45,7 +45,7 @@ public class ProposalParamControllerTest {
     @Test
     public void should_find_format() throws Exception {
         mockMvc
-                .perform(get("/cfp/param/format"))
+                .perform(get("/app/cfp/param/format"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("[\"Keynote\",\"LightningTalk\",\"Talk\",\"Workshop\"]"))
                 .andExpect(content().encoding("UTF-8"));

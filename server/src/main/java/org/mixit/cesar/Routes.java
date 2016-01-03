@@ -41,4 +41,18 @@ public class Routes {
     public String index() {
         return "forward:/";
     }
+
+    @RequestMapping({
+            "/cfp/home",
+            "/cfp/profile",
+            "/cfp/talks"
+    })
+    public String pageCfp() {
+        return "forward:/cfp/index.html";
+    }
+
+    @RequestMapping({"/cfp"})
+    public String indexCfp() {
+        return "redirect:/cfp/index.html";
+    }
 }

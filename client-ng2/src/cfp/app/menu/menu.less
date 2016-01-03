@@ -1,0 +1,56 @@
+@import "../../common.less";
+
+
+.cesar-menu__title {
+  padding: 16px;
+}
+
+.cesar-menu{
+  a {
+    text-decoration: none;
+    color: @primary_color_text;
+    font-weight: 400 !important;
+  }
+  i{
+    font-size: @link__font-size;
+  }
+  .link{
+    cursor: pointer !important;
+  }
+}
+
+.cesar-layout__header-row{
+  padding-left: 60px !important;
+  background-color: @primary_color;
+  @media only screen and (min-width: @large-screen__width) {
+    padding-left: 0px !important;
+  }
+
+  .cesar-layout__icon img{
+    max-width: 60%;
+    max-height: 60%;
+    vertical-align: middle;
+    padding-left: 1em;
+  }
+
+  .cesar-navigation__link {
+    font-size: @link__font-size;
+    font-weight: 400 !important;
+    cursor: hand;
+  }
+  .cesar-menu__lang {
+    max-width: 80% !important;
+    max-height: 18px !important;
+  }
+}
+.cesar-navigation__link-drawer {
+  padding: 10px !important;
+}
+
+//we have to overload material style here
+.mdl-layout__drawer-button{
+  background-color: @primary_color !important;
+  > i {
+    margin-top: 10px;
+  }
+}
