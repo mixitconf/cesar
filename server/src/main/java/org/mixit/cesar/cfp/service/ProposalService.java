@@ -52,22 +52,22 @@ public class ProposalService {
         //A proposal is valid when speakers are valid
         proposal.getSpeakers().forEach(speaker -> errors.addAll(memberService.checkSpeakerData(speaker)));
 
-        if (Objects.isNull(proposal.getFormat())) {
+        if (proposal.getFormat()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("format"));
         }
-        if (Objects.isNull(proposal.getSummary())) {
+        if (proposal.getSummary()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("summary"));
         }
-        if (Objects.isNull(proposal.getLevel())) {
+        if (proposal.getLevel()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("level"));
         }
-        if (Objects.isNull(proposal.getDescription())) {
+        if (proposal.getDescription()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("description"));
         }
-        if (Objects.isNull(proposal.getIdeaForNow())) {
+        if (proposal.getIdeaForNow()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("ideaForNow"));
         }
-        if (Objects.isNull(proposal.getLang())) {
+        if (proposal.getLang()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("lang"));
         }
         //To be valid the profile of the speakers have to be valid
@@ -84,7 +84,7 @@ public class ProposalService {
         Proposal proposalPersisted = proposalRepository.findOne(proposal.getId());
         Set<Interest> interests = proposal.getInterests();
 
-        if (Objects.isNull(proposalPersisted)) {
+        if (proposalPersisted==null) {
             newProposal = true;
             proposalPersisted = proposalRepository.save(proposal
                     .setAddedAt(LocalDateTime.now())
