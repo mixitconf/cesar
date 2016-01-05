@@ -21,12 +21,14 @@
             {{ctrl.article.headline}}
         </p>
 
-        <div marked="ctrl.article.content">
+        <div ng-bind-html="ctrl.article.content  | markdown">
         </div>
 
+
         <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
+
         <p>&nbsp;</p>
-        <div class="mdl-grid">
+        <div class="mdl-grid" ng-if="false">
             <div class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title mdl-card--expand">
                     <h4 class="mdl-card__title-text cesar-card__title-text">Commentaires</h4>
