@@ -45,6 +45,9 @@ public class Proposal {
     @Enumerated(EnumType.STRING)
     protected ProposalCategory category;
 
+    @Enumerated(EnumType.STRING)
+    protected ProposalTypeSession typeSession;
+
     @ManyToOne
     private Event event;
 
@@ -153,6 +156,15 @@ public class Proposal {
 
     public Proposal setSummary(String summary) {
         this.summary = summary;
+        return this;
+    }
+
+    public ProposalTypeSession getTypeSession() {
+        return typeSession;
+    }
+
+    public Proposal setTypeSession(ProposalTypeSession typeSession) {
+        this.typeSession = typeSession;
         return this;
     }
 
