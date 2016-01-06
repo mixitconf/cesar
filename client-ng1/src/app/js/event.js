@@ -72,13 +72,13 @@
 
     //// Call when the 401 response is returned by the server
     $rootScope.$on('event:auth-loginRequired', function (event, next) {
-      if ($location.path() !== '/authent') {
-        var redirect = $location.path();
-        $location.path('/authent').search('redirect', redirect).replace();
+      event.preventDefault();
+      if($state.$current.url.sourcePath!=='/authent'){
       }
-      else {
+      else if(next.data){
         $rootScope.errorMessage = next.data.type;
       }
+      return $state.go('authent');
     });
 
 

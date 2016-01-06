@@ -31,9 +31,9 @@
 
     function logout() {
       currentUser().then(function(currentUser) {
+        $http.get('app/logout');
+        LocalStorageService.remove('current-user');
         if (currentUser) {
-          $http.get('app/logout');
-          LocalStorageService.remove('current-user');
           $rootScope.$broadcast('event:auth-logoutConfirmed');
         }
       });
@@ -53,9 +53,9 @@
     }
 
 
-    function loginWithProvider(provider, redirect) {
+    function loginWithProvider(provider) {
       $rootScope.spinner='on';
-      $window.location.href = '/app/login-with/' + provider + (redirect ? '?to=' + redirect : '');
+      $window.location.href = '/app/login-with/' + provider;
     }
 
     function checkUser(){
