@@ -4,11 +4,7 @@ import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SESSION;
 
 import java.util.List;
 
-import org.mixit.cesar.site.model.session.Keynote;
-import org.mixit.cesar.site.model.session.LightningTalk;
-import org.mixit.cesar.site.model.session.Session;
-import org.mixit.cesar.site.model.session.Talk;
-import org.mixit.cesar.site.model.session.Workshop;
+import org.mixit.cesar.site.model.session.*;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -35,7 +31,7 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<LightningTalk> findAllLightningTalks(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_SESSION)
-    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true and s.format <> 'LightningTalk'")
     List<Session> findAllAcceptedSessions(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_SESSION)

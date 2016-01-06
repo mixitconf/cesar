@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsClosedCtrl', function ($rootScope, $state, SessionService, MemberService) {
+  angular.module('cesar-sessions').controller('SessionsClosedCtrl', function ($rootScope, $state, SessionService, MemberService, $q) {
     'ngInject';
 
     var ctrl = this;
@@ -11,15 +11,14 @@
     ctrl.year = year;
 
     $rootScope.wait();
-    SessionService.getAllByYear(year)
-      .then(function (response) {
+    $q.all([
+      SessionService.getAllByYear(year).then(function (response) {
         ctrl.sessions = response.data;
-        return MemberService.getAll('sponsor', year);
-      })
-      .then(function (response) {
+      }),
+      MemberService.getAll('sponsor', year).then(function (response) {
         ctrl.sponsors = response.data;
       })
-      .finally($rootScope.stopWaiting);
+    ]).finally($rootScope.stopWaiting);
 
   });
 })();

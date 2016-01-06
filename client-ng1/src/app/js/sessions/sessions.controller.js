@@ -26,21 +26,14 @@
     $rootScope.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
-      SessionService.getAll('talk')
-        .then(function (response) {
-          ctrl.sessions = response.data;
-          return SessionService.getAll('workshop');
-        })
-        .then(function (response) {
-          Array.prototype.push.apply(ctrl.sessions, response.data);
-          return SessionService.getAll('keynote');
-        })
-        .then(function (response) {
-          Array.prototype.push.apply(ctrl.sessions, response.data);
-          return MemberService.getAll('speaker');
-        })
-        .then(findSpeaker)
-        .finally($rootScope.stopWaiting);
+
+      SessionService.getAllByYear()
+          .then(function (response) {
+            ctrl.sessions = response.data;
+            return MemberService.getAll('speaker');
+          })
+          .then(findSpeaker)
+          .finally($rootScope.stopWaiting);
     }
     else {
       SessionService.getAll(type)

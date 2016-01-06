@@ -6,7 +6,7 @@
     'ngInject';
 
     function getAllByYear(year){
-      return $http.get('/api/session?year=' + year);
+      return $http.get('/api/session' + (year ? '?year=' + year : ''));
     }
 
     function getAll(type){

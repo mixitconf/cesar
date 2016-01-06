@@ -25,7 +25,6 @@
     'cesar-sessions',
     'cesar-services',
     'cesar-utils',
-    'hc.marked',
     'cesar-security',
     'pascalprecht.translate'
   ]);
