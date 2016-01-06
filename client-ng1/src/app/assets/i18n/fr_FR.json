@@ -6,10 +6,13 @@
   "action" : {
     "save" : "Enregistrer",
     "add" : "Ajouter",
-    "clear" : "Supprimer"
+    "clear" : "Supprimer",
+    "profile" : "Modifier votre profil",
+    "member" : "Voir comment les autres voient votre profil"
   },
   "menu": {
     "admin": "Admin",
+    "cfp": "CFP",
     "news": "Actualités",
     "program": "Programme",
     "planning": "Planning",
@@ -241,6 +244,20 @@
       "passwordreinit": {
         "title": "Changement de mot de passe",
         "description": "Veuillez renseigner votre mot de passe actuel (si vous avez demandé une réinitialisation vous l'avez reçu par mail) et le nouveau mot de passe que vous souhaitez utiliser"
+      }
+    },
+    "cfp" : {
+      "category": {
+        "AGILE_GAME": "Agile game",
+        "DESIGN": "Design",
+        "DEVOPS": "Devops",
+        "INNOVATION": "Innovation",
+        "IOT": "Internet of things",
+        "METHODO": "Scrum, Kanban, Lean Startup...",
+        "PROGRAMMING": "Programming : Java, .Net, PHP...",
+        "UX": "User experience",
+        "CLOUD": "Virtualization : cloud, docker...",
+        "WEB": "Web"
       }
     }
   },

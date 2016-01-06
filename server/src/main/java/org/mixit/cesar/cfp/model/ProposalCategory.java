@@ -1,11 +1,14 @@
 package org.mixit.cesar.cfp.model;
 
 public enum ProposalCategory {
-    JAVA,
-    BIGDATA,
-    AGILE,
-    WEB,
-    MICROSOFT,
+    AGILE_GAME,
+    DESIGN,
+    DEVOPS,
+    INNOVATION,
+    IOT,
+    METHODO,
+    PROGRAMMING,
+    UX,
     CLOUD,
-    LEAN_STARTUP
+    WEB
 }

@@ -138,6 +138,18 @@
       .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html').build())
       .state('venir', new State(USER_ROLES, 'venir', 'js/venir/venir.html').build())
 
+      .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/cfp.html')
+        .controller('CfpCtrl')
+        .roles([USER_ROLES.member])
+        .resolve({
+          /* @ngInject */
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function(currentUser){
+              return currentUser;
+            });
+          }
+        })
+        .build())
 
       //Account
       .state('account', new State(USER_ROLES, 'account', 'js/account/account.html')

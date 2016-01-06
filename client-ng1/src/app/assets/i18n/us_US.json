@@ -6,10 +6,13 @@
   "action" : {
     "save" : "Save",
     "add" : "Add",
-    "clear" : "Remove"
+    "clear" : "Remove",
+    "profile" : "Change your profile",
+    "member" : "See how people see your profile"
   },
   "menu": {
     "admin": "Admin",
+    "cfp": "CFP",
     "news": "News",
     "program": "Program",
     "planning": "Agenda",
@@ -241,6 +244,20 @@
       "passwordreinit": {
         "title": "Change password",
         "description": "Enter your actual password (if you had asked for a re-initialization, a temporary password has been sent you by email) and the new one..."
+      }
+    },
+    "cfp" : {
+      "category": {
+        "AGILE_GAME": "Agile game",
+        "DESIGN": "Design",
+        "DEVOPS": "Devops",
+        "INNOVATION": "Innovation",
+        "IOT": "Internet of things",
+        "METHODO": "Scrum, Kanban, Lean Startup...",
+        "PROGRAMMING": "Programming : Java, .Net, PHP...",
+        "UX": "User experience",
+        "CLOUD": "Virtualization : cloud, docker...",
+        "WEB": "Web"
       }
     }
   },
