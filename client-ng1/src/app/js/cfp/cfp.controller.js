@@ -9,7 +9,6 @@
     'ngInject';
 
     var ctrl = this;
-    ctrl.account = account;
 
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
@@ -41,5 +40,15 @@
     };
 
 
+    ctrl.refresh = function(){
+      $http.get('app/cfp/proposal').then(
+        function(response){
+          ctrl.proposals = response.data;
+        }
+      );
+    };
+
+    ctrl.account = account;
+    ctrl.refresh();
   });
 })();

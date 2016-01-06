@@ -1,14 +1,14 @@
 package org.mixit.cesar.cfp.web;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.mixit.cesar.cfp.model.ProposalCategory;
-import org.mixit.cesar.cfp.model.ProposalStatus;
-import org.mixit.cesar.site.model.session.Format;
+import org.mixit.cesar.cfp.model.Proposal;
+import org.mixit.cesar.cfp.repository.ProposalRepository;
+import org.mixit.cesar.site.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/app/cfp/proposal")
 public class ProposalController {
 
+    @Autowired
+    private ProposalRepository proposalRepository;
 
+    @Autowired
+    private EventService eventService;
 
+    @RequestMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<Proposal> categories(@RequestParam(required = false) Integer year) {
+        return proposalRepository.findAllProposals(eventService.getEvent(year).getId());
+    }
 
 }
