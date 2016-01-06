@@ -43,16 +43,16 @@ public class MemberService {
         //When the user comes on this method, his profile is created and some minimal informations have to be defined
         //before like lastname, firstname, login, mail... He can't change his email and his login on this screen
         //because these fields help to link an account and a member. But he can change other fields
-        if (Objects.isNull(member.getFirstname())) {
+        if (member.getFirstname()==null) {
             errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("firstname"));
         }
-        if (Objects.isNull(member.getLastname())) {
+        if (member.getLastname()==null) {
             errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("lastname"));
         }
-        if (Objects.isNull(member.getShortDescription())) {
+        if (member.getShortDescription()==null) {
             errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("shortDescription"));
         }
-        if (Objects.isNull(member.getLongDescription())) {
+        if (member.getLongDescription()==null) {
             errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("longDescription"));
         }
         if (member.getEmail()==null || !Gravatar.imageExist(member.getEmail())) {
@@ -69,7 +69,7 @@ public class MemberService {
         Objects.requireNonNull(member, "member is required");
 
         Member<T> persistedMember = memberRepository.findOne(member.getId());
-        if (Objects.isNull(persistedMember)) {
+        if (persistedMember == null) {
             throw new UserNotFoundException();
         }
 
