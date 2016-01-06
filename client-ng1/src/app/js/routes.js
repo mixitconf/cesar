@@ -151,6 +151,10 @@
         })
         .build())
 
+      .state('cfptalk', new State(USER_ROLES, 'cfp', 'js/cfptalk/cfptalk.html')
+        .controller('CfpTalkCtrl')
+        .build())
+
       //Account
       .state('account', new State(USER_ROLES, 'account', 'js/account/account.html')
         .controller('AccountCtrl')
