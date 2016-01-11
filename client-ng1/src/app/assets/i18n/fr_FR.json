@@ -258,6 +258,28 @@
         "UX": "User experience",
         "CLOUD": "Virtualization : cloud, docker...",
         "WEB": "Web"
+      },
+      "format" : {
+        "Talk": "Talk",
+        "LightningTalk": "Ligthning talk",
+        "Workshop": "Workshop"
+      },
+      "typeSession": {
+        "SLIDES" :"Slides",
+        "SLIDES_AND_CODE" :"Slides and code",
+        "CODE" : "Code only",
+        "NO_SLIDE_NO_CODE":"No slide and no code"
+      },
+      "level": {
+        "Beginner":"Beginner",
+        "Experienced":"Experienced",
+        "Expert":"Expert"
+      },
+      "nbattendees" :{
+        "BETWEEN_0_AND_10" : "Between 0 and 10",
+        "BETWEEN_10_AND_40" : "Between 10 and 40",
+        "BETWEEN_40_AND_100": "Between 40 and 100",
+        "BETWEEN_100_AND_INFINITE" : "More than 100"
       }
     }
   },

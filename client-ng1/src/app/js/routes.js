@@ -151,7 +151,7 @@
         })
         .build())
 
-      .state('cfptalk', new State(USER_ROLES, 'cfp', 'js/cfptalk/cfptalk.html')
+      .state('cfptalk', new State(USER_ROLES, 'cfptalk', 'js/cfptalk/cfptalk.html')
         .controller('CfpTalkCtrl')
         .build())
 

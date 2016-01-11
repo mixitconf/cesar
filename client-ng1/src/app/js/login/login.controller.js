@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('LoginCtrl', function (AuthenticationService, $state) {
+  angular.module('cesar-security').controller('LoginCtrl', function (AuthenticationService) {
     'ngInject';
 
     var ctrl = this;

@@ -5,7 +5,7 @@
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-articles').controller('CfpCtrl', function ($rootScope, $http, account) {
+  angular.module('cesar-cfp').controller('CfpCtrl', function ($rootScope, $http, account) {
     'ngInject';
 
     var ctrl = this;

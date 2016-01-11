@@ -1,22 +1,130 @@
-<h1>Talks</h1>
+<div class="cesar-container">
+    <h1 ng-if="!ctrl.proposal.id">Add talk</h1>
+    <h1 ng-if="ctrl.proposal.id">Update talk</h1>
 
-ProposalStatus
+    <div>
+        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
+    </div>
 
-title
+    <p class="cesar-text">You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data</p>
 
-summary
-description
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
+    </div>
 
-ideaForNow
 
-messageForStaff
+    <div class="cesar-section--bottom">
+        <form novalidate class="cesar-form" name="frm">
 
-lang
-maxAttendees
-ProposalCategory
-Format
-level
+            <p ng-if="ctrl.proposal.addedAt">Created at {{ctrl.proposal.addedAt}}</p>
 
-interests
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="title" name="title"
+                       ng-maxlength="100"
+                       ng-required="true"
+                       ng-model="ctrl.proposal.title"/>
+                <label class="mdl-textfield__label" for="title">Title</label>
+            </div>
 
-comments
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300" name="summary"
+                          ng-model="ctrl.proposal.summary"></textarea>
+                <label class="mdl-textfield__label" for="summary">Summary</label>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber"
+                          translate-values="{ nbcarac : 300-ctrl.account.member.shortDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="5" id="description" ng-maxlength="1000" name="description"
+                          ng-model="ctrl.proposal.description"></textarea>
+                <label class="mdl-textfield__label" for="description">Description</label>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber"
+                          translate-values="{ nbcarac : 2000-ctrl.account.member.shortDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="messageForStaff" ng-maxlength="300" name="messageForStaff"
+                          ng-model="ctrl.proposal.messageForStaff"></textarea>
+                <label class="mdl-textfield__label" for="messageForStaff">Message for the staff (references, experience...)</label>
+                <small class="cesar-length-field">
+                    <span translate="view.account.update.characterNumber"
+                          translate-values="{ nbcarac : 300-ctrl.account.member.shortDescription.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label">Language</label>
+
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
+                    <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
+                           ng-model="ctrl.proposal.lang">
+                    <span class="mdl-radio__label" translate="lang.en">en</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
+                    <input type="radio" id="language-2" class="mdl-radio__button" name="options" value="fr"
+                           ng-model="ctrl.proposal.lang">
+                    <span class="mdl-radio__label" translate="lang.fr">fr</span>
+                </label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="category">Category</label>
+                <select ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield__input"
+                        ng-model="ctrl.proposal.category">
+                    <option value=""></option>
+                </select>
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="format">Format</label>
+                <select ng-options="k as v | translate for (k, v)  in ctrl.formats" id="format" class="mdl-textfield__input"
+                        ng-model="ctrl.proposal.format">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="types">Type</label>
+                <select ng-options="k as v | translate for (k, v)  in ctrl.types" id="types" class="mdl-textfield__input"
+                        ng-model="ctrl.proposal.typeSession">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="levels">Level</label>
+                <select ng-options="k as v | translate for (k, v)  in ctrl.levels" id="levels" class="mdl-textfield__input"
+                        ng-model="ctrl.proposal.level">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="maxAttendees">Set the number of people you attend</label>
+                <select ng-options="k as v | translate for (k, v)  in ctrl.maxAttendees" id="maxAttendees" class="mdl-textfield__input"
+                        ng-model="ctrl.proposal.maxAttendees">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
+            <div>
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                   ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
+                    <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeInterest(interest)">
+                        <i class="material-icons">remove_circle_outline</i>
+                    </button>
+                    {{interest.name}}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

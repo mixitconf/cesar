@@ -29,7 +29,7 @@ public class ProposalParamControllerTest {
         mockMvc
                 .perform(get("/app/cfp/param/category"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[\"AGILE\",\"BIGDATA\",\"CLOUD\",\"JAVA\",\"LEAN_STARTUP\",\"MICROSOFT\",\"WEB\"]"))
+                .andExpect(content().string("[\"AGILE_GAME\",\"CLOUD\",\"DESIGN\",\"DEVOPS\",\"INNOVATION\",\"IOT\",\"METHODO\",\"PROGRAMMING\",\"UX\",\"WEB\"]"))
                 .andExpect(content().encoding("UTF-8"));
     }
 
@@ -38,7 +38,7 @@ public class ProposalParamControllerTest {
         mockMvc
                 .perform(get("/app/cfp/param/status"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[\"ACCEPTED\",\"CREATED\",\"REJECTED\",\"VALID\"]"))
+                .andExpect(content().string("[\"ACCEPTED\",\"CREATED\",\"REJECTED\",\"SUBMITTED\",\"VALID\"]"))
                 .andExpect(content().encoding("UTF-8"));
     }
 
@@ -47,7 +47,7 @@ public class ProposalParamControllerTest {
         mockMvc
                 .perform(get("/app/cfp/param/format"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[\"Keynote\",\"LightningTalk\",\"Talk\",\"Workshop\"]"))
+                .andExpect(content().string("[\"LightningTalk\",\"Talk\",\"Workshop\"]"))
                 .andExpect(content().encoding("UTF-8"));
     }
 
