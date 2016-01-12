@@ -25,6 +25,8 @@
     ctrl.menus = [
 
       {id: 'menu.news', link: 'news'},
+
+      {id: 'menu.cfp', link: 'cfp'},
       //{
       //  id: 'menu.program', submenus: [
       //    //{id: 'planning', link: 'planning', mobile: true},

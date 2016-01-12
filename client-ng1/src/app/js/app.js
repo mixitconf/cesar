@@ -6,6 +6,7 @@
   angular.module('cesar-articles', ['cesar-templates']);
   angular.module('cesar-menu', ['cesar-templates']);
   angular.module('cesar-home', ['cesar-templates']);
+  angular.module('cesar-cfp', ['cesar-templates']);
   angular.module('cesar-members', ['cesar-templates', 'cesar-utils']);
   angular.module('cesar-sessions', ['cesar-templates', 'cesar-utils']);
   angular.module('cesar-services', []);
@@ -17,6 +18,7 @@
     'ngSanitize',
     'ngCookies',
     'cesar-account',
+    'cesar-cfp',
     'cesar-templates',
     'cesar-articles',
     'cesar-menu',

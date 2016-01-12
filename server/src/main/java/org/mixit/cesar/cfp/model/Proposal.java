@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,6 @@ import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.Level;
-import org.mixit.cesar.site.model.session.SessionComment;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 
 @Entity
@@ -61,7 +59,8 @@ public class Proposal {
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     private LocalDateTime addedAt = LocalDateTime.now();
 
-    private Integer maxAttendees;
+    @Enumerated(EnumType.STRING)
+    private ProposalNbAttendees maxAttendees;
 
     @Enumerated(EnumType.STRING)
     private Level level;
@@ -177,11 +176,11 @@ public class Proposal {
         return this;
     }
 
-    public Integer getMaxAttendees() {
+    public ProposalNbAttendees getMaxAttendees() {
         return maxAttendees;
     }
 
-    public Proposal setMaxAttendees(Integer maxAttendees) {
+    public Proposal setMaxAttendees(ProposalNbAttendees maxAttendees) {
         this.maxAttendees = maxAttendees;
         return this;
     }

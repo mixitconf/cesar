@@ -6,10 +6,13 @@
   "action" : {
     "save" : "Enregistrer",
     "add" : "Ajouter",
-    "clear" : "Supprimer"
+    "clear" : "Supprimer",
+    "profile" : "Modifier votre profil",
+    "member" : "Voir comment les autres voient votre profil"
   },
   "menu": {
     "admin": "Admin",
+    "cfp": "CFP",
     "news": "Actualités",
     "program": "Programme",
     "planning": "Planning",
@@ -241,6 +244,42 @@
       "passwordreinit": {
         "title": "Changement de mot de passe",
         "description": "Veuillez renseigner votre mot de passe actuel (si vous avez demandé une réinitialisation vous l'avez reçu par mail) et le nouveau mot de passe que vous souhaitez utiliser"
+      }
+    },
+    "cfp" : {
+      "category": {
+        "AGILE_GAME": "Agile game",
+        "DESIGN": "Design",
+        "DEVOPS": "Devops",
+        "INNOVATION": "Innovation",
+        "IOT": "Internet of things",
+        "METHODO": "Scrum, Kanban, Lean Startup...",
+        "PROGRAMMING": "Programming : Java, .Net, PHP...",
+        "UX": "User experience",
+        "CLOUD": "Virtualization : cloud, docker...",
+        "WEB": "Web"
+      },
+      "format" : {
+        "Talk": "Talk",
+        "LightningTalk": "Ligthning talk",
+        "Workshop": "Workshop"
+      },
+      "typeSession": {
+        "SLIDES" :"Slides",
+        "SLIDES_AND_CODE" :"Slides and code",
+        "CODE" : "Code only",
+        "NO_SLIDE_NO_CODE":"No slide and no code"
+      },
+      "level": {
+        "Beginner":"Beginner",
+        "Experienced":"Experienced",
+        "Expert":"Expert"
+      },
+      "nbattendees" :{
+        "BETWEEN_0_AND_10" : "Between 0 and 10",
+        "BETWEEN_10_AND_40" : "Between 10 and 40",
+        "BETWEEN_40_AND_100": "Between 40 and 100",
+        "BETWEEN_100_AND_INFINITE" : "More than 100"
       }
     }
   },

@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').controller('LoginCtrl', function (AuthenticationService, $state) {
+  angular.module('cesar-security').controller('LoginCtrl', function (AuthenticationService) {
     'ngInject';
 
     var ctrl = this;
@@ -14,11 +14,11 @@
     };
 
     ctrl.loginWithGoogle = function(){
-      AuthenticationService.loginWithProvider('GOOGLE', $state.redirect);
+      AuthenticationService.loginWithProvider('GOOGLE');
     };
 
     ctrl.loginWithTwitter = function(){
-      AuthenticationService.loginWithProvider('TWITTER', $state.redirect);
+      AuthenticationService.loginWithProvider('TWITTER');
     };
 
   });
