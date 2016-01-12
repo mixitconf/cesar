@@ -24,7 +24,7 @@
 
     ctrl.menus = [
 
-      {id: 'menu.news', link: 'news'},
+      {id: 'menu.news', link: 'news', mobile: true},
 
       {id: 'menu.cfp', link: 'cfp'},
       //{
