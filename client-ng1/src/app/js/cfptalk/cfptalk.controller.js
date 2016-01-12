@@ -57,7 +57,7 @@
         .then(function () {
           $state.go('cfp');
         })
-        .catch(function (response) {
+        .catch(function () {
           ctrl.errorMessage = 'UNDEFINED';
         });
     };
