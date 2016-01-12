@@ -19,11 +19,15 @@ public class CesarController {
     @Value("${build.tag}")
     private String version;
 
+    @Value("${project.name}")
+    private String name;
+
     @RequestMapping
     @ApiOperation(value = "Return the number version", httpMethod = "GET")
     public ResponseEntity<Map<String, String>> getVersion() {
         Map<String, String> params = new HashMap<>();
         params.put("version", version);
+        params.put("name", name);
 
         return ResponseEntity
                 .ok()

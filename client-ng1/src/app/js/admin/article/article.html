@@ -2,42 +2,61 @@
 
 
     <h1><i class="material-icons cesar-icons-h1">settings</i> {{ctrl.article.title}}</h1>
-    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt | date:'dd/MM/yyyy'}}</a>
+    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt |
+        date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
     <div class="cesar-section--bottom">
-
-        <p class="cesar-text">
-            {{ctrl.article.headline}}
-        </p>
-
-        <div ng-bind-html="ctrl.article.content  | markdown">
+        <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
         </div>
+        <div class="cesar-error" ng-if="frm.title.$error.required">Title is required (max size is 100)</div>
+        <div class="cesar-error" ng-if="frm.headline.$error.required">Headline is required (max size is 255)</div>
+        <div class="cesar-error" ng-if="frm.content.$error.required">Content is required (max size is 3000)</div>
 
+        <form novalidate class="cesar-form" name="frm">
 
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
-
-        <p>&nbsp;</p>
-        <div class="mdl-grid" ng-if="false">
-            <div class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
-                    <h4 class="mdl-card__title-text cesar-card__title-text">Commentaires</h4>
-                </div>
-                <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                    <div ng-repeat="comment in ctrl.article.comments">
-                        <p>
-                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt | date:'dd/MM/yyyy HH:mm'}}</strong><br>
-                            {{comment.content}}
-                        </p>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions mdl-card--border cesar-speaker-session" ng-if="display!=='minimal'">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.addComment()">
-                        <i class="material-icons">add</i></button>
-                </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="title" name="title"
+                       ng-maxlength="100" ng-required="true"
+                       ng-model="ctrl.article.title"/>
+                <label class="mdl-textfield__label" for="title">Title</label>
             </div>
-        </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="headline" ng-maxlength="255" name="headline"
+                      ng-required="true"
+                      ng-model="ctrl.article.headline"></textarea>
+                <label class="mdl-textfield__label" for="headline">Headline</label>
+                <small class="cesar-length-field">
+                <span translate="view.account.update.characterNumber"
+                      translate-values="{ nbcarac : 255-ctrl.article.headline.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="15" id="content" ng-maxlength="3000" name="content"
+                      ng-required="true"
+                      ng-model="ctrl.article.content"></textarea>
+                <label class="mdl-textfield__label" for="content">Content</label>
+                <small class="cesar-length-field">
+                <span translate="view.account.update.characterNumber"
+                      translate-values="{ nbcarac : 3000-ctrl.article.content.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff"
+                    translate="view.news.team"></a></div>
+
+            <p>&nbsp;</p>
+
+            <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
+                          spinner="spinner" google-icon="save">
+            </cesar-button>
+            <div class="mdl-tooltip" for="action1" translate="action.save"></div>
+
+        </form>
     </div>
     <p>&nbsp;</p>
 </div>
