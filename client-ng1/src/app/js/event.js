@@ -40,7 +40,7 @@
        angular.element(document.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
       angular.element(document.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
 
-      if (next.name === 'logout' || next.name === 'createaccount') {
+      if (next.name === 'logout') {
         AuthenticationService.logout();
       }
       else {
