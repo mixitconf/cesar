@@ -85,7 +85,30 @@
                 <h3 class="mdl-card__title-text cesar-card__title-text">Your submissions</h3>
             </div>
             <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                {{ctrl.proposals}}
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container">
+                    <thead ng-show="false">
+                    <tr>
+                        <th colspan="2">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="proposal in ctrl.proposals" ui-sref="cfptalk({id : proposal.id})">
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                                <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::proposal.format | sessionLogo}}</i>&nbsp;
+                                {{::proposal.title}}
+                            </p>
+                            <p ng-if="!proposal.valid" class="cesar-error-simple">Invalid. Complete the session data</p>
+                        </td>
+                        <td>
+                            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab">
+                                <i class="material-icons mdl-badge" data-badge="{{::session.lang}}">nature_people</i>
+                            </a>
+                            <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{::session.positiveVotes}}</button></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk" id="addTalk">

@@ -10,7 +10,7 @@
 
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
     </div>
-
+    <div class="cesar-error" ng-if="frm.title.$error.required">Title is required</div>
 
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
@@ -125,6 +125,10 @@
                     {{interest.name}}
                 </a>
             </div>
+
+            <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" spinner="spinner" google-icon="save">
+            </cesar-button>
+            <div class="mdl-tooltip" for="action1" translate="action.save"></div>
         </form>
     </div>
 </div>

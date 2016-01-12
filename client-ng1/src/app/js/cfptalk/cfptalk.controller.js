@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, CfpService) {
+  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, CfpService) {
     'ngInject';
 
     var ctrl = this;
@@ -50,5 +50,17 @@
     ctrl.removeInterest = function(value){
       ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value),1);
     };
+
+    ctrl.save = function () {
+      $http
+        .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .then(function () {
+          $state.go('cfp');
+        })
+        .catch(function (response) {
+          ctrl.errorMessage = 'UNDEFINED';
+        });
+    };
+
   });
 })();

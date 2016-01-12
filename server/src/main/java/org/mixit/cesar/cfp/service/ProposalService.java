@@ -81,7 +81,7 @@ public class ProposalService {
         Objects.requireNonNull(proposal, "proposal is required");
         boolean newProposal = false;
 
-        Proposal proposalPersisted = proposalRepository.findOne(proposal.getId());
+        Proposal proposalPersisted = proposal.getId() == null ? null : proposalRepository.findOne(proposal.getId());
         Set<Interest> interests = proposal.getInterests();
 
         if (proposalPersisted==null) {
@@ -124,7 +124,7 @@ public class ProposalService {
         if (proposalPersisted.isValid()) {
             proposalPersisted.setStatus(ProposalStatus.VALID);
         }
-        else{
+        else {
             proposalPersisted.setStatus(ProposalStatus.CREATED);
         }
 
