@@ -67,6 +67,14 @@
         .resolve({articles: getAllArticles})
         .build())
 
+        .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
+            .controller('AdminArticleCtrl')
+            .build())
+        .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
+            .controller('AdminArticlesCtrl')
+            .resolve({articles: getAllArticles})
+            .build())
+
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())

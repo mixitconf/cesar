@@ -1,5 +1,5 @@
 <div class="cesar-container">
-    <h1 translate="view.news.title"></h1>
+    <h1><i class="material-icons cesar-icons-h1">settings</i> Liste des articles</h1>
 
     <div class="cesar-section--bottom">
 
@@ -12,6 +12,10 @@
                     <h3 class="mdl-card__title-text cesar-card__title-text">{{article.title}}</h3>
 
                     <div class="cesar-card-session-action">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="admarticle({id : article.id})">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
                            ui-sref="news({id : article.id})">
                             <i class="material-icons">library_books</i>

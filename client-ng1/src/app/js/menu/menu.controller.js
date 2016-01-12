@@ -80,7 +80,8 @@
             ctrl.menus.push(
               {
                 id: 'menu.admin', name: 'admin', submenus: [
-                {id: 'menu.monitor', link: 'monitor'}
+                {id: 'menu.monitor', link: 'monitor'},
+                {id: 'menu.news', link: 'admarticles'}
               ]}
             );
           }

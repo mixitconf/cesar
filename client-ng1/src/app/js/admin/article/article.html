@@ -1,0 +1,43 @@
+<div class="cesar-container">
+
+
+    <h1><i class="material-icons cesar-icons-h1">settings</i> {{ctrl.article.title}}</h1>
+    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt | date:'dd/MM/yyyy'}}</a>
+    <p>&nbsp;</p>
+
+    <div class="cesar-section--bottom">
+
+        <p class="cesar-text">
+            {{ctrl.article.headline}}
+        </p>
+
+        <div ng-bind-html="ctrl.article.content  | markdown">
+        </div>
+
+
+        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
+
+        <p>&nbsp;</p>
+        <div class="mdl-grid" ng-if="false">
+            <div class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h4 class="mdl-card__title-text cesar-card__title-text">Commentaires</h4>
+                </div>
+                <div class="mdl-card__supporting-text cesar-card__supporting-text">
+                    <div ng-repeat="comment in ctrl.article.comments">
+                        <p>
+                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt | date:'dd/MM/yyyy HH:mm'}}</strong><br>
+                            {{comment.content}}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="mdl-card__actions mdl-card--border cesar-speaker-session" ng-if="display!=='minimal'">
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.addComment()">
+                        <i class="material-icons">add</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+</div>
