@@ -94,13 +94,12 @@
                     <tbody>
                     <tr ng-repeat="proposal in ctrl.proposals" ui-sref="cfptalk({id : proposal.id})">
                         <td class="mdl-data-table__cell--non-numeric">
-                            <p class="cesar-text mdl-card__title-text cesar-card__title-text">
-                                <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::proposal.format | sessionLogo}}</i>&nbsp;
+                            <p class="cesar-text mdl-card__title-text">
+                                <i class="material-icons cesar-ok" ng-if="proposal.valid">mood</i><i class="material-icons cesar-ko" ng-if="!proposal.valid">mood_bad</i>&nbsp;
                                 {{::proposal.title}}
                             </p>
-                            <p ng-if="!proposal.valid" class="cesar-error-simple">Invalid. Complete the session data</p>
                         </td>
-                        <td>
+                        <td style="padding: 4px">
                             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab">
                                 <i class="material-icons mdl-badge">build</i>
                             </a>

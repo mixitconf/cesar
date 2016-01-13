@@ -63,27 +63,19 @@
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="shortDescription" ng-maxlength="250"
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="shortDescription" ng-maxlength="250" name="shortDescription"
                           ng-model="ctrl.account.member.shortDescription"></textarea>
                 <label class="mdl-textfield__label" for="shortDescription"
                        translate="view.account.shortDescription"></label>
-                <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber"
-                          translate-values="{ nbcarac : 250-ctrl.account.member.shortDescription.length }"></span>
-                    (<span translate="view.account.update.markdown"></span>)
-                </small>
+                <cesar-nb-carac nbcarac="250" text="ctrl.account.member.shortDescription" field="frm.shortDescription" markdown="true"></cesar-nb-carac>
             </div>
             <p>&nbsp;</p>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="10" id="longDescription" ng-maxlength="3000"
+                <textarea class="mdl-textfield__input" type="text" rows="10" id="longDescription" ng-maxlength="3000" name="longDescription"
                           ng-model="ctrl.account.member.longDescription"></textarea>
                 <label class="mdl-textfield__label" for="longDescription"
                        translate="view.account.longDescription"></label>
-                <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber"
-                          translate-values="{ nbcarac : 3000-ctrl.account.member.longDescription.length }"></span>
-                    (<span translate="view.account.update.markdown"></span>)
-                </small>
+                <cesar-nb-carac nbcarac="3000" text="ctrl.account.member.longDescription" field="frm.longDescription" markdown="true"></cesar-nb-carac>
             </div>
             <p>&nbsp;</p>
 
