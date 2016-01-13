@@ -1,0 +1,9 @@
+<small class="cesar-length-field">
+
+    <span ng-if="field.$valid" translate="info.remaingingcharacter" translate-values="{ 'nbcarac' : (nbcarac-text.length) }"></span>
+
+    <span ng-if="field.$error.maxlength" translate="error.MAXSIZE" translate-values="{ 'nbcarac' : nbcarac}" class="cesar-error-simple"></span>
+    <span ng-if="field.$error.required" translate="error.REQUIRED" class="cesar-error-simple"></span>
+
+    <span ng-if="markdown">(<span translate="info.markdown"></span>)</span>
+</small>

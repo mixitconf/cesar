@@ -148,7 +148,7 @@
 
       .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/cfp.html')
         .controller('CfpCtrl')
-        .roles([USER_ROLES.member])
+        .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
           /* @ngInject */
           account: function (AuthenticationService) {

@@ -8,9 +8,8 @@
 
     <p class="cesar-text">You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data</p>
 
-    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}">
-    </div>
-    <div class="cesar-error" ng-if="frm.title.$error.required">Title is required</div>
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
+    <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
 
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
@@ -23,28 +22,21 @@
                        ng-required="true"
                        ng-model="ctrl.proposal.title"/>
                 <label class="mdl-textfield__label" for="title">Title</label>
+                <cesar-nb-carac nbcarac="100" text="ctrl.proposal.title" field="frm.title"></cesar-nb-carac>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300" name="summary"
                           ng-model="ctrl.proposal.summary"></textarea>
                 <label class="mdl-textfield__label" for="summary">Summary</label>
-                <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber"
-                          translate-values="{ nbcarac : 300-ctrl.account.member.shortDescription.length }"></span>
-                    (<span translate="view.account.update.markdown"></span>)
-                </small>
+                <cesar-nb-carac nbcarac="300" text="ctrl.proposal.summary" field="frm.summary" markdown="true"></cesar-nb-carac>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows="5" id="description" ng-maxlength="1000" name="description"
                           ng-model="ctrl.proposal.description"></textarea>
                 <label class="mdl-textfield__label" for="description">Description</label>
-                <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber"
-                          translate-values="{ nbcarac : 2000-ctrl.account.member.shortDescription.length }"></span>
-                    (<span translate="view.account.update.markdown"></span>)
-                </small>
+                <cesar-nb-carac nbcarac="2000" text="ctrl.proposal.description" field="frm.description" markdown="true"></cesar-nb-carac>
             </div>
 
 
@@ -52,11 +44,7 @@
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="messageForStaff" ng-maxlength="300" name="messageForStaff"
                           ng-model="ctrl.proposal.messageForStaff"></textarea>
                 <label class="mdl-textfield__label" for="messageForStaff">Message for the staff (references, experience...)</label>
-                <small class="cesar-length-field">
-                    <span translate="view.account.update.characterNumber"
-                          translate-values="{ nbcarac : 300-ctrl.account.member.shortDescription.length }"></span>
-                    (<span translate="view.account.update.markdown"></span>)
-                </small>
+                <cesar-nb-carac nbcarac="300" text="ctrl.proposal.messageForStaff" field="frm.messageForStaff" markdown="true"></cesar-nb-carac>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

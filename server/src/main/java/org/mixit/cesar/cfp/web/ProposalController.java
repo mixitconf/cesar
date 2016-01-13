@@ -2,17 +2,14 @@ package org.mixit.cesar.cfp.web;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
-import org.mixit.cesar.cfp.model.ProposalError;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
-import org.mixit.cesar.security.model.Account;
-import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +37,12 @@ public class ProposalController {
     @ResponseStatus(HttpStatus.OK)
     public List<Proposal> categories(@RequestParam(required = false) Integer year) {
         return proposalRepository.findAllProposals(eventService.getEvent(year).getId());
+    }
+
+    @RequestMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Proposal category(@PathVariable(value = "id") Long id) {
+        return proposalRepository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)

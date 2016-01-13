@@ -2,10 +2,18 @@
 
   'use strict';
 
-  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, CfpService) {
+  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, CfpService) {
     'ngInject';
 
     var ctrl = this;
+
+    if($stateParams.id){
+      $http
+        .get('app/cfp/proposal/' + $stateParams.id)
+        .then(function (response) {
+          ctrl.proposal = response.data;
+        });
+    }
 
     if(!ctrl.proposal){
       ctrl.proposal = {

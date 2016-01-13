@@ -21,19 +21,20 @@
     );
 
     ctrl.checkProfile = function(type){
+
       switch(type){
         case 'id':
-          return !account.member.firstname || !account.member.lastname;
+          return !!account.firstname && !!account.lastname;
         case 'email':
-          return !account.member.email;
+          return !!account.email;
         case 'company':
-          return !account.member.company;
+          return !!account.member.company;
         case 'summary':
-          return !account.member.shortDescription;
+          return !!account.member.shortDescription;
         case 'description':
-          return !account.member.longDescription;
+          return !!account.member.longDescription;
         case 'link':
-          return account.member.sharedLinks.length<1;
+          return account.member.sharedLinks.length>0;
         default:
           return ctrl.checkProfile('id') && ctrl.checkProfile('email') &&  ctrl.checkProfile('company') && ctrl.checkProfile('summary') && ctrl.checkProfile('description') && ctrl.checkProfile('link');
       }

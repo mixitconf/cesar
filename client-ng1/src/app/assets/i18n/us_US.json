@@ -301,7 +301,14 @@
     "MIN_LENGTH": "The password must be at least 8 characters",
     "CONNEXION_REFUSED": "The remote host is not available for the moment. Please try again later...",
     "NEED_VALIDATION": "You received an email to valid your account. If you don't have this email, ask a password reinitilization.",
-    "CONFIRM_EXIT_FROM_CREATION_ACCOUNT": "You need to fill in a valid email address. Without email you won't be able to access to the secured pages."
+    "CONFIRM_EXIT_FROM_CREATION_ACCOUNT": "You need to fill in a valid email address. Without email you won't be able to access to the secured pages.",
+    "FORM" : "Form is invalid",
+    "MAXSIZE" : "The max size is {{nbcarac}} car.",
+    "REQUIRED" : "This field is required"
+  },
+  "info": {
+    "markdown" : "Markdown can be used to format your description",
+    "remaingingcharacter" : "{{nbcarac}} remaining car."
   },
   "footer": {
     "whoarewe": {
