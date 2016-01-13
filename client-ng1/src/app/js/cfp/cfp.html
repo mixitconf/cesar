@@ -1,66 +1,54 @@
 <div class="cesar-container">
 
-    <h1>Call for paper 2016</h1>
+    <h1 translate="view.cfp.home.title">Call for paper 2016</h1>
 
-    <p class="cesar-text">The sixth edition will be held in Lyon, France on April 20 & 21 2015.e at the 21, 22 April 2016. Submitions will be accepted
-        until the 6 March 2016.
-    </p>
+    <p class="cesar-text" translate="view.cfp.home.p1"></p>
 
-    <p>
-        One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers
-        to developers, even the ones who have to pay by their own because their consulting company or their non-funded startup won’t pay for them.
-        You can purpose talks or workshop for beginers or confirmed people. Because all the profiles are present at Mix-IT. We need to find
-        sessions for all the attendees.
-    </p>
+    <p translate="view.cfp.home.p2"></p>
 
-    <p>
-        A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description
-        to help the attendees the D day.
-    </p>
+    <p translate="view.cfp.home.p3"></p>
 
-    <p>
-        If you have no idea on the subject, there's a few suggestion
-    </p>
+    <p translate="view.cfp.home.suggestion"></p>
 
     <div>
         <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-repeat="category in ctrl.categories" translate="view.cfp.category.{{category}}">{{category}}</a>
     </div>
     <p>&nbsp;</p>
-    <p class="cesar-text">I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission
-        is important to help us to build the best program for attendees. To help them in their choices define a good title, describe in your absract the
-        exact topic you want to talk and what you hope people will learn from the session.</p>
+    <p class="cesar-text" translate="view.cfp.home.explanation">I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission
+        is important to help us to build the best program for attendees. </p>
 
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-card mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title mdl-card--expand cesar-card__title">
-                <h3 class="mdl-card__title-text cesar-card__title-text">Your profile <i class="material-icons cesar-ok" ng-if="ctrl.checkProfile()">mood</i><i class="material-icons cesar-ko" ng-if="!ctrl.checkProfile()">mood_bad</i></h3>
+                <h3 class="mdl-card__title-text cesar-card__title-text">
+                    <span translate="view.cfp.home.profile.title">Your profile </span><i class="material-icons cesar-ok" ng-if="ctrl.checkProfile()">mood</i><i class="material-icons cesar-ko" ng-if="!ctrl.checkProfile()">mood_bad</i></h3>
             </div>
             <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                Already entered data<br>&nbsp;
+                <span translate="view.cfp.home.profile.already">Already entered data</span><br>&nbsp;
                 <div style="padding-left: 1em">
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
                         <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('id')" ng-readonly="true">
-                        <span class="mdl-checkbox__label">Identification</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.id">Identification</span>
                     </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
                         <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('email')" ng-readonly="true">
-                        <span class="mdl-checkbox__label">E-mail</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.email">E-mail</span>
                     </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
                         <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('company')" ng-readonly="true">
-                        <span class="mdl-checkbox__label">Company</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.company">Company</span>
                     </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-5">
                         <input type="checkbox" id="checkbox-5" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('summary')" ng-readonly="true">
-                        <span class="mdl-checkbox__label">Summary</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.title">Summary</span>
                     </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-6">
                         <input type="checkbox" id="checkbox-6" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('description')" ng-readonly="true">
-                        <span class="mdl-checkbox__label">Description</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.title">Description</span>
                     </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-7">
                         <input type="checkbox" id="checkbox-7" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('link')"  ng-readonly="true">
-                        <span class="mdl-checkbox__label">At least one link</span>
+                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.title">At least one link</span>
                     </label>
                 </div>
                 <p>&nbsp;</p>
@@ -82,7 +70,7 @@
 
         <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-card mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title mdl-card--expand cesar-card__title">
-                <h3 class="mdl-card__title-text cesar-card__title-text">Your submissions</h3>
+                <h3 class="mdl-card__title-text cesar-card__title-text" translate="view.cfp.home.profile.submission">Your submissions</h3>
             </div>
             <div class="mdl-card__supporting-text cesar-card__supporting-text">
                 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp cesar-session__container">
@@ -114,8 +102,6 @@
                 </a>
                 <div class="mdl-tooltip" for="addTalk" translate="action.add"></div>
             </div>
-
-
 
         </div>
     </div>

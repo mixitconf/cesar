@@ -1,12 +1,12 @@
 <div class="cesar-container">
-    <h1 ng-if="!ctrl.proposal.id">Add talk</h1>
-    <h1 ng-if="ctrl.proposal.id">Update talk</h1>
+    <h1 ng-if="!ctrl.proposal.id" translate="view.cfp.talk.action.add">Add talk</h1>
+    <h1 ng-if="ctrl.proposal.id" translate="view.cfp.talk.action.update">Update talk</h1>
 
     <div>
         <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>
 
-    <p class="cesar-text">You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data</p>
+    <p class="cesar-text" translate="view.cfp.talk.headline"></p>
 
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
     <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
@@ -14,41 +14,44 @@
     <div class="cesar-section--bottom">
         <form novalidate class="cesar-form" name="frm">
 
-            <p ng-if="ctrl.proposal.addedAt">Created at {{ctrl.proposal.addedAt}}</p>
+            <p ng-if="ctrl.proposal.addedAt" translate="view.cfp.talk.createdat" translate-values="{ 'date' : ctrl.proposal.addedAt }"></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="title" name="title"
                        ng-maxlength="100"
                        ng-required="true"
                        ng-model="ctrl.proposal.title"/>
-                <label class="mdl-textfield__label" for="title">Title</label>
+                <label class="mdl-textfield__label" for="title" translate="view.cfp.talk.title.text">Title</label>
                 <cesar-nb-carac nbcarac="100" text="ctrl.proposal.title" field="frm.title"></cesar-nb-carac>
             </div>
+            <p class="cesar-helper"><small translate="view.cfp.talk.title.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300" name="summary"
                           ng-model="ctrl.proposal.summary"></textarea>
-                <label class="mdl-textfield__label" for="summary">Summary</label>
+                <label class="mdl-textfield__label" for="summary" translate="view.cfp.talk.summary.text">Summary</label>
                 <cesar-nb-carac nbcarac="300" text="ctrl.proposal.summary" field="frm.summary" markdown="true"></cesar-nb-carac>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.summary.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows="5" id="description" ng-maxlength="1000" name="description"
                           ng-model="ctrl.proposal.description"></textarea>
-                <label class="mdl-textfield__label" for="description">Description</label>
+                <label class="mdl-textfield__label" for="description" translate="view.cfp.talk.description.text">Description</label>
                 <cesar-nb-carac nbcarac="2000" text="ctrl.proposal.description" field="frm.description" markdown="true"></cesar-nb-carac>
             </div>
-
+            <p class="cesar-helper"><small  translate="view.cfp.talk.description.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="messageForStaff" ng-maxlength="300" name="messageForStaff"
                           ng-model="ctrl.proposal.messageForStaff"></textarea>
-                <label class="mdl-textfield__label" for="messageForStaff">Message for the staff (references, experience...)</label>
+                <label class="mdl-textfield__label" for="messageForStaff" translate="view.cfp.talk.messageForStaff.text">Message for the staff (references, experience...)</label>
                 <cesar-nb-carac nbcarac="300" text="ctrl.proposal.messageForStaff" field="frm.messageForStaff" markdown="true"></cesar-nb-carac>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.messageForStaff.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label">Language</label>
+                <label class="mdl-textfield__label cesar-textfield__radio-label" translate="view.cfp.talk.language.text">Language</label>
 
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
                     <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
@@ -60,49 +63,56 @@
                            ng-model="ctrl.proposal.lang">
                     <span class="mdl-radio__label" translate="lang.fr">fr</span>
                 </label>
+                <p class="cesar-helper"><small  translate="view.cfp.talk.language.help"></small></p>
             </div>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" for="category">Category</label>
-                <select ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield__input"
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="category" translate="view.cfp.talk.category.text">Category</label>
+                <select class="mdl-textfield__input" ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield__input"
                         ng-model="ctrl.proposal.category">
                     <option value=""></option>
                 </select>
-
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.category.help"></small></p>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" for="format">Format</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="format" translate="view.cfp.talk.format.text">Format</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.formats" id="format" class="mdl-textfield__input"
                         ng-model="ctrl.proposal.format">
                     <option value=""></option>
                 </select>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.format.help"></small></p>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" for="types">Type</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="types" translate="view.cfp.talk.types.text">Type</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.types" id="types" class="mdl-textfield__input"
                         ng-model="ctrl.proposal.typeSession">
                     <option value=""></option>
                 </select>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.types.help"></small></p>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" for="levels">Level</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="levels" translate="view.cfp.talk.levels.text">Level</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.levels" id="levels" class="mdl-textfield__input"
                         ng-model="ctrl.proposal.level">
                     <option value=""></option>
                 </select>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.levels.help"></small></p>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" for="maxAttendees">Set the number of people you attend</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" for="maxAttendees" translate="view.cfp.talk.levels.text">Set the number of people you attend</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.maxAttendees" id="maxAttendees" class="mdl-textfield__input"
                         ng-model="ctrl.proposal.maxAttendees">
                     <option value=""></option>
                 </select>
             </div>
+            <p class="cesar-helper"><small  translate="view.cfp.talk.maxAttendees.help"></small></p>
 
+            <p class="cesar-helper"><small  translate="view.cfp.talk.interest.help"></small></p>
             <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"

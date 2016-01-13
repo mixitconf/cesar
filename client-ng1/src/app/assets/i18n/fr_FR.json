@@ -280,6 +280,79 @@
         "BETWEEN_10_AND_40" : "Between 10 and 40",
         "BETWEEN_40_AND_100": "Between 40 and 100",
         "BETWEEN_100_AND_INFINITE" : "More than 100"
+      },
+      "home" : {
+        "title" : "Call for paper 2016",
+        "headline" : "",
+        "p1" : "The sixth edition will be held in Lyon, France on April 20 & 21 2015.e at the 21, 22 April 2016. Submitions will be accepted until the 6 March 2016.",
+        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their consulting company or their non-funded startup won’t pay for them. You can purpose talks or workshop for beginers or confirmed people. Because all the profiles are present at Mix-IT. We need to find sessions for all the attendees.",
+        "p3" : " A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description to help the attendees the D day.",
+        "suggestion" : "If you have no idea on the subject, there's a few suggestion",
+        "explanation" : "I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
+        "profile" : {
+          "title" : "Your profile",
+          "already" : "Already entered data<",
+          "id" : "Identification",
+          "email" : "E-mail",
+          "company" : "Company",
+          "summary" : "Summary",
+          "description" : "Description",
+          "link":"At least one link"
+        },
+        "submission" : "Your submissions"
+
+      },
+      "talk" : {
+        "action" : {
+          "add":"Add talk",
+          "update":"Update talk"
+        },
+        "category" : {
+          "text" : "Category",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "headline":"You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data",
+        "createdat":"Created at {{date}}",
+        "description" : {
+          "text" : "Description",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis, vel faucibus sem congue. Aliquam dictum mi at volutpat aliquam. Nullam purus nibh, laoreet luctus porta non, elementum eget nunc. Nullam augue risus, interdum nec condimentum ut, tempor ut justo. Duis eget dignissim ipsum. Etiam vehicula ultricies libero in interdum. Vivamus ligula quam, aliquam non justo sit amet, tempus gravida erat. Nam vel interdum augue. Sed eget vestibulum ipsum, in porta ante."
+        },
+        "format":{
+          "text" : "Format",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "interest" : {
+          "text" : "Interest",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "language" : {
+          "text" : "Language",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "levels":{
+          "text" : "Summary",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "messageForStaff" : {
+          "text" : "Message for the staff (references, experience...)",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "maxAttendees" : {
+          "text" : "Summary",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "summary":{
+          "text" : "Summary",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "title":{
+          "text" : "Title",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "types":{
+          "text" : "Type",
+          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        }
       }
     }
   },
