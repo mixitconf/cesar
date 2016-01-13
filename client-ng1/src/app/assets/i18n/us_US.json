@@ -260,9 +260,9 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk",
-        "LightningTalk": "Ligthning talk",
-        "Workshop": "Workshop"
+        "Talk": "Talk (45 min)",
+        "LightningTalk": "Ligthning talk (5 min)",
+        "Workshop": "Workshop (1H45)"
       },
       "typeSession": {
         "SLIDES" :"Slides",
@@ -283,12 +283,11 @@
       },
       "home" : {
         "title" : "Call for paper 2016",
-        "headline" : "",
-        "p1" : "The sixth edition will be held in Lyon, France on April 20 & 21 2015.e at the 21, 22 April 2016. Submitions will be accepted until the 6 March 2016.",
+        "p1" : "The sixth edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until the 6 March 2016.",
         "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their consulting company or their non-funded startup won’t pay for them. You can purpose talks or workshop for beginers or confirmed people. Because all the profiles are present at Mix-IT. We need to find sessions for all the attendees.",
         "p3" : " A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description to help the attendees the D day.",
         "suggestion" : "If you have no idea on the subject, there's a few suggestion",
-        "explanation" : "I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
+        "explanation" : "If you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
         "profile" : {
           "title" : "Your profile",
           "already" : "Already entered data<",

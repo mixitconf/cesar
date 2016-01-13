@@ -260,98 +260,97 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk",
-        "LightningTalk": "Ligthning talk",
-        "Workshop": "Workshop"
+        "Talk": "Talk (45 min)",
+        "LightningTalk": "Ligthning talk (5 min)",
+        "Workshop": "Workshop (1H45)"
       },
       "typeSession": {
         "SLIDES" :"Slides",
-        "SLIDES_AND_CODE" :"Slides and code",
-        "CODE" : "Code only",
-        "NO_SLIDE_NO_CODE":"No slide and no code"
+        "SLIDES_AND_CODE" :"Slides et code",
+        "CODE" : "Seulement du code",
+        "NO_SLIDE_NO_CODE":"Ni slide, ni code"
       },
       "level": {
-        "Beginner":"Beginner",
-        "Experienced":"Experienced",
+        "Beginner":"Débutant",
+        "Experienced":"Intermédiaire",
         "Expert":"Expert"
       },
       "nbattendees" :{
-        "BETWEEN_0_AND_10" : "Between 0 and 10",
-        "BETWEEN_10_AND_40" : "Between 10 and 40",
-        "BETWEEN_40_AND_100": "Between 40 and 100",
-        "BETWEEN_100_AND_INFINITE" : "More than 100"
+        "BETWEEN_0_AND_10" : "Entre 0 et 10",
+        "BETWEEN_10_AND_40" : "Entre 10 et 40",
+        "BETWEEN_40_AND_100": "Entre 40 et 100",
+        "BETWEEN_100_AND_INFINITE" : "Entre et 100"
       },
       "home" : {
         "title" : "Call for paper 2016",
-        "headline" : "",
-        "p1" : "The sixth edition will be held in Lyon, France on April 20 & 21 2015.e at the 21, 22 April 2016. Submitions will be accepted until the 6 March 2016.",
-        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their consulting company or their non-funded startup won’t pay for them. You can purpose talks or workshop for beginers or confirmed people. Because all the profiles are present at Mix-IT. We need to find sessions for all the attendees.",
-        "p3" : " A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description to help the attendees the D day.",
-        "suggestion" : "If you have no idea on the subject, there's a few suggestion",
-        "explanation" : "I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
+        "p1" : "La sixième édition de Mix-IT se tiendra à Lyon, les 21 et 22 avril 2016. Les soumissions de sessions seront acceptées jusqu'au 6 mars 2016.",
+        "p2" : "Le public de Mix-IT est composé aussi bien de débutants, d'experts, d'agilistes, de développeurs, d'entrepreneurs, de managers évoluant principalement dans le milieu IT, mais pas tous ! Bref, quand vous soumettez votre session, vous savez à qui vous vous adressez. Si jamais vous doutez, sollicitez-nous (l'équipe d'organisation), nous sommes là pour vous aider",
+        "p3" : "Une partie de nos speakers sont invités directement. Si vous en faites partie, vous êtes aussi concernés par le CFP afin de décrire vos sessions afin d'aider les participants de Mix-IT quand ils consulteront le programme",
+        "suggestion" : "Si vous n'avez pas d'idée, voici une liste de thème qui peuvent vous inspirer (cette liste n'est pas exhaustive)",
+        "explanation" : "Si vous voulez augmenter vos chances d'être retenus nous vous encouragons de soumettre plusieurs propositions. Plus on aura de propositions et meilleur sera le programme final.",
         "profile" : {
-          "title" : "Your profile",
-          "already" : "Already entered data<",
+          "title" : "Votre profil",
+          "already" : "Données saisies",
           "id" : "Identification",
           "email" : "E-mail",
-          "company" : "Company",
-          "summary" : "Summary",
+          "company" : "Entreprise",
+          "summary" : "Résumé",
           "description" : "Description",
-          "link":"At least one link"
+          "link":"Au moins un lien"
         },
-        "submission" : "Your submissions"
+        "submission" : "Vos soumissions"
 
       },
       "talk" : {
         "action" : {
-          "add":"Add talk",
-          "update":"Update talk"
+          "add":"Ajouter une session",
+          "update":"Modifier une session"
         },
         "category" : {
-          "text" : "Category",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Categorie",
+          "help": "Ce champ permet de rattacher votre session à un thème général"
         },
-        "headline":"You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data",
-        "createdat":"Created at {{date}}",
+        "headline":"Vous allez faire une session de 50 minutes sur un sujet super fouillé et bien travaillé, ou un atelier, un jeu de quelques heures où votre public s'éclatera. Merci de remplir ce formulaire pour motiver à la fois le comité de sélection des talks mais avant tout les futurs participants de Mix-IT. Vous ne pourrez soumettre votre session que lorsque l'ensemble des champs sera renseigné. Mais vous pouvez sauvegarder votre brouillon et revenir plus tard pour compléter",
+        "createdat":"Créé le {{date}}",
         "description" : {
           "text" : "Description",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis, vel faucibus sem congue. Aliquam dictum mi at volutpat aliquam. Nullam purus nibh, laoreet luctus porta non, elementum eget nunc. Nullam augue risus, interdum nec condimentum ut, tempor ut justo. Duis eget dignissim ipsum. Etiam vehicula ultricies libero in interdum. Vivamus ligula quam, aliquam non justo sit amet, tempus gravida erat. Nam vel interdum augue. Sed eget vestibulum ipsum, in porta ante."
+          "help": "Dans cette partie vous pouvez décrire précisément ce que vous allez proposer. Essayer de décrire ce que vous allez aborder et srtout ce que vous allez apporter aux participants."
         },
         "format":{
           "text" : "Format",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Vous avez 3 formats pour vous exprimer. Les ligthnings talks sont un peu particuliers car ce sont les participants qui votent pour les sujets qu'ils veulent voir. Les résultats des votes seront révélés quelques jours avant la conférence."
         },
         "interest" : {
           "text" : "Interest",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Les intérêts sont le petit plus de votre session. Ils permettent de définir quelques mots clés."
         },
         "language" : {
           "text" : "Language",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Mix-IT est une conférence qui accueille des speakers étrangers. Une track sera dédiée à nos amis anglophones qui ne comprennent pas le français"
         },
         "levels":{
-          "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Niveau",
+          "help": "Mix-IT est un espace qui rassemble à la fois des débutants, des gens confirmés ou des experts sur les sujets que vous pouvez présenter. Evitez de décevoir des participants qui se seraient trompés de session non pas parce que votre intervention n'est pas intéressante mais plutôt parce qu'elle ne s'adresse pas à eux."
         },
         "messageForStaff" : {
           "text" : "Message for the staff (references, experience...)",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Si vous avez déjà joué votre session quelque part si vous voulez nous faire part de vos contraintes exprimez vous, cette zone de texte ne sera lue que par le comité de sélection."
         },
         "maxAttendees" : {
-          "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Nombre de personnes attendues",
+          "help": "Si vous faites un atelier, une session ou vous souhaitez un nombre limité de personnes, merci de nous l'indiquer."
         },
         "summary":{
           "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Ce résumé sera repris sur le programme donc essayer de dire en peu de mot ce que vous allez apporter aux participants"
         },
         "title":{
-          "text" : "Title",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Titre",
+          "help": "Le titre est certainement le champ le plus important pour définir votre session. Il est doit être accrocheur et concis."
         },
         "types":{
           "text" : "Type",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Certains participants aiment sélectionner une session suivant le mode de rendu de la session."
         }
       }
     }
