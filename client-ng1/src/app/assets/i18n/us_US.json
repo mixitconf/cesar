@@ -260,37 +260,37 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk (45 min)",
-        "LightningTalk": "Ligthning talk (5 min)",
-        "Workshop": "Workshop (1H45)"
+        "Talk": "Talk (45 mn)",
+        "LightningTalk": "Ligthning talk (5 mn)",
+        "Workshop": "Workshop (1:45)"
       },
       "typeSession": {
         "SLIDES" :"Slides",
         "SLIDES_AND_CODE" :"Slides and code",
         "CODE" : "Code only",
-        "NO_SLIDE_NO_CODE":"No slide and no code"
+        "NO_SLIDE_NO_CODE":"No slides no code"
       },
       "level": {
         "Beginner":"Beginner",
-        "Experienced":"Experienced",
+        "Experienced":"Intermediate",
         "Expert":"Expert"
       },
       "nbattendees" :{
-        "BETWEEN_0_AND_10" : "Between 0 and 10",
-        "BETWEEN_10_AND_40" : "Between 10 and 40",
-        "BETWEEN_40_AND_100": "Between 40 and 100",
+        "BETWEEN_0_AND_10" : "0 to 10",
+        "BETWEEN_10_AND_40" : "10 to 40",
+        "BETWEEN_40_AND_100": "40 to 100",
         "BETWEEN_100_AND_INFINITE" : "More than 100"
       },
       "home" : {
         "title" : "Call for paper 2016",
-        "p1" : "The sixth edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until the 6 March 2016.",
-        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their consulting company or their non-funded startup won’t pay for them. You can purpose talks or workshop for beginers or confirmed people. Because all the profiles are present at Mix-IT. We need to find sessions for all the attendees.",
-        "p3" : " A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description to help the attendees the D day.",
+        "p1" : "The sixth Mix-IT edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until the 6 March 2016.",
+        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their company or their non-funded startup won’t pay for them. You can propose talks or workshop for beginers to confirmed people, because all those profiles are present at Mix-IT we wish to provide everyone whith sessions they'll love.",
+        "p3" : "Some of our speakers are directly invited by the Mix-IT team. If you are one of them we need you to complete your profile and the talks/workshop details to help the attendees the D day.",
         "suggestion" : "If you have no idea on the subject, there's a few suggestion",
-        "explanation" : "If you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
+        "explanation" : "If you want to increase your chances of success, feel free to submit multiple sessions. The number of submitted sessions is important to help us to build the best program for attendees.",
         "profile" : {
           "title" : "Your profile",
-          "already" : "Already entered data<",
+          "already" : "Already entered data",
           "id" : "Identification",
           "email" : "E-mail",
           "company" : "Company",
@@ -298,8 +298,7 @@
           "description" : "Description",
           "link":"At least one link"
         },
-        "submission" : "Your submissions"
-
+        "submission" : "Your submitted sessions"
       },
       "talk" : {
         "action" : {
@@ -308,57 +307,57 @@
         },
         "category" : {
           "text" : "Category",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "This field enables you to link your talk to a global theme."
         },
         "cospeaker" : {
           "text":"Co-speaker",
-          "help":"Vous pouvez animé les sessions avec une autre personne."
+          "help":"You can co-animate your session."
         },
-        "headline":"You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data",
+        "headline":"You will perform a session that you worked hard on, a perfectly planned workshop, or a game where participants will have a lot of fun. Please fill this form to make both the CFP commitee and the future audience enjoyed about it! You will only be able to submit the form when all mandatory fields are filed but you can come back as many time as you with to update it.",
         "createdat":"Created at {{date}}",
         "description" : {
           "text" : "Description",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis, vel faucibus sem congue. Aliquam dictum mi at volutpat aliquam. Nullam purus nibh, laoreet luctus porta non, elementum eget nunc. Nullam augue risus, interdum nec condimentum ut, tempor ut justo. Duis eget dignissim ipsum. Etiam vehicula ultricies libero in interdum. Vivamus ligula quam, aliquam non justo sit amet, tempus gravida erat. Nam vel interdum augue. Sed eget vestibulum ipsum, in porta ante."
+          "help": "You can here describe precisely you session. Please insist on your contents and what you will learn to the audience."
         },
         "format":{
           "text" : "Format",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "You need to choose your session type."
         },
         "ideaForNow": {
           "text" : "Idée pour tout de suite",
-          "help": "Le solgan de Mix-IT est des idées pour tout de suite. Notre but est de fournir du contenu que chaque participant pourra mettre en pratique rapidement ou dans un avenir proche"
+          "help": "Mix-IT motto is ''Ideas for now''. Our purpose is to provide attentees with insights they can use as soon as possible."
         },
         "interest" : {
-          "text" : "Interest",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Interests",
+          "help": "Interests allows you to define keywords to tag your session with."
         },
         "language" : {
           "text" : "Language",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Mix-IT welcomes international speakers, the staff always tries to have at least a track in English so they can fully participate to the conference."
         },
         "levels":{
-          "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Talk audience",
+          "help": "Mix-IT gathers beginners to experts, this fiels lets you specify who your andience is, so they don't yet disapointed."
         },
         "messageForStaff" : {
           "text" : "Message for the staff (references, experience...)",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "If you ever played this sessions elsewhere you can tell it here, or if you wish to share some constraints about your session (this field is not intended to deal with availablities, nor hotels and parties details). This section will be avaiable to the Mix-IT staff only."
         },
         "maxAttendees" : {
-          "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Max attentees",
+          "help": "Especially for workshops, you can tell the staff here if you wish to limit the number of attentees. This detail will be made public. "
         },
         "summary":{
           "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "This summary will be used on the printed planning. Please try to summarize your session in one or two sentences."
         },
         "title":{
           "text" : "Title",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "This is one of the most important part of this form. Title must be catchy and concise."
         },
         "types":{
           "text" : "Type",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "help": "Some attendees like to choose the session by the form it will take."
         }
       }
     }
