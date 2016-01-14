@@ -271,15 +271,15 @@
         "NO_SLIDE_NO_CODE":"Ni slide, ni code"
       },
       "level": {
-        "Beginner":"Débutant",
-        "Experienced":"Intermédiaire",
+        "Beginner":"Debutant",
+        "Experienced":"Intermediaire",
         "Expert":"Expert"
       },
       "nbattendees" :{
         "BETWEEN_0_AND_10" : "Entre 0 et 10",
         "BETWEEN_10_AND_40" : "Entre 10 et 40",
         "BETWEEN_40_AND_100": "Entre 40 et 100",
-        "BETWEEN_100_AND_INFINITE" : "Entre et 100"
+        "BETWEEN_100_AND_INFINITE" : "Plus de 100"
       },
       "home" : {
         "title" : "Call for paper 2016",
@@ -310,6 +310,10 @@
           "text" : "Categorie",
           "help": "Ce champ permet de rattacher votre session à un thème général"
         },
+        "cospeaker" : {
+          "text":"Co-speaker",
+          "help":"Vous pouvez animé les sessions avec une autre personne."
+        },
         "headline":"Vous allez faire une session de 50 minutes sur un sujet super fouillé et bien travaillé, ou un atelier, un jeu de quelques heures où votre public s'éclatera. Merci de remplir ce formulaire pour motiver à la fois le comité de sélection des talks mais avant tout les futurs participants de Mix-IT. Vous ne pourrez soumettre votre session que lorsque l'ensemble des champs sera renseigné. Mais vous pouvez sauvegarder votre brouillon et revenir plus tard pour compléter",
         "createdat":"Créé le {{date}}",
         "description" : {
@@ -319,6 +323,10 @@
         "format":{
           "text" : "Format",
           "help": "Vous avez 3 formats pour vous exprimer. Les ligthnings talks sont un peu particuliers car ce sont les participants qui votent pour les sujets qu'ils veulent voir. Les résultats des votes seront révélés quelques jours avant la conférence."
+        },
+        "ideaForNow": {
+          "text" : "Idée pour tout de suite",
+          "help": "Le solgan de Mix-IT est des idées pour tout de suite. Notre but est de fournir du contenu que chaque participant pourra mettre en pratique rapidement ou dans un avenir proche"
         },
         "interest" : {
           "text" : "Interest",
@@ -379,7 +387,7 @@
     "REQUIRED" : "Ce champ est obligatoire"
   },
   "info": {
-    "markdown" : "Vous pouvez formater votre messages en utilisant du markdown",
+    "markdown" : "markdown autorisé",
     "remaingingcharacter" : "{{nbcarac}} car. restants"
   },
   "footer": {

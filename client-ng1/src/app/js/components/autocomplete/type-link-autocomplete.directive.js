@@ -4,6 +4,7 @@
 
   /**
    * Creates a new button with a spinner displayed when a request is launched to the server (@see spinner.inteceptor.js)
+   * TODO refactoring to mutualize code between alla autocomplete directives
    */
   angular.module('cesar-home').directive('cesarTypeLinkAutocomplete', function ($timeout) {
     'ngInject';

@@ -6,19 +6,19 @@
    * Creates a new button with a spinner displayed when a request is launched to the server (@see spinner.inteceptor.js)
    * TODO refactoring to mutualize code between alla autocomplete directives
    */
-  angular.module('cesar-home').directive('cesarInterestAutocomplete', function ($http, $timeout) {
+  angular.module('cesar-home').directive('cesarSpeakerAutocomplete', function ($http, $timeout) {
     'ngInject';
 
-    var interests, opened;
+    var speakers, opened;
 
-    $http.get('api/interest').then(function(response){
-      interests = response.data;
+    $http.get('app/cfp/proposal/speakers').then(function(response){
+      speakers = response.data;
     });
 
     return {
-      templateUrl: 'js/components/autocomplete/interest-autocomplete.directive.html',
+      templateUrl: 'js/components/autocomplete/speaker-cfp-autocomplete.directive.html',
       scope: {
-        addInterest: '&',
+        addSpeaker: '&',
         limit : '@',
         value :'='
       },
@@ -36,7 +36,7 @@
 
         $scope.add = function(selected){
           $scope.value = selected;
-          $scope.addInterest({value:selected});
+          $scope.addSpeaker({value:selected});
           $scope.close();
           $scope.reset();
         };
@@ -49,8 +49,8 @@
           if(prefix && opened){
             var q = prefix.toUpperCase().trim();
 
-            $scope.subselect =  interests.filter(function(elt){
-              return elt.toUpperCase().indexOf(q) === 0;
+            $scope.subselect =  speakers.filter(function(elt){
+              return elt.key.toUpperCase().indexOf(q) > 0;
             }).slice(0, $scope.limit ? $scope.limit : 5);
           }
           else{

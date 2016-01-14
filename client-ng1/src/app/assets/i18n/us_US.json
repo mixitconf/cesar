@@ -310,6 +310,10 @@
           "text" : "Category",
           "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
         },
+        "cospeaker" : {
+          "text":"Co-speaker",
+          "help":"Vous pouvez animé les sessions avec une autre personne."
+        },
         "headline":"You will able to submit your talk only when all the fields will be entered. But you can save your draft and come back later to complete data",
         "createdat":"Created at {{date}}",
         "description" : {
@@ -319,6 +323,10 @@
         "format":{
           "text" : "Format",
           "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "ideaForNow": {
+          "text" : "Idée pour tout de suite",
+          "help": "Le solgan de Mix-IT est des idées pour tout de suite. Notre but est de fournir du contenu que chaque participant pourra mettre en pratique rapidement ou dans un avenir proche"
         },
         "interest" : {
           "text" : "Interest",
@@ -379,7 +387,7 @@
     "REQUIRED" : "This field is required"
   },
   "info": {
-    "markdown" : "Markdown can be used to format your description",
+    "markdown" : "markdown available",
     "remaingingcharacter" : "{{nbcarac}} remaining car."
   },
   "footer": {

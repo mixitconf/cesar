@@ -30,4 +30,6 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
     @Query(value = "SELECT u FROM Account u left join fetch u.authorities aut left join fetch u.member m where m.id=:id")
     List<Account> findByMemberId(@Param("id") Long  id);
 
+    @Query(value = "SELECT u FROM Account u inner join u.member m where m.logoUrl IS NULL")
+    List<Account> findPotentialSpeakers();
 }

@@ -5,8 +5,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mixit.cesar.security.model.Account;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
@@ -50,5 +57,6 @@ public class ProposalParamControllerTest {
                 .andExpect(content().string("[\"LightningTalk\",\"Talk\",\"Workshop\"]"))
                 .andExpect(content().encoding("UTF-8"));
     }
+
 
 }

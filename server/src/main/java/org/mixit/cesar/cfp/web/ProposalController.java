@@ -1,10 +1,15 @@
 package org.mixit.cesar.cfp.web;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
+import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +36,9 @@ public class ProposalController {
     ProposalService proposalService;
 
     @Autowired
+    AccountRepository accountRepository;
+
+    @Autowired
     private EventService eventService;
 
     @RequestMapping()
@@ -43,6 +51,29 @@ public class ProposalController {
     @ResponseStatus(HttpStatus.OK)
     public Proposal category(@PathVariable(value = "id") Long id) {
         return proposalRepository.findOne(id);
+    }
+
+    /**
+     * When we create a new user we want to know if a login is already used. This method checks the login
+     */
+    @RequestMapping(value = "/speakers")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Tuple> speakers() {
+
+        List<Account> accounts = accountRepository.findPotentialSpeakers();
+
+        //We can have several account for the same person
+        return
+                accounts
+                        .stream()
+                        .collect(Collectors.groupingBy(
+                                a -> a.getFirstname().concat(" ").concat(a.getLastname()),
+                                Collectors.mapping(Account::getId, Collectors.toList())
+                        ))
+                        .entrySet()
+                        .stream()
+                        .map(a -> new Tuple().setKey(a.getKey()).setValue(a.getValue().stream().findFirst().get()))
+                        .collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -55,6 +55,24 @@
       }
     };
 
+    ctrl.addSpeaker = function(value){
+      if(value){
+        var canPush;
+        if(!ctrl.proposal.speakers){
+          canPush = true;
+        }
+        else{
+          canPush = ctrl.proposal.speakers.filter(function(elt){
+              return elt.id === value.value;
+            }).length===0;
+        }
+        if(canPush){
+          ctrl.proposal.speakers.push({id : value.value, name : value.key});
+        }
+
+      }
+    };
+
     ctrl.removeInterest = function(value){
       ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value),1);
     };

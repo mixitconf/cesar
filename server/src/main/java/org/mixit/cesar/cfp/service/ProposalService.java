@@ -4,6 +4,8 @@ import static org.mixit.cesar.cfp.model.ProposalError.Code.REQUIRED;
 import static org.mixit.cesar.cfp.model.ProposalError.Entity.PROPOSAL;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -17,6 +19,7 @@ import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.security.service.mail.MailBuilder;
 import org.mixit.cesar.security.service.mail.MailerService;
 import org.mixit.cesar.site.model.member.Interest;
+import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.service.MemberService;
@@ -100,24 +103,20 @@ public class ProposalService {
                     .setFormat(proposal.getFormat())
                     .setTitle(proposal.getTitle())
                     .setSummary(proposal.getSummary())
+                    .setLevel(proposal.getLevel())
+                    .setCategory(proposal.getCategory())
+                    .setFormat(proposal.getFormat())
+                    .setIdeaForNow(proposal.getIdeaForNow())
+                    .setMaxAttendees(proposal.getMaxAttendees())
+                    .setTypeSession(proposal.getTypeSession())
                     .setMessageForStaff(proposal.getMessageForStaff())
                     .setMaxAttendees(proposal.getMaxAttendees())
-                    .clearInterests()
                     .clearSpeakers()
                     .getSpeakers().addAll(proposal.getSpeakers());
         }
 
         //Interests
-        proposalPersisted.getInterests().addAll(interests
-                .stream()
-                .map(i -> {
-                    Interest interest = interestRepository.findByName(i.getName());
-                    if (i == null) {
-                        interest = interestRepository.save(new Interest().setName(i.getName()));
-                    }
-                    return interest;
-                })
-                .collect(Collectors.toSet()));
+        updateProposalInterest(proposalPersisted, proposal);
 
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
@@ -139,5 +138,32 @@ public class ProposalService {
         }
 
         return proposalPersisted;
+    }
+
+    /**
+     * Helper to update the interest list
+     */
+    protected void updateProposalInterest(Proposal proposalDb, Proposal proposal){
+        //We can delete old references
+        proposalDb.getInterests().removeAll(
+                proposalDb.getInterests()
+                .stream()
+                .filter(inter -> !proposal.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findFirst().isPresent())
+                .collect(Collectors.toList())
+        );
+
+        proposal
+                .getInterests()
+                .stream()
+                .forEach(inter -> {
+                    Optional<Interest> interest = proposalDb.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findAny();
+                    if(!interest.isPresent()){
+                        Interest interes = interestRepository.findByName(inter.getName());
+                        if(interes==null){
+                            interes = interestRepository.save(new Interest().setName(inter.getName()));
+                        }
+                        proposalDb.addInterest(interes);
+                    }
+                });
     }
 }
