@@ -254,16 +254,16 @@
         "DEVOPS": "Devops",
         "INNOVATION": "Innovation",
         "IOT": "Internet of things",
-        "METHODO": "Scrum, Kanban, Lean Startup...",
-        "PROGRAMMING": "Programming : Java, .Net, PHP...",
+        "METHODO": "Agile: Scrum, Kanban, Lean Startup...",
+        "PROGRAMMING": "Programming : Java, .Net, JS...",
         "UX": "User experience",
         "CLOUD": "Virtualization : cloud, docker...",
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk (45 min)",
+        "Talk": "Talk (50 min questions incluses)",
         "LightningTalk": "Ligthning talk (5 min)",
-        "Workshop": "Workshop (1H45)"
+        "Workshop": "Workshop (1H50)"
       },
       "typeSession": {
         "SLIDES" :"Slides",
@@ -287,7 +287,7 @@
         "p1" : "La sixième édition de Mix-IT se tiendra à Lyon, les 21 et 22 avril 2016. Les soumissions de sessions seront acceptées jusqu'au 6 mars 2016.",
         "p2" : "Le public de Mix-IT est composé aussi bien de débutants, d'experts, d'agilistes, de développeurs, d'entrepreneurs, de managers évoluant principalement dans le milieu IT, mais pas tous ! Bref, quand vous soumettez votre session, vous savez à qui vous vous adressez. Si jamais vous doutez, sollicitez-nous (l'équipe d'organisation), nous sommes là pour vous aider",
         "p3" : "Une partie de nos speakers sont invités directement. Si vous en faites partie, vous êtes aussi concernés par le CFP afin de décrire vos sessions afin d'aider les participants de Mix-IT quand ils consulteront le programme",
-        "suggestion" : "Si vous n'avez pas d'idée, voici une liste de thème qui peuvent vous inspirer (cette liste n'est pas exhaustive)",
+        "suggestion" : "Si vous n'avez pas d'idée, voici une liste de thèmes qui peuvent vous inspirer (cette liste n'est pas exhaustive)",
         "explanation" : "Si vous voulez augmenter vos chances d'être retenus nous vous encouragons de soumettre plusieurs propositions. Plus on aura de propositions et meilleur sera le programme final.",
         "incomplete" : "Données incomplètes",
         "profile" : {
