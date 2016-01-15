@@ -29,10 +29,7 @@ public class MailBuilder {
         ACCOUND_NEW_VALIDATION,
         SOCIAL_ACCOUNT_VALIDATION,
         CESAR_ACCOUNT_VALIDATION,
-        EMAIL_CHANGED,
-        SESSION_SUBMITION,
-        SESSION_REJECTED,
-        SESSION_ACCEPTED
+        EMAIL_CHANGED
     }
 
     public String buildContent(TypeMail typeMail, Account account, Optional<OAuthProvider> provider) {
@@ -79,11 +76,6 @@ public class MailBuilder {
                         "UTF-8",
                         model);
 
-            case SESSION_ACCEPTED:
-            case SESSION_REJECTED:
-            case SESSION_SUBMITION:
-                return "<p>TODO à faire et à gérer correctement ces mails";
-
             default:
                 return null;
         }
@@ -109,12 +101,6 @@ public class MailBuilder {
             case SOCIAL_ACCOUNT_VALIDATION:
             case ACCOUND_NEW_VALIDATION:
                 title = lang.equals("en") ? "Account validation" : "Validation de votre compte";
-                break;
-
-            case SESSION_ACCEPTED:
-            case SESSION_REJECTED:
-            case SESSION_SUBMITION:
-                title = "Session on Mix-IT CFP";
                 break;
 
             default:

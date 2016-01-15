@@ -3,12 +3,12 @@
   'use strict';
   /*global componentHandler */
 
-  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams,$timeout, account) {
+  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, $timeout, account) {
     'ngInject';
 
     var ctrl = this;
 
-    if($stateParams.id){
+    if ($stateParams.id) {
       $http
         .get('app/cfp/proposal/' + $stateParams.id)
         .then(function (response) {
@@ -17,81 +17,86 @@
         });
     }
 
-    if(!ctrl.proposal){
+    if (!ctrl.proposal) {
       ctrl.proposal = {
-        interests : []
+        interests: []
       };
     }
     ctrl.account = account;
 
     var i8nKeys = {
       categories: 'view.cfp.category.',
-      status : 'view.cfp.status.',
+      status: 'view.cfp.status.',
       formats: 'view.cfp.format.',
       types: 'view.cfp.typeSession.',
       levels: 'view.cfp.level.',
       maxAttendees: 'view.cfp.nbattendees.'
     };
 
-    $http.get('app/cfp/param').then(function(response){
-      response.data.forEach(function(elt){
+    $http.get('app/cfp/param').then(function (response) {
+      response.data.forEach(function (elt) {
         ctrl[elt.key] = [];
-        elt.value.forEach(function(param){
+        elt.value.forEach(function (param) {
           ctrl[elt.key][param] = i8nKeys[elt.key] + param;
         });
       });
     });
 
-    ctrl.addInterest = function(value){
-      if(value){
+    ctrl.addInterest = function (value) {
+      if (value) {
         var canPush;
-        if(!ctrl.proposal.interests){
+        if (!ctrl.proposal.interests) {
           canPush = true;
         }
-        else{
-          canPush = ctrl.proposal.interests.filter(function(elt){
+        else {
+          canPush = ctrl.proposal.interests.filter(function (elt) {
               return elt.name === value;
-            }).length===0;
+            }).length === 0;
         }
-        if(canPush){
-          ctrl.proposal.interests.push({name : value});
+        if (canPush) {
+          ctrl.proposal.interests.push({name: value});
         }
 
       }
     };
 
-    ctrl.addSpeaker = function(value){
-      if(value){
+    ctrl.addSpeaker = function (value) {
+      if (value) {
         var canPush;
-        if(!ctrl.proposal.speakers){
+        if (!ctrl.proposal.speakers) {
           canPush = true;
         }
-        else{
-          canPush = ctrl.proposal.speakers.filter(function(elt){
+        else {
+          canPush = ctrl.proposal.speakers.filter(function (elt) {
               return elt.id === value.value;
-            }).length===0;
+            }).length === 0;
         }
-        if(canPush){
-          ctrl.proposal.speakers.push({id : value.value, name : value.key});
+        if (canPush) {
+          ctrl.proposal.speakers.push({id: value.value, name: value.key});
         }
 
       }
     };
 
-    ctrl.removeSpeaker = function(value){
-      ctrl.proposal.speakers.splice(ctrl.proposal.speakers.indexOf(value),1);
+    ctrl.removeSpeaker = function (value) {
+      ctrl.proposal.speakers.splice(ctrl.proposal.speakers.indexOf(value), 1);
     };
 
-    ctrl.removeInterest = function(value){
-      ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value),1);
+    ctrl.removeInterest = function (value) {
+      ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value), 1);
     };
 
     ctrl.save = function () {
       delete ctrl.errorMessage;
+      delete ctrl.warningMessage;
       $http
         .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-        .then(function () {
-          $state.go('cfp');
+        .then(function (response) {
+          ctrl.warningMessage = response.data;
+          if (!ctrl.warningMessage || ctrl.warningMessage.length == 0) {
+            $state.go('cfp');
+          }
+          refresh();
         })
         .catch(function () {
           ctrl.errorMessage = 'UNDEFINED';
@@ -104,14 +109,33 @@
         .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function (response) {
           ctrl.warningMessage = response.data;
+          refresh();
         })
         .catch(function () {
           ctrl.errorMessage = 'UNDEFINED';
         });
     };
 
-    $timeout(function () {
-      componentHandler.upgradeAllRegistered();
-    },1000);
+    ctrl.submit = function () {
+      delete ctrl.errorMessage;
+      $http
+        .post('app/cfp/proposal/submit', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .then(function (response) {
+          if (response.data === 'SUBMITTED') {
+            $state.go('cfp');
+          }
+        })
+        .catch(function () {
+          ctrl.errorMessage = 'UNDEFINED';
+        });
+      ;
+    };
+
+    function refresh() {
+      $timeout(function () {
+        componentHandler.upgradeAllRegistered();
+      }, 1000);
+    }
+
   });
 })();

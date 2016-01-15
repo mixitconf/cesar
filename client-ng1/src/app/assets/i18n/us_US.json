@@ -9,7 +9,8 @@
     "check" : "Check",
     "clear" : "Remove",
     "profile" : "Change your profile",
-    "member" : "See how people see your profile"
+    "member" : "See how people see your profile",
+    "submit" : "Submit"
   },
   "menu": {
     "admin": "Admin",

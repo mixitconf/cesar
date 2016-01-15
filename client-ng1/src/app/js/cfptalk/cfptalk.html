@@ -152,12 +152,15 @@
             </div>
 
             <p>&nbsp;</p>
+            <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
+            <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
+
             <div>
                 <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" spinner="spinner" google-icon="save"></cesar-button>
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
-                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action2" on-click="ctrl.check()" spinner="spinner" google-icon="brightness_6"></cesar-button>
-                <div class="mdl-tooltip" for="action2" translate="action.check"></div>
+                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'" id="action2" on-click="ctrl.submit()" spinner="spinner" google-icon="send"></cesar-button>
+                <div class="mdl-tooltip" for="action2" translate="action.submit"></div>
 
                 <!--
                 TODO see how implement modal in MDL

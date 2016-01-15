@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mix-IT : r&eacute;initialisation mot de passe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div style="font-family: Arial;color: #424242;margin:2em">
+    <p>Bonjour <b>${account.firstname}</b></p>
+
+    <h2>Tu viens de soumettre la session <b>${proposal.title}</b> pour la prochaine édition de Mix-IT.</h2>
+
+    <p>Nous te remercions et nous te tiendrons au courant début mars si nous la retenons pour l'édition 2016.</p>
+
+    <p><b>La team Mix-IT</b></p>
+</div>
+</body>
+</html>

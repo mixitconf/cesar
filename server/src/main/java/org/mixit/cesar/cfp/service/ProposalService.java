@@ -4,8 +4,6 @@ import static org.mixit.cesar.cfp.model.ProposalError.Code.REQUIRED;
 import static org.mixit.cesar.cfp.model.ProposalError.Entity.PROPOSAL;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -18,7 +16,6 @@ import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.repository.AccountRepository;
-import org.mixit.cesar.security.service.mail.MailBuilder;
 import org.mixit.cesar.security.service.mail.MailerService;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -50,7 +47,7 @@ public class ProposalService {
     private InterestRepository interestRepository;
 
     @Autowired
-    private MailBuilder mailBuilder;
+    private MailCfpBuilder mailBuilder;
 
     @Autowired
     private MailerService mailerService;
@@ -64,22 +61,22 @@ public class ProposalService {
         //A proposal is valid when speakers are valid
         proposal.getSpeakers().forEach(speaker -> errors.addAll(memberService.checkSpeakerData(memberRepository.findOne(speaker.getId()))));
 
-        if (proposal.getFormat()==null) {
+        if (proposal.getFormat() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("format"));
         }
-        if (proposal.getSummary()==null) {
+        if (proposal.getSummary() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("summary"));
         }
-        if (proposal.getLevel()==null) {
+        if (proposal.getLevel() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("level"));
         }
-        if (proposal.getDescription()==null) {
+        if (proposal.getDescription() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("description"));
         }
-        if (proposal.getIdeaForNow()==null) {
+        if (proposal.getIdeaForNow() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("ideaForNow"));
         }
-        if (proposal.getLang()==null) {
+        if (proposal.getLang() == null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("lang"));
         }
         //To be valid the profile of the speakers have to be valid
@@ -95,7 +92,7 @@ public class ProposalService {
 
         Proposal proposalPersisted = proposal.getId() == null ? null : proposalRepository.findOne(proposal.getId());
 
-        if (proposalPersisted==null) {
+        if (proposalPersisted == null) {
             newProposal = true;
             proposalPersisted = proposalRepository.save(proposal
                     .setAddedAt(LocalDateTime.now())
@@ -136,29 +133,40 @@ public class ProposalService {
             proposalPersisted.setStatus(ProposalStatus.CREATED);
         }
 
-        if (newProposal) {
+        return proposalPersisted;
+    }
+
+
+    public ProposalStatus submit(Proposal proposal, Account account) {
+        Proposal proposalPersisted = save(proposal, account);
+
+        if (ProposalStatus.VALID.equals(proposalPersisted.getStatus())) {
+            proposalPersisted.setStatus(ProposalStatus.SUBMITTED);
+
             proposalPersisted.getSpeakers()
                     .stream()
-                    .forEach(speaker -> mailerService.send(
-                                    speaker.getEmail(),
-                                    mailBuilder.getTitle(MailBuilder.TypeMail.SESSION_SUBMITION,  account),
-                                    mailBuilder.buildContent(MailBuilder.TypeMail.SESSION_SUBMITION, account, Optional.empty()))
+                    .forEach(speaker -> {
+                                Member member = memberRepository.findOne(speaker.getId());
+                                mailerService.send(
+                                        member.getEmail(),
+                                        mailBuilder.getTitle(MailCfpBuilder.TypeMail.SESSION_SUBMITION),
+                                        mailBuilder.buildContent(MailCfpBuilder.TypeMail.SESSION_SUBMITION, account, proposal));
+                            }
                     );
         }
-
-        return proposalPersisted;
+        return proposalPersisted.getStatus();
     }
 
     /**
      * Helper to update the interest list
      */
-    protected void updateProposalInterest(Proposal proposalDb, Proposal proposal){
+    protected void updateProposalInterest(Proposal proposalDb, Proposal proposal) {
         //We can delete old references
         proposalDb.getInterests().removeAll(
                 proposalDb.getInterests()
-                .stream()
-                .filter(inter -> !proposal.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findFirst().isPresent())
-                .collect(Collectors.toList())
+                        .stream()
+                        .filter(inter -> !proposal.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findFirst().isPresent())
+                        .collect(Collectors.toList())
         );
 
         proposal
@@ -166,9 +174,9 @@ public class ProposalService {
                 .stream()
                 .forEach(inter -> {
                     Optional<Interest> interest = proposalDb.getInterests().stream().filter(i -> i.getName().equals(inter.getName())).findAny();
-                    if(!interest.isPresent()){
+                    if (!interest.isPresent()) {
                         Interest interes = interestRepository.findByName(inter.getName());
-                        if(interes==null){
+                        if (interes == null) {
                             interes = interestRepository.save(new Interest().setName(inter.getName()));
                         }
                         proposalDb.addInterest(interes);
