@@ -379,7 +379,7 @@
             "image" : "Pas d'image Gravatar associée à une adresse e-mail"
           },
           "PROPOSAL" : {
-            "general" : "Il manque des informations au niveu de la préposition",
+            "general" : "Il manque des informations au niveu de la proposition",
             "format" : "Le format de la session est important",
             "summary" : "Le résumé de la session apparaît sur toutes nos communications",
             "level" : "Le niveau attendu des participants est manquant",

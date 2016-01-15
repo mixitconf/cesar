@@ -158,7 +158,7 @@
       else{
         ctrl.confirm = {
           display:true
-        }
+        };
       }
     };
     function refresh() {
