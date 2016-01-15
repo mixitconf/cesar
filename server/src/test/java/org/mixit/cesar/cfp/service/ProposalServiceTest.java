@@ -77,7 +77,7 @@ public class ProposalServiceTest {
 
     @Test(expected = NullPointerException.class)
     public void should_throw_NPE_when_saving_null_proposal(){
-        proposalService.save(null);
+        proposalService.save(null, null);
     }
 
 }

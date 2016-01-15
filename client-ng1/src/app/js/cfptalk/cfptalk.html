@@ -122,7 +122,8 @@
             <p class="cesar-helper"><small  translate="view.cfp.talk.maxAttendees.help"></small></p>
 
 
-            <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
+            <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest" legend="view.cfp.talk.interest.help"></cesar-interest-autocomplete>
+
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
                    ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
@@ -132,11 +133,18 @@
                     {{interest.name}}
                 </a>
             </div>
-            <p class="cesar-helper"><small  translate="view.cfp.talk.interest.help"></small></p>
 
-            <cesar-speaker-autocomplete add-speaker="ctrl.addSpeaker(value)" value="speaker"></cesar-speaker-autocomplete>
-            <p class="cesar-helper"><small  translate="view.cfp.talk.cospeaker.help"></small></p>
-            {{ctrl.proposal.speakers}}
+
+            <cesar-speaker-autocomplete add-speaker="ctrl.addSpeaker(value)" value="speaker" legend="view.cfp.talk.cospeaker.help"></cesar-speaker-autocomplete>
+            <div>
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                   ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px">
+                    <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeSpeaker(speaker)">
+                        <i class="material-icons">remove_circle_outline</i>
+                    </button>
+                    {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
+                </a>
+            </div>
 
             <p>&nbsp;</p>
             <div>

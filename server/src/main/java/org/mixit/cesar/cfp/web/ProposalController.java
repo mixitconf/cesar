@@ -9,9 +9,12 @@ import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.security.service.authentification.CurrentUser;
+import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +43,9 @@ public class ProposalController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @RequestMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -76,8 +82,11 @@ public class ProposalController {
                         .collect(Collectors.toList());
     }
 
+
     @RequestMapping(method = RequestMethod.POST)
+    @Authenticated
     public ResponseEntity<Proposal> save(@RequestBody Proposal proposal) {
-        return ResponseEntity.ok().body(proposalService.save(proposal));
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        return ResponseEntity.ok().body(proposalService.save(proposal, currentUser.getCredentials().get()));
     }
 }

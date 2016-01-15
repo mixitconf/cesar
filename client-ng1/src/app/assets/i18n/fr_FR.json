@@ -288,6 +288,7 @@
         "p3" : "Une partie de nos speakers sont invités directement. Si vous en faites partie, vous êtes aussi concernés par le CFP afin de décrire vos sessions afin d'aider les participants de Mix-IT quand ils consulteront le programme",
         "suggestion" : "Si vous n'avez pas d'idée, voici une liste de thème qui peuvent vous inspirer (cette liste n'est pas exhaustive)",
         "explanation" : "Si vous voulez augmenter vos chances d'être retenus nous vous encouragons de soumettre plusieurs propositions. Plus on aura de propositions et meilleur sera le programme final.",
+        "incomplete" : "Données incomplètes",
         "profile" : {
           "title" : "Votre profil",
           "already" : "Données saisies",
@@ -296,9 +297,9 @@
           "company" : "Entreprise",
           "summary" : "Résumé",
           "description" : "Description",
-          "link":"Au moins un lien"
-        },
-        "submission" : "Vos soumissions"
+          "link":"Au moins un lien",
+          "submission" : "Vos soumissions"
+        }
 
       },
       "talk" : {
@@ -312,7 +313,7 @@
         },
         "cospeaker" : {
           "text":"Co-speaker",
-          "help":"Vous pouvez animé les sessions avec une autre personne."
+          "help":"Vous pouvez animé les sessions avec une autre personne. Cette dernière doit avoir un profil sur Mix-IT. Vous pourrez ensuite la retrouver en commençant à saisir son nom."
         },
         "headline":"Vous allez faire une session de 50 minutes sur un sujet super fouillé et bien travaillé, ou un atelier, un jeu de quelques heures où votre public s'éclatera. Merci de remplir ce formulaire pour motiver à la fois le comité de sélection des talks mais avant tout les futurs participants de Mix-IT. Vous ne pourrez soumettre votre session que lorsque l'ensemble des champs sera renseigné. Mais vous pouvez sauvegarder votre brouillon et revenir plus tard pour compléter",
         "createdat":"Créé le {{date}}",
@@ -330,7 +331,7 @@
         },
         "interest" : {
           "text" : "Interest",
-          "help": "Les intérêts sont le petit plus de votre session. Ils permettent de définir quelques mots clés."
+          "help": "Les intérêts sont le petit plus de votre session. Ils permettent de définir quelques mots clés. Commencer à saisir le nom, la liste des intérêts existant apparaîtra"
         },
         "language" : {
           "text" : "Language",

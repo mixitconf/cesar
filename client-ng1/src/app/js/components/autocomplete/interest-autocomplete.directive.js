@@ -20,7 +20,8 @@
       scope: {
         addInterest: '&',
         limit : '@',
-        value :'='
+        value :'=',
+        legend: '@'
       },
       controller: function($scope){
         $scope.open = function(){

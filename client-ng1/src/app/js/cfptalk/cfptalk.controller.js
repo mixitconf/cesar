@@ -1,8 +1,9 @@
 (function () {
 
   'use strict';
+  /*global componentHandler */
 
-  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, CfpService) {
+  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams,$timeout, CfpService, account) {
     'ngInject';
 
     var ctrl = this;
@@ -20,6 +21,7 @@
         interests : []
       };
     }
+    ctrl.account = account;
 
     CfpService.getCategories().then(function(categories){
       ctrl.categories= categories;
@@ -73,6 +75,10 @@
       }
     };
 
+    ctrl.removeSpeaker = function(value){
+      ctrl.proposal.speakers.splice(ctrl.proposal.speakers.indexOf(value),1);
+    };
+
     ctrl.removeInterest = function(value){
       ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value),1);
     };
@@ -88,5 +94,8 @@
         });
     };
 
+    $timeout(function () {
+      componentHandler.upgradeAllRegistered();
+    },900);
   });
 })();

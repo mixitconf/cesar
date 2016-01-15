@@ -161,6 +161,14 @@
 
       .state('cfptalk', new State(USER_ROLES, 'cfptalk/:id', 'js/cfptalk/cfptalk.html')
         .controller('CfpTalkCtrl')
+        .resolve({
+          /* @ngInject */
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function(currentUser){
+              return currentUser;
+            });
+          }
+        })
         .build())
 
       //Account

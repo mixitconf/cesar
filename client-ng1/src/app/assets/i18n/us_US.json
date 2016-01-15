@@ -288,6 +288,7 @@
         "p3" : " A part of our speakers are directly invited. If you are one of them you need to complete your profile and the tals, workshop description to help the attendees the D day.",
         "suggestion" : "If you have no idea on the subject, there's a few suggestion",
         "explanation" : "If you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission is important to help us to build the best program for attendees.",
+        "incomplete" : "Incomplete data",
         "profile" : {
           "title" : "Your profile",
           "already" : "Already entered data<",
@@ -296,10 +297,9 @@
           "company" : "Company",
           "summary" : "Summary",
           "description" : "Description",
-          "link":"At least one link"
-        },
-        "submission" : "Your submissions"
-
+          "link":"At least one link",
+          "submission" : "Your submissions"
+        }
       },
       "talk" : {
         "action" : {

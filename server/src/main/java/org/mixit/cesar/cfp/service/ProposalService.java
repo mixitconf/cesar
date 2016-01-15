@@ -16,6 +16,8 @@ import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalError;
 import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
+import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.service.mail.MailBuilder;
 import org.mixit.cesar.security.service.mail.MailerService;
 import org.mixit.cesar.site.model.member.Interest;
@@ -31,6 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProposalService {
 
+    @Autowired
+    private AccountRepository accountRepository;
     @Autowired
     private MemberService memberService;
 
@@ -80,12 +84,11 @@ public class ProposalService {
         return errors;
     }
 
-    public Proposal save(Proposal proposal) {
+    public Proposal save(Proposal proposal, Account account) {
         Objects.requireNonNull(proposal, "proposal is required");
         boolean newProposal = false;
 
         Proposal proposalPersisted = proposal.getId() == null ? null : proposalRepository.findOne(proposal.getId());
-        Set<Interest> interests = proposal.getInterests();
 
         if (proposalPersisted==null) {
             newProposal = true;
@@ -94,6 +97,7 @@ public class ProposalService {
                     .setEvent(EventService.getCurrent())
                     .setGuest(false)
                     .setStatus(ProposalStatus.CREATED)
+                    .addSpeaker(accountRepository.findOne(account.getId()).getMember())
                     .clearInterests());
         }
         else {

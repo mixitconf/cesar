@@ -20,7 +20,8 @@
       scope: {
         addSpeaker: '&',
         limit : '@',
-        value :'='
+        value :'=',
+        legend: '@'
       },
       controller: function($scope){
         $scope.open = function(){
