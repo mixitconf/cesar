@@ -93,7 +93,7 @@
         .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function (response) {
           ctrl.warningMessage = response.data;
-          if (!ctrl.warningMessage || ctrl.warningMessage.length == 0) {
+          if (!ctrl.warningMessage || ctrl.warningMessage.length === 0) {
             $state.go('cfp');
           }
           refresh();
@@ -128,7 +128,6 @@
         .catch(function () {
           ctrl.errorMessage = 'UNDEFINED';
         });
-      ;
     };
 
     function refresh() {

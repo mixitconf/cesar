@@ -40,23 +40,5 @@ public class ProposalParamControllerTest {
                 .andExpect(content().encoding("UTF-8"));
     }
 
-    @Test
-    public void should_find_status() throws Exception {
-        mockMvc
-                .perform(get("/app/cfp/param/status"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("[\"ACCEPTED\",\"CREATED\",\"REJECTED\",\"SUBMITTED\",\"VALID\"]"))
-                .andExpect(content().encoding("UTF-8"));
-    }
-
-    @Test
-    public void should_find_format() throws Exception {
-        mockMvc
-                .perform(get("/app/cfp/param/format"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("[\"LightningTalk\",\"Talk\",\"Workshop\"]"))
-                .andExpect(content().encoding("UTF-8"));
-    }
-
 
 }

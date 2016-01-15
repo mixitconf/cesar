@@ -2,6 +2,10 @@ package org.mixit.cesar.cfp.service;
 
 import static org.mixit.cesar.cfp.model.ProposalError.Code.REQUIRED;
 import static org.mixit.cesar.cfp.model.ProposalError.Entity.PROPOSAL;
+import static org.mixit.cesar.cfp.model.ProposalStatus.CREATED;
+import static org.mixit.cesar.cfp.model.ProposalStatus.SUBMITTED;
+import static org.mixit.cesar.cfp.model.ProposalStatus.VALID;
+import static org.mixit.cesar.cfp.service.MailCfpBuilder.TypeMail.SESSION_SUBMITION;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -98,7 +102,7 @@ public class ProposalService {
                     .setAddedAt(LocalDateTime.now())
                     .setEvent(EventService.getCurrent())
                     .setGuest(false)
-                    .setStatus(ProposalStatus.CREATED)
+                    .setStatus(CREATED)
                     .addSpeaker(accountRepository.findOne(account.getId()).getMember())
                     .clearInterests());
         }
@@ -126,11 +130,15 @@ public class ProposalService {
 
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
-        if (proposalPersisted.isValid()) {
-            proposalPersisted.setStatus(ProposalStatus.VALID);
-        }
-        else {
-            proposalPersisted.setStatus(ProposalStatus.CREATED);
+
+        //The state can change only if session is not submitted
+        if(proposal.getStatus()==null || VALID.equals(proposal.getStatus()) || CREATED.equals(proposal.getStatus())) {
+            if (proposalPersisted.isValid()) {
+                proposalPersisted.setStatus(VALID);
+            }
+            else {
+                proposalPersisted.setStatus(CREATED);
+            }
         }
 
         return proposalPersisted;
@@ -140,8 +148,8 @@ public class ProposalService {
     public ProposalStatus submit(Proposal proposal, Account account) {
         Proposal proposalPersisted = save(proposal, account);
 
-        if (ProposalStatus.VALID.equals(proposalPersisted.getStatus())) {
-            proposalPersisted.setStatus(ProposalStatus.SUBMITTED);
+        if (VALID.equals(proposalPersisted.getStatus())) {
+            proposalPersisted.setStatus(SUBMITTED);
 
             proposalPersisted.getSpeakers()
                     .stream()
@@ -149,8 +157,8 @@ public class ProposalService {
                                 Member member = memberRepository.findOne(speaker.getId());
                                 mailerService.send(
                                         member.getEmail(),
-                                        mailBuilder.getTitle(MailCfpBuilder.TypeMail.SESSION_SUBMITION),
-                                        mailBuilder.buildContent(MailCfpBuilder.TypeMail.SESSION_SUBMITION, account, proposal));
+                                        mailBuilder.getTitle(SESSION_SUBMITION),
+                                        mailBuilder.buildContent(SESSION_SUBMITION, account, proposal));
                             }
                     );
         }
