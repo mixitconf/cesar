@@ -42,6 +42,10 @@
       });
     });
 
+    ctrl.goback = function(){
+      $state.go('cfp');
+    };
+
     ctrl.addInterest = function (value) {
       if (value) {
         var canPush;
@@ -89,6 +93,8 @@
     ctrl.save = function () {
       delete ctrl.errorMessage;
       delete ctrl.warningMessage;
+      delete ctrl.confirm;
+
       $http
         .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function (response) {
@@ -105,6 +111,7 @@
 
     ctrl.check = function () {
       delete ctrl.warningMessage;
+      delete ctrl.confirm;
       $http
         .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function (response) {
@@ -130,6 +137,30 @@
         });
     };
 
+    ctrl.delete = function(){
+      delete ctrl.errorMessage;
+      if(ctrl.confirm && ctrl.confirm.display && ctrl.confirm.message){
+
+        if(ctrl.confirm.message.toLowerCase()===account.firstname.toLowerCase()){
+          $http
+            .delete('app/cfp/proposal/' + ctrl.proposal.id, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+            .then(function () {
+              $state.go('cfp');
+            })
+            .catch(function () {
+              ctrl.errorMessage = 'UNDEFINED';
+            });
+        }
+        else{
+          ctrl.errorMessage = 'CONFIRMDELETE';
+        }
+      }
+      else{
+        ctrl.confirm = {
+          display:true
+        }
+      }
+    };
     function refresh() {
       $timeout(function () {
         componentHandler.upgradeAllRegistered();

@@ -9,6 +9,7 @@
     "check" : "Check",
     "clear" : "Remove",
     "profile" : "Change your profile",
+    "return" : "Go back",
     "member" : "See how people see your profile",
     "submit" : "Submit"
   },
@@ -313,6 +314,10 @@
           "text" : "Category",
           "help": "This field enables you to link your talk to a global theme."
         },
+        "confirm" : {
+          "text" : "Can you enter your firstname to confirm the proposal deletion :",
+          "help": "Click after again on the delete button"
+        },
         "cospeaker" : {
           "text":"Co-speaker",
           "help":"You can co-animate your session."
@@ -412,7 +417,8 @@
     "CONFIRM_EXIT_FROM_CREATION_ACCOUNT": "You need to fill in a valid email address. Without email you won't be able to access to the secured pages.",
     "FORM" : "Form is invalid",
     "MAXSIZE" : "The max size is {{nbcarac}} car.",
-    "REQUIRED" : "This field is required"
+    "REQUIRED" : "This field is required",
+    "CONFIRMDELETE" : "Deletion canceled... The firstname not corresponding."
   },
   "info": {
     "markdown" : "markdown available",

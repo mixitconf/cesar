@@ -9,6 +9,7 @@
     "check" : "Vérifier",
     "clear" : "Supprimer",
     "profile" : "Modifier votre profil",
+    "return" : "Retour",
     "member" : "Voir comment les autres voient votre profil",
     "submit" : "Soumettre"
   },
@@ -313,6 +314,10 @@
           "text" : "Categorie",
           "help": "Ce champ permet de rattacher votre session à un thème général"
         },
+        "confirm" : {
+          "text" : "Veuillez saisir votre prénom pour confirmer que vous voulez bien supprimer cette session :",
+          "help": "Cliquez ensuite à nouveau sur le bouton supprimer"
+        },
         "cospeaker" : {
           "text":"Co-speaker",
           "help":"Vous pouvez animé les sessions avec une autre personne. Cette dernière doit avoir un profil sur Mix-IT. Vous pourrez ensuite la retrouver en commençant à saisir son nom."
@@ -408,7 +413,8 @@
     "CONFIRM_EXIT_FROM_CREATION_ACCOUNT": "Attention vous devez saisir votre adresse mail pour que votre compte soit créé correctement. Sans adresse mail vous ne pourrrez pas utiliser le site en mode sécurisé.",
     "FORM" : "Les données du formulaire sont invalides",
     "MAXSIZE" : "Ce champ doit faire moins de {{nbcarac}} car.",
-    "REQUIRED" : "Ce champ est obligatoire"
+    "REQUIRED" : "Ce champ est obligatoire",
+    "CONFIRMDELETE" : "Suppression annulée car le prénom ne correspond pas"
   },
   "info": {
     "markdown" : "markdown autorisé",

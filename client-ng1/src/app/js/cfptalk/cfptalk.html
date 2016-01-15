@@ -151,21 +151,36 @@
                 <div ng-repeat="warning in ctrl.warningMessage" translate="view.cfp.talk.warnings.{{warning.entity}}.{{warning.property}}"></div>
             </div>
 
+
+
             <p>&nbsp;</p>
             <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
             <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
+
+            <div class="cesar-error" ng-if="ctrl.confirm.display">
+                <p>&nbsp;</p>
+                <span translate="view.cfp.talk.confirm.text">Veuillez saisir votre prénom pour confirmer que vous voulez bien supprimer cette session :</span>
+                <input type="text" ng-model="ctrl.confirm.message" style="outline: none;"/><br>
+                <span translate="view.cfp.talk.confirm.help">Cliquez ensuite à nouveau sur le bouton supprimer </span>
+            </div>
 
             <div>
                 <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" spinner="spinner" google-icon="save"></cesar-button>
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
-                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'" id="action2" on-click="ctrl.submit()" spinner="spinner" google-icon="send"></cesar-button>
+
+                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'"
+                              style="padding: 0 1em;" id="action2" on-click="ctrl.submit()" spinner="spinner" google-icon="send"></cesar-button>
                 <div class="mdl-tooltip" for="action2" translate="action.submit"></div>
 
-                <!--
-                TODO see how implement modal in MDL
-                <cesar-button disabled="spinner==='on'" id="action2" on-click="ctrl.delete()" spinner="spinner" google-icon="delete" style="padding: 0 0.5em;"></cesar-button>-->
-                <!--<div class="mdl-tooltip" for="action2" translate="action.clear"></div>-->
+
+                <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" google-icon="delete" ng-if="ctrl.proposal.id" ></cesar-button>
+                <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
+
+                <div style="float: right"  class="hide-on-mobile">
+                    <cesar-button id="action4" on-click="ctrl.goback()" spinner="spinner" google-icon="undo"></cesar-button>
+                    <div class="mdl-tooltip" for="action4" translate="action.return"></div>
+                </div>
             </div>
 
         </form>

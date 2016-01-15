@@ -191,4 +191,8 @@ public class ProposalService {
                     }
                 });
     }
+
+    public void delete(Long id){
+        proposalRepository.delete(id);
+    }
 }

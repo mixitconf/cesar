@@ -1,5 +1,7 @@
 package org.mixit.cesar.cfp.web;
 
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,6 +18,7 @@ import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
+import org.mixit.cesar.site.model.article.Article;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -108,5 +111,11 @@ public class ProposalController {
     public ProposalStatus submit(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         return proposalService.submit(proposal, currentUser.getCredentials().get());
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable(value = "id") Long id) {
+        proposalService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }
