@@ -2,10 +2,12 @@ package org.mixit.cesar.cfp.web;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
+import org.mixit.cesar.cfp.model.ProposalError;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
 import org.mixit.cesar.security.model.Account;
@@ -93,5 +95,12 @@ public class ProposalController {
     public ResponseEntity<Proposal> save(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         return ResponseEntity.ok().body(proposalService.save(proposal, currentUser.getCredentials().get()));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/check")
+    @Authenticated
+    public Set<ProposalError> check(@RequestBody Proposal proposal) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        return proposalService.check(proposal);
     }
 }

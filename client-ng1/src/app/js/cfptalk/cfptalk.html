@@ -133,7 +133,6 @@
                     {{interest.name}}
                 </a>
             </div>
-{{ctrl.proposal}}
 
             <cesar-speaker-autocomplete add-speaker="ctrl.addSpeaker(value)" value="speaker" legend="view.cfp.talk.cospeaker.help"></cesar-speaker-autocomplete>
             <div>
@@ -146,10 +145,19 @@
                 </a>
             </div>
 
+
+            <div class="mDl-shadow--2dp" style="padding: 1em;background-color: #eeeeee">
+                <p class="cesar-text" translate="view.cfp.talk.warnings.text"></p>
+                <div ng-repeat="warning in ctrl.warningMessage" translate="view.cfp.talk.warnings.{{warning.entity}}.{{warning.property}}"></div>
+            </div>
+
             <p>&nbsp;</p>
             <div>
                 <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" spinner="spinner" google-icon="save"></cesar-button>
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
+
+                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action2" on-click="ctrl.check()" spinner="spinner" google-icon="brightness_6"></cesar-button>
+                <div class="mdl-tooltip" for="action2" translate="action.check"></div>
 
                 <!--
                 TODO see how implement modal in MDL

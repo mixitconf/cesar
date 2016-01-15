@@ -6,6 +6,7 @@
   "action" : {
     "save" : "Save",
     "add" : "Add",
+    "check" : "Check",
     "clear" : "Remove",
     "profile" : "Change your profile",
     "member" : "See how people see your profile"
@@ -360,6 +361,27 @@
         "types":{
           "text" : "Type",
           "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+        },
+        "warnings": {
+          "text": "La session ne peut pas être soumise pour le moment car plusieurs données sont manquantes",
+          "MEMBER": {
+            "general": "Données vous concernant, ou celle d'un de vos co speakers",
+            "firstname": "Prénom non renseigné",
+            "lastname": "Nom non renseigné",
+            "shortDescription": "Il manque une description rapide de profil",
+            "longDescription": "Il manque une description détaillée de profil",
+            "image": "Pas d'image Gravatar associée à une adresse e-mail"
+          },
+          "PROPOSAL": {
+            "general": "Il manque des informations au niveu de la préposition",
+            "format": "*Le format de la session est important",
+            "summary": "Le résumé de la session apparaît sur toutes nos communications",
+            "level": "Le niveau attendu des participants est manquant",
+            "description": "Nous avons besoin d'une description de votre session",
+            "ideaForNow": "Qu'est ce que votre session peut apporter aux futurs participants?",
+            "lang": "Veuillez nous indiquer en quelle langue vous allez vous exprimer",
+            "speaker": "Aucun speaker n'est associé à la session"
+          }
         }
       }
     }

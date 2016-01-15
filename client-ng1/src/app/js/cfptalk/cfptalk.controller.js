@@ -13,6 +13,7 @@
         .get('app/cfp/proposal/' + $stateParams.id)
         .then(function (response) {
           ctrl.proposal = response.data;
+          ctrl.check();
         });
     }
 
@@ -89,6 +90,18 @@
         .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function () {
           $state.go('cfp');
+        })
+        .catch(function () {
+          ctrl.errorMessage = 'UNDEFINED';
+        });
+    };
+
+    ctrl.check = function () {
+      delete ctrl.warningMessage;
+      $http
+        .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+        .then(function (response) {
+          ctrl.warningMessage = response.data;
         })
         .catch(function () {
           ctrl.errorMessage = 'UNDEFINED';

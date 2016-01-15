@@ -1,7 +1,6 @@
 package org.mixit.cesar.cfp.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import java.util.Set;
 
@@ -17,12 +16,14 @@ import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.Level;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.repository.InterestRepository;
+import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.MemberService;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Test de {@link ProposalService}
@@ -39,6 +40,9 @@ public class ProposalServiceTest {
     private ProposalRepository proposalRepository;
 
     @Mock
+    private MemberRepository memberRepository;
+
+    @Mock
     private InterestRepository interestRepository;
 
     @Mock
@@ -51,7 +55,7 @@ public class ProposalServiceTest {
     private ProposalService proposalService;
 
     @Test
-    public void should_validate_empty_proposal(){
+    public void should_validate_empty_proposal() {
         Set<ProposalError> errors = proposalService.check(new Proposal());
         assertThat(errors)
                 .hasSize(6)
@@ -61,7 +65,9 @@ public class ProposalServiceTest {
     }
 
     @Test
-    public void should_validate_proposal(){
+    public void should_validate_proposal() {
+        Mockito.when(memberRepository.findOne(Matchers.anyLong())).thenReturn(new Member());
+
         Set<ProposalError> errors = proposalService.check(
                 new Proposal()
                         .setFormat(Format.Keynote)
@@ -76,7 +82,7 @@ public class ProposalServiceTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void should_throw_NPE_when_saving_null_proposal(){
+    public void should_throw_NPE_when_saving_null_proposal() {
         proposalService.save(null, null);
     }
 
