@@ -262,9 +262,9 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk (50 mn)",
-        "LightningTalk": "Ligthning talk (5 mn)",
-        "Workshop": "Workshop (1:50)"
+        "Talk": "Talk",
+        "LightningTalk": "Ligthning talk",
+        "Workshop": "Workshop"
       },
       "typeSession": {
         "SLIDES" :"Slides",

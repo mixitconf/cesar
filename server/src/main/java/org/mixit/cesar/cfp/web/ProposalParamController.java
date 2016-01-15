@@ -30,7 +30,7 @@ public class ProposalParamController {
         return Arrays.asList(
                 new Tuple().setKey("categories").setValue(Stream.of(ProposalCategory.values()).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
                 new Tuple().setKey("status").setValue(Stream.of(ProposalStatus.values()).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
-                new Tuple().setKey("formats").setValue(Stream.of(Format.values()).filter(f -> !Format.Keynote.equals(f)).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
+                new Tuple().setKey("formats").setValue(Stream.of(Format.values()).filter(f -> !Format.Keynote.equals(f)&&!Format.LightningTalk.equals(f)).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
                 new Tuple().setKey("types").setValue(Stream.of(ProposalTypeSession.values()).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
                 new Tuple().setKey("levels").setValue(Stream.of(Level.values()).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList())),
                 new Tuple().setKey("maxAttendees").setValue(Stream.of(ProposalNbAttendees.values()).sorted((a, b) -> a.toString().compareTo(b.toString())).collect(Collectors.toList()))

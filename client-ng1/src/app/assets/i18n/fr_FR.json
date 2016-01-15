@@ -262,9 +262,9 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk (50 min questions incluses)",
-        "LightningTalk": "Ligthning talk (5 min)",
-        "Workshop": "Workshop (1H50)"
+        "Talk": "Talk",
+        "LightningTalk": "Ligthning talk",
+        "Workshop": "Workshop"
       },
       "typeSession": {
         "SLIDES" :"Slides",
