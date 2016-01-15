@@ -50,6 +50,7 @@
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function () {
+      delete $rootScope.errorMessage;
       if ($location.path() === '/authent') {
         var search = $location.search();
         if (search.redirect !== undefined) {
