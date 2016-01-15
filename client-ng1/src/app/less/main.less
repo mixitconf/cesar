@@ -53,7 +53,17 @@ textarea {
 .cesar-textfield--search{
   float: right;
 }
-
+.cesar-textfield--expandable{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  background-color: white;
+  box-sizing: content-box;
+}
+.cesar-textfield--expandable:focus{
+  outline:none;
+  border-bottom: 2px solid #5A727C;
+}
 .cesar-layout__content{
   width: 100%;
   position:relative;
@@ -166,6 +176,10 @@ textarea {
   padding-left: 2em;
 }
 
+.cesar-warning-container {
+  padding: 1em;
+  background-color: @background_color_light;
+}
 .cesar-card{
   @media (max-width: 479px) {
     min-height: 50px !important;
@@ -353,3 +367,4 @@ img{
 .cesar-grid__cell{
   flex-grow: 1;
 }
+

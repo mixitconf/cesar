@@ -26,7 +26,7 @@
 
       {id: 'menu.news', link: 'news', mobile: true},
 
-      {id: 'menu.cfp', link: 'cfp'},
+      {id: 'menu.cfp', link: 'cfp', mobile: true},
       //{
       //  id: 'menu.program', submenus: [
       //    //{id: 'planning', link: 'planning', mobile: true},

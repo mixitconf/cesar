@@ -53,12 +53,12 @@ spring:
     username: ${CESAR_DATABASE_USERNAME:mixit}
     password: ${CESAR_DATABASE_PASSWORD:mixit}
     max-wait: 10
+    testOnBorrow : true
+    validationQuery : SELECT 1
   jpa :
     ddl-auto : validate
     hibernate.naming_strategy : org.hibernate.cfg.EJB3NamingStrategy
     database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
-    testOnBorrow : true
-    validationQuery : SELECT 1
   resources:
     chain:
       strategy:

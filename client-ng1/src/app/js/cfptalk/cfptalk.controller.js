@@ -3,7 +3,7 @@
   'use strict';
   /*global componentHandler */
 
-  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams,$timeout, CfpService, account) {
+  angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams,$timeout, account) {
     'ngInject';
 
     var ctrl = this;
@@ -24,20 +24,22 @@
     }
     ctrl.account = account;
 
-    CfpService.getCategories().then(function(categories){
-      ctrl.categories= categories;
-    });
-    CfpService.getFormats().then(function(formats){
-      ctrl.formats= formats;
-    });
-    CfpService.getSessionTypes().then(function(types){
-      ctrl.types= types;
-    });
-    CfpService.getLevels().then(function(levels){
-      ctrl.levels= levels;
-    });
-    CfpService.getMaxAttendees().then(function(maxAttendees){
-      ctrl.maxAttendees= maxAttendees;
+    var i8nKeys = {
+      categories: 'view.cfp.category.',
+      status : 'view.cfp.status.',
+      formats: 'view.cfp.format.',
+      types: 'view.cfp.typeSession.',
+      levels: 'view.cfp.level.',
+      maxAttendees: 'view.cfp.nbattendees.'
+    };
+
+    $http.get('app/cfp/param').then(function(response){
+      response.data.forEach(function(elt){
+        ctrl[elt.key] = [];
+        elt.value.forEach(function(param){
+          ctrl[elt.key][param] = i8nKeys[elt.key] + param;
+        });
+      });
     });
 
     ctrl.addInterest = function(value){

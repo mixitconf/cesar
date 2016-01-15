@@ -86,7 +86,7 @@
                     <tr ng-repeat="proposal in ctrl.proposals" ui-sref="cfptalk({id : proposal.id})">
                         <td class="mdl-data-table__cell--non-numeric">
                             <p class="cesar-text">
-                                {{::proposal.title}}
+                                {{::proposal.title}}  <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
                             </p>
                             <p>{{::proposal.summary}}</p>
                             <p ng-if="!proposal.valid" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>

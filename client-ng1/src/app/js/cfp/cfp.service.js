@@ -8,6 +8,7 @@
   angular.module('cesar-cfp').factory('CfpService', function ($http) {
     'ngInject';
 
+
     function getParameters(url, i18nkey){
       return $http.get(url).then(function(response){
           var parameters = {};
