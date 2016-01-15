@@ -299,7 +299,8 @@
           "description" : "Description",
           "link":"At least one link",
           "submission" : "Your submissions"
-        }
+        },
+        "image" : "We use Gravatar to associate an image with your email. Thank's to update your Gravatar"
       },
       "talk" : {
         "action" : {

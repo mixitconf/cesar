@@ -23,7 +23,7 @@ public class Interest implements Comparable<Interest> {
     private Long id;
 
     @Size(max = 50)
-    @JsonView(UserView.class)
+    @JsonView({FlatView.class, UserView.class})
     public String name;
 
     public Long getId() {

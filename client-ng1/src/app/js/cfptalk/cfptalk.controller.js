@@ -84,6 +84,7 @@
     };
 
     ctrl.save = function () {
+      delete ctrl.errorMessage;
       $http
         .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function () {
@@ -96,6 +97,6 @@
 
     $timeout(function () {
       componentHandler.upgradeAllRegistered();
-    },900);
+    },1000);
   });
 })();

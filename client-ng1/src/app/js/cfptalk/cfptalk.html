@@ -133,12 +133,12 @@
                     {{interest.name}}
                 </a>
             </div>
-
+{{ctrl.proposal}}
 
             <cesar-speaker-autocomplete add-speaker="ctrl.addSpeaker(value)" value="speaker" legend="view.cfp.talk.cospeaker.help"></cesar-speaker-autocomplete>
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
-                   ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px">
+                   ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px" ng-if="speaker.id!==ctrl.account.member.id">
                     <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeSpeaker(speaker)">
                         <i class="material-icons">remove_circle_outline</i>
                     </button>

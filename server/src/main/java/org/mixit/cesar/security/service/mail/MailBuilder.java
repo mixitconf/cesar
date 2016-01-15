@@ -83,9 +83,10 @@ public class MailBuilder {
             case SESSION_REJECTED:
             case SESSION_SUBMITION:
                 return "<p>TODO à faire et à gérer correctement ces mails";
-        }
 
-        return null;
+            default:
+                return null;
+        }
     }
 
     public String getTitle(TypeMail typeMail, Account account) {
@@ -114,6 +115,7 @@ public class MailBuilder {
             case SESSION_REJECTED:
             case SESSION_SUBMITION:
                 title = "Session on Mix-IT CFP";
+                break;
 
             default:
                 throw new IllegalArgumentException();

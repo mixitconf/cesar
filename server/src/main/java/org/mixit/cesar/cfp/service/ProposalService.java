@@ -23,6 +23,7 @@ import org.mixit.cesar.security.service.mail.MailerService;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.repository.InterestRepository;
+import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,12 @@ public class ProposalService {
 
     @Autowired
     private AccountRepository accountRepository;
+
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Autowired
     private ProposalRepository proposalRepository;
@@ -57,7 +62,7 @@ public class ProposalService {
         Set<ProposalError> errors = Sets.newHashSet();
 
         //A proposal is valid when speakers are valid
-        proposal.getSpeakers().forEach(speaker -> errors.addAll(memberService.checkSpeakerData(speaker)));
+        proposal.getSpeakers().forEach(speaker -> errors.addAll(memberService.checkSpeakerData(memberRepository.findOne(speaker.getId()))));
 
         if (proposal.getFormat()==null) {
             errors.add(new ProposalError().setEntity(PROPOSAL).setCode(REQUIRED).setProperty("format"));
@@ -136,8 +141,8 @@ public class ProposalService {
                     .stream()
                     .forEach(speaker -> mailerService.send(
                                     speaker.getEmail(),
-                                    mailBuilder.getTitle(MailBuilder.TypeMail.SESSION_SUBMITION, null),
-                                    mailBuilder.buildContent(MailBuilder.TypeMail.SESSION_SUBMITION, null, Optional.empty()))
+                                    mailBuilder.getTitle(MailBuilder.TypeMail.SESSION_SUBMITION,  account),
+                                    mailBuilder.buildContent(MailBuilder.TypeMail.SESSION_SUBMITION, account, Optional.empty()))
                     );
         }
 

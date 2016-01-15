@@ -22,7 +22,10 @@ import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
+import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -35,15 +38,19 @@ public class Proposal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     protected Format format;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     protected ProposalCategory category;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     protected ProposalTypeSession typeSession;
 
     @ManyToOne
@@ -51,18 +58,23 @@ public class Proposal {
 
     @NotNull
     @Size(max = 100)
+    @JsonView(FlatView.class)
     private String title;
 
     @Size(max = 300)
+    @JsonView(FlatView.class)
     private String summary;
 
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @JsonView(FlatView.class)
     private LocalDateTime addedAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private ProposalNbAttendees maxAttendees;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private Level level;
 
     /**
@@ -71,19 +83,24 @@ public class Proposal {
     private boolean guest = false;
 
     @Lob
+    @JsonView(FlatView.class)
     private String messageForStaff;
 
     @Lob
+    @JsonView(FlatView.class)
     private String description;
 
     @Column
     @Lob
+    @JsonView(FlatView.class)
     private String ideaForNow;
 
     @ManyToMany
+    @JsonView(FlatView.class)
     private Set<Member> speakers = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST)
+    @JsonView(FlatView.class)
     private Set<Interest> interests = new HashSet<>();
 
     /**
@@ -94,14 +111,17 @@ public class Proposal {
     private List<ProposalComment> comments = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private SessionLanguage lang = SessionLanguage.fr;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private ProposalStatus status;
 
     /* true if Staff has given feedback */
     private boolean feedback;
 
+    @JsonView(FlatView.class)
     private boolean valid;
 
     public Long getId() {

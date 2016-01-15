@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
@@ -11,6 +12,7 @@ import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
+import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +51,14 @@ public class ProposalController {
 
     @RequestMapping()
     @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
     public List<Proposal> categories(@RequestParam(required = false) Integer year) {
         return proposalRepository.findAllProposals(eventService.getEvent(year).getId());
     }
 
     @RequestMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
     public Proposal category(@PathVariable(value = "id") Long id) {
         return proposalRepository.findOne(id);
     }
@@ -85,6 +89,7 @@ public class ProposalController {
 
     @RequestMapping(method = RequestMethod.POST)
     @Authenticated
+    @JsonView(FlatView.class)
     public ResponseEntity<Proposal> save(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         return ResponseEntity.ok().body(proposalService.save(proposal, currentUser.getCredentials().get()));
