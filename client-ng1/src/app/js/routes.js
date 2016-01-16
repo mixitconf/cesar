@@ -72,7 +72,13 @@
             .build())
         .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
             .controller('AdminArticlesCtrl')
-            .resolve({articles: getAllArticles})
+            .resolve({
+            /* @ngInject */
+            articles: function(ArticleService){
+              return ArticleService.getAll(true).then(function (response) {
+                return response.data;
+              });
+            }})
             .build())
 
       //Program

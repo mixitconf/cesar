@@ -69,10 +69,6 @@
     }
   },
   "view": {
-    "news": {
-      "title": "Actualités",
-      "at": "le"
-    },
     "conduite": {
       "title": "Code de conduite",
       "p1": "Les principes qu'il faut respecter si vous venez à Mix-IT",
@@ -120,7 +116,9 @@
       "title": "",
       "team": "La team Mix-IT",
       "list": "Liste des articles",
-      "comment": "Commentaires"
+      "comment": "Commentaires",
+      "at": "le",
+      "published" : "Publié"
     },
     "come": {
       "title": "Comment venir à Mix-IT",

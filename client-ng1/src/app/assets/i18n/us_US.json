@@ -69,10 +69,6 @@
     }
   },
   "view": {
-    "news": {
-      "title": "News",
-      "at": "the"
-    },
     "conduite": {
       "title": "Code of conduct",
       "p1": "Principles to follow if you come to Mix-IT",
@@ -120,7 +116,9 @@
       "title": "",
       "team": "Mix-IT Team",
       "list": "List of articles",
-      "comment": "Comments"
+      "comment": "Comments",
+      "at": "the",
+      "published" : "Published"
     },
     "come": {
       "title": "How to come to Mix-IT?",

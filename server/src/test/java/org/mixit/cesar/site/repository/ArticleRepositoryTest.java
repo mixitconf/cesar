@@ -58,6 +58,6 @@ public class ArticleRepositoryTest {
 
     @Test
     public void findCurrentEvent(){
-        assertThat(articleRepository.findArticleById(1L).getAuthor().getFirstname()).isEqualTo("Guillaume");
+        assertThat(articleRepository.findPublishedArticleById(1L).getAuthor().getFirstname()).isEqualTo("Guillaume");
     }
 }

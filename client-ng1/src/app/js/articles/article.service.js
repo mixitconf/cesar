@@ -5,13 +5,15 @@
   angular.module('cesar-articles').factory('ArticleService', function ($http) {
     'ngInject';
 
-    function getAll(){
-      return $http.get('/api/article');
+
+    function getAll(admin){
+      return $http.get(admin ? '/app/article' : '/api/article');
     }
 
-    function getById(id){
-      return $http.get('/api/article/' + id);
+    function getById(id, admin){
+      return $http.get(admin ? '/app/article/' + id : '/api/article/' + id);
     }
+
 
     return {
       getAll : getAll,

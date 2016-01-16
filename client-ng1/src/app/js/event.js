@@ -87,7 +87,7 @@
     $rootScope.$on('$viewContentLoaded', function () {
       $timeout(function () {
         componentHandler.upgradeAllRegistered();
-      });
+      },400);
     });
 
     $rootScope.$on('event:language-changed', function (event, next) {

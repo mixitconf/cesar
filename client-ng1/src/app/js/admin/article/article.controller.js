@@ -1,19 +1,21 @@
 (function () {
 
   'use strict';
+  /*global componentHandler */
 
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-articles').controller('AdminArticleCtrl', function ($stateParams, $state, $http, ArticleService) {
+  angular.module('cesar-articles').controller('AdminArticleCtrl', function ($stateParams, $state, $http,$timeout, ArticleService) {
     'ngInject';
 
     var ctrl = this;
     var id = $stateParams.id;
 
     if(id){
-      ArticleService.getById(id).then(function (response) {
+      ArticleService.getById(id, true).then(function (response) {
         ctrl.article = response.data;
+        refresh();
       });
     }
     else{
@@ -33,5 +35,11 @@
             });
       }
     };
+
+    function refresh() {
+      $timeout(function () {
+        componentHandler.upgradeAllRegistered();
+      }, 1000);
+    }
   });
 })();

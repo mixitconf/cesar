@@ -31,8 +31,8 @@ public class ArticleController {
     public ResponseEntity<Article> getArticle(@PathVariable("id") Long id) {
         return ResponseEntity
                 .ok()
-                .cacheControl(CacheControl.maxAge(4, TimeUnit.DAYS))
-                .body(articleRepository.findArticleById(id));
+                //.cacheControl(CacheControl.maxAge(4, TimeUnit.DAYS))
+                .body(articleRepository.findPublishedArticleById(id));
     }
 
     @RequestMapping

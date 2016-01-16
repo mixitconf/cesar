@@ -19,6 +19,9 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
 
     List<Member> findByEmail(String email);
 
+    @Query(value = "SELECT DISTINCT m FROM Staff m where id=:id")
+    Staff findOneStaff(@Param("id") Long id);
+
     @Cacheable(CACHE_MEMBER)
     @Query(value = "SELECT DISTINCT m FROM Member m left join fetch m.interests i left join fetch m.sharedLinks l")
     List<Member> findAllMembers();
