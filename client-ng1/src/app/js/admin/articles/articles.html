@@ -3,7 +3,15 @@
 
     <div class="cesar-section--bottom">
 
-        <cesar-search-bar></cesar-search-bar>
+
+        <div>
+            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="admarticle" id="addTalk">
+                <i class="material-icons">add</i>
+            </a>
+            <div class="mdl-tooltip" for="addTalk" translate="action.add"></div>
+            <cesar-search-bar></cesar-search-bar>
+        </div>
+
 
         <div class="mdl-grid">
             <div ng-repeat="article in ctrl.articles | filter:search"
