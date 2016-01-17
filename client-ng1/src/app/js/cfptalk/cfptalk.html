@@ -78,7 +78,7 @@
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="category" translate="view.cfp.talk.category.text">Category</label>
-                <select class="mdl-textfield__input" ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield--expandable cesar-textfield--expandable"
+                <select ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.category">
                     <option value=""></option>
                 </select>
