@@ -20,4 +20,6 @@ public interface ProposalRepository extends CrudRepository<Proposal, Long> {
     List<Proposal> findAllProposals(@Param("idEvent") Long idEvent);
 
 
+    @Query(value = "SELECT DISTINCT s FROM Proposal s left join fetch s.interests i left join fetch s.speakers sp where s.event.id = :idEvent and sp.id = :idSpeaker")
+    List<Proposal> findMyProposals(@Param("idEvent") Long idEvent, @Param("idSpeaker") Long idSpeaker);
 }

@@ -13,6 +13,6 @@ describe('Page : home', function () {
 
     element(by.className('american-flag')).click();
 
-    expect(element(by.id('headbandComeback')).getText()).toBe('come back on the 21 and 22 April 2016');
+    expect(element(by.id('headbandComeback')).getText()).toBe('returns on April 21st and 22nd, 2016');
   });
 });

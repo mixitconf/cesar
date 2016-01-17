@@ -13,9 +13,11 @@ import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
 import org.mixit.cesar.security.model.Account;
+import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
+import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.article.Article;
@@ -57,8 +59,18 @@ public class ProposalController {
     @RequestMapping()
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public List<Proposal> categories(@RequestParam(required = false) Integer year) {
+    @NeedsRole(Role.ADMIN)
+    public List<Proposal> allProposals(@RequestParam(required = false) Integer year) {
         return proposalRepository.findAllProposals(eventService.getEvent(year).getId());
+    }
+
+    @RequestMapping("/mine")
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
+    @Authenticated
+    public List<Proposal> myProposal(@RequestParam(required = false) Integer year) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        return proposalRepository.findMyProposals(eventService.getEvent(year).getId(), currentUser.getCredentials().get().getMember().getId());
     }
 
     @RequestMapping("/{id}")

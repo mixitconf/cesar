@@ -42,7 +42,7 @@
 
 
     ctrl.refresh = function(){
-      $http.get('app/cfp/proposal').then(
+      $http.get('app/cfp/proposal/mine').then(
         function(response){
           ctrl.proposals = response.data;
         }
