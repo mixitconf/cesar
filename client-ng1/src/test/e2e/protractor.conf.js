@@ -23,7 +23,7 @@ exports.config = {
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:12001',
+  baseUrl: 'http://cesar.cfapps.io',
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.

@@ -1,18 +1,27 @@
+var HomePage = require('./home.po.js');
+
 describe('Page : home', function () {
 
+  var homepage = new HomePage();
+
   beforeEach(function () {
-    browser.get('home');
+    homepage.get();
   });
 
   it('should have the title "Mix-IT"', function () {
-    expect(browser.getTitle()).toBe('Mix-IT');
+    expect(homepage.getTitle()).toBe('Mix-IT');
   });
 
   it('should translate site in english when I click on the button with the american flag', function () {
-    expect(element(by.id('headbandComeback')).getText()).toBe('revient les 21 et 22 avril 2016');
-
-    element(by.className('american-flag')).click();
-
-    expect(element(by.id('headbandComeback')).getText()).toBe('returns on April 21st and 22nd, 2016');
+    expect(homepage.getHeaderMessage()).toBe('revient les 21 et 22 avril 2016');
+    homepage.setLanguage('american');
+    expect(homepage.getHeaderMessage()).toBe('returns on April 21st and 22nd, 2016');
   });
+
+  it('should translate site in english and return in french', function () {
+    expect(homepage.getHeaderMessage()).toBe('returns on April 21st and 22nd, 2016');
+    homepage.setLanguage('french');
+    expect(homepage.getHeaderMessage()).toBe('revient les 21 et 22 avril 2016');
+  });
+
 });
