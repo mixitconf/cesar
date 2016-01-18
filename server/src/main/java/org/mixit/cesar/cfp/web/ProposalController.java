@@ -106,10 +106,9 @@ public class ProposalController {
 
     @RequestMapping(method = RequestMethod.POST)
     @Authenticated
-    public Set<ProposalError> save(@RequestBody Proposal proposal) {
+    public Proposal save(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        Proposal proposalPersisted = proposalService.save(proposal, currentUser.getCredentials().get());
-        return proposalService.check(proposalPersisted);
+        return proposalService.save(proposal, currentUser.getCredentials().get());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/check")
