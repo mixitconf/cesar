@@ -54,6 +54,13 @@
             <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff"
                     translate="view.news.team"></a></div>
 
+            <div class="cesar-error" ng-if="ctrl.confirm.display">
+                <p>&nbsp;</p>
+                <span translate="view.cfp.talk.confirm.text">Veuillez saisir votre prénom pour confirmer que vous voulez bien supprimer cet article :</span>
+                <input type="text" ng-model="ctrl.confirm.message" style="outline: none;"/><br>
+                <span translate="view.cfp.talk.confirm.help">Cliquez ensuite à nouveau sur le bouton supprimer </span>
+            </div>
+
             <p>&nbsp;</p>
 
             <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
@@ -61,6 +68,8 @@
             </cesar-button>
             <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
+            <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" google-icon="delete" ng-if="ctrl.article.id" ></cesar-button>
+            <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
         </form>
     </div>
     <p>&nbsp;</p>

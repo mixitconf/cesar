@@ -76,7 +76,7 @@ public class ProposalController {
     @RequestMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public Proposal category(@PathVariable(value = "id") Long id) {
+    public Proposal proposal(@PathVariable(value = "id") Long id) {
         return proposalRepository.findOne(id);
     }
 
@@ -106,6 +106,7 @@ public class ProposalController {
 
     @RequestMapping(method = RequestMethod.POST)
     @Authenticated
+    @JsonView(FlatView.class)
     public Proposal save(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         return proposalService.save(proposal, currentUser.getCredentials().get());

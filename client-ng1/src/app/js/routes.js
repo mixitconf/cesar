@@ -69,6 +69,14 @@
 
         .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
             .controller('AdminArticleCtrl')
+            .resolve({
+                /* @ngInject */
+                account: function (AuthenticationService) {
+                  return AuthenticationService.currentUser().then(function(currentUser){
+                    return currentUser;
+                  });
+                }
+            })
             .build())
         .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
             .controller('AdminArticlesCtrl')
