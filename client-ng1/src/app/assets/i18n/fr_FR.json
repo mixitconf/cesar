@@ -281,7 +281,7 @@
         "BETWEEN_0_AND_10" : "Entre 0 et 10",
         "BETWEEN_10_AND_40" : "Entre 10 et 40",
         "BETWEEN_40_AND_100": "Entre 40 et 100",
-        "BETWEEN_100_AND_INFINITE" : "Plus de 100"
+        "MORE_THAN_100" : "Plus de 100"
       },
       "home" : {
         "actiondisabled" : "Action accessible lorsque le profil est complété",
