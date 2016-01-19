@@ -1,5 +1,7 @@
 package org.mixit.cesar.security.web;
 
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_MEMBER;
+
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,6 +24,7 @@ import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,6 +64,9 @@ public class AccountController {
     @Autowired
     private CookieService cookieService;
 
+    @Autowired
+    private CacheManager cacheManager;
+
     /**
      * When we create a new user we want to know if a login is already used. This method checks the login
      */
@@ -93,7 +99,9 @@ public class AccountController {
     @RequestMapping(method = RequestMethod.PUT)
     @JsonView(FlatView.class)
     public ResponseEntity<Account> updateUser(@RequestBody Account account) {
-        return new ResponseEntity<>(createCesarAccountService.updateAccount(account), HttpStatus.OK);
+        Account accountSaved = createCesarAccountService.updateAccount(account);
+        cacheManager.getCache(CACHE_MEMBER).clear();
+        return new ResponseEntity<>(accountSaved, HttpStatus.OK);
     }
 
     /**
@@ -102,7 +110,9 @@ public class AccountController {
     @RequestMapping(value = "/cesar", method = RequestMethod.POST)
     @JsonView(FlatView.class)
     public ResponseEntity<Account> user(@RequestBody Account account) {
-        return new ResponseEntity<>(createCesarAccountService.createNormalAccount(account), HttpStatus.OK);
+        Account accountSaved = createCesarAccountService.createNormalAccount(account);
+        cacheManager.getCache(CACHE_MEMBER).clear();
+        return new ResponseEntity<>(accountSaved, HttpStatus.OK);
     }
 
     /**
@@ -119,6 +129,7 @@ public class AccountController {
                 account,
                 currentUser.getCredentials().get().getToken(),
                 currentUser.getCredentials().get().getOauthId());
+        cacheManager.getCache(CACHE_MEMBER).clear();
 
         return new ResponseEntity(HttpStatus.OK);
     }

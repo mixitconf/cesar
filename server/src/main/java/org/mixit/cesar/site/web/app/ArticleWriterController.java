@@ -83,7 +83,6 @@ public class ArticleWriterController {
             articleSaved = article.setAuthor(memberRepository.findOneStaff(currentUser.getCredentials().get().getMember().getId()));
         }
 
-        //TODO something cleaner
         articleSaved = articleRepository.save(articleSaved);
         cacheManager.getCache(CACHE_ARTICLE).clear();
 
