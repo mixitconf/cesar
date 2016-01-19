@@ -51,6 +51,7 @@
                 var canPush;
                 if (!ctrl.proposal.interests) {
                     canPush = true;
+                    ctrl.proposal.interests = [];
                 }
                 else {
                     canPush = ctrl.proposal.interests.filter(function (elt) {
