@@ -51,7 +51,7 @@
             var q = prefix.toUpperCase().trim();
 
             $scope.subselect =  speakers.filter(function(elt){
-              return elt.key.toUpperCase().indexOf(q) > 0;
+              return elt.key.toUpperCase().indexOf(q) >= 0;
             }).slice(0, $scope.limit ? $scope.limit : 5);
           }
           else{

@@ -92,41 +92,37 @@ public class ProposalService {
 
     public Proposal save(Proposal proposal, Account account) {
         Objects.requireNonNull(proposal, "proposal is required");
-        boolean newProposal = false;
 
         Proposal proposalPersisted = proposal.getId() == null ? null : proposalRepository.findOne(proposal.getId());
 
         if (proposalPersisted == null) {
-            newProposal = true;
-            proposalPersisted = proposalRepository.save(proposal
-                    .setAddedAt(LocalDateTime.now())
+            proposalPersisted = new Proposal()
                     .setEvent(EventService.getCurrent())
-                    .setGuest(false)
                     .setStatus(CREATED)
-                    .addSpeaker(accountRepository.findOne(account.getId()).getMember())
-                    .clearInterests());
+                    .addSpeaker(accountRepository.findOne(account.getId()).getMember());
         }
-        else {
-            proposalPersisted
-                    .setCategory(proposal.getCategory())
-                    .setDescription(proposal.getDescription())
-                    .setFormat(proposal.getFormat())
-                    .setTitle(proposal.getTitle())
-                    .setSummary(proposal.getSummary())
-                    .setLevel(proposal.getLevel())
-                    .setCategory(proposal.getCategory())
-                    .setFormat(proposal.getFormat())
-                    .setIdeaForNow(proposal.getIdeaForNow())
-                    .setMaxAttendees(proposal.getMaxAttendees())
-                    .setTypeSession(proposal.getTypeSession())
-                    .setMessageForStaff(proposal.getMessageForStaff())
-                    .setMaxAttendees(proposal.getMaxAttendees())
-                    .clearSpeakers()
-                    .getSpeakers().addAll(proposal.getSpeakers());
-        }
+
+        proposalPersisted = proposalRepository.save(proposalPersisted
+                .setCategory(proposal.getCategory())
+                .setDescription(proposal.getDescription())
+                .setFormat(proposal.getFormat())
+                .setTitle(proposal.getTitle())
+                .setSummary(proposal.getSummary())
+                .setLevel(proposal.getLevel())
+                .setCategory(proposal.getCategory())
+                .setFormat(proposal.getFormat())
+                .setIdeaForNow(proposal.getIdeaForNow())
+                .setMaxAttendees(proposal.getMaxAttendees())
+                .setTypeSession(proposal.getTypeSession())
+                .setMessageForStaff(proposal.getMessageForStaff())
+                .setMaxAttendees(proposal.getMaxAttendees())
+                );
 
         //Interests
         updateProposalInterest(proposalPersisted, proposal);
+
+        //Speakers
+        updateProposalSpeakert(proposalPersisted, proposal, account);
 
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
@@ -163,6 +159,29 @@ public class ProposalService {
                     );
         }
         return proposalPersisted.getStatus();
+    }
+
+    /**
+     * Helper to update the speaker list
+     */
+    protected void updateProposalSpeakert(Proposal proposalDb, Proposal proposal, Account account) {
+        //We can delete old reference only the reference with the curent user
+        proposalDb.getSpeakers().removeAll(
+                proposalDb.getSpeakers()
+                        .stream()
+                        .filter(speaker -> !account.getMember().getId().equals(speaker.getId()) && !proposal.getSpeakers().stream().filter(i -> i.getId().equals(speaker.getId())).findFirst().isPresent())
+                        .collect(Collectors.toList())
+        );
+
+        proposal
+                .getSpeakers()
+                .stream()
+                .forEach(speak -> {
+                    Optional<Member> speaker = proposalDb.getSpeakers().stream().filter(i -> i.getId().equals(speak.getId())).findAny();
+                    if (!speaker.isPresent()) {
+                        proposalDb.addSpeaker(memberRepository.findOne(speak.getId()));
+                    }
+                });
     }
 
     /**

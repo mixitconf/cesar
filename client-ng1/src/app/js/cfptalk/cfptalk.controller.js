@@ -69,6 +69,7 @@
                 var canPush;
                 if (!ctrl.proposal.speakers) {
                     canPush = true;
+                    ctrl.proposal.speakers = [];
                 }
                 else {
                     canPush = ctrl.proposal.speakers.filter(function (elt) {
@@ -119,7 +120,6 @@
                   .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
                   .then(function (response) {
                       ctrl.warningMessage = response.data;
-                      console.log(ctrl.warningMessage)
                       refresh();
                   })
                   .catch(function () {

@@ -95,7 +95,7 @@ public class ProposalController {
                         .stream()
                         .collect(Collectors.groupingBy(
                                 a -> a.getFirstname().concat(" ").concat(a.getLastname()),
-                                Collectors.mapping(Account::getId, Collectors.toList())
+                                Collectors.mapping(a -> a.getMember().getId(), Collectors.toList())
                         ))
                         .entrySet()
                         .stream()
