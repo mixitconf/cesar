@@ -322,7 +322,7 @@
           "text":"Co-speaker",
           "help":"Vous pouvez animer les sessions avec une autre personne. Cette dernière doit avoir un profil sur Mix-IT. Vous pourrez ensuite la retrouver en commençant à saisir son nom."
         },
-        "headline":"Vous allez faire une session de 50 minutes sur un sujet super fouillé et bien travaillé, ou un atelier, un jeu de quelques heures où votre public s'éclatera. Merci de remplir ce formulaire pour motiver à la fois le comité de sélection des talks mais avant tout les futurs participants de Mix-IT. Vous ne pourrez soumettre votre session que lorsque l'ensemble des champs sera renseigné. Mais vous pouvez sauvegarder votre brouillon et revenir plus tard pour compléter",
+        "headline":"Merci de remplir ce formulaire pour motiver à la fois le comité de sélection des talks mais avant tout les futurs participants de Mix-IT. Vous ne pourrez soumettre votre session que lorsque l'ensemble des champs sera renseigné. Mais vous pouvez sauvegarder votre brouillon et revenir plus tard pour compléter",
         "createdat":"Créé le {{date}}",
         "description" : {
           "text" : "Description",
