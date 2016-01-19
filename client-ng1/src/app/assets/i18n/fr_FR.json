@@ -342,14 +342,14 @@
         },
         "language" : {
           "text" : "Language",
-          "help": "Mix-IT est une conférence qui accueille des speakers étrangers. Une track sera dédiée à nos amis anglophones qui ne comprennent pas le français"
+          "help": "Mix-IT est une conférence qui accueille des speakers étrangers. Une track sera dédiée à nos amis anglophones qui ne comprennent pas le français. Si vous pouvez faire le talk en anglais ou en français merci de nous l'indiquer dans la zone message pour le staff"
         },
         "levels":{
           "text" : "Niveau",
           "help": "Mix-IT est un espace qui rassemble à la fois des débutants, des gens confirmés ou des experts sur les sujets que vous pouvez présenter. Evitez de décevoir des participants qui se seraient trompés de session non pas parce que votre intervention n'est pas intéressante mais plutôt parce qu'elle ne s'adresse pas à eux."
         },
         "messageForStaff" : {
-          "text" : "Message for the staff (references, experience...)",
+          "text" : "Message pour le staff (références, expérience...)",
           "help": "Si vous avez déjà joué votre session quelque part si vous voulez nous faire part de vos contraintes exprimez vous, cette zone de texte ne sera lue que par le comité de sélection."
         },
         "maxAttendees" : {
@@ -357,7 +357,7 @@
           "help": "Si vous faites un atelier, une session ou vous souhaitez un nombre limité de personnes, merci de nous l'indiquer."
         },
         "summary":{
-          "text" : "Summary",
+          "text" : "Préentation",
           "help": "Ce résumé sera repris sur le programme donc essayer de dire en peu de mot ce que vous allez apporter aux participants"
         },
         "title":{

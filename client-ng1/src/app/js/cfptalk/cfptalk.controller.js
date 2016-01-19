@@ -111,17 +111,21 @@
         };
 
         ctrl.check = function () {
-            delete ctrl.warningMessage;
-            delete ctrl.confirm;
-            $http
-                .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-                .then(function (response) {
-                    ctrl.warningMessage = response.data;
-                    refresh();
-                })
-                .catch(function () {
-                    ctrl.errorMessage = 'UNDEFINED';
-                });
+            if(ctrl.proposal.id){
+                delete ctrl.warningMessage;
+                delete ctrl.confirm;
+
+                $http
+                  .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+                  .then(function (response) {
+                      ctrl.warningMessage = response.data;
+                      console.log(ctrl.warningMessage)
+                      refresh();
+                  })
+                  .catch(function () {
+                      ctrl.errorMessage = 'UNDEFINED';
+                  });
+            }
         };
 
         ctrl.submit = function () {

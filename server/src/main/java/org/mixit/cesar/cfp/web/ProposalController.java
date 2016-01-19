@@ -113,8 +113,10 @@ public class ProposalController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/check")
+    @Authenticated
     public Set<ProposalError> check(@RequestBody Proposal proposal) {
-        return proposalService.check(proposal);
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        return proposalService.check(proposalService.save(proposal, currentUser.getCredentials().get()));
     }
 
 
