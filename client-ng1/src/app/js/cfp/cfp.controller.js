@@ -12,6 +12,7 @@
 
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
+      return;
     }
 
     $http.get('app/cfp/param/category').then(

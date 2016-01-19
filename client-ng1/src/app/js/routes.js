@@ -130,7 +130,7 @@
           }
         })
         .build())
-      .state('member', new State(USER_ROLES, 'member/:type/:id', 'js/member/member.html').controller('MemberCtrl')
+      .state('member', new State(USER_ROLES, 'member/:type/:id?redirect', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
           /* @ngInject */
           member: function (MemberService, $stateParams) {
@@ -186,7 +186,7 @@
         .build())
 
       //Account
-      .state('account', new State(USER_ROLES, 'account', 'js/account/account.html')
+      .state('account', new State(USER_ROLES, 'account?redirect', 'js/account/account.html')
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({
@@ -209,7 +209,7 @@
 
       //Security
       .state('logout', new State(USER_ROLES, 'logout', 'js/home/home.html').build())
-      .state('authent', new State(USER_ROLES, 'authent', 'js/login/login.html').controller('LoginCtrl').build())
+      .state('authent', new State(USER_ROLES, 'authent?redirect', 'js/login/login.html').controller('LoginCtrl').build())
       .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'js/password-lost/password-lost.html').controller('PasswordLostCtrl').build())
       .state('passwordreinit', new State(USER_ROLES, 'passwordreinit', 'js/password-reinit/password-reinit.html')
         .controller('PasswordReinitCtrl')

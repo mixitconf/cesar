@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('AccountCtrl', function ($rootScope, $http, $state, $translate, $filter, account, LANGUAGES) {
+  angular.module('cesar-account').controller('AccountCtrl', function ($rootScope, $http, $state,$stateParams, $translate, $filter, account, LANGUAGES) {
     'ngInject';
 
     var ctrl = this;
@@ -21,7 +21,12 @@
               $translate.use((ctrl.account.defaultLanguage === 'en') ? LANGUAGES.en : LANGUAGES.fr);
             }
             $rootScope.$broadcast('event:auth-changed');
-            $state.go('home');
+            if($stateParams.redirect){
+              $state.go($stateParams.redirect);
+            }
+            else{
+              $state.go('home');
+            }
           })
           .catch(function (response) {
             if (response.data.type && response.data.type === 'USER_NOT_FOUND'){
