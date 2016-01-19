@@ -27,7 +27,7 @@
             <p class="cesar-helper"><small translate="view.cfp.talk.title.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300" name="summary"
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300" name="summary" ng-blur="ctrl.check()"
                           ng-model="ctrl.proposal.summary"></textarea>
                 <label class="mdl-textfield__label" for="summary" translate="view.cfp.talk.summary.text">Summary</label>
                 <cesar-nb-carac nbcarac="300" text="ctrl.proposal.summary" field="frm.summary" markdown="true"></cesar-nb-carac>
@@ -35,7 +35,7 @@
             <p class="cesar-helper"><small  translate="view.cfp.talk.summary.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="1000" name="description"
+                <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="1000" name="description" ng-blur="ctrl.check()"
                           ng-model="ctrl.proposal.description"></textarea>
                 <label class="mdl-textfield__label" for="description" translate="view.cfp.talk.description.text">Description</label>
                 <cesar-nb-carac nbcarac="2000" text="ctrl.proposal.description" field="frm.description" markdown="true"></cesar-nb-carac>
@@ -43,7 +43,7 @@
             <p class="cesar-helper"><small  translate="view.cfp.talk.description.help"></small></p>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="ideaForNow" ng-maxlength="500" name="ideaForNow"
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="ideaForNow" ng-maxlength="500" name="ideaForNow" ng-blur="ctrl.check()"
                           ng-model="ctrl.proposal.ideaForNow"></textarea>
                 <label class="mdl-textfield__label" for="ideaForNow" translate="view.cfp.talk.ideaForNow.text">ideaForNow</label>
                 <cesar-nb-carac nbcarac="500" text="ctrl.proposal.ideaForNow" field="frm.ideaForNow" markdown="true"></cesar-nb-carac>
@@ -87,7 +87,7 @@
 
             <div class="mdl-textfield mdl-js-textfield" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="format" translate="view.cfp.talk.format.text">Format</label>
-                <select ng-options="k as v | translate for (k, v)  in ctrl.formats" id="format" class="mdl-textfield--expandable cesar-textfield--expandable"
+                <select ng-options="k as v | translate for (k, v)  in ctrl.formats" id="format" class="mdl-textfield--expandable cesar-textfield--expandable" ng-blur="ctrl.check()"
                         ng-model="ctrl.proposal.format">
                     <option value=""></option>
                 </select>
@@ -105,7 +105,7 @@
 
             <div class="mdl-textfield mdl-js-textfield" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="levels" translate="view.cfp.talk.levels.text">Level</label>
-                <select ng-options="k as v | translate for (k, v)  in ctrl.levels" id="levels" class="mdl-textfield--expandable cesar-textfield--expandable"
+                <select ng-options="k as v | translate for (k, v)  in ctrl.levels" id="levels" class="mdl-textfield--expandable cesar-textfield--expandable" ng-blur="ctrl.check()"
                         ng-model="ctrl.proposal.level">
                     <option value=""></option>
                 </select>
@@ -169,7 +169,7 @@
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
 
-                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'"
+                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'" ng-if="ctrl.proposal.id"
                               style="padding: 0 1em;" id="action2" on-click="ctrl.submit()" spinner="spinner" google-icon="send"></cesar-button>
                 <div class="mdl-tooltip" for="action2" translate="action.submit"></div>
 
