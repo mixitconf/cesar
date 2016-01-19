@@ -15,6 +15,7 @@
   },
   "menu": {
     "admin": "Admin",
+    "cache": "Cache manager",
     "cfp": "CFP",
     "news": "News",
     "program": "Program",

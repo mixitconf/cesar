@@ -226,6 +226,11 @@
       .state('monitor', new State(USER_ROLES, 'monitor', 'js/monitoring/monitoring.html')
         .controller('MonitoringCtrl')
         .roles([USER_ROLES.admin])
+        .build())
+
+      .state('cache', new State(USER_ROLES, 'cache', 'js/cache/cache.html')
+        .controller('CacheCtrl')
+        .roles([USER_ROLES.admin])
         .build());
 
   });

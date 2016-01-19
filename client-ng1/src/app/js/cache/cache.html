@@ -1,0 +1,33 @@
+<div class="cesar-container">
+    <h1>Cache manager</h1>
+
+    <div class="cesar-section--bottom">
+
+        <div>
+            <cesar-button disabled="spinner==='on'" id="action1" on-click="ctrl.refresh()"
+                          spinner="spinner" google-icon="cached"></cesar-button>
+            <div class="mdl-tooltip" for="action1">Refresh</div>
+        </div>
+        <p>Data in cache manager</p>
+        <pre>{{ctrl.result | json}}</pre>
+
+        <p>&nbsp;</p>
+        <p>These buttons help to clear the cache area.</p>
+
+        <div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.clear('member')">
+                member
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.clear('member')">
+                article
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.clear('session')">
+                session
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.clear('security')">
+                security
+            </button>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+</div>

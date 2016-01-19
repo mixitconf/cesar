@@ -15,6 +15,7 @@
   },
   "menu": {
     "admin": "Admin",
+    "cache": "Gestion cache",
     "cfp": "CFP",
     "news": "Actualités",
     "program": "Programme",

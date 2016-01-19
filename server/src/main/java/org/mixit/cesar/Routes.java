@@ -14,6 +14,7 @@ public class Routes {
             "/article/{id:\\w+}",
             "/articles",
             "/authent",
+            "/cache",
             "/cfp",
             "/cfptalk",
             "/conduite",
