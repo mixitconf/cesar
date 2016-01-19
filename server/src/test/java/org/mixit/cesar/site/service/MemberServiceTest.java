@@ -45,9 +45,9 @@ public class MemberServiceTest {
     public void should_validate_empty_member(){
         Set<ProposalError> errors = memberService.checkSpeakerData(new Member());
         assertThat(errors)
-                .hasSize(5)
+                .hasSize(4)
                 .extracting("property")
-                .contains("firstname", "lastname", "shortDescription", "longDescription", "image");
+                .contains("firstname", "lastname", "shortDescription", "longDescription");
 
     }
 

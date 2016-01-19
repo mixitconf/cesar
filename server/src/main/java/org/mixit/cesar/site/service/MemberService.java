@@ -55,9 +55,9 @@ public class MemberService {
         if (member.getLongDescription()==null) {
             errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("longDescription"));
         }
-        if (member.getEmail()==null || !Gravatar.imageExist(member.getEmail())) {
-            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("image"));
-        }
+//        if (member.getEmail()==null || !Gravatar.imageExist(member.getEmail())) {
+//            errors.add(new ProposalError().setEntity(MEMBER).setCode(REQUIRED).setProperty("image"));
+//        }
 
         return errors;
     }
