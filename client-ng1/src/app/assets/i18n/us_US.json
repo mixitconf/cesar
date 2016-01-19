@@ -285,10 +285,10 @@
       },
       "home" : {
         "title" : "Call for paper 2016",
-        "p1" : "The sixth Mix-IT edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until the 6 March 2016.",
-        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their company or their non-funded startup won’t pay for them. You can propose talks or workshop for beginers to confirmed people, because all those profiles are present at Mix-IT we wish to provide everyone whith sessions they'll love.",
+        "p1" : "The sixth Mix-IT edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until March 6 2016.",
+        "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their company or their non-funded startup won’t pay for them. You can propose talks or workshop for beginers to confirmed people, because all those profiles are present at Mix-IT we wish to provide everyone with sessions they'll love.",
         "p3" : "Some of our speakers are directly invited by the Mix-IT team. If you are one of them we need you to complete your profile and the talks/workshop details to help the attendees the D day.",
-        "suggestion" : "If you have no idea on the subject, there's a few suggestion",
+        "suggestion" : "If you have no idea on the subject, there's a few suggestion:",
         "explanation" : "If you want to increase your chances of success, feel free to submit multiple sessions. The number of submitted sessions is important to help us to build the best program for attendees.",
         "incomplete" : "Incomplete data",
         "profile" : {
@@ -321,11 +321,11 @@
           "text":"Co-speaker",
           "help":"You can co-animate your session."
         },
-        "headline":"You will perform a session that you worked hard on, a perfectly planned workshop, or a game where participants will have a lot of fun. Please fill this form to make both the CFP commitee and the future audience enjoyed about it! You will only be able to submit the form when all mandatory fields are filed but you can come back as many time as you with to update it.",
+        "headline":"You will perform a session that you worked hard on, a perfectly planned workshop, or a game where participants will have a lot of fun with. Please fill this form to make both the CFP commitee and the future audience enjoyed about it! You will only be able to submit the form when all mandatory fields are filed but you can come back as many time as you wish to update it.",
         "createdat":"Created at {{date}}",
         "description" : {
           "text" : "Description",
-          "help": "You can here describe precisely you session. Please insist on your contents and what you will learn to the audience."
+          "help": "You can here describe precisely you session. Please insist on your contents and what you will teach the audience."
         },
         "format":{
           "text" : "Format",
@@ -344,8 +344,8 @@
           "help": "Mix-IT welcomes international speakers, the staff always tries to have at least a track in English so they can fully participate to the conference."
         },
         "levels":{
-          "text" : "Summary",
-          "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus ligula at neque venenatis"
+          "text" : "Talk Level",
+          "help": "Please define wether the session is for a beginner, an intermediate or expert. "
         },
         "messageForStaff" : {
           "text" : "Message for the staff (references, experience...)",
