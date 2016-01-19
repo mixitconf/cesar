@@ -27,34 +27,34 @@
             <div class="mdl-card__supporting-text cesar-card__supporting-text">
                 <span translate="view.cfp.home.profile.already">Already entered data</span><br>&nbsp;
                 <div style="padding-left: 1em">
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('id')" ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.id">Identification</span>
-                    </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
-                        <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('email')" ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.email">E-mail</span>
-                    </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
-                        <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('company')" ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.company">Company</span>
-                    </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-5">
-                        <input type="checkbox" id="checkbox-5" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('summary')" ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.summary">Summary</span>
-                    </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-6">
-                        <input type="checkbox" id="checkbox-6" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('description')" ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.description">Description</span>
-                    </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-7">
-                        <input type="checkbox" id="checkbox-7" class="mdl-checkbox__input" ng-checked="ctrl.checkProfile('link')"  ng-readonly="true">
-                        <span class="mdl-checkbox__label" translate="view.cfp.home.profile.link">At least one link</span>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('id') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.id">Identification</span>
+                    </label><br>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('email') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.email">E-mail</span>
+                    </label><br>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('company') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.company">Company</span>
+                    </label><br>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('summary') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.summary">Summary</span>
+                    </label><br>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('description') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.description">Description</span>
+                    </label><br>
+                    <label>
+                        <i class="material-icons">{{ctrl.checkProfile('link') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.link">At least one link</span>
                     </label>
                 </div>
                 <p>&nbsp;</p>
                 <p translate="view.cfp.home.image"></p>
-                <p ng-if="!ctrl.profileOk()" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
+                <p ng-if="!ctrl.profileOk" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
             </div>
 
             <div class="mdl-card__actions mdl-card--border">
