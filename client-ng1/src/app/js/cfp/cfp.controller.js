@@ -50,6 +50,7 @@
     };
 
     ctrl.account = account;
+    ctrl.profileOk= ctrl.checkProfile();
     ctrl.refresh();
   });
 })();

@@ -284,6 +284,7 @@
         "BETWEEN_100_AND_INFINITE" : "More than 100"
       },
       "home" : {
+        "actiondisabled" : "Action available only when profile is completed",
         "title" : "Call for paper 2016",
         "p1" : "The sixth Mix-IT edition will be held in Lyon, France on April 21 & 22 2016. Submitions will be accepted until March 6 2016.",
         "p2" : "One of our core value is to make the conference accessible to the vast majority. The purpose is to gather everyone around, from managers to developers, even the ones who have to pay by their own because their company or their non-funded startup won’t pay for them. You can propose talks or workshop for beginers to confirmed people, because all those profiles are present at Mix-IT we wish to provide everyone with sessions they'll love.",

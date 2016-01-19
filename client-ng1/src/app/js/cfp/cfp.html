@@ -54,7 +54,7 @@
                 </div>
                 <p>&nbsp;</p>
                 <p translate="view.cfp.home.image"></p>
-                <p ng-if="!ctrl.checkProfile()" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
+                <p ng-if="!ctrl.profileOk()" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
             </div>
 
             <div class="mdl-card__actions mdl-card--border">
@@ -92,7 +92,7 @@
                             <p ng-if="!proposal.valid" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
                         </td>
                         <td style="padding: 4px">
-                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab">
+                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-disabled="!ctrl.profileOk">
                                 <i class="material-icons mdl-badge">build</i>
                             </a>
                         </td>
@@ -101,10 +101,11 @@
                 </table>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk" id="addTalk">
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk" id="addTalk" ng-disabled="!ctrl.profileOk">
                     <i class="material-icons">add</i>
                 </a>
-                <div class="mdl-tooltip" for="addTalk" translate="action.add"></div>
+                <div class="mdl-tooltip" for="addTalk" translate="action.add" ng-if="ctrl.profileOk"></div>
+                <div class="mdl-tooltip" for="addTalk" translate="view.cfp.home.actiondisabled" ng-if="!ctrl.profileOk"></div>
             </div>
 
         </div>

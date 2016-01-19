@@ -284,6 +284,7 @@
         "BETWEEN_100_AND_INFINITE" : "Plus de 100"
       },
       "home" : {
+        "actiondisabled" : "Action accessible lorsque le profil est complété",
         "title" : "Call for paper 2016",
         "p1" : "La sixième édition de Mix-IT se tiendra à Lyon, les 21 et 22 avril 2016. Les soumissions de sessions seront acceptées jusqu'au 6 mars 2016.",
         "p2" : "Le public de Mix-IT est composé aussi bien de débutants, d'experts, d'agilistes, de développeurs, d'entrepreneurs, de managers évoluant principalement dans le milieu IT, mais pas tous ! Bref, quand vous soumettez votre session, vous savez à qui vous vous adressez. Si jamais vous doutez, sollicitez-nous (l'équipe d'organisation), nous sommes là pour vous aider",
