@@ -1,14 +1,13 @@
 package org.mixit.cesar.security.config;
 
-import javax.servlet.Filter;
-
 import org.mixit.cesar.security.service.authentification.AuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+
 @Configuration
 public class CesarSecurityConfig {
-
     @Bean
     public Filter securityFilter() {
         return new AuthenticationFilter()
