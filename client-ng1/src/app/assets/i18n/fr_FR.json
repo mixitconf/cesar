@@ -357,7 +357,7 @@
           "help": "Si vous faites un atelier, une session ou vous souhaitez un nombre limité de personnes, merci de nous l'indiquer."
         },
         "summary":{
-          "text" : "Préentation",
+          "text" : "Présentation",
           "help": "Ce résumé sera repris sur le programme donc essayer de dire en peu de mot ce que vous allez apporter aux participants"
         },
         "title":{
