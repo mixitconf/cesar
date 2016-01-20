@@ -74,6 +74,9 @@
     //// Call when the 401 response is returned by the server
     $rootScope.$on('event:auth-loginRequired', function (event, next) {
       event.preventDefault();
+      if(!next){
+        return $state.go('authent');
+      }
       if(next.data){
         $rootScope.errorMessage = next.data.type;
       }
