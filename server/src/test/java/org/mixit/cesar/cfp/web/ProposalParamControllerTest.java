@@ -36,7 +36,7 @@ public class ProposalParamControllerTest {
         mockMvc
                 .perform(get("/app/cfp/param/category"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[\"AGILE_GAME\",\"CLOUD\",\"DESIGN\",\"DEVOPS\",\"INNOVATION\",\"IOT\",\"METHODO\",\"PROGRAMMING\",\"UX\",\"WEB\"]"))
+                .andExpect(content().string("[\"AGILE_GAME\",\"CLOUD\",\"CRAFTMANSHIP\",\"DESIGN\",\"DEVOPS\",\"INNOVATION\",\"IOT\",\"METHODO\",\"PROGRAMMING\",\"UX\",\"WEB\"]"))
                 .andExpect(content().encoding("UTF-8"));
     }
 
