@@ -5,27 +5,27 @@
   /**
    * This interceptor is used to display a spinner when a request is executed
    */
-  angular.module('cesar-utils').factory('cesarSpinnerInterceptor', function ($rootScope, $q) {
+  angular.module('cesar-utils').factory('cesarSpinnerInterceptor', function ($q, cesarSpinnerService) {
     'ngInject';
 
     return {
       request: function(config) {
-        $rootScope.spinner = 'on';
+        cesarSpinnerService.activate();
         return config;
       },
 
       requestError: function(rejection) {
-        $rootScope.spinner = 'off';
+        cesarSpinnerService.desactivate();
         return $q.reject(rejection);
       },
 
       response: function(response) {
-        $rootScope.spinner = 'off';
+        cesarSpinnerService.desactivate();
         return response;
       },
 
       responseError: function(rejection) {
-        $rootScope.spinner = 'off';
+        cesarSpinnerService.desactivate();
         return $q.reject(rejection);
       }
     };

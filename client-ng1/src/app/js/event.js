@@ -6,28 +6,10 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService, $translate) {
+  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService, cesarSpinnerService, $translate) {
     'ngInject';
 
-    var waitinPopupTimeout;
-    $rootScope.waitingPopup = false;
     $rootScope.lang = $translate.preferredLanguage().slice(0,2);
-
-    $rootScope.wait = function() {
-      if(!waitinPopupTimeout){
-        waitinPopupTimeout = $timeout(function(){
-          //document.location.href='#top';
-          $rootScope.waitingPopup = true;
-        }, 100);
-      }
-    };
-
-    $rootScope.stopWaiting = function() {
-      $rootScope.waitingPopup = false;
-      if(waitinPopupTimeout){
-        $timeout.cancel(waitinPopupTimeout);
-      }
-    };
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
@@ -36,8 +18,9 @@
 
     //When a ui-router state change we watch if user is authorized
     $rootScope.$on('$stateChangeStart', function (event, next) {
+      cesarSpinnerService.wait();
       //Patch to hide the drawer panel when a user click on a link (bug Material Design Lite)
-       angular.element(document.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
+      angular.element(document.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
       angular.element(document.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
 
       if (next.name === 'logout') {
@@ -83,9 +66,13 @@
       return next.redirect ? $state.go('authent', {redirect : next.redirect}) : $state.go('authent');
     });
 
+    $rootScope.$on('stateChangeError', function () {
+      cesarSpinnerService.stopWaiting();
+    });
 
     //Refresh material design lite
     $rootScope.$on('$viewContentLoaded', function () {
+      cesarSpinnerService.stopWaiting();
       $timeout(function () {
         componentHandler.upgradeAllRegistered();
       },400);
