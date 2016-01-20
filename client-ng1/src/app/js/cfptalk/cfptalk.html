@@ -88,7 +88,7 @@
             </div>
 
 
-            <p class="cesar-helper" ng-if="help.category" translate="view.cfp.talk.category.help"></p>
+            <p class="cesar-helper" ng-if="help.category && false" translate="view.cfp.talk.category.help"></p>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="category" translate="view.cfp.talk.category.text">Category</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.categories" id="category" class="mdl-textfield--expandable cesar-textfield--expandable"
@@ -99,7 +99,7 @@
                 </select>
             </div>
 
-            <p class="cesar-helper" ng-if="help.formatSession" translate="view.cfp.talk.format.help"></p>
+            <p class="cesar-helper" ng-if="help.formatSession && false" translate="view.cfp.talk.format.help"></p>
             <div class="mdl-textfield mdl-js-textfield" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="format" translate="view.cfp.talk.format.text">Format</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.formats" id="format" class="mdl-textfield--expandable cesar-textfield--expandable"
@@ -110,7 +110,7 @@
                 </select>
             </div>
 
-            <p class="cesar-helper" ng-if="!!help.typeSession"  translate="view.cfp.talk.types.help"></p>
+            <p class="cesar-helper" ng-if="!!help.typeSession && false"  translate="view.cfp.talk.types.help"></p>
             <div class="mdl-textfield mdl-js-textfield" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="types" translate="view.cfp.talk.types.text">Type</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.types" id="types" class="mdl-textfield--expandable cesar-textfield--expandable"
@@ -121,7 +121,7 @@
                 </select>
             </div>
 
-            <p class="cesar-helper" ng-if="!!help.levels" translate="view.cfp.talk.levels.help"></p>
+            <p class="cesar-helper" ng-if="!!help.levels && false" translate="view.cfp.talk.levels.help"></p>
             <div class="mdl-textfield mdl-js-textfield" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="levels" translate="view.cfp.talk.levels.text">Level</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.levels" id="levels" class="mdl-textfield--expandable cesar-textfield--expandable"
@@ -133,7 +133,7 @@
             </div>
 
 
-            <p class="cesar-helper" ng-if="help.maxAttendees" translate="view.cfp.talk.maxAttendees.help"></p>
+            <p class="cesar-helper" ng-if="help.maxAttendees && false" translate="view.cfp.talk.maxAttendees.help"></p>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="padding-bottom: 0">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" for="maxAttendees" translate="view.cfp.talk.maxAttendees.text">Set the number of people you attend</label>
                 <select ng-options="k as v | translate for (k, v)  in ctrl.maxAttendees" id="maxAttendees" class="mdl-textfield--expandable cesar-textfield--expandable"
