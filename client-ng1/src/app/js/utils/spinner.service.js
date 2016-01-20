@@ -18,14 +18,14 @@
           $rootScope.waitingPopup = true;
         }, 100);
       }
-    };
+    }
 
     function stopWaiting() {
       $rootScope.waitingPopup = false;
       if(waitinPopupTimeout){
         $timeout.cancel(waitinPopupTimeout);
       }
-    };
+    }
 
     return {
       activate: function(){
