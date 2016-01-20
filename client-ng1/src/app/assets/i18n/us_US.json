@@ -44,6 +44,13 @@
     "headband": {
       "comeback": "returns on <span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
     },
+    "cfp": {
+      "title":"The CFP for 2016 is open",
+      "p1":"You can now purpose your talks on our new ",
+      "p2":"and you can do it unti March 6 2016. For more details you can read this",
+      "p3":"Although we have surprises for you in 2016, the success of Mix-IT depends on your proposals. Do not hesitate to send us a topic. Everyone has an opportunity of selection and as you can read in the ",
+      "p4":"we are preparing this year 2 tracks for people who want to get back to basics on agile methods or technical practices."
+    },
     "info": {
       "title": "Mix-IT is also...",
       "section1": "2 days of talks and workshops.",
