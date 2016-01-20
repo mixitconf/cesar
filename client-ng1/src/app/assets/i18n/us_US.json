@@ -251,12 +251,13 @@
     "cfp" : {
       "category": {
         "AGILE_GAME": "Agile game",
+        "CRAFTMANSHIP": "Craftmanship",
         "DESIGN": "Design",
         "DEVOPS": "Devops",
         "INNOVATION": "Innovation",
         "IOT": "Internet of things",
         "METHODO": "Agile : Scrum, Kanban, Lean Startup...",
-        "PROGRAMMING": "Programming : Java, .Net, JS...",
+        "PROGRAMMING": "Programming : Java, .Net, C#, JS...",
         "UX": "User experience",
         "CLOUD": "Virtualization : cloud, docker...",
         "WEB": "Web"
