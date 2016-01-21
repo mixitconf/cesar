@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
  * {@link Interest}
  */
 public interface InterestRepository extends CrudRepository<Interest, Long> {
-    @Cacheable(CACHE_SESSION)
+
     Interest findByName(String name);
 
     @Cacheable(CACHE_SESSION)
