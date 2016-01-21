@@ -78,6 +78,17 @@
           }
         })
         .build())
+      .state('admcfptalk', new State(USER_ROLES, 'admcfptalk/:id', 'js/admin/cfptalk/cfptalk.html')
+        .controller('AdminCfpTalkCtrl')
+        .resolve({
+          /* @ngInject */
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function (currentUser) {
+              return currentUser;
+            });
+          }
+        })
+        .build())
       .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
         .controller('AdminArticleCtrl')
         .resolve({

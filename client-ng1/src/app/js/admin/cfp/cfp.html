@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="proposal in ctrl.proposals | filter:search | orderBy:'status'" ui-sref="cfptalk({id : proposal.id})">
+        <tr ng-repeat="proposal in ctrl.proposals | filter:search | orderBy:'status'" ui-sref="admcfptalk({id : proposal.id})">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
                     {{::proposal.title}}  <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
