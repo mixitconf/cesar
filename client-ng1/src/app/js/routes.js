@@ -28,15 +28,15 @@
     //Router definition
     $stateProvider
 
-      //Home and error route
+    //Home and error route
       .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').controller('HomeCtrl').build())
 
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
-        /* @ngInject */
-        function (AuthenticationService) {
-          AuthenticationService.checkUser();
-        })
+          /* @ngInject */
+          function (AuthenticationService) {
+            AuthenticationService.checkUser();
+          })
         .build())
 
       .state('cerror', new State(USER_ROLES, 'cerror/{type}', 'js/error/error.html')
@@ -44,11 +44,11 @@
           error: {}
         })
         .controller(
-        /* @ngInject */
-        function ($scope, $stateParams) {
-          $scope.error = $stateParams.error;
-          $scope.type = $stateParams.type;
-        })
+          /* @ngInject */
+          function ($scope, $stateParams) {
+            $scope.error = $stateParams.error;
+            $scope.type = $stateParams.type;
+          })
         .build())
 
       //News
@@ -59,35 +59,47 @@
 
       .state('articles', new State(USER_ROLES, 'articles', 'js/articles/articles.html')
         .controller(
-        /* @ngInject */
-        function (articles) {
-          var ctrl = this;
-          ctrl.articles = articles;
-        })
+          /* @ngInject */
+          function (articles) {
+            var ctrl = this;
+            ctrl.articles = articles;
+          })
         .resolve({articles: getAllArticles})
         .build())
 
-        .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
-            .controller('AdminArticleCtrl')
-            .resolve({
-                /* @ngInject */
-                account: function (AuthenticationService) {
-                  return AuthenticationService.currentUser().then(function(currentUser){
-                    return currentUser;
-                  });
-                }
-            })
-            .build())
-        .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
-            .controller('AdminArticlesCtrl')
-            .resolve({
-            /* @ngInject */
-            articles: function(ArticleService){
-              return ArticleService.getAll(true).then(function (response) {
-                return response.data;
-              });
-            }})
-            .build())
+      .state('admcfp', new State(USER_ROLES, 'admcfp', 'js/admin/cfp/cfp.html')
+        .controller('AdminCfpCtrl')
+        .resolve({
+          /* @ngInject */
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function (currentUser) {
+              return currentUser;
+            });
+          }
+        })
+        .build())
+      .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
+        .controller('AdminArticleCtrl')
+        .resolve({
+          /* @ngInject */
+          account: function (AuthenticationService) {
+            return AuthenticationService.currentUser().then(function (currentUser) {
+              return currentUser;
+            });
+          }
+        })
+        .build())
+      .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
+        .controller('AdminArticlesCtrl')
+        .resolve({
+          /* @ngInject */
+          articles: function (ArticleService) {
+            return ArticleService.getAll(true).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
 
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
@@ -140,18 +152,18 @@
           }
         })
         .build())
-        .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'js/member/member.html').controller('MemberCtrl')
-          .resolve({
-            type : function(){
-              return 'sponsor';
-            },
-            /* @ngInject */
-            member: function (MemberService, $stateParams) {
-              return MemberService.getById($stateParams.id).then(function (response) {
-                return response.data;
-              });
-            }
-          })
+      .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'js/member/member.html').controller('MemberCtrl')
+        .resolve({
+          type: function () {
+            return 'sponsor';
+          },
+          /* @ngInject */
+          member: function (MemberService, $stateParams) {
+            return MemberService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        })
         .build())
 
       //Infos
@@ -166,7 +178,7 @@
         .resolve({
           /* @ngInject */
           account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function(currentUser){
+            return AuthenticationService.currentUser().then(function (currentUser) {
               return currentUser;
             });
           }
@@ -178,7 +190,7 @@
         .resolve({
           /* @ngInject */
           account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function(currentUser){
+            return AuthenticationService.currentUser().then(function (currentUser) {
               return currentUser;
             });
           }
@@ -192,7 +204,7 @@
         .resolve({
           /* @ngInject */
           account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function(currentUser){
+            return AuthenticationService.currentUser().then(function (currentUser) {
               return currentUser;
             });
           }
