@@ -192,10 +192,9 @@
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
 
-                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'" ng-if="ctrl.proposal.id"
+                <cesar-button disabled="ctrl.warningMessage.length>0 || frm.$invalid || spinner==='on'" ng-if="ctrl.proposal.id && ctrl.proposal.status!=='SUBMITTED'"
                               style="padding: 0 1em;" id="action2" on-click="ctrl.submit()" spinner="spinner" google-icon="send"></cesar-button>
                 <div class="mdl-tooltip" for="action2" translate="action.submit"></div>
-
 
                 <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" google-icon="delete" ng-if="ctrl.proposal.id" ></cesar-button>
                 <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
