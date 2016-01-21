@@ -6,7 +6,6 @@
 dependencies {
     compile project(':common')
     compile project(':client-ng1')
-    compile project(':client-ng2')
 }
 
 springBoot {
