@@ -116,9 +116,6 @@
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
                    ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
-                    <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeInterest(interest)">
-                        <i class="material-icons">remove_circle_outline</i>
-                    </button>
                     {{interest.name}}
                 </a>
             </div>
@@ -126,9 +123,6 @@
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
                    ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px" ng-if="speaker.id!==ctrl.account.member.id">
-                    <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeSpeaker(speaker)">
-                        <i class="material-icons">remove_circle_outline</i>
-                    </button>
                     {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
                 </a>
             </div>

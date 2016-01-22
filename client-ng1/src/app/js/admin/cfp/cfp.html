@@ -17,6 +17,12 @@
                     {{::proposal.title}}  <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
                 </p>
                 <p>{{::proposal.summary}}</p>
+                <p>
+                    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                       ng-repeat="speaker in proposal.speakers" style="padding: 0 4px" >
+                        {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
+                    </a>
+                </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
             </td>
             <td style="padding: 4px">
