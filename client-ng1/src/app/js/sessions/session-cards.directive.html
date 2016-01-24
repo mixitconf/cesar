@@ -13,7 +13,7 @@
                 {{::session.summary}}<br>&nbsp;<br>
                 <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                     <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
-                        <img ng-src="http://www.gravatar.com/avatar/{{::speaker.hash}}">
+                        <img ng-src="https://www.gravatar.com/avatar/{{::speaker.hash}}">
                     </a>
                     <a ui-sref="member({id : speaker.idMember, type : 'speaker'})">{{::speaker.firstname}} {{::speaker.lastname}}</a>&nbsp;
                 </span>

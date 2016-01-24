@@ -9,7 +9,7 @@
         <div class="mdl-card__supporting-text cesar-card__supporting-text" ng-class="{'hide-on-mobile': length<=4 && member.login==='mixit'}">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--4-col" >
-                    <img src="http://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
+                    <img src="https://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
                     <img ng-src="img/{{member.logo}}" ng-if="member.logo" ng-class="{'cesar-card__logo-inactive': member.login==='mixit'}"/>
                 </div>
                 <div class="mdl-cell mdl-cell--8-col" ng-class="{'hide-on-mobile': lengthPhone<=4}" ng-bind-html="member.shortDescription | markdown">{{}}</div>
