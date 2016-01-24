@@ -35,13 +35,13 @@
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <textarea class="mdl-textfield__input" type="text" rows="15" id="content" ng-maxlength="3000" name="content"
+            <textarea class="mdl-textfield__input" type="text" rows="15" id="content" ng-maxlength="6000" name="content"
                       ng-required="true"
                       ng-model="ctrl.article.content"></textarea>
                 <label class="mdl-textfield__label" for="content">Content</label>
                 <small class="cesar-length-field">
                 <span translate="view.account.update.characterNumber"
-                      translate-values="{ nbcarac : 3000-ctrl.article.content.length }"></span>
+                      translate-values="{ nbcarac : 6000-ctrl.article.content.length }"></span>
                     (<span translate="view.account.update.markdown"></span>)
                 </small>
             </div>
