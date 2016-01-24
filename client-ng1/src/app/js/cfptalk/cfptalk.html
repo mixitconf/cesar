@@ -41,7 +41,7 @@
 
             <p class="cesar-helper" ng-if="help.description" translate="view.cfp.talk.description.help"></p>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="1000" name="description"
+                <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="2000" name="description"
                           ng-focus="help.description=true"
                           ng-blur="help.description=false;ctrl.check()"
                           ng-model="ctrl.proposal.description"></textarea>
