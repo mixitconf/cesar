@@ -366,7 +366,7 @@
         },
         "summary":{
           "text" : "Présentation",
-          "help": "Ce résumé sera repris sur le programme donc essayer de dire en peu de mot ce que vous allez apporter aux participants"
+          "help": "Ce résumé sera repris sur le programme donc essayez de dire en peu de mots ce que vous allez apporter aux participants"
         },
         "title":{
           "text" : "Titre",
