@@ -8,6 +8,11 @@
 
         var ctrl = this;
 
+        if(!account){
+            $rootScope.$broadcast('event:auth-loginRequired');
+            return;
+        }
+
         if ($stateParams.id) {
             $http
                 .get('app/cfp/proposal/' + $stateParams.id)
@@ -61,7 +66,7 @@
                 if (canPush) {
                     ctrl.proposal.interests.push({name: value});
                 }
-
+                ctrl.save();
             }
         };
 
@@ -80,7 +85,7 @@
                 if (canPush) {
                     ctrl.proposal.speakers.push({id: value.value, name: value.key});
                 }
-
+                ctrl.save();
             }
         };
 
@@ -92,24 +97,33 @@
             ctrl.proposal.interests.splice(ctrl.proposal.interests.indexOf(value), 1);
         };
 
-        ctrl.save = function () {
+        function _save(){
             delete ctrl.errorMessage;
             delete ctrl.warningMessage;
             delete ctrl.confirm;
-
             $http
-                .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-                .then(function (response) {
-                    ctrl.proposal = response.data;
-                    return $http.post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'});
-                })
-                .then(function (response) {
-                    ctrl.warningMessage = response.data;
-                    refresh();
-                })
-                .catch(function () {
-                    ctrl.errorMessage = 'UNDEFINED';
-                });
+              .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+              .then(function (response) {
+                  ctrl.proposal = response.data;
+                  return $http.post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'});
+              })
+              .then(function (response) {
+                  ctrl.warningMessage = response.data;
+                  refresh();
+              })
+              .catch(function () {
+                  ctrl.errorMessage = 'UNDEFINED';
+              });
+
+        }
+
+        ctrl.save = function () {
+            if(spinner!=='on'){
+                _save();
+            }
+            else{
+                $timeout(ctrl.save, 500);
+            }
         };
 
         ctrl.check = function () {
