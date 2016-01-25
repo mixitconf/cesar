@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
+  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider,  USER_ROLES) {
     'ngInject';
 
     $locationProvider.html5Mode({
@@ -58,12 +58,7 @@
         .build())
 
       .state('articles', new State(USER_ROLES, 'articles', 'js/articles/articles.html')
-        .controller(
-          /* @ngInject */
-          function (articles) {
-            var ctrl = this;
-            ctrl.articles = articles;
-          })
+        .controller('ArticlesCtrl')
         .resolve({articles: getAllArticles})
         .build())
 

@@ -1,17 +1,14 @@
 package org.mixit.cesar.site.web.api;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.article.Article;
-import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,14 +37,8 @@ public class ArticleController {
     @ApiOperation(value = "Finds all articles", httpMethod = "GET")
     @JsonView(FlatView.class)
     public List<Article> getAllArticle() {
-        return  articleRepository.findAllPublishedArticle();
+        return articleRepository.findAllPublishedArticle();
     }
 
-    @RequestMapping("/{lang}")
-    @ApiOperation(value = "Finds all articles in a particular language", httpMethod = "GET")
-    @JsonView(FlatView.class)
-    public List<Article> getAllArticleByLanguage(@PathVariable("lang") String lang) {
-        return  articleRepository.findAllPublishedArticle(lang.equals(SessionLanguage.en.toString()) ? SessionLanguage.en : SessionLanguage.fr);
-    }
 
 }

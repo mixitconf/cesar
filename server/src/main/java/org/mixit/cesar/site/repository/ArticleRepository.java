@@ -21,10 +21,6 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     List<Article> findAllPublishedArticle();
 
     @Cacheable(CACHE_ARTICLE)
-    @Query(value = "SELECT a FROM Article a where a.valid=true and a.lang=:lang order by a.postedAt desc")
-    List<Article> findAllPublishedArticle(@Param("lang") SessionLanguage lang);
-
-    @Cacheable(CACHE_ARTICLE)
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c left join c.member where a.id=:idArticle and a.valid=true")
     Article findPublishedArticleById(@Param("idArticle") Long idArticle);
 

@@ -16,6 +16,37 @@
         <form novalidate class="cesar-form" name="frm">
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="titre" name="titre"
+                       ng-maxlength="100" ng-required="true"
+                       ng-model="ctrl.article.titre"/>
+                <label class="mdl-textfield__label" for="titre">Titre</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="resume" ng-maxlength="255" name="resume"
+                      ng-required="true"
+                      ng-model="ctrl.article.resume"></textarea>
+                <label class="mdl-textfield__label" for="resume">Resume</label>
+                <small class="cesar-length-field">
+                <span translate="view.account.update.characterNumber"
+                      translate-values="{ nbcarac : 255-ctrl.article.resume.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="15" id="contenu" ng-maxlength="6000" name="contenu"
+                      ng-required="true"
+                      ng-model="ctrl.article.contenu"></textarea>
+                <label class="mdl-textfield__label" for="contenu">Contenu</label>
+                <small class="cesar-length-field">
+                <span translate="view.account.update.characterNumber"
+                      translate-values="{ nbcarac : 6000-ctrl.article.contenu.length }"></span>
+                    (<span translate="view.account.update.markdown"></span>)
+                </small>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="title" name="title"
                        ng-maxlength="100" ng-required="true"
                        ng-model="ctrl.article.title"/>
@@ -45,6 +76,8 @@
                     (<span translate="view.account.update.markdown"></span>)
                 </small>
             </div>
+
+
             <p>&nbsp;</p>
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
                 <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-model="ctrl.article.valid">

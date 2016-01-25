@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Staff;
-import org.mixit.cesar.site.model.session.SessionLanguage;
 
 /**
  * An article, i.e. a blog post
@@ -47,10 +44,6 @@ public class Article {
     @JsonView(FlatView.class)
     public String title;
 
-    @Enumerated(EnumType.STRING)
-    @JsonView(FlatView.class)
-    private SessionLanguage lang = SessionLanguage.fr;
-
     /**
      * Markdown enabled
      */
@@ -64,6 +57,24 @@ public class Article {
     @Lob
     @JsonView(FlatView.class)
     public String content;
+
+    @Size(max = 100)
+    @JsonView(FlatView.class)
+    public String titre;
+
+    /**
+     * Markdown enabled
+     */
+    @Size(max = 255)
+    @JsonView(FlatView.class)
+    public String resume;
+
+    /**
+     * Markdown enabled
+     */
+    @Lob
+    @JsonView(FlatView.class)
+    public String contenu;
 
     /**
      * True if Article validated : publicly visible
@@ -132,21 +143,39 @@ public class Article {
     }
 
 
-    public SessionLanguage getLang() {
-        return lang;
-    }
-
-    public Article setLang(SessionLanguage lang) {
-        this.lang = lang;
-        return this;
-    }
-
     public String getContent() {
         return content;
     }
 
     public Article setContent(String content) {
         this.content = content;
+        return this;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public Article setTitre(String titre) {
+        this.titre = titre;
+        return this;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public Article setResume(String resume) {
+        this.resume = resume;
+        return this;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public Article setContenu(String cntenu) {
+        this.contenu = cntenu;
         return this;
     }
 

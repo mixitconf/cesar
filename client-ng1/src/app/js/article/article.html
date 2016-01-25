@@ -11,18 +11,18 @@
         </button>
     </div>
 
-    <h1>{{ctrl.article.title}}</h1>
+    <h1>{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</h1>
     <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt | date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
     <div class="cesar-section--bottom">
 
-        <p class="cesar-text">
-            {{ctrl.article.headline}}
-        </p>
+        <p class="cesar-text" ng-if="lang==='fr'" ng-bind-html="ctrl.article.resume  | markdown"></p>
+        <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="ctrl.article.headline  | markdown"></p>
 
-        <div ng-bind-html="ctrl.article.content  | markdown">
-        </div>
+
+        <div ng-if="lang==='fr'" ng-bind-html="ctrl.article.contenu  | markdown"></div>
+        <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
 
 
         <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
