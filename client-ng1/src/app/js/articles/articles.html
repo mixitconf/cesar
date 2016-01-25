@@ -7,7 +7,7 @@
 
         <div class="mdl-grid">
             <div ng-repeat="article in ctrl.articles | filter:search"
-                 class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
+                 class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp" ui-sref="news({id : article.id})">
                 <div class="mdl-card__title mdl-card--expand">
                     <h3 class="mdl-card__title-text cesar-card__title-text">{{lang==='fr' ? article.titre : article.title}}</h3>
 
