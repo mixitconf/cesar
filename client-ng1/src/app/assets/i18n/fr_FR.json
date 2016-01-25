@@ -71,7 +71,9 @@
     },
     "sponsor": {
       "title": "Devenez sponsor de l'édition 2016",
-      "annonce": "Profitez de cet évenement pour mettre en avant votre société. Nous proposons différents niveaux de partenariats qui sont détaillés dans la plaquette suivante. Retournez nous le",
+      "annonce": "Profitez de cet évenement pour mettre en avant votre société. Nous proposons différents niveaux de partenariats qui sont détaillés dans",
+      "annonceend": "notre plaquette.",
+      "return": "Retournez nous le",
       "form": "formulaire de sponsoring",
       "at": "à"
     }

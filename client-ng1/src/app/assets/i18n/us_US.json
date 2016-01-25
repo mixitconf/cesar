@@ -71,7 +71,9 @@
     },
     "sponsor": {
       "title": "Became sponsor of the 2016 edition",
-      "annonce": "Take the opportunity of this event to promote you company. We offer different partnership levels detailed in the following leaflet. Please fill and send back to us this",
+      "annonce": "Take the opportunity of this event to promote you company. We offer different partnership levels detailed in the",
+      "annonceend": "following leaflet.",
+      "return":"Please fill and send back to us this",
       "form": "sponsoring form",
       "at": "to"
     }
