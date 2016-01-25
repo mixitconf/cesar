@@ -3,15 +3,12 @@
     'use strict';
     /*global componentHandler */
 
-    angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, $timeout, account) {
+    angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, $timeout, account, $scope) {
         'ngInject';
 
         var ctrl = this;
 
-        if(!account){
-            $rootScope.$broadcast('event:auth-loginRequired');
-            return;
-        }
+
 
         if ($stateParams.id) {
             $http
@@ -118,7 +115,7 @@
         }
 
         ctrl.save = function () {
-            if(spinner!=='on'){
+            if($scope.spinner!=='on'){
                 _save();
             }
             else{
