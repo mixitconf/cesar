@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.article.Article;
+import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -42,5 +43,11 @@ public class ArticleController {
         return  articleRepository.findAllPublishedArticle();
     }
 
+    @RequestMapping("/{lang}")
+    @ApiOperation(value = "Finds all articles in a particular language", httpMethod = "GET")
+    @JsonView(FlatView.class)
+    public List<Article> getAllArticleByLanguage(@PathVariable("lang") String lang) {
+        return  articleRepository.findAllPublishedArticle(lang.equals(SessionLanguage.en.toString()) ? SessionLanguage.en : SessionLanguage.fr);
+    }
 
 }

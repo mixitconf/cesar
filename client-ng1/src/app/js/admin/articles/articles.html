@@ -17,7 +17,9 @@
             <div ng-repeat="article in ctrl.articles | filter:search | orderBy:'-postedAt'"
                  class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp">
                 <div class="mdl-card__title mdl-card--expand">
-                    <h3 class="mdl-card__title-text cesar-card__title-text">{{article.title}}</h3>
+                    <h3 class="mdl-card__title-text cesar-card__title-text">{{article.title}} &nbsp;</h3>
+                    <img src="img/lang/fr.svg" class="cesar-menu__lang" style="max-width: 24px" ng-if="article.lang==='fr'">
+                    <img src="img/lang/us.svg" class="cesar-menu__lang" style="max-width: 24px" ng-if="article.lang==='en'">
 
                     <div class="cesar-card-session-action">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
