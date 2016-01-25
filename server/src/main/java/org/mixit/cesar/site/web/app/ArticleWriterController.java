@@ -77,7 +77,10 @@ public class ArticleWriterController {
                     .setContent(article.getContent())
                     .setHeadline(article.getHeadline())
                     .setTitle(article.getTitle())
-                    .setValid(article.isValid());
+                    .setValid(article.isValid())
+                    .setTitre(article.getTitre())
+                    .setContenu(article.getContenu())
+                    .setResume(article.getResume());
         }
         else {
             articleSaved = article.setAuthor(memberRepository.findOneStaff(currentUser.getCredentials().get().getMember().getId()));
