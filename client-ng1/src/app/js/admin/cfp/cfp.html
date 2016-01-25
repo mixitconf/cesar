@@ -4,6 +4,7 @@
 
 
     <cesar-search-bar></cesar-search-bar>
+    <p style="padding-left: 1em"><small>{{results.length}} {{results.length>0 ? 'proposals' : 'proposal'}}</small></p>
     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
         <thead ng-show="false">
         <tr>
@@ -11,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="proposal in ctrl.proposals | filter:search | orderBy:'status'" ui-sref="admcfptalk({id : proposal.id})">
+        <tr ng-repeat="proposal in ctrl.proposals | filter:search | orderBy:'status' as results" ui-sref="admcfptalk({id : proposal.id})">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
                     {{::proposal.title}}  <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
@@ -30,6 +31,9 @@
                     <i class="material-icons mdl-badge">build</i>
                 </a>
             </td>
+        </tr>
+        <tr ng-if="results.length===0">
+            <td colspan="2">No data found</td>
         </tr>
         </tbody>
     </table>
