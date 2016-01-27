@@ -1,18 +1,45 @@
 <div class="cesar-container">
-    <div style="float: right">
-        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()" title="Article précédent"
-                ng-click="ctrl.previousArticle()">
-            <i class="material-icons">skip_previous</i>
-        </button>
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles" translate="view.news.list"></a>
-        <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" title="Article suivant"
-                ng-click="ctrl.nextArticle()">
-            <i class="material-icons">skip_next</i>
-        </button>
+
+    <div class="hide-on-mobile">
+        <div style="float: right" class="hide-on-mobile">
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()"
+                    title="Article précédent"
+                    ng-click="ctrl.previousArticle()">
+                <i class="material-icons">skip_previous</i>
+            </button>
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
+               translate="view.news.list"></a>
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()"
+                    title="Article suivant"
+                    ng-click="ctrl.nextArticle()">
+                <i class="material-icons">skip_next</i>
+            </button>
+        </div>
+        <h1 class="hide-on-mobile">{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</h1>
     </div>
 
-    <h1>{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</h1>
-    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt | date:'dd/MM/yyyy'}}</a>
+
+    <div class="visible-on-mobile">
+        <div class="center">
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()"
+                    title="Article précédent"
+                    ng-click="ctrl.previousArticle()">
+                <i class="material-icons">skip_previous</i>
+            </button>
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
+               translate="view.news.list"></a>
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()"
+                    title="Article suivant"
+                    ng-click="ctrl.nextArticle()">
+                <i class="material-icons">skip_next</i>
+            </button>
+        </div>
+        <h1>{{lang==='fr' ? ctrl.article.titre :
+            ctrl.article.title}}</h1>
+    </div>
+
+    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt |
+        date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
     <div class="cesar-section--bottom">
@@ -25,7 +52,8 @@
         <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
 
 
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a></div>
+        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a>
+        </div>
 
         <p>&nbsp;</p>
         <div class="mdl-grid" ng-if="false">
@@ -36,14 +64,16 @@
                 <div class="mdl-card__supporting-text cesar-card__supporting-text">
                     <div ng-repeat="comment in ctrl.article.comments">
                         <p>
-                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt | date:'dd/MM/yyyy HH:mm'}}</strong><br>
+                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt |
+                                date:'dd/MM/yyyy HH:mm'}}</strong><br>
                             {{comment.content}}
                         </p>
                     </div>
 
                 </div>
                 <div class="mdl-card__actions mdl-card--border cesar-speaker-session" ng-if="display!=='minimal'">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.addComment()">
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                            ng-click="ctrl.addComment()">
                         <i class="material-icons">add</i></button>
                 </div>
             </div>
