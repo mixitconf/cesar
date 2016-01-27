@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').directive('cesarSessionCards', function () {
+  angular.module('cesar-sessions').directive('cesarSessionCards', function ($filter) {
     'ngInject';
 
     return {
@@ -27,10 +27,13 @@
           return index>=min && index<=max;
         };
 
-        $scope.$watch('sessions', function(newvalue){
-          $scope.pagination.nbtotal = newvalue ? newvalue.length : 0;
+        $scope.filter= function(){
+          var sessions =  $filter('filter')($scope.sessions, $scope.search);
+          $scope.pagination.nbtotal = sessions ? sessions.length : 0;
           $scope.pagination.pages = parseInt($scope.pagination.nbtotal/$scope.pagination.nbitems);
-        });
+          return sessions;
+        };
+
       }
     };
   });

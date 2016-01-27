@@ -5,7 +5,7 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in sessions | filter:search | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})" ng-if="displayItem($index)">
+    <tr ng-repeat="session in filter() | orderBy:order" ui-sref="session({id : session.idSession, format : session.format})" ng-if="displayItem($index)">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;
@@ -28,7 +28,7 @@
     </tbody>
 </table>
 
-<div style="width: 100%;text-align: center;margin: 1em;">
+<div class="cesar-pagination__container">
     <button ng-repeat="n in [].constructor(pagination.pages) track by $index"
             class="mdl-button mdl-js-button mdl-button--primary"
             ng-click="pagination.current = $index + 1"
