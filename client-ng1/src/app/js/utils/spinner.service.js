@@ -24,6 +24,7 @@
       $rootScope.waitingPopup = false;
       if(waitinPopupTimeout){
         $timeout.cancel(waitinPopupTimeout);
+        waitinPopupTimeout=undefined;
       }
     }
 

@@ -30,6 +30,18 @@
         AuthenticationService.valid(next.authorizedRoles);
       }
     });
+    $rootScope.$on('$stateChangeError', function () {
+      cesarSpinnerService.stopWaiting();
+    });
+    $rootScope.$on('$stateChangeSuccess', function () {
+      cesarSpinnerService.stopWaiting();
+    });
+    //Refresh material design lite
+    $rootScope.$on('$viewContentLoaded', function () {
+      $timeout(function () {
+        componentHandler.upgradeAllRegistered();
+      },400);
+    });
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function () {
@@ -64,18 +76,6 @@
         $rootScope.errorMessage = next.data.type;
       }
       return next.redirect ? $state.go('authent', {redirect : next.redirect}) : $state.go('authent');
-    });
-
-    $rootScope.$on('stateChangeError', function () {
-      cesarSpinnerService.stopWaiting();
-    });
-
-    //Refresh material design lite
-    $rootScope.$on('$viewContentLoaded', function () {
-      cesarSpinnerService.stopWaiting();
-      $timeout(function () {
-        componentHandler.upgradeAllRegistered();
-      },400);
     });
 
     $rootScope.$on('event:language-changed', function (event, next) {
