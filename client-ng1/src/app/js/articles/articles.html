@@ -6,8 +6,11 @@
         <cesar-search-bar></cesar-search-bar>
 
         <div class="mdl-grid">
-            <div ng-repeat="article in ctrl.articles | filter:search"
-                 class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp" ui-sref="news({id : article.id})">
+
+            <div ng-repeat="article in ctrl.filter() track by $index"
+                 class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp"
+                 ui-sref="news({id : article.id})"
+                 ng-if="ctrl.displayItem($index)">
                 <div class="mdl-card__title mdl-card--expand">
                     <h3 class="mdl-card__title-text cesar-card__title-text">{{lang==='fr' ? article.titre : article.title}}</h3>
 
@@ -27,6 +30,14 @@
             </div>
         </div>
 
+        <div class="cesar-pagination__container">
+            <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
+                    class="mdl-button mdl-js-button mdl-button--primary"
+                    ng-click="ctrl.pagination.current = $index + 1"
+                    ng-disabled="ctrl.pagination.current === $index + 1">
+                {{ $index + 1 }}
+            </button>
+        </div>
     </div>
     <p>&nbsp;</p>
 </div>
