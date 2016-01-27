@@ -27,7 +27,8 @@ public class MemberEvent {
         LANYARD,
         PARTY,
         BREAKFAST,
-        LUNCH
+        LUNCH,
+        HOSTING
     }
 
     @Id
