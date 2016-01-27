@@ -274,9 +274,9 @@
         "WEB": "Web"
       },
       "format" : {
-        "Talk": "Talk",
+        "Talk": "Talk (environ 50 minutes)",
         "LightningTalk": "Ligthning talk",
-        "Workshop": "Workshop"
+        "Workshop": "Workshop (environ 2 heures)"
       },
       "typeSession": {
         "SLIDES" :"Slides",
