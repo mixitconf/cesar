@@ -131,6 +131,8 @@ public class ProposalService {
         if(proposal.getStatus()==null || VALID.equals(proposal.getStatus()) || CREATED.equals(proposal.getStatus())) {
             if (proposalPersisted.isValid()) {
                 proposalPersisted.setStatus(VALID);
+                //Add automatic submition
+                submit(proposalPersisted, account);
             }
             else {
                 proposalPersisted.setStatus(CREATED);
