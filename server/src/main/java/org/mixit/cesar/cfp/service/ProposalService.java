@@ -6,6 +6,7 @@ import static org.mixit.cesar.cfp.model.ProposalStatus.CREATED;
 import static org.mixit.cesar.cfp.model.ProposalStatus.SUBMITTED;
 import static org.mixit.cesar.cfp.model.ProposalStatus.VALID;
 import static org.mixit.cesar.cfp.service.MailCfpBuilder.TypeMail.SESSION_SUBMITION;
+import static org.mixit.cesar.cfp.service.SlackNotifier.SlackChannel.cfp;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -55,6 +56,9 @@ public class ProposalService {
 
     @Autowired
     private MailerService mailerService;
+
+    @Autowired
+    private SlackNotifier slackNotifier;
 
     /**
      * Check the required fields. A user can save a partial proposal and complete it later
@@ -132,7 +136,7 @@ public class ProposalService {
             if (proposalPersisted.isValid()) {
                 proposalPersisted.setStatus(VALID);
                 //Add automatic submition
-                submit(proposalPersisted, account);
+                submit(proposalPersisted, account, true);
             }
             else {
                 proposalPersisted.setStatus(CREATED);
@@ -143,8 +147,9 @@ public class ProposalService {
     }
 
 
-    public ProposalStatus submit(Proposal proposal, Account account) {
-        Proposal proposalPersisted = save(proposal, account);
+    public ProposalStatus submit(Proposal proposal, Account account, boolean saved) {
+
+        Proposal proposalPersisted = !saved ? save(proposal, account): proposal;
 
         if (VALID.equals(proposalPersisted.getStatus())) {
             proposalPersisted.setStatus(SUBMITTED);
@@ -159,6 +164,11 @@ public class ProposalService {
                                         mailBuilder.buildContent(SESSION_SUBMITION, account, proposal));
                             }
                     );
+
+            slackNotifier.send(String.format("A new talk was submitted [%s], by %s",
+                    proposal.getTitle(),
+                    proposal.getSpeakers().stream().map(m -> String.format("%s %s", m.getFirstname(), m.getLastname())).collect(Collectors.joining(", "))),
+                    cfp);
         }
         return proposalPersisted.getStatus();
     }

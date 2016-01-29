@@ -124,7 +124,7 @@ public class ProposalController {
     @Authenticated
     public ProposalStatus submit(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        return proposalService.submit(proposal, currentUser.getCredentials().get());
+        return proposalService.submit(proposal, currentUser.getCredentials().get(), false);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

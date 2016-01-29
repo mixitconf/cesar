@@ -13,6 +13,7 @@ info:
 
 cesar:
   baseurl: ${CESAR_BASEURL:http://localhost:8080}
+  slack: ${CESAR_SLACK:https://hooks.slack.com/services/token/credentials/channel}
   crypto:
     salt: ${CESAR_CRYPTO_SALT:XXXXX-SecretKey-XXXXX}
   mail:
