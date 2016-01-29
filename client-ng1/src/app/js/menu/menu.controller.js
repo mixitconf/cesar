@@ -38,8 +38,7 @@
         id: 'menu.members', submenus: [
         //{id: 'menu.speakers', link: 'speakers'},
         {id: 'menu.sponsors', link: 'sponsors', mobile: true},
-        {id: 'menu.staff', link: 'staff', mobile: true},
-        {id: 'sub2.5', divider: 'true', mobile: true},
+        {id: 'menu.staff', link: 'staff', mobile: true}
       ]
       },
       {
@@ -47,7 +46,7 @@
         {id: 'menu.come', link: 'venir', mobile: true},
         {id: 'menu.faq', link: 'faq', mobile: true},
         {id: 'menu.kit', link: 'multimedia'},
-        {id: 'sub3.5', divider: 'true'},
+        {id: 'sub3.5', divider: 'true', mobile: true},
         {id: 'menu.mixit15', link: 'mixit15', mobile: true},
         {id: 'menu.mixit14', link: 'mixit14', mobile: true},
         {id: 'menu.mixit13', link: 'mixit13'},
