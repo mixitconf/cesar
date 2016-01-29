@@ -2,7 +2,7 @@
 
     <div class="hide-on-mobile">
         <div style="float: right" class="hide-on-mobile">
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()"
                     title="Article précédent"
                     ng-click="ctrl.previousArticle()">
                 <i class="material-icons">skip_previous</i>
@@ -21,14 +21,14 @@
 
     <div class="visible-on-mobile">
         <div class="center">
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disablePreviousButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised" style="min-width: 0;" ng-disabled="ctrl.disablePreviousButton()"
                     title="Article précédent"
                     ng-click="ctrl.previousArticle()">
                 <i class="material-icons">skip_previous</i>
             </button>
             <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
                translate="view.news.list"></a>
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised" style="min-width: 0;" ng-disabled="ctrl.disableNextButton()"
                     title="Article suivant"
                     ng-click="ctrl.nextArticle()">
                 <i class="material-icons">skip_next</i>
