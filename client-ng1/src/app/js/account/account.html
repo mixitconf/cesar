@@ -109,10 +109,11 @@
             </div>
             <p>&nbsp;</p>
 
-
-            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'" id="action1"
-                          on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
-            </cesar-button>
+            <div style="float: right">
+                <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'" id="action1"
+                              on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
+                </cesar-button>
+            </div>
             <div class="mdl-tooltip" for="action1" translate="action.save"></div>
             <p>&nbsp;</p>
         </form>

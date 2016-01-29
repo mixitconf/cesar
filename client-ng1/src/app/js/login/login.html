@@ -63,9 +63,12 @@
                             </p>
                         </div>
 
-                        <div class="mdl-card__actions mdl-card--border">
-                            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'" default="true"
-                                          on-click="ctrl.login()" spinner="spinner" google-icon="vpn_key"></cesar-button>
+                        <div class="mdl-card__actions mdl-card--border" >
+                            <div style="float: right">
+                                <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'" default="true"
+                                              on-click="ctrl.login()" spinner="spinner" google-icon="vpn_key"></cesar-button><br>&nbsp;
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -15,27 +15,34 @@
                 <span translate="view.cfp.home.profile.already">Already entered data</span><br>&nbsp;
                 <div style="padding-left: 1em">
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('id') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <i class="material-icons">{{ctrl.checkProfile('id') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
                         <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.id">Identification</span>
                     </label><br>
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('email') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <i class="material-icons">{{ctrl.checkProfile('email') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
                         <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.email">E-mail</span>
                     </label><br>
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('company') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <i class="material-icons">{{ctrl.checkProfile('company') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
                         <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.company">Company</span>
                     </label><br>
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('summary') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <i class="material-icons">{{ctrl.checkProfile('summary') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
                         <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.summary">Summary</span>
                     </label><br>
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('description') ? 'check_box' : 'check_box_outline_blank'}}</i>
-                        <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.description">Description</span>
+                        <i class="material-icons">{{ctrl.checkProfile('description') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
+                        <span class="mdl-checkbox__label cesar-cfp-checkbox"
+                              translate="view.cfp.home.profile.description">Description</span>
                     </label><br>
                     <label>
-                        <i class="material-icons">{{ctrl.checkProfile('link') ? 'check_box' : 'check_box_outline_blank'}}</i>
+                        <i class="material-icons">{{ctrl.checkProfile('link') ? 'check_box' :
+                            'check_box_outline_blank'}}</i>
                         <span class="mdl-checkbox__label cesar-cfp-checkbox" translate="view.cfp.home.profile.link">At least one link</span>
                     </label>
                 </div>
@@ -45,25 +52,31 @@
             </div>
 
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="account({redirect: 'cfp'})" id="changeAcount">
-                    <i class="material-icons">build</i>
-                </a>
-                <div class="mdl-tooltip" for="changeAcount" translate="action.profile"></div>
+                <div style="float: right">
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                       ui-sref="account({redirect: 'cfp'})" id="changeAcount">
+                        <i class="material-icons">build</i>
+                    </a>
+                    <div class="mdl-tooltip" for="changeAcount" translate="action.profile"></div>
 
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="member({id : ctrl.account.member.id, redirect: 'cfp'})" id="viewAccount">
-                    <i class="material-icons">person</i>
-                </a>
-                <div class="mdl-tooltip" for="viewAccount" translate="action.member"></div>
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                       ui-sref="member({id : ctrl.account.member.id, redirect: 'cfp'})" id="viewAccount">
+                        <i class="material-icons">person</i>
+                    </a>
+                    <div class="mdl-tooltip" for="viewAccount" translate="action.member"></div>
+                </div>
             </div>
 
         </div>
 
         <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-card mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title mdl-card--expand cesar-card__title">
-                <h3 class="mdl-card__title-text cesar-card__title-text" translate="view.cfp.home.profile.submission">Your submissions</h3>
+                <h3 class="mdl-card__title-text cesar-card__title-text" translate="view.cfp.home.profile.submission">
+                    Your submissions</h3>
             </div>
             <div class=" cesar-card__supporting-text">
-                <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
+                <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container"
+                       style="margin: 1em; width: 96%">
                     <thead ng-show="false">
                     <tr>
                         <th colspan="2">&nbsp;</th>
@@ -73,13 +86,17 @@
                     <tr ng-repeat="proposal in ctrl.proposals" ui-sref="cfptalk({id : proposal.id})">
                         <td class="mdl-data-table__cell--non-numeric">
                             <p class="cesar-text">
-                                {{::proposal.title}}  <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
+                                {{::proposal.title}} <a
+                                    class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                                    ng-if="proposal.status">{{::proposal.status}}</a>
                             </p>
                             <p>{{::proposal.summary}}</p>
-                            <p ng-if="!proposal.valid" class="cesar-error-simple" translate="view.cfp.home.incomplete"></p>
+                            <p ng-if="!proposal.valid" class="cesar-error-simple"
+                               translate="view.cfp.home.incomplete"></p>
                         </td>
                         <td style="padding: 4px">
-                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-disabled="!ctrl.profileOk">
+                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                               ng-disabled="!ctrl.profileOk">
                                 <i class="material-icons mdl-badge">build</i>
                             </a>
                         </td>
@@ -88,11 +105,15 @@
                 </table>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk" id="addTalk" ng-disabled="!ctrl.profileOk">
-                    <i class="material-icons">add</i>
-                </a>
-                <div class="mdl-tooltip" for="addTalk" translate="action.add" ng-if="ctrl.profileOk"></div>
-                <div class="mdl-tooltip" for="addTalk" translate="view.cfp.home.actiondisabled" ng-if="!ctrl.profileOk"></div>
+                <div style="float: right">
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                       ui-sref="cfptalk" id="addTalk" ng-disabled="!ctrl.profileOk">
+                        <i class="material-icons">add</i>
+                    </a>
+                    <div class="mdl-tooltip" for="addTalk" translate="action.add" ng-if="ctrl.profileOk"></div>
+                    <div class="mdl-tooltip" for="addTalk" translate="view.cfp.home.actiondisabled"
+                         ng-if="!ctrl.profileOk"></div>
+                </div>
             </div>
 
         </div>
@@ -105,12 +126,13 @@
     <p translate="view.cfp.home.suggestion"></p>
 
     <div>
-        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-repeat="category in ctrl.categories" translate="view.cfp.category.{{category}}">{{category}}</a>
+        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+           ng-repeat="category in ctrl.categories" translate="view.cfp.category.{{category}}">{{category}}</a>
     </div>
     <p>&nbsp;</p>
-    <p class="cesar-text" translate="view.cfp.home.explanation">I you want to increase yours chances of success, we encourage you to submit more than one submission. The number of submission
+    <p class="cesar-text" translate="view.cfp.home.explanation">I you want to increase yours chances of success, we
+        encourage you to submit more than one submission. The number of submission
         is important to help us to build the best program for attendees. </p>
-
 
 
     <p>&nbsp;</p>

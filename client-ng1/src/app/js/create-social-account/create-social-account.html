@@ -17,16 +17,19 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true" ng-maxlength="100"
+                                <input class="mdl-textfield__input" type="text" id="firstname" ng-required="true"
+                                       ng-maxlength="100"
                                        ng-model="ctrl.credentials.firstname"/>
                                 <label class="mdl-textfield__label" for="firstname" translate="view.account.firstname">Prénom</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true" ng-maxlength="100"
+                                <input class="mdl-textfield__input" type="text" id="lastname" ng-required="true"
+                                       ng-maxlength="100"
                                        ng-model="ctrl.credentials.lastname"/>
-                                <label class="mdl-textfield__label" for="lastname" translate="view.account.lastname">Nom</label>
+                                <label class="mdl-textfield__label" for="lastname"
+                                       translate="view.account.lastname">Nom</label>
                             </div>
                         </div>
 
@@ -34,9 +37,11 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="email" id="email" ng-required="true" ng-maxlength="250"
+                                <input class="mdl-textfield__input" type="email" id="email" ng-required="true"
+                                       ng-maxlength="250"
                                        ng-model="ctrl.credentials.email"/>
-                                <label class="mdl-textfield__label" for="email" translate="view.account.mail">E-mail</label>
+                                <label class="mdl-textfield__label" for="email"
+                                       translate="view.account.mail">E-mail</label>
                             </div>
                         </div>
                     </div>
@@ -61,10 +66,13 @@
                     </div>
 
                     <div class="mdl-card__actions mdl-card--border">
-                         <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'" id="action1"
-                                      on-click="ctrl.createSocialAccount()" spinner="spinner" google-icon="save">
-                        </cesar-button>
-                        <div class="mdl-tooltip" for="action1" translate="action.save"></div>
+                        <div style="float: right">
+                            <cesar-button disabled="(!frm.$pristine && frm.$invalid) || frm.$pending || spinner==='on'"
+                                          id="action1"
+                                          on-click="ctrl.createSocialAccount()" spinner="spinner" google-icon="save">
+                            </cesar-button>
+                            <div class="mdl-tooltip" for="action1" translate="action.save"></div><br>&nbsp;
+                        </div>
                     </div>
                 </div>
             </div>
