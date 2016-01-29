@@ -57,6 +57,11 @@
         .resolve({articles: getAllArticles})
         .build())
 
+      .state('article', new State(USER_ROLES, 'article/:id', 'js/article/article.html')
+        .controller('ArticleCtrl')
+        .resolve({articles: getAllArticles})
+        .build())
+
       .state('articles', new State(USER_ROLES, 'articles', 'js/articles/articles.html')
         .controller('ArticlesCtrl')
         .resolve({articles: getAllArticles})

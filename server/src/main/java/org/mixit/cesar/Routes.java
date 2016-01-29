@@ -16,6 +16,7 @@ public class Routes {
             "/admarticle/{id:\\w+}",
             "/admarticles",
             "/article/{id:\\w+}",
+            "/article/{id:\\w+}/{name:\\w+}",
             "/articles",
             "/authent",
             "/cache",
