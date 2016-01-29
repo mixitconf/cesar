@@ -5,7 +5,7 @@
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-articles').controller('ArticleCtrl', function (articles, $stateParams, $state, ArticleService) {
+  angular.module('cesar-articles').controller('ArticleCtrl', function (articles, $stateParams, $state, $location,ArticleService) {
     'ngInject';
 
     var ctrl = this;
@@ -56,5 +56,7 @@
     ctrl.addComment = function(){
       console.log('TODO implement this feature');
     };
+
+    ctrl.url = encodeURIComponent($location.absUrl());
   });
 })();
