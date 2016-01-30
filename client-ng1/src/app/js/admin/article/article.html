@@ -11,7 +11,7 @@
         </div>
         <div class="cesar-error" ng-if="frm.title.$error.required">Title is required (max size is 100)</div>
         <div class="cesar-error" ng-if="frm.headline.$error.required">Headline is required (max size is 255)</div>
-        <div class="cesar-error" ng-if="frm.content.$error.required">Content is required (max size is 3000)</div>
+        <div class="cesar-error" ng-if="frm.content.$error.required">Content is required (max size is 12000)</div>
 
         <form novalidate class="cesar-form" name="frm">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -34,13 +34,13 @@
             </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <textarea class="mdl-textfield__input" type="text" rows="15" id="contenu" ng-maxlength="6000" name="contenu"
+            <textarea class="mdl-textfield__input" type="text" rows="15" id="contenu" ng-maxlength="12000" name="contenu"
                       ng-required="true"
                       ng-model="ctrl.article.contenu"></textarea>
                 <label class="mdl-textfield__label" for="contenu">Contenu</label>
                 <small class="cesar-length-field">
                 <span translate="view.account.update.characterNumber"
-                      translate-values="{ nbcarac : 6000-ctrl.article.contenu.length }"></span>
+                      translate-values="{ nbcarac : 12000-ctrl.article.contenu.length }"></span>
                     (<span translate="view.account.update.markdown"></span>)
                 </small>
             </div>
