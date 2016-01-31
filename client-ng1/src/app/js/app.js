@@ -10,6 +10,7 @@
   angular.module('cesar-members', ['cesar-templates', 'cesar-utils']);
   angular.module('cesar-sessions', ['cesar-templates', 'cesar-utils']);
   angular.module('cesar-services', []);
+  angular.module('cesar-planning', []);
   angular.module('cesar-security', ['ngCookies']);
   angular.module('cesar-account', []);
 
@@ -24,6 +25,7 @@
     'cesar-menu',
     'cesar-home',
     'cesar-members',
+    'cesar-planning',
     'cesar-sessions',
     'cesar-services',
     'cesar-utils',

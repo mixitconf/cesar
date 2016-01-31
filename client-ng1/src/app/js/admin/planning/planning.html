@@ -1,6 +1,32 @@
-<div class="cesar-container">
+
+
+<div class="cesar-container-fluid">
+
     <h1>Gestion du planning</h1>
 
+    <div style="display: flex;justify-content:center;align-content:center">
+        <div ng-repeat="room in ctrl.rooms" class="flex:1 0 0;"
+             ng-style="{'width' : 100/ctrl.rooms.length + '%'}"
+             style="padding: 1em;text-align: center">
+            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">
+                {{room.name}}
+            </a><br>
+            {{room.capacity}} pers.
+
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+            <div style="border: 1px solid black;height: 5px"></div>
+        </div>
+    </div>
 
 
+    <hr>
+    {{ctrl.slots}}
 </div>

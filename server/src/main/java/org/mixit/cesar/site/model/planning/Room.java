@@ -2,22 +2,29 @@ package org.mixit.cesar.site.model.planning;
 
 public enum Room {
 
-    S1("Gosling"), //used by mixit13, mixit14, mixit15
-    S2("Lovelace"), //used by mixit13, mixit14, mixit15
-    S3("Nonaka"), //used by mixit13, mixit14, mixit15
-    S4("Dijkstra"), //used by mixit13, mixit14, mixit15
-    S5("Turing"), //used by mixit13, mixit15
-    A1("Grand Amphi"), //used by mixit14, mixit15
-    A2("Petit Amphi"); //used by mixit14, mixit15
+    Amphi1("Petit Amphi", 200),
+    Amphi2("Grand Amphi", 500),
+    Salle1("Gosling", 110),
+    Salle2("Eich", 110),
+    Salle3("Nonaka", 30),
+    Salle4("Dijkstra", 30),
+    Salle5("Turing", 30),
+    Salle6("Lovelace", 30),
+    Salle7("Mezzanine", 50);
 
     private String name;
+    private int capacity;
 
-    private Room(String name) {
+    private Room(String name, int capacity) {
+        this.capacity = capacity;
         this.name = name;
     }
 
-    @Override
-    public String toString() {
+    public String getName() {
         return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }

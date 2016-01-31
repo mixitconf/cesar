@@ -19,7 +19,8 @@
     "markdown": "^0.5.0",
     "marked": "^0.3.5",
     "material-design-icons": "^2.0.0",
-    "material-design-lite": "^1.0.6"
+    "material-design-lite": "^1.0.6",
+    "moment": "^2.11.1"
   },
   "devDependencies": {
     "browser-sync": "^2.8.0",

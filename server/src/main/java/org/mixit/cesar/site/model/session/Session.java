@@ -25,7 +25,9 @@ import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
+import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -36,9 +38,11 @@ public abstract class Session<T extends Session> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     protected Format format;
 
     @ManyToOne(optional = false)
@@ -46,6 +50,7 @@ public abstract class Session<T extends Session> {
 
     @NotNull
     @Size(max = 100)
+    @JsonView(FlatView.class)
     private String title;
 
     @Size(max = 300)
@@ -103,6 +108,7 @@ public abstract class Session<T extends Session> {
     protected boolean valid;
 
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private SessionLanguage lang = SessionLanguage.fr;
 
     private Boolean sessionAccepted;

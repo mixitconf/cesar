@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
+import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.session.Session;
 
 /**
@@ -21,12 +23,14 @@ public class Slot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
     private Long id;
 
     /**
      * The room where the session is
      */
     @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
     private Room room;
 
     /**
@@ -34,23 +38,27 @@ public class Slot {
      * no session
      */
     @ManyToOne(optional = true)
+    @JsonView(FlatView.class)
     private Session session;
 
     /**
      * Start time of this slot
      */
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @JsonView(FlatView.class)
     private LocalDateTime start;
 
     /**
      * End time of this slot
      */
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @JsonView(FlatView.class)
     private LocalDateTime end;
 
     /**
      * Label
      */
+    @JsonView(FlatView.class)
     private String label;
 
 
