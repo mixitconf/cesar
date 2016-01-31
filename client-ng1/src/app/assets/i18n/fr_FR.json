@@ -38,7 +38,8 @@
     "account": "Mon compte",
     "logout": "Se déconnecter",
     "login": "Se connecter",
-    "monitor": "Monitoring"
+    "monitor": "Monitoring",
+    "planning": "Planning"
   },
   "home": {
     "headband": {

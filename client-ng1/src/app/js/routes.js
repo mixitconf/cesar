@@ -25,6 +25,13 @@
       });
     }
 
+    /* @ngInject */
+    function getAccount(AuthenticationService) {
+      return AuthenticationService.currentUser().then(function (currentUser) {
+        return currentUser;
+      });
+    }
+
     //Router definition
     $stateProvider
 
@@ -67,39 +74,26 @@
         .resolve({articles: getAllArticles})
         .build())
 
+      .state('admplanning', new State(USER_ROLES, 'admplanning', 'js/admin/planning/planning.html')
+        .controller('AdminPlanningCtrl')
+        .resolve({account: getAccount})
+        .build())
+
       .state('admcfp', new State(USER_ROLES, 'admcfp', 'js/admin/cfp/cfp.html')
         .controller('AdminCfpCtrl')
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
+
       .state('admcfptalk', new State(USER_ROLES, 'admcfptalk/:id', 'js/admin/cfptalk/cfptalk.html')
         .controller('AdminCfpTalkCtrl')
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
+
       .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')
         .controller('AdminArticleCtrl')
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
+
       .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
         .controller('AdminArticlesCtrl')
         .resolve({
@@ -186,40 +180,19 @@
       .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/cfp.html')
         .controller('CfpCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
 
       .state('cfptalk', new State(USER_ROLES, 'cfptalk/:id', 'js/cfptalk/cfptalk.html')
         .controller('CfpTalkCtrl')
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
 
       //Account
       .state('account', new State(USER_ROLES, 'account?redirect', 'js/account/account.html')
         .controller('AccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
-        .resolve({
-          /* @ngInject */
-          account: function (AuthenticationService) {
-            return AuthenticationService.currentUser().then(function (currentUser) {
-              return currentUser;
-            });
-          }
-        })
+        .resolve({account: getAccount})
         .build())
       .state('createaccount', new State(USER_ROLES, 'createaccount', 'js/create-user-account/create-user-account.html')
         .controller('CreateUserAccountCtrl')

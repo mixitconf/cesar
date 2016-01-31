@@ -38,7 +38,8 @@
     "account": "My account",
     "logout": "Disconnect",
     "login": "Connect",
-    "monitor": "Monitoring"
+    "monitor": "Monitoring",
+    "planning": "Planning"
   },
   "home": {
     "headband": {
