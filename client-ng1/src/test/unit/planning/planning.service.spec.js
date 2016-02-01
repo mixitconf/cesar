@@ -1,5 +1,5 @@
 describe('Service PlanningService', function () {
-  var service, $httpBackend, slots;
+  var service, $httpBackend, slots,rooms;
 
   beforeEach(module('cesar-planning'));
 
@@ -7,6 +7,17 @@ describe('Service PlanningService', function () {
   beforeEach(inject(function ($injector) {
     $httpBackend = $injector.get('$httpBackend');
     service = $injector.get('PlanningService');
+
+    rooms = [ {
+      "key" : "Amphi1",
+      "name" : "Petit Amphi",
+    }, {
+      "key" : "Amphi2",
+      "name" : "Grand Amphi",
+    }, {
+      "key": "Salle1",
+      "name": "Gosling",
+    }];
 
     slots = { 'Amphi1' : [
       builders
@@ -34,14 +45,56 @@ describe('Service PlanningService', function () {
   }));
 
 
-  it('should compute planning', function () {
-    $httpBackend.expectGET('/api/planning').respond(slots);
+  //it('should compute planning', function () {
+  //  $httpBackend.expectGET('/api/planning').respond(slots);
+  //
+  //  service.computeSlots(rooms).then(function(response){
+  //    expect(response).toEqual(slots);
+  //  });
+  //  $httpBackend.flush();
+  //
+  //});
 
-    service.computeSlots().then(function(response){
-      expect(response).toEqual(slots);
+  describe('computeRange', function(){
+    it('should retun 11 ranges of 1 hour between 8:00 and 19:00', function () {
+
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:0}, { hour: 19, minute:0});
+
+      expect(ranges.length).toBe(11);
+      expect(ranges[0].start.format('HH:mm')).toBe('08:00');
+      expect(ranges[0].end.format('HH:mm')).toBe('09:00');
+      expect(ranges[10].start.format('HH:mm')).toBe('18:00');
+      expect(ranges[10].end.format('HH:mm')).toBe('19:00');
     });
-    $httpBackend.flush();
 
+    it('should conserve minutes for start time', function () {
+
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:10}, { hour: 10, minute:0});
+
+      expect(ranges.length).toBe(2);
+      expect(ranges[0].start.format('HH:mm')).toBe('08:10');
+      expect(ranges[0].end.format('HH:mm')).toBe('09:00');
+      expect(ranges[1].start.format('HH:mm')).toBe('09:00');
+      expect(ranges[1].end.format('HH:mm')).toBe('10:00');
+    });
+
+    it('should conserve minutes for end  time', function () {
+
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:10}, { hour: 10, minute:30});
+
+      expect(ranges.length).toBe(3);
+      expect(ranges[0].start.format('HH:mm')).toBe('08:10');
+      expect(ranges[0].end.format('HH:mm')).toBe('09:00');
+      expect(ranges[1].start.format('HH:mm')).toBe('09:00');
+      expect(ranges[1].end.format('HH:mm')).toBe('10:00');
+      expect(ranges[2].start.format('HH:mm')).toBe('10:00');
+      expect(ranges[2].end.format('HH:mm')).toBe('10:30');
+    });
+
+    it('should return nothing when end time upper than start date', function () {
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 18, minute:10}, { hour: 10, minute:0});
+      expect(ranges.length).toBe(0);
+    });
   });
 
 });

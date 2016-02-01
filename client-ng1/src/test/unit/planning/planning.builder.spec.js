@@ -25,7 +25,7 @@ var builders = (function () {
     return this;
   };
   Slot.prototype.build = function () {
-    return this.session;
+    return this.slot;
   };
 
   //Object Session
