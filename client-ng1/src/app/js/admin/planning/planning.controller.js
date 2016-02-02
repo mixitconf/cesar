@@ -6,25 +6,32 @@
     'ngInject';
 
     var ctrl = this;
+    var slots;
 
-    if(!account){
+    if (!account) {
       $rootScope.$broadcast('event:auth-loginRequired');
       return;
     }
 
     cesarSpinnerService.wait();
+
     $q.all([
-        PlanningService.getRoom().then(function(response){
+        PlanningService.getRoom().then(function (response) {
           ctrl.rooms = response.data;
         }),
-        PlanningService.getSlots().then(function(response){
-          ctrl.slots = response.data;
+        PlanningService.getSlots(2015).then(function (response) {
+          slots = response.data;
         }),
         SessionService.getAllByYear(2015).then(function (response) {
           ctrl.sessions = response.data;
         })
       ])
-      .finally(function(){
+      .then(function () {
+        PlanningService.computeSlots(slots, ctrl.rooms).then(function (response) {
+          ctrl.slots = response;
+        });
+      })
+      .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
   });

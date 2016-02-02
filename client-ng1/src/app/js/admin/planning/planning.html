@@ -1,32 +1,36 @@
-
-
 <div class="cesar-container-fluid">
 
     <h1>Gestion du planning</h1>
 
-    <div style="display: flex;justify-content:center;align-content:center">
-        <div ng-repeat="room in ctrl.rooms" class="flex:1 0 0;"
-             ng-style="{'width' : 100/ctrl.rooms.length + '%'}"
-             style="padding: 1em;text-align: center">
-            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">
-                {{room.name}}
-            </a><br>
-            {{room.capacity}} pers.
+    <div class="cesar-planning__container">
+        <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room"
+             ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
-            <div style="border: 1px solid black;height: 5px"></div>
+            <div class="cesar-text-center">
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">
+                    {{room.name}}
+                </a><br>
+                {{room.capacity}} pers.
+            </div>
+
+            <div class="cesar-planning__slot" ng-repeat="slot in ctrl.slots[room.key]" ng-style="{'max-heigth' : duration + 'px', 'min-heigth' : duration + 'px'}">
+                <span ng-if="slot.label" translate="{{slot.label}}"></span>
+
+                <div ng-if="slot.session">
+                    <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
+                    <span id="sesssion{{slot.session.id}}">{{::slot.session.title}}</span>
+                    <div class="mdl-tooltip" for="sesssion{{slot.session.id}}">De {{::slot.start}} à
+                        {{::slot.end}}
+                    </div>
+                </div>
+                <span ng-if="!slot.session && !slot.label">&nbsp</span>
+            </div>
         </div>
     </div>
-
-
-    <hr>
-    {{ctrl.slots}}
+    <div class="cesar -helper hide-on-mobile" style="float: right">
+        <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+        <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+        <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+    </div>
+    <p>&nbsp;</p>
 </div>

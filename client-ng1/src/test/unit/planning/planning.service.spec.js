@@ -36,9 +36,7 @@ describe('Service PlanningService', function () {
   describe('computeSlots', function(){
 
     it('should return 11 range for Amphi2 which has  no slots is in database', function () {
-      $httpBackend.expectGET('/api/planning').respond(slots);
-
-      service.computeSlots([ {
+      service.computeSlots(slots, [ {
         "key" : "Amphi2",
         "name" : "Petit Amphi",
       }])
@@ -47,14 +45,10 @@ describe('Service PlanningService', function () {
         expectRange(response.Amphi2, 0, '08:00', '09:00');
         expectRange(response.Amphi2, 10, '18:00', '19:00');
       });
-      $httpBackend.flush();
-
     });
 
     it('should return 11 ranges for Amphi1 which has 3 slots in database', function () {
-      $httpBackend.expectGET('/api/planning').respond(slots);
-
-      service.computeSlots([ {
+      service.computeSlots(slots, [ {
           "key" : "Amphi1",
           "name" : "Grand Amphi",
         }])
@@ -88,8 +82,6 @@ describe('Service PlanningService', function () {
           expectRange(response.Amphi1, 11, '17:00', '18:00');
           expectRange(response.Amphi1, 12, '18:00', '19:00');
         });
-      $httpBackend.flush();
-
     });
   });
 
