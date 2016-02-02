@@ -31,7 +31,7 @@
         start: start.toISOString(),
         end: end.toISOString(),
         duration: moment.duration(end.diff(start)).as('minutes')
-      }
+      };
     }
 
     /**
