@@ -3,6 +3,9 @@
     <h1>Gestion du planning</h1>
 
     <div class="cesar-planning__container">
+        <div class="cesar-planning__room">
+            Hour
+        </div>
         <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room"
              ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
@@ -13,7 +16,9 @@
                 {{room.capacity}} pers.
             </div>
 
-            <div class="cesar-planning__slot" ng-repeat="slot in ctrl.slots[room.key]" ng-style="{'max-heigth' : duration + 'px', 'min-heigth' : duration + 'px'}">
+            <div class="cesar-planning__slot" ng-repeat="slot in ctrl.slots[room.key]"
+                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}">
+
                 <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
                 <div ng-if="slot.session">

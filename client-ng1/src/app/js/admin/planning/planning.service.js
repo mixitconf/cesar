@@ -115,6 +115,8 @@
                 putRange(slots, computeRange(moment(elt.start), lastTime, time));
               }
 
+
+              elt.duration = moment.duration(moment(elt.end).diff(moment(elt.start))).as('minutes');
               slots.push(elt);
 
               lastTime = {
