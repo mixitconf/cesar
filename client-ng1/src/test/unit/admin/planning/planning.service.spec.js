@@ -11,22 +11,22 @@ describe('Service PlanningService', function () {
     slots = { 'Amphi1' : [
       builders
         .createSlot(1)
-        .range('2016-04-21T08:00', '2016-04-21T09:10')
+        .range('2016-04-21T08:00:00Z', '2016-04-21T09:10:00Z')
         .label('planning.accueil')
         .build(),
       builders
         .createSlot(2)
-        .range('2016-04-21T09:20:00', '2016-04-21T10:30')
+        .range('2016-04-21T09:20:00:00Z', '2016-04-21T10:30:00Z')
         .session(builders.createSession(631).title('Microplugins avec Docker').lang('fr').build())
         .build(),
       builders
         .createSlot(3)
-        .range('2016-04-21T10:30', '2016-04-21T11:40')
+        .range('2016-04-21T10:30:00Z', '2016-04-21T11:40:00Z')
         .session(builders.createSession(711).title('24 Minutes chrono pour bâtir une appli mobile').lang('fr').build())
         .build(),
       builders
         .createSlot(4)
-        .range('2016-04-21T13:30', '2016-04-21T14:20')
+        .range('2016-04-21T13:30:00Z', '2016-04-21T14:20:00Z')
         .session(builders.createSession(771).title('Sirius : un schéma vaut mieux qu\'un long discours').lang('fr').build())
         .build()
     ]};
@@ -88,7 +88,7 @@ describe('Service PlanningService', function () {
 
   describe('computeRange', function(){
     it('should retun 11 ranges of 1 hour between 8:00 and 19:00', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:0}, { hour: 19, minute:0});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 8, minute:0}, { hour: 19, minute:0});
 
       expect(ranges.length).toBe(11);
       expectRange(ranges, 0, '08:00', '09:00');
@@ -96,7 +96,7 @@ describe('Service PlanningService', function () {
     });
 
     it('should conserve minutes for start time', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:10}, { hour: 10, minute:0});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 8, minute:10}, { hour: 10, minute:0});
 
       expect(ranges.length).toBe(2);
       expectRange(ranges, 0, '08:10', '09:00');
@@ -104,7 +104,7 @@ describe('Service PlanningService', function () {
     });
 
     it('should compute a rang in PM', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 14, minute:20}, { hour: 18, minute:0});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 14, minute:20}, { hour: 18, minute:0});
 
       expect(ranges.length).toBe(4);
       expectRange(ranges, 0, '14:20', '15:00');
@@ -113,7 +113,7 @@ describe('Service PlanningService', function () {
     });
 
     it('should conserve minutes for end  time', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 8, minute:10}, { hour: 10, minute:30});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 8, minute:10}, { hour: 10, minute:30});
 
       expect(ranges.length).toBe(3);
       expectRange(ranges, 0, '08:10', '09:00');
@@ -122,14 +122,20 @@ describe('Service PlanningService', function () {
     });
 
     it('should return conserve range lesser than an hour ', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 9, minute:10}, { hour: 9, minute:30});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 9, minute:10}, { hour: 9, minute:30});
 
       expect(ranges.length).toBe(1);
       expectRange(ranges, 0, '09:10', '09:30');
     });
 
+    it('should return one plage lesser than one hour ', function () {
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 9, minute:10}, { hour: 10, minute:0});
+      expect(ranges.length).toBe(1);
+      expectRange(ranges, 0, '09:10', '10:00');
+    });
+
     it('should return nothing when end time upper than start date', function () {
-      var ranges = service.computeRange(moment('2016-04-21 12:22:00'), { hour: 18, minute:10}, { hour: 10, minute:0});
+      var ranges = service.computeRange(moment('2016-04-21 12:22:00:00Z'), { hour: 18, minute:10}, { hour: 10, minute:0});
       expect(ranges.length).toBe(0);
     });
   });

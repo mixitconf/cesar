@@ -3,21 +3,30 @@
     <h1>Gestion du planning</h1>
 
     <div class="cesar-planning__container">
-        <div class="cesar-planning__room">
-            Hour
+        <div class="cesar-planning__hour">
+            <div class="cesar-text-center cesar-planning__head">
+                &nbsp;
+            </div>
+            <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
+                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}">
+                {{::slot.start | time}}
+            </div>
         </div>
         <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room"
              ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
-            <div class="cesar-text-center">
+            <div class="cesar-text-center cesar-planning__head">
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">
                     {{room.name}}
                 </a><br>
                 {{room.capacity}} pers.
             </div>
 
-            <div class="cesar-planning__slot" ng-repeat="slot in ctrl.slots[room.key]"
-                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}">
+            <div class="cesar-planning__slot"
+                 ng-repeat="slot in ctrl.slots[room.key]"
+                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}"
+                 ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                 'cesar-planning__slot-Annexe': !!slot.label}">
 
                 <span ng-if="slot.label" translate="{{slot.label}}"></span>
 

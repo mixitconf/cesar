@@ -29,6 +29,7 @@
       .then(function () {
         PlanningService.computeSlots(slots, ctrl.rooms).then(function (response) {
           ctrl.slots = response;
+          ctrl.timeslots = PlanningService.computeRange();
         });
       })
       .finally(function () {

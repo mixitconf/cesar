@@ -5,12 +5,48 @@
 }
 
 .cesar-planning__room{
-  padding: 1em;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+}
+
+.cesar-planning__hour{
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+.cesar-planning__head{
+  min-height: 70px;
 }
 
 .cesar-planning__slot{
   border: 1px solid @background_color_light;
   text-align: center;
   vertical-align: middle;
-  text-overflow: clip;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-grow: 1;
+  padding: 4px;
+  display: block;
 }
+
+.cesar-planning__slot-time{
+  text-align: right;
+}
+.cesar-planning__slot-Talk{
+  background-color: #FFF59D;
+}
+.cesar-planning__slot-Keynote{
+  background-color: #F48FB1;
+}
+.cesar-planning__slot-Workshop{
+  background-color: #81D4FA;
+}
+.cesar-planning__slot-Annexe{
+  background-color: @background_color_light;
+}
+
+
+

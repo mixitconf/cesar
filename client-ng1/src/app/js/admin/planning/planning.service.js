@@ -6,6 +6,8 @@
   angular.module('cesar-planning').factory('PlanningService', function ($http, $q) {
     'ngInject';
 
+    var DATE_FORMAT = 'YYYY-MM-DD HH:mm';
+
     function getRoom() {
       return $http.get('/api/planning/room');
     }
@@ -28,8 +30,8 @@
 
     function createSlot(start, end){
       return {
-        start: start.toISOString(),
-        end: end.toISOString(),
+        start: start.format(DATE_FORMAT),
+        end: end.format(DATE_FORMAT),
         duration: moment.duration(end.diff(start)).as('minutes')
       };
     }
@@ -38,7 +40,12 @@
      * This function computes the set of time slices available between two hours. The goal
      * is to return a table with a data for each new hour
      */
-    function computeRange(moment, startTime, endTime) {
+    function computeRange(instant, startTime, endTime) {
+      if(!startTime || !endTime){
+        instant = moment();
+        startTime = {hour: 8, minute: 0};
+        endTime = {hour: 19, minute: 0};
+      }
       var start, end;
       var range = [];
 
@@ -48,24 +55,23 @@
       };
 
       if (time.hour === endTime.hour && time.minute !== endTime.minute) {
-        start = setTime(moment, time);
-        end = setTime(moment, endTime);
-
+        start = setTime(instant, time);
+        end = setTime(instant, endTime);
         return [createSlot(start,end)];
       }
 
       while (time.hour < endTime.hour) {
-        start = setTime(moment, time);
+        start = setTime(instant, time);
         time.hour++;
         time.minute = 0;
-        end = setTime(moment, time);
+        end = setTime(instant, time);
 
         range.push(createSlot(start,end));
 
-        if (time.hour === endTime.hour && start.get('minute') !== endTime.minute) {
-          start = end;
-          end = start.clone();
-          end.set('minute', endTime.minute);
+        if (time.hour === endTime.hour && time.minute !== endTime.minute) {
+          start = setTime(instant, time);
+          time.minute = endTime.minute;
+          end = setTime(instant, time);
 
           range.push(createSlot(start,end));
         }
@@ -114,7 +120,6 @@
               if (time.hour !== lastTime.hour || time.minute !== lastTime.minute) {
                 putRange(slots, computeRange(moment(elt.start), lastTime, time));
               }
-
 
               elt.duration = moment.duration(moment(elt.end).diff(moment(elt.start))).as('minutes');
               slots.push(elt);
