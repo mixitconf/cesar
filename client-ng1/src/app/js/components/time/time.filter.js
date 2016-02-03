@@ -1,6 +1,7 @@
 (function () {
 
   'use strict';
+  /*global moment */
 
   angular.module('cesar-utils').filter('time', function () {
     'ngInject';
