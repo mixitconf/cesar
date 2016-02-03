@@ -24,13 +24,6 @@
 @tablet_fontsize : 13px;
 @screen_fontsize : 14px;
 
-//Temporarly we desactivae interest links
-.mdl-button--raised{
-  cursor: default !important;
-}
-.cesar-mdl-button--raised{
-  cursor:hand !important;
-}
 body {
   font-family: "Roboto", "Arial", sans-serif !important;
 }
@@ -241,13 +234,20 @@ img{
  max-width: 100%;
 }
 
-.cesar-mdl-button--interests{
-  height: 22px;
+.cesar-mdl-button-common{
+  padding: 0 5px;
+  margin: 5px;
   line-height: 22px !important;
   font-size: 12px;
+  height: 22px;
+  background-color: @background_color_light;
+  border-radius: 4px;
+  border: 1px solid @background_color_light;
+}
+.cesar-mdl-button{
+  .cesar-mdl-button-common();
   color: @primary_color;
-  padding: 0px 5px !important;
-  margin: 5px;
+  background-color: @background_color_light;
 
   button {
     min-width: 20px;
@@ -257,6 +257,12 @@ img{
   .material-icons{
     font-size: 18px;
   }
+}
+.cesar-mdl-button--interests{
+  .cesar-mdl-button-common();
+  color: @primary_color_dark;
+  display: inline-block;
+  border-radius: 4px;
 }
 
 .cesar-mutimedia-img{

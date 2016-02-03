@@ -2,7 +2,7 @@
     <h1 ng-if="ctrl.proposal.id">View talk</h1>
 
     <div>
-        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
+        <a class="cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>
 
 
@@ -114,14 +114,14 @@
 
             <p>&nbsp;</p>
             <div>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                <a class="cesar-mdl-button--interests"
                    ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
                     {{interest.name}}
                 </a>
             </div>
 
             <div>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--raised cesar-mdl-button--interests"
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
                    ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px" ng-if="speaker.id!==ctrl.account.member.id"
                    ui-sref="member({id : speaker.id, redirect: 'cfp'})">
                     {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
