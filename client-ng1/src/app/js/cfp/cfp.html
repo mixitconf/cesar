@@ -83,7 +83,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="proposal in ctrl.proposals" ui-sref="cfptalk({id : proposal.id})">
+                    <tr ng-repeat="proposal in ctrl.proposals" >
                         <td class="mdl-data-table__cell--non-numeric">
                             <p class="cesar-text">
                                 {{::proposal.title}} <a
@@ -95,7 +95,7 @@
                                translate="view.cfp.home.incomplete"></p>
                         </td>
                         <td style="padding: 4px">
-                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk({id : proposal.id})"
                                ng-disabled="!ctrl.profileOk">
                                 <i class="material-icons mdl-badge">build</i>
                             </a>
