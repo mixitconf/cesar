@@ -141,12 +141,33 @@
       return $q.when(slotsByRoom);
     }
 
+    function sessionNotExist(slots, session){
+      return slots.filter(function(slot){
+        return (slot.session && slot.session.id === session.id);
+      }).length==0;
+    }
+    /**
+     * Extract the sessions not affected in a planning slot
+     */
+    function extractSessionToAffect(slotInDatabase, sessions){
+      if(!sessions || ! slotInDatabase){
+        return undefined;
+      }
+      return sessions.filter(function(session){
+        var found = false;
+        Object.keys(slotInDatabase).forEach(function(key){
+          found = found || sessionNotExist(slotInDatabase[key], session);
+        });
+        return found;
+      });
+    }
 
     return {
       getRoom: getRoom,
       getSlots: getSlots,
       computeSlots: computeSlots,
-      computeRange: computeRange
+      computeRange: computeRange,
+      extractSessionToAffect: extractSessionToAffect
     };
   });
 })();

@@ -140,6 +140,24 @@ describe('Service PlanningService', function () {
     });
   });
 
+  describe('extractSessionToAffect', function() {
+    it('should extract the existant sessions', function () {
+      var sessions = [
+        builders.createSession(631).title('Microplugins avec Docker').build(),
+        builders.createSession(711).title('24 Minutes chrono pour bâtir une appli mobile').build(),
+        builders.createSession(45).title('Ma session de test 1').build(),
+        builders.createSession(771).title('Sirius : un schéma vaut mieux qu\'un long discours').build(),
+        builders.createSession(56).title('Ma session de test 2').build()
+      ];
+
+      var sessionNotUsed = service.extractSessionToAffect(slots, sessions);
+
+      expect(sessionNotUsed.length).toBe(2);
+      expect(sessionNotUsed[0].id).toBe(45);
+      expect(sessionNotUsed[1].id).toBe(56);
+    });
+  });
+
   function expectRange(ranges, index, start, end){
     expect(moment(ranges[index].start).format('HH:mm')).toBe(start);
     expect(moment(ranges[index].end).format('HH:mm')).toBe(end);

@@ -7,6 +7,8 @@
 
     var ctrl = this;
     var slots;
+    //We will work with 2016 after the CFP
+    var year=2015;
 
     if (!account) {
       $rootScope.$broadcast('event:auth-loginRequired');
@@ -19,10 +21,10 @@
         PlanningService.getRoom().then(function (response) {
           ctrl.rooms = response.data;
         }),
-        PlanningService.getSlots(2015).then(function (response) {
+        PlanningService.getSlots(year).then(function (response) {
           slots = response.data;
         }),
-        SessionService.getAllByYear(2015).then(function (response) {
+        SessionService.getAllByYear(year).then(function (response) {
           ctrl.sessions = response.data;
         })
       ])

@@ -8,7 +8,7 @@
                 &nbsp;
             </div>
             <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
-                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}">
+                 ng-style="{'max-height' : (slot.duration - 2)  + 'px', 'min-height' : (slot.duration - 2) + 'px'}">
                 {{::slot.start | time}}
             </div>
         </div>
@@ -24,9 +24,9 @@
 
             <div class="cesar-planning__slot"
                  ng-repeat="slot in ctrl.slots[room.key]"
-                 ng-style="{'max-height' : slot.duration + 'px', 'min-height' : slot.duration + 'px'}"
+                 ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
                  ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
-                 'cesar-planning__slot-Annexe': !!slot.label}">
+                 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}">
 
                 <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
