@@ -4,6 +4,7 @@ describe('Filter markdown', function(){
   beforeEach(module('cesar-utils'));
 
   beforeEach(inject(function($filter){
+    console.log(moment())
     timeFilter = $filter('time');
   }));
 
