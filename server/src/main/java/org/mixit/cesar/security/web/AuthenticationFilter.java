@@ -1,4 +1,4 @@
-package org.mixit.cesar.security.service.authentification;
+package org.mixit.cesar.security.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;

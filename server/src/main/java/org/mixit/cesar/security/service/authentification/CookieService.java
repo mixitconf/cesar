@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.repository.AccountRepository;
+import org.mixit.cesar.security.web.AuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

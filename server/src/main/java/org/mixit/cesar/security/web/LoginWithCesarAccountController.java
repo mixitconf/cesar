@@ -41,7 +41,7 @@ public class LoginWithCesarAccountController {
     /**
      * Authenticates the user and returns the user token which has to be sent in the header of every request
      *
-     * @see org.mixit.cesar.security.service.authentification.AuthenticationFilter
+     * @see AuthenticationFilter
      */
     @RequestMapping(value = "/login",
             method = RequestMethod.POST,

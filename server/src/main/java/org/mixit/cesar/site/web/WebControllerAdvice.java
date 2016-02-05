@@ -1,4 +1,4 @@
-package org.mixit.cesar;
+package org.mixit.cesar.site.web;
 
 import static org.mixit.cesar.site.model.FunctionalError.Type.*;
 
