@@ -77,7 +77,9 @@
       "annonceend": "notre plaquette.",
       "return": "Retournez nous le",
       "form": "formulaire de sponsoring",
-      "at": "à"
+      "at": "à",
+      "presse" : "Pour plus d'informations vous pouvez consulter notre ",
+      "presseend" : "dossier de presse"
     }
   },
   "view": {

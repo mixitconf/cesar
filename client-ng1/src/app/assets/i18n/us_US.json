@@ -77,7 +77,9 @@
       "annonceend": "following leaflet.",
       "return":"Please fill and send back to us this",
       "form": "sponsoring form",
-      "at": "to"
+      "at": "to",
+      "presse" : "For more details you can read our ",
+      "presseend" : "press pack"
     }
   },
   "view": {
