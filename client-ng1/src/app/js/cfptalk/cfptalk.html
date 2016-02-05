@@ -217,16 +217,16 @@
             </div>
 
             <div style="float: right">
-                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
+                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" text="Save proposal"
                               spinner="spinner" google-icon="save"></cesar-button>
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
 
-                <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner"
+                <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" text="Delete proposal"
                               google-icon="delete" ng-if="ctrl.proposal.id"></cesar-button>
                 <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
 
-                <cesar-button id="action4" on-click="ctrl.goback()" spinner="spinner" google-icon="undo"></cesar-button>
+                <cesar-button id="action4" on-click="ctrl.goback()" spinner="spinner" google-icon="undo" text="Cancel"></cesar-button>
                 <div class="mdl-tooltip" for="action4" translate="action.return"></div>
             </div>
             <p>&nbsp;</p>

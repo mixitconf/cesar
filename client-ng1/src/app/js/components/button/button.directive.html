@@ -2,6 +2,7 @@
         ng-class="{'mdl-button--colored' : spinner==='off'}"
         ng-disabled="disabled"
         ng-click="onClick()"
+        alt="{{text}}"
         type="{{type}}">
   <i class="material-icons" ng-if="spinner==='off'">{{googleIcon}}</i>
   <div class="mdl-spinner mdl-js-spinner is-active" ng-show="spinner==='on'"></div>
