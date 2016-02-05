@@ -27,6 +27,10 @@ public class LeafletRedirect {
     private String speakerLeafletFr;
     @Value("${drive.speaker.leaflet.en}")
     private String speakerLeafletEn;
+    @Value("${drive.presse.leaflet.fr}")
+    private String presseLeafletFr;
+    @Value("${drive.presse.leaflet.en}")
+    private String presseLeafletEn;
 
     @RequestMapping(value = "/docs/sponsor/form/{language}")
     public void sponsorForm(@PathVariable("language") String language, HttpServletResponse response) throws IOException {
@@ -55,6 +59,16 @@ public class LeafletRedirect {
         }
         else {
             response.sendRedirect("https://drive.google.com/open?id=" + speakerLeafletFr);
+        }
+    }
+
+    @RequestMapping(value = "/docs/presse/leaflet/{language}")
+    public void presseLeaflet(@PathVariable("language") String language, HttpServletResponse response) throws IOException {
+        if ("en".equals(language.toLowerCase())) {
+            response.sendRedirect("https://drive.google.com/open?id=" + presseLeafletEn);
+        }
+        else {
+            response.sendRedirect("https://drive.google.com/open?id=" + presseLeafletFr);
         }
     }
 }

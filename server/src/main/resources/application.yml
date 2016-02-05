@@ -38,6 +38,10 @@ drive:
     leaflet:
       fr: ${DRIVE_SPEAKER_LEAFLET_FR:0B43BPeaKpurvZFE1bUg4bHJWNEk}
       en: ${DRIVE_SPEAKER_LEAFLET_EN:0B43BPeaKpurvZFE1bUg4bHJWNEk}
+  presse:
+    leaflet:
+        fr: ${DRIVE_PRESSE_LEAFLET_FR:0B43BPeaKpurvWVQ1NTdwa29zNFk}
+        en: ${DRIVE_PRESSE_LEAFLET_EN:0B43BPeaKpurvWVQ1NTdwa29zNFk}
 
 oauth:
   google:
