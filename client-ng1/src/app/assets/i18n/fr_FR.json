@@ -193,7 +193,8 @@
       "title": "Conférences et ateliers",
       "sponsor": "Sponsors",
       "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
-      "oldedition": "Voici la liste des sessions et des speakers présents à Mix-IT en {{years}}"
+      "oldedition": "Voici la liste des sessions et des speakers présents à Mix-IT en {{years}}",
+      "video":"Vous pouvez voir les sessions qui ont été filmées sur "
     },
     "error": {
       "title": "Une erreur a été détectée",
