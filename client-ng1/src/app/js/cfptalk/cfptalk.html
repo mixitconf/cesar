@@ -188,7 +188,6 @@
             <div>
                 <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
                    ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px"
-                   ui-sref="member({id : speaker.id, redirect: 'cfp'})"
                    ng-if="speaker.id!==ctrl.account.member.id">
                     <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeSpeaker(speaker)">
                         <i class="material-icons">remove_circle_outline</i>
