@@ -36,7 +36,7 @@ describe('Service PlanningService', function () {
   describe('computeSlots', function(){
 
     it('should return 11 range for Amphi2 which has  no slots is in database', function () {
-      service.computeSlots(slots, [ {
+      service.computeSlots('2016-04-21 12:22:00:00Z', slots, [ {
         "key" : "Amphi2",
         "name" : "Petit Amphi",
       }])
@@ -48,7 +48,7 @@ describe('Service PlanningService', function () {
     });
 
     it('should return 11 ranges for Amphi1 which has 3 slots in database', function () {
-      service.computeSlots(slots, [ {
+      service.computeSlots('2016-04-21 12:22:00:00Z', slots, [ {
           "key" : "Amphi1",
           "name" : "Grand Amphi",
         }])

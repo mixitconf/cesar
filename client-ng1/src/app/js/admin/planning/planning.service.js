@@ -42,7 +42,7 @@
      */
     function computeRange(instant, startTime, endTime) {
       if(!startTime || !endTime){
-        instant = moment();
+        instant = instant ? instant : moment();
         startTime = {hour: 8, minute: 0};
         endTime = {hour: 19, minute: 0};
       }
@@ -93,14 +93,14 @@
     /**
      * Slots are read in database and a table is build to be able to display a nice planning
      */
-    function computeSlots(slotInDatabase, rooms) {
+    function computeSlots(eventDate, slotInDatabase, rooms) {
       var slotsByRoom = slotInDatabase;
 
       if (rooms) {
         rooms.forEach(function (room) {
           //We see if slots exists for this room
           if (!slotsByRoom[room.key]) {
-            slotsByRoom[room.key] = computeRange(moment(), {hour: 8, minute: 0}, {hour: 19, minute: 0});
+            slotsByRoom[room.key] = computeRange(moment(eventDate), {hour: 8, minute: 0}, {hour: 19, minute: 0});
           }
           else {
             var slots = [], elt, time;
@@ -144,13 +144,13 @@
     function sessionNotExist(slots, session){
       return slots.filter(function(slot){
         return (slot.session && slot.session.id === session.id);
-      }).length==0;
+      }).length===0;
     }
     /**
      * Extract the sessions not affected in a planning slot
      */
     function extractSessionToAffect(slotInDatabase, sessions){
-      if(!sessions || ! slotInDatabase){
+      if(!sessions || !slotInDatabase){
         return undefined;
       }
       return sessions.filter(function(session){
@@ -162,9 +162,31 @@
       });
     }
 
+    function getTimeSlot(date, hour, minute){
+      var momentDate = setTime(date, { hour : hour, minute : minute});
+      return {
+        key : momentDate.format(DATE_FORMAT),
+        label : momentDate.format('HH:mm')
+      };
+    }
+
+    function getTimeSlots(date){
+      var momentDate = moment(date);
+      var slots = [];
+
+      for(var h=8 ; h<19 ; h++){
+        for(var min=0 ; min<6 ; min++){
+          slots.push(getTimeSlot(momentDate, h, min*10));
+        }
+      }
+
+      return slots;
+    }
+
     return {
       getRoom: getRoom,
       getSlots: getSlots,
+      getTimeSlots: getTimeSlots,
       computeSlots: computeSlots,
       computeRange: computeRange,
       extractSessionToAffect: extractSessionToAffect
