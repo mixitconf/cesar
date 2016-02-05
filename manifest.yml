@@ -3,3 +3,4 @@ instances: 1
 applications:
 - name: cesar
   path: ./server/build/libs/server.jar
+timeout: 180
