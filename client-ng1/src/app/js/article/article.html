@@ -2,14 +2,14 @@
 
     <div class="hide-on-mobile">
         <div style="float: right" class="hide-on-mobile">
-            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()" rel="prev"
                     title="Article précédent"
                     ng-click="ctrl.previousArticle()">
                 <i class="material-icons">skip_previous</i>
             </button>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles" rel="bookmark"
                translate="view.news.list"></a>
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" rel="next"
                     title="Article suivant"
                     ng-click="ctrl.nextArticle()">
                 <i class="material-icons">skip_next</i>
@@ -52,7 +52,7 @@
         <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
 
 
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a>
+        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team" rel="author"></a>
         </div>
 
         <p>&nbsp;</p>
