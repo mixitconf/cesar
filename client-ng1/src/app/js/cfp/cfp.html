@@ -107,7 +107,7 @@
             <div class="mdl-card__actions mdl-card--border">
                 <div style="float: right">
                     <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                       ui-sref="cfptalk" id="addTalk" ng-disabled="!ctrl.profileOk">
+                       ng-click="ctrl.createProposal()" id="addTalk" ng-disabled="!ctrl.profileOk">
                         <i class="material-icons">add</i>
                     </a>
                     <div class="mdl-tooltip" for="addTalk" translate="action.add" ng-if="ctrl.profileOk"></div>
