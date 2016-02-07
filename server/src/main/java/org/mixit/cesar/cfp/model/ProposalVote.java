@@ -1,0 +1,77 @@
+package org.mixit.cesar.cfp.model;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.member.Staff;
+
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"proposal_id", "voter_id"})})
+public class ProposalVote {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @JsonView(FlatView.class)
+    protected ProposalVoteValue voteValue;
+
+    @ManyToOne(optional = false)
+    protected Staff voter;
+
+    @ManyToOne(optional = false)
+    protected Proposal proposal;
+
+    public Long getId() {
+        return id;
+    }
+
+    public ProposalVote setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public ProposalVoteValue getVoteValue() {
+        return voteValue;
+    }
+
+    public ProposalVote setVoteValue(ProposalVoteValue voteValue) {
+        this.voteValue = voteValue;
+        return this;
+    }
+
+    public Staff getVoter() {
+        return voter;
+    }
+
+    public ProposalVote setVoter(Staff voter) {
+        this.voter = voter;
+        return        this;
+    }
+
+    public Proposal getProposal() {
+        return proposal;
+    }
+
+    public ProposalVote setProposal(Proposal proposal) {
+        this.proposal = proposal;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProposalVote vote = (ProposalVote) o;
+        return Objects.equals(id, vote.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}
