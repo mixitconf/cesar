@@ -32,6 +32,7 @@ var builders = (function () {
   function Session(id) {
     this.session = {
       "id": id,
+      "idSession": id,
       "format": "Talk"
     };
   }

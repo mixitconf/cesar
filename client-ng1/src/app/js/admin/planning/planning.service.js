@@ -141,10 +141,12 @@
       return $q.when(slotsByRoom);
     }
 
-    function sessionNotExist(slots, session){
+    function sessionExist(slots, session){
       return slots.filter(function(slot){
-        return (slot.session && slot.session.id === session.id);
-      }).length===0;
+          if(session.idSession===711 && slot.session)
+            console.log(slot.session.id, session.idSession, slot.session.id === session.idSession)
+        return (slot.session && slot.session.id === session.idSession);
+      }).length>0;
     }
     /**
      * Extract the sessions not affected in a planning slot
@@ -154,11 +156,13 @@
         return undefined;
       }
       return sessions.filter(function(session){
-        var found = false;
+        var notExist = true;
         Object.keys(slotInDatabase).forEach(function(key){
-          found = found || sessionNotExist(slotInDatabase[key], session);
+          if(sessionExist(slotInDatabase[key], session) && notExist){
+            notExist = false;
+          }
         });
-        return found;
+        return notExist;
       });
     }
 
