@@ -15,7 +15,9 @@
 
     ctrl.display = {
       amphi : true,
-      salle: true
+      salle: true,
+      day1: true,
+      day2: true
     };
 
     if (!account) {
@@ -24,6 +26,8 @@
     }
 
     cesarSpinnerService.wait();
+    ctrl.timeslots = PlanningService.computeRange(moment(ctrl.dates[0]));
+    ctrl.timeslotsAvailable = PlanningService.getTimeSlots(ctrl.dates[0]);
 
     $q.all([
         PlanningService.getRoom().then(function (response) {
@@ -37,16 +41,22 @@
         })
       ])
       .then(function () {
-        PlanningService.computeSlots(ctrl.dates[0], slots, ctrl.rooms).then(function (response) {
-          ctrl.slots = response;
-          ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.slots, ctrl.sessions);
-        });
-        ctrl.timeslots = PlanningService.computeRange(moment(ctrl.dates[0]));
-        ctrl.timeslotsAvailable = PlanningService.getTimeSlots(ctrl.dates[0]);
+        $q.all([
+          PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), ctrl.rooms).then(function (response) {
+            ctrl.day1Slots = response;
+          }),
+          PlanningService.computeSlots(ctrl.dates[1], angular.copy(slots), ctrl.rooms).then(function (response) {
+            ctrl.day2Slots = response;
+          })
+          ])
+          .then(function () {
+            ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.day2Slots, PlanningService.extractSessionToAffect(ctrl.day1Slots, ctrl.sessions));
+          });
       })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
+
 
     ctrl.displayRoom = function (room) {
       switch(room.key){
@@ -60,5 +70,8 @@
       return ctrl.display.salle;
     };
 
+    ctrl.deleteSlot = function(slot){
+      console.log('Delete slot ' + slot);
+    };
   });
 })();

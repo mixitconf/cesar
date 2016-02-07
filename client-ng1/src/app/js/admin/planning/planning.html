@@ -1,10 +1,43 @@
 <div class="cesar-container-fluid">
-
     <h1>Gestion du planning</h1>
-    <form novalidate class="cesar-form" name="frm">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.amphi">
+                <span class="mdl-checkbox__label">Amphi</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.salle">
+                <span class="mdl-checkbox__label">Salles</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.mezzanine">
+                <span class="mdl-checkbox__label">Mezzanine</span>
 
-        <div class="cesar-text-center"><h2>{{ctrl.dates[0] | date}}</h2>
+            </label>
         </div>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.day1">
+                <span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay2"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.day2">
+                <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
+            </label>
+        </div>
+    </div>
+    <form novalidate class="cesar-form" name="frm">
         <div class="mdl-grid cesar-card-search mdl-shadow--4dp">
             <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
                 <div class="mdl-textfield mdl-js-textfield">
@@ -33,14 +66,17 @@
             </div>
             <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
                 <div style="padding-top: 8px;">
-                <div class="mdl-textfield mdl-js-textfield ">
-                    <label class="mdl-textfield__label cesar-textfield__radio-label" for="label">Label displayed if we don't have a session</label>
-                    <input class="mdl-textfield__input" type="text" id="label" name="label" style="background-color: white;min-height: 32px;"
-                           ng-maxlength="50"
-                           ng-model="ctrl.filter.label"
-                    />
-                    <cesar-nb-carac nbcarac="50" text="ctrl.filter.label" field="frm.label"></cesar-nb-carac>
-                </div>
+                    <div class="mdl-textfield mdl-js-textfield ">
+                        <label class="mdl-textfield__label cesar-textfield__radio-label" for="label">Label displayed if
+                            we don't
+                            have a session</label>
+                        <input class="mdl-textfield__input" type="text" id="label" name="label"
+                               style="background-color: white;min-height: 32px;"
+                               ng-maxlength="50"
+                               ng-model="ctrl.filter.label"
+                        />
+                        <cesar-nb-carac nbcarac="50" text="ctrl.filter.label" field="frm.label"></cesar-nb-carac>
+                    </div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
@@ -76,78 +112,117 @@
                     </div>
                 </div>
             </div>
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-text-center">
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
-                       style="width: auto">
-                    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
-                           ng-model="ctrl.display.amphi">
-                    <span class="mdl-checkbox__label">Amphi</span>
-                </label>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
-                       style="width: auto">
-                    <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
-                           ng-model="ctrl.display.salle">
-                    <span class="mdl-checkbox__label">Salles</span>
-                </label>
-                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
-                       style="width: auto">
-                    <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
-                           ng-model="ctrl.display.mezzanine">
-                    <span class="mdl-checkbox__label">Mezzanine</span>
-
-                </label>
-            </div>
         </div>
 
-        <p>&nbsp;</p>
-        <div class="cesar-text-center">Pour supprimer un élément du planning double cliquez dessus<br>&nbsp;
-        </div>
-        <div class="cesar-planning__container">
+        <div class="cesar-text-center" ng-if="ctrl.display.day1"><h2>{{ctrl.dates[0] | date}}</h2>
 
-            <div class="cesar-planning__hour">
-                <div class="cesar-text-center cesar-planning__head">
-                    &nbsp;
-                </div>
-                <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
-                     ng-style="{'max-height' : (slot.duration - 2)  + 'px', 'min-height' : (slot.duration - 2) + 'px'}">
-                    {{::slot.start | time}}
-                </div>
+            <p>&nbsp;</p>
+            <div class="cesar-text-center">Pour supprimer un élément du planning double cliquez dessus<br>&nbsp;
             </div>
-            <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
-                 ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
-                <div class="cesar-text-center cesar-planning__head">
-                    <a class="cesar-mdl-button--interests">
-                        {{room.name}}
-                    </a><br>
-                    {{room.capacity}} pers.
-                </div>
+            <div class="cesar-planning__container">
 
-                <div class="cesar-planning__slot"
-                     ng-repeat="slot in ctrl.slots[room.key]"
-                     ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
-                     ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
-                 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
-                >
-
-                    <span ng-if="slot.label" translate="{{slot.label}}"></span>
-
-                    <div ng-if="slot.session">
-                        <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
-                        <span id="sesssion{{slot.session.id}}">{{::slot.session.title}}</span>
-                        <div class="mdl-tooltip" for="sesssion{{slot.session.id}}">De {{::slot.start}} à
-                            {{::slot.end}}
-                        </div>
+                <div class="cesar-planning__hour">
+                    <div class="cesar-text-center cesar-planning__head">
+                        &nbsp;
                     </div>
-                    <span ng-if="!slot.session && !slot.label">&nbsp</span>
+                    <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
+                         ng-style="{'max-height' : (slot.duration - 2)  + 'px', 'min-height' : (slot.duration - 2) + 'px'}">
+                        {{::slot.start | time}}
+                    </div>
                 </div>
+                <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
+                     ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
+
+                    <div class="cesar-text-center cesar-planning__head">
+                        <a class="cesar-mdl-button--interests">
+                            {{room.name}}
+                        </a><br>
+                        {{room.capacity}} pers.
+                    </div>
+
+                    <div class="cesar-planning__slot"
+                         ng-repeat="slot in ctrl.day1Slots[room.key]"
+                         ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
+                         ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+                    >
+
+                        <span ng-if="slot.label" translate="{{slot.label}}"></span>
+
+                        <div ng-if="slot.session" ng-dblclick="ctrl.deleteSlot(slot)">
+
+                            <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
+                            <span id="sesssion1{{slot.session.id}}">{{::slot.session.title}}</span>
+                            <div class="mdl-tooltip" for="sesssion1{{slot.session.id}}">De {{::slot.start}} à
+                                {{::slot.end}}
+                            </div>
+                        </div>
+                        <span ng-if="!slot.session && !slot.label">&nbsp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cesar -helper hide-on-mobile" style="float: right">
+                <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+                <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+                <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
             </div>
         </div>
 
-        <div class="cesar -helper hide-on-mobile" style="float: right">
-            <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
-            <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
-            <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+        <div class="cesar-text-center" ng-if="ctrl.display.day2"><h2>{{ctrl.dates[1] | date}}</h2>
+
+            <p>&nbsp;</p>
+            <div class="cesar-text-center">Pour supprimer un élément du planning double cliquez dessus<br>&nbsp;
+            </div>
+
+            <div class="cesar-planning__container">
+
+                <div class="cesar-planning__hour">
+                    <div class="cesar-text-center cesar-planning__head">
+                        &nbsp;
+                    </div>
+                    <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
+                         ng-style="{'max-height' : (slot.duration - 2)  + 'px', 'min-height' : (slot.duration - 2) + 'px'}">
+                        {{::slot.start | time}}
+                    </div>
+                </div>
+                <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
+                     ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
+
+                    <div class="cesar-text-center cesar-planning__head">
+                        <a class="cesar-mdl-button--interests">
+                            {{room.name}}
+                        </a><br>
+                        {{room.capacity}} pers.
+                    </div>
+
+                    <div class="cesar-planning__slot"
+                         ng-repeat="slot in ctrl.day2Slots[room.key]"
+                         ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
+                         ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+                    >
+
+                        <span ng-if="slot.label" translate="{{slot.label}}"></span>
+
+                        <div ng-if="slot.session" ng-dblclick="ctrl.deleteSlot(slot)">
+                            <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
+                            <span id="sesssion{{slot.session.id}}">{{::slot.session.title}}</span>
+                            <div class="mdl-tooltip" for="sesssion{{slot.session.id}}">De {{::slot.start}} à
+                                {{::slot.end}}
+                            </div>
+                        </div>
+                        <span ng-if="!slot.session && !slot.label">&nbsp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cesar -helper hide-on-mobile" style="float: right">
+                <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+                <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+                <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+            </div>
         </div>
     </form>
     <p>&nbsp;</p>

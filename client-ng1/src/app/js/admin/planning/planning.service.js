@@ -112,27 +112,29 @@
             for (var i in slotsByRoom[room.key]) {
               elt = slotsByRoom[room.key][i];
 
-              time = {
-                hour: moment(elt.start).get('hour'),
-                minute: moment(elt.start).get('minute')
-              };
+              if(filterPlanningByDate(elt, eventDate)){
+                time = {
+                  hour: moment(elt.start).get('hour'),
+                  minute: moment(elt.start).get('minute')
+                };
 
-              if (time.hour !== lastTime.hour || time.minute !== lastTime.minute) {
-                putRange(slots, computeRange(moment(elt.start), lastTime, time));
+                if (time.hour !== lastTime.hour || time.minute !== lastTime.minute) {
+                  putRange(slots, computeRange(moment(elt.start), lastTime, time));
+                }
+
+                elt.duration = moment.duration(moment(elt.end).diff(moment(elt.start))).as('minutes');
+                slots.push(elt);
+
+                lastTime = {
+                  hour: moment(elt.end).get('hour'),
+                  minute: moment(elt.end).get('minute')
+                };
               }
-
-              elt.duration = moment.duration(moment(elt.end).diff(moment(elt.start))).as('minutes');
-              slots.push(elt);
-
-              lastTime = {
-                hour: moment(elt.end).get('hour'),
-                minute: moment(elt.end).get('minute')
-              };
             }
 
             //For the last one we have to verify the last range
             if (lastTime.hour < 19) {
-              putRange(slots, computeRange(moment(elt.start), lastTime, {hour: 19, minute: 0}));
+              putRange(slots, computeRange(moment(eventDate), lastTime, {hour: 19, minute: 0}));
             }
             slotsByRoom[room.key] = slots;
           }
@@ -143,8 +145,6 @@
 
     function sessionExist(slots, session){
       return slots.filter(function(slot){
-          if(session.idSession===711 && slot.session)
-            console.log(slot.session.id, session.idSession, slot.session.id === session.idSession)
         return (slot.session && slot.session.id === session.idSession);
       }).length>0;
     }
@@ -187,7 +187,12 @@
       return slots;
     }
 
+    function filterPlanningByDate(slot, date){
+      return moment(slot.start).format('YYYYMMDD') === moment(date).format('YYYYMMDD');
+    }
+
     return {
+      filterPlanningByDate: filterPlanningByDate,
       getRoom: getRoom,
       getSlots: getSlots,
       getTimeSlots: getTimeSlots,

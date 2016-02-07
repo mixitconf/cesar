@@ -68,8 +68,8 @@ public class PlanningController {
                 new Slot()
                         .setSession(sessionRepository.findOne(771L))
                         .setRoom(Room.Amphi1)
-                        .setStart(LocalDateTime.of(2016, 4, 21, 13, 30))
-                        .setEnd(LocalDateTime.of(2016, 4, 21, 14, 20))
+                        .setStart(LocalDateTime.of(2016, 4, 22, 13, 30))
+                        .setEnd(LocalDateTime.of(2016, 4, 22, 14, 20))
         ));
 
         return slots;
