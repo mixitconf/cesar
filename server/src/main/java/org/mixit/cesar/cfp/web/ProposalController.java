@@ -1,7 +1,5 @@
 package org.mixit.cesar.cfp.web;
 
-import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,7 +7,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalError;
-import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
 import org.mixit.cesar.security.model.Account;
@@ -20,7 +17,6 @@ import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
-import org.mixit.cesar.site.model.article.Article;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

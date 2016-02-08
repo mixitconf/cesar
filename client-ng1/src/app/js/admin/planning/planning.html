@@ -36,6 +36,10 @@
                 <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
             </label>
         </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-text-center">
+            <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
+            <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
+        </div>
     </div>
     <form novalidate class="cesar-form" name="frm">
         <div class="mdl-grid cesar-card-search mdl-shadow--4dp">
@@ -46,8 +50,8 @@
                     <select ng-options="session.title for session  in ctrl.remainingSessions | orderBy:'title'"
                             id="session"
                             class="mdl-textfield--expandable cesar-textfield--expandable"
-                            ng-required="true"
-                            ng-model="ctrl.filter.session"
+                            ng-model="ctrl.slot.session"
+                            ng-change="ctrl.slot.label=undefined;ctrl.slot.end=undefined"
                     >
                         <option value="null"></option>
                     </select>
@@ -59,7 +63,8 @@
                            for="rooms">Room</label>
                     <select ng-options="room.name for room  in ctrl.rooms" id="rooms"
                             class="mdl-textfield--expandable cesar-textfield--expandable"
-                            ng-model="ctrl.filter.room">
+                            ng-required="true"
+                            ng-model="ctrl.slot.room">
                         <option value="null"></option>
                     </select>
                 </div>
@@ -73,9 +78,10 @@
                         <input class="mdl-textfield__input" type="text" id="label" name="label"
                                style="background-color: white;min-height: 32px;"
                                ng-maxlength="50"
-                               ng-model="ctrl.filter.label"
+                               ng-model="ctrl.slot.label"
+                               ng-disabled="ctrl.slot.session"
                         />
-                        <cesar-nb-carac nbcarac="50" text="ctrl.filter.label" field="frm.label"></cesar-nb-carac>
+                        <cesar-nb-carac nbcarac="50" text="ctrl.slot.label" field="frm.label"></cesar-nb-carac>
                     </div>
                 </div>
             </div>
@@ -89,7 +95,7 @@
                                     id="start"
                                     class="mdl-textfield--expandable cesar-textfield--expandable"
                                     ng-required="true"
-                                    ng-model="ctrl.filter.start"
+                                    ng-model="ctrl.slot.start"
                             >
                                 <option value="null"></option>
                             </select>
@@ -102,14 +108,27 @@
                             <select ng-options="slot.key as slot.label for slot  in ctrl.timeslotsAvailable"
                                     id="end"
                                     class="mdl-textfield--expandable cesar-textfield--expandable"
-                                    ng-required="true"
-                                    ng-model="ctrl.filter.end"
+                                    ng-model="ctrl.slot.end"
+                                    ng-disabled="ctrl.slot.session"
                             >
                                 <option value="null"></option>
                             </select>
-                            {{ctrl.filter.end}}
+                            {{ctrl.slot.end}}
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                <div style="float: right">
+                    <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
+                                  text="Save"
+                                  spinner="spinner" google-icon="save"></cesar-button>
+                    <div class="mdl-tooltip" for="action1" translate="action.save"></div>
+
+
+                    <cesar-button id="action4" on-click="ctrl.reinit()" spinner="spinner" google-icon="undo"
+                                  text="Cancel"></cesar-button>
+                    <div class="mdl-tooltip" for="action4" translate="action.return"></div>
                 </div>
             </div>
         </div>

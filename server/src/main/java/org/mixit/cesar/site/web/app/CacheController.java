@@ -31,7 +31,8 @@ public class CacheController {
                 CesarCacheConfig.CACHE_ARTICLE,
                 CesarCacheConfig.CACHE_MEMBER,
                 CesarCacheConfig.CACHE_SECURITY,
-                CesarCacheConfig.CACHE_SESSION);
+                CesarCacheConfig.CACHE_SESSION,
+                CesarCacheConfig.CACHE_PLANNING);
     }
 
     @RequestMapping(value = "/{area}", method = RequestMethod.DELETE)

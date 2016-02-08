@@ -13,6 +13,8 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.planning.Room;
 import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.repository.SessionRepository;
+import org.mixit.cesar.site.repository.SlotRepository;
+import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.web.api.dto.RoomResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,12 @@ public class PlanningController {
     @Autowired
     private SessionRepository sessionRepository;
 
+    @Autowired
+    private SlotRepository slotRepository;
+
+    @Autowired
+    private EventService eventService;
+
     @RequestMapping(value = "/room")
     @ResponseStatus(HttpStatus.OK)
     public List<RoomResource> rooms() {
@@ -43,40 +51,17 @@ public class PlanningController {
                 .collect(Collectors.toList());
     }
 
+
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public Map<Room, List<Slot>> sesions(@RequestParam(required = false) Integer year) {
-        Map<Room, List<Slot>> slots = new HashMap<>();
-
-        slots.put(Room.Amphi1, Arrays.asList(
-                new Slot()
-                        .setRoom(Room.Amphi1)
-                        .setLabel("planning.accueil")
-                        .setStart(LocalDateTime.of(2016, 4, 21, 8, 0))
-                        .setEnd(LocalDateTime.of(2016, 4, 21, 9, 10)),
-                new Slot()
-                        .setSession(sessionRepository.findOne(631L))
-                        .setRoom(Room.Amphi1)
-                        .setStart(LocalDateTime.of(2016, 4, 21, 10, 0))
-                        .setEnd(LocalDateTime.of(2016, 4, 21, 10, 30)),
-                new Slot()
-                        .setSession(sessionRepository.findOne(711L))
-                        .setRoom(Room.Amphi1)
-                        .setStart(LocalDateTime.of(2016, 4, 21, 10, 30))
-                        .setEnd(LocalDateTime.of(2016, 4, 21, 11, 40)),
-                new Slot()
-                        .setSession(sessionRepository.findOne(771L))
-                        .setRoom(Room.Amphi1)
-                        .setStart(LocalDateTime.of(2016, 4, 22, 13, 30))
-                        .setEnd(LocalDateTime.of(2016, 4, 22, 14, 20))
-        ));
-
-        return slots;
+    public Map<Room, List<Slot>> slots(@RequestParam(required = false) Integer year) {
+        return slotRepository
+                .findAllSlots(eventService.getEvent(year).getId())
+                .stream()
+                .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
+                .collect(Collectors.groupingBy(Slot::getRoom));
     }
-//    @RequestMapping(value = "/room")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Map<String, String> rooms() {
-//        return Stream.of(Room.values()).collect(Collectors.toMap(Room::toString, Room::getName));
-//    }
+
+
 }

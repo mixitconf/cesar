@@ -73,5 +73,13 @@
     ctrl.deleteSlot = function(slot){
       console.log('Delete slot ' + slot);
     };
+
+    ctrl.saveSlot = function(){
+      console.log('Save slot ' + ctrl.slot);
+    }
+
+    ctrl.reinit = function(){
+      ctrl.slot = {};
+    }
   });
 })();
