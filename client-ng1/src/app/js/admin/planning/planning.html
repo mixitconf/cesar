@@ -76,7 +76,8 @@
                             we don't
                             have a session</label>
                         <input class="mdl-textfield__input" type="text" id="label" name="label"
-                               style="background-color: white;min-height: 32px;"
+                               style="min-height: 32px;"
+                               ng-class="{'cesar-planning__input-active' : !ctrl.slot.session,  'cesar-planning__input-inactive' : !!ctrl.slot.session}"
                                ng-maxlength="50"
                                ng-model="ctrl.slot.label"
                                ng-disabled="ctrl.slot.session"
@@ -108,6 +109,7 @@
                             <select ng-options="slot.key as slot.label for slot  in ctrl.timeslotsAvailable"
                                     id="end"
                                     class="mdl-textfield--expandable cesar-textfield--expandable"
+                                    ng-class="{'cesar-planning__input-active' : !ctrl.slot.session,  'cesar-planning__input-inactive' : !!ctrl.slot.session}"
                                     ng-model="ctrl.slot.end"
                                     ng-disabled="ctrl.slot.session"
                             >
@@ -120,7 +122,7 @@
             </div>
             <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
                 <div style="float: right">
-                    <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
+                    <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.saveSlot()"
                                   text="Save"
                                   spinner="spinner" google-icon="save"></cesar-button>
                     <div class="mdl-tooltip" for="action1" translate="action.save"></div>

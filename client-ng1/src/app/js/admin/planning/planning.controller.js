@@ -3,7 +3,7 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').controller('AdminPlanningCtrl', function ($rootScope, $q, account, SessionService, PlanningService, cesarSpinnerService) {
+  angular.module('cesar-planning').controller('AdminPlanningCtrl', function ($rootScope, $q, $http, account, SessionService, PlanningService, cesarSpinnerService) {
     'ngInject';
 
     var ctrl = this;
@@ -25,6 +25,32 @@
       return;
     }
 
+    function _computeSlots(){
+      $q.all([
+          PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), ctrl.rooms).then(function (response) {
+            ctrl.day1Slots = response;
+          }),
+          PlanningService.computeSlots(ctrl.dates[1], angular.copy(slots), ctrl.rooms).then(function (response) {
+            ctrl.day2Slots = response;
+          })
+        ])
+        .then(function () {
+          ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.day2Slots, PlanningService.extractSessionToAffect(ctrl.day1Slots, ctrl.sessions));
+        });
+    }
+
+    function _refresh(){
+      cesarSpinnerService.wait();
+
+      PlanningService.getSlots(year).then(function (response) {
+          slots = response.data;
+        })
+        .then(_computeSlots)
+        .finally(function () {
+          cesarSpinnerService.stopWaiting();
+        });
+    }
+
     cesarSpinnerService.wait();
     ctrl.timeslots = PlanningService.computeRange(moment(ctrl.dates[0]));
     ctrl.timeslotsAvailable = PlanningService.getTimeSlots(ctrl.dates[0]);
@@ -40,19 +66,7 @@
           ctrl.sessions = response.data;
         })
       ])
-      .then(function () {
-        $q.all([
-          PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), ctrl.rooms).then(function (response) {
-            ctrl.day1Slots = response;
-          }),
-          PlanningService.computeSlots(ctrl.dates[1], angular.copy(slots), ctrl.rooms).then(function (response) {
-            ctrl.day2Slots = response;
-          })
-          ])
-          .then(function () {
-            ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.day2Slots, PlanningService.extractSessionToAffect(ctrl.day1Slots, ctrl.sessions));
-          });
-      })
+      .then(_computeSlots)
       .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
@@ -71,11 +85,49 @@
     };
 
     ctrl.deleteSlot = function(slot){
-      console.log('Delete slot ' + slot);
+      if(slot.id){
+        $http.delete('/app/planning/' + slot.id, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+          .then(function () {
+            _refresh();
+          })
+          .catch(function () {
+            ctrl.errorMessage = 'UNDEFINED';
+          });
+      }
     };
 
     ctrl.saveSlot = function(){
-      console.log('Save slot ' + ctrl.slot);
+      var slotToSave = {
+        id : ctrl.slot.id,
+        start : ctrl.slot.start,
+        end : ctrl.slot.end,
+        room : ctrl.slot.room.key,
+        label : ctrl.slot.room.label
+      };
+      if(ctrl.slot.session){
+        slotToSave.session = {
+          id : ctrl.slot.session.idSession
+        };
+      }
+
+      var used = PlanningService.verifySlot(slotToSave, ctrl.day1Slots[ctrl.slot.room.key]);
+      if(!used){
+        used = PlanningService.verifySlot(slotToSave, ctrl.day2Slots[ctrl.slot.room.key]);
+      }
+
+      if(used){
+        ctrl.errorMessage = used;
+      }
+      else{
+
+        $http.post('/app/planning', slotToSave, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+          .then(function () {
+            _refresh();
+          })
+          .catch(function () {
+            ctrl.errorMessage = 'UNDEFINED';
+          });
+      }
     };
 
     ctrl.reinit = function(){

@@ -19,7 +19,7 @@
     /**
      * Set the moment
      */
-    function setTime(moment, time) {
+    function _setTime(moment, time) {
       var myTime = moment.clone();
       myTime.set('hour', time.hour);
       myTime.set('minute', time.minute);
@@ -28,7 +28,7 @@
       return myTime;
     }
 
-    function createSlot(start, end){
+    function _createSlot(start, end) {
       return {
         start: start.format(DATE_FORMAT),
         end: end.format(DATE_FORMAT),
@@ -41,7 +41,7 @@
      * is to return a table with a data for each new hour
      */
     function computeRange(instant, startTime, endTime) {
-      if(!startTime || !endTime){
+      if (!startTime || !endTime) {
         instant = instant ? instant : moment();
         startTime = {hour: 8, minute: 0};
         endTime = {hour: 19, minute: 0};
@@ -55,25 +55,25 @@
       };
 
       if (time.hour === endTime.hour && time.minute !== endTime.minute) {
-        start = setTime(instant, time);
-        end = setTime(instant, endTime);
-        return [createSlot(start,end)];
+        start = _setTime(instant, time);
+        end = _setTime(instant, endTime);
+        return [_createSlot(start, end)];
       }
 
       while (time.hour < endTime.hour) {
-        start = setTime(instant, time);
+        start = _setTime(instant, time);
         time.hour++;
         time.minute = 0;
-        end = setTime(instant, time);
+        end = _setTime(instant, time);
 
-        range.push(createSlot(start,end));
+        range.push(_createSlot(start, end));
 
         if (time.hour === endTime.hour && time.minute !== endTime.minute) {
-          start = setTime(instant, time);
+          start = _setTime(instant, time);
           time.minute = endTime.minute;
-          end = setTime(instant, time);
+          end = _setTime(instant, time);
 
-          range.push(createSlot(start,end));
+          range.push(_createSlot(start, end));
         }
       }
       return range;
@@ -82,7 +82,7 @@
     /**
      * Set the moment
      */
-    function putRange(slots, ranges) {
+    function _putRange(slots, ranges) {
       if (ranges) {
         ranges.forEach(function (range) {
           slots.push(range);
@@ -112,14 +112,14 @@
             for (var i in slotsByRoom[room.key]) {
               elt = slotsByRoom[room.key][i];
 
-              if(filterPlanningByDate(elt, eventDate)){
+              if (filterPlanningByDate(elt, eventDate)) {
                 time = {
                   hour: moment(elt.start).get('hour'),
                   minute: moment(elt.start).get('minute')
                 };
 
                 if (time.hour !== lastTime.hour || time.minute !== lastTime.minute) {
-                  putRange(slots, computeRange(moment(elt.start), lastTime, time));
+                  _putRange(slots, computeRange(moment(elt.start), lastTime, time));
                 }
 
                 elt.duration = moment.duration(moment(elt.end).diff(moment(elt.start))).as('minutes');
@@ -134,7 +134,7 @@
 
             //For the last one we have to verify the last range
             if (lastTime.hour < 19) {
-              putRange(slots, computeRange(moment(eventDate), lastTime, {hour: 19, minute: 0}));
+              _putRange(slots, computeRange(moment(eventDate), lastTime, {hour: 19, minute: 0}));
             }
             slotsByRoom[room.key] = slots;
           }
@@ -143,22 +143,23 @@
       return $q.when(slotsByRoom);
     }
 
-    function sessionExist(slots, session){
-      return slots.filter(function(slot){
-        return (slot.session && slot.session.id === session.idSession);
-      }).length>0;
+    function _sessionExist(slots, session) {
+      return slots.filter(function (slot) {
+          return (slot.session && slot.session.id === session.idSession);
+        }).length > 0;
     }
+
     /**
      * Extract the sessions not affected in a planning slot
      */
-    function extractSessionToAffect(slotInDatabase, sessions){
-      if(!sessions || !slotInDatabase){
+    function extractSessionToAffect(slotInDatabase, sessions) {
+      if (!sessions || !slotInDatabase) {
         return undefined;
       }
-      return sessions.filter(function(session){
+      return sessions.filter(function (session) {
         var notExist = true;
-        Object.keys(slotInDatabase).forEach(function(key){
-          if(sessionExist(slotInDatabase[key], session) && notExist){
+        Object.keys(slotInDatabase).forEach(function (key) {
+          if (_sessionExist(slotInDatabase[key], session) && notExist) {
             notExist = false;
           }
         });
@@ -166,29 +167,51 @@
       });
     }
 
-    function getTimeSlot(date, hour, minute){
-      var momentDate = setTime(date, { hour : hour, minute : minute});
+    function _getTimeSlot(date, hour, minute) {
+      var momentDate = _setTime(date, {hour: hour, minute: minute});
       return {
-        key : momentDate.format(DATE_FORMAT),
-        label : momentDate.format('HH:mm')
+        key: momentDate.format(DATE_FORMAT),
+        label: momentDate.format('HH:mm')
       };
     }
 
-    function getTimeSlots(date){
+    function getTimeSlots(date) {
       var momentDate = moment(date);
       var slots = [];
 
-      for(var h=8 ; h<19 ; h++){
-        for(var min=0 ; min<6 ; min++){
-          slots.push(getTimeSlot(momentDate, h, min*10));
+      for (var h = 8; h < 19; h++) {
+        for (var min = 0; min < 6; min++) {
+          slots.push(_getTimeSlot(momentDate, h, min * 10));
         }
       }
 
       return slots;
     }
 
-    function filterPlanningByDate(slot, date){
+    function filterPlanningByDate(slot, date) {
       return moment(slot.start).format('YYYYMMDD') === moment(date).format('YYYYMMDD');
+    }
+
+    function _dateInSlotPeriod(date, slot){
+      if(!date){
+        return false;
+      }
+      return moment(slot.start).isBefore(moment(date)) &&
+        moment(slot.end).isAfter(moment(date));
+    }
+
+    function verifySlot(slot, slotsInRoom) {
+      //Check validity
+      if (!slot.session && !slot.label) {
+        return 'SESSION_REQUIRED';
+      }
+      var concurrent = slotsInRoom.filter(function(s){
+        return _dateInSlotPeriod(s.start, slot) || _dateInSlotPeriod(s.end, slot);
+      }).length>0;
+      if(concurrent){
+        return 'SLOT_CONCURRENT';
+      }
+      return undefined;
     }
 
     return {
@@ -198,7 +221,8 @@
       getTimeSlots: getTimeSlots,
       computeSlots: computeSlots,
       computeRange: computeRange,
-      extractSessionToAffect: extractSessionToAffect
+      extractSessionToAffect: extractSessionToAffect,
+      verifySlot: verifySlot
     };
   });
 })();
