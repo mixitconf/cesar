@@ -12,14 +12,14 @@
                 {{::session.title}} </p><br>
                 {{::session.summary}}<br>&nbsp;<br>
                 <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
-                    <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                    <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
                         <img ng-src="https://www.gravatar.com/avatar/{{::speaker.hash}}">
                     </a>
-                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})">{{::speaker.firstname}} {{::speaker.lastname}}</a>&nbsp;
+                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{::speaker.firstname}} {{::speaker.lastname}}</a>&nbsp;
                 </span>
         </td>
         <td>
-            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab">
+            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next">
                 <i class="material-icons mdl-badge" data-badge="{{::session.lang}}">nature_people</i>
             </a>
             <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{::session.positiveVotes}}</button></div>

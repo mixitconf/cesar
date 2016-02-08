@@ -37,7 +37,7 @@
                     <p class="cesar-text" ng-if="lang==='fr'" ng-bind-html="article.resume  | markdown"></p>
                     <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="article.headline  | markdown"></p>
                     </span> {{article.postedAt | date:'dd/MM/yyyy'}}</a>
-                    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{article.valid ? 'PUBLISHED' : 'NOT PUBLISHED'}}</a><br>&nbsp;
+                    <a class="cesar-mdl-button--interests">{{article.valid ? 'PUBLISHED' : 'NOT PUBLISHED'}}</a><br>&nbsp;
                 </div>
             </div>
         </div>

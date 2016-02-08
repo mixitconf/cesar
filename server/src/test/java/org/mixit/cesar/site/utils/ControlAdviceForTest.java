@@ -1,7 +1,6 @@
 package org.mixit.cesar.site.utils;
 
-import org.mixit.cesar.CesarApplication;
-import org.mixit.cesar.WebControllerAdvice;
+import org.mixit.cesar.site.web.WebControllerAdvice;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 

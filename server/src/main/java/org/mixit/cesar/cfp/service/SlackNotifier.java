@@ -1,5 +1,7 @@
 package org.mixit.cesar.cfp.service;
 
+import java.nio.charset.Charset;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mixit.cesar.cfp.model.SlackMessage;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,6 +40,7 @@ public class SlackNotifier {
     public void send(String message, SlackChannel channel) {
 
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 
         SlackMessage slackMessage = new SlackMessage()
                 .setChannel(channel.toString())

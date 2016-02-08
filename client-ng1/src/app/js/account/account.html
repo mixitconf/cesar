@@ -81,7 +81,7 @@
 
             <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)" value="interest"></cesar-interest-autocomplete>
             <div>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
                    ng-repeat="interest in ctrl.account.member.interests" style="padding: 0 4px">
                     <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeInterest(interest)">
                         <i class="material-icons">remove_circle_outline</i>
@@ -111,7 +111,7 @@
 
             <div style="float: right">
                 <cesar-button disabled="(!frm.$pristine && frm.$invalid) || spinner==='on'" id="action1"
-                              on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save">
+                              on-click="ctrl.updateAccount()" spinner="spinner" google-icon="save" text="Save account">
                 </cesar-button>
             </div>
             <div class="mdl-tooltip" for="action1" translate="action.save"></div>

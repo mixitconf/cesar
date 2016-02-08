@@ -59,7 +59,7 @@ public class ResetPasswordController {
     /**
      * Send an email to reinit password
      *
-     * @see org.mixit.cesar.security.service.authentification.AuthenticationFilter
+     * @see AuthenticationFilter
      */
     @RequestMapping(method = RequestMethod.DELETE)
     public void sendMailForPasswordReinit(@RequestParam(value = "email") String email) {
@@ -70,7 +70,7 @@ public class ResetPasswordController {
     /**
      * Redirect user on password reinit page if token is valid. We need to authenticate the user to do that
      *
-     * @see org.mixit.cesar.security.service.authentification.AuthenticationFilter
+     * @see AuthenticationFilter
      */
     @RequestMapping
     public void passwordReinit(@RequestParam String token, HttpServletResponse response) throws IOException {
@@ -90,7 +90,7 @@ public class ResetPasswordController {
     /**
      * Redirect user on password reinit page if token is valid. We need to authenticate the user to do that
      *
-     * @see org.mixit.cesar.security.service.authentification.AuthenticationFilter
+     * @see AuthenticationFilter
      */
     @RequestMapping(value = "/check")
     @Authenticated

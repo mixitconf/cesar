@@ -15,7 +15,8 @@
         onClick: '&',
         spinner: '=',
         googleIcon: '@',
-        default: '@'
+        default: '@',
+        text:'@'
       },
       controller: function($scope){
         $scope.type = $scope.default ? 'submit' : 'button';

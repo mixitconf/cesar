@@ -5,7 +5,7 @@
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-cfp').controller('CfpCtrl', function ($rootScope, $http, account) {
+  angular.module('cesar-cfp').controller('CfpCtrl', function ($rootScope, $http, $state, account) {
     'ngInject';
 
     var ctrl = this;
@@ -48,6 +48,12 @@
           ctrl.proposals = response.data;
         }
       );
+    };
+
+    ctrl.createProposal = function(){
+      if(ctrl.profileOk){
+        $state.go('cfptalk');
+      }
     };
 
     ctrl.account = account;

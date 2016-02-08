@@ -2,14 +2,14 @@
 
     <div class="hide-on-mobile">
         <div style="float: right" class="hide-on-mobile">
-            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()" rel="prev"
                     title="Article précédent"
                     ng-click="ctrl.previousArticle()">
                 <i class="material-icons">skip_previous</i>
             </button>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles" rel="bookmark"
                translate="view.news.list"></a>
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()"
+            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" rel="next"
                     title="Article suivant"
                     ng-click="ctrl.nextArticle()">
                 <i class="material-icons">skip_next</i>
@@ -38,7 +38,7 @@
             ctrl.article.title}}</h1>
     </div>
 
-    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt |
+    <a class="cesar-mdl-button--interests">{{ctrl.article.postedAt |
         date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
@@ -52,7 +52,7 @@
         <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
 
 
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"></a>
+        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team" rel="author"></a>
         </div>
 
         <p>&nbsp;</p>
@@ -72,14 +72,14 @@
 
                 </div>
                 <div class="mdl-card__actions mdl-card--border cesar-speaker-session" ng-if="display!=='minimal'">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" text="Add comment"
                             ng-click="ctrl.addComment()">
                         <i class="material-icons">add</i></button>
                 </div>
             </div>
         </div>
         <div class="center">
-            <a class="mdl-button mdl-js-button mdl-button--raised cesar-button-twitter cesar-button-small" target="social"
+            <a class="mdl-button mdl-js-button mdl-button--raised cesar-button-twitter cesar-button-small" target="social" text="Twitter"
                href="https://twitter.com/intent/tweet?text={{ctrl.article.titre}}&hashtags=mixit16&url={{ctrl.url}}" type="button">
                 <img src="img/social/twitter.svg"> Twitter
             </a>

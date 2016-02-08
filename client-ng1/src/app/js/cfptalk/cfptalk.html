@@ -3,7 +3,7 @@
     <h1 ng-if="ctrl.proposal.id" translate="view.cfp.talk.action.update">Update talk</h1>
 
     <div>
-        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
+        <a class="cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>
 
     <p class="cesar-text" translate="view.cfp.talk.headline"></p>
@@ -24,7 +24,7 @@
                        ng-required="true"
                        ng-model="ctrl.proposal.title"
                        ng-focus="help.title=true"
-                       ng-blur="help.title=false;ctrl.save()"
+                       ng-blur="help.title=false;ctrl.save(spinner)"
                 />
                 <label class="mdl-textfield__label" for="title" translate="view.cfp.talk.title.text">Title</label>
                 <cesar-nb-carac nbcarac="100" text="ctrl.proposal.title" field="frm.title"></cesar-nb-carac>
@@ -35,7 +35,7 @@
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300"
                           name="summary"
                           ng-focus="help.summary=true"
-                          ng-blur="help.summary=false;ctrl.check()"
+                          ng-blur="help.summary=false;ctrl.check(spinner)"
                           ng-model="ctrl.proposal.summary"></textarea>
                 <label class="mdl-textfield__label" for="summary" translate="view.cfp.talk.summary.text">Summary</label>
                 <cesar-nb-carac nbcarac="300" text="ctrl.proposal.summary" field="frm.summary"
@@ -47,7 +47,7 @@
                 <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="2000"
                           name="description"
                           ng-focus="help.description=true"
-                          ng-blur="help.description=false;ctrl.check()"
+                          ng-blur="help.description=false;ctrl.check(spinner)"
                           ng-model="ctrl.proposal.description"></textarea>
                 <label class="mdl-textfield__label" for="description" translate="view.cfp.talk.description.text">Description</label>
                 <cesar-nb-carac nbcarac="2000" text="ctrl.proposal.description" field="frm.description"
@@ -59,7 +59,7 @@
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="ideaForNow" ng-maxlength="500"
                           name="ideaForNow"
                           ng-focus="help.ideaForNow=true"
-                          ng-blur="help.ideaForNow=false;ctrl.check()"
+                          ng-blur="help.ideaForNow=false;ctrl.check(spinner)"
                           ng-model="ctrl.proposal.ideaForNow"></textarea>
                 <label class="mdl-textfield__label" for="ideaForNow" translate="view.cfp.talk.ideaForNow.text">ideaForNow</label>
                 <cesar-nb-carac nbcarac="500" text="ctrl.proposal.ideaForNow" field="frm.ideaForNow"
@@ -72,7 +72,7 @@
                 <textarea class="mdl-textfield__input" type="text" rows="3" id="messageForStaff" ng-maxlength="300"
                           name="messageForStaff"
                           ng-focus="help.messageForStaff=true"
-                          ng-blur="help.messageForStaff=false;ctrl.save()"
+                          ng-blur="help.messageForStaff=false;ctrl.save(spinner)"
                           ng-model="ctrl.proposal.messageForStaff"></textarea>
                 <label class="mdl-textfield__label" for="messageForStaff"
                        translate="view.cfp.talk.messageForStaff.text">Message for the staff (references,
@@ -89,13 +89,13 @@
 
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
                     <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
-                           ng-blur="hctrl.save()"
+                           ng-blur="hctrl.save(spinner)"
                            ng-model="ctrl.proposal.lang">
                     <span class="mdl-radio__label" translate="lang.en">en</span>
                 </label>
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
                     <input type="radio" id="language-2" class="mdl-radio__button" name="options" value="fr"
-                           ng-blur="hctrl.save()"
+                           ng-blur="hctrl.save(spinner)"
                            ng-model="ctrl.proposal.lang">
                     <span class="mdl-radio__label" translate="lang.fr">fr</span>
                 </label>
@@ -110,7 +110,7 @@
                         class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.category"
                         ng-focus="help.category=true"
-                        ng-blur="help.category=false;ctrl.save()">
+                        ng-blur="help.category=false;ctrl.save(spinner)">
                     <option value=""></option>
                 </select>
             </div>
@@ -123,7 +123,7 @@
                         class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.format"
                         ng-focus="help.formatSession=true"
-                        ng-blur="help.formatSession=false;ctrl.check()">
+                        ng-blur="help.formatSession=false;ctrl.check(spinner)">
                     <option value=""></option>
                 </select>
             </div>
@@ -136,7 +136,7 @@
                         class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.typeSession"
                         ng-focus="help.typeSession=true"
-                        ng-blur="help.typeSession=false;ctrl.save()">
+                        ng-blur="help.typeSession=false;ctrl.save(spinner)">
                     <option value=""></option>
                 </select>
             </div>
@@ -149,7 +149,7 @@
                         class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.level"
                         ng-focus="help.levels=true"
-                        ng-blur="help.levels=false;ctrl.check()">
+                        ng-blur="help.levels=false;ctrl.check(spinner)">
                     <option value=""></option>
                 </select>
             </div>
@@ -163,7 +163,7 @@
                         class="mdl-textfield--expandable cesar-textfield--expandable"
                         ng-model="ctrl.proposal.maxAttendees"
                         ng-focus="help.maxAttendees=true"
-                        ng-blur="help.maxAttendees=false;ctrl.save()">
+                        ng-blur="help.maxAttendees=false;ctrl.save(spinner)">
                     <option value=""></option>
                 </select>
             </div>
@@ -173,7 +173,7 @@
             <cesar-interest-autocomplete add-interest="ctrl.addInterest(value)"
                                          value="interest"></cesar-interest-autocomplete>
             <div>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
                    ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
                     <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeInterest(interest)">
                         <i class="material-icons">remove_circle_outline</i>
@@ -186,7 +186,7 @@
             <cesar-speaker-autocomplete add-speaker="ctrl.addSpeaker(value)"
                                         value="speaker"></cesar-speaker-autocomplete>
             <div>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests"
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
                    ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px"
                    ng-if="speaker.id!==ctrl.account.member.id">
                     <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="ctrl.removeSpeaker(speaker)">
@@ -216,16 +216,16 @@
             </div>
 
             <div style="float: right">
-                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
+                <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()" text="Save proposal"
                               spinner="spinner" google-icon="save"></cesar-button>
                 <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
 
-                <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner"
+                <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" text="Delete proposal"
                               google-icon="delete" ng-if="ctrl.proposal.id"></cesar-button>
                 <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
 
-                <cesar-button id="action4" on-click="ctrl.goback()" spinner="spinner" google-icon="undo"></cesar-button>
+                <cesar-button id="action4" on-click="ctrl.goback()" spinner="spinner" google-icon="undo" text="Cancel"></cesar-button>
                 <div class="mdl-tooltip" for="action4" translate="action.return"></div>
             </div>
             <p>&nbsp;</p>

@@ -2,7 +2,7 @@
 
 
     <h1><i class="material-icons cesar-icons-h1">settings</i> {{ctrl.article.title}}</h1>
-    <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button--interests">{{ctrl.article.postedAt |
+    <a class="cesar-mdl-button--interests">{{ctrl.article.postedAt |
         date:'dd/MM/yyyy'}}</a>
     <p>&nbsp;</p>
 
@@ -83,7 +83,7 @@
                 <span class="mdl-checkbox__label" translate="view.news.published">Checkbox</span>
             </label>
 
-            <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff"
+            <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" rel="author"
                     translate="view.news.team"></a></div>
 
             <div class="cesar-error" ng-if="ctrl.confirm.display">
@@ -96,11 +96,11 @@
             <p>&nbsp;</p>
 
             <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save()"
-                          spinner="spinner" google-icon="save">
+                          spinner="spinner" google-icon="save" text="Save article">
             </cesar-button>
             <div class="mdl-tooltip" for="action1" translate="action.save"></div>
 
-            <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner" google-icon="delete" ng-if="ctrl.article.id" ></cesar-button>
+            <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" text="Delete article" spinner="spinner" google-icon="delete" ng-if="ctrl.article.id" ></cesar-button>
             <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
         </form>
     </div>

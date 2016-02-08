@@ -1,6 +1,6 @@
 package org.mixit.cesar.security.config;
 
-import org.mixit.cesar.security.service.authentification.AuthenticationFilter;
+import org.mixit.cesar.security.web.AuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

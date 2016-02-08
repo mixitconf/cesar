@@ -16,6 +16,7 @@
         type: '@'
       },
       controller: function ($scope) {
+        $scope.type = $scope.type ? $scope.type : 'member';
         $scope.order = $scope.type === 'sponsor' ? 'level[0].value' : 'firstname';
         if (!$scope.limitText) {
           $scope.limitText = 300;
