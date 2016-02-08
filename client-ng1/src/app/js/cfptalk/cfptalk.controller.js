@@ -115,7 +115,6 @@
         }
 
         ctrl.save = function (spinner) {
-            console.log(spinner)
             if(spinner==='off'){
                 _save();
             }

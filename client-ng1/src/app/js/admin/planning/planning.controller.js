@@ -76,10 +76,10 @@
 
     ctrl.saveSlot = function(){
       console.log('Save slot ' + ctrl.slot);
-    }
+    };
 
     ctrl.reinit = function(){
       ctrl.slot = {};
-    }
+    };
   });
 })();
