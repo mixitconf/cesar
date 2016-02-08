@@ -119,14 +119,6 @@ public class ProposalController {
         return proposalService.check(proposalService.save(proposal, currentUser.getCredentials().get()));
     }
 
-
-    @RequestMapping(method = RequestMethod.POST, value = "/submit")
-    @Authenticated
-    public ProposalStatus submit(@RequestBody Proposal proposal) {
-        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        return proposalService.submit(proposal, currentUser.getCredentials().get(), false);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
         proposalService.delete(id);

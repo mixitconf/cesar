@@ -28,6 +28,8 @@ import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.service.MemberService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -131,15 +133,14 @@ public class ProposalService {
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
 
+        proposalPersisted = proposalRepository.save(proposalPersisted);
+
         //The state can change only if session is not submitted
         if(proposal.getStatus()==null || VALID.equals(proposal.getStatus()) || CREATED.equals(proposal.getStatus())) {
             if (proposalPersisted.isValid()) {
                 proposalPersisted.setStatus(VALID);
                 //Add automatic submition
-                submit(proposalPersisted, account, true);
-            }
-            else {
-                proposalPersisted.setStatus(CREATED);
+                submit(proposalPersisted, account);
             }
         }
 
@@ -147,30 +148,24 @@ public class ProposalService {
     }
 
 
-    public ProposalStatus submit(Proposal proposal, Account account, boolean saved) {
+    protected void submit(Proposal proposalPersisted, Account account) {
+        proposalPersisted.setStatus(SUBMITTED);
 
-        Proposal proposalPersisted = !saved ? save(proposal, account): proposal;
+        proposalPersisted.getSpeakers()
+                .stream()
+                .forEach(speaker -> {
+                            Member member = memberRepository.findOne(speaker.getId());
+                            mailerService.send(
+                                    member.getEmail(),
+                                    mailBuilder.getTitle(SESSION_SUBMITION),
+                                    mailBuilder.buildContent(SESSION_SUBMITION, account, proposalPersisted));
+                        }
+                );
 
-        if (VALID.equals(proposalPersisted.getStatus())) {
-            proposalPersisted.setStatus(SUBMITTED);
-
-            proposalPersisted.getSpeakers()
-                    .stream()
-                    .forEach(speaker -> {
-                                Member member = memberRepository.findOne(speaker.getId());
-                                mailerService.send(
-                                        member.getEmail(),
-                                        mailBuilder.getTitle(SESSION_SUBMITION),
-                                        mailBuilder.buildContent(SESSION_SUBMITION, account, proposal));
-                            }
-                    );
-
-            slackNotifier.send(String.format("A new talk was submitted [%s], by %s",
-                    proposal.getTitle(),
-                    proposal.getSpeakers().stream().map(m -> String.format("%s %s", m.getFirstname(), m.getLastname())).collect(Collectors.joining(", "))),
-                    cfp);
-        }
-        return proposalPersisted.getStatus();
+        slackNotifier.send(String.format("A new talk was submitted [%s], by %s",
+                proposalPersisted.getTitle(),
+                proposalPersisted.getSpeakers().stream().map(m -> String.format("%s %s", m.getFirstname(), m.getLastname())).collect(Collectors.joining(", "))),
+                cfp);
     }
 
     /**

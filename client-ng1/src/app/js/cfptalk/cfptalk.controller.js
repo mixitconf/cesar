@@ -3,7 +3,7 @@
     'use strict';
     /*global componentHandler */
 
-    angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, $timeout, account, $scope) {
+    angular.module('cesar-cfp').controller('CfpTalkCtrl', function ($http, $state, $stateParams, $timeout, account) {
         'ngInject';
 
         var ctrl = this;
@@ -114,17 +114,15 @@
 
         }
 
-        ctrl.save = function () {
-            if($scope.spinner!=='on'){
+        ctrl.save = function (spinner) {
+            console.log(spinner)
+            if(spinner==='off'){
                 _save();
-            }
-            else{
-                $timeout(ctrl.save, 500);
             }
         };
 
-        ctrl.check = function () {
-            if(ctrl.proposal.id){
+        ctrl.check = function (spinner) {
+            if(ctrl.proposal.id && spinner==='off'){
                 delete ctrl.warningMessage;
                 delete ctrl.confirm;
 
@@ -138,20 +136,6 @@
                       ctrl.errorMessage = 'UNDEFINED';
                   });
             }
-        };
-
-        ctrl.submit = function () {
-            delete ctrl.errorMessage;
-            $http
-                .post('app/cfp/proposal/submit', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-                .then(function (response) {
-                    if (response.data === 'SUBMITTED') {
-                        $state.go('cfp');
-                    }
-                })
-                .catch(function () {
-                    ctrl.errorMessage = 'UNDEFINED';
-                });
         };
 
         ctrl.delete = function () {
