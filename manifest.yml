@@ -3,3 +3,5 @@ instances: 1
 applications:
 - name: cesar
   path: ./server/build/libs/server.jar
+timeout: 180
+JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
