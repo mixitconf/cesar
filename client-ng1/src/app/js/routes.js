@@ -112,7 +112,6 @@
           /* @ngInject */
           accounts: function ($http) {
             return $http.get('/app/account').then(function (response) {
-              console.log(response)
               return response.data;
             });
           },
