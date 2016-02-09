@@ -60,4 +60,20 @@
         <loc>https://www.mix-it.fr/infos/contact</loc>
         <priority>0.5</priority>
     </url>
+    <url>
+        <loc>https://www.mix-it.fr/article/192</loc>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/article/182</loc>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/article/163</loc>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/article/142</loc>
+        <priority>0.4</priority>
+    </url>
 </urlset>
