@@ -14,6 +14,7 @@
     "submit" : "Submit"
   },
   "menu": {
+    "accounts": "Comptes",
     "admin": "Admin",
     "cache": "Cache manager",
     "cfp": "CFP",

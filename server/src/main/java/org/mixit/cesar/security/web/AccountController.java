@@ -76,7 +76,7 @@ public class AccountController {
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     @NeedsRole(Role.ADMIN)
-    @JsonView(FlatView.class)
+    @JsonView(UserView.class)
     public List<Account> accounts() {
         return StreamSupport
                 .stream(accountRepository.findAll().spliterator(), true)
