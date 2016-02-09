@@ -112,7 +112,11 @@ public class ProposalController {
     @Authenticated
     public Set<ProposalError> check(@RequestBody Proposal proposal) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        return proposalService.check(proposalService.save(proposal, currentUser.getCredentials().get()));
+        if(proposal.getSpeakers().isEmpty()){
+            proposal.addSpeaker(accountRepository.findOne(currentUser.getCredentials().get().getId()).getMember());
+        }
+        proposalService.updateProposalSpeakert(proposal, proposal, currentUser.getCredentials().get());
+        return proposalService.check(proposal);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
