@@ -106,6 +106,20 @@
         })
         .build())
 
+      .state('admaccounts', new State(USER_ROLES, 'admaccounts', 'js/admin/accounts/accounts.html')
+        .controller('AdminAccountsCtrl')
+        .resolve({
+          /* @ngInject */
+          accounts: function ($http) {
+            return $http.get('/app/account').then(function (response) {
+              console.log(response)
+              return response.data;
+            });
+          },
+          account: getAccount
+        })
+        .build())
+
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())

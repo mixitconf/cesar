@@ -3,6 +3,9 @@ package org.mixit.cesar.security.web;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_MEMBER;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -66,6 +69,20 @@ public class AccountController {
 
     @Autowired
     private CacheManager cacheManager;
+
+    /**
+     * Return all the accounts
+     */
+    @RequestMapping
+    @ResponseStatus(HttpStatus.OK)
+    @NeedsRole(Role.ADMIN)
+    @JsonView(FlatView.class)
+    public List<Account> accounts() {
+        return StreamSupport
+                .stream(accountRepository.findAll().spliterator(), true)
+                .sorted((a, b) -> a.getLastname().compareTo(b.getLastname()))
+                .collect(Collectors.toList());
+    }
 
     /**
      * When we create a new user we want to know if a login is already used. This method checks the login
