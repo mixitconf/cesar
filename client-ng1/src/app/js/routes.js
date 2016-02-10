@@ -137,6 +137,16 @@
           }
         })
         .build())
+      .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
+        .resolve({
+          /* @ngInject */
+          session: function (SessionService, $stateParams) {
+            return SessionService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
 
       //Participants
       .state('speakers', new State(USER_ROLES, 'speakers', 'js/members/speakers.html').controller('MembersCtrl')
