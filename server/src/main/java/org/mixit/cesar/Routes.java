@@ -47,6 +47,7 @@ public class Routes {
             "/passwordlost",
             "/passwordreinit",
             "/planning",
+            "/profile/{login:\\w+}",
             "/session/{id:\\w+}",
             "/session/{id:\\w+}/{title:\\w+}",
             "/speakers",

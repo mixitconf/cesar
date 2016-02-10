@@ -193,7 +193,16 @@
           }
         })
         .build())
-
+      .state('profile', new State(USER_ROLES, 'profile/:login', 'js/member/member.html').controller('MemberCtrl')
+        .resolve({
+          /* @ngInject */
+          member: function (MemberService, $stateParams) {
+            return MemberService.getByLogin($stateParams.login).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
       //Infos
       .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html').controller('InterestCtrl').build())
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())

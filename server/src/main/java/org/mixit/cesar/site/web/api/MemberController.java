@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.web.api;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,19 @@ public class MemberController {
         return ResponseEntity
                 .ok()
                 .body(MemberResource.convert(member));
+    }
+
+    @RequestMapping("/profile/{login}")
+    @ApiOperation(value = "Finds one member by login", httpMethod = "GET")
+    public ResponseEntity<MemberResource> getMemberByLogin(@PathVariable("login") String login) {
+        Optional<Member> member = memberRepository.findByLogin(login).stream().findFirst();
+
+        member.ifPresent(m -> {
+            m.setNbConsults(m.getNbConsults() + 1);
+            memberRepository.save(m);
+        });
+
+        return ResponseEntity.ok().body(MemberResource.convert(member.orElse(new Member())));
     }
 
     @RequestMapping
