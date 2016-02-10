@@ -28,6 +28,7 @@ public class Routes {
             "/compte",
             "/createaccount/*",
             "/createaccountsocial",
+            "/interest/{name:\\w+}",
             "/faq",
             "/favoris",
             "/home",
