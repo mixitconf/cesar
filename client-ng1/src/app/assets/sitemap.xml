@@ -5,7 +5,7 @@
         <loc>https://www.mix-it.fr</loc>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://www.mix-it.fr/public/images/logo-mixit.png</image:loc>
+            <image:loc>https://www.mix-it.fr/img/logo-mixit.png</image:loc>
         </image:image>
     </url>
     <url>
