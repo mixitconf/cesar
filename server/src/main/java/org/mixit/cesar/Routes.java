@@ -11,6 +11,7 @@ public class Routes {
 
     @RequestMapping({
             "/account",
+            "/admaccounts",
             "/admcfp",
             "/admcfptalk/{id:\\w+}",
             "/admarticle/{id:\\w+}",
