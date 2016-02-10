@@ -36,7 +36,7 @@ public class BotFilter extends OncePerRequestFilter {
     }
 
     private boolean hasShareableUri(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/home");
+        return request.getRequestURI().startsWith("/home") || request.getRequestURI().startsWith("/");
     }
 
     private boolean hasBotUserAgent(HttpServletRequest request) {
