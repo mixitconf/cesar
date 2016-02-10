@@ -13,7 +13,7 @@
 
     //Error are catched to redirect user on error page
     $rootScope.$on('$cesarError', function (event, response) {
-      $state.go('cerror', {error: response});
+      $state.go('cerror', {error: response ? response : {type : 'UNDEFINED'}});
     });
 
     //When a ui-router state change we watch if user is authorized

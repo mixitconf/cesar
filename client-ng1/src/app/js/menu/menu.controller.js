@@ -83,7 +83,8 @@
                 {id: 'menu.cache', link: 'cache'},
                 {id: 'menu.news', link: 'admarticles'},
                 {id: 'menu.cfp', link: 'admcfp'},
-                {id: 'menu.planning', link: 'admplanning'}
+                {id: 'menu.planning', link: 'admplanning'},
+                {id: 'menu.accounts', link: 'admaccounts'}
               ]}
             );
           }

@@ -171,7 +171,7 @@ public class ProposalService {
     /**
      * Helper to update the speaker list
      */
-    protected void updateProposalSpeakert(Proposal proposalDb, Proposal proposal, Account account) {
+    public void updateProposalSpeakert(Proposal proposalDb, Proposal proposal, Account account) {
         //We can delete old reference only the reference with the curent user
         proposalDb.getSpeakers().removeAll(
                 proposalDb.getSpeakers()

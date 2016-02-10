@@ -11,6 +11,7 @@ public class Routes {
 
     @RequestMapping({
             "/account",
+            "/admaccounts",
             "/admcfp",
             "/admcfptalk/{id:\\w+}",
             "/admarticle/{id:\\w+}",
@@ -27,6 +28,7 @@ public class Routes {
             "/compte",
             "/createaccount/*",
             "/createaccountsocial",
+            "/interest/{name:\\w+}",
             "/faq",
             "/favoris",
             "/home",
@@ -45,6 +47,7 @@ public class Routes {
             "/passwordlost",
             "/passwordreinit",
             "/planning",
+            "/profile/{login:\\w+}",
             "/session/{id:\\w+}",
             "/session/{id:\\w+}/{title:\\w+}",
             "/speakers",

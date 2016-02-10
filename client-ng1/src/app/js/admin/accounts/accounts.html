@@ -1,0 +1,35 @@
+<div class="cesar-container">
+
+    <h1><i class="material-icons cesar-icons-h1">settings</i> Accounts</h1>
+
+    <p style="padding-left: 1em"><small>{{results.length}} {{results.length>0 ? 'accounts' : 'account'}}</small></p>
+    <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
+        <thead ng-show="false">
+        <tr>
+            <th colspan="2">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="account in ctrl.accounts| filter:search | orderBy:'status' as results" >
+            <td class="mdl-data-table__cell--non-numeric">
+                <p class="cesar-text">
+                    {{::account.lastname}}  {{::account.firstname}}  <a class="cesar-mdl-button--interests">{{::account.provider}}</a>
+                </p>
+                <p>{{::account.member.shortDescription}}</p>
+            </td>
+            <td style="padding: 4px">
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                   ui-sref="member({id : account.member.id})">
+                    <i class="material-icons mdl-badge">library_books</i>
+                </a>
+            </td>
+        </tr>
+        <tr ng-if="results.length===0">
+            <td colspan="2">No data found</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <p>&nbsp;</p>
+</div>

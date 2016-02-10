@@ -19,6 +19,8 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
 
     List<Member> findByEmail(String email);
 
+    List<Member> findByLogin(String login);
+
     @Query(value = "SELECT DISTINCT m FROM Staff m where id=:id")
     Staff findOneStaff(@Param("id") Long id);
 

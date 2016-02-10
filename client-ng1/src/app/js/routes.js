@@ -106,6 +106,19 @@
         })
         .build())
 
+      .state('admaccounts', new State(USER_ROLES, 'admaccounts', 'js/admin/accounts/accounts.html')
+        .controller('AdminAccountsCtrl')
+        .resolve({
+          /* @ngInject */
+          accounts: function ($http) {
+            return $http.get('/app/account').then(function (response) {
+              return response.data;
+            });
+          },
+          account: getAccount
+        })
+        .build())
+
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
@@ -115,6 +128,16 @@
       .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
       .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
+        .resolve({
+          /* @ngInject */
+          session: function (SessionService, $stateParams) {
+            return SessionService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
+      .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           /* @ngInject */
           session: function (SessionService, $stateParams) {
@@ -170,8 +193,18 @@
           }
         })
         .build())
-
+      .state('profile', new State(USER_ROLES, 'profile/:login', 'js/member/member.html').controller('MemberCtrl')
+        .resolve({
+          /* @ngInject */
+          member: function (MemberService, $stateParams) {
+            return MemberService.getByLogin($stateParams.login).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
       //Infos
+      .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html').controller('InterestCtrl').build())
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())
       .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html').build())
       .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html').build())

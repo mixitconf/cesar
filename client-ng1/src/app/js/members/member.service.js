@@ -17,10 +17,15 @@
       return $http.get('/api/member/' + id);
     }
 
+    function getByLogin(login){
+      return $http.get('/api/member/profile/' + login);
+    }
+
     return {
       getAll : getAll,
       getAllLigthningtalkSpeakers: getAllLigthningtalkSpeakers,
-      getById : getById
+      getById : getById,
+      getByLogin: getByLogin
     };
   });
 })();

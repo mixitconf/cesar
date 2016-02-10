@@ -121,7 +121,7 @@
         };
 
         ctrl.check = function (spinner) {
-            if(ctrl.proposal.id && spinner==='off'){
+            if(spinner==='off'){
                 delete ctrl.warningMessage;
                 delete ctrl.confirm;
 
