@@ -4,6 +4,7 @@ import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_MEMBER;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +81,7 @@ public class AccountController {
     public List<Account> accounts() {
         return StreamSupport
                 .stream(accountRepository.findAll().spliterator(), true)
-                .sorted((a, b) -> a.getLastname().compareTo(b.getLastname()))
+                .sorted(Account.comparator)
                 .collect(Collectors.toList());
     }
 

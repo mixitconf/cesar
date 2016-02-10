@@ -1,6 +1,7 @@
 package org.mixit.cesar.security.model;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -306,4 +307,10 @@ public class Account implements Cloneable {
     }
 
 
+    public static Comparator<Account> comparator = (a, b) -> {
+        if (Objects.equals(a.getLastname(), b.getLastname())) {
+            return 0;
+        }
+        return a.getLastname() == null ? -1 : (b.getLastname() == null ? 1 : a.getLastname().compareToIgnoreCase(b.getLastname()));
+    };
 }
