@@ -31,12 +31,12 @@ public class SessionResource extends ResourceSupport {
     public String description;
     public String ideaForNow;
     public String room;
+    public String year;
     public Date start;
     public Date end;
     public List<String> interests = new ArrayList<>();
 
     public static <T extends Session<T>> SessionResource convert(T session) {
-        //TODO room + start + end
         SessionResource sessionResource = new SessionResource()
                 .setIdSession(session.getId())
                 .setDescription(session.getDescription())
@@ -45,6 +45,7 @@ public class SessionResource extends ResourceSupport {
                 .setLang(session.getLang().toString())
                 .setSummary(session.getSummary())
                 .setTitle(session.getTitle())
+                .setYear(String.valueOf(session.getEvent()!=null ? session.getEvent().getYear() : ""))
                 .setNbConsults(session.getNbConsults());
 
         List<Vote> votes = session.getVotes();
@@ -195,6 +196,15 @@ public class SessionResource extends ResourceSupport {
 
     public SessionResource setInterests(List<String> interests) {
         this.interests = interests;
+        return this;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public SessionResource setYear(String year) {
+        this.year = year;
         return this;
     }
 

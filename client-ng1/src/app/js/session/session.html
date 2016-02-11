@@ -26,7 +26,7 @@
         <p marked="ctrl.member.longDescription"></p>
 
         <p>
-            <a class="cesar-mdl-button--interests" ng-repeat="interest in ctrl.session.interests" ui-sref="interest(interest)">
+            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button" ng-repeat="interest in ctrl.session.interests" ui-sref="interest({name:interest})">
                 {{interest}}
             </a>
         </p>

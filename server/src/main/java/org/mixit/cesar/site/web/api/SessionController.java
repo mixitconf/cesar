@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.mixit.cesar.site.web.api.dto.MemberResource;
 import org.mixit.cesar.site.web.api.dto.SessionResource;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.SessionRepository;
@@ -78,5 +79,11 @@ public class SessionController {
     @ApiOperation(value = "Finds all the lightning talks", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllLightningTalks(@RequestParam(required = false) Integer year) {
         return getAllSessions(sessionRepository.findAllAcceptedLightningTalks(eventService.getEvent(year).getId()));
+    }
+
+    @RequestMapping(value = "/interest/{name}")
+    @ApiOperation(value = "Finds all sessions linked to an interest", httpMethod = "GET")
+    public ResponseEntity<List<SessionResource>> getAllSessions(@PathVariable String name) {
+        return getAllSessions(sessionRepository.findAllSessionsByInterest(name));
     }
 }

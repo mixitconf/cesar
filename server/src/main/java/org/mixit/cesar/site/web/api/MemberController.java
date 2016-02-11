@@ -91,6 +91,12 @@ public class MemberController {
         return getAllMembers(memberRepository.findAllLigthningtalkSpeakers(eventService.getEvent(year).getId()));
     }
 
+    @RequestMapping(value = "/interest/{name}")
+    @ApiOperation(value = "Finds all member linked to an interest", httpMethod = "GET")
+    public ResponseEntity<List<MemberResource>> getAllMembers(@PathVariable String name) {
+        return getAllMembers(memberRepository.findAllSpeakersByInterest(name));
+    }
+
     @RequestMapping(value = "/sponsor")
     @ApiOperation(value = "Finds all sponsors", httpMethod = "GET")
     public ResponseEntity<List<MemberResource>> getAllSponsors(@RequestParam(required = false) Integer year) {

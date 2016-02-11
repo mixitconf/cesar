@@ -15,6 +15,9 @@ import org.springframework.data.repository.query.Param;
  */
 public interface SessionRepository extends CrudRepository<Session, Long> {
 
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where i.name = :interest and s.valid = true ")
+    List<Session> findAllSessionsByInterest(@Param("interest") String interest);
+
     @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes  where s.event.id = :idEvent and s.valid = true ")
     List<Session> findAllSessions(@Param("idEvent") Long idEvent);
 

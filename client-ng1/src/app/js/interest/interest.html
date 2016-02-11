@@ -5,5 +5,95 @@
         Cette partie du site n'a pas encore été développée, vous retrouverez bientôt une liste de tous les
         éléments du site qui sont rattachés à cet intérêt.
     </div>
+
+    <cesar-search-bar></cesar-search-bar>
+    <p style="padding-left: 1em"><small>{{ctrl.pagination.session.nbtotal}} {{ctrl.pagination.session.nbtotal>0 ? 'sessions' : 'session'}}</small></p>
+
+    <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
+        <thead ng-show="false">
+        <tr>
+            <th colspan="2">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="session in ctrl.filterSession() track by $index" ng-if="ctrl.displayItem($index, 'session')">
+            <td class="mdl-data-table__cell--non-numeric">
+                <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                    <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{::session.format | sessionLogo}}</i>&nbsp;<b>{{::session.year}}</b>&nbsp;
+                    {{::session.title}} </p><br>
+                {{::session.summary}}<br>&nbsp;<br>
+                <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+                    <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                        <img ng-src="https://www.gravatar.com/avatar/{{::speaker.hash}}">
+                    </a>
+                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{::speaker.firstname}} {{::speaker.lastname}}</a>&nbsp;
+                </span>
+            </td>
+            <td>
+                <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next">
+                    <i class="material-icons mdl-badge" data-badge="{{::session.lang}}">nature_people</i>
+                </a>
+                <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{::session.positiveVotes}}</button></div>
+            </td>
+        </tr>
+        <tr ng-if="ctrl.pagination.nbtotal===0">
+            <td colspan="2">No data found</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="cesar-pagination__container">
+        <button ng-repeat="n in [].constructor(ctrl.pagination.session.pages) track by $index"
+                class="mdl-button mdl-js-button mdl-button--primary"
+                ng-click="ctrl.pagination.session.current = $index + 1"
+                ng-disabled="ctrl.pagination.session.current === $index + 1">
+            {{ $index + 1 }}
+        </button>
+    </div>
+    <p>&nbsp;</p>
+    <p style="padding-left: 1em"><small>{{ctrl.pagination.member.nbtotal}} {{ctrl.pagination.member.nbtotal>0 ? 'membres' : 'membre'}}</small></p>
+
+    <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
+        <thead ng-show="false">
+        <tr>
+            <th colspan="2">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="member in ctrl.filterMember() track by $index" ng-if="ctrl.displayItem($index, 'member')">
+            <td class="mdl-data-table__cell--non-numeric">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-phone">
+                        <img ng-src="https://www.gravatar.com/avatar/{{::member.hash}}">
+                    </div>
+                    <div class="mdl-cell mdl-cell--11-col mdl-cell--11-col-phone">
+                        <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                            {{::member.lastname }} {{::member.firstname }}
+                        </p>
+                        <p>
+                            {{::member.shortDescription }}
+                        </p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next">
+                    <i class="material-icons mdl-badge" data-badge="{{::session.lang}}">nature_people</i>
+                </a>
+                <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{::session.positiveVotes}}</button></div>
+            </td>
+        </tr>
+        <tr ng-if="ctrl.pagination.nbtotal===0">
+            <td colspan="2">No data found</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="cesar-pagination__container">
+        <button ng-repeat="n in [].constructor(ctrl.pagination.member.pages) track by $index"
+                class="mdl-button mdl-js-button mdl-button--primary"
+                ng-click="ctrl.pagination.member.current = $index + 1"
+                ng-disabled="ctrl.pagination.member.current === $index + 1">
+            {{ $index + 1 }}
+        </button>
+    </div>
     <p>&nbsp;</p>
 </div>
