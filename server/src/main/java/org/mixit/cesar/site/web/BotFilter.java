@@ -1,8 +1,12 @@
 package org.mixit.cesar.site.web;
 
 import java.io.IOException;
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,12 +21,23 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * @author JB Nizet
  */
 @Component
-public class BotFilter extends OncePerRequestFilter {
+public class BotFilter implements Filter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (mustFowardToBotUrl(request)) {
-            request.getRequestDispatcher("/bot" + request.getRequestURI()).forward(request, response);
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        if(request instanceof HttpServletRequest){
+            HttpServletRequest req = (HttpServletRequest) request;
+            if (mustFowardToBotUrl(req)) {
+                request.getRequestDispatcher("/bot" + req.getRequestURI()).forward(request, response);
+            }
+            else{
+                filterChain.doFilter(request, response);
+            }
         }
         else {
             filterChain.doFilter(request, response);
@@ -36,7 +51,7 @@ public class BotFilter extends OncePerRequestFilter {
     }
 
     private boolean hasShareableUri(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/home") || request.getRequestURI().startsWith("/");
+        return request.getRequestURI().startsWith("/home") || request.getRequestURI().equals("/") || request.getRequestURI().startsWith("/index.html");
     }
 
     private boolean hasBotUserAgent(HttpServletRequest request) {
@@ -44,14 +59,19 @@ public class BotFilter extends OncePerRequestFilter {
         if (userAgent == null) {
             return false;
         }
-        return userAgent.startsWith("facebookexternalhit")
-                || userAgent.contains("http://www.google.com/webmasters/tools/richsnippets")
-                || userAgent.contains("+https://developers.google.com/+/web/snippet/")
-                || userAgent.startsWith("Twitterbot")
-                || userAgent.contains("Googlebot")
-                || userAgent.contains("bingbot")
-                || userAgent.contains("Yahoo! Slurp")
-                || userAgent.contains("DuckDuckBot");
+        return userAgent.toLowerCase().startsWith("facebookexternalhit")
+                || userAgent.toLowerCase().contains("http://www.google.com/webmasters/tools/richsnippets")
+                || userAgent.toLowerCase().contains("+https://developers.google.com/+/web/snippet/")
+                || userAgent.toLowerCase().startsWith("twitterbot")
+                || userAgent.toLowerCase().contains("googlebot")
+                || userAgent.toLowerCase().contains("bingbot")
+                || userAgent.toLowerCase().contains("yahoo! slurp")
+                || userAgent.toLowerCase().contains("duckduckbot");
     }
 
+
+    @Override
+    public void destroy() {
+
+    }
 }

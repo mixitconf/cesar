@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping("/bot/home")
+@RequestMapping(path = {"/bot", "/bot/", "/bot/home"})
 public class BotController {
 
     @Autowired

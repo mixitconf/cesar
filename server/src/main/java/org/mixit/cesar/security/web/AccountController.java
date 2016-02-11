@@ -186,9 +186,9 @@ public class AccountController {
 
         Account account = accountRepository.findByToken(currentUser.getCredentials().get().getToken());
         if (account == null) {
-            throw new AuthenticationRequiredException();
+            return ResponseEntity.status(HttpStatus.OK).body(new Account());
         }
         cookieService.setCookieInResponse(response, account);
-        return new ResponseEntity<>(account.prepareForView(true), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(account.prepareForView(true));
     }
 }

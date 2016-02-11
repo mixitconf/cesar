@@ -9,7 +9,7 @@
       rewriteLinks: false
     });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 
     /* @ngInject */
     function getAllArticles(ArticleService) {
@@ -36,6 +36,7 @@
     $stateProvider
 
     //Home and error route
+      .state('start', new State(USER_ROLES, '', 'js/home/home.html').controller('HomeCtrl').build())
       .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').controller('HomeCtrl').build())
 
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')

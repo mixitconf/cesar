@@ -8,8 +8,11 @@
     function currentUser(){
       return $http.get('app/account/check', {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function(response){
-          LocalStorageService.put('current-user', response.data);
-          return response.data;
+          if(response && response.data && response.data.token) {
+            LocalStorageService.put('current-user', response.data);
+            return response.data;
+          }
+          return undefined;
         })
         .catch(function(){
           return undefined;
@@ -60,7 +63,14 @@
 
     function checkUser(){
       $http.get('app/account/check')
-        .then(loginConfirmed)
+        .then(function(response){
+          if(response && response.data && response.data.token){
+            loginConfirmed(response);
+          }
+          else{
+            loginRequired(response);
+          }
+        })
         .catch(loginRequired);
     }
 
