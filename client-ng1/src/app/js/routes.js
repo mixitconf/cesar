@@ -125,6 +125,7 @@
 
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
+      .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
       .state('lightningtalks', new State(USER_ROLES, 'lightningtalks', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
       .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())

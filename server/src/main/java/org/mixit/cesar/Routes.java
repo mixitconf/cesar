@@ -52,6 +52,7 @@ public class Routes {
             "/profile/{login:\\w+}",
             "/session/{id:\\w+}",
             "/session/{id:\\w+}/{title:\\w+}",
+            "/sessions",
             "/speakers",
             "/sponsor/{id:\\w+}",
             "/sponsors",
