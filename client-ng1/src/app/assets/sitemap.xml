@@ -9,7 +9,7 @@
         </image:image>
     </url>
     <url>
-        <loc>https://www.mix-it.fr/sessions</loc>
+        <loc>https://www.mix-it.fr/talks</loc>
         <priority>0.9</priority>
     </url>
     <url>
@@ -25,39 +25,35 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.mix-it.fr/sponsors</loc>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.mix-it.fr/lightnings</loc>
-        <priority>0.6</priority>
-    </url>
-    <url>
         <loc>https://www.mix-it.fr/articles</loc>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://www.mix-it.fr/infos/about</loc>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://www.mix-it.fr/infos/acces</loc>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://www.mix-it.fr/infos/faq</loc>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://www.mix-it.fr/infos/hotels</loc>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://www.mix-it.fr/infos/inscription</loc>
+        <loc>https://www.mix-it.fr/mixit15</loc>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://www.mix-it.fr/infos/contact</loc>
+        <loc>https://www.mix-it.fr/mixit14</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/mixit13</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/mixit12</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/venir</loc>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/faq</loc>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://www.mix-it.fr/multimedia</loc>
         <priority>0.5</priority>
     </url>
     <url>
