@@ -127,11 +127,21 @@
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
       .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
-      .state('lightningtalks', new State(USER_ROLES, 'lightningtalks', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
+      .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
       .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
       .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
       .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
       .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
+      .state('lightning', new State(USER_ROLES, 'lightning/:id/:title', 'js/session/session.html').controller('SessionCtrl')
+        .resolve({
+          /* @ngInject */
+          session: function (SessionService, $stateParams) {
+            return SessionService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          }
+        })
+        .build())
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           /* @ngInject */
