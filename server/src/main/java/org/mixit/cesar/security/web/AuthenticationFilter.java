@@ -45,7 +45,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //If request is secured we test id user is authenticated
-        if (request instanceof HttpServletRequest && matches(request.getServletPath())) {
+        if (matches(request.getServletPath())) {
             String token = request.getHeader(TOKEN_REQUEST_HEADER_PARAM);
 
             if (token != null) {
@@ -55,7 +55,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                     currentUser.setCredentials(account.prepareForView(false));
                     filterChain.doFilter(request, response);
                 }
-                else {
+                else if(request.getRequestURI().startsWith("/app/account/check")) {
+                    //For a check exception is not thrown
+                    filterChain.doFilter(request, response);
+                }
+                else{
                     response.sendError(HttpStatus.UNAUTHORIZED.value(), "User unknown");
                 }
             }

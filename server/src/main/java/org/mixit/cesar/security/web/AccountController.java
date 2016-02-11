@@ -183,7 +183,9 @@ public class AccountController {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
 
         //If no current user we want an authentication
-        currentUser.getCredentials().orElseThrow(AuthenticationRequiredException::new);
+        if (currentUser == null || currentUser.getCredentials()==null || !currentUser.getCredentials().isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(new Account());
+        }
 
         Account account = accountRepository.findByToken(currentUser.getCredentials().get().getToken());
         if (account == null) {

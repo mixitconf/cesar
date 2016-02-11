@@ -8,7 +8,7 @@
     function currentUser(){
       return $http.get('app/account/check', {ignoreErrorRedirection: 'ignoreErrorRedirection'})
         .then(function(response){
-          if(response && response.data && response.data.token) {
+          if(response && response.data && response.data.oauthId) {
             LocalStorageService.put('current-user', response.data);
             return response.data;
           }
@@ -33,13 +33,13 @@
     }
 
     function logout() {
-      currentUser().then(function(currentUser) {
-        $http.get('app/logout');
-        LocalStorageService.remove('current-user');
-        if (currentUser) {
+      $http.get('app/logout').then(function(){
+        currentUser().then(function() {
+          LocalStorageService.remove('current-user');
           $rootScope.$broadcast('event:auth-logoutConfirmed');
-        }
+        });
       });
+
     }
 
     function login(param) {
@@ -64,7 +64,7 @@
     function checkUser(){
       $http.get('app/account/check')
         .then(function(response){
-          if(response && response.data && response.data.token){
+          if(response && response.data && response.data.oauthId){
             loginConfirmed(response);
           }
           else{
