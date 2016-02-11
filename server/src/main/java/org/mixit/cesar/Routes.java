@@ -22,6 +22,7 @@ public class Routes {
             "/articles",
             "/authent",
             "/cache",
+            "/cerror",
             "/cerror/{id:\\w+}",
             "/cfp",
             "/cfptalk/{type:\\w+}",

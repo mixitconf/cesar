@@ -47,6 +47,9 @@
           })
         .build())
 
+      .state('cerror2', new State(USER_ROLES, 'cerror', 'js/error/error.html')
+        .build())
+
       .state('cerror', new State(USER_ROLES, 'cerror/{type}', 'js/error/error.html')
         .params({
           error: {}
