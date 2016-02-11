@@ -79,8 +79,9 @@ public class AccountController {
     @NeedsRole(Role.ADMIN)
     @JsonView(UserView.class)
     public List<Account> accounts() {
-        return StreamSupport
-                .stream(accountRepository.findAll().spliterator(), true)
+        return accountRepository
+                .findAll()
+                .stream()
                 .sorted(Account.comparator)
                 .collect(Collectors.toList());
     }

@@ -1,9 +1,13 @@
 package org.mixit.cesar.security.repository;
 
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE;
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SECURITY;
+
 import java.util.List;
 
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +17,12 @@ import org.springframework.data.repository.query.Param;
  */
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
+
     List<Account> findByEmail(String email);
+
+    @Cacheable(CACHE_SECURITY)
+    @Query(value = "SELECT u FROM Account u left join fetch u.member m")
+    List<Account> findAll();
 
     @Query(value = "SELECT u FROM Account u where u.member.id=:idMember")
     Account findByMember(@Param("idMember") Long idMember);
