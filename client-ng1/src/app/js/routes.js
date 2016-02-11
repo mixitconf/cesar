@@ -164,6 +164,13 @@
           }
         })
         .build())
+      .state('about', new State(USER_ROLES, 'about', 'js/members/staff.html').controller('MembersCtrl')
+        .resolve({
+          members: getAllMembers, type: function () {
+            return 'staff';
+          }
+        })
+        .build())
       .state('staff', new State(USER_ROLES, 'staff', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers, type: function () {

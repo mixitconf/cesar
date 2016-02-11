@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Routes {
 
     @RequestMapping({
+            "/about",
             "/account",
             "/admaccounts",
             "/admcfp",
