@@ -99,7 +99,7 @@
         .build())
 
       .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
-        .controller('AdminArticlesCtrl')
+        .controller('ArticlesCtrl')
         .resolve({
           /* @ngInject */
           articles: function (ArticleService) {
