@@ -1,14 +1,13 @@
 package org.mixit.cesar.cfp.web;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalError;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
+import org.mixit.cesar.cfp.repository.ProposalVoteRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
+import org.mixit.cesar.cfp.service.ProposalVoteService;
+import org.mixit.cesar.cfp.web.dto.ProposalVoteDTO;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
@@ -17,18 +16,18 @@ import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
+import org.mixit.cesar.site.model.event.Event;
+import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Controller used to return the parameters used in the CFP
@@ -42,6 +41,12 @@ public class ProposalController {
 
     @Autowired
     ProposalService proposalService;
+
+    @Autowired
+    ProposalVoteService proposalVoteService;
+
+    @Autowired
+    ProposalVoteRepository proposalVoteRepository;
 
     @Autowired
     AccountRepository accountRepository;
@@ -123,5 +128,30 @@ public class ProposalController {
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
         proposalService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/vote")
+    @ResponseStatus(HttpStatus.OK)
+    @Authenticated
+    @NeedsRole(Role.ADMIN)
+    public void vote(@RequestBody ProposalVoteDTO voteParam) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
+        Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
+        proposalVoteService.vote(proposal, voter, voteParam.getVoteValue());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/votes")
+    @ResponseStatus(HttpStatus.OK)
+    @Authenticated
+    @NeedsRole(Role.ADMIN)
+    public List<ProposalVoteDTO> getVotes(@RequestParam(required = false) Integer year) {
+        Event event = eventService.getEvent(year);
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
+        return proposalVoteRepository.findStaffVotesForEvent(voter, event)
+                .stream()
+                .map(ProposalVoteDTO::new)
+                .collect(Collectors.toList());
     }
 }

@@ -23,6 +23,23 @@
           proposals = response.data;
         }
       );
+      $http.get('app/cfp/proposal/votes').then(
+          function(response){
+            ctrl.votesMappedByProposalId = {};
+            angular.forEach(response.data, function(data) {
+              ctrl.votesMappedByProposalId[data.proposalId] = data.voteValue;
+            });
+          }
+      );
+    };
+
+    ctrl.vote = function(proposalId, voteValue) {
+      var data = {
+        proposalId: proposalId,
+        voteValue: voteValue
+      };
+      $http.post('app/cfp/proposal/vote', data);
+        ctrl.votesMappedByProposalId[proposalId] = voteValue;
     };
 
     ctrl.filter = function(){
