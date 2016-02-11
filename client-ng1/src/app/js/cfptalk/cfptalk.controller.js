@@ -15,7 +15,7 @@
                 .get('app/cfp/proposal/' + $stateParams.id)
                 .then(function (response) {
                     ctrl.proposal = response.data;
-                    ctrl.check();
+                    _check();
                 });
         }
 
@@ -96,7 +96,6 @@
 
         function _save(){
             delete ctrl.errorMessage;
-            delete ctrl.warningMessage;
             delete ctrl.confirm;
             $http
               .post('app/cfp/proposal', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
@@ -114,6 +113,21 @@
 
         }
 
+        function _check(){
+            delete ctrl.warningMessage;
+            delete ctrl.confirm;
+
+            $http
+              .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
+              .then(function (response) {
+                  ctrl.warningMessage = response.data;
+                  refresh();
+              })
+              .catch(function () {
+                  ctrl.errorMessage = 'UNDEFINED';
+              });
+        }
+
         ctrl.save = function (spinner) {
             if(spinner==='off'){
                 _save();
@@ -122,18 +136,7 @@
 
         ctrl.check = function (spinner) {
             if(spinner==='off'){
-                delete ctrl.warningMessage;
-                delete ctrl.confirm;
-
-                $http
-                  .post('app/cfp/proposal/check', angular.copy(ctrl.proposal), {ignoreErrorRedirection: 'ignoreErrorRedirection'})
-                  .then(function (response) {
-                      ctrl.warningMessage = response.data;
-                      refresh();
-                  })
-                  .catch(function () {
-                      ctrl.errorMessage = 'UNDEFINED';
-                  });
+                _check()
             }
         };
 
@@ -161,6 +164,8 @@
                 };
             }
         };
+
+
         function refresh() {
             $timeout(function () {
                 componentHandler.upgradeAllRegistered();

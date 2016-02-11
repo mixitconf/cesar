@@ -2,7 +2,9 @@
 
     <h1><i class="material-icons cesar-icons-h1">settings</i> Accounts</h1>
 
-    <p style="padding-left: 1em"><small>{{results.length}} {{results.length>0 ? 'accounts' : 'account'}}</small></p>
+    <cesar-search-bar></cesar-search-bar>
+    <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'accounts' : 'account'}}</small></p>
+
     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
         <thead ng-show="false">
         <tr>
@@ -10,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="account in ctrl.accounts| filter:search | orderBy:'status' as results" >
+        <tr ng-repeat="account in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
                     {{::account.lastname}}  {{::account.firstname}}  <a class="cesar-mdl-button--interests">{{::account.provider}}</a>
@@ -24,12 +26,19 @@
                 </a>
             </td>
         </tr>
-        <tr ng-if="results.length===0">
+        <tr ng-if="ctrl.pagination.nbtotal===0">
             <td colspan="2">No data found</td>
         </tr>
         </tbody>
     </table>
-
+    <div class="cesar-pagination__container">
+        <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
+                class="mdl-button mdl-js-button mdl-button--primary"
+                ng-click="ctrl.pagination.current = $index + 1"
+                ng-disabled="ctrl.pagination.current === $index + 1">
+            {{ $index + 1 }}
+        </button>
+    </div>
 
     <p>&nbsp;</p>
 </div>

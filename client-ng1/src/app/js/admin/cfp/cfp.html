@@ -4,7 +4,8 @@
 
 
     <cesar-search-bar></cesar-search-bar>
-    <p style="padding-left: 1em"><small>{{results.length}} {{results.length>0 ? 'proposals' : 'proposal'}}</small></p>
+    <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'accounts' : 'account'}}</small></p>
+
     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
         <thead ng-show="false">
         <tr>
@@ -12,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="proposal in ctrl.proposals | filter:search | orderBy:'status' as results" >
+        <tr ng-repeat="proposal in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
                     {{::proposal.title}}  <a class="cesar-mdl-button--interests" ng-if="proposal.status">{{::proposal.status}}</a>
@@ -38,7 +39,14 @@
         </tr>
         </tbody>
     </table>
-
+    <div class="cesar-pagination__container">
+        <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
+                class="mdl-button mdl-js-button mdl-button--primary"
+                ng-click="ctrl.pagination.current = $index + 1"
+                ng-disabled="ctrl.pagination.current === $index + 1">
+            {{ $index + 1 }}
+        </button>
+    </div>
 
 
     <p>&nbsp;</p>
