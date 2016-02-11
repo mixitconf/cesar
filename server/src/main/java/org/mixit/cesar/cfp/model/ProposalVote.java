@@ -5,6 +5,8 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Staff;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +18,9 @@ public class ProposalVote {
     @JsonView(FlatView.class)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @JsonView(FlatView.class)
-    protected ProposalVoteValue voteValue;
+    @Min(-2)
+    @Max(2)
+    protected int voteValue;
 
     @ManyToOne(optional = false)
     protected Staff voter;
@@ -35,11 +37,11 @@ public class ProposalVote {
         return this;
     }
 
-    public ProposalVoteValue getVoteValue() {
+    public int getVoteValue() {
         return voteValue;
     }
 
-    public ProposalVote setVoteValue(ProposalVoteValue voteValue) {
+    public ProposalVote setVoteValue(int voteValue) {
         this.voteValue = voteValue;
         return this;
     }

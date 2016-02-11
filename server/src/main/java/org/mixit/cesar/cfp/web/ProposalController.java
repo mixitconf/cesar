@@ -3,12 +3,11 @@ package org.mixit.cesar.cfp.web;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalError;
-import org.mixit.cesar.cfp.model.ProposalVote;
-import org.mixit.cesar.cfp.model.ProposalVoteParam;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.repository.ProposalVoteRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
 import org.mixit.cesar.cfp.service.ProposalVoteService;
+import org.mixit.cesar.cfp.web.dto.ProposalVoteDTO;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.security.repository.AccountRepository;
@@ -135,7 +134,7 @@ public class ProposalController {
     @ResponseStatus(HttpStatus.OK)
     @Authenticated
     @NeedsRole(Role.ADMIN)
-    public void vote(@RequestBody ProposalVoteParam voteParam) {
+    public void vote(@RequestBody ProposalVoteDTO voteParam) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         Staff voter = (Staff) currentUser.getCredentials().get().getMember();
         Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
@@ -146,10 +145,13 @@ public class ProposalController {
     @ResponseStatus(HttpStatus.OK)
     @Authenticated
     @NeedsRole(Role.ADMIN)
-    public List<ProposalVote> getVotes(@RequestParam(required = false) Integer year) {
+    public List<ProposalVoteDTO> getVotes(@RequestParam(required = false) Integer year) {
         Event event = eventService.getEvent(year);
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         Staff voter = (Staff) currentUser.getCredentials().get().getMember();
-        return proposalVoteRepository.findStaffVotesForEvent(voter, event);
+        return proposalVoteRepository.findStaffVotesForEvent(voter, event)
+                .stream()
+                .map(ProposalVoteDTO::new)
+                .collect(Collectors.toList());
     }
 }

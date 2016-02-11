@@ -2,7 +2,6 @@ package org.mixit.cesar.cfp.service;
 
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalVote;
-import org.mixit.cesar.cfp.model.ProposalVoteValue;
 import org.mixit.cesar.cfp.repository.ProposalVoteRepository;
 import org.mixit.cesar.site.model.member.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class ProposalVoteService {
     @Autowired
     private ProposalVoteRepository proposalVoteRepository;
 
-    public void vote(Proposal proposal, Staff voter, ProposalVoteValue voteValue) {
+    public void vote(Proposal proposal, Staff voter, int voteValue) {
         Objects.requireNonNull(proposal, "proposal is required");
         Objects.requireNonNull(voter, "voter is required");
         Objects.requireNonNull(voteValue, "vote value is required");
