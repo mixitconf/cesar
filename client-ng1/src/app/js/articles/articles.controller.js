@@ -12,7 +12,7 @@
 
     ctrl.filter = function(){
       var articlesFiltered =  $filter('filter')(articles, $scope.search);
-      var articlesFiltered =  $filter('orderBy')(articlesFiltered, '-postedAt');
+      articlesFiltered =  $filter('orderBy')(articlesFiltered, '-postedAt');
       ctrl.pagination.nbtotal = articlesFiltered ? articlesFiltered.length : 0;
       ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
       return articlesFiltered;

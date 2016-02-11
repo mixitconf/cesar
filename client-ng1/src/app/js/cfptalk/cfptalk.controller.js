@@ -136,7 +136,7 @@
 
         ctrl.check = function (spinner) {
             if(spinner==='off'){
-                _check()
+                _check();
             }
         };
 

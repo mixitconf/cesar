@@ -14,7 +14,7 @@
 
     ctrl.filter = function(){
       var accountsFiltered =  $filter('filter')(accounts, $scope.search);
-      var accountsFiltered =  $filter('orderBy')(accountsFiltered, 'status');
+      accountsFiltered =  $filter('orderBy')(accountsFiltered, 'status');
       ctrl.pagination.nbtotal = accountsFiltered ? accountsFiltered.length : 0;
       ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
       return accountsFiltered;

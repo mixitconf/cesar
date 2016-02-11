@@ -27,7 +27,7 @@
 
     ctrl.filter = function(){
       var proposalsFiltered =  $filter('filter')(proposals, $scope.search);
-      var proposalsFiltered =  $filter('orderBy')(proposalsFiltered, 'status');
+      proposalsFiltered =  $filter('orderBy')(proposalsFiltered, 'status');
       ctrl.pagination.nbtotal = proposalsFiltered ? proposalsFiltered.length : 0;
       ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
       return proposalsFiltered;
