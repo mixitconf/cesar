@@ -343,7 +343,7 @@
         "createdat":"Créé le {{date}}",
         "description" : {
           "text" : "Description",
-          "help": "Dans cette partie vous pouvez décrire précisément ce que vous allez proposer. Essayer de décrire ce que vous allez aborder et srtout ce que vous allez apporter aux participants."
+          "help": "Dans cette partie vous pouvez décrire précisément ce que vous allez proposer. Essayer de décrire ce que vous allez aborder et surtout ce que vous allez apporter aux participants."
         },
         "format":{
           "text" : "Format",
