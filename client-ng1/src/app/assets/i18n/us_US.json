@@ -106,17 +106,21 @@
       },
       "q4": {
         "title": "Is it possible to participate to Mix-IT as a training?",
-        "content": "This year, our sponsor Viseo will manage this part. This partner will make you sign, everyday and on site, a sign-in sheet and will give you a certificate of training. During the buying of your tickets, a checkbox will allow you to indicate the will to declare it as a training. We invite you to see with our partner for any other related question about this subject."
+        "content": "This year, our sponsor VISEO Technologies will manage this part. This partner will make you sign, on site, a sign-in sheet and will give you a certificate of training. During the buying of your tickets, a checkbox will allow you to indicate the will to declare it as a training. We invite you to see with our partner through email (mix-it (at) viseo (dot) com) for any other related question about this subject."
       },
       "q5": {
-        "title": "Is it possible to use my 'Compte Personnel de Formation' (CPF) to subscribe to Mix-IT?",
-        "content": "Mix-IT is not referenced in the 'Compte Personnel de Formation' list. Nevertheless, our partner Viseo will give you on site a certificate of professional training for the event. We invite you to see with our partner for any other related question about this subject."
+        "title": "Is it possible to ask an OPCA to finance my registration for Mix-IT&nbsp;?",
+        "content": "Tickets are only sold online. It is not possible to register through an OPCA which would require us, and our partner, to send you a bill for payment after the event."
       },
       "q6": {
+        "title": "Is it possible to use my 'Compte Personnel de Formation' (CPF) to subscribe to Mix-IT?",
+        "content": "Mix-IT is not referenced in the 'Compte Personnel de Formation' list. Nevertheless, our partner VISEO Technologies will give you on site a certificate of professional training for the event. We invite you to see with our partner through email (mix-it (at) viseo (dot) com) for any other related question about this subject."
+      },
+      "q7": {
         "title": "How can I change my profile picture?",
         "content": "Avatars are managed by Gravatar. We show the avatar corresponding to the email you set in your profile. You'll have to connect to Gravatar in order to modify your image."
       },
-      "q7": {
+      "q8": {
         "title": "Social network",
         "content": "We usually communicate through our Twitter account <a href=\"https://twitter.com/mixit_lyon\" target=\"social\">@MixIT_Lyon<\/a>. If you want to talk about the next edition, please use the <a href=\"https://twitter.com/hashtag/mixit16\">#mixit16</a> hashtag"
       }

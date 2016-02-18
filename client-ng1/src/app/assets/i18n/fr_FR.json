@@ -106,17 +106,21 @@
       },
       "q4": {
         "title": "Est-il possible de participer à Mix-IT au titre de la formation&nbsp;?",
-        "content": "Cette année ce sera notre sponsor Viseo qui gèrera cet aspect. Ce partenaire vous fera signer chaque jour sur place une feuille de présence et vous remettra une attestation de formation. Lors de l'achat de vos places, une case à cocher vous permettra d'indiquer cette volonté. Nous vous invitons à vous rapprocher de notre partenaire pour toute question relative à ce sujet."
+        "content": "Cette année ce sera notre sponsor VISEO Technologies qui gèrera cet aspect. Ce partenaire vous fera signer sur place une feuille de présence et vous remettra une attestation de formation. Lors de l'achat de vos places, une case à cocher vous permettra d'indiquer cette volonté. Nous vous invitons à vous rapprocher de notre partenaire par mail (mix-it (at) viseo (dot) com) pour toute question relative à ce sujet."
       },
       "q5": {
-        "title": "Est-il possible d'utiliser mon CPF pour m'inscrire à Mix-IT&nbsp;?",
-        "content": "Mix-IT n'est pas recensée dans le référentiel des formations éligibles à l'utilisation de votre Compte Personnel de Formation (CPF). Néanmoins, notre partenaire Viseo vous délivrera sur place une attestation de formation rendant possible l'inscription au titre de la formation professionnelle. Nous vous invitons à vous rapprocher de notre partenaire pour toute question relative à ce sujet."
+        "title": "Est-il possible de solliciter un OPCA pour prendre en charge mon inscription à Mix-IT&nbsp;?",
+        "content": "L'achat des places n'est possible que par la billetterie en ligne. Il n'est donc pas possible de passer par un financement par OPCA qui nous imposerait, à notre partenaire et nous, de vous soumettre une facture pour règlement après l'évènement."
       },
       "q6": {
+        "title": "Est-il possible d'utiliser mon CPF pour m'inscrire à Mix-IT&nbsp;?",
+        "content": "Mix-IT n'est pas recensée dans le référentiel des formations éligibles à l'utilisation de votre Compte Personnel de Formation (CPF). Néanmoins, notre partenaire Viseo vous délivrera sur place une attestation de formation rendant possible l'inscription au titre de la formation professionnelle. Nous vous invitons à vous rapprocher de notre partenaire par mail (mix-it (at) viseo (dot) com) pour toute question relative à ce sujet."
+      },
+      "q7": {
         "title": "Comment changer l'image de son profil&nbsp;?",
         "content": "Les avatars sont gérés par Gravatar. Nous affichons l'avatar correspondant à l'email que vous nous indiquez sur votre profil. Connectez-vous sur le site Gravatar pour créer ou modifier votre image."
       },
-      "q7": {
+      "q8": {
         "title": "Réseaux sociaux",
         "content": "Nous communiquons principalement via notre compte Twitter <a href=\"https://twitter.com/mixit_lyon\" target=\"social\">@MixIT_Lyon</a>. Si vous voulez parler de la prochaine édition, utilisez le hashtag <a href=\"https://twitter.com/hashtag/mixit16\">#mixit16</a>"
       }
