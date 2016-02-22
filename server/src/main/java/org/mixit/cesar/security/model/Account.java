@@ -77,12 +77,12 @@ public class Account implements Cloneable {
     @JsonView({FlatView.class, UserView.class})
     private SessionLanguage defaultLanguage = SessionLanguage.fr;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JsonView(UserView.class)
     public Member member;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Authority> authorities = new HashSet<>();
 
     @JsonView({FlatView.class, UserView.class})

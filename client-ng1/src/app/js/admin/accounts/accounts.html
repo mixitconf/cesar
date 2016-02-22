@@ -2,6 +2,16 @@
 
     <h1><i class="material-icons cesar-icons-h1">settings</i> Accounts</h1>
 
+    <p>
+        Quand les personnes passent par Twitter ou Google + et ne donnent pas leur mail, nom prénom dans la foulée nous
+        pouvons avoir des comptes liés à aucun membre. Pas de bug mais des données inutiles dans la base. Ce bouton permet
+        de purger tout ça.
+    </p>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="ctrl.accountPurge()">
+        Supprimer les comptes invalides
+    </button>
+    <div class="cesar-info" ng-if="ctrl.purgeOk">{{ctrl.purgeOk}}</div>
+
     <cesar-search-bar></cesar-search-bar>
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'accounts' : 'account'}}</small></p>
 

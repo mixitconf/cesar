@@ -32,6 +32,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -193,5 +194,15 @@ public class AccountController {
         }
         cookieService.setCookieInResponse(response, account);
         return ResponseEntity.status(HttpStatus.OK).body(account.prepareForView(true));
+    }
+
+    @RequestMapping(value = "/purge")
+    @NeedsRole(Role.ADMIN)
+    @ResponseStatus(HttpStatus.OK)
+    @Transactional
+    public ResponseEntity purge() {
+        accountRepository.purgeAccountWithoutMember();
+        cacheManager.getCache(CACHE_MEMBER).clear();
+        return ResponseEntity.ok().build();
     }
 }

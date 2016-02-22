@@ -8,9 +8,11 @@ import java.util.List;
 import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.model.OAuthProvider;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * {@link Account}
@@ -41,4 +43,9 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 
     @Query(value = "SELECT u FROM Account u inner join u.member m where m.logoUrl IS NULL")
     List<Account> findPotentialSpeakers();
+
+    @Modifying
+    @Query(value = "DELETE FROM Account u where u.member is null")
+    void purgeAccountWithoutMember();
+
 }

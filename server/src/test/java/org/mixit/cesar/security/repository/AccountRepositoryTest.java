@@ -20,6 +20,7 @@ import org.mixit.cesar.site.repository.DataTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DataSourceTestConfig.class)
@@ -43,6 +44,7 @@ public class AccountRepositoryTest {
                                         .withGeneratedValue("id", ValueGenerators.sequence())
                                         .columns("oauthId", "login", "lastname", "firstname", "password", "token", "provider", "email", "MEMBER_ID", "valid")
                                         .values("oauthId", "devmind", "EHRET", "Guillaume", "toto", "token", "CESAR", "test@gmail.com", 1, true)
+                                        .values("oauthId", null, null, null, null, null, "TWITTER", null, null, true)
                                         .build(),
                                 insertInto("Authority")
                                         .withGeneratedValue("id", ValueGenerators.sequence())
@@ -73,4 +75,5 @@ public class AccountRepositoryTest {
     public void findAccountByOauth(){
         assertThat(accountRepository.findByOauthProviderAndId(OAuthProvider.CESAR, "oauthId").getEmail()).isEqualTo("test@gmail.com");
     }
+
 }
