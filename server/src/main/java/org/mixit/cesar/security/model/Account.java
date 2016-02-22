@@ -1,6 +1,6 @@
 package org.mixit.cesar.security.model;
 
-import static org.mixit.cesar.site.utils.CamelCase.camelCase;
+import static org.apache.commons.lang.StringUtils.*;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -28,7 +28,6 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.SessionLanguage;
-import org.mixit.cesar.site.utils.CamelCase;
 import org.mixit.cesar.site.utils.HashUtil;
 
 @Entity
@@ -137,7 +136,7 @@ public class Account implements Cloneable {
     }
 
     public Account setLastname(String lastname) {
-        this.lastname = lastname !=null ? lastname.toUpperCase() : lastname;
+        this.lastname = upperCase(lastname);
         return this;
     }
 
@@ -146,7 +145,7 @@ public class Account implements Cloneable {
     }
 
     public Account setFirstname(String firstname) {
-        this.firstname = camelCase(firstname);
+        this.firstname = capitalize(lowerCase(firstname));
         return this;
     }
 
@@ -182,7 +181,7 @@ public class Account implements Cloneable {
     }
 
     public Account setEmail(String email) {
-        this.email = email !=null ? email.toLowerCase() : email;
+        this.email = lowerCase(email);
         return this;
     }
 
@@ -282,7 +281,7 @@ public class Account implements Cloneable {
                     .setHash(HashUtil.md5Hex(Optional.ofNullable(email).orElse("cesar")))
                     .setRoles(this.getAuthorities().stream().map(Authority::getName).map(Role::toString).collect(Collectors.toList()));
 
-            if(addMember){
+            if (addMember) {
                 account.setMember(member);
             }
 
