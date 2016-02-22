@@ -1,5 +1,7 @@
 package org.mixit.cesar.site.model.member;
 
+import static org.mixit.cesar.site.utils.CamelCase.camelCase;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -29,6 +31,7 @@ import org.mixit.cesar.security.model.Role;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.session.Session;
+import org.mixit.cesar.site.utils.CamelCase;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -158,7 +161,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     }
 
     public T setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstname = camelCase(firstname);
         return (T) this;
     }
 
@@ -243,7 +246,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     }
 
     public T setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastname = lastname !=null ? lastname.toUpperCase() : lastname;
         return (T) this;
     }
 
