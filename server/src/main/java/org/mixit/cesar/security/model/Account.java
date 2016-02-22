@@ -1,5 +1,7 @@
 package org.mixit.cesar.security.model;
 
+import static org.apache.commons.lang.StringUtils.*;
+
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -134,7 +136,7 @@ public class Account implements Cloneable {
     }
 
     public Account setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastname = upperCase(lastname);
         return this;
     }
 
@@ -143,7 +145,7 @@ public class Account implements Cloneable {
     }
 
     public Account setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstname = capitalize(lowerCase(firstname));
         return this;
     }
 
@@ -179,7 +181,7 @@ public class Account implements Cloneable {
     }
 
     public Account setEmail(String email) {
-        this.email = email;
+        this.email = lowerCase(email);
         return this;
     }
 
@@ -279,7 +281,7 @@ public class Account implements Cloneable {
                     .setHash(HashUtil.md5Hex(Optional.ofNullable(email).orElse("cesar")))
                     .setRoles(this.getAuthorities().stream().map(Authority::getName).map(Role::toString).collect(Collectors.toList()));
 
-            if(addMember){
+            if (addMember) {
                 account.setMember(member);
             }
 

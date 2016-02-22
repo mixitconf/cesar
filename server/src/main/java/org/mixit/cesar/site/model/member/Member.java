@@ -1,5 +1,7 @@
 package org.mixit.cesar.site.model.member;
 
+import static org.apache.commons.lang.StringUtils.*;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -149,7 +151,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     }
 
     public T setEmail(String email) {
-        this.email = email;
+        this.email = lowerCase(email);
         return (T) this;
     }
 
@@ -158,7 +160,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     }
 
     public T setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstname = capitalize(lowerCase(firstname));
         return (T) this;
     }
 
@@ -243,7 +245,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     }
 
     public T setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastname = upperCase(lastname);
         return (T) this;
     }
 
