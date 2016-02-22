@@ -15,9 +15,9 @@
         <tr ng-repeat="account in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
-                    {{::account.lastname}}  {{::account.firstname}}  <a class="cesar-mdl-button--interests">{{::account.provider}}</a>
+                    {{account.lastname}}  {{account.firstname}}  <a class="cesar-mdl-button--interests">{{account.provider}}</a>
                 </p>
-                <p>{{::account.member.shortDescription}}</p>
+                <p>{{account.member.shortDescription}}</p>
             </td>
             <td style="padding: 4px">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
