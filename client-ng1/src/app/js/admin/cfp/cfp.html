@@ -1,9 +1,24 @@
+<style>
+    .button-selected {
+        background-color: rgba(158,158,158,.2);
+    }
+</style>
+
 <div class="cesar-container">
 
     <h1 translate="view.cfp.home.title"><i class="material-icons cesar-icons-h1">settings</i> Call for paper 2016</h1>
 
 
     <cesar-search-bar></cesar-search-bar>
+    <p>
+        <button class="mdl-button mdl-js-button"
+                ng-repeat="proposalStatus in ctrl.proposalStatuses()"
+                ng-click="ctrl.toggleStatusFilter(proposalStatus)"
+                ng-class="{'button-selected':ctrl.selectedStatuses.indexOf(proposalStatus)!==-1}">
+            {{proposalStatus}}
+        </button>
+    </p>
+
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'proposals' : 'proposal'}}</small></p>
 
     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
@@ -28,7 +43,7 @@
                 </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" style="float: left;" translate="view.cfp.home.incomplete"></p>
 
-                <p style="text-align: right;">
+                <p style="text-align: right;" ng-if="proposal.status==='SUBMITTED'">
                     <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                        ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-2}"
                        ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
