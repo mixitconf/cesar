@@ -1,4 +1,4 @@
-package org.mixit.cesar.site.web.api.dto;
+package org.mixit.cesar.site.web.dto;
 
 import java.util.ArrayList;
 import java.util.List;

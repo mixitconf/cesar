@@ -1,8 +1,5 @@
 package org.mixit.cesar.site.web.api;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +12,8 @@ import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SlotRepository;
 import org.mixit.cesar.site.service.EventService;
-import org.mixit.cesar.site.web.api.dto.RoomResource;
+import org.mixit.cesar.site.web.dto.RoomResource;
+import org.mixit.cesar.site.web.dto.SlotDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,12 +53,13 @@ public class PlanningController {
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public Map<Room, List<Slot>> slots(@RequestParam(required = false) Integer year) {
+    public Map<Room, List<SlotDto>> slots(@RequestParam(required = false) Integer year) {
         return slotRepository
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
-                .collect(Collectors.groupingBy(Slot::getRoom));
+                .map(a -> SlotDto.convert(a))
+                .collect(Collectors.groupingBy(SlotDto::getRoom));
     }
 
 

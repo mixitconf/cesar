@@ -3,6 +3,8 @@ package org.mixit.cesar.site.web.app;
 import static org.mixit.cesar.security.model.Role.ADMIN;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_PLANNING;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.security.service.autorisation.NeedsRole;
@@ -10,6 +12,7 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SlotRepository;
+import org.mixit.cesar.site.web.dto.SlotDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.ResponseEntity;
@@ -38,26 +41,30 @@ public class PlanningWriterController {
     @JsonView(FlatView.class)
     @Authenticated
     @NeedsRole(ADMIN)
-    public Slot save(@RequestBody Slot slot) {
-        Slot slotSaved;
+    public Slot save(@RequestBody SlotDto slotDto) {
+        Slot slot;
 
-        if (slot.getId() != null) {
-            slotSaved = slotRepository.findOne(slot.getId());
-            slotSaved
-                    .setLabel(slot.getLabel())
-                    .setRoom(slot.getRoom())
-                    .setEnd(slot.getEnd())
-                    .setStart(slot.getStart());
-
-            if (slot.getSession() != null && slot.getSession().getId() != null) {
-                slotSaved.setSession(sessionRepository.findOne(slot.getSession().getId()));
-            }
+        if (slotDto.getId() != null) {
+            slot = slotRepository.findOne(slotDto.getId());
+            slot
+                    .setLabel(slotDto.getLabel())
+                    .setRoom(slotDto.getRoom())
+                    .setEnd(slotDto.getEndDate())
+                    .setStart(slotDto.getStartDate());
         }
-        slotSaved = slotRepository.save(slot);
+        else{
+            slot = slotDto.convert();
+        }
 
+        if (slotDto.getIdSession() != null) {
+            slot.setSession(sessionRepository.findOne(slotDto.getIdSession()));
+            slot.setEnd(LocalDateTime.from(slot.getStart()).plusMinutes(slot.getSession().getFormat().getDuration()));
+        }
+
+        slotRepository.save(slot);
         cacheManager.getCache(CACHE_PLANNING).clear();
 
-        return slotSaved;
+        return slot;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

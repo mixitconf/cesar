@@ -97,18 +97,16 @@
     };
 
     ctrl.saveSlot = function(){
+      delete ctrl.errorMessage;
+
       var slotToSave = {
         id : ctrl.slot.id,
-        start : ctrl.slot.start,
-        end : ctrl.slot.end,
+        start : PlanningService.convertDate(ctrl.slot.start),
+        end : PlanningService.convertDate(ctrl.slot.end),
         room : ctrl.slot.room.key,
-        label : ctrl.slot.room.label
+        label : ctrl.slot.room.label,
+        idSession : ctrl.slot.session ? ctrl.slot.session.idSession : undefined
       };
-      if(ctrl.slot.session){
-        slotToSave.session = {
-          id : ctrl.slot.session.idSession
-        };
-      }
 
       var used = PlanningService.verifySlot(slotToSave, ctrl.day1Slots[ctrl.slot.room.key]);
       if(!used){
@@ -119,7 +117,6 @@
         ctrl.errorMessage = used;
       }
       else{
-
         $http.post('/app/planning', slotToSave, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
             _refresh();
