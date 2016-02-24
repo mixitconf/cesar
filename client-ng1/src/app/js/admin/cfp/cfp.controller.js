@@ -10,6 +10,7 @@
 
     var ctrl = this;
     var proposals;
+    ctrl.selectedStatuses = ['SUBMITTED'];
 
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
@@ -45,6 +46,13 @@
     ctrl.filter = function(){
       var proposalsFiltered =  $filter('filter')(proposals, $scope.search);
       proposalsFiltered =  $filter('orderBy')(proposalsFiltered, 'status');
+
+      if ( proposalsFiltered ) {
+        proposalsFiltered = proposalsFiltered.filter(function (elem) {
+          return ctrl.selectedStatuses.indexOf(elem.status) !== -1;
+        });
+      }
+
       ctrl.pagination.nbtotal = proposalsFiltered ? proposalsFiltered.length : 0;
       ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
       return proposalsFiltered;
@@ -59,6 +67,20 @@
       var min = ctrl.pagination.current * ctrl.pagination.nbitems - ctrl.pagination.nbitems;
       var max = ctrl.pagination.current * ctrl.pagination.nbitems - 1;
       return index>=min && index<=max;
+    };
+
+    ctrl.proposalStatuses = function() {
+      return ['ACCEPTED', 'REJECTED', 'VALID', 'CREATED', 'SUBMITTED'];
+    };
+
+    ctrl.toggleStatusFilter = function(proposalStatus) {
+      var index = ctrl.selectedStatuses.indexOf(proposalStatus);
+      if ( index !== -1) {
+        ctrl.selectedStatuses.splice(index, 1);
+      } else {
+        ctrl.selectedStatuses.push(proposalStatus);
+      }
+
     };
 
     ctrl.refresh();
