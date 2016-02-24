@@ -3,7 +3,7 @@
   'use strict';
   /*global componentHandler */
 
-  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $translate, $filter, $timeout, $scope, $rootScope, LANGUAGES, USER_ROLES, AuthenticationService) {
+  angular.module('cesar-menu').controller('cesarMenuCtrl', function ($state, $filter, $timeout, $scope, $rootScope, AuthenticationService, LanguageService, USER_ROLES) {
     'ngInject';
 
     var ctrl = this;
@@ -12,14 +12,12 @@
       $state.go(page);
     };
 
-    ctrl.languages = LANGUAGES;
+    ctrl.languages = LanguageService.getLanguages();
     $timeout(function(){
-      ctrl.currentLanguage = $translate.use() ? $translate.use() : LANGUAGES.fr;
+      ctrl.currentLanguage = LanguageService.setDefaultLanguage();
     });
     ctrl.toggleLanguage = function () {
-      ctrl.currentLanguage = ($translate.use() === LANGUAGES.en) ? LANGUAGES.fr : LANGUAGES.en;
-      $translate.use(ctrl.currentLanguage);
-      $rootScope.$broadcast('event:language-changed', ctrl.currentLanguage);
+      ctrl.currentLanguage = LanguageService.toggleLanguage();
     };
 
     ctrl.menus = [
