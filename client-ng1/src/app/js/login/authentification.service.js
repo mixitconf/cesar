@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window, $translate, USER_ROLES, LANGUAGES, LocalStorageService) {
+  angular.module('cesar-security').factory('AuthenticationService', function ($rootScope, $http, $window, USER_ROLES, LocalStorageService, LanguageService) {
     'ngInject';
 
     function currentUser(){
@@ -20,10 +20,8 @@
     }
 
     function loginConfirmed(response){
-      if(response.data && response.data.defaultLanguage){
-        $translate.use((response.data.defaultLanguage === 'en') ? LANGUAGES.en : LANGUAGES.fr);
-      }
       LocalStorageService.put('current-user', response.data);
+      LanguageService.setDefaultLanguage();
       $rootScope.$broadcast('event:auth-loginConfirmed');
     }
 

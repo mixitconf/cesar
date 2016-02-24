@@ -63,6 +63,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                     response.sendError(HttpStatus.UNAUTHORIZED.value(), "User unknown");
                 }
             }
+            else if(request.getRequestURI().startsWith("/app/account/check")) {
+                //For a check exception is not thrown
+                filterChain.doFilter(request, response);
+            }
             else {
                 response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
             }
