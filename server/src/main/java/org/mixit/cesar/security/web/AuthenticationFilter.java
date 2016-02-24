@@ -44,34 +44,24 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //If request is secured we test id user is authenticated
-        if (matches(request.getServletPath())) {
-            String token = request.getHeader(TOKEN_REQUEST_HEADER_PARAM);
+        Account account = null;
 
-            if (token != null) {
-                Account account = accountRepository.findByToken(token);
-                if (account != null) {
-                    CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-                    currentUser.setCredentials(account.prepareForView(false));
-                    filterChain.doFilter(request, response);
-                }
-                else if(request.getRequestURI().startsWith("/app/account/check")) {
-                    //For a check exception is not thrown
-                    filterChain.doFilter(request, response);
-                }
-                else{
-                    response.sendError(HttpStatus.UNAUTHORIZED.value(), "User unknown");
-                }
-            }
-            else if(request.getRequestURI().startsWith("/app/account/check")) {
-                //For a check exception is not thrown
-                filterChain.doFilter(request, response);
-            }
-            else {
-                response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
+        //We always see if a token is sent
+        String token = request.getHeader(TOKEN_REQUEST_HEADER_PARAM);
+        if (token != null) {
+            account = accountRepository.findByToken(token);
+
+            if (account != null) {
+                CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+                currentUser.setCredentials(account.prepareForView(false));
             }
         }
-        else {
+
+        //If request is secured user has to be authenticated
+        if (matches(request.getServletPath()) && account==null){
+            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid credentials");
+        }
+        else{
             filterChain.doFilter(request, response);
         }
     }

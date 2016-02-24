@@ -20,6 +20,7 @@ public class CesarSecurityConfig {
                         "/app/login-with/*",
                         "/app/oauth/*",
                         "/app/account/cesar",
+                        "/app/account/check",
                         "/app/account/cesar/*",
                         "/app/account/valid",
                         "/app/account/password");
