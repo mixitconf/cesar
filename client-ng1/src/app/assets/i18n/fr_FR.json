@@ -194,7 +194,18 @@
       "p1": "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus."
     },
     "planning": {
-   "title": "Planning"
+      "title": "Planning",
+      "moment" : {
+        "close" : "Clôture des organisateurs",
+        "ligthning" : "Ligthning Talks",
+        "lunch" : "Lunch",
+        "mixteen" : "Mix-Teen",
+        "party" : "Mix-IT Party",
+        "pause" : "Pause",
+        "staff" : "Le mot de l'orga et présentation des sessions" ,
+        "session-pres" : "Présentation des sessions",
+        "welcome" : "Accueil et petit déjeuner"
+      }
     },
     "talks": {
       "title": "Conférences et ateliers",
@@ -435,7 +446,8 @@
     "FORM" : "Les données du formulaire sont invalides",
     "MAXSIZE" : "Ce champ doit faire moins de {{nbcarac}} car.",
     "REQUIRED" : "Ce champ est obligatoire",
-    "CONFIRMDELETE" : "Suppression annulée car le prénom ne correspond pas"
+    "CONFIRMDELETE" : "Suppression annulée car le prénom ne correspond pas",
+    "SLOT_OVERLAP" : "L'heure de début est invalide car il existe déjà un slot sur la plage horaire"
   },
   "info": {
     "markdown" : "markdown autorisé",

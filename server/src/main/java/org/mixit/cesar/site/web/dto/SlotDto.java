@@ -15,7 +15,7 @@ import org.mixit.cesar.site.model.session.Talk;
  * @author Dev-Mind <guillaume@dev-mind.fr>
  * @since 23/02/16.
  */
-public class SlotDto implements Serializable{
+public class SlotDto {
 
     private Long id;
     private Room room;

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.session.Session;
 
 /**
@@ -40,6 +41,9 @@ public class Slot {
     @ManyToOne(optional = true)
     @JsonView(FlatView.class)
     private Session session;
+
+    @ManyToOne(optional = false)
+    private Event event;
 
     /**
      * Start time of this slot
@@ -114,5 +118,13 @@ public class Slot {
     public Slot setEnd(LocalDateTime end) {
         this.end = end;
         return this;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }

@@ -1,5 +1,6 @@
 package org.mixit.cesar.site.web.api;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/planning")
-@Transactional
 public class PlanningController {
 
     @Autowired
@@ -53,14 +53,11 @@ public class PlanningController {
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public Map<Room, List<SlotDto>> slots(@RequestParam(required = false) Integer year) {
+    public Map<Room, List<Slot>> slots(@RequestParam(required = false) Integer year) {
         return slotRepository
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
-                .map(a -> SlotDto.convert(a))
-                .collect(Collectors.groupingBy(SlotDto::getRoom));
+                .collect(Collectors.groupingBy(Slot::getRoom));
     }
-
-
 }

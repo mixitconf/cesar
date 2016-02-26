@@ -3,7 +3,7 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').factory('PlanningService', function ($http, $q) {
+  angular.module('cesar-planning').factory('PlanningService', function ($http, $q, $translate) {
     'ngInject';
 
     var DATE_FORMAT = 'YYYY-MM-DD HH:mm';
@@ -21,6 +21,19 @@
       return $http.get('/api/planning' + (!!year ? '?year=' + year : ''));
     }
 
+    function getEventOutOfSession(){
+      return [
+        'view.planning.moment.close',
+        'view.planning.moment.ligthning',
+        'view.planning.moment.lunch',
+        'view.planning.moment.mixteen',
+        'view.planning.moment.party',
+        'view.planning.moment.pause',
+        'view.planning.moment.staff',
+        'view.planning.moment.session-pres',
+        'view.planning.moment.welcome'
+      ];
+    }
     function _setTime(moment, time) {
       var myTime = moment.clone();
       myTime.set('hour', time.hour);
@@ -193,10 +206,11 @@
       return moment(slot.start).format('YYYYMMDD') === moment(date).format('YYYYMMDD');
     }
 
-    function _dateInSlotPeriod(date, slot){
+    function _dateInSlotPeriod(date, slot, end){
       if(!date){
         return false;
       }
+
       return moment(slot.start).isBefore(moment(date)) &&
         moment(slot.end).isAfter(moment(date));
     }
@@ -207,7 +221,7 @@
         return 'SESSION_REQUIRED';
       }
       var concurrent = slotsInRoom.filter(function(s){
-        return _dateInSlotPeriod(s.start, slot) || _dateInSlotPeriod(s.end, slot);
+        return _dateInSlotPeriod(s.start, slot, false) || _dateInSlotPeriod(s.end, slot, true);
       }).length>0;
       if(concurrent){
         return 'SLOT_CONCURRENT';
@@ -217,6 +231,7 @@
 
     return {
       filterPlanningByDate: filterPlanningByDate,
+      getEventOutOfSession: getEventOutOfSession,
       getRoom: getRoom,
       getSlots: getSlots,
       getTimeSlots: getTimeSlots,

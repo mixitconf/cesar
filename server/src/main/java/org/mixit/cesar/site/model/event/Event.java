@@ -1,10 +1,15 @@
 package org.mixit.cesar.site.model.event;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.UserView;
 
 @Entity
 public class Event implements Comparable<Event>{
@@ -15,6 +20,14 @@ public class Event implements Comparable<Event>{
     private int year;
 
     private boolean current;
+
+    @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentInstantAsMillisLong")
+    @JsonView(UserView.class)
+    private Instant day1;
+
+    @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentInstantAsMillisLong")
+    @JsonView(UserView.class)
+    private Instant day2;
 
     public Long getId() {
         return id;
@@ -59,5 +72,23 @@ public class Event implements Comparable<Event>{
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Instant getDay1() {
+        return day1;
+    }
+
+    public Event setDay1(Instant day1) {
+        this.day1 = day1;
+        return this;
+    }
+
+    public Instant getDay2() {
+        return day2;
+    }
+
+    public Event setDay2(Instant day2) {
+        this.day2 = day2;
+        return this;
     }
 }
