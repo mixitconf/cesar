@@ -2,6 +2,7 @@
 
   'use strict';
   /*global moment */
+  /*global confirm */
 
   angular.module('cesar-planning').controller('AdminPlanningCtrl', function ($rootScope, $q, $http, account, SessionService, PlanningService, cesarSpinnerService) {
     'ngInject';
@@ -63,7 +64,7 @@
     };
 
     ctrl.deleteSlot = function(idSlot){
-      if(idSlot && confirm("Sûr de vouloir supprimer ce slot ?")){
+      if(idSlot && confirm('Sûr de vouloir supprimer ce slot ?')){
         $http.delete('/app/planning/' + idSlot, {ignoreErrorRedirection: 'ignoreErrorRedirection'})
           .then(function () {
             _refresh();
@@ -106,7 +107,7 @@
     };
 
     ctrl.changeDate = function(){
-      ctrl.timeslotsAvailable = PlanningService.getTimeSlots(ctrl.slot.day)
+      ctrl.timeslotsAvailable = PlanningService.getTimeSlots(ctrl.slot.day);
     };
 
     ctrl.reinit = function(){

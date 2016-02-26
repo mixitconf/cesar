@@ -3,7 +3,7 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').factory('PlanningService', function ($http, $q, $translate) {
+  angular.module('cesar-planning').factory('PlanningService', function ($http, $q) {
     'ngInject';
 
     var DATE_FORMAT = 'YYYY-MM-DD HH:mm';
@@ -206,7 +206,7 @@
       return moment(slot.start).format('YYYYMMDD') === moment(date).format('YYYYMMDD');
     }
 
-    function _dateInSlotPeriod(date, slot, end){
+    function _dateInSlotPeriod(date, slot){
       if(!date){
         return false;
       }
