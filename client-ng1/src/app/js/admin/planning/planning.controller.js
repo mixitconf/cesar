@@ -9,8 +9,7 @@
 
     var ctrl = this;
     var slots;
-    //We will work with 2016 after the CFP
-    var year=2015;
+    var year=$rootScope.cesar.current;
 
     ctrl.dates = [$rootScope.cesar.day1, $rootScope.cesar.day2];
     ctrl.display = {

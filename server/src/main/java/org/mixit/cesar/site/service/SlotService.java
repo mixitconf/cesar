@@ -31,9 +31,7 @@ public class SlotService {
      */
     public Slot save(SlotDto slotDto) {
         Slot slot;
-        //Event event = eventService.getEvent(slotDto.getStartDate().getYear());
-        //TODO change after tests
-        Event event = eventService.getEvent(2015);
+        Event event = eventService.getEvent(slotDto.getStartDate().getYear());
 
         if (slotDto.getId() != null) {
             slot = slotRepository.findOne(slotDto.getId());
