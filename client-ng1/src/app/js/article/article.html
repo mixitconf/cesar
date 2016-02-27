@@ -1,7 +1,7 @@
 <div class="cesar-container">
-
-    <div class="hide-on-mobile">
-        <div style="float: right" class="hide-on-mobile">
+    <p>&nbsp;</p>
+    <div>
+        <div style="float: right">
             <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()" rel="prev"
                     title="Article précédent"
                     ng-click="ctrl.previousArticle()">
@@ -15,75 +15,9 @@
                 <i class="material-icons">skip_next</i>
             </button>
         </div>
-        <h1 class="hide-on-mobile">{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</h1>
-    </div>
-
-
-    <div class="visible-on-mobile">
-        <div class="center">
-            <button class="mdl-button mdl-js-button mdl-button--raised" style="min-width: 0;" ng-disabled="ctrl.disablePreviousButton()"
-                    title="Article précédent"
-                    ng-click="ctrl.previousArticle()">
-                <i class="material-icons">skip_previous</i>
-            </button>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles"
-               translate="view.news.list"></a>
-            <button class="mdl-button mdl-js-button mdl-button--raised" style="min-width: 0;" ng-disabled="ctrl.disableNextButton()"
-                    title="Article suivant"
-                    ng-click="ctrl.nextArticle()">
-                <i class="material-icons">skip_next</i>
-            </button>
-        </div>
-        <h1>{{lang==='fr' ? ctrl.article.titre :
-            ctrl.article.title}}</h1>
-    </div>
-
-    <a class="cesar-mdl-button--interests">{{ctrl.article.postedAt |
-        date:'dd/MM/yyyy'}}</a>
-    <p>&nbsp;</p>
-
-    <div class="cesar-section--bottom">
-
-        <p class="cesar-text" ng-if="lang==='fr'" ng-bind-html="ctrl.article.resume  | markdown"></p>
-        <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="ctrl.article.headline  | markdown"></p>
-
-
-        <div ng-if="lang==='fr'" ng-bind-html="ctrl.article.contenu  | markdown"></div>
-        <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
-
-
-        <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team" rel="author"></a>
-        </div>
-
         <p>&nbsp;</p>
-        <div class="mdl-grid" ng-if="false">
-            <div class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
-                    <h4 class="mdl-card__title-text cesar-card__title-text">Commentaires</h4>
-                </div>
-                <div class="mdl-card__supporting-text cesar-card__supporting-text">
-                    <div ng-repeat="comment in ctrl.article.comments">
-                        <p>
-                            <strong>{{comment.member.firstname}} {{comment.member.lastname}}: le {{comment.postedAt |
-                                date:'dd/MM/yyyy HH:mm'}}</strong><br>
-                            {{comment.content}}
-                        </p>
-                    </div>
-
-                </div>
-                <div class="mdl-card__actions mdl-card--border cesar-speaker-session" ng-if="display!=='minimal'">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" text="Add comment"
-                            ng-click="ctrl.addComment()">
-                        <i class="material-icons">add</i></button>
-                </div>
-            </div>
-        </div>
-        <div class="center">
-            <a class="mdl-button mdl-js-button mdl-button--raised cesar-button-twitter cesar-button-small" target="social" text="Twitter"
-               href="https://twitter.com/intent/tweet?text={{ctrl.article.titre}}&hashtags=mixit16&url={{ctrl.url}}" type="button">
-                <img src="img/social/twitter.svg"> Twitter
-            </a>
-        </div>
     </div>
+
+    <cesar-article id="ctrl.id"></cesar-article>
     <p>&nbsp;</p>
 </div>
