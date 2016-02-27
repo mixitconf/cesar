@@ -11,7 +11,6 @@
     var ctrl = this;
     var id = $stateParams.id;
 
-    console.log(articles)
     if(!$stateParams.id){
       $state.go('news', {'id': articles[0].id});
       return;
