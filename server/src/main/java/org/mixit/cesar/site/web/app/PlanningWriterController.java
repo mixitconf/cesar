@@ -8,12 +8,11 @@ import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.planning.Slot;
-import org.mixit.cesar.site.repository.SessionRepository;
-import org.mixit.cesar.site.repository.SlotRepository;
+import org.mixit.cesar.site.service.SlotService;
+import org.mixit.cesar.site.web.dto.SlotDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,48 +21,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/app/planning")
-@Transactional
 public class PlanningWriterController {
 
     @Autowired
-    private SlotRepository slotRepository;
+    private SlotService slotService;
 
     @Autowired
-    private SessionRepository sessionRepository;
-
-    @Autowired
-    CacheManager cacheManager;
+    private CacheManager cacheManager;
 
     @RequestMapping(method = RequestMethod.POST)
     @JsonView(FlatView.class)
     @Authenticated
     @NeedsRole(ADMIN)
-    public Slot save(@RequestBody Slot slot) {
-        Slot slotSaved;
-
-        if (slot.getId() != null) {
-            slotSaved = slotRepository.findOne(slot.getId());
-            slotSaved
-                    .setLabel(slot.getLabel())
-                    .setRoom(slot.getRoom())
-                    .setEnd(slot.getEnd())
-                    .setStart(slot.getStart());
-
-            if (slot.getSession() != null && slot.getSession().getId() != null) {
-                slotSaved.setSession(sessionRepository.findOne(slot.getSession().getId()));
-            }
-        }
-        slotSaved = slotRepository.save(slot);
-
+    public Slot save(@RequestBody SlotDto slotDto) {
+        Slot slot = slotService.save(slotDto);
         cacheManager.getCache(CACHE_PLANNING).clear();
-
-        return slotSaved;
+        return slot;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @NeedsRole(ADMIN)
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
-        slotRepository.delete(id);
+        slotService.delete(id);
         cacheManager.getCache(CACHE_PLANNING).clear();
         return ResponseEntity.ok().build();
     }

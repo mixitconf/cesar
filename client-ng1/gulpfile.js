@@ -23,7 +23,7 @@ var paths = {
       'node_modules/angular-translate/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
       'node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       'node_modules/angular-ui-router/release/angular-ui-router.min.js',
-      'node_modules/material-design-lite/material.js',
+      'node_modules/material-design-lite/material.min.js',
       'node_modules/markdown/lib/markdown.js',
       'node_modules/moment/min/moment.min.js'
     ],
@@ -42,7 +42,7 @@ var paths = {
     'src/app/js/**/*.html'
   ],
   css: [
-    'node_modules/material-design-lite/dist/material.indigo-pink.min.css'
+    'node_modules/material-design-lite/dist/material.min.css'
   ],
   less: {
     main: 'src/app/less/main.less',

@@ -16,6 +16,7 @@ import org.mixit.cesar.security.service.exception.EmailExistException;
 import org.mixit.cesar.security.service.exception.ForbiddenException;
 import org.mixit.cesar.security.service.exception.LoginExistException;
 import org.mixit.cesar.security.service.exception.UserNotFoundException;
+import org.mixit.cesar.site.service.SlotOverlapException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,12 @@ public class WebControllerAdvice {
     public ResponseEntity<FunctionalError> handleException(IllegalArgumentException exception) {
         logger.error("IllegalArgumentException ", exception);
         return buildFunctionalError(exception, REQUIRED_ARGS, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SlotOverlapException.class)
+    public ResponseEntity<FunctionalError> handleException(SlotOverlapException exception) {
+        logger.error("SlotOverlapException ", exception);
+        return buildFunctionalError(exception, SLOT_OVERLAP, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AuthenticationRequiredException.class)

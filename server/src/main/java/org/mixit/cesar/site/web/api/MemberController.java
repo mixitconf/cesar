@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
-import org.mixit.cesar.site.web.api.dto.MemberResource;
+import org.mixit.cesar.site.web.dto.MemberResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;

@@ -194,7 +194,18 @@
       "p1": "You can propose 5 minutes talks for the conference. Only the best rated will be selected"
     },
     "planning": {
-      "title": "Agenda"
+      "title": "Agenda",
+      "moment" : {
+        "close" : "End-of-day speech",
+        "ligthning" : "Ligthning Talks",
+        "lunch" : "Lunch",
+        "mixteen" : "Mix-Teen",
+        "party" : "Mix-IT Party",
+        "pause" : "Pause",
+        "staff" : "The staff speech and session introductions" ,
+        "session-pres" : "Session introductions",
+        "welcome" : "Welcome and "
+      }
     },
     "talks": {
       "title": "Talks and workshops",
@@ -439,7 +450,8 @@
     "FORM" : "Form is invalid",
     "MAXSIZE" : "The max size is {{nbcarac}} car.",
     "REQUIRED" : "This field is required",
-    "CONFIRMDELETE" : "Deletion canceled... The firstname not corresponding."
+    "CONFIRMDELETE" : "Deletion canceled... The firstname not corresponding.",
+    "SLOT_OVERLAP" : "Start time is invalid because your slot overlaps anoher"
   },
   "info": {
     "markdown" : "markdown available",

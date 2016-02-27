@@ -38,7 +38,7 @@
         </div>
         <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-text-center">
             <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
-            <div class="cesar-error" ng-if="frm.$invalid" translate="error.FORM"></span></div>
+            <div class="cesar-error" ng-if="frm.$invalid && !frm.$pristine" translate="error.FORM"></span></div>
         </div>
     </div>
     <form novalidate class="cesar-form" name="frm">
@@ -75,14 +75,11 @@
                         <label class="mdl-textfield__label cesar-textfield__radio-label" for="label">Label displayed if
                             we don't
                             have a session</label>
-                        <input class="mdl-textfield__input" type="text" id="label" name="label"
-                               style="min-height: 32px;"
-                               ng-class="{'cesar-planning__input-active' : !ctrl.slot.session,  'cesar-planning__input-inactive' : !!ctrl.slot.session}"
-                               ng-maxlength="50"
-                               ng-model="ctrl.slot.label"
-                               ng-disabled="ctrl.slot.session"
-                        />
-                        <cesar-nb-carac nbcarac="50" text="ctrl.slot.label" field="frm.label"></cesar-nb-carac>
+                        <select ng-options="(label | translate) for label  in ctrl.eventsOutOfSessions | orderBy:('label' | translate)" id="label"
+                                class="mdl-textfield--expandable cesar-textfield--expandable"
+                                ng-model="ctrl.slot.label">
+                            <option value="null"></option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -115,12 +112,23 @@
                             >
                                 <option value="null"></option>
                             </select>
-                            {{ctrl.slot.end}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radioDay1"
+                       style="width: auto">
+                    <input type="radio" id="radioDay1" class="mdl-radio__button" name="slotDay" ng-model="ctrl.slot.day" ng-value="ctrl.dates[0]" ng-change="ctrl.changeDate()">
+                    <span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radioDay2"
+                       style="width: auto">
+                    <input type="radio" id="radioDay2" class="mdl-radio__button" name="slotDay" ng-model="ctrl.slot.day" ng-value="ctrl.dates[1]" ng-change="ctrl.changeDate()">
+                    <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
+                </label>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet">
                 <div style="float: right">
                     <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.saveSlot()"
                                   text="Save"
@@ -167,18 +175,22 @@
                          ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
                          ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
                  'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+                         id="slot{{slot.id}}"
+                         ng-dblclick="ctrl.deleteSlot(slot.id)"
                     >
-
                         <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
-                        <div ng-if="slot.session" ng-dblclick="ctrl.deleteSlot(slot)">
+                        <div ng-if="slot.session">
 
-                            <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
-                            <span id="sesssion1{{slot.session.id}}">{{::slot.session.title}}</span>
-                            <div class="mdl-tooltip" for="sesssion1{{slot.session.id}}">De {{::slot.start}} à
-                                {{::slot.end}}
-                            </div>
+                            <i class="material-icons">{{slot.session.format | sessionLogo}}</i>
+                            <span>{{slot.session.title}}</span>
                         </div>
+
+                        <div class="mdl-tooltip" for="slot{{slot.id}}" ng-if="slot.session || slot.label">
+                            <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+                            De {{slot.start | time}} à {{slot.end | time}}
+                        </div>
+
                         <span ng-if="!slot.session && !slot.label">&nbsp</span>
                     </div>
                 </div>
@@ -223,16 +235,20 @@
                          ng-style="{'max-height' : (slot.duration - 2) + 'px', 'min-height' : (slot.duration - 2) + 'px'}"
                          ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
                  'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+                         id="slot{{slot.id}}"
+                         ng-dblclick="ctrl.deleteSlot(slot.session.id)"
                     >
 
                         <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
-                        <div ng-if="slot.session" ng-dblclick="ctrl.deleteSlot(slot)">
+                        <div ng-if="slot.session">
                             <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
-                            <span id="sesssion{{slot.session.id}}">{{::slot.session.title}}</span>
-                            <div class="mdl-tooltip" for="sesssion{{slot.session.id}}">De {{::slot.start}} à
-                                {{::slot.end}}
-                            </div>
+                            <span>{{slot.session.title}}</span>
+                        </div>
+
+                        <div class="mdl-tooltip" for="slot{{slot.id}}" ng-if="slot.session || slot.label">
+                            <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+                            De {{slot.start | time}} à {{slot.end | time}}
                         </div>
                         <span ng-if="!slot.session && !slot.label">&nbsp</span>
                     </div>

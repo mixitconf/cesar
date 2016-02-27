@@ -15,7 +15,8 @@ public class FunctionalError {
         FORBIDDEN,
         INVALID_TOKEN,
         EMAIL_EXIST,
-        EXPIRED_TOKEN
+        EXPIRED_TOKEN,
+        SLOT_OVERLAP,
     }
 
     private String type;

@@ -95,4 +95,5 @@ public class EventServiceTest {
 
         assertThat(eventService.getEvent(year)).isNotNull();
     }
+
 }

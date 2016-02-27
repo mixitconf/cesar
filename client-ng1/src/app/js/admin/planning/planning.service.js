@@ -7,18 +7,33 @@
     'ngInject';
 
     var DATE_FORMAT = 'YYYY-MM-DD HH:mm';
+    var DATE_FORMAT_ISO = 'YYYY-MM-DD HH:mm:ss';
 
     function getRoom() {
       return $http.get('/api/planning/room');
+    }
+
+    function convertDate(mydate) {
+      return moment(mydate).format(DATE_FORMAT_ISO);
     }
 
     function getSlots(year) {
       return $http.get('/api/planning' + (!!year ? '?year=' + year : ''));
     }
 
-    /**
-     * Set the moment
-     */
+    function getEventOutOfSession(){
+      return [
+        'view.planning.moment.close',
+        'view.planning.moment.ligthning',
+        'view.planning.moment.lunch',
+        'view.planning.moment.mixteen',
+        'view.planning.moment.party',
+        'view.planning.moment.pause',
+        'view.planning.moment.staff',
+        'view.planning.moment.session-pres',
+        'view.planning.moment.welcome'
+      ];
+    }
     function _setTime(moment, time) {
       var myTime = moment.clone();
       myTime.set('hour', time.hour);
@@ -95,7 +110,6 @@
      */
     function computeSlots(eventDate, slotInDatabase, rooms) {
       var slotsByRoom = slotInDatabase;
-
       if (rooms) {
         rooms.forEach(function (room) {
           //We see if slots exists for this room
@@ -196,17 +210,18 @@
       if(!date){
         return false;
       }
+
       return moment(slot.start).isBefore(moment(date)) &&
         moment(slot.end).isAfter(moment(date));
     }
 
     function verifySlot(slot, slotsInRoom) {
       //Check validity
-      if (!slot.session && !slot.label) {
+      if (!slot.idSession && !slot.label) {
         return 'SESSION_REQUIRED';
       }
       var concurrent = slotsInRoom.filter(function(s){
-        return _dateInSlotPeriod(s.start, slot) || _dateInSlotPeriod(s.end, slot);
+        return _dateInSlotPeriod(s.start, slot, false) || _dateInSlotPeriod(s.end, slot, true);
       }).length>0;
       if(concurrent){
         return 'SLOT_CONCURRENT';
@@ -216,11 +231,13 @@
 
     return {
       filterPlanningByDate: filterPlanningByDate,
+      getEventOutOfSession: getEventOutOfSession,
       getRoom: getRoom,
       getSlots: getSlots,
       getTimeSlots: getTimeSlots,
       computeSlots: computeSlots,
       computeRange: computeRange,
+      convertDate: convertDate,
       extractSessionToAffect: extractSessionToAffect,
       verifySlot: verifySlot
     };
