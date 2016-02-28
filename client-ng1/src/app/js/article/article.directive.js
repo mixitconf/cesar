@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-articles').directive('cesarArticle', function (ArticleService) {
+  angular.module('cesar-articles').directive('cesarArticle', function (ArticleService, $location) {
     'ngInject';
 
     return {
@@ -26,6 +26,8 @@
       };
 
       ctrl.refresh(ctrl.id);
+
+      ctrl.url = encodeURIComponent($location.absUrl()) + '/' + ctrl.id;
     }
 
     function CesarArticleLinker(scope, el, attr, ctrl){

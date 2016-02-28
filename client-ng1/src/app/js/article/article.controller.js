@@ -9,12 +9,8 @@
     'ngInject';
 
     var ctrl = this;
-    var nbArticlePerPage = 3;
+    var nbArticlePerPage = 1;
 
-    if(!$stateParams.id){
-      $state.go('news', {'id': articles[0].id});
-      return;
-    }
 
     ctrl.ids = ArticleService.getClosestIds(articles, $stateParams.id, nbArticlePerPage);
 

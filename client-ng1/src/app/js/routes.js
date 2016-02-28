@@ -63,18 +63,18 @@
         .build())
 
       //News
-      .state('news', new State(USER_ROLES, 'article/:id/:title', 'js/article/article.html')
-        .controller('ArticleCtrl')
-        .resolve({articles: getAllArticles})
-        .build())
-
-      .state('article', new State(USER_ROLES, 'article/:id', 'js/article/article.html')
-        .controller('ArticleCtrl')
-        .resolve({articles: getAllArticles})
-        .build())
-
-      .state('articles', new State(USER_ROLES, 'articles', 'js/articles/articles.html')
+      .state('article', new State(USER_ROLES, 'article', 'js/articles/articles.html')
         .controller('ArticlesCtrl')
+        .resolve({articles: getAllArticles})
+        .build())
+
+      .state('article_zoom1', new State(USER_ROLES, 'article/:id', 'js/article/article.html')
+        .controller('ArticleCtrl')
+        .resolve({articles: getAllArticles})
+        .build())
+
+      .state('article_zoom2', new State(USER_ROLES, 'article/:id/:title', 'js/article/article.html')
+        .controller('ArticleCtrl')
         .resolve({articles: getAllArticles})
         .build())
 

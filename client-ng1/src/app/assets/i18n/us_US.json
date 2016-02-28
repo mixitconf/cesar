@@ -134,7 +134,7 @@
     "news": {
       "title": "",
       "team": "Mix-IT Team",
-      "list": "List of articles",
+      "next": "More articles",
       "comment": "Comments",
       "at": "the",
       "published" : "Published"
