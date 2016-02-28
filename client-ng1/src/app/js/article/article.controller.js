@@ -53,9 +53,7 @@
       });
     };
 
-    ctrl.addComment = function(){
-      console.log('TODO implement this feature');
-    };
+
 
     ctrl.url = encodeURIComponent($location.absUrl());
   });

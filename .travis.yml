@@ -6,3 +6,5 @@ jdk:
 slack: mixit16:qrDQ2JzD6cgLcyc9JPpHjzmN
 notifications:
   email: false
+addons:
+  firefox: "39.0"
