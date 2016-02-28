@@ -3,10 +3,7 @@
 
     <p class="cesar-text" translate="view.talks.oldedition" translate-values="{ years: '{{ctrl.year}}'}" ng-if="ctrl.year"></p>
 
-    <p ng-if="ctrl.year===2015"><span translate="view.talks.video">Vous pouvez voir les sessions filmées sur</span>&nbsp;
-        <a href="http://www.infoq.com/fr/mix-it-2015" target="infoq">InfoQ</a></p>
-    <p ng-if="ctrl.year===2013 || ctrl.year===2014"><span translate="view.talks.video">Vous pouvez voir les sessions filmées sur</span>&nbsp;
-        <a ng-href="http://www.infoq.com/fr/mix-it{{ctrl.year}}" target="infoq">InfoQ</a></p>
+    <cesar-talk-video year="ctrl.year"></cesar-talk-video>
 
     <p class="cesar-text" translate="view.talks.p1" ng-if="!ctrl.year"></p>
     <cesar-search-bar>

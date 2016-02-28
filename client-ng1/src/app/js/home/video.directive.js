@@ -6,7 +6,9 @@
 
     return {
       templateUrl: 'js/home/video.directive.html',
-      scope: {}
+      scope: {
+        year : '@'
+      }
     };
   });
 })();
