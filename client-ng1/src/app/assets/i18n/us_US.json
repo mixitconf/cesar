@@ -47,11 +47,13 @@
       "comeback": "returns on <span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
     },
     "cfp": {
-      "title":"The CFP for 2016 is open",
+      "title":"Hurry up... The target date of the CFP was drawing nearer.",
       "p1":"You can now purpose your talks on our new ",
       "p2":"and you can do it unti March 6 2016. For more details you can read this",
       "p3":"Although we have surprises for you in 2016, the success of Mix-IT depends on your proposals. Do not hesitate to send us a topic. Everyone has an opportunity of selection and as you can read in the ",
-      "p4":"we are preparing this year 2 tracks for people who want to get back to basics on agile methods or technical practices."
+      "p4":"we are preparing this year 2 tracks for people who want to get back to basics on agile methods or technical practices.",
+      "p5":"You can also read this one about our ",
+      "p6":"editorial line"
     },
     "info": {
       "title": "Mix-IT is also...",
@@ -70,7 +72,9 @@
     },
     "speaker": {
       "title": "2016 speakers aren't known yet, but here is a focus of some we have seen during the previous editions:",
-      "top": "We are very proud to welcome&nbsp;"
+      "top": "We are very proud to welcome&nbsp;",
+      "first": "The first announced agile speaker is ",
+      "next": "More announcements will follow in the very near future."
     },
     "sponsor": {
       "title": "Became sponsor of the 2016 edition",

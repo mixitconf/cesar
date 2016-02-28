@@ -1,0 +1,20 @@
+<p  ng-if="ctrl.year!==2012">
+    <span translate="view.talks.video">Vous pouvez voir les sessions filmées sur</span>&nbsp;
+    <a ng-href="http://www.infoq.com/fr/mix-it{{ctrl.year===2015 ? '-' : ''}}{{ctrl.year}}" target="infoq">InfoQ</a>.
+</p>
+<div class="cesar-intro" ng-if="ctrl.year!==2012 && ctrl.year!==2013" style="background-color: white">
+    <div class="cesar-container">
+        <div class="cesar-intro__video">
+            <div class="cesar-intro__video-container">
+                <a href="#" ng-mouseenter="loadVideo=true"><img src="img/video.jpg" ng-if="!loadVideo"></a>
+                <div class="cesar-intro__video-content" ng-if="loadVideo && ctrl.year===2015">
+                    <object type="text/html" data="https://www.youtube.com/embed/yyuv-sZ7XSk" ></object>
+                </div>
+                <div class="cesar-intro__video-content" ng-if="loadVideo && ctrl.year===2014">
+                    <object type="text/html" data="https://www.youtube.com/embed/1FO-FnhqfSA"></object>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+</div>
