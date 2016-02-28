@@ -1,7 +1,16 @@
-<h1>{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</h1>
+<h1><a ui-sref="article_zoom1({id : article.id})">{{lang==='fr' ? ctrl.article.titre : ctrl.article.title}}</a></h1>
 
-<a class="cesar-mdl-button--interests">{{ctrl.article.postedAt |
-    date:'dd/MM/yyyy'}}</a>
+<div class="cesar-text-left">
+    <a class="cesar-mdl-button--interests">{{ctrl.article.postedAt |
+        date:'dd/MM/yyyy'}}</a>
+    <a class="mdl-button mdl-js-button mdl-button--raised cesar-button-twitter cesar-button-small" target="social"
+       text="Twitter"
+       href="https://twitter.com/intent/tweet?text={{ctrl.article.titre}}&hashtags=mixit16&url={{ctrl.url}}"
+       type="button">
+        <img src="img/social/twitter.svg"> Twitter
+    </a>
+</div>
+
 <p>&nbsp;</p>
 
 <div class="cesar-section--bottom">
@@ -42,12 +51,5 @@
             </div>
         </div>
     </div>
-    <div class="center">
-        <a class="mdl-button mdl-js-button mdl-button--raised cesar-button-twitter cesar-button-small" target="social"
-           text="Twitter"
-           href="https://twitter.com/intent/tweet?text={{ctrl.article.titre}}&hashtags=mixit16&url={{ctrl.url}}"
-           type="button">
-            <img src="img/social/twitter.svg"> Twitter
-        </a>
-    </div>
+
 </div>

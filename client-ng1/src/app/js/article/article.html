@@ -1,23 +1,8 @@
 <div class="cesar-container">
     <p>&nbsp;</p>
-    <div>
-        <div style="float: right">
-            <button class="mdl-button mdl-js-button mdl-button--raised"  ng-disabled="ctrl.disablePreviousButton()" rel="prev"
-                    title="Article précédent"
-                    ng-click="ctrl.previousArticle()">
-                <i class="material-icons">skip_previous</i>
-            </button>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="articles" rel="bookmark"
-               translate="view.news.list"></a>
-            <button class="mdl-button mdl-js-button mdl-button--raised" ng-disabled="ctrl.disableNextButton()" rel="next"
-                    title="Article suivant"
-                    ng-click="ctrl.nextArticle()">
-                <i class="material-icons">skip_next</i>
-            </button>
-        </div>
+    <div ng-repeat="id in ctrl.ids">
+        <cesar-article id="id"></cesar-article>
+        <hr>
         <p>&nbsp;</p>
     </div>
-
-    <cesar-article id="ctrl.id"></cesar-article>
-    <p>&nbsp;</p>
 </div>

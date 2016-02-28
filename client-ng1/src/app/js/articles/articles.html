@@ -1,22 +1,21 @@
 <div class="cesar-container">
-    <h1 translate="view.news.title"></h1>
+    <p>&nbsp;</p>
 
-    <div class="cesar-section--bottom">
+    <cesar-search-bar></cesar-search-bar>
 
-        <cesar-search-bar></cesar-search-bar>
-
+    <div ng-if="search">
         <div class="mdl-grid">
 
             <div ng-repeat="article in ctrl.filter() track by $index"
                  class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp"
-                 ui-sref="news({id : article.id})"
+                 ui-sref="article_zoom1({id : article.id})"
                  ng-if="ctrl.displayItem($index)">
                 <div class="mdl-card__title mdl-card--expand">
                     <h3 class="mdl-card__title-text cesar-card__title-text">{{lang==='fr' ? article.titre : article.title}}</h3>
 
                     <div class="cesar-card-session-action">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" rel="next"
-                           ui-sref="news({id : article.id})">
+                           ui-sref="article_zoom1({id : article.id})">
                             <i class="material-icons">library_books</i>
                         </a>
                     </div>
@@ -39,5 +38,22 @@
             </button>
         </div>
     </div>
-    <p>&nbsp;</p>
+    <div ng-if="!search">
+        <div ng-repeat="id in ctrl.ids">
+            <cesar-article id="id"></cesar-article>
+            <hr>
+            <p>&nbsp;</p>
+        </div>
+
+        <div>
+            <div class="cesar-text-center">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  ng-if="ctrl.displayMoreButton()" rel="prev"
+                        title="Article précédent"
+                        ng-click="ctrl.moreArticle(ctrl.ids[ctrl.ids.length-1])"
+                        translate="view.news.next">
+                </button>
+            </div>
+            <p>&nbsp;</p>
+        </div>
+    </div>
 </div>

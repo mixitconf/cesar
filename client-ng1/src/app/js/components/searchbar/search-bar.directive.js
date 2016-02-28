@@ -6,7 +6,7 @@
     'ngInject';
 
     return {
-      templateUrl: 'js/menu/search-bar.directive.html',
+      templateUrl: 'js/components/searchbar/search-bar.directive.html',
       transclude:true
     };
   });

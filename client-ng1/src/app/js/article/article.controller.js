@@ -9,29 +9,25 @@
     'ngInject';
 
     var ctrl = this;
-    var id = $stateParams.id;
+    var nbArticlePerPage = 1;
 
-    if(!$stateParams.id){
-      $state.go('news', {'id': articles[0].id});
-      return;
-    }
 
-    ctrl.id = id;
+    ctrl.ids = ArticleService.getClosestIds(articles, $stateParams.id, nbArticlePerPage);
 
     ctrl.disableNextButton = function () {
-      return articles[0].id+'' === ctrl.id;
+      return articles[0].id === ctrl.ids[0];
     };
 
     ctrl.disablePreviousButton = function () {
-      return articles[articles.length - 1].id+'' === ctrl.id;
+      return articles[articles.length - 1].id === ctrl.ids[nbArticlePerPage-1];
     };
 
-    ctrl.previousArticle = function () {
-      ctrl.id = ArticleService.getPreviousIds(articles, ctrl.id, 1)[0];
+    ctrl.previousArticle = function (articleId) {
+      ctrl.ids = ArticleService.getPreviousIds(articles, articleId, nbArticlePerPage);
     };
 
-    ctrl.nextArticle = function () {
-      ctrl.id = ArticleService.getNextIds(articles, ctrl.id, 1)[0];
+    ctrl.nextArticle = function (articleId) {
+      ctrl.ids = ArticleService.getNextIds(articles, articleId, nbArticlePerPage);
     };
 
     ctrl.url = encodeURIComponent($location.absUrl());
