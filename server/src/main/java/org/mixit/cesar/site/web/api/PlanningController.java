@@ -13,7 +13,9 @@ import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SlotRepository;
 import org.mixit.cesar.site.service.EventService;
+import org.mixit.cesar.site.web.dto.MemberResource;
 import org.mixit.cesar.site.web.dto.RoomResource;
+import org.mixit.cesar.site.web.dto.SessionResource;
 import org.mixit.cesar.site.web.dto.SlotDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,11 +55,24 @@ public class PlanningController {
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public Map<Room, List<Slot>> slots(@RequestParam(required = false) Integer year) {
+    public Map<Room, List<Slot>> getAllSlotsByRoom(@RequestParam(required = false) Integer year) {
         return slotRepository
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
                 .collect(Collectors.groupingBy(Slot::getRoom));
+    }
+
+    @RequestMapping(value = "/slots")
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
+    public List<SessionResource> getAllSlots(@RequestParam(required = false) Integer year) {
+        return slotRepository
+                .findAllSlots(eventService.getEvent(year).getId())
+                .stream()
+                .filter(s -> s.getSession()!=null)
+                .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
+                .map(s -> SessionResource.convert(s))
+                .collect(Collectors.toList());
     }
 }
