@@ -2,11 +2,19 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state, $rootScope, $timeout, account) {
     'ngInject';
 
     var ctrl = this;
     var type = $state.current.data.type;
+
+    $timeout(function(){
+      var mixitEnd = moment($rootScope.cesar.day2).hours('19');
+      //TODO open the vote only between start and stop
+      ctrl.voteIsOpen = moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
+      ctrl.userConnected = !!account;
+    });
+
 
     function findSpeaker(response) {
       ctrl.sessions.forEach(function (session) {
