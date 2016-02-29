@@ -204,12 +204,12 @@ public class Article {
         return this;
     }
 
-    public SyndEntry buildRssEntry(SessionLanguage language) {
+    public SyndEntry buildRssEntry(String baseUrl, SessionLanguage language) {
 
         SyndEntry entry = new SyndEntryImpl();
 
         entry.setTitle(this.getTitle(language));
-        entry.setLink(ArticleController.MIX_IT_ARTICLE + getId());
+        entry.setLink(baseUrl + ArticleController.MIX_IT_ARTICLE + getId());
         entry.setPublishedDate(Timestamp.valueOf(getPostedAt()));
         SyndContent description = new SyndContentImpl();
         description.setType("text/plain");

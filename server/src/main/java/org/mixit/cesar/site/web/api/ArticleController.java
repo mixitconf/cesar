@@ -14,6 +14,7 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.article.Article;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.repository.ArticleRepository;
+import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.CacheControl;
@@ -32,14 +33,17 @@ import java.util.List;
 @RequestMapping("/api/article")
 public class ArticleController {
 
-    public static final String MIX_IT_ARTICLE = "https://www.mix-it.fr/article/";
-    public static final String MIX_IT_ARTICLES = "https://www.mix-it.fr/articles";
+    public static final String MIX_IT_ARTICLE = "/article/";
+    public static final String MIX_IT_ARTICLES = "/articles";
 
     @Autowired
     private ArticleRepository articleRepository;
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private AbsoluteUrlFactory absoluteUrlFactory;
 
     @RequestMapping("/{id}")
     @ApiOperation(value = "Finds one article", httpMethod = "GET")
@@ -72,13 +76,14 @@ public class ArticleController {
         return getArticlesFeed(SessionLanguage.en);
     }
 
-    @JsonView(FlatView.class)
-    public String getArticlesFeed(SessionLanguage language) throws IOException, FeedException {
+    private String getArticlesFeed(SessionLanguage language) throws IOException, FeedException {
+        String baseUrl = absoluteUrlFactory.getBaseUrl();
+
         SyndFeed feed = new SyndFeedImpl();
         feed.setFeedType("rss_2.0");
 
         feed.setTitle("Mix-IT articles");
-        feed.setLink(MIX_IT_ARTICLES);
+        feed.setLink(baseUrl + MIX_IT_ARTICLES);
         feed.setDescription(" ");
 
         List<Article> articles = articleRepository.findAllPublishedArticle();
@@ -87,7 +92,7 @@ public class ArticleController {
         feed.setEntries(entries);
 
         for (Article article : articles) {
-            SyndEntry entry = article.buildRssEntry(language);
+            SyndEntry entry = article.buildRssEntry(baseUrl, language);
             entries.add(entry);
         }
 
