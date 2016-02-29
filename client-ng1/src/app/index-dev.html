@@ -90,8 +90,16 @@
             <div class="cesar-subfooter">
                 <div class="cesar-container cesar-footer__copyright">
                     © 2016 Copyright Mix-IT - v {{cesar.version}}
-                    <a class="grey-text text-lighten-4 right" ui-sref="conduite" rel="contact"><span
-                            translate="footer.codeofconduct"></span></a>
+                    <span class="right">
+                        <a class="grey-text text-lighten-4" href="/api/article/rss/{{ctrl.currentLanguage}}" rel="rss">
+                            <span translate="footer.rss"></span>
+                        </a>
+
+                        &nbsp;&nbsp;
+                        <a class="grey-text text-lighten-4" ui-sref="conduite" rel="contact">
+                            <span translate="footer.codeofconduct"></span>
+                        </a>
+                    </span>
 
                 </div>
             </div>

@@ -1,24 +1,22 @@
 package org.mixit.cesar.site.model.article;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonView;
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndContentImpl;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndEntryImpl;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Staff;
+import org.mixit.cesar.site.model.session.SessionLanguage;
+import org.mixit.cesar.site.web.api.ArticleController;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An article, i.e. a blog post
@@ -204,5 +202,36 @@ public class Article {
     public Article setNbConsults(long nbConsults) {
         this.nbConsults = nbConsults;
         return this;
+    }
+
+    public SyndEntry buildRssEntry(String baseUrl, SessionLanguage language) {
+
+        SyndEntry entry = new SyndEntryImpl();
+
+        entry.setTitle(this.getTitle(language));
+        entry.setLink(baseUrl + ArticleController.MIX_IT_ARTICLE + getId());
+        entry.setPublishedDate(Timestamp.valueOf(getPostedAt()));
+        SyndContent description = new SyndContentImpl();
+        description.setType("text/plain");
+        description.setValue(getHeadline(language));
+        entry.setDescription(description);
+
+        return entry;
+    }
+
+    private String getHeadline(SessionLanguage language) {
+        if (language == SessionLanguage.en) {
+            return getHeadline();
+        } else {
+            return getResume();
+        }
+    }
+
+    private String getTitle(SessionLanguage language) {
+        if (language == SessionLanguage.en) {
+            return getTitle();
+        } else {
+            return getTitre();
+        }
     }
 }
