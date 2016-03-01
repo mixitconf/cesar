@@ -222,6 +222,10 @@
         "ifconnected" : "Vous pouvez laisser votre avis sur les sessions que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu.",
         "action_list" : "Pour voter, rendez vous sur le détail d'une session.",
         "action_detail" : "Pour voter, utilisez les boutons avec les émo-icônes"
+      },
+      "info" : {
+        "view" : "The session was seen by {{nbview}} persons",
+        "vote" : "People vote with {{voteplus}} plus and {{voteminus}} minus"
       }
     },
     "error": {
