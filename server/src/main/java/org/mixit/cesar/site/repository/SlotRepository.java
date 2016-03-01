@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
 public interface SlotRepository extends CrudRepository<Slot, Long> {
 
     @Cacheable(CACHE_PLANNING)
-    @Query(value = "SELECT DISTINCT slot FROM Slot slot left join fetch slot.session s where slot.event.id = :idEvent and (s.valid = true or s.id is null) ")
+    @Query(value = "SELECT DISTINCT slot FROM Slot slot left join fetch slot.session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where slot.event.id = :idEvent and (s.valid = true or s.id is null) ")
     List<Slot> findAllSlots(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_PLANNING)

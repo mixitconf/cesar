@@ -218,8 +218,10 @@
       "p1": "You can suggest 3 different formats: keynotes (at the beginning and the end of the day, in front of everyone), talks, and workshops. For the last one, please follow the instructions in order to know if some prerequisites are mandatory.",
       "video":"You can watch the video-taped sessions on ",
       "vote":{
-        "notconnected" : "Si vous créez un compte sur notre site vous pourrez <b>voter et donner votre avis sur les sessions</b> que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu. N'hésitez pas à aller directement les voir pour leur faire des remontées",
-        "ifconnected" : "Vous pouvez laisser votre avis sur cette session si vous l'avez vu. Ce vote permet aux speakers de savoir si leur talk vous a plu. N'hésitez pas à aller directement les voir pour leur faire des remontées"
+        "notconnected" : "Si vous créez un compte sur notre site vous pourrez <b>voter et donner votre avis sur les sessions</b> que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu. ",
+        "ifconnected" : "Vous pouvez laisser votre avis sur les sessions que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu.",
+        "action_list" : "Pour voter, rendez vous sur le détail d'une session.",
+        "action_detail" : "Pour voter, utilisez les boutons avec les émo-icônes"
       }
     },
     "error": {

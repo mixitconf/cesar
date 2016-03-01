@@ -152,6 +152,7 @@
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           /* @ngInject */
+          account: getAccount,
           session: function (SessionService, $stateParams) {
             return SessionService.getById($stateParams.id).then(function (response) {
               return response.data;

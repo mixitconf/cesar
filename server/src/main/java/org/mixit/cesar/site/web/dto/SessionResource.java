@@ -39,11 +39,10 @@ public class SessionResource extends ResourceSupport {
     public List<String> interests = new ArrayList<>();
 
     public static <T extends Session<T>> SessionResource convert(Slot slot) {
-        SessionResource sessionResource = convert(slot.getSession());
-        sessionResource.setRoom(slot.getRoom().getName());
-        sessionResource.setStart(slot.getStart().format(DateTimeFormatter.ISO_DATE_TIME));
-        sessionResource.setEnd(slot.getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
-        return sessionResource;
+        return convert(slot.getSession())
+                .setRoom(slot.getRoom().getName())
+                .setStart(slot.getStart().format(DateTimeFormatter.ISO_DATE_TIME))
+                .setEnd(slot.getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
     }
 
     public static <T extends Session<T>> SessionResource convert(T session) {
@@ -99,24 +98,27 @@ public class SessionResource extends ResourceSupport {
         return room;
     }
 
-    public void setRoom(String room) {
+    public SessionResource setRoom(String room) {
         this.room = room;
+        return this;
     }
 
     public String getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public SessionResource setStart(String start) {
         this.start = start;
+        return this;
     }
 
     public String getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public SessionResource setEnd(String end) {
         this.end = end;
+        return this;
     }
 
     public int getVotes() {

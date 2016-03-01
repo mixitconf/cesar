@@ -6,12 +6,13 @@
 
     <cesar-talk-video year="ctrl.year" ng-if="ctrl.year<2016"></cesar-talk-video>
 
-    <p translate="view.talks.p1" ng-if="!ctrl.year"></p>
+    <p translate="view.talks.p1" ng-if="!ctrl.year" class="cesar-text"></p>
 
-    <div ng-if="ctrl.voteIsOpen">
-        <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate">
-        </p>
-        <p ng-if="ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.connected' | translate">
+    <div ng-if="cesar.voteIsOpen">
+        <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
+        <p ng-if="ctrl.userConnected" class="cesar-text">
+            <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
+            <span ng-bind-html="'view.talks.vote.action_list' | translate"></span>
         </p>
     </div>
 

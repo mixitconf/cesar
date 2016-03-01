@@ -1,20 +1,14 @@
 (function () {
 
   'use strict';
+  /*global moment */
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, $state, $rootScope, $timeout, account) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, cesarSpinnerService, $q, $state, $rootScope, $timeout, account) {
     'ngInject';
 
     var ctrl = this;
     var type = $state.current.data.type;
-
-    $timeout(function(){
-      var mixitEnd = moment($rootScope.cesar.day2).hours('19');
-      //TODO open the vote only between start and stop
-      ctrl.voteIsOpen = moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
-      ctrl.userConnected = !!account;
-    });
-
+    ctrl.userConnected = !!account;
 
     function findSpeaker(response) {
       ctrl.sessions.forEach(function (session) {
@@ -31,15 +25,24 @@
       });
     }
 
+    cesarSpinnerService.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
 
-      SessionService.getAllByYear()
+      $q.all([
+        SessionService.getAllByYear()
           .then(function (response) {
             ctrl.sessions = response.data;
             return MemberService.getAll('speaker');
           })
-          .then(findSpeaker);
+          .then(findSpeaker),
+        MemberService.getAll('sponsor', $rootScope.cesar.current).then(function (response) {
+          ctrl.sponsors = response.data;
+        })
+      ])
+      .finally(function(){
+        cesarSpinnerService.stopWaiting();
+      });
     }
     else {
       SessionService.getAll(type)
@@ -47,7 +50,10 @@
           ctrl.sessions = response.data;
           return MemberService.getAllLigthningtalkSpeakers();
         })
-        .then(findSpeaker);
+        .then(findSpeaker)
+        .finally(function(){
+          cesarSpinnerService.stopWaiting();
+        });
     }
 
   });

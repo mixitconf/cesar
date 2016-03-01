@@ -30,7 +30,7 @@ h1, h2, h3{
 }
 
 @media (max-width: 479px) {
-  h1{
+  h1, h1 > a {
     font-size: @h1_mobile_fontsize !important;
     line-height: (@h1_mobile_fontsize+3) !important;
   }
@@ -48,7 +48,7 @@ h1, h2, h3{
   }
 }
 @media (min-width: 480px) and (max-width: 1023px) {
-  h1{
+  h1 , h1 > a{
     font-size: @h1_tablet_fontsize !important;
     line-height: (@h1_tablet_fontsize+3) !important;
   }

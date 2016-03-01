@@ -2,6 +2,21 @@
 
     <h1><i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">{{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}} </h1>
 
+    <div ng-if="cesar.voteIsOpen">
+        <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
+        <p ng-if="ctrl.userConnected" class="cesar-text">
+            <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
+            <span ng-bind-html="'view.talks.vote.action_list' | translate"></span>
+        </p>
+
+        <i class="material-icons">mood</i>&nbsp;<span>Talk</span>
+        <i class="material-icons">sentiment_dissatisfied</i>&nbsp;<span>Talk</span>
+        <i class="material-icons">sentiment_neutral</i>&nbsp;<span>Talk</span>
+        <i class="material-icons">sentiment_satisfied</i>&nbsp;<span>Talk</span>
+        <hr>
+        <p>&nbsp;</p>
+    </div>
+
     <p class="cesar-text">{{ ctrl.session.summary }}</p>
 
     <p>
