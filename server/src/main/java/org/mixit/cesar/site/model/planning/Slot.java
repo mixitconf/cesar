@@ -1,6 +1,8 @@
 package org.mixit.cesar.site.model.planning;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
@@ -38,8 +42,8 @@ public class Slot {
      * Session associated with this slot. For an event like lunch, pause... we have
      * no session
      */
-    @ManyToOne(optional = true)
     @JsonView(FlatView.class)
+    @OneToOne(mappedBy = "slot")
     private Session session;
 
     @ManyToOne(optional = false)

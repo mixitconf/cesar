@@ -67,6 +67,7 @@ public class Member<T extends Member> implements Comparable<Member> {
     @JsonView({FlatView.class, UserView.class})
     private String company;
 
+
     private Boolean ticketingRegistered;
 
     @org.hibernate.annotations.Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")

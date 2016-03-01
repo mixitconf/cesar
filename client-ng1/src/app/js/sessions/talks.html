@@ -1,11 +1,21 @@
 <div class="cesar-container">
     <h1 translate="view.talks.title"></h1>
 
-    <p class="cesar-text" translate="view.talks.oldedition" translate-values="{ years: '{{ctrl.year}}'}" ng-if="ctrl.year"></p>
+    <p class="cesar-text" translate="view.talks.oldedition" translate-values="{ years: '{{ctrl.year}}'}"
+       ng-if="ctrl.year"></p>
 
-    <cesar-talk-video year="ctrl.year"></cesar-talk-video>
+    <cesar-talk-video year="ctrl.year" ng-if="ctrl.year < cesar.current"></cesar-talk-video>
 
-    <p class="cesar-text" translate="view.talks.p1" ng-if="!ctrl.year"></p>
+    <p translate="view.talks.p1" ng-if="!ctrl.year" class="cesar-text"></p>
+
+    <div ng-if="cesar.voteIsOpen && (cesar.current === ctrl.year || !ctrl.year)">
+        <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
+        <p ng-if="ctrl.userConnected" class="cesar-text">
+            <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
+            <span ng-bind-html="'view.talks.vote.action_list' | translate"></span>
+        </p>
+    </div>
+
     <cesar-search-bar>
         <div class="cesar -helper hide-on-mobile">
             <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
@@ -17,7 +27,7 @@
         <cesar-session-cards sessions="ctrl.sessions" search="search"></cesar-session-cards>
     </div>
 
-    <p class="cesar-text"  translate="view.talks.sponsor"></p>
+    <p class="cesar-text" translate="view.talks.sponsor"></p>
 
     <cesar-sponsor members="ctrl.sponsors" level="GOLD"></cesar-sponsor>
     <cesar-sponsor members="ctrl.sponsors" level="SILVER"></cesar-sponsor>

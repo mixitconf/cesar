@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.planning.Slot;
+import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SlotRepository;
 import org.mixit.cesar.site.web.dto.SlotDto;
@@ -31,6 +32,7 @@ public class SlotService {
      */
     public Slot save(SlotDto slotDto) {
         Slot slot;
+        Session session = null;
         Event event = eventService.getEvent(slotDto.getStartDate().getYear());
 
         if (slotDto.getId() != null) {
@@ -46,7 +48,8 @@ public class SlotService {
         }
         slot.setEvent(event);
         if (slotDto.getIdSession() != null) {
-            slot.setSession(sessionRepository.findOne(slotDto.getIdSession()));
+            session = sessionRepository.findOne(slotDto.getIdSession());
+            slot.setSession(session);
             slot.setEnd(LocalDateTime.from(slot.getStart()).plusMinutes(slot.getSession().getFormat().getDuration()));
         }
 
@@ -69,9 +72,12 @@ public class SlotService {
         if(concurrent.isPresent()){
             throw new SlotOverlapException();
         }
-        slotRepository.save(slot);
 
-        return slot;
+        Slot slotPersisted = slotRepository.save(slot);
+        if (session != null) {
+            session.setSlot(slot);
+        }
+        return slotPersisted;
     }
 
     /**

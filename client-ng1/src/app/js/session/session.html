@@ -2,6 +2,32 @@
 
     <h1><i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">{{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}} </h1>
 
+    <div ng-if="cesar.voteIsOpen && ctrl.session.year === cesar.current">
+        <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
+        <p ng-if="ctrl.userConnected" class="cesar-text">
+            <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
+            <span ng-bind-html="'view.talks.vote.action_list' | translate"></span>
+        </p>
+        <p>&nbsp;</p>
+    </div>
+
+    <div>
+        <div class="cesar-mdl-button--interests" id="consults">
+            <i class="material-icons" style="font-size: 12px">account_box</i>
+            views : {{ctrl.session.nbConsults | defaultValue:0}}
+        </div>
+        <div class="mdl-tooltip" for="consults"
+             translate="view.talks.info.view"
+             translate-values="{ nbview : {{ctrl.session.nbConsults}} }"></div>
+        <div class="cesar-mdl-button--interests" id="votes">
+            <i class="material-icons" style="font-size: 12px">assessment</i>
+            votes : +{{ctrl.session.positiveVotes | defaultValue:0}} -{{ (ctrl.session.positiveVotes - ctrl.session.votes)}}
+        </div>
+        <div class="mdl-tooltip" for="votes"
+             translate="view.talks.info.vote"
+             translate-values="{ voteplus : {{ctrl.session.positiveVotes}} , voteminus :  {{(ctrl.session.positiveVotes - ctrl.session.votes)}} }"></div>
+    </div>
+    <p>&nbsp;</p>
     <p class="cesar-text">{{ ctrl.session.summary }}</p>
 
     <p>
@@ -13,14 +39,7 @@
         <a class="cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a></span>
     </p>
 
-    <p marked="ctrl.session.description"></p>
-
-    <p>
-        <i class="material-icons mdl-badge cesar-badge" data-badge="{{ctrl.session.positiveVotes | defaultValue:0}}" title="{{ctrl.session.positiveVotes | defaultValue:0}} vote pour cette session">assessment</i>
-        <i class="material-icons mdl-badge cesar-badge" data-badge="{{ctrl.session.nbConsults | defaultValue:0}}" title="{{ctrl.session.nbConsults | defaultValue:0}} visiteurs">account_box</i>
-    </p>
-
-    <hr>
+    <p ng-bind-html="ctrl.session.description | markdown"></p>
 
     <div class="cesar-section--bottom">
         <p marked="ctrl.member.longDescription"></p>
@@ -30,6 +49,8 @@
                 {{interest}}
             </a>
         </p>
+
+        <p>&nbsp;</p>
 
         <p class="cesar-text">
             <ng-pluralize count="ctrl.session.speakers.length" when="{'1': 'Speaker', 'other': '{} speakers'}"></ng-pluralize>

@@ -66,13 +66,12 @@ public class PlanningController {
     @RequestMapping(value = "/slots")
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)
-    public List<SessionResource> getAllSlots(@RequestParam(required = false) Integer year) {
+    public List<Slot> getAllSlots(@RequestParam(required = false) Integer year) {
         return slotRepository
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
                 .filter(s -> s.getSession()!=null)
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
-                .map(s -> SessionResource.convert(s))
                 .collect(Collectors.toList());
     }
 }

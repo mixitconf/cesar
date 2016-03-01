@@ -217,7 +217,17 @@
       "sponsor": "Sponsors",
       "p1": "Vous pouvez choisir entre 3 formats différents de sessions, des keynotes en début et fin de journée, des conférences et des ateliers. Pour ces derniers veuillez suivre les instructions du speaker pour savoir si des prérequis sont nécessaires",
       "oldedition": "Voici la liste des sessions et des speakers présents à Mix-IT en {{years}}",
-      "video":"Vous pouvez voir les sessions qui ont été filmées sur "
+      "video":"Vous pouvez voir les sessions qui ont été filmées sur ",
+      "vote":{
+        "notconnected" : "Si vous créez un compte sur notre site vous pourrez <b>voter et donner votre avis sur les sessions</b> que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu. ",
+        "ifconnected" : "Vous pouvez laisser votre avis sur les sessions que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu.",
+        "action_list" : "Pour voter, rendez vous sur le détail d'une session.",
+        "action_detail" : "Pour voter, utilisez les boutons avec les émo-icônes"
+      },
+      "info" : {
+        "view" : "La session a été vue par {{nbview}} personnes",
+        "vote" : "La session a reçu {{voteplus}} positif(s) et {{voteminus}} négatif(s)"
+      }
     },
     "error": {
       "title": "Une erreur a été détectée",

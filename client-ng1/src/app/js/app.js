@@ -1,6 +1,7 @@
 (function () {
 
   'use strict';
+  /*global moment */
 
   angular.module('cesar-utils', ['ngSanitize']);
   angular.module('cesar-articles', ['cesar-templates']);
@@ -43,6 +44,9 @@
   angular.module('cesar').run(function($http, $rootScope) {
     $http.get('/api/cesar').then(function(response){
       $rootScope.cesar = response.data;
+      var mixitEnd = moment($rootScope.cesar.day2).hours('19');
+      //TODO open the vote only between start and stop
+      $rootScope.cesar.voteIsOpen = moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
     });
   });
 })();

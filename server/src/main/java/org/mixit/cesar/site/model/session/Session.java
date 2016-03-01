@@ -21,6 +21,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,6 +32,7 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
+import org.mixit.cesar.site.model.planning.Slot;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -96,6 +98,9 @@ public abstract class Session<T extends Session> {
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
+
+    @OneToOne(optional = true)
+    private Slot slot;
 
     /**
      * Number of consultation
@@ -323,6 +328,15 @@ public abstract class Session<T extends Session> {
 
     public T setFeedback(boolean feedback) {
         this.feedback = feedback;
+        return (T) this;
+    }
+
+    public Slot getSlot() {
+        return slot;
+    }
+
+    public T setSlot(Slot slot) {
+        this.slot = slot;
         return (T) this;
     }
 
