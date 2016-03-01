@@ -1,7 +1,6 @@
 (function () {
 
   'use strict';
-  /*global moment */
 
   angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, cesarSpinnerService, $q, $state, $rootScope, $timeout, account) {
     'ngInject';

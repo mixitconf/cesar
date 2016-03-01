@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.service;
 
 import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -140,7 +141,7 @@ public class SlotServiceTest {
                                 .setEnd(LocalDateTime.of(2016, 4, 21, 11, 21)
                                 )
                 ));
-
+        when(slotRepository.save(any(Slot.class))).thenReturn(new Slot());
         assertThat(slotService.save(slotDto)).isNotNull();
     }
 
@@ -162,7 +163,7 @@ public class SlotServiceTest {
                                 .setEnd(LocalDateTime.of(2016, 4, 21, 10, 30)
                                 )
                 ));
-
+        when(slotRepository.save(any(Slot.class))).thenReturn(new Slot());
         assertThat(slotService.save(slotDto)).isNotNull();
     }
 
@@ -184,7 +185,7 @@ public class SlotServiceTest {
                                 .setEnd(LocalDateTime.of(2016, 4, 21, 11, 30)
                                 )
                 ));
-
+        when(slotRepository.save(any(Slot.class))).thenReturn(new Slot());
         assertThat(slotService.save(slotDto)).isNotNull();
     }
 }
