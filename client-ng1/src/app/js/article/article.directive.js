@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-articles').directive('cesarArticle', function (ArticleService, $location) {
+  angular.module('cesar-articles').directive('cesarArticle', function (ArticleService, $location, $rootScope) {
     'ngInject';
 
     return {
@@ -33,6 +33,10 @@
     function CesarArticleLinker(scope, el, attr, ctrl){
       scope.$watch('ctrl.id', function(newId){
         ctrl.refresh(newId);
+      });
+
+      $rootScope.$on('event:language-changed', function (event, next) {
+        scope.lang = next.slice(0,2);
       });
     }
   });
