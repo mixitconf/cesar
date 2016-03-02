@@ -125,7 +125,6 @@
 
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
-      .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html').controller('SessionsCtrl').data({type: 'talks'}).build())
       .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
       .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
       .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
@@ -148,11 +147,18 @@
           account: getAccount
         })
         .build())
+      .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html')
+        .controller('SessionsCtrl')
+        .data({type: 'talks'})
+        .resolve({
+          account: getAccount
+        })
+        .build())
 
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
-          /* @ngInject */
           account: getAccount,
+          /* @ngInject */
           session: function (SessionService, $stateParams) {
             return SessionService.getById($stateParams.id).then(function (response) {
               return response.data;
@@ -162,6 +168,7 @@
         .build())
       .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
+          account: getAccount,
           /* @ngInject */
           session: function (SessionService, $stateParams) {
             return SessionService.getById($stateParams.id).then(function (response) {

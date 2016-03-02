@@ -22,7 +22,6 @@
       //Patch to hide the drawer panel when a user click on a link (bug Material Design Lite)
       angular.element(document.querySelector('.mdl-layout__drawer')).removeClass('is-visible');
       angular.element(document.querySelector('.mdl-layout__obfuscator')).removeClass('is-visible');
-
       if (next.name === 'logout') {
         AuthenticationService.logout();
       }
