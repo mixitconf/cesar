@@ -41,5 +41,28 @@ public class ProposalVoteService {
         proposalVoteRepository.save(proposalVote);
     }
 
+    public void voteComment(Proposal proposal, Staff voter, String voteComment) {
+        Objects.requireNonNull(proposal, "proposal is required");
+        Objects.requireNonNull(voter, "voter is required");
+        Objects.requireNonNull(voteComment, "vote comment is required");
+
+        ProposalVote proposalVote;
+
+        // Expecting empty list or singleton
+        List<ProposalVote> proposalPersisted = proposalVoteRepository.findProposalVote(voter, proposal);
+
+        if (proposalPersisted.size() == 0) {
+            proposalVote = new ProposalVote()
+                    .setVoter(voter)
+                    .setProposal(proposal)
+                    .setVoteComment(voteComment);
+        }else {
+            proposalVote = proposalPersisted.get(0);
+            proposalVote.setVoteComment(voteComment);
+        }
+
+        proposalVoteRepository.save(proposalVote);
+    }
+
 
 }

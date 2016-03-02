@@ -28,7 +28,7 @@
           function(response){
             ctrl.votesMappedByProposalId = {};
             angular.forEach(response.data, function(data) {
-              ctrl.votesMappedByProposalId[data.proposalId] = data.voteValue;
+              ctrl.votesMappedByProposalId[data.proposalId] = { vote:data.voteValue, comment: data.voteComment };
             });
           }
       );
@@ -40,7 +40,7 @@
         voteValue: voteValue
       };
       $http.post('app/cfp/proposal/vote', data);
-        ctrl.votesMappedByProposalId[proposalId] = voteValue;
+        ctrl.votesMappedByProposalId[proposalId].vote = voteValue;
     };
 
     ctrl.filter = function(){

@@ -141,6 +141,17 @@ public class ProposalController {
         proposalVoteService.vote(proposal, voter, voteParam.getVoteValue());
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/vote-comment")
+    @ResponseStatus(HttpStatus.OK)
+    @Authenticated
+    @NeedsRole(Role.ADMIN)
+    public void voteComment(@RequestBody ProposalVoteDTO voteParam) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
+        Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
+        proposalVoteService.voteComment(proposal, voter, voteParam.getVoteComment());
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/votes")
     @ResponseStatus(HttpStatus.OK)
     @Authenticated

@@ -43,30 +43,43 @@
                 </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" style="float: left;" translate="view.cfp.home.incomplete"></p>
 
-                <p style="text-align: right;" ng-if="proposal.status==='SUBMITTED'">
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-2}"
-                       ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
-                            tooltip="Veto">
-                        <i class="material-icons mdl-badge">visibility_off</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-1}"
-                       ng-click="ctrl.vote(proposal.id, -1); $event.stopPropagation();">
-                        <i class="material-icons mdl-badge">exposure_neg_1</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==1}"
-                       ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();">
-                        <i class="material-icons mdl-badge">exposure_plus_1</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==2}"
-                       ng-click="ctrl.vote(proposal.id, 2); $event.stopPropagation();"
-                            tooltip="I need this talk!">
-                        <i class="material-icons mdl-badge">visibility</i>
-                    </a>
-                </p>
+                <fieldset id="votes" class="adminSection">
+                    <label>Your vote</label>
+
+                    <div style="text-align: right;" ng-if="proposal.status==='SUBMITTED'">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==-2}"
+                           ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
+                            id="veto">
+                            <i class="material-icons mdl-badge">visibility_off</i>
+                        </a>
+                        <div class="mdl-tooltip" for="veto">Veto</div>
+
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==-1}"
+                           ng-click="ctrl.vote(proposal.id, -1); $event.stopPropagation();"
+                                id="minusOne">
+                            <i class="material-icons mdl-badge">exposure_neg_1</i>
+                        </a>
+                        <div class="mdl-tooltip" for="minusOne">Minus one</div>
+
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==1}"
+                           ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();"
+                                id="plusOne">
+                            <i class="material-icons mdl-badge">exposure_plus_1</i>
+                        </a>
+                        <div class="mdl-tooltip" for="plusOne">Plus one</div>
+
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==2}"
+                           ng-click="ctrl.vote(proposal.id, 2); $event.stopPropagation();"
+                                id="needIt">
+                            <i class="material-icons mdl-badge">visibility</i>
+                        </a>
+                        <div class="mdl-tooltip" for="needIt">I need this talk!</div>
+                    </div>
+                </fieldset>
             </td>
             <td style="padding: 4px">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="admcfptalk({id : proposal.id})">
