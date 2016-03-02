@@ -35,8 +35,8 @@
         ctrl.refresh(newId);
       });
 
-      $rootScope.$on('event:language-changed', function (event, next) {
-        scope.lang = next.slice(0,2);
+      $rootScope.$watch('lang', function(lang){
+        scope.lang = lang;
       });
     }
   });
