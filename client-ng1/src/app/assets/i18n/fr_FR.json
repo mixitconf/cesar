@@ -222,7 +222,7 @@
         "notconnected" : "Si vous créez un compte sur notre site vous pourrez <b>voter et donner votre avis sur les sessions</b> que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu. ",
         "ifconnected" : "Vous pouvez laisser votre avis sur les sessions que vous avez vues. Ce vote permet aux speakers de savoir si leur talk vous a plu.",
         "action_list" : "Pour voter, rendez vous sur le détail d'une session.",
-        "action_detail" : "Pour voter, utilisez les boutons avec les émo-icônes"
+        "action_detail" : "Pour voter, utilisez les boutons +1 ou -1."
       },
       "info" : {
         "view" : "La session a été vue par {{nbview}} personnes",

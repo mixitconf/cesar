@@ -4,10 +4,27 @@
 
     <div ng-if="cesar.voteIsOpen && ctrl.session.year === cesar.current">
         <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
-        <p ng-if="ctrl.userConnected" class="cesar-text">
-            <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
-            <span ng-bind-html="'view.talks.vote.action_list' | translate"></span>
-        </p>
+
+        <div ng-if="ctrl.userConnected">
+            <p class="cesar-text">
+                <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
+                <span ng-bind-html="'view.talks.vote.action_detail' | translate"></span>
+            </p>
+            <div style="float: right">
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                   ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote > 0,
+                    'mdl-button--primary':ctrl.myvote < 0}"
+                   ng-click="ctrl.vote(-2); $event.stopPropagation();">
+                    <i class="material-icons mdl-badge">exposure_neg_1</i>
+                </a>
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                   ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote < 0,
+                    'mdl-button--primary':ctrl.myvote > 0}"
+                   ng-click="ctrl.vote(-2); $event.stopPropagation();">
+                    <i class="material-icons mdl-badge">exposure_plus_1</i>
+                </a>
+            </div>
+        </div>
         <p>&nbsp;</p>
     </div>
 
