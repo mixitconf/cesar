@@ -84,7 +84,8 @@ public class ProposalVote {
         return voteComment;
     }
 
-    public void setVoteComment(String voteComment) {
+    public ProposalVote setVoteComment(String voteComment) {
         this.voteComment = voteComment;
+        return null;
     }
 }
