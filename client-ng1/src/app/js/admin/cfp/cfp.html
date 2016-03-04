@@ -17,6 +17,14 @@
                 ng-class="{'button-selected':ctrl.selectedStatuses.indexOf(proposalStatus)!==-1}">
             {{proposalStatus}}
         </button>
+        <span style="margin-left: 8em;">
+            <button class="mdl-button mdl-js-button"
+                    ng-repeat="votedFilter in ctrl.votedFilters"
+                    ng-click="ctrl.toggleVotedFilter(votedFilter)"
+                    ng-class="{'button-selected':ctrl.votedFilter===votedFilter}">
+                {{votedFilter}}
+            </button>
+        </span>
     </p>
 
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'proposals' : 'proposal'}}</small></p>

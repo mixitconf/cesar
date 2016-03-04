@@ -10,13 +10,19 @@
 
     var ctrl = this;
     var proposals;
+    ctrl.votedFilters = {
+      ALL: 'ALL',
+      VOTED: 'VOTED',
+      NOT_VOTED:'NOT_VOTED'
+    };
+    ctrl.votedFilter = ctrl.votedFilters.ALL;
+
     ctrl.selectedStatuses = ['SUBMITTED'];
 
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
       return;
     }
-
 
     ctrl.refresh = function(){
       $http.get('app/cfp/proposal').then(
@@ -53,6 +59,18 @@
         });
       }
 
+      if ( proposalsFiltered ) {
+        proposalsFiltered = proposalsFiltered.filter(function(elem) {
+          if ( ctrl.votedFilter === ctrl.votedFilters.ALL ) {
+            return true;
+          } else if ( ctrl.votedFilter === ctrl.votedFilters.VOTED ) {
+            return ctrl.isVoted(elem.id);
+          } else {
+            return !ctrl.isVoted(elem.id);
+          }
+        });
+      }
+
       ctrl.pagination.nbtotal = proposalsFiltered ? proposalsFiltered.length : 0;
       ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
       return proposalsFiltered;
@@ -81,6 +99,14 @@
         ctrl.selectedStatuses.push(proposalStatus);
       }
 
+    };
+
+    ctrl.isVoted = function (proposalId) {
+      return !!ctrl.votesMappedByProposalId[proposalId] && !!ctrl.votesMappedByProposalId[proposalId].vote;
+    };
+
+    ctrl.toggleVotedFilter = function(votedFilter) {
+      ctrl.votedFilter = votedFilter;
     };
 
     ctrl.refresh();
