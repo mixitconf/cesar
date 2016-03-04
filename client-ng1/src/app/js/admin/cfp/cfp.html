@@ -43,10 +43,10 @@
                 </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" style="float: left;" translate="view.cfp.home.incomplete"></p>
 
-                <fieldset id="votes" class="adminSection">
+                <fieldset id="votes" class="adminSection" ng-if="proposal.status==='SUBMITTED'">
                     <label>Your vote</label>
                     
-                    <div style="text-align: right;" ng-if="proposal.status==='SUBMITTED'">
+                    <div style="text-align: right;" >
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                            ng-class="{
                             'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-2,
