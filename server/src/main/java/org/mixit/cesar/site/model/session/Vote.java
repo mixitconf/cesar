@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Member;
 
 @Entity
@@ -15,6 +17,7 @@ public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(FlatView.class)
     private Long id;
 
     @ManyToOne
@@ -27,6 +30,7 @@ public class Vote {
      * true if the vote is positive
      */
     @NotNull
+    @JsonView(FlatView.class)
     public Boolean value;
 
     public Long getId() {

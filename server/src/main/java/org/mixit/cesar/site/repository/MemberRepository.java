@@ -39,7 +39,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     List<Member> findAllSpeakersByInterest(@Param("interest") String interest);
 
     @Cacheable(CACHE_MEMBER)
-    @Query(value = "SELECT DISTINCT m FROM Member m inner join m.sessions s left join fetch m.memberEvents me left join fetch me.event e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent and s.sessionAccepted = true and s.format <> 'LightningTalk'")
+    @Query(value = "SELECT DISTINCT m FROM Member m inner join m.sessions s left join fetch m.interests i left join fetch m.sharedLinks l where s.event.id = :idEvent and s.sessionAccepted = true and s.format <> 'LightningTalk'")
     List<Member> findAllAcceptedSpeakers(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_MEMBER)
