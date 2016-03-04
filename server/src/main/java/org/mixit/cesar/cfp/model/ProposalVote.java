@@ -28,6 +28,9 @@ public class ProposalVote {
     @ManyToOne(optional = false)
     protected Proposal proposal;
 
+    @Lob
+    private String voteComment;
+
     public Long getId() {
         return id;
     }
@@ -75,5 +78,14 @@ public class ProposalVote {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public String getVoteComment() {
+        return voteComment;
+    }
+
+    public ProposalVote setVoteComment(String voteComment) {
+        this.voteComment = voteComment;
+        return null;
     }
 }

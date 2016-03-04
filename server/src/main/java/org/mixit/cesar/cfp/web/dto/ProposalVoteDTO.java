@@ -9,6 +9,7 @@ import org.mixit.cesar.cfp.model.ProposalVote;
 public class ProposalVoteDTO {
     private  Long proposalId;
     private  int voteValue;
+    private String voteComment;
 
     public ProposalVoteDTO() {
 
@@ -17,6 +18,7 @@ public class ProposalVoteDTO {
     public ProposalVoteDTO(ProposalVote proposalVote) {
         this.proposalId = proposalVote.getProposal().getId();
         this.voteValue = proposalVote.getVoteValue();
+        this.voteComment = proposalVote.getVoteComment();
     }
 
     public Long getProposalId() {
@@ -33,5 +35,9 @@ public class ProposalVoteDTO {
 
     public void setVoteValue(int voteValue) {
         this.voteValue = voteValue;
+    }
+
+    public String getVoteComment() {
+        return voteComment;
     }
 }
