@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-cfp').controller('AdminAccountsCtrl', function ($rootScope, $filter, $scope, $timeout, $http, accounts, account) {
+  angular.module('cesar-cfp').controller('AdminAccountsCtrl', function ($rootScope, $timeout, $http, accounts, account, paginationService) {
     'ngInject';
 
     var ctrl = this;
@@ -25,24 +25,8 @@
         });
     };
 
-    ctrl.filter = function(){
-      var accountsFiltered =  $filter('filter')(accounts, $scope.search);
-      accountsFiltered =  $filter('orderBy')(accountsFiltered, 'lastname');
-      ctrl.pagination.nbtotal = accountsFiltered ? accountsFiltered.length : 0;
-      ctrl.pagination.pages = Math.ceil(ctrl.pagination.nbtotal/ctrl.pagination.nbitems);
-      return accountsFiltered;
-    };
-
-    ctrl.pagination = {
-      current: 1,
-      nbitems: 10
-    };
-
-    ctrl.displayItem = function (index){
-      var min = ctrl.pagination.current * ctrl.pagination.nbitems - ctrl.pagination.nbitems;
-      var max = ctrl.pagination.current * ctrl.pagination.nbitems - 1;
-      return index>=min && index<=max;
-    };
+    ctrl.pagination = paginationService.createPagination('lastname');
+    ctrl.pagination.set(accounts);
 
   });
 })();

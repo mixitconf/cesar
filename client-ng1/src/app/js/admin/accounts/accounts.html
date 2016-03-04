@@ -15,6 +15,7 @@
     <cesar-search-bar></cesar-search-bar>
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'accounts' : 'account'}}</small></p>
 
+    {{ctrl.pagination.elements(result.length)}}
     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
         <thead ng-show="false">
         <tr>
@@ -22,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="account in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
+        <tr ng-repeat="account in ctrl.pagination.filter(search) as result track by $index" ng-if="ctrl.pagination.displayItem($index)">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
                     {{account.lastname}}  {{account.firstname}}  <a class="cesar-mdl-button--interests">{{account.provider}}</a>
@@ -41,14 +42,7 @@
         </tr>
         </tbody>
     </table>
-    <div class="cesar-pagination__container">
-        <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
-                class="mdl-button mdl-js-button mdl-button--primary"
-                ng-click="ctrl.pagination.current = $index + 1"
-                ng-disabled="ctrl.pagination.current === $index + 1">
-            {{ $index + 1 }}
-        </button>
-    </div>
+    <cesar-pagination pagination="ctrl.pagination.get()"></cesar-pagination>
 
     <p>&nbsp;</p>
 </div>

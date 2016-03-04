@@ -14,8 +14,13 @@
     $q.all([
       SessionService.getAllByYear(year).then(function (response) {
         ctrl.sessions = response.data;
+        return MemberService.getAll('speaker', year);
+      })
+      .then(function(response){
+        SessionService.findSessionsSpeakers(ctrl.sessions, response.data);
       }),
       MemberService.getAll('sponsor', year).then(function (response) {
+        console.log(response.data)
         ctrl.sponsors = response.data;
       })
     ])

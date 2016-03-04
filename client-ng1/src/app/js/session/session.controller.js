@@ -20,5 +20,13 @@
       });
     });
 
+    if(ctrl.userConnected){
+      //Call server to read vote
+
+      ctrl.vote = function(note){
+
+      };
+    }
+
   });
 })();

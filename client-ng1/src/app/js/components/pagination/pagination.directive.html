@@ -1,0 +1,8 @@
+<div class="cesar-pagination__container cesar-text-center">
+    <button ng-repeat="n in [].constructor(pagination.pages) track by $index"
+            class="mdl-button mdl-js-button"
+            ng-click="pagination.current = $index + 1"
+            ng-disabled="pagination.current === $index + 1">
+        {{ $index + 1 }}
+    </button>
+</div>

@@ -45,7 +45,7 @@
              translate-values="{ voteplus : {{ctrl.session.positiveVotes}} , voteminus :  {{(ctrl.session.positiveVotes - ctrl.session.votes)}} }"></div>
     </div>
     <p>&nbsp;</p>
-    <p class="cesar-text">{{ ctrl.session.summary }}</p>
+    <p class="cesar-text" ng-bind-html="ctrl.session.summary | markdown"></p>
 
     <p>
         <a class="cesar-mdl-button--interests" ng-if="ctrl.session.room">
@@ -58,9 +58,9 @@
 
     <p ng-bind-html="ctrl.session.description | markdown"></p>
 
-    <div class="cesar-section--bottom">
-        <p marked="ctrl.member.longDescription"></p>
+    <p ng-bind-html="ctrl.session.ideaForNow | markdown" style="font-style: italic"></p>
 
+    <div class="cesar-section--bottom">
         <p>
             <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button" ng-repeat="interest in ctrl.session.interests" ui-sref="interest({name:interest})">
                 {{interest}}

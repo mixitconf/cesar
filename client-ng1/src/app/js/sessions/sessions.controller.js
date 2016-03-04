@@ -2,46 +2,42 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, Util, cesarSpinnerService, $q, $state, $rootScope, $timeout, account) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, cesarSpinnerService, $q, $state, $rootScope, $timeout, account) {
     'ngInject';
 
     var ctrl = this;
     var type = $state.current.data.type;
+    var speakers;
     ctrl.userConnected = !!account;
 
-    function findSpeaker(response) {
-      ctrl.sessions.forEach(function (session) {
-        var links = Array.isArray(session.links) ? session.links : [session.links];
-        session.speakers = response.data.filter(function (speaker) {
-          var found = links.filter(function (s) {
-            if(s.rel!=='speaker'){
-              return false;
-            }
-            return Util.extractId(s.href) === (speaker.idMember+'');
-          });
-          return found.length > 0;
-        });
-      });
+    function _setSpeaker(response) {
+      speakers = response.data;
+      return $q.when('');
+    }
+
+    function _findSpeaker() {
+      SessionService.findSessionsSpeakers(ctrl.sessions, speakers);
     }
 
     cesarSpinnerService.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
-
-      $q.all([
-        SessionService.getAllByYear()
-          .then(function (response) {
-            ctrl.sessions = response.data;
-            return MemberService.getAll('speaker');
+      $q
+        .all([
+          SessionService.getAllByYear()
+            .then(function (response) {
+              ctrl.sessions = response.data;
+              return MemberService.getAll('speaker');
+            })
+            .then(_setSpeaker),
+          MemberService.getAll('sponsor', $rootScope.cesar.current).then(function (response) {
+            ctrl.sponsors = response.data;
           })
-          .then(findSpeaker),
-        MemberService.getAll('sponsor', $rootScope.cesar.current).then(function (response) {
-          ctrl.sponsors = response.data;
-        })
-      ])
-      .finally(function(){
-        cesarSpinnerService.stopWaiting();
-      });
+        ])
+        .then(_findSpeaker)
+        .finally(function () {
+          cesarSpinnerService.stopWaiting();
+        });
     }
     else {
       SessionService.getAll(type)
@@ -49,8 +45,9 @@
           ctrl.sessions = response.data;
           return MemberService.getAllLigthningtalkSpeakers();
         })
-        .then(findSpeaker)
-        .finally(function(){
+        .then(_setSpeaker)
+        .then(_findSpeaker)
+        .finally(function () {
           cesarSpinnerService.stopWaiting();
         });
     }
