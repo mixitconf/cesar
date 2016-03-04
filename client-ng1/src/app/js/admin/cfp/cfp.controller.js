@@ -34,13 +34,15 @@
       );
     };
 
-    ctrl.vote = function(proposalId, voteValue) {
+    ctrl.vote = function (proposalId, voteValue) {
       var data = {
         proposalId: proposalId,
         voteValue: voteValue
       };
-      $http.post('app/cfp/proposal/vote', data);
-        ctrl.votesMappedByProposalId[proposalId].vote = voteValue;
+      // TODO : This http post triggers a js console error log saying 'no element found'. What is that ?
+      $http.post('app/cfp/proposal/vote', data).then(function () {
+        ctrl.votesMappedByProposalId[proposalId] = {vote: voteValue};
+      });
     };
 
     ctrl.filter = function(){
