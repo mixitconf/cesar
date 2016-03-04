@@ -20,7 +20,6 @@
         SessionService.findSessionsSpeakers(ctrl.sessions, response.data);
       }),
       MemberService.getAll('sponsor', year).then(function (response) {
-        console.log(response.data)
         ctrl.sponsors = response.data;
       })
     ])
