@@ -33,6 +33,7 @@ public class CacheController {
                 CesarCacheConfig.CACHE_SPONSOR,
                 CesarCacheConfig.CACHE_SECURITY,
                 CesarCacheConfig.CACHE_SESSION,
+                CesarCacheConfig.CACHE_LIGHTNINGTALK,
                 CesarCacheConfig.CACHE_PLANNING);
     }
 

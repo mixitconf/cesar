@@ -29,6 +29,10 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://www.mix-it.fr/lightnings</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://www.mix-it.fr/article</loc>
         <priority>0.6</priority>
     </url>

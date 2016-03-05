@@ -1045,6 +1045,7 @@
                                                                                                 translate="menu.cfp">Sessions</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/speakers"><span class="link ng-scope"
                                                                                                      translate="menu.cfp">Speakers</span></a>
+            <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/lightnings"><span class="link ng-scope">Lightning talks</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/sponsors"><span
                     translate="menu.sponsors">Sponsors</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/staff"><span

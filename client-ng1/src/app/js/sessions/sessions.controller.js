@@ -2,11 +2,10 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, cesarSpinnerService, $state, $rootScope, $timeout,$q, account) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, cesarSpinnerService, $rootScope, $timeout,$q, account) {
     'ngInject';
 
     var ctrl = this;
-    var type = $state.current.data.type;
     var speakers;
     ctrl.userConnected = !!account;
 
@@ -24,41 +23,23 @@
     }
 
     cesarSpinnerService.wait();
-    if (type === 'talks') {
-      //we load talks, workshop and keynotes
-      $q
-        .all([
-          SessionService.getAllByYear()
-            .then(function (response) {
-              ctrl.sessions = response.data;
-              return MemberService.getAll('speaker', $rootScope.cesar.current);
-            })
-            .then(_setSpeaker),
-          MemberService.getAll('sponsor', $rootScope.cesar.current)
-            .then(_setSponsor)
-        ])
-        .then(_findSpeaker)
-        .finally(function () {
-          cesarSpinnerService.stopWaiting();
-        });
-    }
-    else {
-      $q
-        .all([
-          SessionService.getAll(type)
-            .then(function (response) {
-              ctrl.sessions = response.data;
-              return MemberService.getAllLigthningtalkSpeakers();
-            })
-            .then(_setSpeaker),
-          MemberService.getAll('sponsor', $rootScope.cesar.current)
-            .then(_setSponsor)
-        ])
-        .then(_findSpeaker)
-        .finally(function () {
-          cesarSpinnerService.stopWaiting();
-        });
-    }
+
+    //we load talks, workshop and keynotes
+    $q
+      .all([
+        SessionService.getAllByYear()
+          .then(function (response) {
+            ctrl.sessions = response.data;
+            return MemberService.getAll('speaker', $rootScope.cesar.current);
+          })
+          .then(_setSpeaker),
+        MemberService.getAll('sponsor', $rootScope.cesar.current)
+          .then(_setSponsor)
+      ])
+      .then(_findSpeaker)
+      .finally(function () {
+        cesarSpinnerService.stopWaiting();
+      });
 
   });
 })();

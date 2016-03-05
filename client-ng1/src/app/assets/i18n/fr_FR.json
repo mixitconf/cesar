@@ -204,8 +204,12 @@
       "benevole": "Mix-IT est organisée exclusivement par des bénévoles."
     },
     "lightningtalks": {
-      "title": "Lightningtalks",
-      "p1": "Vous pouvez proposer des talks de 5 minutes pour le jour de la conférence et seuls les mieux notés seront retenus."
+      "title": "Lightning talks",
+      "summary": "Tout participant peut <strong>proposer</strong> un Lightning Talk et <strong>voter</strong> pour ceux qui l'intéressent. Il s'agit de sessions courtes de 5 minutes qui auront lieu entre 13 et 14H le premier jour de la conférence.",
+      "description": "Pourquoi ne pas tenter votre chance? C'est l'occasion de synthétiser votre connaissance sur un sujet et de donner aux autres participants envie de le connaître plus ! En fonction des votes des participants, votre sujet peut être choisi. Les 5 sujets gagnants seront annoncés le jour de la conférence.",
+      "submit" : "Proposer un Lightning Talk",
+      "login"  : "Connectez-vous pour proposer un Lightning Talk ou voter",
+      "firstone" : "Aucun lightning talk n'a encore été défini. Serez vous le premier ?"
     },
     "planning": {
       "title": "Planning",

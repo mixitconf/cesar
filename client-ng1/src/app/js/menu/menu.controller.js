@@ -29,7 +29,7 @@
       //  id: 'menu.program', submenus: [
       //    //{id: 'planning', link: 'planning', mobile: true},
       //    {id: 'menu.talks', link: 'talks', mobile: true},
-      //    {id: 'menu.ligthningtalks', link: 'lightningtalks', mobile: true}
+      //
       //  ]
       //},
       {
@@ -37,6 +37,7 @@
         //{id: 'menu.speakers', link: 'speakers'},
         {id: 'menu.sponsors', link: 'sponsors', mobile: true},
         {id: 'menu.staff', link: 'staff', mobile: true},
+        {id: 'menu.ligthningtalks', link: 'lightnings', mobile: true},
         {id: 'sub3.5', divider: 'true', mobile: true},
         {id: 'menu.mixit15', link: 'mixit15', mobile: true},
         {id: 'menu.mixit14', link: 'mixit14', mobile: true},

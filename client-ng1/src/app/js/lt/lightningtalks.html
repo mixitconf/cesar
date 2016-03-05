@@ -1,0 +1,36 @@
+<div class="cesar-container">
+    <h1 translate="view.lightningtalks.title">Lightningtalks</h1>
+
+    <p class="cesar-text" translate="view.lightningtalks.summary"></p>
+
+    <p translate="view.lightningtalks.description"></p>
+
+    <button ng-if="ctrl.userConnected" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            ng-click="ctrl.addLT()"
+            translate="view.lightningtalks.submit"
+    >
+    </button>
+    <button ng-if="!ctrl.userConnected" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            ng-click="ctrl.login()"
+            translate="view.lightningtalks.login"
+    >
+    </button>
+
+    <cesar-search-bar></cesar-search-bar>
+
+    <div class="cesar-section--bottom" ng-if="ctrl.sessions.length > 0">
+        <cesar-session-cards sessions="ctrl.sessions" search="search" order="start"></cesar-session-cards>
+    </div>
+    <div class="cesar-section--bottom" ng-if="ctrl.sessions.length === 0">
+        <p class="cesar-text" translate="view.lightningtalks.firstone"></p>
+    </div>
+
+
+    <p class="cesar-text" translate="view.talks.sponsor"></p>
+
+    <cesar-sponsor members="ctrl.sponsors" level="GOLD"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="SILVER"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="PARTY" ng-if="!ctrl.year"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="LANYARD" ng-if="!ctrl.year"></cesar-sponsor>
+    <p>&nbsp;</p>
+</div>
