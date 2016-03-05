@@ -88,9 +88,17 @@
                     </div>
                 </fieldset>
             </td>
-            <td style="padding: 4px">
+            <td style="padding: 4px; width: 1px;">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="admcfptalk({id : proposal.id})">
                     <i class="material-icons mdl-badge">library_books</i>
+                </a>
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.accept(proposal)"
+                   style="margin-top: 0.3em;">
+                    <i class="material-icons mdl-badge">thumb_up</i>
+                </a>
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.reject(proposal)"
+                   style="margin-top: 0.3em;">
+                    <i class="material-icons mdl-badge">thumb_down</i>
                 </a>
             </td>
         </tr>
