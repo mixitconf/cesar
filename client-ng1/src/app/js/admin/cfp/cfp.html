@@ -17,6 +17,14 @@
                 ng-class="{'button-selected':ctrl.selectedStatuses.indexOf(proposalStatus)!==-1}">
             {{proposalStatus}}
         </button>
+        <span style="margin-left: 8em;">
+            <button class="mdl-button mdl-js-button"
+                    ng-repeat="votedFilter in ctrl.votedFilters"
+                    ng-click="ctrl.toggleVotedFilter(votedFilter)"
+                    ng-class="{'button-selected':ctrl.votedFilter===votedFilter}">
+                {{votedFilter}}
+            </button>
+        </span>
     </p>
 
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'proposals' : 'proposal'}}</small></p>
@@ -43,42 +51,42 @@
                 </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" style="float: left;" translate="view.cfp.home.incomplete"></p>
 
-                <p style="text-align: right;" ng-if="proposal.status==='SUBMITTED'">
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{
-                        'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-2,
-                         'mdl-button--primary':ctrl.votesMappedByProposalId[proposal.id]===-2
-                       }"
-                       ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
-                            tooltip="Veto">
-                        <i class="material-icons mdl-badge">visibility_off</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{
-                        'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==-1,
-                         'mdl-button--primary':ctrl.votesMappedByProposalId[proposal.id]===-1
-                       }"
-                       ng-click="ctrl.vote(proposal.id, -1); $event.stopPropagation();">
-                        <i class="material-icons mdl-badge">exposure_neg_1</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{
-                        'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==1,
-                         'mdl-button--primary':ctrl.votesMappedByProposalId[proposal.id]===1
-                       }"
-                       ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();">
-                        <i class="material-icons mdl-badge">exposure_plus_1</i>
-                    </a>
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
-                       ng-class="{
-                        'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id]!==2,
-                         'mdl-button--primary':ctrl.votesMappedByProposalId[proposal.id]===2
-                       }"
-                       ng-click="ctrl.vote(proposal.id, 2); $event.stopPropagation();"
-                            tooltip="I need this talk!">
-                        <i class="material-icons mdl-badge">visibility</i>
-                    </a>
-                </p>
+                <fieldset id="votes" class="adminSection" ng-if="proposal.status==='SUBMITTED'">
+                    <label>Your vote</label>
+                    
+                    <div style="text-align: right;" >
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{
+                            'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==-2
+                           }"
+                           ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
+                                tooltip="Veto">
+                            <i class="material-icons mdl-badge">visibility_off</i>
+                        </a>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{
+                            'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==-1
+                           }"
+                           ng-click="ctrl.vote(proposal.id, -1); $event.stopPropagation();">
+                            <i class="material-icons mdl-badge">exposure_neg_1</i>
+                        </a>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{
+                            'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==1
+                           }"
+                           ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();">
+                            <i class="material-icons mdl-badge">exposure_plus_1</i>
+                        </a>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{
+                            'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==2
+                           }"
+                           ng-click="ctrl.vote(proposal.id, 2); $event.stopPropagation();"
+                                tooltip="I need this talk!">
+                            <i class="material-icons mdl-badge">visibility</i>
+                        </a>
+                    </div>
+                </fieldset>
             </td>
             <td style="padding: 4px">
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="admcfptalk({id : proposal.id})">

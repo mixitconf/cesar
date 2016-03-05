@@ -15,6 +15,15 @@
           ctrl.proposal = response.data;
           ctrl.check();
         });
+
+      $http.get('app/cfp/proposal/votes').then(
+          function(response){
+            ctrl.votesMappedByProposalId = {};
+            angular.forEach(response.data, function(data) {
+              ctrl.votesMappedByProposalId[data.proposalId] = { vote:data.voteValue, comment: data.voteComment };
+            });
+          }
+      );
     }
 
     ctrl.account = account;
@@ -58,6 +67,22 @@
       $state.go('cfp');
     };
 
+    ctrl.vote = function (voteValue) {
+      var data = {
+        proposalId: ctrl.proposal.id,
+        voteValue: voteValue
+      };
+      $http.post('app/cfp/proposal/vote', data);
+      ctrl.votesMappedByProposalId[ctrl.proposal.id].vote = voteValue;
+    };
+
+    ctrl.saveVoteComment = function () {
+      var data = {
+        proposalId: ctrl.proposal.id,
+        voteComment: ctrl.votesMappedByProposalId[ctrl.proposal.id].comment
+      };
+      $http.post('app/cfp/proposal/vote-comment', data);
+    };
 
     function refresh() {
       $timeout(function () {

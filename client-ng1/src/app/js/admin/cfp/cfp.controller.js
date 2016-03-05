@@ -10,13 +10,19 @@
 
     var ctrl = this;
     var proposals;
+    ctrl.votedFilters = {
+      ALL: 'ALL',
+      VOTED: 'VOTED',
+      NOT_VOTED:'NOT_VOTED'
+    };
+    ctrl.votedFilter = ctrl.votedFilters.ALL;
+
     ctrl.selectedStatuses = ['SUBMITTED'];
 
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
       return;
     }
-
 
     ctrl.refresh = function(){
       $http.get('app/cfp/proposal').then(
@@ -28,19 +34,21 @@
           function(response){
             ctrl.votesMappedByProposalId = {};
             angular.forEach(response.data, function(data) {
-              ctrl.votesMappedByProposalId[data.proposalId] = data.voteValue;
+              ctrl.votesMappedByProposalId[data.proposalId] = { vote:data.voteValue, comment: data.voteComment };
             });
           }
       );
     };
 
-    ctrl.vote = function(proposalId, voteValue) {
+    ctrl.vote = function (proposalId, voteValue) {
       var data = {
         proposalId: proposalId,
         voteValue: voteValue
       };
-      $http.post('app/cfp/proposal/vote', data);
-        ctrl.votesMappedByProposalId[proposalId] = voteValue;
+      // TODO : This http post triggers a js console error log saying 'no element found'. What is that ?
+      $http.post('app/cfp/proposal/vote', data).then(function () {
+        ctrl.votesMappedByProposalId[proposalId] = {vote: voteValue};
+      });
     };
 
     ctrl.filter = function(){
@@ -50,6 +58,18 @@
       if ( proposalsFiltered ) {
         proposalsFiltered = proposalsFiltered.filter(function (elem) {
           return ctrl.selectedStatuses.indexOf(elem.status) !== -1;
+        });
+      }
+
+      if ( proposalsFiltered ) {
+        proposalsFiltered = proposalsFiltered.filter(function(elem) {
+          if ( ctrl.votedFilter === ctrl.votedFilters.ALL ) {
+            return true;
+          } else if ( ctrl.votedFilter === ctrl.votedFilters.VOTED ) {
+            return ctrl.isVoted(elem.id);
+          } else {
+            return !ctrl.isVoted(elem.id);
+          }
         });
       }
 
@@ -81,6 +101,14 @@
         ctrl.selectedStatuses.push(proposalStatus);
       }
 
+    };
+
+    ctrl.isVoted = function (proposalId) {
+      return !!ctrl.votesMappedByProposalId[proposalId] && !!ctrl.votesMappedByProposalId[proposalId].vote;
+    };
+
+    ctrl.toggleVotedFilter = function(votedFilter) {
+      ctrl.votedFilter = votedFilter;
     };
 
     ctrl.refresh();
