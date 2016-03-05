@@ -1,21 +1,28 @@
-<div class="cesar-section cesar-sponsors">
-    <div class="cesar-container">
+<div class="cesar-sponsors" ng-class="{'cesar-section' : ctrl.homesponsors}">
+    <div ng-class="{'cesar-container' : ctrl.homesponsors}">
         <h2 translate="home.sponsor.title"></h2>
 
         <p class="cesar-text">
             <span translate="home.sponsor.annonce"></span>&nbsp;
-            <a ng-href="/docs/sponsor/leaflet/{{lang}}" target="sponsor"><span translate="home.sponsor.annonceend"></span></a>
+            <a ng-href="/docs/sponsor/leaflet/{{lang}}" target="sponsor"><span
+                    translate="home.sponsor.annonceend"></span></a>
 
             <span translate="home.sponsor.return"></span>&nbsp;
             <a ng-href="/docs/sponsor/form/{{lang}}" target="sponsor"><span
                     translate="home.sponsor.form"></span></a>
             <span translate="home.sponsor.at"></span> <a>contact @ mix-it.fr</a></p>
 
-        <p align="center"><a ng-href="/docs/sponsor/leaflet/{{lang}}" target="sponsor"><img
-                src="img/sponsor.jpg"></a></p>
-
         <p class="cesar-text">
             <span translate="home.sponsor.presse"></span>&nbsp;
             <a ng-href="/docs/presse/leaflet/{{lang}}" target="sponsor"><span translate="home.sponsor.presseend"></span></a>
+        </p>
+
+        <div class="cesar-section--bottom cesar-text-center" ng-if="ctrl.homesponsors">
+            <p>&nbsp;</p>
+            <cesar-sponsor members="ctrl.homesponsors" level="GOLD"></cesar-sponsor>
+            <cesar-sponsor members="ctrl.homesponsors" level="SILVER"></cesar-sponsor>
+            <cesar-sponsor members="ctrl.homesponsors" level="PARTY"></cesar-sponsor>
+            <cesar-sponsor members="ctrl.homesponsors" level="LANYARD"></cesar-sponsor>
+        </div>
     </div>
 </div>

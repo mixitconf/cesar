@@ -1041,8 +1041,10 @@
             <div><a href="/home"><img src="${baseurl}/img/logo-mixit-transparent.svg" alt="Mix-IT"></a></div>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/article"><span
                     class="link ng-scope" translate="menu.news">News</span></a>
-            <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/cfp"><span class="link ng-scope"
-                                                                                                translate="menu.cfp">CFP</span></a>
+            <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/sessions"><span class="link ng-scope"
+                                                                                                translate="menu.cfp">Sessions</span></a>
+            <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/speakers"><span class="link ng-scope"
+                                                                                                     translate="menu.cfp">Speakers</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/sponsors"><span
                     translate="menu.sponsors">Sponsors</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/staff"><span
@@ -1071,7 +1073,7 @@
                     <h1>
                         <img src="${baseurl}/img/logo-mixit-transparent.svg"><br>
                         <span translate="home.headband.comeback" id="headbandComeback"
-                              class="ng-scope">revient les <span class="cesar-headband-blink">21 et 22 avril 2016</span></span>
+                              class="ng-scope"><span class="cesar-headband-blink">21 et 22 avril 2016</span></span>
                     </h1>
                 </div>
             </div>
