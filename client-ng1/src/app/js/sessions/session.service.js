@@ -13,8 +13,8 @@
       return $http.get('/api/session/' + type);
     }
 
-    function getById(id){
-      return $http.get('/api/session/' + id);
+    function getById(id, anonymous){
+      return $http.get('/api/session/' + id + (anonymous ? '?anonymous=true' : ''));
     }
 
     function findSessionsSpeakers(sessions, speakers) {

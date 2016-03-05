@@ -3,13 +3,18 @@ package org.mixit.cesar.site.web.app;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.security.service.authentification.CurrentUser;
+import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.session.Vote;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.VoteRepository;
+import org.mixit.cesar.site.web.dto.VoteDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/app/vote")
+@Transactional
 public class VoteController {
 
     @Autowired
@@ -29,31 +35,39 @@ public class VoteController {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     /**
      * Return a member vote for a session
      */
-    @RequestMapping("/session/{idSession}/member/{idMember}")
+    @Authenticated
+    @RequestMapping("/session/{idSession}")
     @JsonView(FlatView.class)
-    public ResponseEntity<Vote> getVote(@PathVariable("idSession") Long idSession, @PathVariable("idMember") Long idMember) {
+    public ResponseEntity<Vote> getVote(@PathVariable("idSession") Long idSession) {
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         return ResponseEntity
                 .ok()
-                .body(voteRepository.findBySessionAndMember(idSession, idMember));
+                .body(voteRepository.findBySessionAndMember(idSession, currentUser.getCredentials().get().getIdMember()));
     }
 
     /**
      * Vote for a session
      */
-    @RequestMapping(method = RequestMethod.PUT)
-    public void vote(@RequestBody Vote vote) {
-        checkNotNull(vote.getMember().getId());
-        checkNotNull(vote.getSession().getId());
+    @Authenticated
+    @RequestMapping(method = RequestMethod.POST)
+    public void vote(@RequestBody VoteDto vote) {
+        checkNotNull(vote.getIdSession());
 
-        Vote votePersisted = voteRepository.findBySessionAndMember(vote.getSession().getId(), vote.getMember().getId());
+        CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
+        Long idMember = currentUser.getCredentials().get().getIdMember();
+
+        Vote votePersisted = voteRepository.findBySessionAndMember(vote.getIdSession(), idMember);
         if (votePersisted == null) {
             voteRepository.save(
                     new Vote()
-                            .setMember(memberRepository.findOne(vote.getMember().getId()))
-                            .setSession(sessionRepository.findOne(vote.getSession().getId()))
+                            .setMember(memberRepository.findOne(idMember))
+                            .setSession(sessionRepository.findOne(vote.getIdSession()))
                             .setValue(vote.getValue())
             );
         }

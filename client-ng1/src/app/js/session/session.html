@@ -1,7 +1,7 @@
 <div class="cesar-container">
 
     <h1><i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">{{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}} </h1>
-
+{{ctrl.session}}
     <div ng-if="cesar.voteIsOpen && ctrl.session.year === cesar.current">
         <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
 
@@ -10,19 +10,29 @@
                 <span ng-bind-html="'view.talks.vote.ifconnected' | translate"></span>
                 <span ng-bind-html="'view.talks.vote.action_detail' | translate"></span>
             </p>
+            <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
             <div style="float: right">
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteneg"
                    ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote > 0,
                     'mdl-button--primary':ctrl.myvote < 0}"
                    ng-click="ctrl.vote(-2); $event.stopPropagation();">
                     <i class="material-icons mdl-badge">exposure_neg_1</i>
                 </a>
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                <div class="mdl-tooltip" for="voteneg" ng-if="ctrl.myvote">
+                    <span ng-if="ctrl.myvote < 0">You voted -1</span>
+                    <span ng-if="ctrl.myvote > 0">You voted +1</span>
+                </div>
+
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteplus"
                    ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote < 0,
                     'mdl-button--primary':ctrl.myvote > 0}"
-                   ng-click="ctrl.vote(-2); $event.stopPropagation();">
+                   ng-click="ctrl.vote(2); $event.stopPropagation();">
                     <i class="material-icons mdl-badge">exposure_plus_1</i>
                 </a>
+                <div class="mdl-tooltip" for="voteplus" ng-if="ctrl.myvote">
+                    <span ng-if="ctrl.myvote < 0">You voted -1</span>
+                    <span ng-if="ctrl.myvote > 0">You voted +1</span>
+                </div>
             </div>
         </div>
         <p>&nbsp;</p>

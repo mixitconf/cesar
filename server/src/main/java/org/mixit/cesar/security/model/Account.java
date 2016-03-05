@@ -99,6 +99,10 @@ public class Account implements Cloneable {
         return id;
     }
 
+    public Long getIdMember() {
+        return member==null ? null : member.getId();
+    }
+
     public Account setId(Long id) {
         this.id = id;
         return this;

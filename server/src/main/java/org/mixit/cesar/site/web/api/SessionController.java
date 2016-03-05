@@ -3,8 +3,13 @@ package org.mixit.cesar.site.web.api;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.mixit.cesar.security.service.authentification.CurrentUser;
+import org.mixit.cesar.security.service.autorisation.Authenticated;
+import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.session.Vote;
 import org.mixit.cesar.site.web.dto.SessionResource;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.SessionRepository;
@@ -42,10 +47,12 @@ public class SessionController {
 
     @RequestMapping("/{id}")
     @ApiOperation(value = "Finds one session", httpMethod = "GET")
-    public ResponseEntity<SessionResource> getSession(@PathVariable("id") Long id) {
+    public ResponseEntity<SessionResource> getSession(@PathVariable("id") Long id, @RequestParam(required = false) boolean anonymous) {
         Session session = sessionRepository.findOne(id);
-        session.setNbConsults(session.getNbConsults()+1);
-        sessionRepository.save(session);
+        if(!anonymous){
+            session.setNbConsults(session.getNbConsults()+1);
+            sessionRepository.save(session);
+        }
         return ResponseEntity
                 .ok()
                 .body(SessionResource.convert(session));

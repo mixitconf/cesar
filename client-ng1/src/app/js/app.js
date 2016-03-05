@@ -44,9 +44,10 @@
   angular.module('cesar').run(function($http, $rootScope) {
     $http.get('/api/cesar').then(function(response){
       $rootScope.cesar = response.data;
+      var mixitStart = moment($rootScope.cesar.day1).hours('0');
       var mixitEnd = moment($rootScope.cesar.day2).hours('19');
-      //TODO open the vote only between start and stop
-      $rootScope.cesar.voteIsOpen = moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
+
+      $rootScope.cesar.voteIsOpen = moment().isAfter(mixitStart) && moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
     });
   });
 })();
