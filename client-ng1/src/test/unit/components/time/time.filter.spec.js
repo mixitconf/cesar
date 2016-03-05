@@ -1,4 +1,4 @@
-describe('Filter markdown', function(){
+describe('Filter time', function(){
   var timeFilter;
 
   beforeEach(module('cesar-utils'));

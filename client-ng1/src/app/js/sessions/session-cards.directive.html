@@ -7,23 +7,26 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in pagination.filter(search) | orderBy:order as result" ui-sref="session({id : session.idSession, format : session.format})"
+    <tr ng-repeat="session in pagination.filter(search) as result" ui-sref="session({id : session.idSession, format : session.format})"
         ng-if="pagination.displayItem($index)">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
                 {{session.title}}
             </p>
-            <p style="padding-top: 8px">
-            <span ng-bind-html="session.summary | markdown" ></span>
+            <div style="padding-top: 8px">
+                <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
+                <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
 
-            <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+
+
+                <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                     <a  class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
                         <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}">
                     </a>
                     <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{speaker.firstname}} {{speaker.lastname}}</a>&nbsp;
                 </span>
-            </p>
+            </div>
         </td>
         <td>
             <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next">

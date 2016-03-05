@@ -16,7 +16,7 @@
         skipIcon : '@'
       },
       controller: function($scope){
-        $scope.pagination = paginationService.createPagination();
+        $scope.pagination = paginationService.createPagination($scope.order);
 
         $scope.$watchCollection('sessions', function(sessions){
           $scope.pagination.set(sessions);

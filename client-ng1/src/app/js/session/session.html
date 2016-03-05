@@ -56,16 +56,9 @@
     </div>
     <p>&nbsp;</p>
 
-    <div class="cesar-text">{{ctrl.session.summary}}</span></div>
+    <p class="cesar-text">{{ctrl.session.summary}}</span></p>
 
-    <p>
-        <a class="cesar-mdl-button--interests" ng-if="ctrl.session.room">
-            Salle {{ctrl.session.room | defaultValue}}
-        </a>
-        <span ng-if="ctrl.session.start">
-         de <a class="cesar-mdl-button--interests">{{ctrl.session.start | defaultValue}}</a> à
-        <a class="cesar-mdl-button--interests">{{ctrl.session.end | defaultValue}}</a></span>
-    </p>
+    <p><cesar-slot start="ctrl.session.start" end="ctrl.session.end" room="ctrl.session.room"></cesar-slot></p>
 
     <p ng-bind-html="ctrl.session.description | markdown"></p>
 

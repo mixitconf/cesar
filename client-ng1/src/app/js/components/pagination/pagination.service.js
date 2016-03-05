@@ -42,6 +42,7 @@
     Pagination.prototype.filter = function (search) {
       if(this.data){
         var data =  $filter('filter')(this.data, search);
+
         if(this.propertyOrder){
           data =  $filter('orderBy')(data, this.propertyOrder);
         }

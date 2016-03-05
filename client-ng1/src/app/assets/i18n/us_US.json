@@ -215,6 +215,7 @@
     "talks": {
       "title": "Talks and workshops",
       "sponsor": "Sponsors",
+      "room": "Room",
       "ideaForNow": "Idea for now",
       "oldedition": "Sessions and speakers in {{years}}",
       "p1": "You can suggest 3 different formats: keynotes (at the beginning and the end of the day, in front of everyone), talks, and workshops. For the last one, please follow the instructions in order to know if some prerequisites are mandatory.",
@@ -481,5 +482,13 @@
     "contactus": "Contact us",
     "codeofconduct": "Code of conduct",
     "rss": "RSS feed"
+  },
+  "datetime" : {
+    "day1" : "Monday",
+    "day2" : "Tueday",
+    "day3" : "Wednesday",
+    "day4" : "Thursday",
+    "day5" : "Friday",
+    "day6" : "Saturday"
   }
 }

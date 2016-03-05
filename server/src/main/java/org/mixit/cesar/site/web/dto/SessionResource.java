@@ -38,13 +38,6 @@ public class SessionResource extends ResourceSupport {
     public String end;
     public List<String> interests = new ArrayList<>();
 
-    public static <T extends Session<T>> SessionResource convert(Slot slot) {
-        return convert(slot.getSession())
-                .setRoom(slot.getRoom().getName())
-                .setStart(slot.getStart().format(DateTimeFormatter.ISO_DATE_TIME))
-                .setEnd(slot.getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
-    }
-
     public static <T extends Session<T>> SessionResource convert(T session) {
         SessionResource sessionResource = new SessionResource()
                 .setIdSession(session.getId())
@@ -73,6 +66,13 @@ public class SessionResource extends ResourceSupport {
                     .stream()
                     .map(Interest::getName)
                     .collect(Collectors.toList()));
+        }
+
+        if(session.getSlot()!=null){
+            sessionResource
+                    .setRoom(session.getSlot().getRoom().getName())
+                    .setStart(session.getSlot().getStart().format(DateTimeFormatter.ISO_DATE_TIME))
+                    .setEnd(session.getSlot().getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
         }
 
         sessionResource.add(ControllerLinkBuilder.linkTo(SessionController.class).slash(session.getId()).withSelfRel());
