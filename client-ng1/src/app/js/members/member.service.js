@@ -9,10 +9,6 @@
       return $http.get('/api/member/' + type + (year ? '?year=' + year : ''));
     }
 
-    function getAllSponsors(year){
-      return $http.get('/api/member/sponsor' + (year ? '?year=' + year : ''));
-    }
-
     function getAllLigthningtalkSpeakers(){
       return $http.get('/api/member/speaker/lightningtalks');
     }
@@ -27,7 +23,6 @@
 
     return {
       getAll : getAll,
-      getAllSponsors: getAllSponsors,
       getAllLigthningtalkSpeakers: getAllLigthningtalkSpeakers,
       getById : getById,
       getByLogin: getByLogin

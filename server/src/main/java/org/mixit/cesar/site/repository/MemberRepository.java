@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.repository;
 
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_MEMBER;
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SPONSOR;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     @Query(value = "SELECT DISTINCT m FROM Member m left join fetch m.sessions s left join fetch m.memberEvents me left join fetch me.event e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent and s.sessionAccepted = true and s.format = 'LightningTalk'")
     List<Member> findAllLigthningtalkSpeakers(@Param("idEvent") Long idEvent);
 
-    @Cacheable(CACHE_MEMBER)
+    @Cacheable(CACHE_SPONSOR)
     @Query(value = "SELECT DISTINCT m FROM Sponsor m left join fetch m.memberEvents me left join fetch me.event e left join fetch m.interests i left join fetch m.sharedLinks l where e.id = :idEvent")
     List<Sponsor> findAllSponsors(@Param("idEvent") Long idEvent);
 
