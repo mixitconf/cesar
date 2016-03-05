@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, cesarSpinnerService, $q, $state, $rootScope, $timeout, account) {
+  angular.module('cesar-sessions').controller('SessionsCtrl', function (SessionService, MemberService, cesarSpinnerService, $state, $rootScope, $timeout, account) {
     'ngInject';
 
     var ctrl = this;
@@ -12,7 +12,11 @@
 
     function _setSpeaker(response) {
       speakers = response.data;
-      return $q.when('');
+      return MemberService.getAllSponsors($rootScope.cesar.current);
+    }
+
+    function _setSponsor(response) {
+      ctrl.sponsors = response.data;
     }
 
     function _findSpeaker() {
@@ -22,18 +26,13 @@
     cesarSpinnerService.wait();
     if (type === 'talks') {
       //we load talks, workshop and keynotes
-      $q
-        .all([
-          SessionService.getAllByYear()
-            .then(function (response) {
-              ctrl.sessions = response.data;
-              return MemberService.getAll('speaker');
-            })
-            .then(_setSpeaker),
-          MemberService.getAll('sponsor', $rootScope.cesar.current).then(function (response) {
-            ctrl.sponsors = response.data;
-          })
-        ])
+      SessionService.getAllByYear()
+        .then(function (response) {
+          ctrl.sessions = response.data;
+          return MemberService.getAll('speaker', $rootScope.cesar.current);
+        })
+        .then(_setSpeaker)
+        .then(_setSponsor)
         .then(_findSpeaker)
         .finally(function () {
           cesarSpinnerService.stopWaiting();
@@ -46,6 +45,7 @@
           return MemberService.getAllLigthningtalkSpeakers();
         })
         .then(_setSpeaker)
+        .then(_setSponsor)
         .then(_findSpeaker)
         .finally(function () {
           cesarSpinnerService.stopWaiting();
