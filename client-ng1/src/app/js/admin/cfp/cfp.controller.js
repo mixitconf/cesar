@@ -51,6 +51,23 @@
       });
     };
 
+    ctrl.accept = function (proposal) {
+        $http
+            .post('app/cfp/proposal/' + proposal.id + '/accept')
+            .then(function () {
+                proposal.status = 'ACCEPTED';
+            });
+    };
+
+    ctrl.reject = function(proposal) {
+      $http
+          .post('app/cfp/proposal/' + proposal.id + '/reject')
+          .then(function () {
+            proposal.status = 'REJECTED';
+          });
+
+    };
+
     ctrl.filter = function(){
       var proposalsFiltered =  $filter('filter')(proposals, $scope.search);
       proposalsFiltered =  $filter('orderBy')(proposalsFiltered, 'status');

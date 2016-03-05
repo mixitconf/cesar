@@ -3,6 +3,7 @@ package org.mixit.cesar.cfp.web;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.cfp.model.Proposal;
 import org.mixit.cesar.cfp.model.ProposalError;
+import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.repository.ProposalVoteRepository;
 import org.mixit.cesar.cfp.service.ProposalService;
@@ -164,5 +165,26 @@ public class ProposalController {
                 .stream()
                 .map(ProposalVoteDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/{proposalId}/accept")
+    @ResponseStatus(HttpStatus.OK)
+    @Authenticated
+    @NeedsRole(Role.ADMIN)
+    public void accept(@PathVariable(value = "proposalId")  Long proposalId) {
+        changeProposalStatus(proposalId, ProposalStatus.ACCEPTED);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/{proposalId}/reject")
+    @ResponseStatus(HttpStatus.OK)
+    @Authenticated
+    @NeedsRole(Role.ADMIN)
+    public void reject(@PathVariable(value = "proposalId")  Long proposalId) {
+        changeProposalStatus(proposalId, ProposalStatus.REJECTED);
+    }
+
+    private void changeProposalStatus(Long proposalId, ProposalStatus accepted) {
+        Proposal proposal = proposalRepository.findOne(proposalId);
+        proposal.setStatus(accepted);
     }
 }
