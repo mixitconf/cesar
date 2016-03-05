@@ -172,17 +172,19 @@ public class ProposalController {
     @Authenticated
     @NeedsRole(Role.ADMIN)
     public void accept(@PathVariable(value = "proposalId")  Long proposalId) {
-        Proposal proposal = proposalRepository.findOne(proposalId);
-        proposal.setStatus(ProposalStatus.ACCEPTED);
+        changeProposalStatus(proposalId, ProposalStatus.ACCEPTED);
     }
-
 
     @RequestMapping(method = RequestMethod.POST, value = "/{proposalId}/reject")
     @ResponseStatus(HttpStatus.OK)
     @Authenticated
     @NeedsRole(Role.ADMIN)
     public void reject(@PathVariable(value = "proposalId")  Long proposalId) {
+        changeProposalStatus(proposalId, ProposalStatus.REJECTED);
+    }
+
+    private void changeProposalStatus(Long proposalId, ProposalStatus accepted) {
         Proposal proposal = proposalRepository.findOne(proposalId);
-        proposal.setStatus(ProposalStatus.REJECTED);
+        proposal.setStatus(accepted);
     }
 }
