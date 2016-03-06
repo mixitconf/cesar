@@ -45,7 +45,16 @@
   },
   "home": {
     "headband": {
-      "comeback": "returns on <span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
+      "comeback": "<span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
+    },
+    "countdown": {
+      "days" : "{{days}} days until the conference opening!",
+      "hours" : "{{hours}} minutes until the conference opening!",
+      "minutes" : "{{minutes}} minutes until the conference opening!",
+      "countstart" : "The countdown starts.",
+      "welcome" : "Welcome to Mix-IT",
+      "bye" : "Mix-IT is closed. See you next year...",
+      "p1":"We closed the call for paper and we will choose sessions on Mars, 11th 2016. As soon as we have a clear idea for speakers and sessions of the 2016 edition, we will warn you. Ticket sale should be opened near the middle of March. Stay tuned..."
     },
     "cfp": {
       "title":"Hurry up... The target date of the CFP was drawing nearer.",

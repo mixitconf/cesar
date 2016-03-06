@@ -9,7 +9,7 @@
 
     MemberService.getAll('sponsor', 2016)
       .then(function (response) {
-        ctrl.sponsors = response.data;
+        ctrl.homesponsors = response.data;
       });
   });
 })();
