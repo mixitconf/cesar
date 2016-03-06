@@ -68,7 +68,7 @@
                 </a>
             </td>
         </tr>
-        <tr ng-repeat-end ng-if="proposal.status==='SUBMITTED'" class="cesar-admin-section">
+        <tr ng-repeat-end ng-if="proposal.status==='SUBMITTED' && ctrl.displayItem($index)" class="cesar-admin-section">
             <td colspan="2">
                 <fieldset id="votes" >
                     <label>Your vote</label>
@@ -112,15 +112,14 @@
         </tr>
         </tbody>
     </table>
-    <div class="cesar-pagination__container">
+    <div class="cesar-pagination__container cesar-text-center">
         <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
-                class="mdl-button mdl-js-button mdl-button--primary"
+                class="mdl-button mdl-js-button"
                 ng-click="ctrl.pagination.current = $index + 1"
                 ng-disabled="ctrl.pagination.current === $index + 1">
             {{ $index + 1 }}
         </button>
     </div>
-
 
     <p>&nbsp;</p>
 </div>
