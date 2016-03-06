@@ -5,20 +5,22 @@
         <a class="cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>
 
-    <fieldset id="votes" class="adminSection">
-        <label>Your vote</label>
+    <form novalidate class="cesar-form" name="frm">
+        <div id="votes" class="cesar-admin-section">
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="cesar-textfield__radio-label" for="comment">Commentaire lié à votre vote</label>
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="comment" ng-maxlength="300"
+                          name="comment"
+                          ng-model="ctrl.votesMappedByProposalId[ctrl.proposal.id].comment"></textarea>
+            </div>
 
-        <form novalidate class="cesar-form" name="frm" style="width: 60%; display: inline-block;">
-            <input class="mdl-textfield__input" type="text" id="title" name="title"
-                   ng-model="ctrl.votesMappedByProposalId[ctrl.proposal.id].comment" style="width: 90%; display: inline-block; margin-right: 5px;"/>
-
-            <cesar-button disabled="spinner==='on'" id="saveComment" on-click="ctrl.saveVoteComment()" text="Save comment"
-                          spinner="spinner" google-icon="save"></cesar-button>
-            <div class="mdl-tooltip" for="saveComment">Save vote comment</div>
-
-        </form>
-
-        <span style="margin-left: 5px;" ng-if="ctrl.proposal.status==='SUBMITTED'">
+            <div style="float: right">
+                <cesar-button disabled="spinner==='on'" id="saveComment" on-click="ctrl.saveVoteComment()" text="Save comment"
+                              spinner="spinner" google-icon="save"></cesar-button>
+                <div class="mdl-tooltip" for="saveComment">Save vote comment</div>
+            </div>
+            <p>&nbsp;</p>
+            <span style="margin-left: 5px;" ng-if="ctrl.proposal.status==='SUBMITTED'">
             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[ctrl.proposal.id].vote!==-2}"
                ng-click="ctrl.vote(-2); $event.stopPropagation();"
@@ -30,7 +32,7 @@
             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[ctrl.proposal.id].vote!==-1}"
                ng-click="ctrl.vote(-1); $event.stopPropagation();"
-            id="minusOne">
+               id="minusOne">
                 <i class="material-icons mdl-badge">exposure_neg_1</i>
             </a>
             <div class="mdl-tooltip" for="minusOne">Minus one</div>
@@ -51,7 +53,8 @@
             </a>
             <div class="mdl-tooltip" for="needIt">I need this talk!</div>
         </span>
-    </fieldset>
+        </div>
+    </form>
 
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
 
