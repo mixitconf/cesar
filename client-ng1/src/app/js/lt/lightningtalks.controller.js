@@ -33,11 +33,10 @@
       });
 
     //TODO recup myvotes and myLT
-    ctrl.zoom = function(session){
-      console.log(session)
-      //if(ctrl.userConnected)
-      //$state
-      //ui-sref="lightning({id : session.idSession})"
-    }
+    //ctrl.zoom = function(session){
+    //  //if(ctrl.userConnected)
+    //  //$state
+    //  //ui-sref="lightning({id : session.idSession})"
+    //};
   });
 })();

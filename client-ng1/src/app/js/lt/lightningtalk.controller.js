@@ -16,7 +16,7 @@
     }
     //default language is fr
     if(!ctrl.proposal.lang){
-      ctrl.proposal.lang = 'fr;'
+      ctrl.proposal.lang = 'fr';
     }
 
     ctrl.save = function (spinner) {
@@ -34,6 +34,5 @@
 
       }
     };
-
   });
 })();
