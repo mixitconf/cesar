@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="session in pagination.filter(search) as result" ui-sref="session({id : session.idSession, format : session.format})"
+    <tr ng-repeat="session in pagination.filter(search) as result"
         ng-if="pagination.displayItem($index)">
         <td class="mdl-data-table__cell--non-numeric">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
@@ -29,7 +29,8 @@
             </div>
         </td>
         <td>
-            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next">
+            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next"
+               ui-sref="session({id : session.idSession, format : session.format})">
                 <i class="material-icons mdl-badge" data-badge="{{session.lang}}">nature_people</i>
             </a>
             <div class="cesar-session__container" ng-if="displayVotes">Votes <button class="mdl-button mdl-js-button mdl-button--primary"> + {{session.positiveVotes}}</button></div>

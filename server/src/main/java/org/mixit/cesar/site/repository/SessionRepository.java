@@ -36,7 +36,9 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Workshop> findAllAcceptedWorkshops(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_LIGHTNINGTALK)
-    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
-    List<LightningTalk> findAllAcceptedLightningTalks(@Param("idEvent") Long idEvent);
+    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event.id = :idEvent and s.valid = true")
+    List<LightningTalk> findAllLightningTalks(@Param("idEvent") Long idEvent);
 
+    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event.id = :idEvent and s.valid = true and sp.id = :idSpeaker")
+    List<LightningTalk> findAllMyLightningTalks(@Param("idEvent") Long idEvent, @Param("idSpeaker") Long idSpeaker);
 }

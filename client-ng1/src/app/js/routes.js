@@ -135,14 +135,42 @@
           account: getAccount
         })
         .build())
-      .state('lightning', new State(USER_ROLES, 'lightning/:id/:title', 'js/session/session.html').controller('SessionCtrl')
+      .state('lightning-create', new State(USER_ROLES, 'lightning', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
         .resolve({
           /* @ngInject */
-          session: function (SessionService, $stateParams) {
+          lightning: function () {
+            return {};
+          },
+          type: function () {
+            return 'creation';
+          },
+          account: getAccount
+        })
+        .build())
+      .state('lightning-edition', new State(USER_ROLES, 'lightning/:id/edit', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
+        .resolve({
+          /* @ngInject */
+          lightning: function (SessionService, $stateParams) {
             return SessionService.getById($stateParams.id).then(function (response) {
               return response.data;
             });
-          }
+          },
+          type: function () {
+            return 'edition';
+          },
+          account: getAccount
+        })
+        .build())
+      .state('lightning', new State(USER_ROLES, 'lightning/:id', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
+        .resolve({
+          /* @ngInject */
+          lightning: function (SessionService, $stateParams) {
+            return SessionService.getById($stateParams.id).then(function (response) {
+              return response.data;
+            });
+          },
+          account : angular.noop,
+          type: angular.noop
         })
         .build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html')

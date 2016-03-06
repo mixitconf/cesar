@@ -10,7 +10,7 @@
     }
 
     function getAllLigthningtalkSpeakers(){
-      return $http.get('/api/member/speaker/lightningtalks');
+      return $http.get('/api/member/speaker/lightningtalks?year=2016');
     }
 
     function getById(id){

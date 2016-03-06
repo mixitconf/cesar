@@ -26,11 +26,12 @@ public class CacheController {
 
     @NeedsRole(ADMIN)
     @RequestMapping
-    public List<String> getCahcheRegion() {
+    public List<String> getCacheRegion() {
         return Arrays.asList(
                 CesarCacheConfig.CACHE_ARTICLE,
                 CesarCacheConfig.CACHE_MEMBER,
                 CesarCacheConfig.CACHE_SPONSOR,
+                CesarCacheConfig.CACHE_SPEAKER_LT,
                 CesarCacheConfig.CACHE_SECURITY,
                 CesarCacheConfig.CACHE_SESSION,
                 CesarCacheConfig.CACHE_LIGHTNINGTALK,

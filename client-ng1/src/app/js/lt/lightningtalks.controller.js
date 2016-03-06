@@ -2,12 +2,14 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('LightningtalksCtrl', function (SessionService, MemberService, cesarSpinnerService, $rootScope, $timeout,$q, account) {
+  angular.module('cesar-sessions').controller('LightningtalksCtrl', function (SessionService, MemberService, cesarSpinnerService, paginationService,  $timeout, $q, $state, account) {
     'ngInject';
 
     var ctrl = this;
-    var speakers;
     ctrl.userConnected = !!account;
+    ctrl.editionMode = false;
+
+    ctrl.pagination = paginationService.createPagination('-positiveVotes');
 
     cesarSpinnerService.wait();
     $q
@@ -15,22 +17,27 @@
         SessionService.getAll('lightningtalks')
           .then(function (response) {
             ctrl.sessions = response.data;
+            ctrl.pagination.set(ctrl.sessions);
             return MemberService.getAllLigthningtalkSpeakers();
           })
           .then(function (response) {
-            speakers = response.data;
+            SessionService.findSessionsSpeakers(ctrl.sessions, response.data);
           }),
-        MemberService.getAll('sponsor', $rootScope.cesar.current)
+        MemberService.getAll('sponsor')
           .then(function (response) {
             ctrl.sponsors = response.data;
           })
       ])
-      .then(function() {
-        SessionService.findSessionsSpeakers(ctrl.sessions, speakers);
-      })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
 
+    //TODO recup myvotes and myLT
+    ctrl.zoom = function(session){
+      console.log(session)
+      //if(ctrl.userConnected)
+      //$state
+      //ui-sref="lightning({id : session.idSession})"
+    }
   });
 })();
