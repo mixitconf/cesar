@@ -1,9 +1,35 @@
 <div class="cesar-container">
-    <h1 ng-if="ctrl.proposal.id">View talk</h1>
+    <h1 ng-if="ctrl.proposal.id">
+        <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{ctrl.proposal.format | sessionLogo}}</i>&nbsp;
+        {{ctrl.proposal.title}}
+    </h1>
 
     <div>
         <a class="cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>
+
+    <div>
+        <span class="cesar-textfield__radio-label" >Speaker</span><br>
+        <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
+           ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px"
+           ng-if="speaker.id!==ctrl.account.member.id"
+           ui-sref="member({id : speaker.id, redirect: 'cfp'})">
+            {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
+        </a>
+    </div>
+
+    <div>
+        <span class="cesar-textfield__radio-label" translate="view.cfp.talk.interest.text">Title</span><br>
+        <a class="cesar-mdl-button--interests"
+           ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
+            {{interest.name}}
+        </a>
+    </div>
+
+    <p ng-if="ctrl.proposal.addedAt" translate="view.cfp.talk.createdat"
+       translate-values="{ 'date' : ctrl.proposal.addedAt }"></p>
+
+    <p>
 
     <form novalidate class="cesar-form" name="frm">
         <div id="votes" class="cesar-admin-section">
@@ -67,16 +93,7 @@
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
 
     <div class="cesar-section--bottom">
-        <form novalidate class="cesar-form" name="frm">
 
-            <p ng-if="ctrl.proposal.addedAt" translate="view.cfp.talk.createdat"
-               translate-values="{ 'date' : ctrl.proposal.addedAt }"></p>
-
-            <p>
-                <span class="cesar-textfield__radio-label" translate="view.cfp.talk.title.text">Title</span><br>
-                {{ctrl.proposal.title}}
-            </p>
-            <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.summary.text">Title</span><br>
                 {{ctrl.proposal.summary}}
             </p>
@@ -87,10 +104,6 @@
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.ideaForNow.text">Title</span><br>
                 {{ctrl.proposal.ideaForNow}}
-            </p>
-            <p>
-                <span class="cesar-textfield__radio-label" translate="view.cfp.talk.messageForStaff.text">Title</span><br>
-                {{ctrl.proposal.messageForStaff}}
             </p>
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.messageForStaff.text">Title</span><br>
@@ -120,33 +133,8 @@
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.maxAttendees.text">Title</span><br>
                 {{'view.cfp.nbattendees.' + ctrl.proposal.maxAttendees | translate}}
             </p>
-            <div>
-                <span class="cesar-textfield__radio-label" translate="view.cfp.talk.interest.text">Title</span><br>
-                <a class="cesar-mdl-button--interests"
-                   ng-repeat="interest in ctrl.proposal.interests" style="padding: 0 4px">
-                    {{interest.name}}
-                </a>
-            </div>
-
-            <div>
-                <span class="cesar-textfield__radio-label" >Speaker</span><br>
-                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
-                   ng-repeat="speaker in ctrl.proposal.speakers" style="padding: 0 4px"
-                   ng-if="speaker.id!==ctrl.account.member.id"
-                   ui-sref="member({id : speaker.id, redirect: 'cfp'})">
-                    {{speaker.name ? speaker.name : speaker.firstname + ' ' + speaker.lastname}}
-                </a>
-            </div>
 
 
-            <div class="cesar-error" ng-if="ctrl.confirm.display">
-                <p>&nbsp;</p>
-                <span translate="view.cfp.talk.confirm.text">Veuillez saisir votre prénom pour confirmer que vous voulez bien supprimer cette session :</span>
-                <input type="text" ng-model="ctrl.confirm.message" style="outline: none;"/><br>
-                <span translate="view.cfp.talk.confirm.help">Cliquez ensuite à nouveau sur le bouton supprimer </span>
-            </div>
 
-
-        </form>
     </div>
 </div>

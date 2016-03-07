@@ -42,6 +42,7 @@
         <tr ng-repeat-start="proposal in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
             <td class="mdl-data-table__cell--non-numeric">
                 <p class="cesar-text">
+                    <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{proposal.format | sessionLogo}}</i>&nbsp;
                     {{proposal.title}}  <a class="cesar-mdl-button--interests" ng-if="proposal.status">{{proposal.status}}</a>
                 </p>
                 <p>{{proposal.summary}}</p>
