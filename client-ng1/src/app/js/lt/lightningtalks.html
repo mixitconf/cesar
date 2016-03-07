@@ -60,25 +60,25 @@
                         <i class="material-icons mdl-badge" data-badge="{{session.lang}}">nature_people</i>
                     </a>
                     <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteneg" ng-if="ctrl.userConnected"
-                       ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote > 0,
-                    'mdl-button--primary':ctrl.myvote < 0}"
-                       ng-click="ctrl.vote(-2); $event.stopPropagation();">
+                       ng-class="{'mdl-button--colored': !session.myvote || session.myvote > 0,
+                    'mdl-button--primary':session.myvote < 0}"
+                       ng-click="ctrl.vote(session, -2); $event.stopPropagation();">
                         <i class="material-icons mdl-badge">exposure_neg_1</i>
                     </a>
-                    <div class="mdl-tooltip" for="voteneg" ng-if="ctrl.myvote">
-                        <span ng-if="ctrl.myvote < 0">You voted -1</span>
-                        <span ng-if="ctrl.myvote > 0">You voted +1</span>
+                    <div class="mdl-tooltip" for="voteneg" ng-if="session.myvote">
+                        <span ng-if="session.myvote < 0">You voted -1</span>
+                        <span ng-if="session.myvote > 0">You voted +1</span>
                     </div>
 
                     <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteplus" ng-if="ctrl.userConnected"
-                       ng-class="{'mdl-button--colored': !ctrl.myvote || ctrl.myvote < 0,
-                    'mdl-button--primary':ctrl.myvote > 0}"
-                       ng-click="ctrl.vote(2); $event.stopPropagation();">
+                       ng-class="{'mdl-button--colored': !session.myvote || session.myvote < 0,
+                    'mdl-button--primary':session.myvote > 0}"
+                       ng-click="ctrl.vote(session, 2); $event.stopPropagation();">
                         <i class="material-icons mdl-badge">exposure_plus_1</i>
                     </a>
-                    <div class="mdl-tooltip" for="voteplus" ng-if="ctrl.myvote">
-                        <span ng-if="ctrl.myvote < 0">You voted -1</span>
-                        <span ng-if="ctrl.myvote > 0">You voted +1</span>
+                    <div class="mdl-tooltip" for="voteplus" ng-if="session.myvote">
+                        <span ng-if="session.myvote < 0">You voted -1</span>
+                        <span ng-if="session.myvote > 0">You voted +1</span>
                     </div>
                 </td>
             </tr>

@@ -4,16 +4,17 @@ import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_LIGHTNINGTALK;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SPEAKER_LT;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.security.model.Account;
 import org.mixit.cesar.security.service.authentification.CurrentUser;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
-import org.mixit.cesar.site.model.FlatView;
-import org.mixit.cesar.site.model.event.Event;
+import org.mixit.cesar.security.service.exception.ForbiddenException;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.LightningTalk;
+import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.repository.SessionRepository;
@@ -24,6 +25,7 @@ import org.mixit.cesar.site.web.dto.VoteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/app/session")
+@Transactional
 public class SessionWriterController {
 
     @Autowired
@@ -70,13 +73,14 @@ public class SessionWriterController {
         Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
         return voteRepository.findByMember(currentUser)
                 .stream()
-                .map(s -> VoteDto.convert(s))
+                .filter(v -> v.getSession().getFormat().equals(Format.LightningTalk))
+                .filter(v -> v.getSession().getEvent().equals(EventService.getCurrent()))
+                .map(v -> VoteDto.convert(v))
                 .collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @Authenticated
-    @JsonView(FlatView.class)
     public SessionResource save(@RequestBody SessionResource lightning) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         LightningTalk lightningTalkSaved;
@@ -107,5 +111,21 @@ public class SessionWriterController {
         return SessionResource.convert(lightningTalkSaved);
     }
 
+
+    @RequestMapping(value = "/{idSession}", method = RequestMethod.DELETE)
+    @Authenticated
+    public <T extends Session<T>> void delete(@PathVariable(value = "idSession") Long idSession) {
+        Account currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get();
+
+        Session session = sessionRepository.findOne(idSession);
+
+        if(currentUser.getRoles().contains("ADMIN") ||
+                (session.getFormat().equals(Format.LightningTalk) && session.containsSpeaker(currentUser.getMember().getId()))){
+            sessionRepository.delete(session);
+        }
+        else {
+            throw new ForbiddenException();
+        }
+    }
 
 }

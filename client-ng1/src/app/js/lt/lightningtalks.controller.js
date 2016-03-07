@@ -11,18 +11,41 @@
     ctrl.editionMode = false;
     ctrl.pagination = paginationService.createPagination('-positiveVotes');
 
-    function _getVotes(){
-      if(!ctrl.userConnected){
-        return $q.when({data : []});
+    function _updateVote(session){
+      var votes = myvotes.filter(function(vote){
+        return vote.idSession === session.idSession;
+      });
+
+      if(votes && votes.length>0){
+        session.myvote = votes[0].value ? 2 : -2;
       }
-      return $http.get('app/session/lightnings/votes');
+    }
+
+    function _getVotes(refresh){
+      if(!ctrl.userConnected){
+        myvotes = [];
+      }
+      else{
+        $http.get('app/session/lightnings/votes').then(function(response){
+          myvotes = response.data;
+          if(refresh){
+            ctrl.sessions.forEach(function(session){
+              _updateVote(session);
+            });
+          }
+        });
+      }
     }
 
     function _getMyLigthning(){
       if(!ctrl.userConnected){
-        return $q.when({data : []});
+        mylighnings = [];
       }
-      return $http.get('app/session/mylightnings');
+      else{
+        $http.get('app/session/mylightnings').then(function(response){
+          mylighnings = response.data;
+        });
+      }
     }
 
     cesarSpinnerService.wait();
@@ -41,14 +64,8 @@
           .then(function (response) {
             ctrl.sponsors = response.data;
           }),
-        _getVotes()
-          .then(function (response) {
-            myvotes = response.data;
-          }),
+        _getVotes(),
         _getMyLigthning()
-          .then(function (response) {
-            mylighnings = response.data;
-          })
       ])
       .then(function(){
         ctrl.sessions.forEach(function(session){
@@ -59,13 +76,7 @@
             session.edition = true;
           }
 
-          var votes = myvotes.filter(function(vote){
-            return vote.idSession === session.idSession;
-          });
-
-          if(votes && votes.length>0){
-            session.myvote = votes[0].value ? 2 : -2;
-          }
+          _updateVote(session);
         });
       })
       .finally(function () {
@@ -74,12 +85,47 @@
 
     ctrl.zoom = function(session){
       if(session.edition){
-        $state.go('lightning', {id : session.idSession});
+        $state.go('lightning-edition', {id : session.idSession});
       }
       else{
         $state.go('lightning', {id : session.idSession});
       }
 
     };
+
+    if (ctrl.userConnected) {
+      //Call server to read vote
+      ctrl.vote = function (session, note) {
+        var vote = {
+          idSession: session.idSession,
+          value: note > 0
+        };
+
+        $http
+          .post('/app/vote/', vote)
+          .then(function () {
+            if(angular.isDefined(session.myvote)){
+              if(session.myvote<0 && vote.value){
+                session.positiveVotes++;
+              }
+              if(session.myvote>0 && !vote.value){
+                session.positiveVotes--;
+              }
+            }
+            else{
+              if(vote.value){
+                session.positiveVotes++;
+              }
+              else{
+                session.positiveVotes--;
+              }
+            }
+            _getVotes(true);
+          })
+          .catch(function () {
+            ctrl.errorMessage = 'UNDEFINED';
+          });
+      };
+    }
   });
 })();
