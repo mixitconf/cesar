@@ -38,6 +38,14 @@
             <div class="mdl-tooltip" for="minusOne">Minus one</div>
 
             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+               ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[ctrl.proposal.id].vote!==0}"
+               ng-click="ctrl.vote(0); $event.stopPropagation();"
+               id="zero">
+                <i class="material-icons mdl-badge">exposure_zero</i>
+            </a>
+            <div class="mdl-tooltip" for="minusOne">Minus one</div>
+
+            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                ng-class="{'mdl-button--colored':ctrl.votesMappedByProposalId[ctrl.proposal.id].vote!==1}"
                ng-click="ctrl.vote(1); $event.stopPropagation();"
                id="plusOne">

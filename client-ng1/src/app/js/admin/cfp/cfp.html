@@ -90,6 +90,13 @@
                         </a>
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                            ng-class="{
+                            'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==0
+                           }"
+                           ng-click="ctrl.vote(proposal.id, 0); $event.stopPropagation();">
+                            <i class="material-icons mdl-badge">exposure_zero</i>
+                        </a>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           ng-class="{
                             'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==1
                            }"
                            ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();">
