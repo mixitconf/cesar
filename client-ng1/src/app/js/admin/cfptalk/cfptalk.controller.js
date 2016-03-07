@@ -73,6 +73,9 @@
         voteValue: voteValue
       };
       $http.post('app/cfp/proposal/vote', data);
+      if ( !ctrl.votesMappedByProposalId[ctrl.proposal.id] ) {
+        ctrl.votesMappedByProposalId[ctrl.proposal.id] = {};
+      }
       ctrl.votesMappedByProposalId[ctrl.proposal.id].vote = voteValue;
     };
 
