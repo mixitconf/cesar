@@ -125,7 +125,11 @@
 
         <p ng-bind-html="ctrl.proposal.description | markdown"></p>
 
-        <p>&nbsp;</p>
+        {{ctrl.proposal}}
+        <div class="cesar-section--bottom">
+            <p>&nbsp;</p>
+            <cesar-member-cards members="ctrl.proposal.speakers"></cesar-member-cards>
+        </div>
     </div>
 
 </div>

@@ -19,6 +19,14 @@
       ctrl.proposal.lang = 'fr';
     }
 
+    var speakers = Array.isArray(lightning._links.speaker) ? lightning._links.speaker : [lightning._links.speaker];
+    ctrl.proposal.speakers = [];
+    speakers.forEach(function (speaker) {
+      MemberService.getById(Util.extractId(speaker.href)).then(function (response) {
+        ctrl.proposal.speakers.push(response.data);
+      });
+    });
+
     ctrl.save = function (spinner) {
       if(spinner==='off'){
         delete ctrl.errorMessage;

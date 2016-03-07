@@ -15,12 +15,16 @@ import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.LightningTalk;
 import org.mixit.cesar.site.model.session.SessionLanguage;
+import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.repository.SessionRepository;
+import org.mixit.cesar.site.repository.VoteRepository;
 import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.web.dto.SessionResource;
+import org.mixit.cesar.site.web.dto.VoteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +41,12 @@ public class SessionWriterController {
     private SessionRepository sessionRepository;
 
     @Autowired
+    private MemberRepository memberRepository;
+
+    @Autowired
+    private VoteRepository voteRepository;
+
+    @Autowired
     private ApplicationContext applicationContext;
 
 
@@ -45,13 +55,22 @@ public class SessionWriterController {
 
     @RequestMapping(value = "/mylightnings")
     @Authenticated
-    @JsonView(FlatView.class)
     public List<SessionResource> getMyLightningsInfo() {
         Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
         return sessionRepository
                 .findAllMyLightningTalks(EventService.getCurrent().getId(), currentUser.getId())
                 .stream()
                 .map(s -> SessionResource.convert(s))
+                .collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/lightnings/votes")
+    @Authenticated
+    public List<VoteDto> getLightningsVotes() {
+        Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
+        return voteRepository.findByMember(currentUser)
+                .stream()
+                .map(s -> VoteDto.convert(s))
                 .collect(Collectors.toList());
     }
 
