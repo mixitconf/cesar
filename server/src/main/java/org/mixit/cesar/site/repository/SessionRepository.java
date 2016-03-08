@@ -1,5 +1,6 @@
 package org.mixit.cesar.site.repository;
 
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_LIGHTNINGTALK;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SESSION;
 
 import java.util.List;
@@ -34,8 +35,10 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     @Query(value = "SELECT DISTINCT s FROM Workshop s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
     List<Workshop> findAllAcceptedWorkshops(@Param("idEvent") Long idEvent);
 
-    @Cacheable(CACHE_SESSION)
-    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event.id = :idEvent and s.valid = true and s.sessionAccepted = true")
-    List<LightningTalk> findAllAcceptedLightningTalks(@Param("idEvent") Long idEvent);
+    @Cacheable(CACHE_LIGHTNINGTALK)
+    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event.id = :idEvent and s.valid = true")
+    List<LightningTalk> findAllLightningTalks(@Param("idEvent") Long idEvent);
 
+    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event.id = :idEvent and s.valid = true and sp.id = :idSpeaker")
+    List<LightningTalk> findAllMyLightningTalks(@Param("idEvent") Long idEvent, @Param("idSpeaker") Long idSpeaker);
 }

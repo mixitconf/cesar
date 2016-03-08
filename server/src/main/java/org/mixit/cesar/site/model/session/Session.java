@@ -233,6 +233,14 @@ public abstract class Session<T extends Session> {
         return speakers;
     }
 
+    public boolean containsSpeaker(Long idSpeaker) {
+        return this.speakers
+                .stream()
+                .filter(s -> s.getId().equals(idSpeaker))
+                .findFirst()
+                .isPresent();
+    }
+
     public T addSpeaker(Member speaker) {
         this.speakers.add(speaker);
         return (T) this;

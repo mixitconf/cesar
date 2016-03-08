@@ -1,0 +1,105 @@
+<div class="cesar-container">
+    <h1 translate="view.lightningtalks.title">Lightningtalks</h1>
+
+    <p class="cesar-text" translate="view.lightningtalks.summary"></p>
+
+    <p translate="view.lightningtalks.description"></p>
+
+    <button ng-if="ctrl.userConnected" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            ui-sref="lightning-create"
+            translate="view.lightningtalks.submit"
+    >
+    </button>
+    <button ng-if="!ctrl.userConnected" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            ui-sref="authent"
+            translate="view.lightningtalks.login"
+    >
+    </button>
+
+    <cesar-search-bar></cesar-search-bar>
+
+    <div class="cesar-section--bottom" ng-if="ctrl.sessions.length > 0">
+        {{ctrl.pagination.elements(result.length)}}
+
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp cesar-session__container">
+            <thead ng-show="false">
+            <tr>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="session in ctrl.pagination.filter(search) as result"
+                ng-if="ctrl.pagination.displayItem($index)">
+                <td class="mdl-data-table__cell--non-numeric">
+                    <div class="cesar-text mdl-card__title-text cesar-card__title-text">
+                        <div class="cesar-mdl-button--interests" id="votes" style="min-width: 2em">
+                            <i class="material-icons" style="font-size: 12px">assessment</i>
+                            {{session.positiveVotes}}
+                        </div>
+                        &nbsp;{{session.title}}
+                        &nbsp;<span class="cesar-badge">{{session.lang}}</span>
+                    </div>
+                    <div style="padding-top: 8px">
+                        <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
+                        <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
+
+
+
+                <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+                    <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                       rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                        <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}">
+                    </a>
+                    <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{speaker.firstname}}
+                        {{speaker.lastname}}</a>&nbsp;
+                </span>
+                    </div>
+                </td>
+                <td>
+                    <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab"
+                       rel="next" ng-click="ctrl.zoom(session)">
+                        <i class="material-icons" ng-if="!session.edition">library_books</i>
+                        <i class="material-icons" ng-if="session.edition">mode_edit</i>
+                    </a>
+
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteneg" ng-if="ctrl.userConnected"
+                       ng-class="{'mdl-button--colored': !session.myvote || session.myvote > 0,
+                    'mdl-button--primary':session.myvote < 0}"
+                       ng-click="ctrl.vote(session, -2); $event.stopPropagation();">
+                        <i class="material-icons mdl-badge">exposure_neg_1</i>
+                    </a>
+                    <div class="mdl-tooltip" for="voteneg" ng-if="session.myvote">
+                        <span ng-if="session.myvote < 0">You voted -1</span>
+                        <span ng-if="session.myvote > 0">You voted +1</span>
+                    </div>
+
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteplus" ng-if="ctrl.userConnected"
+                       ng-class="{'mdl-button--colored': !session.myvote || session.myvote < 0,
+                    'mdl-button--primary':session.myvote > 0}"
+                       ng-click="ctrl.vote(session, 2); $event.stopPropagation();">
+                        <i class="material-icons mdl-badge">exposure_plus_1</i>
+                    </a>
+                    <div class="mdl-tooltip" for="voteplus" ng-if="session.myvote">
+                        <span ng-if="session.myvote < 0">You voted -1</span>
+                        <span ng-if="session.myvote > 0">You voted +1</span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <cesar-pagination pagination="ctrl.pagination.get()"></cesar-pagination>
+    </div>
+    <div class="cesar-section--bottom" ng-if="ctrl.sessions.length === 0">
+        <p class="cesar-text" translate="view.lightningtalks.firstone"></p>
+    </div>
+
+
+    <p class="cesar-text" translate="view.talks.sponsor"></p>
+
+    <cesar-sponsor members="ctrl.sponsors" level="GOLD"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="SILVER"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="PARTY" ng-if="!ctrl.year"></cesar-sponsor>
+    <cesar-sponsor members="ctrl.sponsors" level="LANYARD" ng-if="!ctrl.year"></cesar-sponsor>
+    <p>&nbsp;</p>
+</div>

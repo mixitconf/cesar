@@ -1,0 +1,132 @@
+<div class="cesar-container">
+
+
+    <div ng-if="ctrl.type">
+        <h1 translate="view.lightningtalks.title">Lightningtalks</h1>
+
+        <p class="cesar-text" translate="view.lightningtalks.description"></p>
+
+        <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
+
+        <div class="cesar-section--bottom">
+            <form novalidate class="cesar-form" name="frm">
+
+                <p ng-if="ctrl.proposal.addedAt" translate="view.cfp.talk.createdat"
+                   translate-values="{ 'date' : ctrl.proposal.addedAt }"></p>
+
+                <p class="cesar-helper" ng-if="help.title" translate="view.cfp.talk.title.help"></p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="title" name="title"
+                           ng-maxlength="100"
+                           ng-required="true"
+                           ng-model="ctrl.proposal.title"
+                           ng-focus="help.title=true"
+                           ng-blur="help.title=false"
+                    />
+                    <label class="mdl-textfield__label" for="title" translate="view.cfp.talk.title.text">Title</label>
+                    <cesar-nb-carac nbcarac="100" text="ctrl.proposal.title" field="frm.title"></cesar-nb-carac>
+                </div>
+
+                <p class="cesar-helper" ng-if="help.summary" translate="view.cfp.talk.summary.help"></p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="summary" ng-maxlength="300"
+                          name="summary"
+                          ng-required="true"
+                          ng-focus="help.summary=true"
+                          ng-blur="help.summary=false"
+                          ng-model="ctrl.proposal.summary"></textarea>
+                    <label class="mdl-textfield__label" for="summary"
+                           translate="view.cfp.talk.summary.text">Summary</label>
+                    <cesar-nb-carac nbcarac="300" text="ctrl.proposal.summary" field="frm.summary"
+                                    markdown="true"></cesar-nb-carac>
+                </div>
+
+                <p class="cesar-helper" ng-if="help.description" translate="view.cfp.talk.description.help"></p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows="7" id="description" ng-maxlength="2000"
+                          name="description"
+                          ng-required="true"
+                          ng-focus="help.description=true"
+                          ng-blur="help.description=false"
+                          ng-model="ctrl.proposal.description"></textarea>
+                    <label class="mdl-textfield__label" for="description" translate="view.cfp.talk.description.text">Description</label>
+                    <cesar-nb-carac nbcarac="2000" text="ctrl.proposal.description" field="frm.description"
+                                    markdown="true"></cesar-nb-carac>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <p class="cesar-helper" translate="view.cfp.talk.language.help"></p>
+                    <label class="mdl-textfield__label cesar-textfield__radio-label"
+                           translate="view.cfp.talk.language.text">Language</label>
+
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-1">
+                        <input type="radio" id="language-1" class="mdl-radio__button" name="options" value="en"
+                               ng-model="ctrl.proposal.lang">
+                        <span class="mdl-radio__label" translate="lang.en">en</span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="language-2">
+                        <input type="radio" id="language-2" class="mdl-radio__button" name="options" value="fr"
+                               ng-model="ctrl.proposal.lang">
+                        <span class="mdl-radio__label" translate="lang.fr">fr</span>
+                    </label>
+                </div>
+
+                <div class="cesar-error" ng-if="ctrl.confirm.display">
+                    <p>&nbsp;</p>
+                    <span translate="view.cfp.talk.confirm.text">Veuillez saisir votre prénom pour confirmer que vous voulez bien supprimer cette session :</span>
+                    <input type="text" ng-model="ctrl.confirm.message" style="outline: none;"/><br>
+                    <span translate="view.cfp.talk.confirm.help">Cliquez ensuite à nouveau sur le bouton supprimer </span>
+                </div>
+
+                <div style="float: right">
+                    <cesar-button disabled="(frm.$invalid) || spinner==='on'" id="action1" on-click="ctrl.save(spinner)"
+                                  text="Save proposal"
+                                  spinner="spinner" google-icon="save"></cesar-button>
+
+                    <cesar-button disabled="spinner==='on'" id="action3" on-click="ctrl.delete()" spinner="spinner"
+                                  text="Delete proposal"
+                                  google-icon="delete" ng-if="ctrl.proposal.idSession"></cesar-button>
+                    <div class="mdl-tooltip" for="action3" translate="action.clear"></div>
+
+                    <cesar-button id="action4" ui-sref="lightnings" spinner="spinner" google-icon="undo"
+                                  text="Cancel"></cesar-button>
+                    <div class="mdl-tooltip" for="action4" translate="action.return"></div>
+                </div>
+                <p>&nbsp;</p>
+            </form>
+        </div>
+    </div>
+
+    <div ng-if="!ctrl.type">
+        <h1><i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.proposal.lang}}">{{ctrl.proposal.format
+            | sessionLogo}}</i>&nbsp; {{ctrl.proposal.title}} </h1>
+
+        <div>
+            <div class="cesar-mdl-button--interests" id="consults">
+                <i class="material-icons" style="font-size: 12px">account_box</i>
+                views : {{ctrl.proposal.nbConsults | defaultValue:0}}
+            </div>
+            <div class="mdl-tooltip" for="consults"
+                 translate="view.talks.info.view"
+                 translate-values="{ nbview : {{ctrl.proposal.nbConsults}} }"></div>
+            <div class="cesar-mdl-button--interests" id="votes">
+                <i class="material-icons" style="font-size: 12px">assessment</i>
+                votes : +{{ctrl.proposal.positiveVotes}} -{{ (ctrl.proposal.positiveVotes -
+                ctrl.proposal.votes)}}
+            </div>
+            <div class="mdl-tooltip" for="votes"
+                 translate="view.talks.info.vote"
+                 translate-values="{ voteplus : ctrl.proposal.positiveVotes , voteminus :  (ctrl.proposal.positiveVotes - ctrl.proposal.votes) }"></div>
+        </div>
+        <p>&nbsp;</p>
+
+        <p class="cesar-text">{{ctrl.proposal.summary}}</span></p>
+
+        <p ng-bind-html="ctrl.proposal.description | markdown"></p>
+
+        <div class="cesar-section--bottom">
+            <p>&nbsp;</p>
+            <cesar-member-cards members="ctrl.proposal.speakers"></cesar-member-cards>
+        </div>
+    </div>
+
+</div>

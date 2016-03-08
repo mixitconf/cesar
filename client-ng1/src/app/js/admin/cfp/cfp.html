@@ -59,7 +59,7 @@
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
                    ui-sref="admcfptalk({id : proposal.id})"
                    id="detail">
-                    <i class="material-icons mdl-badge">library_books</i>
+                    <i class="material-icons">library_books</i>
                 </a>
                 <div class="mdl-tooltip" for="detail">Show detail</div>
 
@@ -67,14 +67,14 @@
                    ng-click="ctrl.accept(proposal)"
                    style="margin-top: 0.3em;"
                    id="validateProposal">
-                    <i class="material-icons mdl-badge">thumb_up</i>
+                    <i class="material-icons">thumb_up</i>
                 </a>
                 <div class="mdl-tooltip" for="validateProposal">Validate Proposal</div>
 
                 <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.reject(proposal)"
                    style="margin-top: 0.3em;"
                    id="rejectProposal">
-                    <i class="material-icons mdl-badge">thumb_down</i>
+                    <i class="material-icons">thumb_down</i>
                 </a>
                 <div class="mdl-tooltip" for="rejectProposal">Reject Proposal</div>
             </td>
@@ -90,7 +90,7 @@
                            }"
                            ng-click="ctrl.vote(proposal.id, -2); $event.stopPropagation();"
                            id="veto">
-                            <i class="material-icons mdl-badge">visibility_off</i>
+                            <i class="material-icons">visibility_off</i>
                         </a>
                         <div class="mdl-tooltip" for="veto">Veto</div>
 
@@ -100,7 +100,7 @@
                            }"
                            ng-click="ctrl.vote(proposal.id, -1); $event.stopPropagation();"
                            id="minusOne">
-                            <i class="material-icons mdl-badge">exposure_neg_1</i>
+                            <i class="material-icons">exposure_neg_1</i>
                         </a>
                         <div class="mdl-tooltip" for="minusOne">Minus one</div>
 
@@ -109,7 +109,7 @@
                             'mdl-button--colored':ctrl.votesMappedByProposalId[proposal.id].vote!==0
                            }"
                            ng-click="ctrl.vote(proposal.id, 0); $event.stopPropagation();">
-                            <i class="material-icons mdl-badge">exposure_zero</i>
+                            <i class="material-icons">exposure_zero</i>
                         </a>
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                            ng-class="{
@@ -117,7 +117,7 @@
                            }"
                            ng-click="ctrl.vote(proposal.id, 1); $event.stopPropagation();"
                            id="plusOne">
-                            <i class="material-icons mdl-badge">exposure_plus_1</i>
+                            <i class="material-icons">exposure_plus_1</i>
                         </a>
                         <div class="mdl-tooltip" for="plusOne">Plus one</div>
 
@@ -127,7 +127,7 @@
                            }"
                            ng-click="ctrl.vote(proposal.id, 2); $event.stopPropagation();"
                            id="needIt">
-                            <i class="material-icons mdl-badge">visibility</i>
+                            <i class="material-icons">visibility</i>
                         </a>
                         <div class="mdl-tooltip" for="needIt">I need this talk!</div>
                     </div>

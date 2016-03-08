@@ -75,10 +75,10 @@ textarea {
 @media (max-width: 479px) {
   .hide-on-mobile{
     visibility: hidden;
-    max-height: 0px;
-    max-width: 0px;
-    width: 0px;
-    height: 0px;
+    max-height: 0;
+    max-width: 0;
+    width: 0;
+    height: 0;
   }
   .cesar-section--top{
     padding-top: 1em;
@@ -94,10 +94,10 @@ textarea {
 @media (min-width: 480px) and (max-width: 1023px) {
   .visible-on-mobile{
     visibility: hidden;
-    max-height: 0px;
-    max-width: 0px;
-    width: 0px;
-    height: 0px;
+    max-height: 0;
+    max-width: 0;
+    width: 0;
+    height: 0;
   }
   .cesar-section--top{
     padding-top: 2em;
@@ -114,10 +114,10 @@ textarea {
 @media (min-width: 1024px) {
   .visible-on-mobile{
     visibility: hidden;
-    max-height: 0px;
-    max-width: 0px;
-    width: 0px;
-    height: 0px;
+    max-height: 0;
+    max-width: 0;
+    width: 0;
+    height: 0;
   }
   .cesar-section--top{
     padding-top: 4em;
@@ -143,8 +143,26 @@ textarea {
 
 .cesar-button--fab-pimary, .cesar-button--fab-pimary:hover{
   color: white !important;
-  background-color: @primary_color;
+  background-color: @primary_color_flash;
 
+}
+.cesar-badge{
+  color: white;
+  background-color: @primary_color;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+  min-width: 18px;
+  min-height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding-top:6px;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .cesar-container-fluid{
@@ -349,14 +367,11 @@ img{
   line-height: inherit !important;
 }
 
-.cesar-badge{
-  color: @primary_color;
-}
-.cesar-badge[data-badge]:after{
-  right: -8px !important;
-  width: 16px !important;
-  height: 16px !important;
-}
+//.cesar-badge[data-badge]:after{
+//  right: -8px !important;
+//  width: 16px !important;
+//  height: 16px !important;
+//}
 
 .cesar-form{
   .mdl-textfield{

@@ -21,7 +21,6 @@ public class MemberResource extends ResourceSupport {
 
     private Long idMember;
     private String login;
-    private String email;
     private String firstname;
     private String lastname;
     private String company;
@@ -40,7 +39,6 @@ public class MemberResource extends ResourceSupport {
         MemberResource memberResource = new MemberResource()
                 .setIdMember(member.getId())
                 .setLogin(member.getLogin())
-                .setEmail(member.getEmail())
                 .setFirstname(member.getFirstname())
                 .setLastname(member.getLastname())
                 .setCompany(member.getCompany())
@@ -117,15 +115,6 @@ public class MemberResource extends ResourceSupport {
 
     public MemberResource setHash(String hash) {
         this.hash = hash;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public MemberResource setEmail(String email) {
-        this.email = email;
         return this;
     }
 

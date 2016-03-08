@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider,  USER_ROLES) {
+  angular.module('cesar').config(function ($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
     'ngInject';
 
     $locationProvider.html5Mode({
@@ -10,6 +10,13 @@
     });
 
     $urlRouterProvider.otherwise('/');
+
+    /* @ngInject */
+    function getAllAdminArticles(ArticleService) {
+      return ArticleService.getAll(true).then(function (response) {
+        return response.data;
+      });
+    }
 
     /* @ngInject */
     function getAllArticles(ArticleService) {
@@ -29,6 +36,60 @@
     function getAccount(AuthenticationService) {
       return AuthenticationService.currentUser().then(function (currentUser) {
         return currentUser;
+      });
+    }
+
+    /* @ngInject */
+    function getAllAccount($http) {
+      return $http.get('/app/account').then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getLightning(SessionService, $stateParams) {
+      return SessionService.getById($stateParams.id).then(function (response) {
+        return response.data;
+      });
+    }
+
+    function getEditionMode(){
+      return 'edition';
+    }
+
+    function getCreationMode(){
+      return 'creation';
+    }
+
+    function getTypeMemberStaff(){
+      return 'staff';
+    }
+
+    function getTypeMemberSpeaker(){
+      return 'speaker';
+    }
+
+    function getTypeMemberSponsor(){
+      return 'sponsor';
+    }
+    /* @ngInject */
+    function getSession(SessionService, $stateParams) {
+      return SessionService.getById($stateParams.id).then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getMember(MemberService, $stateParams) {
+      return MemberService.getById($stateParams.id).then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getMemberByLogin(MemberService, $stateParams) {
+      return MemberService.getByLogin($stateParams.login).then(function (response) {
+        return response.data;
       });
     }
 
@@ -100,144 +161,131 @@
 
       .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
         .controller('ArticlesCtrl')
-        .resolve({
-          /* @ngInject */
-          articles: function (ArticleService) {
-            return ArticleService.getAll(true).then(function (response) {
-              return response.data;
-            });
-          }
-        })
+        .resolve({articles: getAllAdminArticles})
         .build())
 
       .state('admaccounts', new State(USER_ROLES, 'admaccounts', 'js/admin/accounts/accounts.html')
         .controller('AdminAccountsCtrl')
         .resolve({
-          /* @ngInject */
-          accounts: function ($http) {
-            return $http.get('/app/account').then(function (response) {
-              return response.data;
-            });
-          },
+          accounts: getAllAccount,
           account: getAccount
         })
         .build())
 
       //Program
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
-      .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/sessions/lightningtalks.html').controller('SessionsCtrl').data({type: 'lightningtalks'}).build())
-      .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2015}).build())
-      .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2014}).build())
-      .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2013}).build())
-      .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html').controller('SessionsClosedCtrl').data({year: 2012}).build())
-      .state('lightning', new State(USER_ROLES, 'lightning/:id/:title', 'js/session/session.html').controller('SessionCtrl')
+
+      .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2015})
+        .build())
+
+      .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2014})
+        .build())
+
+      .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2013})
+        .build())
+
+      .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2012})
+        .build())
+
+      .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/lt/lightningtalks.html')
+        .controller('LightningtalksCtrl')
+        .resolve({account: getAccount})
+        .build())
+
+      .state('lightning-create', new State(USER_ROLES, 'lightning', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
+        .resolve({
+          lightning: angular.noop,
+          type: getCreationMode,
+          account: getAccount
+        })
+        .build())
+      .state('lightning-edition', new State(USER_ROLES, 'lightning/:id/edit', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
         .resolve({
           /* @ngInject */
-          session: function (SessionService, $stateParams) {
-            return SessionService.getById($stateParams.id).then(function (response) {
-              return response.data;
-            });
-          }
+          lightning: getLightning,
+          type: getEditionMode,
+          account: getAccount
+        })
+        .build())
+      .state('lightning', new State(USER_ROLES, 'lightning/:id', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
+        .resolve({
+          lightning: getLightning,
+          account : angular.noop,
+          type: angular.noop
         })
         .build())
       .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
-        .data({type: 'talks'})
         .resolve({
           account: getAccount
         })
         .build())
       .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
-        .data({type: 'talks'})
         .resolve({
           account: getAccount
         })
         .build())
-
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
-          /* @ngInject */
-          session: function (SessionService, $stateParams) {
-            return SessionService.getById($stateParams.id).then(function (response) {
-              return response.data;
-            });
-          }
+          session: getSession
         })
         .build())
       .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
-          /* @ngInject */
-          session: function (SessionService, $stateParams) {
-            return SessionService.getById($stateParams.id).then(function (response) {
-              return response.data;
-            });
-          }
+          session: getSession
         })
         .build())
 
       //Participants
       .state('speakers', new State(USER_ROLES, 'speakers', 'js/members/speakers.html').controller('MembersCtrl')
         .resolve({
-          members: getAllMembers, type: function () {
-            return 'speaker';
-          }
+          members: getAllMembers,
+          type: getTypeMemberSpeaker
         })
         .build())
       .state('sponsors', new State(USER_ROLES, 'sponsors', 'js/members/sponsors.html').controller('MembersCtrl')
         .resolve({
-          members: getAllMembers, type: function () {
-            return 'sponsor';
-          }
+          members: getAllMembers,
+          type:getTypeMemberSponsor
         })
         .build())
       .state('about', new State(USER_ROLES, 'about', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
-          members: getAllMembers, type: function () {
-            return 'staff';
-          }
+          members: getAllMembers,
+          type: getTypeMemberStaff
         })
         .build())
       .state('staff', new State(USER_ROLES, 'staff', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
-          members: getAllMembers, type: function () {
-            return 'staff';
-          }
+          members: getAllMembers,
+          type: getTypeMemberStaff
         })
         .build())
       .state('member', new State(USER_ROLES, 'member/:type/:id?redirect', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
-          /* @ngInject */
-          member: function (MemberService, $stateParams) {
-            return MemberService.getById($stateParams.id).then(function (response) {
-              return response.data;
-            });
-          }
+          member: getMember
         })
         .build())
       .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
-          type: function () {
-            return 'sponsor';
-          },
-          /* @ngInject */
-          member: function (MemberService, $stateParams) {
-            return MemberService.getById($stateParams.id).then(function (response) {
-              return response.data;
-            });
-          }
+          type: getTypeMemberSponsor,
+          member: getMember
         })
         .build())
       .state('profile', new State(USER_ROLES, 'profile/:login', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
-          /* @ngInject */
-          member: function (MemberService, $stateParams) {
-            return MemberService.getByLogin($stateParams.login).then(function (response) {
-              return response.data;
-            });
-          }
+          member: getMemberByLogin
         })
         .build())
       //Infos

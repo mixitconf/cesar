@@ -14,12 +14,22 @@ public class CesarCacheConfig {
     public static final String CACHE_MEMBER = "member";
     public static final String CACHE_SPONSOR = "sponsor";
     public static final String CACHE_SESSION = "session";
+    public static final String CACHE_SPEAKER_LT = "speakerlt";
+    public static final String CACHE_LIGHTNINGTALK = "lightningtalk";
     public static final String CACHE_ARTICLE = "article";
     public static final String CACHE_PLANNING = "planning";
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager(CACHE_SECURITY, CACHE_MEMBER, CACHE_SESSION, CACHE_SPONSOR, CACHE_ARTICLE, CACHE_PLANNING);
+        return new ConcurrentMapCacheManager(
+                CACHE_SECURITY,
+                CACHE_MEMBER,
+                CACHE_SPEAKER_LT,
+                CACHE_SESSION,
+                CACHE_LIGHTNINGTALK,
+                CACHE_SPONSOR,
+                CACHE_ARTICLE,
+                CACHE_PLANNING);
     }
 
 
