@@ -32,15 +32,9 @@
 
     <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'proposals' : 'proposal'}}</small></p>
 
-    <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp cesar-session__container" style="margin: 1em; width: 96%">
-        <thead ng-show="false">
-        <tr>
-            <th colspan="2">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat-start="proposal in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
-            <td class="mdl-data-table__cell--non-numeric">
+    <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+        <div class="mdl-grid cesar-liste" ng-repeat="proposal in ctrl.filter() track by $index" ng-if="ctrl.displayItem($index)">
+            <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                 <p class="cesar-text">
                     <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{proposal.format | sessionLogo}}</i>&nbsp;
                     {{proposal.title}}  <a class="cesar-mdl-button--interests" ng-if="proposal.status">{{proposal.status}}</a>
@@ -54,35 +48,35 @@
                     </a>
                 </p>
                 <p ng-if="!proposal.valid" class="cesar-error-simple" style="float: left;" translate="view.cfp.home.incomplete"></p>
-            </td>
-            <td style="padding: 4px; width: 1px;">
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                   ui-sref="admcfptalk({id : proposal.id})"
-                   id="detail">
-                    <i class="material-icons">library_books</i>
-                </a>
-                <div class="mdl-tooltip" for="detail">Show detail</div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                <div style="float: right">
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                       ui-sref="admcfptalk({id : proposal.id})"
+                       id="detail">
+                        <i class="material-icons">library_books</i>
+                    </a>
+                    <div class="mdl-tooltip" for="detail">Show detail</div>
 
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                   ng-click="ctrl.accept(proposal)"
-                   style="margin-top: 0.3em;"
-                   id="validateProposal">
-                    <i class="material-icons">thumb_up</i>
-                </a>
-                <div class="mdl-tooltip" for="validateProposal">Validate Proposal</div>
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                       ng-click="ctrl.accept(proposal)"
+                       style="margin-top: 0.3em;"
+                       id="validateProposal">
+                        <i class="material-icons">thumb_up</i>
+                    </a>
+                    <div class="mdl-tooltip" for="validateProposal">Validate Proposal</div>
 
-                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.reject(proposal)"
-                   style="margin-top: 0.3em;"
-                   id="rejectProposal">
-                    <i class="material-icons">thumb_down</i>
-                </a>
-                <div class="mdl-tooltip" for="rejectProposal">Reject Proposal</div>
-            </td>
-        </tr>
-        <tr ng-repeat-end ng-if="proposal.status==='SUBMITTED' && ctrl.displayItem($index)" class="cesar-admin-section">
-            <td colspan="2">
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.reject(proposal)"
+                       style="margin-top: 0.3em;"
+                       id="rejectProposal">
+                        <i class="material-icons">thumb_down</i>
+                    </a>
+                    <div class="mdl-tooltip" for="rejectProposal">Reject Proposal</div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-admin-section" ng-if="proposal.status==='SUBMITTED' && ctrl.displayItem($index)">
                 <fieldset id="votes" >
-                    <label>Your vote</label>
+                    <label class="hide-on-mobile">Your vote</label>
                     <div style="text-align: right;" >
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                            ng-class="{
@@ -132,13 +126,14 @@
                         <div class="mdl-tooltip" for="needIt">I need this talk!</div>
                     </div>
                 </fieldset>
-            </td>
-        </tr>
-        <tr ng-if="results.length===0">
-            <td colspan="2">No data found</td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
+        </div>
+        <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.member.nbtotal===0">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                No data found
+            </div>
+        </div>
+    </div>
     <div class="cesar-pagination__container cesar-text-center">
         <button ng-repeat="n in [].constructor(ctrl.pagination.pages) track by $index"
                 class="mdl-button mdl-js-button"

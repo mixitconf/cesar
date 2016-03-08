@@ -14,7 +14,7 @@
                 <div class="mdl-card__title mdl-card--expand">
                     <h3 class="mdl-card__title-text cesar-card__title-text">{{lang==='fr' ? article.titre : article.title}}</h3>
 
-                    <div class="cesar-card-session-action">
+                    <div class="cesar-card-session-action hide-on-mobile">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" rel="next"
                            ui-sref="article_zoom1({id : article.id})">
                             <i class="material-icons">library_books</i>
@@ -26,6 +26,14 @@
                     <p class="cesar-text" ng-if="lang==='fr'" ng-bind-html="article.resume  | markdown"></p>
                     <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="article.headline  | markdown"></p>
                     <span translate="view.news.at"></span> {{article.postedAt | date:'dd/MM/yyyy'}}</a><br>&nbsp;
+
+                    <div class="cesar-card-session-action visible-on-mobile">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" rel="next"
+                           ui-sref="article_zoom1({id : article.id})">
+                            <i class="material-icons">library_books</i>
+                        </a>
+                        <p>&nbsp;</p>
+                    </div>
                 </div>
             </div>
         </div>

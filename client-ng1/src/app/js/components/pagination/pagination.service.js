@@ -25,6 +25,10 @@
       return this.pagination;
     };
 
+    Pagination.prototype.getNbElts = function () {
+      return this.pagination.nbtotal;
+    };
+
     Pagination.prototype.elements = function (nbelement) {
       return this.pagination.nbDisplayed + ' / ' +  nbelement;
     };

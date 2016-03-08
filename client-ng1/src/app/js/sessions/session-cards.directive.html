@@ -1,13 +1,7 @@
 {{pagination.elements(result.length)}}
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp cesar-session__container">
-    <thead ng-show="false">
-    <tr>
-        <th colspan="2">&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="session in pagination.filter(search) as result" ng-if="pagination.displayItem($index)">
-        <td class="mdl-data-table__cell--non-numeric">
+<div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+    <div class="mdl-grid cesar-liste" ng-repeat="session in pagination.filter(search) as result" ng-if="pagination.displayItem($index)">
+        <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
                 {{session.title}}
@@ -29,15 +23,18 @@
                         {{speaker.lastname}}</a>&nbsp;
                 </span>
             </div>
-        </td>
-        <td class="hide-on-mobile">
+        </div>
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
             <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next"
-               ui-sref="session({id : session.idSession, format : session.format})">
+               ui-sref="session({id : session.idSession, format : session.format})" style="float: right">
                 <i class="material-icons" class="hide-on-mobile">library_books</i>
             </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+        </div>
+    </div>
+    <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.nbtotal===0">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+            No data found
+        </div>
+    </div>
+</div>
 <cesar-pagination pagination="pagination.get()"></cesar-pagination>

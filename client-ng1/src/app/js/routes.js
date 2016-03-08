@@ -292,7 +292,9 @@
       .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html').controller('InterestCtrl').build())
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())
       .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html').build())
-      .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html').build())
+      .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html')
+        .controller('FaqCtrl')
+        .build())
       .state('venir', new State(USER_ROLES, 'venir', 'js/venir/venir.html').build())
 
       .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/cfp.html')

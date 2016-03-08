@@ -23,7 +23,7 @@
                     <img src="img/lang/fr.svg" class="cesar-menu__lang" style="max-width: 24px" ng-if="article.lang==='fr'">
                     <img src="img/lang/us.svg" class="cesar-menu__lang" style="max-width: 24px" ng-if="article.lang==='en'">
 
-                    <div class="cesar-card-session-action">
+                    <div class="cesar-card-session-action hide-on-mobile">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
                            ui-sref="admarticle({id : article.id})">
                             <i class="material-icons">mode_edit</i>
@@ -40,6 +40,18 @@
                     <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="article.headline  | markdown"></p>
                     </span> {{article.postedAt | date:'dd/MM/yyyy'}}</a>
                     <a class="cesar-mdl-button--interests">{{article.valid ? 'PUBLISHED' : 'NOT PUBLISHED'}}</a><br>&nbsp;
+
+                    <div class="cesar-card-session-action visible-on-mobile">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="admarticle({id : article.id})">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="article_zoom1({id : article.id})">
+                            <i class="material-icons">library_books</i>
+                        </a>
+                        <p>&nbsp;</p>
+                    </div>
                 </div>
             </div>
         </div>
