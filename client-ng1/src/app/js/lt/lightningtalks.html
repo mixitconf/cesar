@@ -37,6 +37,7 @@
                             {{session.positiveVotes}}
                         </div>
                         &nbsp;{{session.title}}
+                        &nbsp;<span class="cesar-badge">{{session.lang}}</span>
                     </div>
                     <div style="padding-top: 8px">
                         <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
@@ -57,8 +58,10 @@
                 <td>
                     <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab"
                        rel="next" ng-click="ctrl.zoom(session)">
-                        <i class="material-icons mdl-badge" data-badge="{{session.lang}}">nature_people</i>
+                        <i class="material-icons" ng-if="!session.edition">library_books</i>
+                        <i class="material-icons" ng-if="session.edition">mode_edit</i>
                     </a>
+
                     <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="voteneg" ng-if="ctrl.userConnected"
                        ng-class="{'mdl-button--colored': !session.myvote || session.myvote > 0,
                     'mdl-button--primary':session.myvote < 0}"

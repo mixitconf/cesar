@@ -7,6 +7,7 @@
 
     var ctrl = this;
     var mylighnings, myvotes;
+    var loaded = false;
     ctrl.userConnected = !!account;
     ctrl.editionMode = false;
     ctrl.pagination = paginationService.createPagination('-positiveVotes');
@@ -81,16 +82,20 @@
       })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
+        //We need to used this awful hack to be sure that everything is in place when you use
+        //a degraded mobile connection
+        loaded=true;
       });
 
     ctrl.zoom = function(session){
-      if(session.edition){
-        $state.go('lightning-edition', {id : session.idSession});
+      if(loaded){
+        if(session.edition){
+          $state.go('lightning-edition', {id : session.idSession});
+        }
+        else{
+          $state.go('lightning', {id : session.idSession});
+        }
       }
-      else{
-        $state.go('lightning', {id : session.idSession});
-      }
-
     };
 
     if (ctrl.userConnected) {

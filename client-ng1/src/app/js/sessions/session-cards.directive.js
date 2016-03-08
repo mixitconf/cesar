@@ -11,7 +11,6 @@
         sessions: '=',
         search: '=',
         display: '@',
-        displayVotes: '@',
         order: '@',
         skipIcon : '@'
       },
