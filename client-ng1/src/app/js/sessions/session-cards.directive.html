@@ -1,5 +1,4 @@
 {{pagination.elements(result.length)}}
-
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp cesar-session__container">
     <thead ng-show="false">
     <tr>
@@ -34,7 +33,7 @@
         <td class="hide-on-mobile">
             <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next"
                ui-sref="session({id : session.idSession, format : session.format})">
-                <i class="material-icons">library_books</i>
+                <i class="material-icons" class="hide-on-mobile">library_books</i>
             </a>
         </td>
     </tr>
