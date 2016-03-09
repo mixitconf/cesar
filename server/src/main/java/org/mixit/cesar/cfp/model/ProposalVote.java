@@ -2,6 +2,7 @@ package org.mixit.cesar.cfp.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.member.Staff;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class ProposalVote {
 
     @ManyToOne(optional = false)
     @JsonView(FlatView.class)
-    protected Staff voter;
+    protected Member voter;
 
     @ManyToOne(optional = false)
     @JsonView(FlatView.class)
@@ -53,11 +54,11 @@ public class ProposalVote {
         return this;
     }
 
-    public Staff getVoter() {
+    public Member getVoter() {
         return voter;
     }
 
-    public ProposalVote setVoter(Staff voter) {
+    public ProposalVote setVoter(Member voter) {
         this.voter = voter;
         return        this;
     }

@@ -18,6 +18,7 @@ import org.mixit.cesar.security.service.autorisation.NeedsRole;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.event.Event;
+import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,9 +138,8 @@ public class ProposalController {
     @NeedsRole(Role.ADMIN)
     public void vote(@RequestBody ProposalVoteDTO voteParam) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
         Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
-        proposalVoteService.vote(proposal, voter, voteParam.getVoteValue());
+        proposalVoteService.vote(proposal, currentUser.getCredentials().get().getMember(), voteParam.getVoteValue());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/vote-comment")
@@ -148,9 +148,8 @@ public class ProposalController {
     @NeedsRole(Role.ADMIN)
     public void voteComment(@RequestBody ProposalVoteDTO voteParam) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
         Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
-        proposalVoteService.voteComment(proposal, voter, voteParam.getVoteValue(), voteParam.getVoteComment());
+        proposalVoteService.voteComment(proposal, currentUser.getCredentials().get().getMember(), voteParam.getVoteValue(), voteParam.getVoteComment());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/votes")
@@ -160,7 +159,7 @@ public class ProposalController {
     public List<ProposalVoteDTO> getVotes(@RequestParam(required = false) Integer year) {
         Event event = eventService.getEvent(year);
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        Staff voter = (Staff) currentUser.getCredentials().get().getMember();
+        Member voter = currentUser.getCredentials().get().getMember();
         return proposalVoteRepository.findStaffVotesForEvent(voter, event)
                 .stream()
                 .map(ProposalVoteDTO::convert)
