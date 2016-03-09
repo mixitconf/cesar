@@ -53,4 +53,5 @@ public class ProposalVoteController {
                 .stream()
                 .collect(Collectors.groupingBy(v -> v.getVoter().getFirstname(), Collectors.counting()));
     }
+
 }
