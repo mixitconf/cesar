@@ -73,7 +73,9 @@
         voteValue: voteValue,
         voteComment: ctrl.votesMappedByProposalId[ctrl.proposal.id].comment
       };
-      $http.post('app/cfp/proposal/vote-comment', data);
+      $http.post('app/cfp/proposal/vote-comment', data).catch(function () {
+        ctrl.errorMessage = 'UNDEFINED';
+      });
       if ( !ctrl.votesMappedByProposalId[ctrl.proposal.id] ) {
         ctrl.votesMappedByProposalId[ctrl.proposal.id] = {};
       }

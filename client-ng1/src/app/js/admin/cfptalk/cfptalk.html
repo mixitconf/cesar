@@ -4,6 +4,8 @@
         {{ctrl.proposal.title}}
     </h1>
 
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
+
     <div>
         <a class="cesar-mdl-button--interests" ng-if="ctrl.proposal.status">{{ctrl.proposal.status}}</a>
     </div>

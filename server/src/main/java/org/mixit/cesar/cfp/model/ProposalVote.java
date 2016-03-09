@@ -91,6 +91,6 @@ public class ProposalVote {
 
     public ProposalVote setVoteComment(String voteComment) {
         this.voteComment = voteComment;
-        return null;
+        return this;
     }
 }

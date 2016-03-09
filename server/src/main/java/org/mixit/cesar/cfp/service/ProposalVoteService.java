@@ -45,7 +45,6 @@ public class ProposalVoteService {
     public void voteComment(Proposal proposal, Member voter, int voteValue, String voteComment) {
         Objects.requireNonNull(proposal, "proposal is required");
         Objects.requireNonNull(voter, "voter is required");
-        Objects.requireNonNull(voteComment, "vote comment is required");
 
         ProposalVote proposalVote;
 
@@ -55,15 +54,14 @@ public class ProposalVoteService {
         if (proposalPersisted.size() == 0) {
             proposalVote = new ProposalVote()
                     .setVoter(voter)
-                    .setProposal(proposal)
-                    .setVoteValue(voteValue)
-                    .setVoteComment(voteComment);
-        }else {
+                    .setProposal(proposal);
+
+        }
+        else {
             proposalVote = proposalPersisted.get(0);
-            proposalVote.setVoteComment(voteComment).setVoteValue(voteValue);
         }
 
-        proposalVoteRepository.save(proposalVote);
+        proposalVoteRepository.save(proposalVote.setVoteValue(voteValue).setVoteComment(voteComment));
     }
 
 
