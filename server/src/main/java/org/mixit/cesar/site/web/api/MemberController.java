@@ -39,7 +39,7 @@ public class MemberController {
                 .cacheControl(CacheControl.maxAge(4, TimeUnit.DAYS))
                 .body(members
                         .stream()
-                        .map(m -> MemberResource.convert(m))
+                        .map(MemberResource::convert)
                         .collect(Collectors.toList()));
     }
 

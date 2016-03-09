@@ -150,7 +150,7 @@ public class ProposalController {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
         Staff voter = (Staff) currentUser.getCredentials().get().getMember();
         Proposal proposal = proposalRepository.findOne(voteParam.getProposalId());
-        proposalVoteService.voteComment(proposal, voter, voteParam.getVoteComment());
+        proposalVoteService.voteComment(proposal, voter, voteParam.getVoteValue(), voteParam.getVoteComment());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/votes")
@@ -163,7 +163,7 @@ public class ProposalController {
         Staff voter = (Staff) currentUser.getCredentials().get().getMember();
         return proposalVoteRepository.findStaffVotesForEvent(voter, event)
                 .stream()
-                .map(ProposalVoteDTO::new)
+                .map(ProposalVoteDTO::convert)
                 .collect(Collectors.toList());
     }
 

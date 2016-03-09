@@ -36,7 +36,7 @@ public class SessionController {
                 .ok()
                 .body(sessions
                 .stream()
-                .map(m -> SessionResource.convert(m))
+                .map(SessionResource::convert)
                 .collect(Collectors.toList()));
     }
 

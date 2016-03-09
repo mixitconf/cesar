@@ -1,5 +1,7 @@
 package org.mixit.cesar.cfp.web;
 
+import static org.mixit.cesar.cfp.model.ProposalStatus.*;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,9 +11,9 @@ import org.mixit.cesar.cfp.model.ProposalStatus;
 import org.mixit.cesar.cfp.model.ProposalVote;
 import org.mixit.cesar.cfp.repository.ProposalRepository;
 import org.mixit.cesar.cfp.repository.ProposalVoteRepository;
+import org.mixit.cesar.cfp.web.dto.ProposalDTO;
 import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.site.model.FlatView;
-import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,9 +47,9 @@ public class ProposalVoteController {
     }
 
     @Authenticated
-    @RequestMapping
+    @RequestMapping(value = "/summary")
     @JsonView(FlatView.class)
-    public Map<String, Long> getAllByEvent(@RequestParam(required = false) Integer year) {
+    public Map<String, Long> getSummaryByEvent(@RequestParam(required = false) Integer year) {
         List<ProposalVote> votes = proposalVoteRepository.findAllByEvent(eventService.getEvent(year));
 
         return votes
@@ -55,4 +57,14 @@ public class ProposalVoteController {
                 .collect(Collectors.groupingBy(v -> v.getVoter().getFirstname(), Collectors.counting()));
     }
 
+    @Authenticated
+    @RequestMapping
+    public List<ProposalDTO> getAllByEvent(@RequestParam(required = false) Integer year) {
+        return proposalRepository
+                .findAllProposalsWithVotes(eventService.getEvent(year))
+                .stream()
+                .filter(p -> p.getStatus() == SUBMITTED || p.getStatus() == ACCEPTED || p.getStatus() == REJECTED)
+                .map(ProposalDTO::convert)
+                .collect(Collectors.toList());
+    }
 }

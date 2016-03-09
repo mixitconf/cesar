@@ -40,11 +40,7 @@
                           ng-model="ctrl.votesMappedByProposalId[ctrl.proposal.id].comment"></textarea>
             </div>
 
-            <div style="float: right">
-                <cesar-button disabled="spinner==='on'" id="saveComment" on-click="ctrl.saveVoteComment()" text="Save comment"
-                              spinner="spinner" google-icon="save"></cesar-button>
-                <div class="mdl-tooltip" for="saveComment">Save vote comment</div>
-            </div>
+
             <p>&nbsp;</p>
             <span style="margin-left: 5px;" ng-if="ctrl.proposal.status==='SUBMITTED'">
             <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"

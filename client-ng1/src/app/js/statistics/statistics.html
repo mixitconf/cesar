@@ -9,11 +9,62 @@
         Nb de talks refusés : {{ctrl.stats.rejected}}
     </p>
 
-    <p>Voici l'avancée du travail</p>
+    <p class="cesar-text">Voici l'avancée du travail</p>
 
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="mdl-grid cesar-liste" ng-repeat="(person, done) in ctrl.stats.dones | orderBy:-done">
-            <b>{{person}}</b> : {{done / ctrl.stats.submitted * 100 | number:2}} % des soumis et {{done / (ctrl.stats.submitted + ctrl.stats.accepted) * 100 | number:2}} % des soumis et acceptés
+            <b>{{person}}</b> : {{done / ctrl.stats.submitted * 100 | number:2}} % des soumis et {{done /
+            (ctrl.stats.submitted + ctrl.stats.accepted) * 100 | number:2}} % des soumis et acceptés
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p class="cesar-text">Le classement et les votes</p>
+
+    <cesar-search-bar></cesar-search-bar>
+    <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+        <div class="cesar-liste"
+             ng-repeat="session in ctrl.stats.proposals | filter:search | orderBy:'-totalVotes'">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
+                    <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                        <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format |
+                            sessionLogo}}</i>&nbsp;
+                        {{session.title}}
+                        &nbsp;<span class="cesar-badge">{{session.lang}}</span>
+                        &nbsp;<b ng-if="session.totalVotes != -9999">Total vote : {{session.totalVotes}} </b>
+                    </p>
+                    <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
+                    <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+                        <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                            <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}">
+                        </a>
+                        <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{speaker.firstname}}
+                            {{speaker.lastname}}</a>&nbsp;
+                    </span>
+
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                    <div style="float: right">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="admcfptalk({id : session.id})" id="detail">
+                            <i class="material-icons">library_books</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                    <span ng-repeat="vote in session.votes">
+                        <b>{{vote.voter}}</b> : {{vote.voteValue}} <small ng-if="vote.voteComment">({{vote.voteComment}})</small> <b>|</b>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.nbtotal===0">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                No data found
+            </div>
         </div>
     </div>
 

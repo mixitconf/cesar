@@ -32,7 +32,7 @@ public class ProposalVoteService {
             proposalVote = new ProposalVote()
                     .setVoter(voter)
                     .setProposal(proposal)
-            .setVoteValue(voteValue);
+                    .setVoteValue(voteValue);
         }else {
             proposalVote = proposalPersisted.get(0);
             proposalVote.setVoteValue(voteValue);
@@ -41,7 +41,7 @@ public class ProposalVoteService {
         proposalVoteRepository.save(proposalVote);
     }
 
-    public void voteComment(Proposal proposal, Staff voter, String voteComment) {
+    public void voteComment(Proposal proposal, Staff voter, int voteValue, String voteComment) {
         Objects.requireNonNull(proposal, "proposal is required");
         Objects.requireNonNull(voter, "voter is required");
         Objects.requireNonNull(voteComment, "vote comment is required");
@@ -55,10 +55,11 @@ public class ProposalVoteService {
             proposalVote = new ProposalVote()
                     .setVoter(voter)
                     .setProposal(proposal)
+                    .setVoteValue(voteValue)
                     .setVoteComment(voteComment);
         }else {
             proposalVote = proposalPersisted.get(0);
-            proposalVote.setVoteComment(voteComment);
+            proposalVote.setVoteComment(voteComment).setVoteValue(voteValue);
         }
 
         proposalVoteRepository.save(proposalVote);

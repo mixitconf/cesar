@@ -70,22 +70,16 @@
     ctrl.vote = function (voteValue) {
       var data = {
         proposalId: ctrl.proposal.id,
-        voteValue: voteValue
+        voteValue: voteValue,
+        voteComment: ctrl.votesMappedByProposalId[ctrl.proposal.id].comment
       };
-      $http.post('app/cfp/proposal/vote', data);
+      $http.post('app/cfp/proposal/vote-comment', data);
       if ( !ctrl.votesMappedByProposalId[ctrl.proposal.id] ) {
         ctrl.votesMappedByProposalId[ctrl.proposal.id] = {};
       }
       ctrl.votesMappedByProposalId[ctrl.proposal.id].vote = voteValue;
     };
 
-    ctrl.saveVoteComment = function () {
-      var data = {
-        proposalId: ctrl.proposal.id,
-        voteComment: ctrl.votesMappedByProposalId[ctrl.proposal.id].comment
-      };
-      $http.post('app/cfp/proposal/vote-comment', data);
-    };
 
     function refresh() {
       $timeout(function () {

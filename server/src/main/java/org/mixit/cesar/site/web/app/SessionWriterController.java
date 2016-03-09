@@ -63,7 +63,7 @@ public class SessionWriterController {
         return sessionRepository
                 .findAllMyLightningTalks(EventService.getCurrent().getId(), currentUser.getId())
                 .stream()
-                .map(s -> SessionResource.convert(s))
+                .map(SessionResource::convert)
                 .collect(Collectors.toList());
     }
 
@@ -75,7 +75,7 @@ public class SessionWriterController {
                 .stream()
                 .filter(v -> v.getSession().getFormat().equals(Format.LightningTalk))
                 .filter(v -> v.getSession().getEvent().equals(EventService.getCurrent()))
-                .map(v -> VoteDto.convert(v))
+                .map(VoteDto::convert)
                 .collect(Collectors.toList());
     }
 
