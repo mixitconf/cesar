@@ -124,6 +124,10 @@ public class Proposal {
     @JsonView(FlatView.class)
     private boolean valid;
 
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
+    private List<ProposalVote> votes = new ArrayList<>();
+
+
     public Long getId() {
         return id;
     }
@@ -333,6 +337,14 @@ public class Proposal {
         return this;
     }
 
+    public List<ProposalVote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<ProposalVote> votes) {
+        this.votes = votes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -340,7 +352,6 @@ public class Proposal {
         Proposal session = (Proposal) o;
         return Objects.equals(id, session.id);
     }
-
 
     @Override
     public int hashCode() {
