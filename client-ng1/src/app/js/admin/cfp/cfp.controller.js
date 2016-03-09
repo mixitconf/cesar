@@ -121,7 +121,8 @@
     };
 
     ctrl.isVoted = function (proposalId) {
-      return !!ctrl.votesMappedByProposalId[proposalId] && !!ctrl.votesMappedByProposalId[proposalId].vote;
+      return ctrl.votesMappedByProposalId[proposalId] !== undefined &&
+          ctrl.votesMappedByProposalId[proposalId].vote !== undefined;
     };
 
     ctrl.toggleVotedFilter = function(votedFilter) {
