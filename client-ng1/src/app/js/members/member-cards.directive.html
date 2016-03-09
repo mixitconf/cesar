@@ -16,17 +16,17 @@
             </div>
         </div>
         <div class="mdl-card__actions mdl-card--border" ng-class="{'hide-on-mobile': lengthPhone<=4 && member.login==='mixit'}">
-            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-if="member.login!=='mixit'" ui-sref="member({id : member.idMember, type : type})">
-                <i class="material-icons">person</i>
-            </a>
-            <a class="mdl-button mdl-js-button mdl-button--fab  mdl-button--mini-fab"  ng-if="member.login==='mixit'" ng-href="/docs/sponsor/leaflet/fr" target="sponsor">
-                <i class="material-icons">person</i>
-            </a>
-            <div style="float: right"  ng-class="{'hide-on-mobile': lengthPhone<=4}">
                 <cesar-social-link ng-repeat="link in member.userLinks"
                                    class-names="mdl-js-button mdl-button--fab mdl-button--mini-fab cesar-button--fab"
+                                   ng-class="{'hide-on-mobile': lengthPhone<=4}"
                                    url="link.value"></cesar-social-link>
-            </div>
+
+            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" style="float: right" ng-if="member.login!=='mixit'" ui-sref="member({id : member.idMember, type : type})">
+                <i class="material-icons">person</i>
+            </a>
+            <a class="mdl-button mdl-js-button mdl-button--fab  mdl-button--mini-fab"  style="float: right" ng-if="member.login==='mixit'" ng-href="/docs/sponsor/leaflet/fr" target="sponsor">
+                <i class="material-icons">person</i>
+            </a>
         </div>
     </div>
 </div>

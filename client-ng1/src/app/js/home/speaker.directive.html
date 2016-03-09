@@ -1,25 +1,30 @@
 <div class="cesar-section cesar-speaker">
 
-  <div class="cesar-container">
-    <h3 class="center"><span translate="home.speaker.top">Cette année nous sommes très très fier d'accueillir </span><a class="link" ui-sref="article_zoom1({id : 163})">Joël Spolsky</a></h3>
+    <div class="cesar-container">
+        <h3 class="center"><span
+                translate="home.speaker.top">Cette année nous sommes très très fier d'accueillir </span><a class="link"
+                                                                                                           ui-sref="article_zoom1({id : 163})">Joël
+            Spolsky</a></h3>
 
-    <div class="center"><a ui-sref="article_zoom1({id : 163})"><img src="img/speakers/splosky.jpg"/></a>
-      <p>&nbsp;</p>
-      <p class="center cesar-text"><span translate="home.speaker.first"></span>
-        <a class="link" ui-sref="article_zoom1({id : 182})">Allan Kelly</a>.&nbsp;
-        <span translate="home.speaker.next"></span>.
-        &nbsp;<span translate="home.speaker.title"></span> </p>
+        <div class="center"><a ui-sref="article_zoom1({id : 163})"><img src="img/speakers/splosky.jpg"/></a>
+            <p>&nbsp;</p>
+            <p class="center cesar-text"><span translate="home.speaker.first"></span>
+                <a class="link" ui-sref="article_zoom1({id : 182})">Allan Kelly</a>.&nbsp;
+                <span translate="home.speaker.next"></span>.
+                &nbsp;<span translate="home.speaker.title"></span></p>
 
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp" ng-repeat="speaker in speakers">
-          <div class="mdl-card__media">
-            <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}?s=160" style="width: 100%">
-          </div>
-          <div class="mdl-card__title">
-            <p class="mdl-card__title-text cesar-text">{{speaker.name}}</p>
-          </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp"
+                     ng-repeat="speaker in speakers">
+                    <div class="mdl-card__media">
+                        <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}?s=160" style="width: 100%">
+                    </div>
+                    <div class="mdl-card__title">
+                        <p class="mdl-card__title-text cesar-text">{{speaker.name}}</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-
     </div>
-  </div>
+</div>
