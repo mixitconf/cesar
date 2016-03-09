@@ -1,0 +1,18 @@
+<div class="cesar-container">
+    <h1>Statistics</h1>
+
+    <p class="cesar-text">Voici quelques statistiques sur le CFP</p>
+
+    <p>Nb de talks soumis : {{ctrl.stats.nbtalks}}</p>
+
+    <p>Voici le reste à faire par personnes</p>
+
+    <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+        <div class="mdl-grid cesar-liste" ng-repeat="(person, raf) in ctrl.stats.raf | orderBy:-raf">
+            <b>{{person}}</b> : {{raf / ctrl.stats.nbtalks * 100 | number:2}} %
+        </div>
+    </div>
+
+
+</div>
+<p>&nbsp;</p>

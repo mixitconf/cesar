@@ -78,12 +78,13 @@
             ctrl.menus.push(
               {
                 id: 'menu.admin', name: 'admin', submenus: [
-                {id: 'menu.monitor', link: 'monitor'},
-                {id: 'menu.cache', link: 'cache'},
-                {id: 'menu.news', link: 'admarticles'},
-                {id: 'menu.cfp', link: 'admcfp'},
+                {id: 'menu.monitor', link: 'monitor', mobile: true},
+                {id: 'menu.cache', link: 'cache', mobile: true},
+                {id: 'menu.news', link: 'admarticles', mobile: true},
+                {id: 'menu.cfp', link: 'admcfp', mobile: true},
                 {id: 'menu.planning', link: 'admplanning'},
-                {id: 'menu.accounts', link: 'admaccounts'}
+                {id: 'menu.accounts', link: 'admaccounts', mobile: true},
+                {id: 'menu.statistics', link: 'statistics', mobile: true}
               ]}
             );
           }

@@ -26,4 +26,10 @@ public interface ProposalVoteRepository extends CrudRepository<ProposalVote, Lon
      */
     @Query(value = "SELECT DISTINCT pv FROM ProposalVote pv where pv.proposal.event = :event and pv.voter = :voter")
     List<ProposalVote> findStaffVotesForEvent(@Param("voter") Staff voter, @Param("event") Event event);
+
+    /**
+     * Return the proposal for an event
+     */
+    @Query(value = "SELECT pv FROM ProposalVote pv left join fetch pv.proposal p left join fetch pv.voter v where p.event = :event")
+    List<ProposalVote> findAllByEvent(@Param("event") Event event);
 }

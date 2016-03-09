@@ -20,15 +20,19 @@ public class ProposalVote {
 
     @Min(-2)
     @Max(2)
+    @JsonView(FlatView.class)
     protected int voteValue;
 
     @ManyToOne(optional = false)
+    @JsonView(FlatView.class)
     protected Staff voter;
 
     @ManyToOne(optional = false)
+    @JsonView(FlatView.class)
     protected Proposal proposal;
 
     @Lob
+    @JsonView(FlatView.class)
     private String voteComment;
 
     public Long getId() {

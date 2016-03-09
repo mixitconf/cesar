@@ -41,7 +41,8 @@
     "logout": "Se déconnecter",
     "login": "Se connecter",
     "monitor": "Monitoring",
-    "planning": "Planning"
+    "planning": "Planning",
+    "statistics" : "Statistiques"
   },
   "home": {
     "headband": {

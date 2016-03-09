@@ -57,6 +57,7 @@ public class Routes {
             "/speakers",
             "/sponsor/{id:\\w+}",
             "/sponsors",
+            "statistics",
             "/staff",
             "/talks",
             "/valid",
