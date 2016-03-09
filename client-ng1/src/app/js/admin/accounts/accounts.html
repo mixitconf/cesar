@@ -13,8 +13,6 @@
     <div class="cesar-info" ng-if="ctrl.purgeOk">{{ctrl.purgeOk}}</div>
 
     <cesar-search-bar></cesar-search-bar>
-    <p style="padding-left: 1em"><small>{{ctrl.pagination.nbtotal}} {{ctrl.pagination.nbtotal>0 ? 'accounts' : 'account'}}</small></p>
-
     {{ctrl.pagination.elements(result.length)}}
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="mdl-grid cesar-liste" ng-repeat="account in ctrl.pagination.filter(search) as result track by $index" ng-if="ctrl.pagination.displayItem($index)">
