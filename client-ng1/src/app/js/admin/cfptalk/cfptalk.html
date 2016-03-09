@@ -93,21 +93,21 @@
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
 
     <div class="cesar-section--bottom">
-
+            <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.summary.text">Title</span><br>
-                {{ctrl.proposal.summary}}
+                <span ng-bind-html="ctrl.proposal.summary | markdown"></span>
             </p>
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.description.text">Title</span><br>
-                {{ctrl.proposal.description}}
+                <span ng-bind-html="ctrl.proposal.description | markdown"></span>
             </p>
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.ideaForNow.text">Title</span><br>
-                {{ctrl.proposal.ideaForNow}}
+                <span ng-bind-html="ctrl.proposal.ideaForNow | markdown"></span>
             </p>
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.messageForStaff.text">Title</span><br>
-                {{ctrl.proposal.messageForStaff}}
+                <span ng-bind-html="ctrl.proposal.messageForStaff | markdown"></span>
             </p>
             <p>
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.language.text">Title</span><br>
