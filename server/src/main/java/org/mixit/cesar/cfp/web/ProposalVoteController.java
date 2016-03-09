@@ -39,7 +39,7 @@ public class ProposalVoteController {
     public long getNbSessions(@RequestParam(required = false) Integer year) {
         return proposalRepository.findAllProposals(eventService.getEvent(year).getId())
                 .stream()
-                .filter(p -> p.getStatus().equals(ProposalStatus.SUBMITTED))
+                .filter(p -> (p.getStatus().equals(ProposalStatus.SUBMITTED) || p.getStatus().equals(ProposalStatus.ACCEPTED) || p.getStatus().equals(ProposalStatus.REJECTED)))
                 .count();
     }
 
