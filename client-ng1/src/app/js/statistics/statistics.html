@@ -3,16 +3,19 @@
 
     <p class="cesar-text">Voici quelques statistiques sur le CFP</p>
 
-    <p>Nb de talks soumis : {{ctrl.stats.nbtalks}}</p>
+    <p>
+        Nb de talks soumis : {{ctrl.stats.submitted}}<br>
+        Nb de talks acceptés : {{ctrl.stats.accepted}}<br>
+        Nb de talks refusés : {{ctrl.stats.rejected}}
+    </p>
 
-    <p>Voici le reste à faire par personnes</p>
+    <p>Voici l'avancée du travail</p>
 
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-        <div class="mdl-grid cesar-liste" ng-repeat="(person, raf) in ctrl.stats.raf | orderBy:-raf">
-            <b>{{person}}</b> : {{raf / ctrl.stats.nbtalks * 100 | number:2}} %
+        <div class="mdl-grid cesar-liste" ng-repeat="(person, done) in ctrl.stats.dones | orderBy:-done">
+            <b>{{person}}</b> : {{done / ctrl.stats.submitted * 100 | number:2}} % des soumis et {{done / (ctrl.stats.submitted + ctrl.stats.accepted) * 100 | number:2}} % des soumis et acceptés
         </div>
     </div>
-
 
 </div>
 <p>&nbsp;</p>

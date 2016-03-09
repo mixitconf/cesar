@@ -17,7 +17,7 @@ import org.springframework.data.repository.query.Param;
 public interface ArticleRepository extends CrudRepository<Article, Long> {
 
     @Cacheable(CACHE_ARTICLE)
-    @Query(value = "SELECT a FROM Article a where a.valid=true order by a.postedAt desc")
+    @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c where a.valid=true order by a.postedAt desc")
     List<Article> findAllPublishedArticle();
 
     @Cacheable(CACHE_ARTICLE)

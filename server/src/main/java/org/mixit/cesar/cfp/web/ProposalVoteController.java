@@ -14,6 +14,7 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,11 +36,11 @@ public class ProposalVoteController {
     private ProposalRepository proposalRepository;
 
     @Authenticated
-    @RequestMapping(value = "/nbsessions")
-    public long getNbSessions(@RequestParam(required = false) Integer year) {
+    @RequestMapping(value = "/nbsessions/{state}")
+    public long getNbSessions(@RequestParam(required = false) Integer year, @PathVariable("state") ProposalStatus state) {
         return proposalRepository.findAllProposals(eventService.getEvent(year).getId())
                 .stream()
-                .filter(p -> (p.getStatus().equals(ProposalStatus.SUBMITTED) || p.getStatus().equals(ProposalStatus.ACCEPTED) || p.getStatus().equals(ProposalStatus.REJECTED)))
+                .filter(p -> p.getStatus() == state)
                 .count();
     }
 
