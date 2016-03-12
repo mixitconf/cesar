@@ -71,7 +71,7 @@
       .then(function(){
         ctrl.sessions.forEach(function(session){
           //I need to know if I can modify an abstract
-          if(mylighnings.some(function(mylt){
+          if(mylighnings && mylighnings.some(function(mylt){
             return mylt.idSession === session.idSession;
           })){
             session.edition = true;
