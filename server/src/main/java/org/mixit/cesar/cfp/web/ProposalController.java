@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/app/cfp/proposal")
+@Transactional
 public class ProposalController {
 
     @Autowired
@@ -166,24 +168,13 @@ public class ProposalController {
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{proposalId}/accept")
+    @RequestMapping(method = RequestMethod.PUT, value = "/{proposalId}/state/{state}")
     @ResponseStatus(HttpStatus.OK)
     @Authenticated
     @NeedsRole(Role.ADMIN)
-    public void accept(@PathVariable(value = "proposalId")  Long proposalId) {
-        changeProposalStatus(proposalId, ProposalStatus.ACCEPTED);
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/{proposalId}/reject")
-    @ResponseStatus(HttpStatus.OK)
-    @Authenticated
-    @NeedsRole(Role.ADMIN)
-    public void reject(@PathVariable(value = "proposalId")  Long proposalId) {
-        changeProposalStatus(proposalId, ProposalStatus.REJECTED);
-    }
-
-    private void changeProposalStatus(Long proposalId, ProposalStatus accepted) {
+    public void accept(@PathVariable(value = "proposalId")  Long proposalId,
+                       @PathVariable(value = "state")  ProposalStatus state) {
         Proposal proposal = proposalRepository.findOne(proposalId);
-        proposal.setStatus(accepted);
+        proposal.setStatus(state);
     }
 }

@@ -22,6 +22,7 @@
     <p class="cesar-text">Le classement et les votes</p>
 
     <cesar-search-bar></cesar-search-bar>
+
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="cesar-liste"
              ng-repeat="session in ctrl.stats.proposals | filter:search | orderBy:'-totalVotes'">
@@ -57,7 +58,37 @@
                     <span ng-repeat="vote in session.votes">
                         <b>{{vote.voter}}</b> : {{vote.voteValue}} <small ng-if="vote.voteComment">({{vote.voteComment}})</small> <b>|</b>
                     </span>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                       ng-click="ctrl.accept(session)"
+                       ng-class="{
+                            'mdl-button--colored': (session.status !== 'ACCEPTED')
+                           }"
+                       id="validateProposal">
+                        <i class="material-icons">thumb_up</i>
+                    </a>
+                    <div class="mdl-tooltip" for="validateProposal">Validate Proposal</div>
 
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                       ng-click="ctrl.submit(session)"
+                       ng-class="{
+                            'mdl-button--colored': (session.status !== 'SUBMITTED')
+                           }"
+                       id="submitProposal">
+                        <i class="material-icons">remove_circle_outline</i>
+                    </a>
+                    <div class="mdl-tooltip" for="submitProposal">Proposal is submitted</div>
+
+                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                       ng-click="ctrl.reject(session)"
+                       ng-class="{
+                            'mdl-button--colored': (session.status !== 'REJECTED')
+                           }"
+                       id="rejectProposal">
+                        <i class="material-icons">thumb_down</i>
+                    </a>
+                    <div class="mdl-tooltip" for="rejectProposal">Reject Proposal</div>
                 </div>
             </div>
         </div>

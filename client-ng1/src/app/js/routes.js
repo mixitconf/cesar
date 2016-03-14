@@ -156,6 +156,7 @@
 
       .state('statistics', new State(USER_ROLES, 'statistics', 'js/statistics/statistics.html')
         .controller('StatisticsCtrl')
+        .resolve({account: getAccount})
         .build())
 
       .state('admarticle', new State(USER_ROLES, 'admarticle/:id', 'js/admin/article/article.html')

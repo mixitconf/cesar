@@ -2,11 +2,16 @@
 
   'use strict';
 
-  angular.module('cesar-account').controller('StatisticsCtrl', function ($http, $q) {
+  angular.module('cesar-account').controller('StatisticsCtrl', function ($http, $q, $rootScope, account) {
     'ngInject';
 
     var ctrl = this;
     ctrl.stats = {};
+
+    if (!account) {
+      $rootScope.$broadcast('event:auth-loginRequired');
+      return;
+    }
 
     //Recuperate count of submitted session
     $q.all([
@@ -48,6 +53,30 @@
           });
         })
     ]);
+
+    function _changeState(proposal, state){
+      $http
+        .put('app/cfp/proposal/' + proposal.id + '/state/' + state)
+        .then(function () {
+          proposal.status = state;
+        })
+        .catch(function () {
+          ctrl.errorMessage = 'UNDEFINED';
+        });
+    }
+
+    ctrl.accept = function (proposal) {
+      _changeState(proposal, 'ACCEPTED');
+    };
+
+    ctrl.submit = function (proposal) {
+      _changeState(proposal, 'SUBMITTED');
+    };
+
+    ctrl.reject = function (proposal) {
+      _changeState(proposal, 'REJECTED');
+    };
+
   });
 
 })();

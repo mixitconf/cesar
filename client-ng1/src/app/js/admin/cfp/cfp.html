@@ -57,21 +57,6 @@
                         <i class="material-icons">library_books</i>
                     </a>
                     <div class="mdl-tooltip" for="detail">Show detail</div>
-
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                       ng-click="ctrl.accept(proposal)"
-                       style="margin-top: 0.3em;"
-                       id="validateProposal">
-                        <i class="material-icons">thumb_up</i>
-                    </a>
-                    <div class="mdl-tooltip" for="validateProposal">Validate Proposal</div>
-
-                    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ng-click="ctrl.reject(proposal)"
-                       style="margin-top: 0.3em;"
-                       id="rejectProposal">
-                        <i class="material-icons">thumb_down</i>
-                    </a>
-                    <div class="mdl-tooltip" for="rejectProposal">Reject Proposal</div>
                 </div>
             </div>
             <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-admin-section" ng-if="proposal.status==='SUBMITTED' && ctrl.displayItem($index)">
