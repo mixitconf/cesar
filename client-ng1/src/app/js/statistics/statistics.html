@@ -13,8 +13,8 @@
 
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="mdl-grid cesar-liste" ng-repeat="(person, done) in ctrl.stats.dones | orderBy:-done">
-            <b>{{person}}</b> : {{done / ctrl.stats.submitted * 100 | number:2}} % des soumis et {{done /
-            (ctrl.stats.submitted + ctrl.stats.accepted) * 100 | number:2}} % des soumis et acceptés
+            <b>{{person}}</b> :  {{done /
+            (ctrl.stats.submitted + ctrl.stats.accepted + ctrl.stats.rejected) * 100 | number:2}} % des soumis et acceptés
         </div>
     </div>
 
