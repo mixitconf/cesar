@@ -18,10 +18,15 @@ CREATE TABLE tempProposal
 );
 
 INSERT INTO tempProposal (ID_PROPOSAL, ID_SESSION)
-SELECT p.ID, s.ID FROM PROPOSAL p inner join SESSION s on s.TITLE=p.TITLE and s.ID_EVENT=p.EVENT_ID WHERE p.STATUS='ACCEPTED';
+SELECT p.ID, s.ID FROM PROPOSAL p inner join SESSION s on s.TITLE=p.TITLE and p.EVENT_ID=6 WHERE p.STATUS='ACCEPTED';
 
 INSERT INTO session_member (SESSIONS_ID, SPEAKERS_ID)
 SELECT t.ID_SESSION, m.SPEAKERS_ID
 FROM tempProposal t inner join proposal_member m on t.ID_PROPOSAL=m.PROPOSAL_ID;
+
+INSERT INTO session_interest (SESSION_ID, INTERESTS_ID)
+SELECT t.ID_SESSION, m.INTERESTS_ID
+FROM tempProposal t inner join proposal_interest m on t.ID_PROPOSAL=m.PROPOSAL_ID;
+
 
 DROP TABLE tempProposal;
