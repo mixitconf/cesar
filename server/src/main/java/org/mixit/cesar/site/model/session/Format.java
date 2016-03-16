@@ -5,6 +5,7 @@ public enum Format {
     Talk(50),
     LightningTalk(5),
     Workshop(110),
+    Random(25),
     Keynote(20);
 
     /**

@@ -13,6 +13,8 @@
           return 'build';
         case 'Keynote':
           return 'face';
+        case 'Random':
+          return 'help';
         default:
           return 'forward_5';
       }
