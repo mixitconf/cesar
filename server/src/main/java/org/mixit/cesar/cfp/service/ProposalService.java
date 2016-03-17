@@ -24,6 +24,7 @@ import org.mixit.cesar.security.repository.AccountRepository;
 import org.mixit.cesar.security.service.mail.MailerService;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
+import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.InterestRepository;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
@@ -108,6 +109,19 @@ public class ProposalService {
                     .addSpeaker(accountRepository.findOne(account.getId()).getMember());
         }
 
+        Session session = proposalPersisted.getSession();
+        if(session !=null){
+            //If session is accepted user can be able to change the description
+            session .setDescription(proposal.getDescription())
+                    .setFormat(proposal.getFormat())
+                    .setTitle(proposal.getTitle())
+                    .setSummary(proposal.getSummary())
+                    .setLevel(proposal.getLevel())
+                    .setFormat(proposal.getFormat())
+                    .setIdeaForNow(proposal.getIdeaForNow())
+                    .setMessageForStaff(proposal.getMessageForStaff());
+        }
+
         proposalPersisted = proposalRepository.save(proposalPersisted
                 .setCategory(proposal.getCategory())
                 .setDescription(proposal.getDescription())
@@ -115,10 +129,8 @@ public class ProposalService {
                 .setTitle(proposal.getTitle())
                 .setSummary(proposal.getSummary())
                 .setLevel(proposal.getLevel())
-                .setCategory(proposal.getCategory())
                 .setFormat(proposal.getFormat())
                 .setIdeaForNow(proposal.getIdeaForNow())
-                .setMaxAttendees(proposal.getMaxAttendees())
                 .setTypeSession(proposal.getTypeSession())
                 .setMessageForStaff(proposal.getMessageForStaff())
                 .setMaxAttendees(proposal.getMaxAttendees())

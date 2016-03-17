@@ -28,5 +28,10 @@ INSERT INTO session_interest (SESSION_ID, INTERESTS_ID)
 SELECT t.ID_SESSION, m.INTERESTS_ID
 FROM tempProposal t inner join proposal_interest m on t.ID_PROPOSAL=m.PROPOSAL_ID;
 
+UPDATE proposal AS U1, tempProposal AS U2
+SET U1.SESSION_ID = U2.ID_SESSION
+WHERE U2.ID_PROPOSAL = U1.id;
 
 DROP TABLE tempProposal;
+
+

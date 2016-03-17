@@ -31,6 +31,7 @@ import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.Level;
+import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 
 @Entity
@@ -55,6 +56,9 @@ public class Proposal {
 
     @ManyToOne
     private Event event;
+
+    @ManyToOne
+    private Session session;
 
     @NotNull
     @Size(max = 100)
@@ -343,6 +347,15 @@ public class Proposal {
 
     public void setVotes(List<ProposalVote> votes) {
         this.votes = votes;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public Proposal setSession(Session session) {
+        this.session = session;
+        return this;
     }
 
     @Override
