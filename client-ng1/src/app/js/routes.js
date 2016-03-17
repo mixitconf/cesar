@@ -178,7 +178,9 @@
         .build())
 
       //Program
-      .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html').build())
+      .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html')
+        .controller('PlanningCtrl')
+        .build())
 
       .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')

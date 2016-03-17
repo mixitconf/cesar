@@ -110,6 +110,16 @@
       }
     }
 
+    function _sortByDate(a,b){
+      if(moment(a.start).isBefore(moment(b.start))){
+        return -1;
+      }
+      if(moment(a.start).isAfter(moment(b.start))){
+        return 1;
+      }
+      return 0;
+    }
+
     /**
      * Slots are read in database and a table is build to be able to display a nice planning
      */
@@ -127,15 +137,7 @@
               hour: 8,
               minute: 0
             };
-            slotsByRoom[room.key] = slotsByRoom[room.key].sort(function(a,b){
-              if(moment(a.start).isBefore(moment(b.start))){
-                return -1;
-              }
-              if(moment(a.start).isAfter(moment(b.start))){
-                return 1;
-              }
-              return 0;
-            });
+            slotsByRoom[room.key] = slotsByRoom[room.key].sort(_sortByDate);
 
             for (var i in slotsByRoom[room.key]) {
               elt = slotsByRoom[room.key][i];

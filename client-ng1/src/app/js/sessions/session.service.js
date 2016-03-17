@@ -23,7 +23,7 @@
 
         session.speakers = speakers.filter(function (speaker) {
           var found = links.filter(function (s) {
-            if (s.rel !== 'speaker') {
+            if (!s || s.rel !== 'speaker') {
               return false;
             }
             return Util.extractId(s.href) === (speaker.idMember + '');

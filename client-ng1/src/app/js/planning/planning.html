@@ -1,6 +1,55 @@
 <div class="cesar-container">
     <h1 translate="view.planning.title"></h1>
 
-    TODO
+    <cesar-search-bar>
+        <div class="hide-on-mobile">
+            <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+            <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+            <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+            <i class="material-icons">help</i>&nbsp;<span>Random</span>
+        </div>
+    </cesar-search-bar>
+    {{ctrl.pagination.elements(result.length)}}
+    <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+        <div class="cesar-liste" ng-repeat="session in ctrl.pagination.filter(search) as result track by $index"
+             ng-class="{'cesar-planning__slot-Annexe': !session.format}">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
+                    <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                        <i class="material-icons cesar-button--fab" ng-if="session.format">{{session.format |
+                            sessionLogo}}</i>&nbsp;
+                        <span ng-if="!!session.format">{{session.title}}</span>
+                        <span ng-if="!session.format" translate="{{session.title}}"></span>
+                        &nbsp;<span class="cesar-badge" ng-if="session.lang">{{session.lang}}</span>
+                    </p>
+                    <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
+                    <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
+                    <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+                        <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                            <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}">
+                        </a>
+                        <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{speaker.firstname}}
+                            {{speaker.lastname}}</a>&nbsp;
+                    </span>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                    <div style="float: right">
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                           ui-sref="session({id : session.idSession, format : session.format})" id="detail" ng-if="session.idSession">
+                            <i class="material-icons">library_books</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.nbtotal===0">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                No data found
+            </div>
+        </div>
+    </div>
+    <cesar-pagination pagination="ctrl.pagination.get()"></cesar-pagination>
+
     <p>&nbsp;</p>
 </div>
