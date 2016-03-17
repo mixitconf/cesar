@@ -21,11 +21,16 @@
       return $http.get('/api/planning' + (!!year ? '?year=' + year : ''));
     }
 
+    function getTransversalSlots(year) {
+      return $http.get('/api/planning/transversal' + (!!year ? '?year=' + year : ''));
+    }
+    
     function getEventOutOfSession(){
       return [
         'view.planning.moment.close',
         'view.planning.moment.ligthning',
         'view.planning.moment.lunch',
+        'view.planning.moment.random',
         'view.planning.moment.mixteen',
         'view.planning.moment.party',
         'view.planning.moment.pause',
@@ -122,6 +127,15 @@
               hour: 8,
               minute: 0
             };
+            slotsByRoom[room.key] = slotsByRoom[room.key].sort(function(a,b){
+              if(moment(a.start).isBefore(moment(b.start))){
+                return -1;
+              }
+              if(moment(a.start).isAfter(moment(b.start))){
+                return 1;
+              }
+              return 0;
+            });
 
             for (var i in slotsByRoom[room.key]) {
               elt = slotsByRoom[room.key][i];
@@ -234,6 +248,7 @@
       getEventOutOfSession: getEventOutOfSession,
       getRoom: getRoom,
       getSlots: getSlots,
+      getTransversalSlots: getTransversalSlots,
       getTimeSlots: getTimeSlots,
       computeSlots: computeSlots,
       computeRange: computeRange,

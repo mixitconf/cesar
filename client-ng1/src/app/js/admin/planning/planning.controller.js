@@ -8,7 +8,7 @@
     'ngInject';
 
     var ctrl = this;
-    var slots;
+    var slots, transversalSlots;
     var year=$rootScope.cesar.current;
 
     ctrl.dates = [$rootScope.cesar.day1, $rootScope.cesar.day2];
@@ -25,6 +25,18 @@
     }
 
     function _computeSlots(){
+      transversalSlots.forEach(function(elt){
+        for(var index in ctrl.rooms){
+          var room = ctrl.rooms[index];
+          elt.room = room;
+          if(slots[room.key]){
+            slots[room.key].push(elt);
+          }
+          else{
+            slots[room.key] = [elt];
+          }
+        }
+      });
       $q.all([
           PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), ctrl.rooms).then(function (response) {
             ctrl.day1Slots = response;
@@ -41,13 +53,26 @@
     function _refresh(){
       cesarSpinnerService.wait();
 
-      PlanningService.getSlots(year).then(function (response) {
+      $q.all([
+        PlanningService.getSlots(year).then(function (response) {
           slots = response.data;
+        }),
+        PlanningService.getTransversalSlots(year).then(function (response) {
+          transversalSlots = response.data;
         })
+      ])
         .then(_computeSlots)
         .finally(function () {
           cesarSpinnerService.stopWaiting();
         });
+    }
+
+    function _check(){
+      if(ctrl.slot.session && !ctrl.slot.room){
+        ctrl.errorMessage = 'ROOM_REQUIRED';
+        return false;
+      }
+      return true;
     }
 
     ctrl.displayRoom = function (room) {
@@ -76,19 +101,35 @@
 
     ctrl.saveSlot = function(){
       delete ctrl.errorMessage;
-
+      if(!_check()){
+        return;
+      }
       var slotToSave = {
         id : ctrl.slot.id,
         start : PlanningService.convertDate(ctrl.slot.start),
         end : PlanningService.convertDate(ctrl.slot.end),
-        room : ctrl.slot.room.key,
         label : ctrl.slot.label,
         idSession : ctrl.slot.session ? ctrl.slot.session.idSession : undefined
       };
 
-      var used = PlanningService.verifySlot(slotToSave, ctrl.day1Slots[ctrl.slot.room.key]);
-      if(!used){
-        used = PlanningService.verifySlot(slotToSave, ctrl.day2Slots[ctrl.slot.room.key]);
+      var rooms;
+      if(ctrl.slot.room){
+        slotToSave.room = ctrl.slot.room.key;
+        rooms = [ctrl.slot.room.key];
+      }
+      else {
+        rooms = ctrl.rooms.map(function(elt){
+          return elt.key;
+        });
+      }
+
+      var used;
+      for(var index in rooms){
+        var room = rooms[index];
+        used = PlanningService.verifySlot(slotToSave, ctrl.day1Slots[room]);
+        if(!used){
+          used = PlanningService.verifySlot(slotToSave, ctrl.day2Slots[room]);
+        }
       }
 
       if(used){
@@ -128,6 +169,9 @@
         }),
         PlanningService.getSlots(year).then(function (response) {
           slots = response.data;
+        }),
+        PlanningService.getTransversalSlots(year).then(function (response) {
+          transversalSlots = response.data;
         }),
         SessionService.getAllByYear(year).then(function (response) {
           ctrl.sessions = response.data;

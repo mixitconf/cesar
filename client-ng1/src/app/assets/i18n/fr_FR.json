@@ -218,13 +218,14 @@
     "planning": {
       "title": "Planning",
       "moment" : {
-        "close" : "Clôture des organisateurs",
+        "close" : "Cloture des organisateurs",
         "ligthning" : "Ligthning Talks",
         "lunch" : "Lunch",
+        "random" : "Random",
         "mixteen" : "Mix-Teen",
         "party" : "Mix-IT Party",
         "pause" : "Pause",
-        "staff" : "Le mot de l'orga et présentation des sessions" ,
+        "staff" : "Le mot de l'orga et presentation des sessions" ,
         "session-pres" : "Présentation des sessions",
         "welcome" : "Accueil et petit déjeuner"
       }

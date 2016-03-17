@@ -24,6 +24,6 @@ public interface SlotRepository extends CrudRepository<Slot, Long> {
     List<Slot> findAllSlots(@Param("idEvent") Long idEvent);
 
     @Cacheable(CACHE_PLANNING)
-    @Query(value = "SELECT DISTINCT slot FROM Slot slot left join fetch slot.session s where slot.event.id = :idEvent and (s.valid = true or s.id is null) and slot.room = :room")
+    @Query(value = "SELECT DISTINCT slot FROM Slot slot left join fetch slot.session s where slot.event.id = :idEvent and (s.valid = true or s.id is null) and (slot.room = :room or slot.room is null)")
     List<Slot> findAllSlotsByRoom(@Param("idEvent") Long idEvent, @Param("room") Room room);
 }

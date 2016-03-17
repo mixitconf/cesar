@@ -59,8 +59,21 @@ public class PlanningController {
         return slotRepository
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
+                .filter(s-> s.getRoom()!=null)
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
                 .collect(Collectors.groupingBy(Slot::getRoom));
+    }
+
+    @RequestMapping(value = "/transversal")
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
+    public List<Slot> getAllTransversalSlots(@RequestParam(required = false) Integer year) {
+        return slotRepository
+                .findAllSlots(eventService.getEvent(year).getId())
+                .stream()
+                .filter(s-> s.getRoom()==null)
+                .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/slots")
