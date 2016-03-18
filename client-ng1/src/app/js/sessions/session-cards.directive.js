@@ -10,6 +10,7 @@
       scope: {
         sessions: '=',
         search: '=',
+        year:'@',
         display: '@',
         order: '@',
         skipIcon : '@'

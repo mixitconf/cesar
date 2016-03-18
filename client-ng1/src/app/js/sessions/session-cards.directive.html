@@ -4,15 +4,15 @@
         <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
-                {{session.title}}
+                <a ui-sref="session({id : session.idSession, format : session.format})">
+                    {{session.title}}
+                </a>
                 &nbsp;<span class="cesar-badge">{{session.lang}}</span>
             </p>
 
             <div style="padding-top: 8px">
                 <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
                 <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
-
-
 
                 <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                     <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"

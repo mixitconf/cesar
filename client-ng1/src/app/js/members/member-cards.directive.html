@@ -3,8 +3,10 @@
          class="mdl-cell mdl-cell--{{length}}-col mdl-cell--{{lengthPhone}}-col-phone cesar-card mdl-card mdl-shadow--4dp"
             ng-class="{'cesar-card__inactive': member.login==='mixit'}">
         <div class="mdl-card__title mdl-card--expand cesar-card__title">
-            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type!=='sponsor'">{{member.firstname}} {{member.lastname}}</h3>
-            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type==='sponsor'">{{member.company}}</h3>
+            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type!=='sponsor'">
+                <a ui-sref="member({id : member.idMember, type : type})">{{member.firstname}} {{member.lastname}}</a></h3>
+            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type==='sponsor'">
+                <a ui-sref="member({id : member.idMember, type : type})">{{member.company}}</a></h3>
         </div>
         <div class="mdl-card__supporting-text cesar-card__supporting-text" ng-class="{'hide-on-mobile': length<=4 && member.login==='mixit'}">
             <div class="mdl-grid">
