@@ -247,7 +247,8 @@
       "info" : {
         "view" : "La session a été vue par {{nbview}} personnes",
         "vote" : "La session a reçu {{voteplus}} positif(s) et {{voteminus}} négatif(s)"
-      }
+      },
+      "next": "Plus de sessions"
     },
     "error": {
       "title": "Une erreur a été détectée",

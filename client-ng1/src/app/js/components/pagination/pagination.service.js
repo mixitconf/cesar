@@ -17,6 +17,10 @@
       this.propertyOrder = propertyOrder;
     }
 
+    Pagination.prototype.setNbItems = function (nbitems) {
+      this.pagination.nbitems = nbitems;
+    };
+
     Pagination.prototype.set = function (data) {
       this.data = data;
     };

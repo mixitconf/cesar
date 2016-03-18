@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').directive('cesarSessionCards', function ($filter, paginationService) {
+  angular.module('cesar-sessions').directive('cesarSessionCards', function (shuffleService) {
     'ngInject';
 
     return {
@@ -16,10 +16,10 @@
         skipIcon : '@'
       },
       controller: function($scope){
-        $scope.pagination = paginationService.createPagination($scope.order);
+        $scope.shuffle = shuffleService.createShuffle($scope.order);
 
         $scope.$watchCollection('sessions', function(sessions){
-          $scope.pagination.set(sessions);
+          $scope.shuffle.set(sessions);
         });
       }
     };

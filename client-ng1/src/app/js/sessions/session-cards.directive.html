@@ -1,6 +1,6 @@
-{{pagination.elements(result.length)}}
+{{shuffle.elements(result.length)}}
 <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-    <div class="mdl-grid cesar-liste" ng-repeat="session in pagination.filter(search) as result" ng-if="pagination.displayItem($index)">
+    <div class="mdl-grid cesar-liste" ng-repeat="session in shuffle.filter(search) as result" ng-if="shuffle.displayItem($index)">
         <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
             <p class="cesar-text mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
@@ -31,10 +31,20 @@
             </a>
         </div>
     </div>
-    <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.nbtotal===0">
+    <div class="mdl-grid cesar-liste" ng-if="shuffle.get().nbtotal===0">
         <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
             No data found
         </div>
     </div>
 </div>
-<cesar-pagination pagination="pagination.get()"></cesar-pagination>
+
+<div>
+    <p>&nbsp;</p>
+    <div class="cesar-text-center">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  ng-if="shuffle.get().displayMoreButton" rel="prev"
+                ng-click="shuffle.more()"
+                translate="view.session.next">
+        </button>
+    </div>
+    <p>&nbsp;</p>
+</div>
