@@ -12,7 +12,8 @@
                  ui-sref="article_zoom1({id : article.id})"
                  ng-if="ctrl.pagination.displayItem($index)">
                 <div class="mdl-card__title mdl-card--expand">
-                    <h3 class="mdl-card__title-text cesar-card__title-text">{{lang==='fr' ? article.titre : article.title}}</h3>
+                    <h3 class="mdl-card__title-text cesar-card__title-text">
+                        <a rel="next" ui-sref="article_zoom1({id : article.id})">{{lang==='fr' ? article.titre : article.title}}</a></h3>
 
                     <div class="cesar-card-session-action hide-on-mobile">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" rel="next"
