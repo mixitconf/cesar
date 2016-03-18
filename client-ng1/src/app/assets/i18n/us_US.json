@@ -55,10 +55,11 @@
       "countstart" : "The countdown starts.",
       "welcome" : "Welcome to Mix-IT",
       "bye" : "Mix-IT is closed. See you next year...",
-      "p1":"Nous venons de cloturer le CFP et nous nous réunissons le 11 mars pour choisir le programme de l'édition 2016. nous vous avertirons dès que nous aurons établi le programme des sessions. ",
-      "p2":"Cette année, pour éviter que toutes les places partent en 2 heures comme en 2015 nous augmentons la capacité de 100 entrées par rapport à 2015, l'achat des billets se fera un par un et nous ouvrirons les ventes en trois temps. Vous touverez plus de détails <a href=\"/article/202\">ici</a> sur ces adaptations.",
+      "p1":"Vous pouvez dès à présent découvrir les <a href=\"/sessions\">sessions</a> de Mix-IT 2016. Il ne vous reste plus qu'à prendre votre place. Nous ouvrirons cette année la billeterie en 3 fois. La vente des 500 places sera dispatchée entre le <b>dimanche 20 mars</b> à 19h, <b>lundi 21 mars</b> à 15h et <b>mardi 22 mars</b> à 21h. ",
+      "p2":"Cette année, pour éviter que toutes les places partent en 2 heures comme en 2015 nous augmentons la capacité de 100 entrées par rapport à 2015, l'achat des billets se fera un par un. Vous touverez plus de détails <a href=\"/article/202\">ici</a> sur ces adaptations.",
       "p3":"L’ouverture de la billetterie se fera en ligne, en répartissant les ventes des 500 places entre le dimanche 20 mars à 19h, lundi 21 mars à 15h et mardi 22 mars à 21h. Vous trouverez le lien vers le système de réservation sur notre site web.",
-      "lt":"Comme pour les éditions précédentes, un espace sera réservé pour des sessions de 5 minutes à ceux qui veulent s’essayer devant un large public dans un amphithéâtre de 500 places. <a href=\"/lightnings\">Proposez et votez !</a>"
+      "lt":"Comme pour les éditions précédentes, un espace sera réservé pour des sessions de 5 minutes à ceux qui veulent s’essayer devant un large public dans un amphithéâtre de 500 places. <a href=\"/lightnings\">Proposez et votez !</a>",
+      "yurplan": "Billeterie Yurplan"
     },
     "cfp": {
       "title":"Hurry up... The target date of the CFP was drawing nearer.",
