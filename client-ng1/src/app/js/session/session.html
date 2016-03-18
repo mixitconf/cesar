@@ -48,7 +48,7 @@
              translate-values="{ nbview : {{ctrl.session.nbConsults}} }"></div>
         <div class="cesar-mdl-button--interests" id="votes">
             <i class="material-icons" style="font-size: 12px">assessment</i>
-            votes : +{{ctrl.session.positiveVotes | defaultValue:0}} -{{ (ctrl.session.positiveVotes - ctrl.session.votes)}}
+            votes : +{{ctrl.session.positiveVotes *1}} -{{ (ctrl.session.positiveVotes - ctrl.session.votes)}}
         </div>
         <div class="mdl-tooltip" for="votes"
              translate="view.talks.info.vote"
