@@ -24,7 +24,6 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c left join c.member where a.id=:idArticle and a.valid=true")
     Article findPublishedArticleById(@Param("idArticle") Long idArticle);
 
-    @Cacheable(CACHE_ARTICLE)
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut where a.id=:idArticle")
     Article findArticleById(@Param("idArticle") Long idArticle);
 }
