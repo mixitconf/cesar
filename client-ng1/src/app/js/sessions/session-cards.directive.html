@@ -2,13 +2,13 @@
 <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
     <div class="mdl-grid cesar-liste" ng-repeat="session in shuffle.filter(search) as result" ng-if="shuffle.displayItem($index)">
         <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
-            <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+            <h3 class="mdl-card__title-text cesar-card__title-text">
                 <i class="material-icons cesar-button--fab" ng-if="!skipIcon">{{session.format | sessionLogo}}</i>&nbsp;
                 <a ui-sref="session({id : session.idSession, format : session.format})">
                     {{session.title}}
                 </a>
                 &nbsp;<span class="cesar-badge">{{session.lang}}</span>
-            </p>
+            </h3>
 
             <div style="padding-top: 8px">
                 <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
