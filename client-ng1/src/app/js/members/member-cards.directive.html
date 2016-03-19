@@ -1,34 +1,48 @@
-<div class="mdl-grid">
-    <div ng-repeat="member in members | filter:search | orderBy: order"
-         class="mdl-cell mdl-cell--{{length}}-col mdl-cell--{{lengthPhone}}-col-phone cesar-card mdl-card mdl-shadow--4dp"
-            ng-class="{'cesar-card__inactive': member.login==='mixit'}">
-        <div class="mdl-card__title mdl-card--expand cesar-card__title">
-            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type!=='sponsor'">
-                <a ui-sref="member({id : member.idMember, type : type})">{{member.firstname}} {{member.lastname}}</a></h3>
-            <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type==='sponsor'">
-                <a ui-sref="member({id : member.idMember, type : type})">{{member.company}}</a></h3>
-        </div>
-        <div class="mdl-card__supporting-text cesar-card__supporting-text" ng-class="{'hide-on-mobile': length<=4 && member.login==='mixit'}">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col" >
-                    <img src="https://www.gravatar.com/avatar/{{member.hash}}" ng-if="!member.logo"/>
-                    <img ng-src="img/{{member.logo}}" ng-if="member.logo" ng-class="{'cesar-card__logo-inactive': member.login==='mixit'}"/>
-                </div>
-                <div class="mdl-cell mdl-cell--8-col" ng-bind-html="member.shortDescription | markdown"></div>
+<div>
+    <p>&nbsp;</p>
+    <div class="cesar-text-center">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  ng-if="shuffle.displayMoreButton()" rel="prev"
+                ng-click="shuffle.more()"
+                translate="view.talks.next">
+        </button>
+    </div>
+    <p>&nbsp;</p>
+</div>
+
+<div>
+    <div class="mdl-grid">
+        <div ng-repeat="member in members | filter:search | orderBy: order"
+             class="mdl-cell mdl-cell--{{length}}-col mdl-cell--{{lengthPhone}}-col-phone cesar-card mdl-card mdl-shadow--4dp"
+
+             ng-class="{'cesar-card__inactive': member.login==='mixit'}">
+            <div class="mdl-card__title mdl-card--expand cesar-card__title">
+                <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type!=='sponsor'">
+                    <a ui-sref="member({id : member.idMember, type : type})">{{member.firstname}} {{member.lastname}}</a></h3>
+                <h3 class="mdl-card__title-text cesar-card__title-text" ng-if="type==='sponsor'">
+                    <a ui-sref="member({id : member.idMember, type : type})">{{member.company}}</a></h3>
             </div>
-        </div>
-        <div class="mdl-card__actions mdl-card--border" ng-class="{'hide-on-mobile': lengthPhone<=4 && member.login==='mixit'}">
+            <div class="mdl-card__supporting-text cesar-card__supporting-text" ng-class="{'hide-on-mobile': length<=4 && member.login==='mixit'}">
+                <!--<div class="mdl-grid">-->
+                <div  class="cesar-text-center">
+                    <img src="https://www.gravatar.com/avatar/{{member.hash}}" class="cesar-card__logo" ng-if="!member.logo"/>
+                    <img ng-src="img/{{member.logo}}" class="cesar-card__logo" ng-if="member.logo" ng-class="{'cesar-card__logo-inactive': member.login==='mixit'}"/>
+                </div>
+                <div class="cesar-text-center" ng-bind-html="member.shortDescription | markdown"></div>
+                <!--</div>-->
+            </div>
+            <div class="mdl-card__actions mdl-card--border" ng-class="{'hide-on-mobile': lengthPhone<=4 && member.login==='mixit'}">
                 <cesar-social-link ng-repeat="link in member.userLinks"
                                    class-names="mdl-js-button mdl-button--fab mdl-button--mini-fab cesar-button--fab"
                                    ng-class="{'hide-on-mobile': lengthPhone<=4}"
                                    url="link.value"></cesar-social-link>
 
-            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" style="float: right" ng-if="member.login!=='mixit'" ui-sref="member({id : member.idMember, type : type})">
-                <i class="material-icons">person</i>
-            </a>
-            <a class="mdl-button mdl-js-button mdl-button--fab  mdl-button--mini-fab"  style="float: right" ng-if="member.login==='mixit'" ng-href="/docs/sponsor/leaflet/fr" target="sponsor">
-                <i class="material-icons">person</i>
-            </a>
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" style="float: right" ng-if="member.login!=='mixit'" ui-sref="member({id : member.idMember, type : type})">
+                    <i class="material-icons">person</i>
+                </a>
+                <a class="mdl-button mdl-js-button mdl-button--fab  mdl-button--mini-fab"  style="float: right" ng-if="member.login==='mixit'" ng-href="/docs/sponsor/leaflet/fr" target="sponsor">
+                    <i class="material-icons">person</i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
