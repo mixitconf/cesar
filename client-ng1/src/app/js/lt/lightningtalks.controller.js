@@ -6,7 +6,8 @@
     'ngInject';
 
     var ctrl = this;
-    var mylighnings, myvotes;
+    var mylighnings = [];
+    var myvotes = [];
     var loaded = false;
     ctrl.userConnected = !!account;
     ctrl.editionMode = false;
