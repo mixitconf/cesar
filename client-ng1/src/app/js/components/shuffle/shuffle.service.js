@@ -12,8 +12,7 @@
       this.shuffle = {
         current : 1,
         nbitems : 10,
-        nbDisplayed : 0,
-        displayMoreButton : false
+        nbDisplayed : 0
       };
       this.propertyOrder = propertyOrder;
     }
@@ -37,16 +36,14 @@
     Shuffle.prototype.updateNbDisplayed = function () {
       if((this.shuffle.nbDisplayed + this.shuffle.nbitems) < this.shuffle.nbtotal){
         this.shuffle.nbDisplayed += this.shuffle.nbitems;
-        this.shuffle.displayMoreButton = true;
       }
       else{
         this.shuffle.nbDisplayed += this.shuffle.nbtotal;
-        this.shuffle.displayMoreButton = false;
       }
     };
 
     Shuffle.prototype.more = function () {
-      if( (this.shuffle.current + 1) * this.shuffle.nbitems < this.shuffle.nbtotal){
+      if( this.shuffle.current * this.shuffle.nbitems < this.shuffle.nbtotal){
         this.shuffle.current ++;
       }
     };
@@ -60,6 +57,10 @@
       return false;
     };
 
+    Shuffle.prototype.displayMoreButton = function () {
+      return this.shuffle.current * this.shuffle.nbitems < this.shuffle.nbtotal;
+    };
+
     Shuffle.prototype.filter = function (search) {
       if(this.data){
         var data =  $filter('filter')(this.data, search);
@@ -69,13 +70,6 @@
         }
         this.shuffle.nbDisplayed = 0;
         this.shuffle.nbtotal = data ? data.length : 0;
-
-        if( (this.shuffle.current + 1) * this.shuffle.nbitems < this.shuffle.nbtotal){
-          this.shuffle.displayMoreButton = true;
-        }
-        else{
-          this.shuffle.displayMoreButton = false;
-        }
 
         return data;
       }
