@@ -11,7 +11,8 @@
     "profile" : "Modifier votre profil",
     "return" : "Retour",
     "member" : "Voir comment les autres voient votre profil",
-    "submit" : "Soumettre"
+    "submit" : "Soumettre",
+    "tweet" : "Tweeter"
   },
   "menu": {
     "accounts": "Account",

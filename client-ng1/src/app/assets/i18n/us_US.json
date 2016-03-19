@@ -11,7 +11,8 @@
     "profile" : "Change your profile",
     "return" : "Go back",
     "member" : "See how people see your profile",
-    "submit" : "Submit"
+    "submit" : "Submit",
+    "tweet" : "Tweet"
   },
   "menu": {
     "accounts": "Comptes",
