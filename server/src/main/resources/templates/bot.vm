@@ -1050,6 +1050,8 @@
                     translate="menu.sponsors">Sponsors</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/staff"><span
                     translate="menu.staff">Staff members</span></a>
+            <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/mixteen"><span
+                    translate="menu.sponsors">Mix-Teen</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/venir"><span translate="menu.come">How to come?</span></a>
             <a class="cesar-menu mdl-navigation__link cesar-navigation__link" href="/faq"><span translate="menu.faq"
                                                                                                 class="ng-scope">Q&amp;A</span></a>

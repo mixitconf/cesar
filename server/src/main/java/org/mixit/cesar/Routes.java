@@ -43,6 +43,7 @@ public class Routes {
             "/mixit14",
             "/mixit13",
             "/mixit12",
+            "/mixteen",
             "/monitor",
             "/multimedia",
             "/news/{id:\\w+}",

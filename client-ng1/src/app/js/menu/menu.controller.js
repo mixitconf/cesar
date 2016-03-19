@@ -29,6 +29,7 @@
         //{id: 'menu.speakers', link: 'speakers'},
         {id: 'menu.talks', link: 'sessions', mobile: true},
         {id: 'menu.ligthningtalks', link: 'lightnings', mobile: true},
+        {id: 'menu.mixteen', link: 'mixteen', mobile: true},
         {id: 'menu.speakers', link: 'speakers', mobile: true},
         {id: 'menu.sponsors', link: 'sponsors', mobile: true},
         {id: 'menu.staff', link: 'staff', mobile: true},

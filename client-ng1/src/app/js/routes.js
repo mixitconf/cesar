@@ -182,6 +182,10 @@
         .controller('PlanningCtrl')
         .build())
 
+      .state('mixteen', new State(USER_ROLES, 'mixteen', 'js/mixteen/mixteen.html')
+        .controller('MixteenCtrl')
+        .build())
+
       .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2015})

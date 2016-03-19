@@ -1,0 +1,31 @@
+.cesar-mixteen__image {
+  background-size: cover;
+  @media only screen and (min-width: 0) {
+    background-image: url("assets/img/mixteen/mixteen_500.jpg");
+  }
+  @media only screen and (min-width: 480px) and (max-width: 1023px) {
+    background-image: url("assets/img/mixteen/mixteen_1000.jpg");
+  }
+  @media only screen and (min-width: 1024px) {
+    background-image: url("assets/img/mixteen/mixteen_1500.jpg");
+  }
+}
+
+.cesar-mixteen__resources {
+  text-align: center;
+
+  ul{
+    list-style: none;
+  }
+  .cesar-text{
+    text-align: justify;
+  }
+  .cesar-mixteen__content{
+    text-align: center;
+
+    .cesar-mixteen__icon{
+      color: @primary_color_logo;
+      font-size: 6rem;
+    }
+  }
+}
