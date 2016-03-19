@@ -6,10 +6,11 @@
     'ngInject';
 
     return {
-      template: '<div><cesar-session-cards sessions="sessions" display="minimal"></cesar-session-cards></div>',
+    templateUrl: 'js/members/member-session-cards.directive.html',
       scope: {
         idSessions: '=sessions',
-        current: '='
+        current: '=',
+        firstname: '='
       },
       controller: function ($scope) {
         $scope.sessions = [];

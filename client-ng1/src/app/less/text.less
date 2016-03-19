@@ -1,6 +1,6 @@
 @h1_mobile_fontsize : 36px;
 @h2_mobile_fontsize : 25px;
-@h3_mobile_fontsize : 17px;
+@h3_mobile_fontsize : 20px;
 @h1_tablet_fontsize : 46px;
 @h2_tablet_fontsize : 35px;
 @h3_tablet_fontsize : 25px;
@@ -34,17 +34,17 @@ h1, h2, h3{
     font-size: @h1_mobile_fontsize !important;
     line-height: (@h1_mobile_fontsize+3) !important;
   }
-  h2{
+  h2, h2 > a {
     font-size: @h2_mobile_fontsize !important;
     line-height: (@h2_mobile_fontsize+3) !important;
   }
-  h3{
+  h3, h3 > a {
     font-size: @h3_mobile_fontsize !important;
     line-height: (@h3_mobile_fontsize+3) !important;
   }
-  .cesar-text{
+  .cesar-text, .cesar-text > a{
     font-size: @text_head_mobile !important;
-    line-height: (@text_head_mobile+2) !important;
+    line-height: (@text_head_mobile+6) !important;
   }
 }
 @media (min-width: 480px) and (max-width: 1023px) {
@@ -52,34 +52,34 @@ h1, h2, h3{
     font-size: @h1_tablet_fontsize !important;
     line-height: (@h1_tablet_fontsize+3) !important;
   }
-  h2{
+  h2, h2 > a{
     font-size: @h2_tablet_fontsize !important;
     line-height: (@h2_tablet_fontsize+3) !important;
   }
-  h3{
+  h3, h3 > a{
     font-size: @h3_tablet_fontsize !important;
     line-height: (@h3_tablet_fontsize+3) !important;
   }
-  .cesar-text{
+  .cesar-text, .cesar-text > a{
     font-size: @text_head_tablet !important;
     line-height: (@text_head_tablet+2) !important;
   }
 }
 
 @media (min-width: 1024px) {
-  h1{
+  h1, h1 > a{
     font-size: @h1_screen_fontsize !important;
     line-height: (@h1_screen_fontsize+3) !important;
   }
-  h2{
+  h2, h2 > a{
     font-size: @h2_screen_fontsize !important;
     line-height: (@h2_screen_fontsize+3) !important;
   }
-  h3{
+  h3, h3 > a{
     font-size: @h3_screen_fontsize !important;
     line-height: (@h2_screen_fontsize+3) !important;
   }
-  .cesar-text{
+  .cesar-text, .cesar-text > a{
     font-size: @text_head_screen !important;
     line-height: (@text_head_screen+3) !important;
   }

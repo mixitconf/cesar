@@ -1,0 +1,8 @@
+<p class="cesar-text">
+    <ng-pluralize count="sessions.length"
+                  when="{'1': 'La session', 'other': 'Les {} sessions'}"></ng-pluralize>
+    de {{firstname}}
+</p>
+<div>
+    <cesar-session-cards sessions="sessions" display="minimal"></cesar-session-cards>
+</div>

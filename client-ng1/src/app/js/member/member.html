@@ -28,10 +28,7 @@
         </p>
 
         <div ng-if="ctrl.type==='speaker'">
-            <p class="cesar-text">
-                <ng-pluralize count="ctrl.member.sessions.length" when="{'1': 'La session', 'other': 'Les {} sessions'}"></ng-pluralize> de {{ctrl.member.firstname}}
-            </p>
-            <cesar-member-session-cards sessions="ctrl.member.sessions" current="cesar.current"></cesar-member-session-cards>
+            <cesar-member-session-cards sessions="ctrl.member.sessions" current="cesar.current" firstname="ctrl.member.firstname"></cesar-member-session-cards>
         </div>
     </div>
     <p>&nbsp;</p>
