@@ -1,6 +1,10 @@
 <div class="cesar-container">
 
-    <h1><i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">{{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}} </h1>
+    <h1>
+        <i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">
+            {{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}}
+        &nbsp;<b><small>{{ctrl.session.year}}</small></b>
+    </h1>
 
     <div ng-if="cesar.voteIsOpen && ctrl.session.year === cesar.current">
         <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
