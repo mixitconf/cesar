@@ -51,10 +51,9 @@
       "comeback": "<span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
     },
     "countdown": {
-      "days" : "{{days}} days until the conference opening!",
-      "hours" : "{{hours}} minutes until the conference opening!",
-      "minutes" : "{{minutes}} minutes until the conference opening!",
-      "countstart" : "The countdown starts.",
+      "days" : "D-{{days}} until Mix-IT!",
+      "hours" : "H-{{hours}} until Mix-IT!",
+      "minutes" : "M-{{minutes}} until Mix-IT!",
       "welcome" : "Welcome to Mix-IT",
       "bye" : "Mix-IT is closed. See you next year...",
       "p1":"Vous pouvez dès à présent découvrir les <a href=\"/sessions\">sessions</a> de Mix-IT 2016. Il ne vous reste plus qu'à prendre votre place. Nous ouvrirons cette année la billeterie en 3 fois. La vente des 500 places sera dispatchée entre le <b>dimanche 20 mars</b> à 19h, <b>lundi 21 mars</b> à 15h et <b>mardi 22 mars</b> à 21h. ",
@@ -145,6 +144,47 @@
         "title": "Social network",
         "content": "We usually communicate through our Twitter account <a href=\"https://twitter.com/mixit_lyon\" target=\"social\">@MixIT_Lyon<\/a>. If you want to talk about the next edition, please use the <a href=\"https://twitter.com/hashtag/mixit16\">#mixit16</a> hashtag"
       }
+    },
+    "mixteen" : {
+      "title" : "Les enfants, on fait quoi pendant les vacances ? On programme !",
+      "desc1" : "Tu as entre 7 ans et 15 ans ? (ou ton enfant peut-être …)",
+      "desc2" : "Tu es plutôt geek ? Pas forcément ?  Pas du tout ? Peu importe,  viens partager avec Mix-Teen un atelier de découverte de l’informatique",
+      "prog" : "Le programme",
+      "prog.part1" : "<b>Informatique débranchée</b> : sans ordinateur tu  joues avec le binaire, des pixels en folie, des algorithmes magiques (CSUnplugged …)",
+      "prog.part2" : "Tes <b>débuts en programmation</b> : avec  Scratch, tu développes tes mini-jeux",
+      "prog.part3" : "Déjà un expert dev : Python, Algoid suivant les participants",
+      "prog.part4" : "Les nouveautés : de l’électronique avec <b>Littlebits</b> , de la <b>robotique</b> avec  Thymio et Poppy",
+      "p1" : "En une après-midi, tu pourras progresser dans différents ateliers, réaliser tes premiers projets informatiques - goûter aussi pour recharger les batteries - et terminer par la démonstration finale aux parents, et à l’amphi de Mix-IT !",
+      "subscribe" : "Comment s'inscrire",
+      "subscribe.p1" : "Avant l’ouverture de la billetterie, inscrits tes parents à notre <a href=\"https://groups.google.com/forum/?hl=fr#!forum/liste-mixteen\">mailing list</a>. Tu seras aussi au courant des autres événements organisés au long de l’année.",
+      "subscribe.p2" : "Nous n'avons pas encore défini la date de l'ouverture de la billeterie mais ça ne serait tarder. Le prochain Mix-Teen se tiendra le <b>vendredi 22 avril 2016</b> à la DOUA à Lyon (CPE Lyon - Rue Victor Grignard  - 69100 Villeurbanne). Nous ouvrons les portes à 13h30 et tout sera terminé à 18h.  Pour accéder à la billeterie tu pourras utiliser le bouton ci-dessous.",
+      "resources" : "Les ressources",
+      "resources.p1" : "Tu peux aussi essayer chez toi. Voici les outils que nous aimons présenter",
+      "scratch" : {
+        "r1" : "Télécharger: <a href=\"https://scratch.mit.edu/scratch_1.4/\">Scratch 1.4</a> <a href=\"https://scratch.mit.edu/scratch2download/\">Scratch 2.0</a>",
+        "r2" : "<a href=\"http://scratchfr.free.fr/\">Cartes et Guide en Français</a>",
+        "r3" : "Livre: <a href=\"http://www.eyrolles.com/Informatique/Livre/scratch-pour-les-kids-9782212141115\">en Français</a>"
+      },
+      "algoid" : {
+        "r1" : "Télécharger: <a href=\"http://www.algoid.net/download_FR.php\">AlgoIDE</a>"
+      },
+      "python" : {
+        "r1" : "Télécharger: <a href=\"https://www.python.org/downloads/\">Python</a>",
+        "r2" : "Livres: <a href=\"http://www.eyrolles.com/Informatique/Livre/python-pour-les-kids-9782212140880\">en Francais</a>, <a href=\"https://swfk-fr.googlecode.com/files/swfk-fr_0.0.9.pdf\">un autre</a> et <a href=\"http://www.nostarch.com/pythonforkids\">en Anglais</a>"
+      },
+      "unpluged" : {
+        "title" : "<a href=\"http://csunplugged.org/\">Computer Science Unplugged en Anglais</a>",
+        "r1" : "<a href=\"http://lesenfantscodaient.fr\">Les enfants codaient</a>",
+        "r2" : "<a href=\"http://lesenfantscodaient.fr\">Les enfants codaient</a>"
+      },
+      "robotic" : {
+        "title" : "Robotique"
+      },
+      "team" : "La team Mix-Teen",
+      "team.p1" : "Voici la liste de toutes les personnes qui vont t'accompagner pendant cet après midi et essayer de te transmettre leur passion.",
+      "history" : "L'histoire de MixTeen",
+      "history.p1" : "Lors de la keynote finale de de Mix-IT 2012, Pamela Fox imaginait un monde où l'on apprend à coder dès notre plus jeune âge et fixe à chacun de nous un objectif : enseigner la programmation à une personne.",
+      "history.p2" : "Lors de l'édition Mix-IT 2013, Audrey Neveu et Aline Paponaud nous ont présenté l'initiative Programatoo qu'elles mènent avec d'autres passionés. En octobre 2013, ce fut le cas lors d'un premier atelier le 5 octobre 2013, avec la participation essentielle d'Audrey Neveu. Les enfants purent découvrir Scratch et les premières joies du code ainsi que Lego Mindstorms et l'apprentissage des bases de la robotique. En 2014, on lance notre propre atelier de programmation dans le cadre de Mix-IT, c'est la naissance de Mix-TeeN !"
     },
     "multimedia": {
       "title": "Multimedia content",

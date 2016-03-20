@@ -2,8 +2,7 @@
 <div class="cesar-section cesar-countdown">
   <div class="cesar-container">
 
-    <h2 ng-if="countdown.minutes>0">
-      <span translate="home.countdown.countstart">Le décompte est commencé. Rendez vous dans</span>&nbsp;
+    <h2 ng-if="countdown.minutes>0" class="cesar-text-center">
       <span ng-if="countdown.days > 2" translate="home.countdown.days" translate-values="{days : countdown.days}"></span>
       <span ng-if="countdown.days === 0 && countdown.hours > 2" translate="home.countdown.hours" translate-values="{hours : countdown.hours}"></span>
       <span ng-if="countdown.days === 0 && countdown.hours === 0" translate="home.countdown.minutes" translate-values="{minutes : countdown.minutes}"></span>

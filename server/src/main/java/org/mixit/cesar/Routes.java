@@ -37,6 +37,7 @@ public class Routes {
             "/lightning/{type:\\w+}/{name:[A-Za-z0-9_\\-.]+}",
             "/lightnings",
             "/logout",
+            "/map",
             "/member/{type:\\w+}/{id:\\w+}",
             "/member/{type:\\w+}",
             "/mixit15",

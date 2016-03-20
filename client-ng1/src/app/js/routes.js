@@ -182,6 +182,10 @@
         .controller('PlanningCtrl')
         .build())
 
+      .state('map', new State(USER_ROLES, 'map', 'js/map/map.html')
+        .controller('HomeCtrl')
+        .build())
+
       .state('mixteen', new State(USER_ROLES, 'mixteen', 'js/mixteen/mixteen.html')
         .controller('MixteenCtrl')
         .build())
