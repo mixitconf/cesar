@@ -54,6 +54,7 @@ public class SessionController {
     }
 
     @RequestMapping
+    @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
         return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year).getId()));
     }
