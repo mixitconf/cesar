@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-planning').controller('PlanningCtrl', function ($rootScope, $q, $http, SessionService, PlanningService, MemberService, paginationService, cesarSpinnerService) {
+  angular.module('cesar-planning').controller('PlanningCtrl', function ($rootScope, $q, $http, SessionService, PlanningService, MemberService, shuffleService, cesarSpinnerService) {
     'ngInject';
 
     var ctrl = this;
@@ -55,13 +55,13 @@
           return elt.start;
         });
         SessionService.findSessionsSpeakers(ctrl.sessions, speakers);
-        ctrl.pagination.set(ctrl.sessions);
+        ctrl.shuffle.set(ctrl.sessions);
       })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
 
-    ctrl.pagination = paginationService.createPagination('start');
+    ctrl.shuffle = shuffleService.createShuffle('start');
 
   });
 })();

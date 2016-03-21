@@ -9,7 +9,6 @@
 
     // Manque
     //    Amelie Cordier : acordier@gmail.com
-    //    Aude Lemar : aude.lemar@wanadoo.fr
     //    Mireille Delpui : mireille.delpui@gmail.com
     //    Francisco Nogueira : nogueira.frma@yahoo.fr
 

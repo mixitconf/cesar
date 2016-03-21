@@ -1,44 +1,35 @@
 <div class="cesar-container">
     <h1 translate="view.planning.title"></h1>
 
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
-                   style="width: auto">
-                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.amphi">
-                <span class="mdl-checkbox__label">Amphi</span>
-            </label>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
-                   style="width: auto">
-                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.salle">
-                <span class="mdl-checkbox__label">Salles</span>
-            </label>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
-                   style="width: auto">
-                <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.mezzanine">
-                <span class="mdl-checkbox__label">Mezzanine</span>
-
-            </label>
+    <div class="mdl-grid" style="background-color: #0277bd">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="rooms">Room</label>
+                <select ng-options="room.name for room  in ctrl.rooms" id="rooms"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-model="ctrl.slot.room">
+                    <option value="null"></option>
+                </select>
+            </div>
         </div>
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
-                   style="width: auto">
-                <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.day1">
-                <span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>
-            </label>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay2"
-                   style="width: auto">
-                <input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.day2">
-                <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
-            </label>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+            <div class="mdl-textfield mdl-js-textfield">
+            <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                   for="formats">Format</label>
+            <select ng-model="ctrl.slot.format" id="formats" class="mdl-textfield--expandable cesar-textfield--expandable">
+                <option value="null"></option>
+                <option value="Talk">Talk</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Random">Random</option>
+                <option value="Keynote">Keynote</option>
+            </select>
+                </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+
         </div>
     </div>
-
 
     <cesar-search-bar>
         <div class="hide-on-mobile">
@@ -48,10 +39,11 @@
             <i class="material-icons">help</i>&nbsp;<span>Random</span>
         </div>
     </cesar-search-bar>
-    {{ctrl.pagination.elements(result.length)}}
+
+    {{ctrl.shuffle.elements(result.length)}}
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-        <div class="cesar-liste" ng-repeat="session in ctrl.pagination.filter(search) as result track by $index"
-             ng-class="{'cesar-planning__slot-Annexe': !session.format}">
+        <div class="cesar-liste" ng-repeat="session in ctrl.shuffle.filter(search) as result track by $index"
+             ng-class="{'cesar-planning__slot-Annexe': !session.format}" ng-if="ctrl.shuffle.displayItem($index)">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                     <h3 class="mdl-card__title-text cesar-card__title-text">
@@ -84,13 +76,22 @@
                 </div>
             </div>
         </div>
-        <div class="mdl-grid cesar-liste" ng-if="ctrl.pagination.nbtotal===0">
+        <div class="mdl-grid cesar-liste" ng-if="ctrl.shuffle.get().nbtotal === 0">
             <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
                 No data found
             </div>
         </div>
     </div>
-    <cesar-pagination pagination="ctrl.pagination.get()"></cesar-pagination>
+    <div>
+        <p>&nbsp;</p>
+        <div class="cesar-text-center">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  ng-if="shuffle.displayMoreButton()" rel="prev"
+                    ng-click="shuffle.more()"
+                    translate="view.talks.next">
+            </button>
+        </div>
+        <p>&nbsp;</p>
+    </div>
 
     <p>&nbsp;</p>
 </div>
