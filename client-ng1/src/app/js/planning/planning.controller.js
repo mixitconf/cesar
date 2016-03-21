@@ -8,10 +8,15 @@
     var ctrl = this;
     var sessions, transversalSlots, speakers;
 
+    //TODO il faut que les params de filtre puissent être mis dans l'URL
+
     cesarSpinnerService.wait();
 
     //We need to load sessions, speakers and transversal slots
     $q.all([
+        PlanningService.getRoom().then(function (response) {
+          ctrl.rooms = response.data;
+        }),
         SessionService
           .getAllByYear()
           .then(function (response) {

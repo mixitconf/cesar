@@ -1,6 +1,45 @@
 <div class="cesar-container">
     <h1 translate="view.planning.title"></h1>
 
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.amphi">
+                <span class="mdl-checkbox__label">Amphi</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.salle">
+                <span class="mdl-checkbox__label">Salles</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.mezzanine">
+                <span class="mdl-checkbox__label">Mezzanine</span>
+
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.day1">
+                <span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay2"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.day2">
+                <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
+            </label>
+        </div>
+    </div>
+
+
     <cesar-search-bar>
         <div class="hide-on-mobile">
             <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
