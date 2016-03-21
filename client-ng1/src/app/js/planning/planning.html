@@ -15,13 +15,15 @@
              ng-class="{'cesar-planning__slot-Annexe': !session.format}">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
-                    <p class="cesar-text mdl-card__title-text cesar-card__title-text">
+                    <h3 class="mdl-card__title-text cesar-card__title-text">
                         <i class="material-icons cesar-button--fab" ng-if="session.format">{{session.format |
                             sessionLogo}}</i>&nbsp;
-                        <span ng-if="!!session.format">{{session.title}}</span>
+                        <a ui-sref="session({id : session.idSession, format : session.format})">
+                            <span ng-if="!!session.format">{{session.title}}</span>
+                        </a>
                         <span ng-if="!session.format" translate="{{session.title}}"></span>
                         &nbsp;<span class="cesar-badge" ng-if="session.lang">{{session.lang}}</span>
-                    </p>
+                    </h3>
                     <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
                     <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
                     <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
