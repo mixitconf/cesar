@@ -43,6 +43,7 @@
       {
         id: 'menu.info', submenus: [
         {id: 'menu.come', link: 'venir', mobile: true},
+        {id: 'menu.facilities', link: 'facilities', mobile: true},
         {id: 'menu.faq', link: 'faq', mobile: true},
         {id: 'menu.kit', link: 'multimedia'},
       ]

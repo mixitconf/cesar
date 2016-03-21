@@ -182,7 +182,7 @@
         .controller('PlanningCtrl')
         .build())
 
-      .state('map', new State(USER_ROLES, 'map', 'js/map/map.html')
+      .state('facilities', new State(USER_ROLES, 'facilities', 'js/facilities/facilities.html')
         .controller('HomeCtrl')
         .build())
 

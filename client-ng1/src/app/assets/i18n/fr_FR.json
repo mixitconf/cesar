@@ -21,6 +21,7 @@
     "cfp": "CFP",
     "come": "Comment venir ?",
     "conference": "Conference",
+    "facilities": "Plan des locaux",
     "news": "Actualités",
     "program": "Programme",
     "planning": "Planning",
@@ -143,6 +144,30 @@
       "q8": {
         "title": "Réseaux sociaux",
         "content": "Nous communiquons principalement via notre compte Twitter <a href=\"https://twitter.com/mixit_lyon\" target=\"social\">@MixIT_Lyon</a>. Si vous voulez parler de la prochaine édition, utilisez le hashtag <a href=\"https://twitter.com/hashtag/mixit16\">#mixit16</a>"
+      }
+    },
+    "facilities": {
+      "title" : "Comment ne pas se perdre le jour J",
+      "description" : "Mix-IT 2016 aura lieu dans les locaux de <a href=\"http://www.cpe.fr/\">CPE Lyon</a>. Si vous ne savez pas commentvenir tout est expliqué <a href=\"/venir\">ici</a>",
+      "summary" : " La conférence occupe trois parties du bâtiment :<ul><li>Le balcon au 2ème étage (acès via les escaliers) où aura lieu Mix-Teen.</li><li>Au premier étage on retrouve les salles, l'espace détente et les légendaires crêpes de Raph.</li><li>Le niveau 0 est la zone d'accueil où tout le monde peut se retrouver pour les petits déjeuner et repas.</li><li>Les amphis sont au niveau -1</li></ul>",
+      "detail" : "Reprenons en détail zone par zone",
+      "floor" : {
+        "zero" : {
+          "title" : "Etage 0",
+          "description":"C'est le niveau par lequel vous arrivez à Mix-IT. Une fois que vous avez récupéré votre badge et votre place éventuelle pour la soirée qui s'annonce merveilleuse à l'Hôtel de Ville de Lyon, vous pourrez commencer à réseauter devant le petit déjeuner. C'est sur ces tables à l'entrée que le repas de midi sera servi par la <a href=\"http://www.communautedugout.com/\">Communauté du Gout</a>"
+        },
+        "underfloor" : {
+          "title" : "Etage -1",
+          "description":"Si vous descendez les escaliers dans le hall, vous pouvez accéder aux deux amphis de Mix-IT et à l'espace Sponsors. Venez retrouver sur leur stand les entreprises qui nous permettent de proposer un tel évènement."
+        },
+        "one" : {
+          "title" : "Etage 1",
+          "description":"Certaines personnes appellent cet espace celui des gourmands. Vous n'aurez pas de mal à trouver le stand où Raph nous propose des crêpes. A cet étage vous trouverez aussi toutes les salles de workshop."
+        },
+        "two" : {
+          "title" : "Etage 2",
+          "description":"Le vendredi après midi, la mezzanine sera occupée par les teens. N'hésitez pas à faire un tour pour voir les futurs talents de demain s'éclater à programmer des robots ou apprendre l'informatique en s'amusant."
+        }
       }
     },
     "mixteen" : {
