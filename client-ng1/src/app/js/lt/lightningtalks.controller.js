@@ -53,33 +53,39 @@
     cesarSpinnerService.wait();
     $q
       .all([
-        SessionService.getAll('lightningtalks')
-          .then(function (response) {
-            ctrl.sessions = response.data;
-            ctrl.pagination.set(ctrl.sessions);
-            return MemberService.getAllLigthningtalkSpeakers();
-          })
-          .then(function (response) {
-            SessionService.findSessionsSpeakers(ctrl.sessions, response.data);
-          }),
-        MemberService.getAll('sponsor')
-          .then(function (response) {
-            ctrl.sponsors = response.data;
-          }),
         _getVotes(),
         _getMyLigthning()
       ])
       .then(function(){
-        ctrl.sessions.forEach(function(session){
-          //I need to know if I can modify an abstract
-          if(mylighnings && mylighnings.some(function(mylt){
-            return mylt.idSession === session.idSession;
-          })){
-            session.edition = true;
-          }
+        $q
+          .all([
+            SessionService.getAll('lightningtalks')
+              .then(function (response) {
+                ctrl.sessions = response.data;
+                ctrl.pagination.set(ctrl.sessions);
+                return MemberService.getAllLigthningtalkSpeakers();
+              })
+              .then(function (response) {
+                SessionService.findSessionsSpeakers(ctrl.sessions, response.data);
+              }),
+            MemberService.getAll('sponsor')
+              .then(function (response) {
+                ctrl.sponsors = response.data;
+              }),
 
-          _updateVote(session);
-        });
+          ])
+          .then(function(){
+            ctrl.sessions.forEach(function(session){
+              //I need to know if I can modify an abstract
+              if(mylighnings && mylighnings.some(function(mylt){
+                  return mylt.idSession === session.idSession;
+                })){
+                session.edition = true;
+              }
+
+              _updateVote(session);
+            });
+          });
       })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
