@@ -57,11 +57,11 @@
       "minutes" : "M-{{minutes}} until Mix-IT!",
       "welcome" : "Welcome to Mix-IT",
       "bye" : "Mix-IT is closed. See you next year...",
-      "p1":"Vous pouvez dès à présent découvrir les <a href=\"/sessions\">sessions</a> de Mix-IT 2016. Il ne vous reste plus qu'à prendre votre place. Nous ouvrirons cette année la billeterie en 3 fois. La vente des 500 places sera dispatchée entre le <b>dimanche 20 mars</b> à 19h, <b>lundi 21 mars</b> à 15h et <b>mardi 22 mars</b> à 21h. ",
-      "p2":"Cette année, pour éviter que toutes les places partent en 2 heures comme en 2015 nous augmentons la capacité de 100 entrées par rapport à 2015, l'achat des billets se fera un par un. Vous touverez plus de détails <a href=\"/article/202\">ici</a> sur ces adaptations.",
-      "p3":"L’ouverture de la billetterie se fera en ligne, en répartissant les ventes des 500 places entre le dimanche 20 mars à 19h, lundi 21 mars à 15h et mardi 22 mars à 21h. Vous trouverez le lien vers le système de réservation sur notre site web.",
-      "lt":"Comme pour les éditions précédentes, un espace sera réservé pour des sessions de 5 minutes à ceux qui veulent s’essayer devant un large public dans un amphithéâtre de 500 places. <a href=\"/lightnings\">Proposez et votez !</a>",
-      "yurplan": "Billeterie Yurplan"
+      "p1":"You can know discover our Mix-IT 2016 <a href=\"/sessions\">sessions</a> and take your ticket. This year, we'll open the ticketing in three times. The selling of 600 places will be dispatched between <b>sunday March 20th<b> at 7pm, <b>monday March 21st</b> at 3pm and <b>tuesday March 22nd</b> at 9pm. ",
+      "p2":"This year, in order to avoid that all places disappear in two hour like in 2015, we have raised the number by 100 and you will have to buy your ticket only one at a time. You will find more details <a href=\"/article/202\">here</a>.",
+      "p3":"The opening of the ticketing will be done online, we plan the selling of the 600 places between sunday March 20th at 7pm, monday March 21st at 3pm and tuesday March at 9pm. You will find the link to our reservation service on our website.",
+      "lt":"Like for previous edition, a moment will be reserved for sessions of 5 minute for those who want to try speaking in our 500 places hall. <a href=\"/lightnings\">Suggest and vote !</a>",
+      "yurplan": "Yurplan ticketing"
     },
     "cfp": {
       "title":"Hurry up... The target date of the CFP was drawing nearer.",
@@ -171,45 +171,45 @@
       }
     },
     "mixteen" : {
-      "title" : "Les enfants, on fait quoi pendant les vacances ? On programme !",
-      "desc1" : "Tu as entre 7 ans et 15 ans ? (ou ton enfant peut-être …)",
-      "desc2" : "Tu es plutôt geek ? Pas forcément ?  Pas du tout ? Peu importe,  viens partager avec Mix-Teen un atelier de découverte de l’informatique",
-      "prog" : "Le programme",
-      "prog.part1" : "<b>Informatique débranchée</b> : sans ordinateur tu  joues avec le binaire, des pixels en folie, des algorithmes magiques (CSUnplugged …)",
-      "prog.part2" : "Tes <b>débuts en programmation</b> : avec  Scratch, tu développes tes mini-jeux",
-      "prog.part3" : "Déjà un expert dev : Python, Algoid suivant les participants",
-      "prog.part4" : "Les nouveautés : de l’électronique avec <b>Littlebits</b> , de la <b>robotique</b> avec  Thymio et Poppy",
-      "p1" : "En une après-midi, tu pourras progresser dans différents ateliers, réaliser tes premiers projets informatiques - goûter aussi pour recharger les batteries - et terminer par la démonstration finale aux parents, et à l’amphi de Mix-IT !",
-      "subscribe" : "Comment s'inscrire",
-      "subscribe.p1" : "Avant l’ouverture de la billetterie, inscrits tes parents à notre <a href=\"https://groups.google.com/forum/?hl=fr#!forum/liste-mixteen\">mailing list</a>. Tu seras aussi au courant des autres événements organisés au long de l’année.",
-      "subscribe.p2" : "Nous n'avons pas encore défini la date de l'ouverture de la billeterie mais ça ne serait tarder. Le prochain Mix-Teen se tiendra le <b>vendredi 22 avril 2016</b> à la DOUA à Lyon (CPE Lyon - Rue Victor Grignard  - 69100 Villeurbanne). Nous ouvrons les portes à 13h30 et tout sera terminé à 18h.  Pour accéder à la billeterie tu pourras utiliser le bouton ci-dessous.",
-      "resources" : "Les ressources",
-      "resources.p1" : "Tu peux aussi essayer chez toi. Voici les outils que nous aimons présenter",
+      "title" : "Hey kids, what do we do during holidays? We do programming!",
+      "desc1" : "You are between 7 and 15? (or your child maybe...)",
+      "desc2" : "You are a geek? A little bit? Not at all? Nevermind, come to Mix-Teen to a programming discover workshop",
+      "prog" : "Planning",
+      "prog.part1" : "<b>Unplugged computer science</b> : without any computer, you will play with binaries, crazy pixel and magical algorithm (CSUnplugged ...)",
+      "prog.part2" : "Your <b>beginning in programming</b> : with Scratch, you will develop your own mini-games",
+      "prog.part3" : "Already a dev expert : Python, Algoid depending on participants",
+      "prog.part4" : "New things : electronic with <b>Littlebits</b> , <b>robotic</b> with Thymio and Poppy",
+      "p1" : "During the afternoon, you will progress in several workshops, realize your own first computer projects - do some lunches in order to reload your batteries a little - and finally ending by a final demonstration to parents and in the Mix-IT big hall!",
+      "subscribe" : "How to register",
+      "subscribe.p1" : "Before the opening of the ticketing, register your parents to our <a href=\"https://groups.google.com/forum/?hl=fr#!forum/liste-mixteen\">mailing list</a>. You will be also informed about other events we organized all along the year.",
+      "subscribe.p2" : "We haven't yet set a date for the ticketing opening but it's coming. Next Mix-Teen will take place <b>friday 2016, April the 22nd</b> at La DOUA in Lyon (CPE Lyon - Rue Victor Grignard  - 69100 Villeurbanne). We open the gates at 1pm30 and we will finish at 6pm. For ticketing access, you will be able to use the button just under.",
+      "resources" : "Ressources",
+      "resources.p1" : "You can also try at home. Here are tools we like to share",
       "scratch" : {
-        "r1" : "Télécharger: <a href=\"https://scratch.mit.edu/scratch_1.4/\">Scratch 1.4</a> <a href=\"https://scratch.mit.edu/scratch2download/\">Scratch 2.0</a>",
-        "r2" : "<a href=\"http://scratchfr.free.fr/\">Cartes et Guide en Français</a>",
-        "r3" : "Livre: <a href=\"http://www.eyrolles.com/Informatique/Livre/scratch-pour-les-kids-9782212141115\">en Français</a>"
+        "r1" : "Download: <a href=\"https://scratch.mit.edu/scratch_1.4/\">Scratch 1.4</a> <a href=\"https://scratch.mit.edu/scratch2download/\">Scratch 2.0</a>",
+        "r2" : "<a href=\"http://scratchfr.free.fr/\">Maps and guides in french</a>",
+        "r3" : "Books: <a href=\"http://www.eyrolles.com/Informatique/Livre/scratch-pour-les-kids-9782212141115\">in french</a>"
       },
       "algoid" : {
-        "r1" : "Télécharger: <a href=\"http://www.algoid.net/download_FR.php\">AlgoIDE</a>"
+        "r1" : "Download: <a href=\"http://www.algoid.net/download_FR.php\">AlgoIDE</a>"
       },
       "python" : {
-        "r1" : "Télécharger: <a href=\"https://www.python.org/downloads/\">Python</a>",
-        "r2" : "Livres: <a href=\"http://www.eyrolles.com/Informatique/Livre/python-pour-les-kids-9782212140880\">en Francais</a>, <a href=\"https://swfk-fr.googlecode.com/files/swfk-fr_0.0.9.pdf\">un autre</a> et <a href=\"http://www.nostarch.com/pythonforkids\">en Anglais</a>"
+        "r1" : "Download: <a href=\"https://www.python.org/downloads/\">Python</a>",
+        "r2" : "Books: <a href=\"http://www.eyrolles.com/Informatique/Livre/python-pour-les-kids-9782212140880\">in french</a>, <a href=\"https://swfk-fr.googlecode.com/files/swfk-fr_0.0.9.pdf\">another</a> et <a href=\"http://www.nostarch.com/pythonforkids\">in english</a>"
       },
       "unpluged" : {
-        "title" : "<a href=\"http://csunplugged.org/\">Computer Science Unplugged en Anglais</a>",
+        "title" : "<a href=\"http://csunplugged.org/\">Computer Science Unplugged in english</a>",
         "r1" : "<a href=\"http://lesenfantscodaient.fr\">Les enfants codaient</a>",
         "r2" : "<a href=\"http://lesenfantscodaient.fr\">Les enfants codaient</a>"
       },
       "robotic" : {
-        "title" : "Robotique"
+        "title" : "Robotic"
       },
-      "team" : "La team Mix-Teen",
-      "team.p1" : "Voici la liste de toutes les personnes qui vont t'accompagner pendant cet après midi et essayer de te transmettre leur passion.",
-      "history" : "L'histoire de MixTeen",
-      "history.p1" : "Lors de la keynote finale de de Mix-IT 2012, Pamela Fox imaginait un monde où l'on apprend à coder dès notre plus jeune âge et fixe à chacun de nous un objectif : enseigner la programmation à une personne.",
-      "history.p2" : "Lors de l'édition Mix-IT 2013, Audrey Neveu et Aline Paponaud nous ont présenté l'initiative Programatoo qu'elles mènent avec d'autres passionés. En octobre 2013, ce fut le cas lors d'un premier atelier le 5 octobre 2013, avec la participation essentielle d'Audrey Neveu. Les enfants purent découvrir Scratch et les premières joies du code ainsi que Lego Mindstorms et l'apprentissage des bases de la robotique. En 2014, on lance notre propre atelier de programmation dans le cadre de Mix-IT, c'est la naissance de Mix-TeeN !"
+      "team" : "Mix-Teen team",
+      "team.p1" : "Here is the list of all people who will guide you during the afternoon and try to share their passion with you.",
+      "history" : "MixTeen story",
+      "history.p1" : "During the final keynote of Mix-IT 2012, Pamela Fox was dreaming of a world where we learn to code in our little childhood and put ourselves a goal: teach programming to other people.",
+      "history.p2" : "During 2013 edition, Audrey Neveu and Aline Paponaud showed us the Programatoo initiative they manage with other passionates. In october 2013, ce fut le cas lors d'un premier atelier le 5 octobre 2013, avec la participation essentielle d'Audrey Neveu. Kids discovered Scratch and first joy of coding, also Lego Mindstorms and robotic basics. In 2014, we launched our own programming workshop during Mix-IT, it is the beginning of Mix-Teen!"
     },
     "multimedia": {
       "title": "Multimedia content",
