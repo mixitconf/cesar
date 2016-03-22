@@ -53,6 +53,29 @@
       });
     }
 
+    function getMyLigthning($http, $q, account){
+      if(!account){
+        return $q.when([]);
+      }
+      else{
+        return $http.get('app/session/mylightnings').then(function(response){
+          return response.data;
+        });
+      }
+    }
+
+    /* @ngInject */
+    function getLightningVotes($http, $q, account){
+      if(!account){
+        return $q.when([]);
+      }
+      else{
+        return $http.get('app/session/lightnings/votes').then(function(response){
+          return response.data;
+        });
+      }
+    }
+
     function getEditionMode(){
       return 'edition';
     }
@@ -212,7 +235,11 @@
 
       .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/lt/lightningtalks.html')
         .controller('LightningtalksCtrl')
-        .resolve({account: getAccount})
+        .resolve({
+          account: getAccount,
+          myvotes: getLightningVotes,
+          mylighnings: getMyLigthning
+        })
         .build())
 
       .state('lightning-create', new State(USER_ROLES, 'lightning', 'js/lt/lightningtalk.html').controller('LightningtalkCtrl')
