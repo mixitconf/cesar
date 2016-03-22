@@ -17,6 +17,10 @@
       this.propertyOrder = propertyOrder;
     }
 
+    Shuffle.prototype.setNbItems = function (nbitems) {
+      this.shuffle.nbitems = nbitems;
+    };
+
     Shuffle.prototype.set = function (data) {
       this.data = data;
     };

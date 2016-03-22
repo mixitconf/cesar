@@ -24,8 +24,10 @@
             <i class="material-icons">help</i>&nbsp;<span>Random</span>
         </div>
     </cesar-search-bar>
+
     <div class="cesar-section--bottom">
-        <cesar-session-cards sessions="ctrl.sessions" search="search" order="start"></cesar-session-cards>
+        <cesar-session-cards sessions="ctrl.sessions" search="search" order="start" ng-if="ctrl.year"></cesar-session-cards>
+        <cesar-session-cards sessions="ctrl.sessions" search="search" order="start" nb-items="70" ng-if="!ctrl.year"></cesar-session-cards>
     </div>
 
     <p class="cesar-text" translate="view.talks.sponsor"></p>
