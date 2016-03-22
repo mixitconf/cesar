@@ -201,7 +201,7 @@
         .build())
 
       //Program
-      .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning.html')
+      .state('planning', new State(USER_ROLES, 'planning?format&room', 'js/planning/planning.html')
         .controller('PlanningCtrl')
         .build())
 
