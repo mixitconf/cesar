@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('cesar-planning').controller('PlanningCtrl', function ($rootScope, $q, $http, SessionService, PlanningService, MemberService, shuffleService, cesarSpinnerService) {
+  angular.module('cesar-planning').controller('PlanningCtrl', function ($rootScope, $q, $http, $filter, SessionService, PlanningService, MemberService, shuffleService, cesarSpinnerService) {
     'ngInject';
 
     var ctrl = this;
@@ -55,13 +55,26 @@
           return elt.start;
         });
         SessionService.findSessionsSpeakers(ctrl.sessions, speakers);
-        ctrl.shuffle.set(ctrl.sessions);
+        ctrl.updateData();
       })
       .finally(function () {
         cesarSpinnerService.stopWaiting();
       });
 
     ctrl.shuffle = shuffleService.createShuffle('start');
+
+    ctrl.updateData = function(){
+      var sess = angular.copy(ctrl.sessions);
+      if(ctrl.slot){
+        if(ctrl.slot.room && ctrl.slot.room.name){
+          sess = $filter('filter')(sess, ctrl.slot.room.name);
+        }
+        if(angular.isDefined(ctrl.slot.format)){
+          sess = $filter('filter')(sess, ctrl.slot.format);
+        }
+      }
+      ctrl.shuffle.set(sess);
+    };
 
   });
 })();

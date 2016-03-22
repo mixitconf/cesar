@@ -8,23 +8,26 @@
                        for="rooms">Room</label>
                 <select ng-options="room.name for room  in ctrl.rooms" id="rooms"
                         class="mdl-textfield--expandable cesar-textfield--expandable"
-                        ng-model="ctrl.slot.room">
-                    <option value="null"></option>
+                        ng-model="ctrl.slot.room"
+                        ng-change="ctrl.updateData()">
+                    <option></option>
                 </select>
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
             <div class="mdl-textfield mdl-js-textfield">
-            <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
-                   for="formats">Format</label>
-            <select ng-model="ctrl.slot.format" id="formats" class="mdl-textfield--expandable cesar-textfield--expandable">
-                <option value="null"></option>
-                <option value="Talk">Talk</option>
-                <option value="Workshop">Workshop</option>
-                <option value="Random">Random</option>
-                <option value="Keynote">Keynote</option>
-            </select>
-                </div>
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="formats">Format</label>
+                <select ng-model="ctrl.slot.format" id="formats"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-change="ctrl.updateData()">
+                    <option></option>
+                    <option value="Talk">Talk</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Random">Random</option>
+                    <option value="Keynote">Keynote</option>
+                </select>
+            </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
 
@@ -69,7 +72,8 @@
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
                     <div style="float: right">
                         <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
-                           ui-sref="session({id : session.idSession, format : session.format})" id="detail" ng-if="session.idSession">
+                           ui-sref="session({id : session.idSession, format : session.format})" id="detail"
+                           ng-if="session.idSession">
                             <i class="material-icons">library_books</i>
                         </a>
                     </div>
@@ -85,7 +89,8 @@
     <div>
         <p>&nbsp;</p>
         <div class="cesar-text-center">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  ng-if="shuffle.displayMoreButton()" rel="prev"
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                    ng-if="shuffle.displayMoreButton()" rel="prev"
                     ng-click="shuffle.more()"
                     translate="view.talks.next">
             </button>
