@@ -17,7 +17,6 @@
     $q.all([
         PlanningService.getRoom().then(function (response) {
           ctrl.rooms = response.data;
-          console.log($stateParams.room)
           if($stateParams.room){
             var result = ctrl.rooms
               .filter(function(elt){

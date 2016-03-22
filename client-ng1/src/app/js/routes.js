@@ -53,6 +53,7 @@
       });
     }
 
+    /* @ngInject */
     function getMyLigthning($http, $q, account){
       if(!account){
         return $q.when([]);
