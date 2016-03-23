@@ -2,8 +2,8 @@ package org.mixit.cesar.site.model.planning;
 
 public enum Room {
 
-    Amphi1("Petit Amphi", 200),
-    Amphi2("Grand Amphi", 500),
+    Amphi1("Grand Amphi", 500),
+    Amphi2("Petit Amphi", 200),
     Salle1("Gosling", 110),
     Salle2("Eich", 110),
     Salle3("Nonaka", 30),
