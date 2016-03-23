@@ -85,7 +85,7 @@ public class SlotService {
      */
     public void delete(Long id) {
         Slot slot = slotRepository.findOne(id);
-        if(slot !=null){
+        if(slot !=null && slot.getSession()!=null){
             slot.getSession().setSlot(null);
         }
         slotRepository.delete(slot);

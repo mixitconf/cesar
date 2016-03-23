@@ -222,8 +222,8 @@
       return moment(slot.start).format('YYYYMMDD') === moment(date).format('YYYYMMDD');
     }
 
-    function _dateInSlotPeriod(date, slot){
-      if(!date){
+    function _dateInSlotPeriod(date, slot, s){
+      if(!date || (!s.session && !s.label)){
         return false;
       }
 
@@ -237,7 +237,7 @@
         return 'SESSION_REQUIRED';
       }
       var concurrent = slotsInRoom.filter(function(s){
-        return _dateInSlotPeriod(s.start, slot, false) || _dateInSlotPeriod(s.end, slot, true);
+        return _dateInSlotPeriod(s.start, slot, s) || _dateInSlotPeriod(s.end, slot, s);
       }).length>0;
       if(concurrent){
         return 'SLOT_CONCURRENT';
