@@ -83,7 +83,7 @@
         sess = $filter('filter')(sess, ctrl.slot.format);
       }
       ctrl.shuffle.set(sess);
-      $state.go('planning', params, {reloadOnSearch:false});
+      $state.go('planning', params, {reloadOnSearch:false, notify:false});
     };
 
   });
