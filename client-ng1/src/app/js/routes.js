@@ -148,7 +148,7 @@
         .build())
 
       //News
-      .state('article', new State(USER_ROLES, 'article', 'js/articles/articles.html')
+      .state('article', new State(USER_ROLES, 'article?search', 'js/articles/articles.html')
         .controller('ArticlesCtrl')
         .resolve({articles: getAllArticles})
         .build())
@@ -168,7 +168,7 @@
         .resolve({account: getAccount})
         .build())
 
-      .state('admcfp', new State(USER_ROLES, 'admcfp', 'js/admin/cfp/cfp.html')
+      .state('admcfp', new State(USER_ROLES, 'admcfp?search', 'js/admin/cfp/cfp.html')
         .controller('AdminCfpCtrl')
         .resolve({account: getAccount})
         .build())
@@ -178,7 +178,7 @@
         .resolve({account: getAccount})
         .build())
 
-      .state('statistics', new State(USER_ROLES, 'statistics', 'js/statistics/statistics.html')
+      .state('statistics', new State(USER_ROLES, 'statistics?search', 'js/statistics/statistics.html')
         .controller('StatisticsCtrl')
         .resolve({account: getAccount})
         .build())
@@ -188,12 +188,12 @@
         .resolve({account: getAccount})
         .build())
 
-      .state('admarticles', new State(USER_ROLES, 'admarticles', 'js/admin/articles/articles.html')
+      .state('admarticles', new State(USER_ROLES, 'admarticles?search', 'js/admin/articles/articles.html')
         .controller('ArticlesCtrl')
         .resolve({articles: getAllAdminArticles})
         .build())
 
-      .state('admaccounts', new State(USER_ROLES, 'admaccounts', 'js/admin/accounts/accounts.html')
+      .state('admaccounts', new State(USER_ROLES, 'admaccounts?search', 'js/admin/accounts/accounts.html')
         .controller('AdminAccountsCtrl')
         .resolve({
           accounts: getAllAccount,
@@ -202,7 +202,7 @@
         .build())
 
       //Program
-      .state('planning', new State(USER_ROLES, 'planning?format&room', 'js/planning/planning.html')
+      .state('planning', new State(USER_ROLES, 'planning?format&room&search', 'js/planning/planning.html')
         .controller('PlanningCtrl')
         .build())
 
@@ -214,27 +214,27 @@
         .controller('MixteenCtrl')
         .build())
 
-      .state('mixit15', new State(USER_ROLES, 'mixit15', 'js/sessions/talks.html')
+      .state('mixit15', new State(USER_ROLES, 'mixit15?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2015})
         .build())
 
-      .state('mixit14', new State(USER_ROLES, 'mixit14', 'js/sessions/talks.html')
+      .state('mixit14', new State(USER_ROLES, 'mixit14?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2014})
         .build())
 
-      .state('mixit13', new State(USER_ROLES, 'mixit13', 'js/sessions/talks.html')
+      .state('mixit13', new State(USER_ROLES, 'mixit13?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2013})
         .build())
 
-      .state('mixit12', new State(USER_ROLES, 'mixit12', 'js/sessions/talks.html')
+      .state('mixit12', new State(USER_ROLES, 'mixit12?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2012})
         .build())
 
-      .state('lightnings', new State(USER_ROLES, 'lightnings', 'js/lt/lightningtalks.html')
+      .state('lightnings', new State(USER_ROLES, 'lightnings?search', 'js/lt/lightningtalks.html')
         .controller('LightningtalksCtrl')
         .resolve({
           account: getAccount,
@@ -265,13 +265,13 @@
           type: angular.noop
         })
         .build())
-      .state('talks', new State(USER_ROLES, 'talks', 'js/sessions/talks.html')
+      .state('talks', new State(USER_ROLES, 'talks?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
           account: getAccount
         })
         .build())
-      .state('sessions', new State(USER_ROLES, 'sessions', 'js/sessions/talks.html')
+      .state('sessions', new State(USER_ROLES, 'sessions?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
           account: getAccount
@@ -291,7 +291,7 @@
         .build())
 
       //Participants
-      .state('speakers', new State(USER_ROLES, 'speakers', 'js/members/speakers.html').controller('MembersCtrl')
+      .state('speakers', new State(USER_ROLES, 'speakers?search', 'js/members/speakers.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers,
           type: getTypeMemberSpeaker
