@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.web.api;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -62,6 +63,7 @@ public class MemberController {
         return getAllMembers(ids
                 .stream()
                 .map(id -> memberRepository.findOne(id))
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList()));
     }
 

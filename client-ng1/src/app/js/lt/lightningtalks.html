@@ -16,12 +16,12 @@
     >
     </button>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar search="ctrl.search"></cesar-search-bar>
 
     <div class="cesar-section--bottom" ng-if="ctrl.sessions.length > 0">
         {{ctrl.pagination.elements(result.length)}}
         <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-            <div class="mdl-grid cesar-liste" ng-repeat="session in ctrl.pagination.filter(search) as result" ng-if="ctrl.pagination.displayItem($index)">
+            <div class="mdl-grid cesar-liste" ng-repeat="session in ctrl.pagination.filter(ctrl.search) as result" ng-if="ctrl.pagination.displayItem($index)">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                     <div class="cesar-text mdl-card__title-text cesar-card__title-text">
                         <div class="cesar-mdl-button--interests" id="votes" style="min-width: 2em">

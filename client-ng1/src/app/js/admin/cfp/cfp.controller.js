@@ -5,7 +5,7 @@
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-cfp').controller('AdminCfpCtrl', function ($rootScope, $filter, $http, $scope, account) {
+  angular.module('cesar-cfp').controller('AdminCfpCtrl', function ($rootScope, $filter, $http, account) {
     'ngInject';
 
     var ctrl = this;
@@ -55,7 +55,7 @@
     };
 
     ctrl.filter = function () {
-      var proposalsFiltered = $filter('filter')(proposals, $scope.search);
+      var proposalsFiltered = $filter('filter')(proposals, ctrl.search);
       proposalsFiltered = $filter('orderBy')(proposalsFiltered, 'status');
 
       if (proposalsFiltered) {

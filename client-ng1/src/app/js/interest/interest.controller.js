@@ -5,7 +5,7 @@
   /**
    * member is resolved in app.js
    */
-  angular.module('cesar-planning').controller('InterestCtrl', function ($stateParams, $q, $http, $scope, $filter) {
+  angular.module('cesar-planning').controller('InterestCtrl', function ($stateParams, $q, $http, $filter) {
     'ngInject';
     var ctrl = this;
     var members, sessions;
@@ -39,7 +39,7 @@
     };
 
     ctrl.filterMember = function(){
-      var membersFiltered =  $filter('filter')(members, $scope.search);
+      var membersFiltered =  $filter('filter')(members, ctrl.search);
       membersFiltered =  $filter('orderBy')(membersFiltered, ['lastname', 'firstname']);
       ctrl.pagination.member.nbtotal = membersFiltered ? membersFiltered.length : 0;
       ctrl.pagination.member.pages = Math.ceil(ctrl.pagination.member.nbtotal/ctrl.pagination.member.nbitems);
@@ -47,7 +47,7 @@
     };
 
     ctrl.filterSession = function(){
-      var sessionsFiltered =  $filter('filter')(sessions, $scope.search);
+      var sessionsFiltered =  $filter('filter')(sessions, ctrl.search);
       sessionsFiltered =  $filter('orderBy')(sessionsFiltered, ['-year', 'title']);
       ctrl.pagination.session.nbtotal = sessionsFiltered ? sessionsFiltered.length : 0;
       ctrl.pagination.session.pages = Math.ceil(ctrl.pagination.session.nbtotal/ctrl.pagination.session.nbitems);

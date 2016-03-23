@@ -21,11 +21,11 @@
     <p>&nbsp;</p>
     <p class="cesar-text">Le classement et les votes</p>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar search="ctrl.search"></cesar-search-bar>
 
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="cesar-liste"
-             ng-repeat="session in ctrl.stats.proposals | filter:search | orderBy:'-totalVotes'">
+             ng-repeat="session in ctrl.stats.proposals | filter:ctrl.search | orderBy:'-totalVotes'">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                     <p class="cesar-text mdl-card__title-text cesar-card__title-text">

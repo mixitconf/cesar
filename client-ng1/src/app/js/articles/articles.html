@@ -1,13 +1,13 @@
 <div class="cesar-container">
     <p>&nbsp;</p>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar search="ctrl.search"></cesar-search-bar>
 
-    <div ng-if="search">
+    <div ng-if="ctrl.search">
         {{ctrl.pagination.elements(result.length)}}
         <div class="mdl-grid">
 
-            <div ng-repeat="article in ctrl.pagination.filter(search) as result track by $index"
+            <div ng-repeat="article in ctrl.pagination.filter(ctrl.search) as result track by $index"
                  class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp"
                  ui-sref="article_zoom1({id : article.id})"
                  ng-if="ctrl.pagination.displayItem($index)">

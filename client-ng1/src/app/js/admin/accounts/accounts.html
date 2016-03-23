@@ -12,10 +12,10 @@
     </button>
     <div class="cesar-info" ng-if="ctrl.purgeOk">{{ctrl.purgeOk}}</div>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar search="ctrl.search"></cesar-search-bar>
     {{ctrl.pagination.elements(result.length)}}
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-        <div class="mdl-grid cesar-liste" ng-repeat="account in ctrl.pagination.filter(search) as result track by $index" ng-if="ctrl.pagination.displayItem($index)">
+        <div class="mdl-grid cesar-liste" ng-repeat="account in ctrl.pagination.filter(ctrl.search) as result track by $index" ng-if="ctrl.pagination.displayItem($index)">
             <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                 <p class="cesar-text">
                     {{account.lastname}}  {{account.firstname}}  <a class="cesar-mdl-button--interests">{{account.provider}}</a>

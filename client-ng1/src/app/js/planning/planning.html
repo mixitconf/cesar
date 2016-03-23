@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <cesar-search-bar>
+    <cesar-search-bar search="ctrl.search">
         <div class="hide-on-mobile">
             <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
             <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
@@ -45,7 +45,7 @@
 
     {{ctrl.shuffle.elements(result.length)}}
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
-        <div class="cesar-liste" ng-repeat="session in ctrl.shuffle.filter(search) as result track by $index"
+        <div class="cesar-liste" ng-repeat="session in ctrl.shuffle.filter(ctrl.search) as result track by $index"
              ng-class="{'cesar-planning__slot-Annexe': !session.format}" ng-if="ctrl.shuffle.displayItem($index)">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">

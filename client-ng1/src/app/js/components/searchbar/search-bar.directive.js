@@ -7,7 +7,10 @@
 
     return {
       templateUrl: 'js/components/searchbar/search-bar.directive.html',
-      transclude:true
+      transclude:true,
+      scope : {
+        search:'='
+      }
     };
   });
 })();

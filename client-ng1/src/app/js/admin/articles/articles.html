@@ -9,13 +9,13 @@
                 <i class="material-icons">add</i>
             </a>
             <div class="mdl-tooltip" for="addTalk" translate="action.add"></div>
-            <cesar-search-bar></cesar-search-bar>
+            <cesar-search-bar search="ctrl.search"></cesar-search-bar>
         </div>
 
 
         {{ctrl.pagination.elements(result.length)}}
         <div class="mdl-grid">
-            <div ng-repeat="article in ctrl.pagination.filter(search) as result track by $index"
+            <div ng-repeat="article in ctrl.pagination.filter(ctrl.search) as result track by $index"
                  class="mdl-cell mdl-cell--12-col cesar-card-session mdl-card mdl-shadow--4dp"
                  ng-if="ctrl.pagination.displayItem($index)">
                 <div class="mdl-card__title mdl-card--expand">

@@ -6,7 +6,7 @@
         éléments du site qui sont rattachés à cet intérêt.
     </div>
 
-    <cesar-search-bar></cesar-search-bar>
+    <cesar-search-bar search="ctrl.search"></cesar-search-bar>
     <p style="padding-left: 1em"><small>{{ctrl.pagination.session.nbtotal}} {{ctrl.pagination.session.nbtotal>0 ? 'sessions' : 'session'}}</small></p>
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="mdl-grid cesar-liste" ng-repeat="session in ctrl.filterSession() track by $index" ng-if="ctrl.displayItem($index, 'session')">
