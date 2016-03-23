@@ -1,7 +1,7 @@
 <div class="cesar-container-fluid">
     <h1>Gestion du planning</h1>
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet cesar-text-center">
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
                    style="width: auto">
                 <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
@@ -22,7 +22,7 @@
 
             </label>
         </div>
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet cesar-text-center">
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
                    style="width: auto">
                 <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
@@ -34,6 +34,20 @@
                 <input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"
                        ng-model="ctrl.display.day2">
                 <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxLangFr"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxLangFr" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.fr">
+                <span class="mdl-checkbox__label">fr</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxLangEn"
+                   style="width: auto">
+                <input type="checkbox" id="checkboxLangEn" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.en">
+                <span class="mdl-checkbox__label">en</span>
             </label>
         </div>
         <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-text-center">
@@ -180,7 +194,7 @@
                         <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
                         <div ng-if="slot.session">
-
+                            <span class="cesar-badge" ng-if="(slot.session.lang === 'en' && ctrl.display.en) || (slot.session.lang === 'fr' && ctrl.display.fr)">{{slot.session.lang}}</span>
                             <i class="material-icons">{{slot.session.format | sessionLogo}}</i>
                             <span>{{slot.session.title}}</span>
                         </div>
@@ -242,6 +256,7 @@
                         <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
                         <div ng-if="slot.session">
+                            <span class="cesar-badge" ng-if="(slot.session.lang === 'en' && ctrl.display.en) || (slot.session.lang === 'fr' && ctrl.display.fr)">{{slot.session.lang}}</span>
                             <i class="material-icons">{{::slot.session.format | sessionLogo}}</i>
                             <span>{{slot.session.title}}</span>
                         </div>

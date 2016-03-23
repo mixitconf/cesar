@@ -16,7 +16,9 @@
       amphi : true,
       salle: true,
       day1: true,
-      day2: true
+      day2: true,
+      fr: true,
+      en: true
     };
 
     if (!account) {
