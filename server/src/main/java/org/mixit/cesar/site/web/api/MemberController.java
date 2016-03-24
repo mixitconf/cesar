@@ -9,6 +9,7 @@ import java.util.stream.StreamSupport;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
@@ -94,13 +95,17 @@ public class MemberController {
 
     @RequestMapping(value = "/speaker")
     @ApiOperation(value = "Finds all speakers", httpMethod = "GET")
-    public ResponseEntity<List<MemberResource>> getAllSpeakers(@RequestParam(required = false) Integer year) {
+    public ResponseEntity<List<MemberResource>> getAllSpeakers(
+            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @RequestParam(required = false) Integer year) {
         return getAllMembers(memberRepository.findAllAcceptedSpeakers(eventService.getEvent(year).getId()));
     }
 
     @RequestMapping(value = "/speaker/lightningtalks")
     @ApiOperation(value = "Finds all lightningtalk speakers", httpMethod = "GET")
-    public ResponseEntity<List<MemberResource>> getAllLightningtalksSpeakers(@RequestParam(required = false) Integer year) {
+    public ResponseEntity<List<MemberResource>> getAllLightningtalksSpeakers(
+            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @RequestParam(required = false) Integer year) {
         return getAllMembers(memberRepository.findAllLigthningtalkSpeakers(eventService.getEvent(year).getId()));
     }
 
@@ -112,7 +117,9 @@ public class MemberController {
 
     @RequestMapping(value = "/sponsor")
     @ApiOperation(value = "Finds all sponsors", httpMethod = "GET")
-    public ResponseEntity<List<MemberResource>> getAllSponsors(@RequestParam(required = false) Integer year) {
+    public ResponseEntity<List<MemberResource>> getAllSponsors(
+            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @RequestParam(required = false) Integer year) {
         return getAllMembers(memberRepository.findAllSponsors(eventService.getEvent(year).getId()));
     }
 
