@@ -4,8 +4,11 @@
     <div class="mdl-textfield mdl-js-textfield mdl-cell--4-col mdl-cell--11-col-phone" id="searchcontainer">
         <input class="mdl-textfield__input" type="text" id="search" ng-model="search" ng-change="updateSearch()"/>
         <label class="mdl-textfield__label" for="search">Recherche rapide...</label>
+        <div class="mdl-button mdl-button--icon cesar-button-search__mobile visible-on-mobile" ng-click="search=undefined">
+            <i class="material-icons">clear</i>
+        </div>
     </div>
-    <div class="mdl-button mdl-button--icon cesar-button-search" ng-click="search=undefined">
+    <div class="mdl-button mdl-button--icon cesar-button-search hide-on-mobile" ng-click="search=undefined">
         <i class="material-icons">clear</i>
     </div>
 </div>
