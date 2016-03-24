@@ -46,6 +46,59 @@
       });
     }
 
+    function _getAllSessions(SessionService, year) {
+      return SessionService.getAllByYear(year).then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getAllSessions(SessionService) {
+      return _getAllSessions(SessionService, 2016);
+    }
+    /* @ngInject */
+    function getAll2015Sessions(SessionService) {
+      return _getAllSessions(SessionService, 2015);
+    }
+    /* @ngInject */
+    function getAll2014Sessions(SessionService) {
+      return _getAllSessions(SessionService, 2014);
+    }
+    /* @ngInject */
+    function getAll2013Sessions(SessionService) {
+      return _getAllSessions(SessionService, 2013);
+    }
+    /* @ngInject */
+    function getAll2012Sessions(SessionService) {
+      return _getAllSessions(SessionService, 2012);
+    }
+
+    function _getSponsors(MemberService, year) {
+      return MemberService.getAll('sponsor', year).then(function (response) {
+        return response.data;
+      });
+    }
+    /* @ngInject */
+    function getAllSponsors(MemberService) {
+      return _getSponsors(MemberService, 2016);
+    }
+    /* @ngInject */
+    function getAll2015Sponsors(MemberService) {
+      return _getSponsors(MemberService, 2015);
+    }
+    /* @ngInject */
+    function getAll2014Sponsors(MemberService) {
+      return _getSponsors(MemberService, 2014);
+    }
+    /* @ngInject */
+    function getAll2013Sponsors(MemberService) {
+      return _getSponsors(MemberService, 2013);
+    }
+    /* @ngInject */
+    function getAll2012Sponsors(MemberService) {
+      return _getSponsors(MemberService, 2012);
+    }
+
     /* @ngInject */
     function getLightning(SessionService, $stateParams) {
       return SessionService.getById($stateParams.id).then(function (response) {
@@ -96,6 +149,7 @@
     function getTypeMemberSponsor(){
       return 'sponsor';
     }
+
     /* @ngInject */
     function getSession(SessionService, $stateParams) {
       return SessionService.getById($stateParams.id).then(function (response) {
@@ -217,21 +271,37 @@
       .state('mixit15', new State(USER_ROLES, 'mixit15?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2015})
+        .resolve({
+          sessions : getAll2015Sessions,
+          sponsors: getAll2015Sponsors
+        })
         .build())
 
       .state('mixit14', new State(USER_ROLES, 'mixit14?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2014})
+        .resolve({
+          sessions : getAll2014Sessions,
+          sponsors: getAll2014Sponsors
+        })
         .build())
 
       .state('mixit13', new State(USER_ROLES, 'mixit13?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2013})
+        .resolve({
+          sessions : getAll2013Sessions,
+          sponsors: getAll2013Sponsors
+        })
         .build())
 
       .state('mixit12', new State(USER_ROLES, 'mixit12?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2012})
+        .resolve({
+          sessions : getAll2012Sessions,
+          sponsors: getAll2012Sponsors
+        })
         .build())
 
       .state('lightnings', new State(USER_ROLES, 'lightnings?search', 'js/lt/lightningtalks.html')
@@ -268,13 +338,17 @@
       .state('talks', new State(USER_ROLES, 'talks?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
-          account: getAccount
+          account: getAccount,
+          sessions : getAllSessions,
+          sponsors: getAllSponsors
         })
         .build())
       .state('sessions', new State(USER_ROLES, 'sessions?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
-          account: getAccount
+          account: getAccount,
+          sessions : getAllSessions,
+          sponsors: getAllSponsors
         })
         .build())
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
@@ -390,6 +464,10 @@
       .state('cache', new State(USER_ROLES, 'cache', 'js/cache/cache.html')
         .controller('CacheCtrl')
         .roles([USER_ROLES.admin])
+        .build())
+
+      .state('rank', new State(USER_ROLES, 'rank', 'js/rank/rank.html')
+        .controller('RankCtrl')
         .build());
 
   });

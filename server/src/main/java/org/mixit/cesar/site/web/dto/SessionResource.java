@@ -2,14 +2,12 @@ package org.mixit.cesar.site.web.dto;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mixit.cesar.site.model.member.Interest;
-import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.Vote;
 import org.mixit.cesar.site.web.api.MemberController;
@@ -36,6 +34,7 @@ public class SessionResource extends ResourceSupport {
     public String year;
     public String start;
     public String end;
+    public List<MemberDto> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 
     public static <T extends Session<T>> SessionResource convert(T session) {
@@ -80,6 +79,7 @@ public class SessionResource extends ResourceSupport {
                 .stream()
                 .forEach(s -> {
                     sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker"));
+                    sessionResource.addSpeaker(MemberDto.convert(s));
                 });
         return sessionResource;
     }
@@ -217,6 +217,11 @@ public class SessionResource extends ResourceSupport {
 
     public SessionResource setYear(String year) {
         this.year = year;
+        return this;
+    }
+
+    public SessionResource addSpeaker(MemberDto memberDto){
+        speakers.add(memberDto);
         return this;
     }
 
