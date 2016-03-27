@@ -46,5 +46,5 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<LightningTalk> findAllLightningTalks(@Param("event") Event event);
 
     @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event = :event and s.valid = true and sp.id = :idSpeaker")
-    List<LightningTalk> findAllMyLightningTalks(@Param("event") Long event, @Param("idSpeaker") Long idSpeaker);
+    List<LightningTalk> findAllMyLightningTalks(@Param("event") Event event, @Param("idSpeaker") Long idSpeaker);
 }

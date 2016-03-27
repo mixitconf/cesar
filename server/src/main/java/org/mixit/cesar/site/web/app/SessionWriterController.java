@@ -61,7 +61,7 @@ public class SessionWriterController {
     public List<SessionResource> getMyLightningsInfo() {
         Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
         return sessionRepository
-                .findAllMyLightningTalks(EventService.getCurrent().getId(), currentUser.getId())
+                .findAllMyLightningTalks(EventService.getCurrent(), currentUser.getId())
                 .stream()
                 .map(SessionResource::convert)
                 .collect(Collectors.toList());
