@@ -1,7 +1,6 @@
 (function () {
 
   'use strict';
-  /*global componentHandler */
 
   angular.module('cesar-planning').controller('RankingCtrl', function ($filter, $stateParams, $state, sessions, account) {
     'ngInject';
