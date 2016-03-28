@@ -1,0 +1,51 @@
+<div class="cesar-container-fluid">
+
+    <div class="cesar-planning__container">
+        <div class="cesar-planning__room" ng-if="ctrl.display.talk">
+            <h2>Talk</h2>
+
+            <cesar-ranking-session votes="ctrl.votes"
+                                   type-session="Talk"
+                                   is-display-by-percent="ctrl.display.type === 'bypercent'"
+                                   nb-positive-votes="ctrl.nbPositiveVotes">
+            </cesar-ranking-session>
+        </div>
+        <div class="cesar-planning__room" ng-if="ctrl.display.workshop">
+            <h2>Workshop</h2>
+
+            <cesar-ranking-session votes="ctrl.votes"
+                                   type-session="Workshop"
+                                   is-display-by-percent="ctrl.display.type === 'bypercent'"
+                                   nb-positive-votes="ctrl.nbPositiveVotes">
+            </cesar-ranking-session>
+        </div>
+        <div class="cesar-planning__room" ng-if="ctrl.display.keynote">
+            <h2>Keynote</h2>
+
+            <cesar-ranking-session votes="ctrl.votes"
+                                   type-session="Keynote"
+                                   is-display-by-percent="ctrl.display.type === 'bypercent'"
+                                   nb-positive-votes="ctrl.nbPositiveVotes">
+            </cesar-ranking-session>
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <div class="cesar-text-center">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="typeByPercent">
+            <input type="radio" id="typeByPercent" class="mdl-radio__button" name="options" value="bypercent"
+                   ng-model="ctrl.display.type"
+                   ng-change="ctrl.changeType()">
+            <span class="mdl-radio__label" translate="view.ranking.bypercent"></span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="typeByVote">
+            <input type="radio" id="typeByVote" class="mdl-radio__button" name="options" value="byvote"
+                   ng-model="ctrl.display.type"
+                   ng-change="ctrl.changeType()">
+            <span class="mdl-radio__label" translate="view.ranking.byvote"></span>
+        </label>
+    </div>
+
+
+    <p>&nbsp;</p>
+</div>

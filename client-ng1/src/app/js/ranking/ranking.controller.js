@@ -1,18 +1,18 @@
 (function () {
 
   'use strict';
+  /*global componentHandler */
 
-  angular.module('cesar-planning').controller('RankingCtrl', function ($filter, sessions, account) {
+  angular.module('cesar-planning').controller('RankingCtrl', function ($filter, $stateParams, $state, sessions, account) {
     'ngInject';
 
     var ctrl = this;
     ctrl.nbPositiveVotes = {};
-
     ctrl.display = {
-      keynote : true,
-      worshop : true,
-      talk : true,
-      type : 'bypercent'
+      keynote : $stateParams.keynote ? $stateParams.keynote === 'true' : true,
+      workshop : $stateParams.workshop ? $stateParams.workshop === 'true' : true,
+      talk : $stateParams.talk ? $stateParams.talk === 'true' : true,
+      type : $stateParams.type ? $stateParams.type : 'bypercent'
     };
     ctrl.userConnected = !!account;
 
@@ -49,7 +49,11 @@
     _applyFunction(_orderByPositiveVotes);
     _applyFunction(_computeRatio);
 
-    ctrl.changeType = function(){
+    ctrl.changeType = function(init){
+      if(!init){
+        $stateParams.type = ctrl.display.type;
+        $state.go($state.current.name, $stateParams, {reloadOnSearch: false, notify:false});
+      }
       if(ctrl.display.type === 'bypercent'){
         _applyFunction(_orderByRatio);
       }
@@ -58,7 +62,14 @@
       }
     };
 
-    ctrl.changeType();
+    ctrl.changeFormat = function(){
+      $stateParams.keynote = ctrl.display.keynote;
+      $stateParams.workshop = ctrl.display.workshop;
+      $stateParams.talk = ctrl.display.talk;
+      $state.go($state.current.name, $stateParams, {reloadOnSearch: false, notify:false});
+    };
+
+    ctrl.changeType(true);
 
   });
 })();

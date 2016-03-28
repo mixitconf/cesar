@@ -473,7 +473,15 @@
         .roles([USER_ROLES.admin])
         .build())
 
-      .state('ranking', new State(USER_ROLES, 'ranking', 'js/ranking/ranking.html')
+      .state('rankingmonit', new State(USER_ROLES, 'rankingmonit?type&keynote&workshop&talk', 'js/ranking/ranking-monitoring.html')
+        .controller('RankingCtrl')
+        .resolve({
+          sessions: getSessionRanking,
+          account: getAccount
+        })
+        .build())
+
+      .state('ranking', new State(USER_ROLES, 'ranking?type&keynote&workshop&talk', 'js/ranking/ranking.html')
         .controller('RankingCtrl')
         .resolve({
           sessions: getSessionRanking,

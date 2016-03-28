@@ -15,21 +15,20 @@
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
                    style="width: auto">
                 <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.talk">
+                       ng-model="ctrl.display.talk" ng-change="ctrl.changeFormat()">
                 <span class="mdl-checkbox__label">Talk</span>
             </label>
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
                    style="width: auto">
                 <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.worshop">
+                       ng-model="ctrl.display.workshop" ng-change="ctrl.changeFormat()">
                 <span class="mdl-checkbox__label">Workshop</span>
             </label>
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
                    style="width: auto">
                 <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.keynote">
+                       ng-model="ctrl.display.keynote" ng-change="ctrl.changeFormat()">
                 <span class="mdl-checkbox__label">Keynote</span>
-
             </label>
         </div>
         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
@@ -57,7 +56,7 @@
                                nb-positive-votes="ctrl.nbPositiveVotes">
         </cesar-ranking-session>
     </div>
-    <div ng-if="ctrl.display.worshop">
+    <div ng-if="ctrl.display.workshop">
         <h2>Workshop</h2>
 
         <cesar-ranking-session votes="ctrl.votes"
@@ -66,6 +65,7 @@
                                nb-positive-votes="ctrl.nbPositiveVotes">
         </cesar-ranking-session>
     </div>
+
     <div ng-if="ctrl.display.keynote">
         <h2>Keynote</h2>
 

@@ -54,6 +54,7 @@ public class Routes {
             "/planning",
             "/profile/{login:\\w+}",
             "/ranking",
+            "/rankingmonit",
             "/session/{id:\\w+}",
             "/session/{id:\\w+}/{title:[A-Za-z0-9_\\-.]+}",
             "/sessions",
