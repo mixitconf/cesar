@@ -43,7 +43,6 @@
     function _applyFunction(myFunction) {
       myFunction('Keynote');
       myFunction('Workshop');
-      myFunction('LightningTalk');
       myFunction('Talk');
       ctrl.votes = sessions;
     }
