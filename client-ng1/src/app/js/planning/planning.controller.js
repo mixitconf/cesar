@@ -2,72 +2,42 @@
 
   'use strict';
 
-  angular.module('cesar-planning').controller('PlanningCtrl', function ($rootScope, $q, $http, $filter, $state, $stateParams, $scope, SessionService, PlanningService, MemberService, shuffleService, cesarSpinnerService) {
+  angular.module('cesar-planning').controller('PlanningCtrl', function ($filter, $state, $stateParams, rooms, sessions, transversalSlots, shuffleService) {
     'ngInject';
 
     var ctrl = this;
-    var sessions, transversalSlots, speakers;
 
     ctrl.slot = {};
     ctrl.slot.format = $stateParams.format ? $stateParams.format : undefined;
+    ctrl.rooms = rooms;
 
-    cesarSpinnerService.wait();
-
-    //We need to load sessions, speakers and transversal slots
-    $q.all([
-        PlanningService.getRoom().then(function (response) {
-          ctrl.rooms = response.data;
-          if($stateParams.room){
-            var result = ctrl.rooms
-              .filter(function(elt){
-                return elt.name === $stateParams.room;
-              });
-            ctrl.slot.room = result.length > 0 ? result[0] : undefined;
-          }
-        }),
-        SessionService
-          .getAllByYear()
-          .then(function (response) {
-            if (response.data) {
-              sessions = response.data.filter(function (elt) {
-                return elt.start;
-              });
-            }
-            else {
-              sessions = [];
-            }
-          }),
-        PlanningService.getTransversalSlots().then(function (response) {
-          transversalSlots = response.data;
-        }),
-        MemberService.getAll('speaker')
-          .then(function (response) {
-            speakers = response.data;
-          })
-      ])
-      .then(function () {
-        if (transversalSlots) {
-          transversalSlots.forEach(function (elt) {
-            var session = {
-              title: elt.label,
-              end: elt.end,
-              start: elt.start
-            };
-            if (elt.room) {
-              session.room = elt.room;
-            }
-            sessions.push(session);
-          });
-        }
-        ctrl.sessions = sessions.filter(function (elt) {
-          return elt.start;
+    if($stateParams.room){
+      var result = ctrl.rooms
+        .filter(function(elt){
+          return elt.name === $stateParams.room;
         });
-        SessionService.findSessionsSpeakers(ctrl.sessions, speakers);
-        ctrl.updateData();
-      })
-      .finally(function () {
-        cesarSpinnerService.stopWaiting();
+      ctrl.slot.room = result.length > 0 ? result[0] : undefined;
+    }
+
+    if (transversalSlots) {
+      transversalSlots.forEach(function (elt) {
+        var session = {
+          title: elt.label,
+          end: elt.end,
+          start: elt.start
+        };
+        if (elt.room) {
+          session.room = elt.room;
+        }
+        sessions.push(session);
       });
+    }
+
+    //We keep only sessions with a start time
+    ctrl.sessions = sessions.filter(function (elt) {
+      return elt.start;
+    });
+
 
     ctrl.shuffle = shuffleService.createShuffle('start');
 
@@ -86,5 +56,6 @@
       $state.go('planning', params, {reloadOnSearch:false, notify:false});
     };
 
+    ctrl.updateData();
   });
 })();

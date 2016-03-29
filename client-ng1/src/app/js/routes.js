@@ -192,6 +192,20 @@
       });
     }
 
+    /* @ngInject */
+    function getRooms(PlanningService) {
+      return  PlanningService.getRoom().then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getTransversalSlots(PlanningService) {
+      return PlanningService.getTransversalSlots().then(function (response) {
+        return response.data;
+      });
+    }
+
     //Router definition
     $stateProvider
 
@@ -276,9 +290,13 @@
         })
         .build())
 
-      //Program
       .state('planning', new State(USER_ROLES, 'planning?format&room&search', 'js/planning/planning.html')
         .controller('PlanningCtrl')
+        .resolve({
+          rooms : getRooms,
+          transversalSlots : getTransversalSlots,
+          sessions : getAllSessions
+        })
         .build())
 
       .state('facilities', new State(USER_ROLES, 'facilities', 'js/facilities/facilities.html')
