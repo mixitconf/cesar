@@ -130,6 +130,20 @@
       }
     }
 
+    /* @ngInject */
+    function getSessionsByInterest($http, $stateParams){
+      return $http.get('/api/session/interest/' + $stateParams.name).then(function(response){
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getMembersByInterest($http, $stateParams){
+      return $http.get('/api/member/interest/' + $stateParams.name).then(function(response){
+        return response.data;
+      });
+    }
+
     function getEditionMode(){
       return 'edition';
     }
@@ -413,7 +427,13 @@
         })
         .build())
       //Infos
-      .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html').controller('InterestCtrl').build())
+      .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html')
+        .controller('InterestCtrl')
+        .resolve({
+          sessions : getSessionsByInterest,
+          members : getMembersByInterest
+        })
+        .build())
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())
       .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html').build())
       .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html')
