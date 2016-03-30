@@ -28,7 +28,9 @@ public class MemberEvent {
         PARTY,
         BREAKFAST,
         LUNCH,
-        HOSTING
+        HOSTING,
+        VIDEO,
+        COMMUNITY
     }
 
     @Id
