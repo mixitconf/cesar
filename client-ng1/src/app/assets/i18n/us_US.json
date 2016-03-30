@@ -267,7 +267,9 @@
       "level_HOSTING": "Hosting",
       "level_PARTY": "Party",
       "level_BREAKFAST": "Breakfast",
-      "level_LUNCH": "Lunch"
+      "level_LUNCH": "Lunch",
+      "level_VIDEO": "Video",
+      "level_COMMUNITY": "Community"
     },
     "staff": {
       "title": "Mix-IT team",

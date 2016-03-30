@@ -267,7 +267,9 @@
       "level_LANYARD": "Tour de cou",
       "level_PARTY": "Soirée",
       "level_BREAKFAST": "Petit déjeuner",
-      "level_LUNCH": "Repas"
+      "level_LUNCH": "Repas",
+      "level_VIDEO": "Video",
+      "level_COMMUNITY": "Community"
     },
     "staff": {
       "title": "L'équipe Mix-IT",

@@ -35,6 +35,16 @@
     <cesar-sponsor members="ctrl.sponsors" level="GOLD"></cesar-sponsor>
     <cesar-sponsor members="ctrl.sponsors" level="SILVER"></cesar-sponsor>
     <cesar-sponsor members="ctrl.sponsors" level="PARTY" ng-if="!ctrl.year"></cesar-sponsor>
-    <cesar-sponsor members="ctrl.sponsors" level="LANYARD" ng-if="!ctrl.year"></cesar-sponsor>
+    <div class="mdl-grid" ng-if="!ctrl.year">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet">
+            <cesar-sponsor members="ctrl.sponsors" level="LANYARD"></cesar-sponsor>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet">
+            <cesar-sponsor members="ctrl.sponsors" level="VIDEO"></cesar-sponsor>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-cell--4-col-tablet">
+            <cesar-sponsor members="ctrl.sponsors" level="COMMUNITY"></cesar-sponsor>
+        </div>
+    </div>
     <p>&nbsp;</p>
 </div>
