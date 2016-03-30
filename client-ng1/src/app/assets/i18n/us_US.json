@@ -416,7 +416,9 @@
       "format" : {
         "Talk": "Talk (around 50 minutes)",
         "LightningTalk": "Ligthning talk",
-        "Workshop": "Workshop (around 2 hours)"
+        "Workshop": "Workshop (around 2 hours)",
+        "Random": "Random (environ 20 minutes)",
+        "Keynote": "Keynote (environ 2 heures)"
       },
       "typeSession": {
         "SLIDES" :"Slides",

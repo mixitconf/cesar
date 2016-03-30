@@ -4,6 +4,11 @@
         {{ctrl.proposal.title}}
     </h1>
 
+    <div class="cesar-text-center">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ui-sref="cfptalk({id : ctrl.proposal.id})">Modifier la proposition
+        </button>
+    </div>
+
     <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
 
     <div>
@@ -30,7 +35,6 @@
 
     <p ng-if="ctrl.proposal.addedAt" translate="view.cfp.talk.createdat"
        translate-values="{ 'date' : ctrl.proposal.addedAt }"></p>
-
     <p>
 
     <form novalidate class="cesar-form" name="frm">
@@ -131,8 +135,6 @@
                 <span class="cesar-textfield__radio-label" translate="view.cfp.talk.maxAttendees.text">Title</span><br>
                 {{'view.cfp.nbattendees.' + ctrl.proposal.maxAttendees | translate}}
             </p>
-
-
 
     </div>
 </div>

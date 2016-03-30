@@ -19,7 +19,6 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Member;
-import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -124,7 +123,7 @@ public class ProposalController {
         if(proposal.getSpeakers().isEmpty()){
             proposal.addSpeaker(accountRepository.findOne(currentUser.getCredentials().get().getId()).getMember());
         }
-        proposalService.updateProposalSpeakert(proposal, proposal, currentUser.getCredentials().get());
+        proposalService.updateProposalSpeaker(proposal, proposal, currentUser.getCredentials().get());
         return proposalService.check(proposal);
     }
 
@@ -172,9 +171,16 @@ public class ProposalController {
     @ResponseStatus(HttpStatus.OK)
     @Authenticated
     @NeedsRole(Role.ADMIN)
-    public void accept(@PathVariable(value = "proposalId")  Long proposalId,
+    public void changeState(@PathVariable(value = "proposalId")  Long proposalId,
                        @PathVariable(value = "state")  ProposalStatus state) {
         Proposal proposal = proposalRepository.findOne(proposalId);
         proposal.setStatus(state);
+
+        if(state == ProposalStatus.REJECTED && proposal.getSession()!=null){
+            proposal.getSession().setSessionAccepted(false);
+        }
+        else if (state == ProposalStatus.ACCEPTED && proposal.getSession()!=null){
+            proposal.getSession().setSessionAccepted(true);
+        }
     }
 }

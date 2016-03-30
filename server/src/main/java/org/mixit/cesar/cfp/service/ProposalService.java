@@ -111,7 +111,6 @@ public class ProposalService {
                     .setTitle(proposal.getTitle())
                     .setSummary(proposal.getSummary())
                     .setLevel(proposal.getLevel())
-                    .setFormat(proposal.getFormat())
                     .setIdeaForNow(proposal.getIdeaForNow())
                     .setMessageForStaff(proposal.getMessageForStaff());
         }
@@ -134,7 +133,7 @@ public class ProposalService {
         updateProposalInterest(proposalPersisted, proposal);
 
         //Speakers
-        updateProposalSpeakert(proposalPersisted, proposal, account);
+        updateProposalSpeaker(proposalPersisted, proposal, account);
 
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
@@ -177,7 +176,7 @@ public class ProposalService {
     /**
      * Helper to update the speaker list
      */
-    public void updateProposalSpeakert(Proposal proposalDb, Proposal proposal, Account account) {
+    public void updateProposalSpeaker(Proposal proposalDb, Proposal proposal, Account account) {
         //We can delete old reference only the reference with the curent user
         proposalDb.getSpeakers().removeAll(
                 proposalDb.getSpeakers()
