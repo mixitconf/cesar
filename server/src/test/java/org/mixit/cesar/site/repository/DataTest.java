@@ -15,7 +15,7 @@ import org.mixit.cesar.site.model.session.Format;
 public class DataTest {
 
     public static final Operation DELETE_ALL = deleteAllFrom(
-            "ArticleComment", "Article", "SessionComment", "Session_Interest", "Session_Member", "Vote", "Session",
+            "ArticleComment", "Article", "SessionComment", "Session_Interest", "Session_Member", "Vote", "Favorite", "Session",
             "SharedLink", "MemberEvent", "Member_Interest", "Account_Authority", "Authority", "Account", "Member",
             "Event", "Interest"
             );

@@ -12,20 +12,24 @@ import com.ninja_squad.dbsetup.generator.ValueGenerators;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mixit.cesar.site.model.event.Event;
+import org.mixit.cesar.site.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Test de {@link MemberRepository}
+ * @author Dev-Mind <guillaume@dev-mind.fr>
+ * @since 04/03/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DataSourceTestConfig.class)
-public class MemberRepositoryTest {
+public class FavoriteRepositoryTest {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private FavoriteRepository favoriteRepository;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -36,23 +40,28 @@ public class MemberRepositoryTest {
                 new DataSourceDestination(dataSource),
                 sequenceOf(
                         DataTest.DELETE_ALL,
-                        DataTest.INSERT_EVENT,
-                        DataTest.INSERT_MEMBER,
-                        insertInto("MemberEvent")
-                                .withGeneratedValue("id", ValueGenerators.sequence())
-                                .columns("MEMBER_ID", "EVENT_ID").values(1, 1).build()
+                        sequenceOf(
+                                DataTest.INSERT_SESSION,
+                                insertInto("Favorite")
+                                        .withGeneratedValue("id", ValueGenerators.sequence())
+                                        .columns("MEMBER_ID", "SESSION_ID")
+                                        .values(1, 1)
+                                        .values(1, 2)
+                                        .build()
+                        )
+
                 )
         );
         dbSetup.launch();
     }
 
     @Test
-    public void shouldFindMemberByEmail(){
-        assertThat(memberRepository.findByEmail("guillaume@dev-mind.fr")).isNotEmpty();
+    public void findUserFavorite() {
+        assertThat(favoriteRepository.findByMember(new Member().setId(1L))).hasSize(2);
     }
 
     @Test
-    public void shouldNotFindMemberByEmail(){
-        assertThat(memberRepository.findByEmail("quelquun@dev-mind.fr")).isEmpty();
+    public void findUserFavorite_for_unknown_memnber() {
+        assertThat(favoriteRepository.findByMember(new Member().setId(999L))).hasSize(0);
     }
 }

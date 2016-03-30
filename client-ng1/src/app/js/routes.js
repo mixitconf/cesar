@@ -131,6 +131,18 @@
     }
 
     /* @ngInject */
+    function getMyFavorites($http, $q, account){
+      if(!account){
+        return $q.when([]);
+      }
+      else{
+        return $http.get('app/favorite').then(function(response){
+          return response.data;
+        });
+      }
+    }
+
+    /* @ngInject */
     function getSessionsByInterest($http, $stateParams){
       return $http.get('/api/session/interest/' + $stateParams.name).then(function(response){
         return response.data;
@@ -293,9 +305,11 @@
       .state('planning', new State(USER_ROLES, 'planning?format&room&search&mode', 'js/planning/planning.html')
         .controller('PlanningCtrl')
         .resolve({
+          account: getAccount,
           rooms : getRooms,
           transversalSlots : getTransversalSlots,
-          sessions : getAllSessions
+          sessions : getAllSessions,
+          favorites : getMyFavorites
         })
         .build())
 
@@ -379,7 +393,8 @@
         .resolve({
           account: getAccount,
           sessions : getAllSessions,
-          sponsors: getAllSponsors
+          sponsors: getAllSponsors,
+          favorites : getMyFavorites
         })
         .build())
       .state('sessions', new State(USER_ROLES, 'sessions?search', 'js/sessions/talks.html')
@@ -387,7 +402,8 @@
         .resolve({
           account: getAccount,
           sessions : getAllSessions,
-          sponsors: getAllSponsors
+          sponsors: getAllSponsors,
+          favorites : getMyFavorites
         })
         .build())
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')

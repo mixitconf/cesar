@@ -33,31 +33,30 @@ public class ArticleRepositoryTest {
                 new DataSourceDestination(dataSource),
                 sequenceOf(
                         DataTest.DELETE_ALL,
-                        sequenceOf(
-                                DataTest.INSERT_MEMBER,
-                                insertInto("ARTICLE")
-                                        .withGeneratedValue("id", ValueGenerators.sequence())
-                                        .columns("AUTHOR_ID", "CONTENT", "POSTEDAT", "TITLE", "HEADLINE", "VALID", "NBCONSULTS")
-                                        .values(1, "Content *markdown*", new Date(), "title", "intro", true, 1)
-                                        .build(),
-                                insertInto("ARTICLECOMMENT")
-                                        .withGeneratedValue("id", ValueGenerators.sequence())
-                                        .columns("MEMBER_ID", "CONTENT", "POSTEDAT", "ARTICLE_ID")
-                                        .values(1, "Comment *markdown*", new Date(), 1)
-                                        .build()
-                        )
+                        DataTest.INSERT_MEMBER,
+                        insertInto("ARTICLE")
+                                .withGeneratedValue("id", ValueGenerators.sequence())
+                                .columns("AUTHOR_ID", "CONTENT", "POSTEDAT", "TITLE", "HEADLINE", "VALID", "NBCONSULTS")
+                                .values(1, "Content *markdown*", new Date(), "title", "intro", true, 1)
+                                .build(),
+                        insertInto("ARTICLECOMMENT")
+                                .withGeneratedValue("id", ValueGenerators.sequence())
+                                .columns("MEMBER_ID", "CONTENT", "POSTEDAT", "ARTICLE_ID")
+                                .values(1, "Comment *markdown*", new Date(), 1)
+                                .build()
+
                 )
         );
         dbSetup.launch();
     }
 
     @Test
-    public void findAllPublishedArticle(){
+    public void findAllPublishedArticle() {
         assertThat(articleRepository.findAllPublishedArticle()).hasSize(1).extracting("title").containsExactly("title");
     }
 
     @Test
-    public void findCurrentEvent(){
+    public void findCurrentEvent() {
         assertThat(articleRepository.findPublishedArticleById(1L).getAuthor().getFirstname()).isEqualTo("Guillaume");
     }
 }

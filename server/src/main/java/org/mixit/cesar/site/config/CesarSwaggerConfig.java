@@ -26,7 +26,11 @@ public class CesarSwaggerConfig {
                 .select()
                 .paths(or(
                         regex("/api/member.*"),
-                        regex("/api/session.*")
+                        regex("/api/session.*"),
+                        regex("/api/article.*"),
+                        regex("/api/favorite.*"),
+                        regex("/api/interest.*"),
+                        regex("/api/ranking.*")
                 ))
                 .build();
     }

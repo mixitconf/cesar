@@ -6,14 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Member;
 
+/**
+ * Users (with account) can mark session like favorite
+ */
 @Entity
-public class Vote {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,18 +28,11 @@ public class Vote {
     @ManyToOne
     private Member member;
 
-    /**
-     * true if the vote is positive
-     */
-    @NotNull
-    @JsonView(FlatView.class)
-    public Boolean value;
-
     public Long getId() {
         return id;
     }
 
-    public Vote setId(Long id) {
+    public Favorite setId(Long id) {
         this.id = id;
         return this;
     }
@@ -46,7 +41,7 @@ public class Vote {
         return session;
     }
 
-    public Vote setSession(Session session) {
+    public Favorite setSession(Session session) {
         this.session = session;
         return this;
     }
@@ -55,17 +50,8 @@ public class Vote {
         return member;
     }
 
-    public Vote setMember(Member member) {
+    public Favorite setMember(Member member) {
         this.member = member;
-        return this;
-    }
-
-    public Boolean getValue() {
-        return value;
-    }
-
-    public Vote setValue(Boolean value) {
-        this.value = value;
         return this;
     }
 
@@ -73,14 +59,13 @@ public class Vote {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Vote vote = (Vote) o;
-        return Objects.equals(session, vote.session) &&
-                Objects.equals(member, vote.member) &&
-                Objects.equals(value, vote.value);
+        Favorite favorite = (Favorite) o;
+        return Objects.equals(session, favorite.session) &&
+                Objects.equals(member, favorite.member);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(session, member, value);
+        return Objects.hash(session, member);
     }
 }
