@@ -3,8 +3,12 @@
     <h1>
         <i class="material-icons cesar-icons-h1 mdl-badge" data-badge="{{ctrl.session.lang}}">
             {{ctrl.session.format | sessionLogo}}</i>&nbsp; {{ctrl.session.title}}
-        &nbsp;<b><small>{{ctrl.session.year}}</small></b>
+        &nbsp;<b>
+        <small>{{ctrl.session.year}}</small>
+    </b>
     </h1>
+
+    <div class="cesar-error" ng-if="ctrl.errorMessage" translate="error.{{ctrl.errorMessage}}"></div>
 
     <div ng-if="cesar.voteIsOpen && ctrl.session.year === cesar.current">
         <p ng-if="!ctrl.userConnected" class="cesar-text" ng-bind-html="'view.talks.vote.notconnected' | translate"></p>
@@ -56,13 +60,22 @@
         </div>
         <div class="mdl-tooltip" for="votes"
              translate="view.talks.info.vote"
-             translate-values="{ voteplus : {{ctrl.session.positiveVotes}} , voteminus :  {{(ctrl.session.positiveVotes - ctrl.session.votes)}} }"></div>
+             translate-values="{ voteplus : {{ctrl.session.positiveVotes}} , voteminus :  {{(ctrl.session.positiveVotes - ctrl.session.votes)}} }">
+        </div>
+        <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="ctrl.toggleFavorite(ctrl.session)" id="favorite" style="min-width: 24px" ng-if="ctrl.userConnected">
+            <i class="material-icons" class="hide-on-mobile" ng-if="!ctrl.session.favorite">star_border</i>
+            <i class="material-icons" class="hide-on-mobile" ng-if="ctrl.session.favorite">star</i>
+        </a>
+        <div class="mdl-tooltip" for="favorite" translate="action.favorite"></div>
+
     </div>
     <p>&nbsp;</p>
 
     <p class="cesar-text">{{ctrl.session.summary}}</span></p>
 
-    <p><cesar-slot start="ctrl.session.start" end="ctrl.session.end" room="ctrl.session.room"></cesar-slot></p>
+    <p>
+        <cesar-slot start="ctrl.session.start" end="ctrl.session.end" room="ctrl.session.room"></cesar-slot>
+    </p>
 
     <p ng-bind-html="ctrl.session.description | markdown"></p>
 
@@ -71,7 +84,8 @@
 
     <div class="cesar-section--bottom">
         <p>
-            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button" ng-repeat="interest in ctrl.session.interests" ui-sref="interest({name:interest})">
+            <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
+               ng-repeat="interest in ctrl.session.interests" ui-sref="interest({name:interest})">
                 {{interest}}
             </a>
         </p>
@@ -79,7 +93,8 @@
         <p>&nbsp;</p>
 
         <p class="cesar-text">
-            <ng-pluralize count="ctrl.session.speakers.length" when="{'1': 'Speaker', 'other': '{} speakers'}"></ng-pluralize>
+            <ng-pluralize count="ctrl.session.speakers.length"
+                          when="{'1': 'Speaker', 'other': '{} speakers'}"></ng-pluralize>
         </p>
         <cesar-member-cards members="ctrl.session.speakers"></cesar-member-cards>
     </div>

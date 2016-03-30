@@ -8,11 +8,13 @@
     "add" : "Add",
     "check" : "Check",
     "clear" : "Remove",
+    "favorite" : "Favorite",
     "profile" : "Change your profile",
     "return" : "Go back",
     "member" : "See how people see your profile",
     "submit" : "Submit",
-    "tweet" : "Tweet"
+    "tweet" : "Tweet",
+    "zoom" : "Visualize"
   },
   "menu": {
     "accounts": "Comptes",

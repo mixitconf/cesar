@@ -2,10 +2,12 @@
 
   'use strict';
 
-  angular.module('cesar-sessions').controller('SessionCtrl', function (session, $stateParams, $http, Util, MemberService, SessionService, account) {
+  angular.module('cesar-sessions').controller('SessionCtrl', function (session, $stateParams, $http, Util, MemberService, SessionService, account, favorites, FavoriteService) {
     'ngInject';
 
     var ctrl = this;
+
+    FavoriteService.markFavorite(session, favorites);
 
     ctrl.session = session;
     ctrl.session.speakers = [];
@@ -48,6 +50,18 @@
           .post('/app/vote/', vote)
           .then(function () {
             _refreshVote();
+          })
+          .catch(function () {
+            ctrl.errorMessage = 'UNDEFINED';
+          });
+      };
+
+      ctrl.toggleFavorite = function(session){
+        ctrl.errorMessage = undefined;
+        FavoriteService
+          .toggleFavorite(session)
+          .then(function(){
+            session.favorite = !!session.favorite ? false : true;
           })
           .catch(function () {
             ctrl.errorMessage = 'UNDEFINED';

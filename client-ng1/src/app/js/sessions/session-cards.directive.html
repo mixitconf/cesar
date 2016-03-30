@@ -8,12 +8,17 @@
                     {{session.title}}
                 </a>
                 &nbsp;<span class="cesar-badge">{{session.lang}}</span>
+                <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="toggleFavorite(session)" id="favorite{{session.idSession}}"
+                   style="min-width: 24px" ng-if="connected && session.idSession">
+                    <i class="material-icons" class="hide-on-mobile" ng-if="!session.favorite" style="padding-bottom: 10px">star_border</i>
+                    <i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>
+                </a>
+                <div class="mdl-tooltip" for="favorite{{session.idSession}}" translate="action.favorite"></div>
             </h3>
 
             <div style="padding-top: 8px">
                 <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
                 <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
-
                 <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                     <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
                        rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
@@ -25,10 +30,11 @@
             </div>
         </div>
         <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next"
+            <a class="mdl-button mdl-js-button mdl-button--fab cesar-button--fab-pimary mdl-button--mini-fab" rel="next" id="zoomSession{{session.idSession}}"
                ui-sref="session({id : session.idSession, format : session.format})" style="float: right">
                 <i class="material-icons" class="hide-on-mobile">library_books</i>
             </a>
+            <div class="mdl-tooltip" for="zoomSession{{session.idSession}}" translate="action.zoom"></div>
         </div>
     </div>
     <div class="mdl-grid" ng-if="shuffle.get().nbtotal===0">

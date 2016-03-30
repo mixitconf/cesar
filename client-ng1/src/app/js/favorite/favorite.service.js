@@ -5,6 +5,14 @@
   angular.module('cesar-sessions').factory('FavoriteService', function ($http) {
     'ngInject';
 
+    function markFavorite(session, favorites) {
+      favorites.forEach(function(sessionId){
+        if(session.idSession === sessionId){
+          session.favorite = true;
+        }
+      });
+    }
+
     /**
      * Read all the sessions and add tag favorite if the session is a favorite
      * for the current user
@@ -30,6 +38,7 @@
     }
 
     return {
+      markFavorite: markFavorite,
       markFavorites: markFavorites,
       toggleFavorite: toggleFavorite
     };

@@ -409,13 +409,15 @@
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
-          session: getSession
+          session: getSession,
+          favorites : getMyFavorites
         })
         .build())
       .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
-          session: getSession
+          session: getSession,
+          favorites : getMyFavorites
         })
         .build())
 

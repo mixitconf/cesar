@@ -26,8 +26,8 @@
     </cesar-search-bar>
 
     <div class="cesar-section--bottom">
-        <cesar-session-cards sessions="ctrl.sessions" search="ctrl.search" order="start" ng-if="ctrl.year"></cesar-session-cards>
-        <cesar-session-cards sessions="ctrl.sessions" search="ctrl.search" order="start" nb-items="70" ng-if="!ctrl.year"></cesar-session-cards>
+        <cesar-session-cards sessions="ctrl.sessions" search="ctrl.search" order="start" ng-if="ctrl.year" ></cesar-session-cards>
+        <cesar-session-cards sessions="ctrl.sessions" search="ctrl.search" order="start" nb-items="70" ng-if="!ctrl.year" favorites="ctrl.favorites" connected="ctrl.userConnected"></cesar-session-cards>
     </div>
 
     <p class="cesar-text" translate="view.talks.sponsor"></p>

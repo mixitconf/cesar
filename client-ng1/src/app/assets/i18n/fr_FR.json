@@ -8,11 +8,13 @@
     "add" : "Ajouter",
     "check" : "Vérifier",
     "clear" : "Supprimer",
+    "favori" : "Favori",
     "profile" : "Modifier votre profil",
     "return" : "Retour",
     "member" : "Voir comment les autres voient votre profil",
     "submit" : "Soumettre",
-    "tweet" : "Tweeter"
+    "tweet" : "Tweeter",
+    "zoom" : "Visualiser"
   },
   "menu": {
     "accounts": "Account",

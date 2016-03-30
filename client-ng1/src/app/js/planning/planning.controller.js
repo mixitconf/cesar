@@ -3,15 +3,18 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').controller('PlanningCtrl', function ($filter, $state, $stateParams, rooms, sessions, transversalSlots, shuffleService) {
+  angular.module('cesar-planning').controller('PlanningCtrl', function ($filter, $state, $stateParams, rooms, sessions, transversalSlots, shuffleService, favorites, account, FavoriteService) {
     'ngInject';
 
     var ctrl = this;
+
+    FavoriteService.markFavorites(sessions, favorites);
 
     ctrl.slot = {};
     ctrl.slot.format = $stateParams.format ? $stateParams.format : undefined;
     ctrl.slot.displayMode = $stateParams.mode ? $stateParams.mode : 'timeline';
     ctrl.rooms = rooms;
+    ctrl.userConnected = !!account;
 
     if($stateParams.room){
       var result = ctrl.rooms
@@ -70,5 +73,19 @@
     };
 
     ctrl.updateData();
+
+    if (ctrl.userConnected) {
+      ctrl.toggleFavorite = function(session){
+        ctrl.errorMessage = undefined;
+        FavoriteService
+          .toggleFavorite(session)
+          .then(function(){
+            session.favorite = !!session.favorite ? false : true;
+          })
+          .catch(function () {
+            ctrl.errorMessage = 'UNDEFINED';
+          });
+      };
+    }
   });
 })();
