@@ -13,7 +13,7 @@
       favorites.forEach(function(sessionId){
         sessions
           .filter(function (session) {
-            return session.idSession === sessionId
+            return session.idSession === sessionId;
           })
           .forEach(function(session){
             session.favorite = true;
