@@ -210,8 +210,8 @@
       var slots = [];
 
       for (var h = 8; h < 19; h++) {
-        for (var min = 0; min < 6; min++) {
-          slots.push(_getTimeSlot(momentDate, h, min * 10));
+        for (var min = 0; min < 12; min++) {
+          slots.push(_getTimeSlot(momentDate, h, min * 5));
         }
       }
 
