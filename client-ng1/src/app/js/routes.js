@@ -222,8 +222,13 @@
     $stateProvider
 
     //Home and error route
-      .state('start', new State(USER_ROLES, '', 'js/home/home.html').controller('HomeCtrl').build())
-      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').controller('HomeCtrl').build())
+      .state('start', new State(USER_ROLES, '', 'js/home/home.html')
+        .controller('HomeCtrl')
+        .build())
+
+      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html')
+        .controller('HomeCtrl')
+        .build())
 
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
@@ -269,7 +274,7 @@
         .resolve({account: getAccount})
         .build())
 
-      .state('admcfp', new State(USER_ROLES, 'admcfp?search', 'js/admin/cfp/cfp.html')
+      .state('admcfp', new State(USER_ROLES, 'admcfp?search', 'js/admin/cfp/cfp-admin.html')
         .controller('AdminCfpCtrl')
         .resolve({account: getAccount})
         .build())
@@ -388,6 +393,7 @@
           type: angular.noop
         })
         .build())
+
       .state('talks', new State(USER_ROLES, 'talks?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
@@ -397,6 +403,7 @@
           favorites : getMyFavorites
         })
         .build())
+
       .state('sessions', new State(USER_ROLES, 'sessions?search', 'js/sessions/talks.html')
         .controller('SessionsCtrl')
         .resolve({
@@ -406,6 +413,7 @@
           favorites : getMyFavorites
         })
         .build())
+
       .state('session', new State(USER_ROLES, 'session/:id/:title', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
@@ -413,6 +421,7 @@
           favorites : getMyFavorites
         })
         .build())
+
       .state('sessionwt', new State(USER_ROLES, 'session/:id', 'js/session/session.html').controller('SessionCtrl')
         .resolve({
           account: getAccount,
@@ -428,41 +437,47 @@
           type: getTypeMemberSpeaker
         })
         .build())
+
       .state('sponsors', new State(USER_ROLES, 'sponsors', 'js/members/sponsors.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers,
           type:getTypeMemberSponsor
         })
         .build())
+
       .state('about', new State(USER_ROLES, 'about', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers,
           type: getTypeMemberStaff
         })
         .build())
+
       .state('staff', new State(USER_ROLES, 'staff', 'js/members/staff.html').controller('MembersCtrl')
         .resolve({
           members: getAllMembers,
           type: getTypeMemberStaff
         })
         .build())
+
       .state('member', new State(USER_ROLES, 'member/:type/:id?redirect', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
           member: getMember
         })
         .build())
+
       .state('sponsor', new State(USER_ROLES, 'member/sponsor/:id', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
           type: getTypeMemberSponsor,
           member: getMember
         })
         .build())
+
       .state('profile', new State(USER_ROLES, 'profile/:login', 'js/member/member.html').controller('MemberCtrl')
         .resolve({
           member: getMemberByLogin
         })
         .build())
-      //Infos
+
       .state('interest', new State(USER_ROLES, 'interest/:name', 'js/interest/interest.html')
         .controller('InterestCtrl')
         .resolve({
@@ -470,20 +485,26 @@
           members : getMembersByInterest
         })
         .build())
-      .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').build())
-      .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html').build())
+
+      .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').
+        build())
+
+      .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html')
+        .build())
+
       .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html')
         .controller('FaqCtrl')
         .build())
-      .state('venir', new State(USER_ROLES, 'venir', 'js/venir/venir.html').build())
 
-      .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/cfp.html')
+      .state('venir', new State(USER_ROLES, 'venir', 'js/venir/venir.html')
+        .build())
+
+      .state('cfp', new State(USER_ROLES, 'cfp', 'js/cfp/home/cfp.html')
         .controller('CfpCtrl')
-        .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({account: getAccount})
         .build())
 
-      .state('cfptalk', new State(USER_ROLES, 'cfptalk/:id', 'js/cfptalk/cfptalk.html')
+      .state('cfptalk', new State(USER_ROLES, 'cfptalk/:id', 'js/cfp/talk/cfptalk.html')
         .controller('CfpTalkCtrl')
         .resolve({account: getAccount})
         .build())
@@ -494,9 +515,11 @@
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
         .resolve({account: getAccount})
         .build())
+
       .state('createaccount', new State(USER_ROLES, 'createaccount', 'js/create-user-account/create-user-account.html')
         .controller('CreateUserAccountCtrl')
         .build())
+
       .state('createaccountsocial', new State(USER_ROLES, 'createaccountsocial', 'js/create-social-account/create-social-account.html')
         .controller('CreateSocialAccountCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])
@@ -504,9 +527,17 @@
 
 
       //Security
-      .state('logout', new State(USER_ROLES, 'logout', 'js/home/home.html').build())
-      .state('authent', new State(USER_ROLES, 'authent?redirect', 'js/login/login.html').controller('LoginCtrl').build())
-      .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'js/password-lost/password-lost.html').controller('PasswordLostCtrl').build())
+      .state('logout', new State(USER_ROLES, 'logout', 'js/home/home.html')
+        .build())
+
+      .state('authent', new State(USER_ROLES, 'authent?redirect', 'js/login/login.html')
+        .controller('LoginCtrl')
+        .build())
+
+      .state('passwordlost', new State(USER_ROLES, 'passwordlost', 'js/password-lost/password-lost.html')
+        .controller('PasswordLostCtrl')
+        .build())
+
       .state('passwordreinit', new State(USER_ROLES, 'passwordreinit', 'js/password-reinit/password-reinit.html')
         .controller('PasswordReinitCtrl')
         .roles([USER_ROLES.member, USER_ROLES.admin, USER_ROLES.speaker])

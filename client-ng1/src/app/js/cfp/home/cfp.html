@@ -76,7 +76,7 @@
             </div>
             <div class=" cesar-card__supporting-text">
                 <div class="cesar-liste_container mdl-shadow--2dp" style="margin: 1em">
-                    <div class="mdl-grid cesar-liste" ng-repeat="proposal in ctrl.proposals" >
+                    <div class="mdl-grid cesar-liste" ng-repeat="proposal in ctrl.proposals">
                         <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                             <p class="cesar-text">
                                 {{::proposal.title}} <a
@@ -88,7 +88,8 @@
                                translate="view.cfp.home.incomplete"></p>
                         </div>
                         <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab" ui-sref="cfptalk({id : proposal.id})"
+                            <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-button--mini-fab"
+                               ui-sref="cfptalk({id : proposal.id})"
                                ng-disabled="!ctrl.profileOk" style="float: right">
                                 <i class="material-icons mdl-badge">build</i>
                             </a>
@@ -126,7 +127,6 @@
     <p class="cesar-text" translate="view.cfp.home.explanation">I you want to increase yours chances of success, we
         encourage you to submit more than one submission. The number of submission
         is important to help us to build the best program for attendees. </p>
-
 
     <p>&nbsp;</p>
 </div>
