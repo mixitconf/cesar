@@ -9,7 +9,7 @@
     'ngInject';
 
     var ctrl = this;
-console.log('eeeeeeeeeeeeeeeee');
+
     if(!account){
       $rootScope.$broadcast('event:auth-loginRequired');
       return;
