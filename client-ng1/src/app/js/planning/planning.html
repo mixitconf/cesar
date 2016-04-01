@@ -74,6 +74,12 @@
                             <i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>
                         </a>
                         <div class="mdl-tooltip" for="favorite{{session.idSession}}" translate="action.favorite"></div>
+                        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!ctrl.userConnected"
+                           id="gofavorite{{session.idSession}}"
+                        >
+                            <i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>
+                        </a>
+                        <div class="mdl-tooltip" for="gofavorite{{session.idSession}}" translate="action.connectfavorite"></div>
                     </h3>
                     <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
                     <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>

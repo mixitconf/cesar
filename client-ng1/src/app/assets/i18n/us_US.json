@@ -4,6 +4,7 @@
     "en" : "English"
   },
   "action" : {
+    "connectfavorite" : "Log in to mark sessions as favorites",
     "save" : "Save",
     "add" : "Add",
     "check" : "Check",

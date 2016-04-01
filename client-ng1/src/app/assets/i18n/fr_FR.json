@@ -4,6 +4,7 @@
     "en" : "Anglais"
   },
   "action" : {
+    "connectfavorite" : "Connectez vous pour pouvoir marquer les sessions en favoris",
     "save" : "Enregistrer",
     "add" : "Ajouter",
     "check" : "Vérifier",

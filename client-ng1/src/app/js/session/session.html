@@ -67,7 +67,11 @@
             <i class="material-icons" class="hide-on-mobile" ng-if="ctrl.session.favorite">star</i>
         </a>
         <div class="mdl-tooltip" for="favorite" translate="action.favorite"></div>
-
+        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!ctrl.userConnected"
+           id="gofavorite">
+            <i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>
+        </a>
+        <div class="mdl-tooltip" for="gofavorite" translate="action.connectfavorite"></div>
     </div>
     <p>&nbsp;</p>
 

@@ -8,12 +8,18 @@
                     {{session.title}}
                 </a>
                 &nbsp;<span class="cesar-badge">{{session.lang}}</span>
-                <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="toggleFavorite(session)" id="favorite{{session.idSession}}"
-                   style="min-width: 24px" ng-if="connected && session.idSession">
+                <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="toggleFavorite(session)"
+                   id="favorite{{session.idSession}}" style="min-width: 24px" ng-if="connected && session.idSession">
                     <i class="material-icons" class="hide-on-mobile" ng-if="!session.favorite" style="padding-bottom: 10px">star_border</i>
                     <i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>
                 </a>
                 <div class="mdl-tooltip" for="favorite{{session.idSession}}" translate="action.favorite"></div>
+                <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!connected && favorites"
+                   id="gofavorite{{session.idSession}}"
+                >
+                    <i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>
+                </a>
+                <div class="mdl-tooltip" for="gofavorite{{session.idSession}}" translate="action.connectfavorite"></div>
             </h3>
 
             <div style="padding-top: 8px">

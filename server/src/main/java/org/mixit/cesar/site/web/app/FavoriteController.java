@@ -15,6 +15,7 @@ import org.mixit.cesar.site.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
         description = "A connected user can define his favorites and see the marked sessions in the planning")
 @RestController
 @RequestMapping("/app/favorite")
+@Transactional
 public class FavoriteController {
 
     @Autowired
