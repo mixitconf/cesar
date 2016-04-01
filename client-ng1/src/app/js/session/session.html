@@ -74,7 +74,7 @@
     <p class="cesar-text">{{ctrl.session.summary}}</span></p>
 
     <p>
-        <cesar-slot start="ctrl.session.start" end="ctrl.session.end" room="ctrl.session.room"></cesar-slot>
+        <cesar-slot start="ctrl.session.start" end="ctrl.session.end" room="ctrl.session.room" ng-if="false"></cesar-slot>
     </p>
 
     <p ng-bind-html="ctrl.session.description | markdown"></p>
