@@ -250,7 +250,7 @@
                          ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
                  'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
                          id="slot{{slot.id}}"
-                         ng-dblclick="ctrl.deleteSlot(slot.session.id)"
+                         ng-dblclick="ctrl.deleteSlot(slot.id)"
                     >
 
                         <span ng-if="slot.label" translate="{{slot.label}}"></span>
