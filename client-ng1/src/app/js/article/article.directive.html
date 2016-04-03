@@ -19,8 +19,8 @@
     <p class="cesar-text" ng-if="lang!=='fr'" ng-bind-html="ctrl.article.headline  | markdown"></p>
 
 
-    <div ng-if="lang==='fr'" ng-bind-html="ctrl.article.contenu  | markdown"></div>
-    <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown"></div>
+    <div ng-if="lang==='fr'" ng-bind-html="ctrl.article.contenu  | markdown" class="cesar-article"></div>
+    <div ng-if="lang!=='fr'" ng-bind-html="ctrl.article.content  | markdown" class="cesar-article"></div>
 
 
     <div><a class="mdl-button mdl-js-button cesar-mdl-button--news" ui-sref="staff" translate="view.news.team"
