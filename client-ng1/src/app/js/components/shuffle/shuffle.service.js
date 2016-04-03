@@ -52,13 +52,19 @@
       }
     };
 
-    Shuffle.prototype.displayItem = function (index) {
+    Shuffle.prototype.displayItem = function (index, skipCount) {
       var max = this.shuffle.current * this.shuffle.nbitems - 1;
       if(index>=0 && index<=max){
-        this.shuffle.nbDisplayed++;
+        if(!skipCount){
+          this.shuffle.nbDisplayed++;
+        }
         return true;
       }
       return false;
+    };
+
+    Shuffle.prototype.plusDisplayed = function () {
+      this.shuffle.nbDisplayed++;
     };
 
     Shuffle.prototype.displayMoreButton = function () {

@@ -26,7 +26,7 @@
 
       {
         id: 'menu.conference', submenus: [
-        //{id: 'menu.speakers', link: 'speakers'},
+        {id: 'menu.planning', link: 'planning'},
         {id: 'menu.talks', link: 'sessions', mobile: true},
         {id: 'menu.ligthningtalks', link: 'lightnings', mobile: true},
         {id: 'menu.mixteen', link: 'mixteen', mobile: true},

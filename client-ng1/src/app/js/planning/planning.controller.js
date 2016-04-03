@@ -7,6 +7,7 @@
     'ngInject';
 
     var ctrl = this;
+    var oldsession;
 
     FavoriteService.markFavorites(sessions, favorites);
 
@@ -63,17 +64,29 @@
       $state.go('planning', params, {reloadOnSearch:false, notify:false});
     };
 
+
     ctrl.displayElement = function(session, index){
+      var ret = ctrl.shuffle.displayItem(index, true);
+
+      if( session.title==='view.planning.moment.pause'){
+        ret &= false;
+      }
+      oldsession = session.title;
+
       if(ctrl.slot.displayMode === 'timeline'){
-        return moment(session.end).isAfter(moment()) && ctrl.shuffle.displayItem(index);
+        ret &= moment(session.end).isAfter(moment());
       }
-      if(ctrl.slot.displayMode === 'en'){
-        return session.lang === 'en' && ctrl.shuffle.displayItem(index);
+      else if(ctrl.slot.displayMode === 'en'){
+        ret &= session.lang === 'en';
       }
-      if(ctrl.slot.displayMode === 'favorite'){
-        return session.favorite && ctrl.shuffle.displayItem(index);
+      else if(ctrl.slot.displayMode === 'favorite'){
+        ret &= session.favorite;
       }
-      return ctrl.shuffle.displayItem(index);
+
+      if(ret){
+        ctrl.shuffle.plusDisplayed();
+      }
+      return ret;
     };
 
     ctrl.updateData();

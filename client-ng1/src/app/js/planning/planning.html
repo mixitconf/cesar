@@ -61,28 +61,30 @@
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                     <h3 class="mdl-card__title-text cesar-card__title-text">
-                        <i class="material-icons cesar-button--fab" ng-if="session.format">{{session.format |
-                            sessionLogo}}</i>&nbsp;
-                        <a ui-sref="session({id : session.idSession, format : session.format})">
-                            <span ng-if="!!session.format">{{session.title}}</span>
+                        <i class="material-icons cesar-button--fab" ng-if="session.format">{{session.format | sessionLogo}}</i>&nbsp;
+                        <a ui-sref="session({id : session.idSession, format : session.format})" ng-if="!!session.format">
+                            {{session.title}}
                         </a>
-                        <span ng-if="!session.format" translate="{{session.title}}"></span>
-                        &nbsp;<span class="cesar-badge" ng-if="session.lang">{{session.lang}}</span>
+                        <span ng-if="!session.format" translate="{{session.title}}"></span>&nbsp;
+                        <span class="cesar-badge" ng-if="session.lang">{{session.lang}}</span>
 
-                        <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="ctrl.toggleFavorite(session)" id="favorite{{session.idSession}}"
+                        <a class="mdl-button mdl-js-button mdl-button--accent" ng-click="ctrl.toggleFavorite(session)"
+                           id="favorite{{session.idSession}}"
                            style="min-width: 24px" ng-if="ctrl.userConnected && session.idSession">
                             <i class="material-icons" class="hide-on-mobile" ng-if="!session.favorite" style="padding-bottom: 10px">star_border</i>
                             <i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>
                         </a>
                         <div class="mdl-tooltip" for="favorite{{session.idSession}}" translate="action.favorite"></div>
-                        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!ctrl.userConnected && session.idSession"
-                           id="gofavorite{{session.idSession}}"
-                        >
+                        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px"
+                           ng-if="!ctrl.userConnected && session.idSession"
+                           id="gofavorite{{session.idSession}}">
                             <i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>
                         </a>
-                        <div class="mdl-tooltip" for="gofavorite{{session.idSession}}" translate="action.connectfavorite"></div>
+                        <div class="mdl-tooltip" for="gofavorite{{session.idSession}}"
+                             translate="action.connectfavorite"></div>
                     </h3>
-                    <cesar-slot start="session.start" end="session.end" room="session.room"></cesar-slot>
+                    <cesar-slot ng-if="!session.format" start="session.start" end="session.end"></cesar-slot>
+                    <cesar-slot ng-if="!!session.format" start="session.start" end="session.end" room="session.room"></cesar-slot>
                     <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
                     <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
                         <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"

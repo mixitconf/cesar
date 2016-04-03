@@ -86,8 +86,7 @@
                 <div style="padding-top: 8px;">
                     <div class="mdl-textfield mdl-js-textfield ">
                         <label class="mdl-textfield__label cesar-textfield__radio-label" for="label">Label displayed if
-                            we don't
-                            have a session</label>
+                            we don't have a session</label>
                         <select ng-options="(label | translate) for label  in ctrl.eventsOutOfSessions | orderBy:('label' | translate)" id="label"
                                 class="mdl-textfield--expandable cesar-textfield--expandable"
                                 ng-model="ctrl.slot.label">
@@ -186,8 +185,7 @@
                     <div class="cesar-planning__slot"
                          ng-repeat="slot in ctrl.day1Slots[room.key]"
                          ng-style="{'max-height' : (slot.duration - 2)*1.5 + 'px', 'min-height' : (slot.duration - 2)*1.5 + 'px'}"
-                         ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
-                 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+                         ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session, 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
                          id="slot{{room}}{{slot.id}}"
                          ng-dblclick="ctrl.deleteSlot(slot.id)"
                     >
