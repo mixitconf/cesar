@@ -44,7 +44,8 @@
     });
 
 
-    ctrl.shuffle = shuffleService.createShuffle('start');
+    ctrl.shuffle = shuffleService.createShuffle(['start', 'room']);
+    ctrl.shuffle.setNbItems(70);
 
     ctrl.updateData = function(){
       var sess = angular.copy(ctrl.sessions);
@@ -68,6 +69,9 @@
       }
       if(ctrl.slot.displayMode === 'en'){
         return session.lang === 'en' && ctrl.shuffle.displayItem(index);
+      }
+      if(ctrl.slot.displayMode === 'favorite'){
+        return session.favorite && ctrl.shuffle.displayItem(index);
       }
       return ctrl.shuffle.displayItem(index);
     };

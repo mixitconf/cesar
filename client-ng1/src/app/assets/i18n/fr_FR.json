@@ -295,7 +295,8 @@
         "title": "Mode d'affichage",
         "timeline": "Time line",
         "en": "Les sessions en anglais",
-        "all": "Toutes les sessions"
+        "all": "Toutes les sessions",
+        "favorite": "Mes favoris"
       },
       "timeline" : "En mode d'affichage timeline, les sessions terminées sont filtrées",
       "moment" : {

@@ -76,6 +76,18 @@ public class PlanningController {
                 .collect(Collectors.toList());
     }
 
+    @RequestMapping(value = "/others")
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(FlatView.class)
+    public List<Slot> getAllSlotsDifferentThanSessions(@RequestParam(required = false) Integer year) {
+        return slotRepository
+                .findAllSlots(eventService.getEvent(year).getId())
+                .stream()
+                .filter(s-> s.getSession()==null)
+                .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
+                .collect(Collectors.toList());
+    }
+
     @RequestMapping(value = "/slots")
     @ResponseStatus(HttpStatus.OK)
     @JsonView(FlatView.class)

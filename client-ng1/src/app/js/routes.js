@@ -218,6 +218,13 @@
       });
     }
 
+    /* @ngInject */
+    function getOtherSlots($http) {
+      return $http.get('/api/planning/others').then(function (response) {
+        return response.data;
+      });
+    }
+
     //Router definition
     $stateProvider
 
@@ -312,7 +319,7 @@
         .resolve({
           account: getAccount,
           rooms : getRooms,
-          transversalSlots : getTransversalSlots,
+          transversalSlots : getOtherSlots,
           sessions : getAllSessions,
           favorites : getMyFavorites
         })

@@ -38,7 +38,8 @@
                         ng-change="ctrl.updateData()">
                     <option value="timeline" translate="view.planning.displayMode.timeline"></option>
                     <option value="all" translate="view.planning.displayMode.all"></option>
-                    <option value="en" translate="view.planning.displayMode.en">Random</option>
+                    <option value="en" translate="view.planning.displayMode.en"></option>
+                    <option value="favorite" translate="view.planning.displayMode.favorite"></option>
                 </select>
             </div>
         </div>
@@ -74,7 +75,7 @@
                             <i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>
                         </a>
                         <div class="mdl-tooltip" for="favorite{{session.idSession}}" translate="action.favorite"></div>
-                        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!ctrl.userConnected"
+                        <a class="mdl-button mdl-js-button mdl-button--accent" ui-sref="authent" style="min-width: 24px" ng-if="!ctrl.userConnected && session.idSession"
                            id="gofavorite{{session.idSession}}"
                         >
                             <i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>
@@ -113,8 +114,8 @@
         <p>&nbsp;</p>
         <div class="cesar-text-center">
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
-                    ng-if="shuffle.displayMoreButton()" rel="prev"
-                    ng-click="shuffle.more()"
+                    ng-if="ctrl.shuffle.displayMoreButton()" rel="prev"
+                    ng-click="ctrl.shuffle.more()"
                     translate="view.talks.next">
             </button>
         </div>

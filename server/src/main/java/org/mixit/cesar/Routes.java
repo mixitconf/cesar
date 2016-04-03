@@ -17,6 +17,7 @@ public class Routes {
             "/admcfptalk/{id:\\w+}",
             "/admarticle/{id:\\w+}",
             "/admarticles",
+            "/admplanning",
             "/article/{id:\\w+}",
             "/article/{id:\\w+}/{name:[A-Za-z0-9_\\-.]+}",
             "/articles",

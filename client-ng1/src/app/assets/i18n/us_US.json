@@ -295,7 +295,8 @@
         "title": "Display mode",
         "timeline": "Time line",
         "en": "Sessions in English",
-        "all": "All sessions"
+        "all": "All sessions",
+        "favorite": "My favorites"
       },
       "timeline" : "When display mode is on timeline, only future sessions are displayed",
       "moment" : {
