@@ -69,18 +69,18 @@
       var ret = ctrl.shuffle.displayItem(index, true);
 
       if( session.title==='view.planning.moment.pause'){
-        ret &= false;
+        ret = ret && false;
       }
       oldsession = session.title;
 
       if(ctrl.slot.displayMode === 'timeline'){
-        ret &= moment(session.end).isAfter(moment());
+        ret = ret && moment(session.end).isAfter(moment());
       }
       else if(ctrl.slot.displayMode === 'en'){
-        ret &= session.lang === 'en';
+        ret = ret && session.lang === 'en';
       }
       else if(ctrl.slot.displayMode === 'favorite'){
-        ret &= session.favorite;
+        ret = ret && session.favorite;
       }
 
       if(ret){

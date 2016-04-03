@@ -212,13 +212,6 @@
     }
 
     /* @ngInject */
-    function getTransversalSlots(PlanningService) {
-      return PlanningService.getTransversalSlots().then(function (response) {
-        return response.data;
-      });
-    }
-
-    /* @ngInject */
     function getOtherSlots($http) {
       return $http.get('/api/planning/others').then(function (response) {
         return response.data;
