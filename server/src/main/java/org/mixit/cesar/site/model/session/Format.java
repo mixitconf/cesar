@@ -6,7 +6,7 @@ public enum Format {
     LightningTalk(5),
     Workshop(110),
     Random(25),
-    Keynote(20);
+    Keynote(25);
 
     /**
      * Duration in minutes
