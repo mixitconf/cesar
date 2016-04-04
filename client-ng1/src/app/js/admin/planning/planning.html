@@ -168,7 +168,7 @@
                         &nbsp;
                     </div>
                     <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
-                         ng-style="{'max-height' : (slot.duration - 2)*1.5  + 'px', 'min-height' : (slot.duration - 2)*1.5 + 'px'}">
+                         ng-style="{'max-height' : ctrl.computeHeight(slot) , 'min-height' : ctrl.computeHeight(slot)}">
                         {{::slot.start | time}}
                     </div>
                 </div>
@@ -184,7 +184,7 @@
 
                     <div class="cesar-planning__slot"
                          ng-repeat="slot in ctrl.day1Slots[room.key]"
-                         ng-style="{'max-height' : (slot.duration - 2)*1.5 + 'px', 'min-height' : (slot.duration - 2)*1.5 + 'px'}"
+                         ng-style="{'max-height' : ctrl.computeHeight(slot), 'min-height' : ctrl.computeHeight(slot)}"
                          ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session, 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
                          id="slot{{room}}{{slot.id}}"
                          ng-dblclick="ctrl.deleteSlot(slot.id)"
@@ -228,7 +228,7 @@
                         &nbsp;
                     </div>
                     <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
-                         ng-style="{'max-height' : (slot.duration - 2)*1.5  + 'px', 'min-height' : (slot.duration - 2)*1.5 + 'px'}">
+                         ng-style="{'max-height' : ctrl.computeHeight(slot) , 'min-height' : ctrl.computeHeight(slot)}">
                         {{::slot.start | time}}
                     </div>
                 </div>
@@ -244,7 +244,7 @@
 
                     <div class="cesar-planning__slot"
                          ng-repeat="slot in ctrl.day2Slots[room.key]"
-                         ng-style="{'max-height' : (slot.duration - 2)*1.5 + 'px', 'min-height' : (slot.duration - 2)*1.5 + 'px'}"
+                         ng-style="{'max-height' : ctrl.computeHeight(slot), 'min-height' : ctrl.computeHeight(slot)}"
                          ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
                  'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
                          id="slot{{room}}1{{slot.id}}"

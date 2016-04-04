@@ -77,12 +77,20 @@
       return true;
     }
 
+    ctrl.computeHeight = function(slot){
+      if(slot.duration>60){
+        return (slot.duration - 5)*2.0  + 'px'
+      }
+      return (slot.duration - 2)*2.0  + 'px'
+    };
+
     ctrl.displayRoom = function (room) {
       switch(room.key){
         case 'Amphi1':
           return ctrl.display.amphi;
         case 'Amphi2':
           return ctrl.display.amphi;
+        case 'Salle6':
         case 'Salle7':
           return ctrl.display.mezzanine;
       }
