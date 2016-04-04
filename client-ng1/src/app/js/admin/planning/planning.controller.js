@@ -79,9 +79,9 @@
 
     ctrl.computeHeight = function(slot){
       if(slot.duration>60){
-        return (slot.duration - 5)*2.0  + 'px'
+        return (slot.duration - 5)*2.0  + 'px';
       }
-      return (slot.duration - 2)*2.0  + 'px'
+      return (slot.duration - 2)*2.0  + 'px';
     };
 
     ctrl.displayRoom = function (room) {
