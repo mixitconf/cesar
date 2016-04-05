@@ -53,6 +53,7 @@ public class Routes {
             "/passwordlost",
             "/passwordreinit",
             "/planning",
+            "/planningtab",
             "/profile/{login:\\w+}",
             "/ranking",
             "/rankingmonit",

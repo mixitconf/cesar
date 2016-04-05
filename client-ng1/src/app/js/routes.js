@@ -218,6 +218,20 @@
       });
     }
 
+    /* @ngInject */
+    function getTransversalSlots($http) {
+      return $http.get('/api/planning/transversal').then(function (response) {
+        return response.data;
+      });
+    }
+
+    /* @ngInject */
+    function getPlanningSlots(PlanningService){
+      return PlanningService.getSlots().then(function (response) {
+        return response.data;
+      });
+    }
+
     //Router definition
     $stateProvider
 
@@ -314,6 +328,17 @@
           rooms : getRooms,
           transversalSlots : getOtherSlots,
           sessions : getAllSessions,
+          favorites : getMyFavorites
+        })
+        .build())
+
+      .state('planningtab', new State(USER_ROLES, 'planningtab', 'js/planning/planning-tab.html')
+        .controller('PlanningTabCtrl')
+        .resolve({
+          account: getAccount,
+          transversalSlots : getTransversalSlots,
+          slots : getPlanningSlots,
+          rooms : getRooms,
           favorites : getMyFavorites
         })
         .build())
