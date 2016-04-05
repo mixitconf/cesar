@@ -1,9 +1,9 @@
 <div class="cesar-container">
     <h1 translate="view.planning.title"></h1>
 
-    <div class="mdl-grid" style="background-color: #0277bd">
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
-            <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-grid cesar-search-container">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
                        for="rooms">Room</label>
                 <select ng-options="room.name for room  in ctrl.rooms" id="rooms"
@@ -14,8 +14,22 @@
                 </select>
             </div>
         </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
-            <div class="mdl-textfield mdl-js-textfield">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="diplayMode" translate="view.planning.displayMode.title"></label>
+                <select ng-model="ctrl.slot.displayMode" id="diplayMode"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-change="ctrl.updateData()">
+                    <option value="timeline" translate="view.planning.displayMode.timeline"></option>
+                    <option value="all" translate="view.planning.displayMode.all"></option>
+                    <option value="en" translate="view.planning.displayMode.en"></option>
+                    <option value="favorite" translate="view.planning.displayMode.favorite"></option>
+                </select>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row visible-on-desktop">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
                 <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
                        for="formats">Format</label>
                 <select ng-model="ctrl.slot.format" id="formats"
@@ -26,20 +40,6 @@
                     <option value="Workshop">Workshop</option>
                     <option value="Random">Random</option>
                     <option value="Keynote">Keynote</option>
-                </select>
-            </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
-            <div class="mdl-textfield mdl-js-textfield">
-                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
-                       for="diplayMode" translate="view.planning.displayMode.title"></label>
-                <select ng-model="ctrl.slot.displayMode" id="diplayMode"
-                        class="mdl-textfield--expandable cesar-textfield--expandable"
-                        ng-change="ctrl.updateData()">
-                    <option value="timeline" translate="view.planning.displayMode.timeline"></option>
-                    <option value="all" translate="view.planning.displayMode.all"></option>
-                    <option value="en" translate="view.planning.displayMode.en"></option>
-                    <option value="favorite" translate="view.planning.displayMode.favorite"></option>
                 </select>
             </div>
         </div>

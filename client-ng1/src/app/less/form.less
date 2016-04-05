@@ -26,3 +26,33 @@ input.ng-invalid{
   right: -10px;
   color: @background_color_light
 }
+
+.cesar-search-container{
+  background-color: #0277bd;
+
+  .cesar-search__row{
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  @media (max-width: 479px) {
+    .cesar-search__visibility-btn{
+      border:1px solid white;
+      position: absolute;
+      right: 0;
+      visibility: visible;
+    }
+    .cesar-search__row{
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+  @media (min-width: 480px) {
+    .cesar-search__visibility-btn{
+      visibility: hidden;
+      max-height: 0;
+      max-width: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+}
