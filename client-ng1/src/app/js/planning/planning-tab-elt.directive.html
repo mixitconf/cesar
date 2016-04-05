@@ -29,9 +29,10 @@
       <span ng-if="slot.label" translate="{{slot.label}}"></span>
 
       <div ng-if="slot.session">
-        <span class="cesar-badge" ng-if="(slot.session.lang === 'en' && ctrl.display.en) || (slot.session.lang === 'fr' && ctrl.display.fr)">{{slot.session.lang}}</span>
-        <i class="material-icons">{{slot.session.format | sessionLogo}}</i>
-        <span>{{slot.session.title}}</span>
+
+        <a ui-sref="session({id : slot.session.id})" style="color: white">
+          {{slot.session.title}}
+        </a>
       </div>
 
       <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
@@ -44,9 +45,8 @@
   </div>
 </div>
 
-<div class="cesar -helper " style="float: right">
-  <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
-  <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
-  <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
-  <i class="material-icons">help</i>&nbsp;<span>Random</span>
+<div class="cesar -helper " style="float: right;margin: 0.5em 1em 1em">
+  <span style="color: white;padding: 1em 1em 0.5em;" class="cesar-planning__slot-Talk"><i class="material-icons">local_library</i>&nbsp;Talk</span>
+  <span style="color: white;padding: 1em 1em 0.5em;" class="cesar-planning__slot-Workshop"><i class="material-icons">build</i>&nbsp;Workshop</span>
+  <span style="color: white;padding: 1em 1em 0.5em;" class="cesar-planning__slot-Keynote"><i class="material-icons">face</i>&nbsp;Keynote</span>
 </div>

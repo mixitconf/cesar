@@ -3,8 +3,7 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').controller('PlanningTabCtrl', function ($q, $rootScope, $filter, $state, $stateParams, slots, transversalSlots, rooms,
-                                                                           favorites, account, FavoriteService, PlanningService) {
+  angular.module('cesar-planning').controller('PlanningTabCtrl', function ($q, $rootScope, slots, transversalSlots, rooms, PlanningService) {
     'ngInject';
 
     var ctrl = this;
@@ -18,7 +17,6 @@
     };
 
     ctrl.rooms = rooms;
-    ctrl.userConnected = !!account;
     ctrl.timeslots = PlanningService.computeRange(moment(ctrl.dates[0]));
     ctrl.eventsOutOfSessions = PlanningService.getEventOutOfSession();
 
@@ -35,11 +33,12 @@
         }
       }
     });
+
     $q.all([
-        PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), ctrl.rooms).then(function (response) {
+        PlanningService.computeSlots(ctrl.dates[0], angular.copy(slots), rooms).then(function (response) {
           ctrl.day1Slots = response;
         }),
-        PlanningService.computeSlots(ctrl.dates[1], angular.copy(slots), ctrl.rooms).then(function (response) {
+        PlanningService.computeSlots(ctrl.dates[1], angular.copy(slots), rooms).then(function (response) {
           ctrl.day2Slots = response;
         })
       ])
@@ -47,19 +46,5 @@
         ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.day2Slots, PlanningService.extractSessionToAffect(ctrl.day1Slots, ctrl.sessions));
       });
 
-
-    //if (ctrl.userConnected) {
-    //  ctrl.toggleFavorite = function(session){
-    //    ctrl.errorMessage = undefined;
-    //    FavoriteService
-    //      .toggleFavorite(session)
-    //      .then(function(){
-    //        session.favorite = !!session.favorite ? false : true;
-    //      })
-    //      .catch(function () {
-    //        ctrl.errorMessage = 'UNDEFINED';
-    //      });
-    //  };
-    //}
   });
 })();

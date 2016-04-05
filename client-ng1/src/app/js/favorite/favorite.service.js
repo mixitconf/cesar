@@ -6,11 +6,21 @@
     'ngInject';
 
     function markFavorite(session, favorites) {
-      favorites.forEach(function(sessionId){
-        if(session.idSession === sessionId){
+      favorites.forEach(function (sessionId) {
+        if (session.idSession === sessionId) {
           session.favorite = true;
         }
       });
+    }
+
+    function _markFavorites(sessions, sessionId) {
+      sessions
+        .filter(function (session) {
+          return session.idSession === sessionId;
+        })
+        .forEach(function (session) {
+          session.favorite = true;
+        });
     }
 
     /**
@@ -18,14 +28,20 @@
      * for the current user
      */
     function markFavorites(sessions, favorites) {
-      favorites.forEach(function(sessionId){
-        sessions
-          .filter(function (session) {
-            return session.idSession === sessionId;
-          })
-          .forEach(function(session){
-            session.favorite = true;
-          });
+      favorites.forEach(function (sessionId) {
+        _markFavorites(sessions, sessionId);
+      });
+    }
+
+    /**
+     * Read all the sessions and add tag favorite if the session is a favorite
+     * for the current user
+     */
+    function markFavoritesInSlots(slots, favorites, rooms) {
+      favorites.forEach(function (sessionId) {
+        rooms.forEach(function (room) {
+          _markFavorites(slots[room.key], sessionId);
+        });
       });
     }
 
@@ -40,6 +56,7 @@
     return {
       markFavorite: markFavorite,
       markFavorites: markFavorites,
+      markFavoritesInSlots:markFavoritesInSlots,
       toggleFavorite: toggleFavorite
     };
   });

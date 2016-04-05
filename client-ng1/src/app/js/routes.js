@@ -335,11 +335,9 @@
       .state('planningtab', new State(USER_ROLES, 'planningtab', 'js/planning/planning-tab.html')
         .controller('PlanningTabCtrl')
         .resolve({
-          account: getAccount,
           transversalSlots : getTransversalSlots,
           slots : getPlanningSlots,
-          rooms : getRooms,
-          favorites : getMyFavorites
+          rooms : getRooms
         })
         .build())
 
