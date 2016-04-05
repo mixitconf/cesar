@@ -1,0 +1,52 @@
+<div class="cesar-planning__container">
+
+  <div class="cesar-planning__hour">
+    <div class="cesar-text-center cesar-planning__head">
+      &nbsp;
+    </div>
+    <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
+         ng-style="{'max-height' : ctrl.computeHeight(slot) , 'min-height' : ctrl.computeHeight(slot) }">
+      {{::slot.start | time:true}}
+    </div>
+  </div>
+
+  <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
+       ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
+
+    <div class="cesar-text-center cesar-planning__head">
+      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button" ui-sref="facilities">
+      {{room.name}}
+      </a><br>
+      {{room.capacity}} pers.
+    </div>
+
+    <div class="cesar-planning__slot"
+         ng-repeat="slot in ctrl.slots[room.key]"
+         ng-style="{'max-height' : ctrl.computeHeight(slot), 'min-height' : ctrl.computeHeight(slot)}"
+         ng-class="{'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session, 'cesar-planning__slot-Annexe': !!slot.label, 'mdl-shadow--4dp' : !!slot.session}"
+         id="slot{{room}}{{slot.id}}"
+    >
+      <span ng-if="slot.label" translate="{{slot.label}}"></span>
+
+      <div ng-if="slot.session">
+        <span class="cesar-badge" ng-if="(slot.session.lang === 'en' && ctrl.display.en) || (slot.session.lang === 'fr' && ctrl.display.fr)">{{slot.session.lang}}</span>
+        <i class="material-icons">{{slot.session.format | sessionLogo}}</i>
+        <span>{{slot.session.title}}</span>
+      </div>
+
+      <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
+        <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+        De {{slot.start | time}} à {{slot.end | time}}
+      </div>
+
+      <span ng-if="!slot.session && !slot.label">&nbsp</span>
+    </div>
+  </div>
+</div>
+
+<div class="cesar -helper " style="float: right">
+  <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+  <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+  <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+  <i class="material-icons">help</i>&nbsp;<span>Random</span>
+</div>

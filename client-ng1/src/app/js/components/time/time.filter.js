@@ -6,11 +6,11 @@
   angular.module('cesar-utils').filter('time', function () {
     'ngInject';
 
-    return function(input){
+    return function(input, lite){
       if(!input){
         return '';
       }
-      return moment(input).format('HH:mm');
+      return moment(input).format(lite ? 'HH' : 'HH:mm');
     };
   });
 

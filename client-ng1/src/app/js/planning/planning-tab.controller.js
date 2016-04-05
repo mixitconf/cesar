@@ -14,9 +14,7 @@
       amphi : true,
       salle: true,
       day1: true,
-      day2: true,
-      fr: true,
-      en: true
+      day2: true
     };
 
     ctrl.rooms = rooms;
@@ -49,26 +47,6 @@
         ctrl.remainingSessions = PlanningService.extractSessionToAffect(ctrl.day2Slots, PlanningService.extractSessionToAffect(ctrl.day1Slots, ctrl.sessions));
       });
 
-
-    ctrl.computeHeight = function(slot){
-      if(slot.duration>60){
-        return (slot.duration - 5)*2.0  + 'px';
-      }
-      return (slot.duration - 2)*2.0  + 'px';
-    };
-
-    ctrl.displayRoom = function (room) {
-      switch(room.key){
-        case 'Amphi1':
-          return ctrl.display.amphi;
-        case 'Amphi2':
-          return ctrl.display.amphi;
-        case 'Salle6':
-        case 'Salle7':
-          return ctrl.display.mezzanine;
-      }
-      return ctrl.display.salle;
-    };
 
     //if (ctrl.userConnected) {
     //  ctrl.toggleFavorite = function(session){

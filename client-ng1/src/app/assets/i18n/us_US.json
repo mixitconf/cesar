@@ -48,7 +48,8 @@
     "login": "Connect",
     "monitor": "Monitoring",
     "planning": "Planning",
-    "statistics" : "Statistiques"
+    "statistics" : "Statistiques",
+    "timeline" : "Timeline"
   },
   "home": {
     "headband": {
