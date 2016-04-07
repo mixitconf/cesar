@@ -61,7 +61,7 @@
       }
       params.mode = ctrl.slot.displayMode;
       ctrl.shuffle.set(sess);
-      $state.go('planning', params, {reloadOnSearch:false, notify:false});
+      $state.go('timeline', params, {reloadOnSearch:false, notify:false});
     };
 
 
