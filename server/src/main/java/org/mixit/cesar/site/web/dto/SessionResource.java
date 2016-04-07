@@ -78,7 +78,7 @@ public class SessionResource extends ResourceSupport {
 
         if(session.getSlot()!=null){
             sessionResource
-                    .setRoom(session.getSlot().getRoom().getName())
+                    .setRoom(session.getSlot().getRoom()==null ? null : session.getSlot().getRoom().getName())
                     .setStart(session.getSlot().getStart().format(DateTimeFormatter.ISO_DATE_TIME))
                     .setEnd(session.getSlot().getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
         }

@@ -30,23 +30,25 @@
             </label>
         </div>
     </div>
-        <div class="cesar-text-center" ng-if="ctrl.display.day1">
-            <h2>{{ctrl.dates[0] | date}}</h2>
+    <div class="cesar-text-center" ng-if="ctrl.display.day1">
+        <h2>{{ctrl.dates[0] | date}}</h2>
 
-            <cesar-planning-tab timeslots="ctrl.timeslots"
-                                rooms="ctrl.rooms"
-                                display="ctrl.display"
-                                slots="ctrl.day1Slots"></cesar-planning-tab>
-        </div>
-        <p>&nbsp;</p>
-        <div class="cesar-text-center" ng-if="ctrl.display.day2">
-            <h2>{{ctrl.dates[1] | date}}</h2>
+        <cesar-planning-tab timeslots="ctrl.timeslots"
+                            rooms="ctrl.rooms"
+                            display="ctrl.display"
+                            slots="ctrl.day1Slots"></cesar-planning-tab>
+    </div>
 
-            <cesar-planning-tab timeslots="ctrl.timeslots"
-                                rooms="ctrl.rooms"
-                                display="ctrl.display"
-                                slots="ctrl.day2Slots"></cesar-planning-tab>
-        </div>
+    <p>&nbsp;</p>
+    
+    <div class="cesar-text-center" ng-if="ctrl.display.day2">
+        <h2>{{ctrl.dates[1] | date}}</h2>
+
+        <cesar-planning-tab timeslots="ctrl.timeslots"
+                            rooms="ctrl.rooms"
+                            display="ctrl.display"
+                            slots="ctrl.day2Slots"></cesar-planning-tab>
+    </div>
     </form>
     <p>&nbsp;</p>
 </div>
