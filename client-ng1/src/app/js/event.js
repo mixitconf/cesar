@@ -32,11 +32,16 @@
     $rootScope.$on('$stateChangeError', function () {
       cesarSpinnerService.stopWaiting();
     });
+    $rootScope.$on('$stateNotFound', function () {
+      cesarSpinnerService.stopWaiting();
+    });
     $rootScope.$on('$stateChangeSuccess', function () {
       cesarSpinnerService.stopWaiting();
-      if($window.ga){
-        $window.ga('send', 'pageview', { page: $location.path() });
-      }
+      $timeout(function () {
+        if($window.ga){
+          $window.ga('send', 'pageview', { page: $location.path() });
+        }
+      });
     });
     //Refresh material design lite
     $rootScope.$on('$viewContentLoaded', function () {
