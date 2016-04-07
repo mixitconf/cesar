@@ -1,8 +1,11 @@
 package org.mixit.cesar.site.model;
 
-public class Tuple {
+import com.fasterxml.jackson.annotation.JsonView;
 
+public class Tuple {
+    @JsonView(FlatView.class)
     private Object key;
+    @JsonView(FlatView.class)
     private Object value;
 
     public Object getKey() {

@@ -60,6 +60,7 @@ public class PlanningController {
                 .findAllSlots(eventService.getEvent(year).getId())
                 .stream()
                 .filter(s-> s.getRoom()!=null)
+                .map(Slot::addSpeakers)
                 .sorted((a, b) -> a.getStart().compareTo(b.getStart()))
                 .collect(Collectors.groupingBy(Slot::getRoom));
     }

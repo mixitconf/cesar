@@ -1,8 +1,10 @@
 package org.mixit.cesar.site.model.planning;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,13 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.site.model.FlatView;
+import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.event.Event;
+import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Session;
 
 /**
@@ -69,6 +73,9 @@ public class Slot {
     @JsonView(FlatView.class)
     private String label;
 
+    @JsonView(FlatView.class)
+    @Transient
+    private List<Tuple> speakers;
 
     public Long getId() {
         return id;
@@ -128,7 +135,23 @@ public class Slot {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public Slot setEvent(Event event) {
         this.event = event;
+        return this;
+    }
+
+    public List<Tuple> getSpeakers() {
+        return speakers;
+    }
+
+    public Slot addSpeakers() {
+        if(getSession()!=null){
+            Set<Member> speaks = getSession().getSpeakers();
+            speakers = speaks
+                    .stream()
+                    .map(s -> new Tuple().setKey(s.getId()).setValue(s.getFirstname() + " " + s.getLastname()))
+                    .collect(Collectors.toList());
+        }
+        return this;
     }
 }

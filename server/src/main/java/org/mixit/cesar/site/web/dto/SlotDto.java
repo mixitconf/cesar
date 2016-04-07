@@ -6,6 +6,9 @@ import static org.mixit.cesar.CesarApplication.DATE_FORMAT;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.mixit.cesar.site.model.planning.Room;
 import org.mixit.cesar.site.model.planning.Slot;
@@ -30,7 +33,7 @@ public class SlotDto {
                 .setEnd(slot.getEnd().format(DateTimeFormatter.ISO_DATE_TIME))
                 .setStart(slot.getStart().format(DateTimeFormatter.ISO_DATE_TIME))
                 .setRoom(slot.getRoom())
-                .setIdSession(slot.getSession() != null ? slot.getSession().getId() : null)
+                .setIdSession(slot.getSession() == null ? null : slot.getSession().getId())
                 .setLabel(slot.getLabel());
     }
 

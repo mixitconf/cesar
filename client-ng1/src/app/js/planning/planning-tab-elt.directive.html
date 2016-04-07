@@ -30,13 +30,15 @@
 
       <div ng-if="slot.session">
 
-        <a ui-sref="session({id : slot.session.id})" style="color: white">
+        <a ui-sref="session({id : slot.session.id})">
           {{slot.session.title}}
-        </a>
+        </a><br>
+        <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
       </div>
 
       <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
         <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+        <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
         De {{slot.start | time}} à {{slot.end | time}}
       </div>
 
