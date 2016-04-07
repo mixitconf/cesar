@@ -321,7 +321,7 @@
         })
         .build())
 
-      .state('planning', new State(USER_ROLES, 'planning?format&room&search&mode', 'js/planning/planning.html')
+      .state('timeline', new State(USER_ROLES, 'timeline?format&room&search&mode', 'js/planning/planning.html')
         .controller('PlanningCtrl')
         .resolve({
           account: getAccount,
@@ -332,7 +332,7 @@
         })
         .build())
 
-      .state('planningtab', new State(USER_ROLES, 'planningtab', 'js/planning/planning-tab.html')
+      .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning-tab.html')
         .controller('PlanningTabCtrl')
         .resolve({
           transversalSlots : getTransversalSlots,

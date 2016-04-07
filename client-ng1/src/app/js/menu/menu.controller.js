@@ -26,8 +26,8 @@
 
       {
         id: 'menu.conference', submenus: [
-        {id: 'menu.planning', link: 'planningtab', mobile: true},
-        {id: 'menu.timeline', link: 'planning', mobile: true},
+        {id: 'menu.planning', link: 'planning', mobile: true},
+        {id: 'menu.timeline', link: 'timeline', mobile: true},
         {id: 'menu.talks', link: 'sessions', mobile: true},
         {id: 'menu.ligthningtalks', link: 'lightnings', mobile: true},
         {id: 'menu.mixteen', link: 'mixteen', mobile: true},
