@@ -1,6 +1,7 @@
 package org.mixit.cesar.site.repository;
 
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE;
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE_DETAIL;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c where a.valid=true order by a.postedAt desc")
     List<Article> findAllPublishedArticle();
 
-    @Cacheable(CACHE_ARTICLE)
+    @Cacheable(CACHE_ARTICLE_DETAIL)
     @Query(value = "SELECT a FROM Article a left join fetch a.author aut left join a.comments c left join c.member where a.id=:idArticle and a.valid=true")
     Article findPublishedArticleById(@Param("idArticle") Long idArticle);
 

@@ -18,6 +18,7 @@ public class CesarCacheConfig {
     public static final String CACHE_SPEAKER_LT = "speakerlt";
     public static final String CACHE_LIGHTNINGTALK = "lightningtalk";
     public static final String CACHE_ARTICLE = "article";
+    public static final String CACHE_ARTICLE_DETAIL = "article_detail";
     public static final String CACHE_PLANNING = "planning";
 
     @Bean
@@ -31,6 +32,7 @@ public class CesarCacheConfig {
                 CACHE_LIGHTNINGTALK,
                 CACHE_SPONSOR,
                 CACHE_ARTICLE,
+                CACHE_ARTICLE_DETAIL,
                 CACHE_PLANNING);
     }
 

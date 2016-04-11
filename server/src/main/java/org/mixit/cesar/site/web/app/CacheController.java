@@ -29,6 +29,7 @@ public class CacheController {
     public List<String> getCacheRegion() {
         return Arrays.asList(
                 CesarCacheConfig.CACHE_ARTICLE,
+                CesarCacheConfig.CACHE_ARTICLE_DETAIL,
                 CesarCacheConfig.CACHE_MEMBER,
                 CesarCacheConfig.CACHE_SPONSOR,
                 CesarCacheConfig.CACHE_SPEAKER_LT,
@@ -43,6 +44,12 @@ public class CacheController {
     @NeedsRole(ADMIN)
     public ResponseEntity delete(@PathVariable(value = "area") String area) {
         cacheManager.getCache(area).clear();
+
+        //If user wants to delete the article cache we also delete the cache which stores all the
+        //detailed articles.
+        if(CesarCacheConfig.CACHE_ARTICLE.equals(area)){
+            cacheManager.getCache(CesarCacheConfig.CACHE_ARTICLE_DETAIL).clear();
+        }
         return ResponseEntity.ok().build();
     }
 }

@@ -2,6 +2,7 @@ package org.mixit.cesar.site.web.app;
 
 import static org.mixit.cesar.security.model.Role.ADMIN;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE;
+import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_ARTICLE_DETAIL;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -88,6 +89,7 @@ public class ArticleWriterController {
 
         articleSaved = articleRepository.save(articleSaved);
         cacheManager.getCache(CACHE_ARTICLE).clear();
+        cacheManager.getCache(CACHE_ARTICLE_DETAIL).clear();
 
         return articleSaved;
     }
@@ -97,6 +99,8 @@ public class ArticleWriterController {
     public ResponseEntity delete(@PathVariable(value = "id") Long id) {
         articleRepository.delete(id);
         cacheManager.getCache(CACHE_ARTICLE).clear();
+        cacheManager.getCache(CACHE_ARTICLE_DETAIL).clear();
+
         return ResponseEntity.ok().build();
     }
 
