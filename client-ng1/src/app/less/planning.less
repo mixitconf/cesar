@@ -20,8 +20,11 @@
   min-height: 70px;
 }
 
+.cesar-planning__slot__container{
+  position: relative;
+}
 .cesar-planning__slot{
-  border: 1px solid @background_color_light;
+  box-shadow: 0 0 0 1px @background_color_light inset;
   text-align: center;
   vertical-align: middle;
   text-overflow: ellipsis;
@@ -50,6 +53,7 @@
     color: black;
     font-weight: bold;
   }
+  z-index: -1;
 }
 .cesar-planning__slot-Talk{
   .cesar-planning__slot-Elt;
@@ -65,10 +69,14 @@
 }
 .cesar-planning__slot-Annexe{
   .cesar-planning__slot-Elt;
-  background-color: @background_color_light;
+  background-color: #e2e7ea;
+}
+.cesar-planning__slot-transverse{
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 .cesar-planning__slot-helper{
-  color: white;
   padding: 1em 1em 0.5em;
   border-radius: 4px;
   color: black;
