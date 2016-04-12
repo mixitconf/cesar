@@ -13,8 +13,12 @@
        ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
     <div class="cesar-text-center cesar-planning__head">
-      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button" ui-sref="facilities">
-      {{room.name}}
+      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button hide-on-mobile" ui-sref="facilities">
+        {{room.name}}
+        </a>
+      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button visible-on-mobile" ui-sref="facilities"
+        style="min-width: 20px">
+        {{room.name | limitTo:3}}
       </a><br>
       {{room.capacity}} pers.
     </div>
@@ -52,7 +56,7 @@
              'mdl-shadow--4dp' : !!slot.session,
              'cesar-planning__slot-transverse' : ctrl.isTransversalSlot(slot, room)}"
           >
-        <p style="padding: 2px">
+        <p style="padding: 2px;">
             <span ng-if="slot.label" translate="{{slot.label}}"></span>
             <a ui-sref="session({id : slot.session.id})">
               {{slot.session.title}}
