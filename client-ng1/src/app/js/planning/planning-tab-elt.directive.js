@@ -1,7 +1,7 @@
 (function () {
 
   'use strict';
-  angular.module('cesar-home').directive('cesarPlanningTab', function () {
+  angular.module('cesar-home').directive('cesarPlanningTab', function ($window) {
     'ngInject';
 
     return {
@@ -15,14 +15,38 @@
         day: '@'
       },
       controllerAs: 'ctrl',
-      controller : function(){
+      controller : function($scope){
         var ctrl = this;
 
-        ctrl.computeHeight = function(slot, transverse){
-          return transverse ? (slot.duration)*2.0 + 1  + 'px' : (slot.duration)*2.0  + 'px';
-        };
+        function _computeOffset(){
+          ctrl.offset =  document.getElementById('planning1').offsetWidth -
+            document.getElementById('planninghour1').offsetWidth - 5 +
+            'px';
+        }
+
+        function _computeHeight(elts){
+          elts.forEach(function(elt){
+            elt.height = (elt.duration)*2.0 + 'px';
+            elt.transversalHeight = (elt.duration)*2.0 + 1 + 'px';
+          });
+        }
+
+        //We compute the height of each slot
+        for(var slot in ctrl.slots){
+          _computeHeight(ctrl.slots[slot]);
+        }
+        _computeHeight(ctrl.timeslots);
+
+
+        angular.element($window).bind('resize', function(){
+          _computeOffset();
+          $scope.$apply();
+        });
 
         ctrl.isTransversalSlot = function(slot, room){
+          if(!ctrl.offset){
+            _computeOffset();
+          }
           if(!!room && !!slot.room && slot.room.key==='Salle7' &&  (!!slot.label || !!slot.session)){
             if (ctrl.display.amphi) {
               return room.key === 'Amphi1';
@@ -39,9 +63,7 @@
 
         ctrl.computeWidth = function(slot, room){
           if( ctrl.isTransversalSlot(slot, room)){
-            return (document.getElementById('planning1').offsetWidth -
-              document.getElementById('planninghour1').offsetWidth - 5) +
-              'px';
+            return ctrl.offset ? ctrl.offset : _computeOffset();
           }
           return 'auto';
         };

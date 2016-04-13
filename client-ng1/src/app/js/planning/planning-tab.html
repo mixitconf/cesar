@@ -1,6 +1,6 @@
 <div class="cesar-container">
     <h1>Planning</h1>
-    <div class="mdl-grid">
+    <div class="mdl-grid visible-on-desktop">
         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
                    style="width: auto">
@@ -15,7 +15,7 @@
                 <span class="mdl-checkbox__label">Salles</span>
             </label>
         </div>
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center visible-on-desktop">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
                    style="width: auto">
                 <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
@@ -33,6 +33,10 @@
     <div class="cesar-text-center" ng-if="ctrl.display.day1">
         <h2>{{ctrl.dates[0] | date}}</h2>
 
+        <p class="cesar-planning__container-label">En marge des sessions vous pourrez voir toute la journée l'atelier <a href="/session/3492">Agilité en une journée</a>
+        animé par Xavier Nopre, Franck Rageade, Jean Charles Durand et Mathieu Gironnet (espace sponsor vers les cuisines)
+        </p>
+
         <cesar-planning-tab timeslots="ctrl.timeslots"
                             rooms="ctrl.rooms"
                             display="ctrl.display"
@@ -41,7 +45,7 @@
     </div>
 
     <p>&nbsp;</p>
-    
+    <p>&nbsp;</p>
     <div class="cesar-text-center" ng-if="ctrl.display.day2">
         <h2>{{ctrl.dates[1] | date}}</h2>
 

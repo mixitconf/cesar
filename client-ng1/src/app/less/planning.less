@@ -1,7 +1,19 @@
+.cesar-planning__container-label{
+  @media (max-width: 479px) {
+    min-width: 550px;
+  }
+}
 .cesar-planning__container{
   display: flex;
   justify-content:center;
-  align-content:center
+  align-content:center;
+
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  @media (max-width: 550px) {
+    min-width: 550px;
+  }
 }
 
 .cesar-planning__room{
@@ -29,14 +41,14 @@
   vertical-align: middle;
   text-overflow: ellipsis;
   overflow: hidden;
-  flex-grow: 1;
+  flex-grow: 2;
   padding: 0px;
   display: block;
   @media (max-width: 479px) {
     a{
-      font-size: 11px;
+      font-size: 12px;
     }
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
@@ -52,6 +64,11 @@
 }
 .cesar-planning__slot-Random{
   background-color: #B9F6CA;
+}
+
+.cesar-planning__slot-link {
+  display: flex;
+  flex-direction: column;
 }
 
 .cesar-planning__slot-Elt{
@@ -72,6 +89,15 @@
 .cesar-planning__slot-Workshop{
   .cesar-planning__slot-Elt;
   background-color: #FFD180;
+
+  .cesar-planning__slot-link{
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 479px) {
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+  }
 }
 .cesar-planning__slot-Annexe{
   .cesar-planning__slot-Elt;
@@ -81,6 +107,27 @@
   position: absolute;
   width: 100%;
   z-index: 1;
+  @media (max-width: 479px) {
+    a{
+      font-size: 12px;
+    }
+    font-size: 10px;
+  }
+}
+
+.cesar-planning__slot-transverse-label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cesar-planning__slot-transverse-link{
+  @media (max-width: 479px) {
+    a{
+      font-size: 12px;
+    }
+    font-size: 11px;
+  }
 }
 .cesar-planning__slot-helper{
   padding: 1em 1em 0.5em;

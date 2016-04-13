@@ -1,84 +1,86 @@
 <div class="cesar-planning__container" id="planning{{ctrl.day}}">
-  <div class="cesar-planning__hour" id="planninghour{{ctrl.day}}">
-    <div class="cesar-text-center cesar-planning__head">
-      &nbsp;
-    </div>
-    <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
-         ng-style="{'max-height' : ctrl.computeHeight(slot) , 'min-height' : ctrl.computeHeight(slot) }">
-      {{::slot.start | time:true}}
-    </div>
-  </div>
-
-  <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
-       ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
-
-    <div class="cesar-text-center cesar-planning__head">
-      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button hide-on-mobile" ui-sref="facilities">
-        {{room.name}}
-        </a>
-      <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button visible-on-mobile" ui-sref="facilities"
-        style="min-width: 20px">
-        {{room.name | limitTo:3}}
-      </a><br>
-      {{room.capacity}} pers.
+    <div class="cesar-planning__hour" id="planninghour{{ctrl.day}}">
+        <div class="cesar-text-center cesar-planning__head">
+            &nbsp;
+        </div>
+        <div class="cesar-planning__slot-time" ng-repeat="slot in ctrl.timeslots"
+             ng-style="{'max-height' : slot.height , 'min-height' : slot.height }">
+            {{::slot.start | time:true}}
+        </div>
     </div>
 
-    <div ng-repeat="slot in ctrl.slots[room.key]" class="cesar-planning__slot__container" id="slot{{room}}{{slot.id}}">
+    <div ng-repeat="room in ctrl.rooms" class="cesar-planning__room" ng-if="ctrl.displayRoom(room)"
+         ng-style="{'width' : 100/ctrl.rooms.length + '%'}">
 
-      <div class="cesar-planning__slot"
-           ng-style="{ 'max-height' : ctrl.computeHeight(slot), 'min-height' : ctrl.computeHeight(slot) }"
-           ng-class="{ 'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
-           'cesar-planning__slot-Annexe': !!slot.label,
-           'mdl-shadow--4dp' : !!slot.session }"
-      >
-        <span ng-if="slot.label" translate="{{slot.label}}"></span>
-        <div ng-if="slot.session">
-
-          <a ui-sref="session({ id : slot.session.id })">
-            {{slot.session.title}}
-          </a><br>
-          <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+        <div class="cesar-text-center cesar-planning__head">
+            <div style="display: block">
+                <a class="mdl-button mdl-js-button mdl-button--raised cesar-mdl-button"
+                   ui-sref="facilities">
+                    {{room.name}}
+                </a>
+            </div>
+            <br>
+            {{room.capacity}} pers.
         </div>
 
-        <span ng-if="!slot.session && !slot.label">&nbsp</span>
-      </div>
+        <div ng-repeat="slot in ctrl.slots[room.key]" class="cesar-planning__slot__container"
+             id="slot{{room}}{{slot.id}}">
 
-      <div class="cesar-planning__slot"
-           ng-if="ctrl.isTransversalSlot(slot, room)"
-           ng-style="{
-           'max-height' : ctrl.computeHeight(slot, true),
-           'min-height' : ctrl.computeHeight(slot, true),
-           'top': 0,
-           'width' : ctrl.computeWidth(slot, room)
-           }"
-           ng-class="{ 'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
-             'cesar-planning__slot-Annexe': !!slot.label,
-             'mdl-shadow--4dp' : !!slot.session,
-             'cesar-planning__slot-transverse' : ctrl.isTransversalSlot(slot, room)}"
-          >
-        <p style="padding: 2px;">
-            <span ng-if="slot.label" translate="{{slot.label}}"></span>
-            <a ui-sref="session({id : slot.session.id})">
-              {{slot.session.title}}
-            </a><br>
-            <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
-        </p>
-      </div>
+            <div class="cesar-planning__slot"
+                 ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}"
+                 ng-class="{ 'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+           'cesar-planning__slot-Annexe': !!slot.label,
+           'mdl-shadow--4dp' : !!slot.session }"
+            >
+                <span ng-if="slot.label" translate="{{slot.label}}"></span>
+                <div ng-if="slot.session" class="cesar-planning__slot-link"
+                     ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}">
+                    <a ui-sref="session({ id : slot.session.id })">
+                        {{slot.session.title}}
+                    </a>
+                    <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+                </div>
 
-      <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
-        <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
-        <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
-        De {{slot.start | time}} à {{slot.end | time}}
-      </div>
+                <span ng-if="!slot.session && !slot.label">&nbsp</span>
+            </div>
+
+            <div class="cesar-planning__slot cesar-planning__slot-transverse"
+                 ng-if="ctrl.isTransversalSlot(slot, room)"
+                 ng-style="{
+                   'max-height' : slot.transversalHeight,
+                   'min-height' : slot.transversalHeight,
+                   'top': 0,
+                   'width' : ctrl.offset
+                   }"
+                 ng-class="{
+                    'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                    'cesar-planning__slot-Annexe': !!slot.label,
+                    'mdl-shadow--4dp' : !!slot.session
+                    }"
+                >
+                <p class="cesar-planning__slot-transverse-label"
+                   ng-if="slot.label" translate="{{slot.label}}"
+                   ng-style="{'max-height' : slot.transversalHeight ,'min-height' : slot.transversalHeight }">
+                </p>
+                <p ng-if="slot.session.id" class="cesar-planning__slot-transverse-link">
+                    <a ui-sref="session({id : slot.session.id})">{{slot.session.title}}</a><br>
+                    <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+                </p>
+
+                <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
+                    <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+                    <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+                    De {{slot.start | time}} à {{slot.end | time}}
+                </div>
+            </div>
+
+        </div>
     </div>
-
-  </div>
-</div>
 
 </div>
 
 <div class="cesar -helper hide-on-mobile" style="float: right;margin: 0.5em 1em 1em;">
-  <span  class="cesar-planning__slot-Talk cesar-planning__slot-helper"><i class="material-icons">local_library</i>&nbsp;Talk</span>
-  <span  class="cesar-planning__slot-Workshop cesar-planning__slot-helper"><i class="material-icons">build</i>&nbsp;Workshop</span>
-  <span  class="cesar-planning__slot-Keynote cesar-planning__slot-helper"><i class="material-icons">face</i>&nbsp;Keynote</span>
+    <span class="cesar-planning__slot-Talk cesar-planning__slot-helper"><i class="material-icons">local_library</i>&nbsp;Talk</span>
+    <span class="cesar-planning__slot-Workshop cesar-planning__slot-helper"><i class="material-icons">build</i>&nbsp;Workshop</span>
+    <span class="cesar-planning__slot-Keynote cesar-planning__slot-helper"><i class="material-icons">face</i>&nbsp;Keynote</span>
 </div>
