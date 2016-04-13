@@ -300,7 +300,7 @@
         "favorite": "My favorites"
       },
       "timeline" : "When display mode is on timeline, only future sessions are displayed",
-      "workshop" : "En marge des sessions vous pourrez voir toute la journée l'atelier <a href=\"/session/3492\">Agilité en une journée</a> animé par Xavier Nopre, Franck Rageade, Jean Charles Durand et Mathieu Gironnet (espace sponsor vers les cuisines)",
+      "workshop" : "En marge des sessions vous pourrez voir toute la journée l'atelier <a href=\"/session/3492\">Agilité en une journée</a> animé par<br> Xavier Nopre, Franck Rageade, Jean Charles Durand et Mathieu Gironnet (espace sponsor vers les cuisines)",
       "moment" : {
         "close" : "End-of-day speech",
         "ligthning" : "Ligthning Talks",

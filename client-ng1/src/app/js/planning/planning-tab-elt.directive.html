@@ -67,13 +67,12 @@
                     <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
                 </p>
 
-                <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
-                    <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
-                    <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
-                    De {{slot.start | time}} à {{slot.end | time}}
-                </div>
             </div>
-
+            <div class="mdl-tooltip" for="slot{{room}}{{slot.id}}" ng-if="slot.session || slot.label">
+                <b>{{slot.session.title}}<span translate="{{slot.label}}"></span></b><br>
+                <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+                De {{slot.start | time}} à {{slot.end | time}}
+            </div>
         </div>
     </div>
 
