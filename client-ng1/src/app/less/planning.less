@@ -35,7 +35,19 @@
 .cesar-planning__slot__container{
   position: relative;
 }
+
+.cesar-planning_reponsive-font{
+  @media (max-width: 479px) {
+    a{
+      font-size: 12px;
+      line-height: 14px;
+    }
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
 .cesar-planning__slot{
+  .cesar-planning_reponsive-font;
   box-shadow: 0 0 0 1px @background_color_light inset;
   text-align: center;
   vertical-align: middle;
@@ -44,12 +56,6 @@
   flex-grow: 2;
   padding: 0px;
   display: block;
-  @media (max-width: 479px) {
-    a{
-      font-size: 12px;
-    }
-    font-size: 11px;
-  }
 }
 
 .cesar-planning__input-active{
@@ -69,6 +75,9 @@
 .cesar-planning__slot-link {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
 }
 
 .cesar-planning__slot-Elt{
@@ -89,15 +98,6 @@
 .cesar-planning__slot-Workshop{
   .cesar-planning__slot-Elt;
   background-color: #FFD180;
-
-  .cesar-planning__slot-link{
-    align-items: center;
-    justify-content: center;
-    @media (max-width: 479px) {
-      align-items: stretch;
-      justify-content: flex-start;
-    }
-  }
 }
 .cesar-planning__slot-Annexe{
   .cesar-planning__slot-Elt;
@@ -107,12 +107,7 @@
   position: absolute;
   width: 100%;
   z-index: 1;
-  @media (max-width: 479px) {
-    a{
-      font-size: 12px;
-    }
-    font-size: 10px;
-  }
+  .cesar-planning_reponsive-font;
 }
 
 .cesar-planning__slot-transverse-label{
@@ -122,12 +117,7 @@
 
 }
 .cesar-planning__slot-transverse-link{
-  @media (max-width: 479px) {
-    a{
-      font-size: 12px;
-    }
-    font-size: 11px;
-  }
+  .cesar-planning__slot-link;
 }
 .cesar-planning__slot-helper{
   padding: 1em 1em 0.5em;

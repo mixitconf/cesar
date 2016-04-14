@@ -35,9 +35,8 @@
                 <span ng-if="slot.label" translate="{{slot.label}}"></span>
                 <div ng-if="slot.session" class="cesar-planning__slot-link"
                      ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}">
-                    <a ui-sref="session({ id : slot.session.id })">
-                        {{slot.session.title}}
-                    </a>
+                    <a ui-sref="session({ id : slot.session.id })" class="hide-on-mobile">{{slot.session.title}}</a>
+                    <a ui-sref="session({ id : slot.session.id })" class="visible-on-mobile">{{slot.session.title | limitText:40}}</a>
                     <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
                 </div>
 
@@ -62,8 +61,9 @@
                    ng-if="slot.label" translate="{{slot.label}}"
                    ng-style="{'max-height' : slot.transversalHeight ,'min-height' : slot.transversalHeight }">
                 </p>
-                <p ng-if="slot.session.id" class="cesar-planning__slot-transverse-link">
-                    <a ui-sref="session({id : slot.session.id})">{{slot.session.title}}</a><br>
+                <p ng-if="slot.session.id" class="cesar-planning__slot-transverse-link"
+                   ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}">
+                    <a ui-sref="session({id : slot.session.id})" >{{slot.session.title}}</a>
                     <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
                 </p>
 
