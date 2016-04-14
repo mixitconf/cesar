@@ -8,6 +8,7 @@
       templateUrl: 'js/planning/planning-tab-elt.directive.html',
       scope: {},
       bindToController: {
+        userConnected: '=',
         timeslots: '=',
         rooms: '=',
         display: '=',
@@ -27,7 +28,7 @@
         function _computeHeight(elts){
           elts.forEach(function(elt){
             elt.height = (elt.duration)*2.0 + 'px';
-            elt.transversalHeight = (elt.duration)*2.0 + 1 + 'px';
+            elt.transversalHeight = ((elt.duration)*2.0 + 2) + 'px';
           });
         }
 

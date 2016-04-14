@@ -32,7 +32,24 @@
            'cesar-planning__slot-Annexe': !!slot.label,
            'mdl-shadow--4dp' : !!slot.session }"
             >
-                <span ng-if="slot.label" translate="{{slot.label}}"></span>
+                <!--<a class="mdl-button mdl-js-button mdl-button&#45;&#45;accent" ng-click="ctrl.toggleFavorite(session)"-->
+                   <!--id="favorite{{slot.session.id}}"-->
+                   <!--style="min-width: 24px" ng-if="ctrl.userConnected && slot.session.id">-->
+                    <!--<i class="material-icons" class="hide-on-mobile" ng-if="!session.favorite" style="padding-bottom: 10px">star_border</i>-->
+                    <!--<i class="material-icons" class="hide-on-mobile" ng-if="session.favorite" style="padding-bottom: 10px">star</i>-->
+                <!--</a>-->
+                <!--<div class="mdl-tooltip" for="favorite{{slot.session.id}}" translate="action.favorite"></div>-->
+                <!--<a class="mdl-button mdl-js-button mdl-button&#45;&#45;accent" ui-sref="authent" style="min-width: 24px"-->
+                   <!--ng-if="!ctrl.userConnected && slot.session.id"-->
+                   <!--id="gofavorite{{slot.session.id}}">-->
+                    <!--<i class="material-icons" class="hide-on-mobile" style="padding-bottom: 10px">star_border</i>-->
+                <!--</a>-->
+                <!--<div class="mdl-tooltip" for="gofavorite{{slot.session.id}}"-->
+                     <!--translate="action.connectfavorite"></div>-->
+
+                <div class="cesar-planning__slot-link"
+                     ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}"
+                     ng-if="slot.label" translate="{{slot.label}}"></div>
                 <div ng-if="slot.session" class="cesar-planning__slot-link"
                      ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}">
                     <a ui-sref="session({ id : slot.session.id })" class="hide-on-mobile">{{slot.session.title}}</a>

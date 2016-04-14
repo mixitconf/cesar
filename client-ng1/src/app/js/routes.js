@@ -335,6 +335,7 @@
       .state('planning', new State(USER_ROLES, 'planning', 'js/planning/planning-tab.html')
         .controller('PlanningTabCtrl')
         .resolve({
+          account: getAccount,
           transversalSlots : getTransversalSlots,
           slots : getPlanningSlots,
           rooms : getRooms

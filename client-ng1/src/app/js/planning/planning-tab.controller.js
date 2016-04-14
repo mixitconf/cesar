@@ -3,12 +3,13 @@
   'use strict';
   /*global moment */
 
-  angular.module('cesar-planning').controller('PlanningTabCtrl', function ($q, $rootScope, slots, transversalSlots, rooms, PlanningService) {
+  angular.module('cesar-planning').controller('PlanningTabCtrl', function ($q, $rootScope, slots, transversalSlots, rooms, PlanningService, account) {
     'ngInject';
 
     var ctrl = this;
 
     ctrl.dates = [$rootScope.cesar.day1, $rootScope.cesar.day2];
+    ctrl.userConnected = !!account;
     ctrl.display = {
       amphi : true,
       salle: true,
