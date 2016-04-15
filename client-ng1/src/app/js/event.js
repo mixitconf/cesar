@@ -36,8 +36,8 @@
       cesarSpinnerService.stopWaiting();
     });
     $rootScope.$on('$stateChangeSuccess', function () {
-      cesarSpinnerService.stopWaiting();
       $timeout(function () {
+        cesarSpinnerService.stopWaiting();
         if($window.ga){
           $window.ga('send', 'pageview', { page: $location.path() });
         }

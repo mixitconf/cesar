@@ -62,6 +62,9 @@ var paths = {
       'src/app/assets/img/**/*.*',
       'src/app/assets/logo/**/*.*'
     ],
+    files:[
+      'src/app/assets/files/**/*.*'
+    ],
     i18n: [
       'src/app/assets/i18n/**/*.*'
     ],
