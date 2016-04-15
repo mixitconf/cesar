@@ -37,7 +37,7 @@ module.exports = function(gulp, config) {
     'build:dist:vendors',
     'build:dist:font',
     'build:dist:images',
-    'build:dist:docs',
+    'build:dist:files',
     'build:dist:i18n',
     'build:dist:sitemap',
     'build:dist:favicon',
