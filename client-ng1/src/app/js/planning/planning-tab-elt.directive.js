@@ -52,7 +52,7 @@
             if (ctrl.display.amphi) {
               return room.key === 'Amphi1';
             }
-            if (ctrl.display.amphi) {
+            if (ctrl.display.salle) {
               return room.key === 'Salle1';
             }
             if (ctrl.display.mezzanine) {
