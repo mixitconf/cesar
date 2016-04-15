@@ -28,7 +28,7 @@
 
             <div class="cesar-planning__slot"
                  ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}"
-                 ng-class="{ 'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                 ng-class="{ 'cesar-planning__slot-{{slot.session.format}}' : !!slot.session,
            'cesar-planning__slot-Annexe': !!slot.label,
            'mdl-shadow--4dp' : !!slot.session }"
             >
@@ -52,9 +52,9 @@
                      ng-if="slot.label" translate="{{slot.label}}"></div>
                 <div ng-if="slot.session" class="cesar-planning__slot-link"
                      ng-style="{ 'max-height' : slot.height , 'min-height' : slot.height}">
-                    <a ui-sref="session({ id : slot.session.id })" class="hide-on-mobile">{{slot.session.title}}</a>
-                    <a ui-sref="session({ id : slot.session.id })" class="visible-on-mobile">{{slot.session.title | limitText:40}}</a>
-                    <span data-ng-repeat="speaker in slot.speakers">{{speaker.value}}<br></span>
+                    <a ui-sref="session({ id : slot.session.id })">{{slot.session.title | limitText:35}}</a>
+                    <span data-ng-repeat="speaker in slot.speakers | limitTo:1" ng-if="slot.session.format==='Talk'">{{speaker.value}} <i ng-if="slot.speakers.length>1">...</i></span>
+                    <span data-ng-repeat="speaker in slot.speakers" ng-if="slot.session.format!=='Talk'">{{speaker.value}}<br></span>
                 </div>
 
                 <span ng-if="!slot.session && !slot.label">&nbsp</span>
@@ -69,7 +69,7 @@
                    'width' : ctrl.offset
                    }"
                  ng-class="{
-                    'cesar-planning__slot-{{::slot.session.format}}' : !!slot.session,
+                    'cesar-planning__slot-{{slot.session.format}}' : !!slot.session,
                     'cesar-planning__slot-Annexe': !!slot.label,
                     'mdl-shadow--4dp' : !!slot.session
                     }"
