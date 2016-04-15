@@ -19,11 +19,35 @@
       controller : function($scope){
         var ctrl = this;
 
+        function _computeSemiOffset(){
+          if(!ctrl.display.amphi && !ctrl.display.salle){
+            ctrl.semioffset = '0';
+          }
+          else if(ctrl.display.amphi && !ctrl.display.salle){
+            ctrl.semioffset = ctrl.offset;
+          }
+          else{
+            var colWidth = document.getElementById('planning1').offsetWidth - document.getElementById('planninghour1').offsetWidth;
+            var nb = 0;
+            if(ctrl.display.amphi){
+              colWidth = colWidth / 7;
+              nb = 4;
+            }
+            else{
+              colWidth = colWidth / 5;
+              nb = 2;
+            }
+            ctrl.semioffset = (colWidth * nb - nb) + 'px';
+          }
+        }
+
         function _computeOffset(){
           ctrl.offset =  document.getElementById('planning1').offsetWidth -
-            document.getElementById('planninghour1').offsetWidth - 5 +
+            document.getElementById('planninghour1').offsetWidth - 3 +
             'px';
+          _computeSemiOffset();
         }
+
 
         function _computeHeight(elts){
           elts.forEach(function(elt){
@@ -55,18 +79,16 @@
             if (ctrl.display.salle) {
               return room.key === 'Salle1';
             }
-            if (ctrl.display.mezzanine) {
-              return room.key === 'Salle6';
-            }
           }
           return false;
         };
 
-        ctrl.computeWidth = function(slot, room){
-          if( ctrl.isTransversalSlot(slot, room)){
-            return ctrl.offset ? ctrl.offset : _computeOffset();
+        ctrl.isSemiTransversalSlot = function(slot, room){
+          var expectedRoom = ctrl.display.amphi ? 'Amphi1' : 'Salle1';
+          if(!!room && room.key===expectedRoom &&  (!!slot.label || (!!slot.session && slot.session.id===3502))){
+            return true;
           }
-          return 'auto';
+          return false;
         };
 
         ctrl.displayRoom = function (room) {

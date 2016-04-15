@@ -1,35 +1,35 @@
 <div class="cesar-container">
     <h1>Planning</h1>
-    <div class="mdl-grid visible-on-desktop">
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
-                   style="width: auto">
-                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.amphi">
-                <span class="mdl-checkbox__label">Amphi</span>
-            </label>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
-                   style="width: auto">
-                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.salle">
-                <span class="mdl-checkbox__label">Salles</span>
-            </label>
-        </div>
-        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"
-                   style="width: auto">
-                <input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.day1">
-                <span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>
-            </label>
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay2"
-                   style="width: auto">
-                <input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"
-                       ng-model="ctrl.display.day2">
-                <span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>
-            </label>
-        </div>
-    </div>
+    <!--<div class="mdl-grid visible-on-desktop">-->
+        <!--<div class="mdl-cell mdl-cell&#45;&#45;6-col mdl-cell&#45;&#45;12-col-phone mdl-cell&#45;&#45;6-col-tablet cesar-text-center">-->
+            <!--<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"-->
+                   <!--style="width: auto">-->
+                <!--<input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"-->
+                       <!--ng-model="ctrl.display.amphi">-->
+                <!--<span class="mdl-checkbox__label">Amphi</span>-->
+            <!--</label>-->
+            <!--<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"-->
+                   <!--style="width: auto">-->
+                <!--<input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"-->
+                       <!--ng-model="ctrl.display.salle">-->
+                <!--<span class="mdl-checkbox__label">Salles</span>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="mdl-cell mdl-cell&#45;&#45;6-col mdl-cell&#45;&#45;12-col-phone mdl-cell&#45;&#45;6-col-tablet cesar-text-center">-->
+            <!--<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay1"-->
+                   <!--style="width: auto">-->
+                <!--<input type="checkbox" id="checkboxDay1" class="mdl-checkbox__input"-->
+                       <!--ng-model="ctrl.display.day1">-->
+                <!--<span class="mdl-checkbox__label">{{ctrl.dates[0] | date}}</span>-->
+            <!--</label>-->
+            <!--<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkboxDay2"-->
+                   <!--style="width: auto">-->
+                <!--<input type="checkbox" id="checkboxDay2" class="mdl-checkbox__input"-->
+                       <!--ng-model="ctrl.display.day2">-->
+                <!--<span class="mdl-checkbox__label">{{ctrl.dates[1] | date}}</span>-->
+            <!--</label>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="cesar-text-center" ng-if="ctrl.display.day1">
         <h2>{{ctrl.dates[0] | date}}</h2>
 
