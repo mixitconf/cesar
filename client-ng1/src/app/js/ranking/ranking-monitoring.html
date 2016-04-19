@@ -1,16 +1,16 @@
 <div class="cesar-container-fluid">
 
     <div class="cesar-planning__container">
-        <div class="cesar-planning__room" ng-if="ctrl.display.talk">
+        <div class="cesar-planning__room" ng-if="ctrl.display.talk" style="padding: 1em">
             <h2>Talk</h2>
 
             <cesar-ranking-session votes="ctrl.votes"
                                    type-session="Talk"
                                    is-display-by-percent="ctrl.display.type === 'bypercent'"
-                                   nb-positive-votes="ctrl.nbPositiveVotes">
+                                   nb-positive-votes="ctrl.nbPositiveVotes" >
             </cesar-ranking-session>
         </div>
-        <div class="cesar-planning__room" ng-if="ctrl.display.workshop">
+        <div class="cesar-planning__room" ng-if="ctrl.display.workshop" style="padding: 1em">
             <h2>Workshop</h2>
 
             <cesar-ranking-session votes="ctrl.votes"
@@ -19,7 +19,7 @@
                                    nb-positive-votes="ctrl.nbPositiveVotes">
             </cesar-ranking-session>
         </div>
-        <div class="cesar-planning__room" ng-if="ctrl.display.keynote">
+        <div class="cesar-planning__room" ng-if="ctrl.display.keynote" style="padding: 1em">
             <h2>Keynote</h2>
 
             <cesar-ranking-session votes="ctrl.votes"
