@@ -53,6 +53,12 @@
       });
     }
 
+    function _getAllSessions(SessionService, year) {
+      return SessionService.getAllByYear(year).then(function (response) {
+        return response.data;
+      });
+    }
+
     /* @ngInject */
     function getAllSessions(SessionService) {
       return _getAllSessions(SessionService, 2016);
