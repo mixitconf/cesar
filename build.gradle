@@ -107,6 +107,7 @@ configure([project(':server')]) {
         compile "org.springframework.boot:spring-boot-starter-velocity"
         compile "org.springframework.boot:spring-boot-starter-websocket"
 
+        compile "com.google.zxing:javase:3.2.1"
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1"
         compile "com.google.guava:guava:${vGuava}"
         compile "org.slf4j:slf4j-api:${vSl4j}"

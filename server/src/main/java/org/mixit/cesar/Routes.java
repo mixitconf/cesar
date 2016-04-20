@@ -54,6 +54,7 @@ public class Routes {
             "/passwordreinit",
             "/planning",
             "/timeline",
+            "/timelineqr",
             "/profile/{login:\\w+}",
             "/ranking",
             "/rankingmonit",

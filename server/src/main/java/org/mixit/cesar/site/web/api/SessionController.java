@@ -6,15 +6,17 @@ import static org.mixit.cesar.CesarApplication.DATE_FORMAT;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.mixit.cesar.site.model.session.Format;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.SessionRepository;
+import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.site.service.EventService;
+import org.mixit.cesar.site.service.qrcode.QrCodeGenerator;
 import org.mixit.cesar.site.web.dto.SessionResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,18 +35,36 @@ import org.springframework.web.bind.annotation.RestController;
 public class SessionController {
 
     @Autowired
-    SessionRepository sessionRepository;
+    private SessionRepository sessionRepository;
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
-    private <T extends Session<T>> ResponseEntity<List<SessionResource>> getAllSessions(List<T> sessions) {
-        return ResponseEntity
-                .ok()
-                .body(sessions
-                        .stream()
-                        .map(SessionResource::convert)
-                        .collect(Collectors.toList()));
+    @Autowired
+    private AbsoluteUrlFactory urlFactory;
+
+    @Autowired
+    private QrCodeGenerator qrCodeGenerator;
+
+    private <T extends Session<T>> List<SessionResource> getAllSessions(List<T> sessions) {
+        return sessions
+                .stream()
+                .map(SessionResource::convert)
+                .collect(Collectors.toList());
+    }
+
+    private <T extends Session<T>> List<SessionResource> getAllSessionsWithQrCode(List<T> sessions) {
+        return sessions
+                .stream()
+                .map(SessionResource::convert)
+                .map(this::computeQrCode)
+                .collect(Collectors.toList());
+    }
+
+    private SessionResource computeQrCode(SessionResource session) {
+        String categoryUrl = urlFactory.getBaseUrl() + "/session/" + session.getIdSession();
+        session.setQrCode(qrCodeGenerator.generateQRCode(categoryUrl, ErrorCorrectionLevel.H));
+        return session;
     }
 
     @RequestMapping("/{id}")
@@ -86,24 +106,26 @@ public class SessionController {
             @RequestParam(required = true, defaultValue = "5") Integer limit
     ) {
 
-        return getAllSessions(
-                sessionRepository
-                        .findAllAcceptedSessions(eventService.getEvent(year))
-                        .stream()
-                        .filter(session -> filterSession(
-                                session,
-                                format,
-                                start == null ? null : LocalDateTime.parse(start, ofPattern(DATE_FORMAT)),
-                                end == null ? null : LocalDateTime.parse(end, ofPattern(DATE_FORMAT))
+        return ResponseEntity
+                .ok(getAllSessions(
+                        sessionRepository
+                                .findAllAcceptedSessions(eventService.getEvent(year))
+                                .stream()
+                                .filter(session -> filterSession(
+                                        session,
+                                        format,
+                                        start == null ? null : LocalDateTime.parse(start, ofPattern(DATE_FORMAT)),
+                                        end == null ? null : LocalDateTime.parse(end, ofPattern(DATE_FORMAT))
                                 ))
-                        .limit(limit)
-                        .collect(Collectors.toList()));
+                                .limit(limit)
+                                .collect(Collectors.toList())));
     }
 
     @RequestMapping
     @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year)));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year))));
     }
 
     @RequestMapping(value = "/keynote")
@@ -111,7 +133,8 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllKeynotes(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year)));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year))));
     }
 
     @RequestMapping(value = "/talk")
@@ -119,7 +142,8 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllTalks(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year)));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year))));
     }
 
     @RequestMapping(value = "/workshop")
@@ -127,7 +151,8 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllWorkshops(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year)));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year))));
     }
 
     @RequestMapping(value = "/lightningtalks")
@@ -135,13 +160,24 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllLightningTalks(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year)));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year))));
     }
 
     @RequestMapping(value = "/interest/{name}")
     @ApiOperation(value = "Finds all sessions linked to an interest", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(
             @PathVariable String name) {
-        return getAllSessions(sessionRepository.findAllSessionsByInterest(name));
+        return ResponseEntity
+                .ok(getAllSessions(sessionRepository.findAllSessionsByInterest(name)));
     }
+
+    @RequestMapping(value = "/qrcode")
+    @ApiOperation(value = "Finds all sessions with Qrcode", httpMethod = "GET")
+    public ResponseEntity<List<SessionResource>> getAllSessionsWithCode(@RequestParam(required = false) Integer year) {
+        return ResponseEntity
+                .ok(getAllSessionsWithQrCode(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year))));
+    }
+
+
 }

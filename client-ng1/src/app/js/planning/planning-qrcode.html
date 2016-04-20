@@ -1,0 +1,112 @@
+<div class="cesar-container">
+    <h1 translate="view.planning.title"></h1>
+
+    <div class="mdl-grid cesar-search-container">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="rooms">Room</label>
+                <select ng-options="room.name for room  in ctrl.rooms" id="rooms"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-model="ctrl.slot.room"
+                        ng-change="ctrl.updateData()">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="diplayMode" translate="view.planning.displayMode.title"></label>
+                <select ng-model="ctrl.slot.displayMode" id="diplayMode"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-change="ctrl.updateData()">
+                    <option value="timeline" translate="view.planning.displayMode.timeline"></option>
+                    <option value="all" translate="view.planning.displayMode.all"></option>
+                    <option value="en" translate="view.planning.displayMode.en"></option>
+                    <option value="favorite" translate="view.planning.displayMode.favorite"></option>
+                </select>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet cesar-search__row visible-on-desktop">
+            <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="formats">Format</label>
+                <select ng-model="ctrl.slot.format" id="formats"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-change="ctrl.updateData()">
+                    <option></option>
+                    <option value="Talk">Talk</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Random">Random</option>
+                    <option value="Keynote">Keynote</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div translate="view.planning.timeline" ng-if="ctrl.slot.displayMode === 'timeline'"></div>
+    <cesar-search-bar search="ctrl.search">
+        <div class="hide-on-mobile">
+            <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
+            <i class="material-icons">build</i>&nbsp;<span>Workshop</span>
+            <i class="material-icons">face</i>&nbsp;<span>Keynote</span>
+            <i class="material-icons">help</i>&nbsp;<span>Random</span>
+        </div>
+    </cesar-search-bar>
+
+    {{ctrl.shuffle.elements(result.length)}}
+    <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
+        <div class="cesar-liste" ng-repeat="session in ctrl.shuffle.filter(ctrl.search) as result track by $index"
+             ng-class="{'cesar-planning__slot-Annexe': !session.format}" ng-if="ctrl.displayElement(session, $index)" style="padding-bottom: 2em">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-phone mdl-cell--9-col-tablet">
+                    <h3 class="mdl-card__title-text cesar-card__title-text">
+                        <i class="material-icons cesar-button--fab" ng-if="session.format">{{session.format | sessionLogo}}</i>&nbsp;
+                        <a ui-sref="session({id : session.idSession, format : session.format})" ng-if="!!session.format">
+                            {{session.title}}
+                        </a>
+                        <span ng-if="!session.format" translate="{{session.title}}"></span>&nbsp;
+                        <span class="cesar-badge" ng-if="session.lang">{{session.lang}}</span>
+                    </h3>
+                    <cesar-slot ng-if="!session.format" start="session.start" end="session.end"></cesar-slot>
+                    <cesar-slot ng-if="!!session.format" start="session.start" end="session.end" room="session.room"></cesar-slot>
+                    <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
+                    <span ng-repeat="speaker in session.speakers" class="cesar-session__speaker">
+                        <a class="cesar-speaker-session-mini-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                           rel="external" ui-sref="member({id : speaker.idMember, type : 'speaker'})">
+                            <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}">
+                        </a>
+                        <a ui-sref="member({id : speaker.idMember, type : 'speaker'})" rel="next">{{speaker.firstname}}
+                            {{speaker.lastname}}</a>&nbsp;
+                    </span>
+                    <p>&nbsp;</p>
+                    {{session.description}}
+                </div>
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone mdl-cell--3-col-tablet" style="display: flex;align-items: center;justify-content: center;">
+                    <svg style="float: right;width:220px; height:220px;">
+                        <path stroke="#000000" transform="scale(6.5)" ng-attr-d="{{session.qrCode}}">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-grid cesar-liste" ng-if="ctrl.shuffle.get().nbtotal === 0">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet">
+                No data found
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>&nbsp;</p>
+        <div class="cesar-text-center">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                    ng-if="ctrl.shuffle.displayMoreButton()" rel="prev"
+                    ng-click="ctrl.shuffle.more()"
+                    translate="view.talks.next">
+            </button>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+
+    <p>&nbsp;</p>
+</div>

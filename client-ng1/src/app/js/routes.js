@@ -46,8 +46,9 @@
       });
     }
 
-    function _getAllSessions(SessionService, year) {
-      return SessionService.getAllByYear(year).then(function (response) {
+    /* @ngInject */
+    function getAllSessionsWithQrCode($http) {
+      return $http.get('/api/session/qrcode').then(function (response) {
         return response.data;
       });
     }
@@ -328,6 +329,17 @@
           rooms : getRooms,
           transversalSlots : getOtherSlots,
           sessions : getAllSessions,
+          favorites : getMyFavorites
+        })
+        .build())
+
+      .state('timelineqr', new State(USER_ROLES, 'timelineqr?format&room&search&mode', 'js/planning/planning-qrcode.html')
+        .controller('PlanningCtrl')
+        .resolve({
+          account: getAccount,
+          rooms : getRooms,
+          transversalSlots : getOtherSlots,
+          sessions : getAllSessionsWithQrCode,
           favorites : getMyFavorites
         })
         .build())
