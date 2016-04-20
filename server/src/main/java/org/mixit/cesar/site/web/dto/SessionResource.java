@@ -34,6 +34,7 @@ public class SessionResource extends ResourceSupport {
     public String year;
     public String start;
     public String end;
+    public String qrCode;
     public List<MemberDto> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 
@@ -224,6 +225,15 @@ public class SessionResource extends ResourceSupport {
 
     public SessionResource addSpeaker(MemberDto memberDto){
         speakers.add(memberDto);
+        return this;
+    }
+
+    public String getQrCode() {
+        return qrCode;
+    }
+
+    public SessionResource setQrCode(String qrCode) {
+        this.qrCode = qrCode;
         return this;
     }
 
