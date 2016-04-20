@@ -31,7 +31,7 @@ public class CookieService {
 
         Cookie cookie = new Cookie(AuthenticationFilter.TOKEN_COOKIE_NAME, account.getToken());
         cookie.setPath("/");
-        cookie.setMaxAge((int) Duration.of(1, ChronoUnit.HOURS).getSeconds());
+        cookie.setMaxAge((int) Duration.of(48, ChronoUnit.HOURS).getSeconds());
         response.addCookie(cookie);
     }
 
@@ -41,7 +41,7 @@ public class CookieService {
     public void deleteCookieInResponse(HttpServletResponse response) {
         Cookie cookie = new Cookie(AuthenticationFilter.TOKEN_COOKIE_NAME, "");
         cookie.setPath("/");
-        cookie.setMaxAge((int) Duration.of(1, ChronoUnit.HOURS).getSeconds());
+        cookie.setMaxAge(0);
         response.addCookie(cookie);
     }
 
