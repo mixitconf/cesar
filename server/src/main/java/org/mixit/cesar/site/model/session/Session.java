@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -286,6 +287,17 @@ public abstract class Session<T extends Session> {
 
     public List<Vote> getVotes() {
         return votes;
+    }
+
+    public int getPositiveVotes() {
+        return votes.stream().collect(Collectors.summingInt(v -> Boolean.TRUE.equals(v.getValue()) ? 1 : 0));
+    }
+
+    public float getPositiveVotePercents() {
+        if (votes.isEmpty()) {
+            return 0;
+        }
+        return getPositiveVotes() / votes.size();
     }
 
     public T addVote(Vote vote) {

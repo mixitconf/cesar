@@ -1,0 +1,36 @@
+<div class="cesar-liste_container" ng-if="!!votes[typeSession]">
+    <div class="cesar-liste" ng-repeat="session in votes[typeSession] | limitTo: 5 track by $index"
+         >
+        <h3 class="mdl-card__title-text cesar-card__title-text">
+            <a ui-sref="session({id : session.idSession, format : session.format})">
+                {{$index + 1}}. {{session.title}}
+            </a>
+        </h3>
+        <p ng-bind-html="session.summary | markdown" style="margin: 4px 0 0 0;"></p>
+
+        <div class="cesar-ranking-chart"
+             ng-class="{'cesar-ranking-chart_100' : session.ratio === 100 && isDisplayByPercent}"
+        >
+            <div class="cesar-ranking-chart__data"
+                 ng-if="!isDisplayByPercent"
+                 ng-style="{'width' : computeRatioForPositiveVote(session, typeSession) + '%', 'min-width' : computeRatioForPositiveVote(session, typeSession) + '%'}">
+                {{session.positiveVotes}} positive votes
+            </div>
+            <div class="cesar-ranking-chart__data"
+                 ng-if="session.ratio !== 100 && isDisplayByPercent"
+                 ng-style="{'width' : session.ratio + '%', 'min-width' : session.ratio + '%'}">
+                {{session.positiveVotes}}/{{session.votes}}
+            </div>
+            <div class="cesar-ranking-chart__data"
+                 ng-if="session.ratio === 100 && isDisplayByPercent">
+                {{session.positiveVotes}}/{{session.votes}}
+            </div>
+        </div>
+
+    </div>
+</div>
+<div ng-if="!votes[typeSession]">
+    <div>
+        No data found
+    </div>
+</div>

@@ -298,6 +298,13 @@
         "welcome" : "Accueil et petit déjeuner"
       }
     },
+    "ranking": {
+      "title": "Classement live des sessions",
+      "description" : "Pendant la conférence vous pouvez laisser votre avis sur les sessions que vous avez vu. Cette page affiche les résultats",
+      "login"  : "Connectez-vous pour pouvoir voter",
+      "byvote" : "Par nb de votes positifs",
+      "bypercent" : "Par pourcentage de satisfaction"
+    },
     "talks": {
       "title": "Conférences et ateliers",
       "sponsor": "Sponsors",

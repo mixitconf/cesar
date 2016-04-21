@@ -51,12 +51,8 @@ public class SessionResource extends ResourceSupport {
 
         List<Vote> votes = session.getVotes();
         if (!votes.isEmpty()) {
-            votes.stream().forEach(v -> {
-                sessionResource.setVotes(sessionResource.getVotes() + 1);
-                if (Boolean.TRUE.equals(v.getValue())) {
-                    sessionResource.setPositiveVotes(sessionResource.getPositiveVotes() + 1);
-                }
-            });
+            sessionResource.setVotes(session.getVotes().size());
+            sessionResource.setPositiveVotes(session.getPositiveVotes());
         }
 
         Set<Interest> interests = session.getInterests();

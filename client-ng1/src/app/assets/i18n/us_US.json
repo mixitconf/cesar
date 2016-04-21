@@ -298,6 +298,13 @@
         "welcome" : "Welcome and "
       }
     },
+    "ranking": {
+      "title": "Live ranking of the sessions",
+      "description" : "During the conference you can let your advice on the sessions you seen. This page display the results",
+      "login"  : "Sign in to be able to vote",
+      "byvote" : "By positive votes",
+      "bypercent" : "By percentage of satisfaction "
+    },
     "talks": {
       "title": "Talks and workshops",
       "sponsor": "Sponsors",

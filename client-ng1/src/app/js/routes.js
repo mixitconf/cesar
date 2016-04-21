@@ -171,6 +171,13 @@
       });
     }
 
+    /* @ngInject */
+    function getSessionRanking($http) {
+      return $http.get('/api/ranking').then(function (response) {
+        return response.data;
+      });
+    }
+
     //Router definition
     $stateProvider
 
@@ -466,8 +473,12 @@
         .roles([USER_ROLES.admin])
         .build())
 
-      .state('rank', new State(USER_ROLES, 'rank', 'js/rank/rank.html')
-        .controller('RankCtrl')
+      .state('ranking', new State(USER_ROLES, 'ranking', 'js/ranking/ranking.html')
+        .controller('RankingCtrl')
+        .resolve({
+          sessions: getSessionRanking,
+          account: getAccount
+        })
         .build());
 
   });

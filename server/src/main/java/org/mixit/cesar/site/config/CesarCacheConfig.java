@@ -14,6 +14,7 @@ public class CesarCacheConfig {
     public static final String CACHE_MEMBER = "member";
     public static final String CACHE_SPONSOR = "sponsor";
     public static final String CACHE_SESSION = "session";
+    public static final String CACHE_RANKING = "ranking";
     public static final String CACHE_SPEAKER_LT = "speakerlt";
     public static final String CACHE_LIGHTNINGTALK = "lightningtalk";
     public static final String CACHE_ARTICLE = "article";
@@ -26,6 +27,7 @@ public class CesarCacheConfig {
                 CACHE_MEMBER,
                 CACHE_SPEAKER_LT,
                 CACHE_SESSION,
+                CACHE_RANKING,
                 CACHE_LIGHTNINGTALK,
                 CACHE_SPONSOR,
                 CACHE_ARTICLE,

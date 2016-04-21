@@ -88,7 +88,7 @@ public class SessionController {
 
         return getAllSessions(
                 sessionRepository
-                        .findAllAcceptedSessions(eventService.getEvent(year).getId())
+                        .findAllAcceptedSessions(eventService.getEvent(year))
                         .stream()
                         .filter(session -> filterSession(
                                 session,
@@ -103,7 +103,7 @@ public class SessionController {
     @RequestMapping
     @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year)));
     }
 
     @RequestMapping(value = "/keynote")
@@ -111,7 +111,7 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllKeynotes(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year)));
     }
 
     @RequestMapping(value = "/talk")
@@ -119,7 +119,7 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllTalks(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year)));
     }
 
     @RequestMapping(value = "/workshop")
@@ -127,7 +127,7 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllWorkshops(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year)));
     }
 
     @RequestMapping(value = "/lightningtalks")
@@ -135,7 +135,7 @@ public class SessionController {
     public ResponseEntity<List<SessionResource>> getAllLightningTalks(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
-        return getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year).getId()));
+        return getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year)));
     }
 
     @RequestMapping(value = "/interest/{name}")

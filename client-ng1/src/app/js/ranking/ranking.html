@@ -1,0 +1,79 @@
+<div class="cesar-container">
+
+    <h1 translate="view.ranking.title"></h1>
+    <p class="cesar-text" translate="view.ranking.description"></p>
+
+    <button ng-if="!ctrl.userConnected" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            ui-sref="authent"
+            translate="view.ranking.login"
+    >
+    </button>
+
+    <p>&nbsp;</p>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.talk">
+                <span class="mdl-checkbox__label">Talk</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.worshop">
+                <span class="mdl-checkbox__label">Workshop</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3"
+                   style="width: auto">
+                <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input"
+                       ng-model="ctrl.display.keynote">
+                <span class="mdl-checkbox__label">Keynote</span>
+
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--6-col-tablet cesar-text-center">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="typeByPercent">
+                <input type="radio" id="typeByPercent" class="mdl-radio__button" name="options" value="bypercent"
+                       ng-model="ctrl.display.type"
+                       ng-change="ctrl.changeType()">
+                <span class="mdl-radio__label" translate="view.ranking.bypercent"></span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="typeByVote">
+                <input type="radio" id="typeByVote" class="mdl-radio__button" name="options" value="byvote"
+                       ng-model="ctrl.display.type"
+                       ng-change="ctrl.changeType()">
+                <span class="mdl-radio__label" translate="view.ranking.byvote"></span>
+            </label>
+        </div>
+    </div>
+
+    <div ng-if="ctrl.display.talk">
+        <h2>Talk</h2>
+
+        <cesar-ranking-session votes="ctrl.votes"
+                               type-session="Talk"
+                               is-display-by-percent="ctrl.display.type === 'bypercent'"
+                               nb-positive-votes="ctrl.nbPositiveVotes">
+        </cesar-ranking-session>
+    </div>
+    <div ng-if="ctrl.display.worshop">
+        <h2>Workshop</h2>
+
+        <cesar-ranking-session votes="ctrl.votes"
+                               type-session="Workshop"
+                               is-display-by-percent="ctrl.display.type === 'bypercent'"
+                               nb-positive-votes="ctrl.nbPositiveVotes">
+        </cesar-ranking-session>
+    </div>
+    <div ng-if="ctrl.display.keynote">
+        <h2>Keynote</h2>
+
+        <cesar-ranking-session votes="ctrl.votes"
+                               type-session="Keynote"
+                               is-display-by-percent="ctrl.display.type === 'bypercent'"
+                               nb-positive-votes="ctrl.nbPositiveVotes">
+        </cesar-ranking-session>
+    </div>
+    <p>&nbsp;</p>
+</div>

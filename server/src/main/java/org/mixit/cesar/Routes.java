@@ -53,6 +53,7 @@ public class Routes {
             "/passwordreinit",
             "/planning",
             "/profile/{login:\\w+}",
+            "/ranking",
             "/session/{id:\\w+}",
             "/session/{id:\\w+}/{title:[A-Za-z0-9_\\-.]+}",
             "/sessions",
