@@ -17,7 +17,7 @@
                 <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp"
                      ng-repeat="speaker in speakers">
                     <div class="mdl-card__media">
-                        <img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}?s=160" style="width: 100%">
+                        <a ui-sref="member({id : speaker.id})"><img ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}?s=160" style="width: 100%"></a>
                     </div>
                     <div class="mdl-card__title">
                         <p class="mdl-card__title-text cesar-text">{{speaker.name}}</p>
