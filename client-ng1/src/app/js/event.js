@@ -6,7 +6,7 @@
   /**
    * Event handlers for errors (internal, security...)
    */
-  angular.module('cesar').run(function ($rootScope, $state, $location, $timeout, $document, AuthenticationService, cesarSpinnerService, $translate) {
+  angular.module('cesar').run(function ($window, $rootScope, $state, $location, $timeout, $document, AuthenticationService, cesarSpinnerService, $translate) {
     'ngInject';
 
     $rootScope.lang = $translate.preferredLanguage().slice(0,2);
@@ -34,6 +34,9 @@
     });
     $rootScope.$on('$stateChangeSuccess', function () {
       cesarSpinnerService.stopWaiting();
+      if($window.ga){
+        $window.ga('send', 'pageview', { page: $location.path() });
+      }
     });
     //Refresh material design lite
     $rootScope.$on('$viewContentLoaded', function () {
