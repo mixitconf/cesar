@@ -119,7 +119,7 @@
         </div>
         <p>&nbsp;</p>
 
-        <p class="cesar-text">{{ctrl.proposal.summary}}</span></p>
+        <p class="cesar-text" ng-bind-html="ctrl.proposal.summary | markdown"></p>
 
         <p ng-bind-html="ctrl.proposal.description | markdown"></p>
 
