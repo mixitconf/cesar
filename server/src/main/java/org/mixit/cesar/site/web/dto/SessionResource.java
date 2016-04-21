@@ -38,6 +38,19 @@ public class SessionResource extends ResourceSupport {
     public List<String> interests = new ArrayList<>();
 
     public static <T extends Session<T>> SessionResource convert(T session) {
+        SessionResource sessionResource = convertWithoutLink(session);
+
+        sessionResource.add(ControllerLinkBuilder.linkTo(SessionController.class).slash(session.getId()).withSelfRel());
+        session.getSpeakers()
+                .stream()
+                .forEach(s -> {
+                    sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker"));
+                    sessionResource.addSpeaker(MemberDto.convert(s));
+                });
+        return sessionResource;
+    }
+
+    public static <T extends Session<T>> SessionResource convertWithoutLink(T session) {
         SessionResource sessionResource = new SessionResource()
                 .setIdSession(session.getId())
                 .setDescription(session.getDescription())
@@ -51,7 +64,7 @@ public class SessionResource extends ResourceSupport {
 
         List<Vote> votes = session.getVotes();
         if (!votes.isEmpty()) {
-            sessionResource.setVotes(session.getVotes().size());
+            sessionResource.setVotes(((Long)session.getVotes().stream().distinct().count()).intValue());
             sessionResource.setPositiveVotes(session.getPositiveVotes());
         }
 
@@ -70,13 +83,6 @@ public class SessionResource extends ResourceSupport {
                     .setEnd(session.getSlot().getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
         }
 
-        sessionResource.add(ControllerLinkBuilder.linkTo(SessionController.class).slash(session.getId()).withSelfRel());
-        session.getSpeakers()
-                .stream()
-                .forEach(s -> {
-                    sessionResource.add(ControllerLinkBuilder.linkTo(MemberController.class).slash(s.getId()).withRel("speaker"));
-                    sessionResource.addSpeaker(MemberDto.convert(s));
-                });
         return sessionResource;
     }
 

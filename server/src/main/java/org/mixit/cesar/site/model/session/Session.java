@@ -290,7 +290,7 @@ public abstract class Session<T extends Session> {
     }
 
     public int getPositiveVotes() {
-        return votes.stream().collect(Collectors.summingInt(v -> Boolean.TRUE.equals(v.getValue()) ? 1 : 0));
+        return votes.stream().distinct().collect(Collectors.summingInt(v -> Boolean.TRUE.equals(v.getValue()) ? 1 : 0));
     }
 
     public float getPositiveVotePercents() {
