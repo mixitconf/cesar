@@ -285,6 +285,13 @@
     },
     "planning": {
       "title": "Planning",
+      "displayMode" : {
+        "title": "Mode d'affichage",
+        "timeline": "Time line",
+        "en": "Les sessions en anglais",
+        "all": "Toutes les sessions"
+      },
+      "timeline" : "En mode d'affichage timeline, les sessions terminées sont filtrées",
       "moment" : {
         "close" : "Cloture des organisateurs",
         "ligthning" : "Ligthning Talks",

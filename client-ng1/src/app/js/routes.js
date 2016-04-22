@@ -290,7 +290,7 @@
         })
         .build())
 
-      .state('planning', new State(USER_ROLES, 'planning?format&room&search', 'js/planning/planning.html')
+      .state('planning', new State(USER_ROLES, 'planning?format&room&search&mode', 'js/planning/planning.html')
         .controller('PlanningCtrl')
         .resolve({
           rooms : getRooms,

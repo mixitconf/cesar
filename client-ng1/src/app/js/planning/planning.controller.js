@@ -1,6 +1,7 @@
 (function () {
 
   'use strict';
+  /*global moment */
 
   angular.module('cesar-planning').controller('PlanningCtrl', function ($filter, $state, $stateParams, rooms, sessions, transversalSlots, shuffleService) {
     'ngInject';
@@ -9,6 +10,7 @@
 
     ctrl.slot = {};
     ctrl.slot.format = $stateParams.format ? $stateParams.format : undefined;
+    ctrl.slot.displayMode = $stateParams.mode ? $stateParams.mode : 'timeline';
     ctrl.rooms = rooms;
 
     if($stateParams.room){
@@ -52,8 +54,19 @@
         params.format = ctrl.slot.format;
         sess = $filter('filter')(sess, ctrl.slot.format);
       }
+      params.mode = ctrl.slot.displayMode;
       ctrl.shuffle.set(sess);
       $state.go('planning', params, {reloadOnSearch:false, notify:false});
+    };
+
+    ctrl.displayElement = function(session, index){
+      if(ctrl.slot.displayMode === 'timeline'){
+        return moment(session.end).isAfter(moment()) && ctrl.shuffle.displayItem(index);
+      }
+      if(ctrl.slot.displayMode === 'en'){
+        return session.lang === 'en' && ctrl.shuffle.displayItem(index);
+      }
+      return ctrl.shuffle.displayItem(index);
     };
 
     ctrl.updateData();

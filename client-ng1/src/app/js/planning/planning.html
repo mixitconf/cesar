@@ -30,10 +30,20 @@
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
-
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield__label cesar-textfield__radio-label" style="color: white;"
+                       for="diplayMode" translate="view.planning.displayMode.title"></label>
+                <select ng-model="ctrl.slot.displayMode" id="diplayMode"
+                        class="mdl-textfield--expandable cesar-textfield--expandable"
+                        ng-change="ctrl.updateData()">
+                    <option value="timeline" translate="view.planning.displayMode.timeline"></option>
+                    <option value="all" translate="view.planning.displayMode.all"></option>
+                    <option value="en" translate="view.planning.displayMode.en">Random</option>
+                </select>
+            </div>
         </div>
     </div>
-
+    <div translate="view.planning.timeline" ng-if="ctrl.slot.displayMode === 'timeline'"></div>
     <cesar-search-bar search="ctrl.search">
         <div class="hide-on-mobile">
             <i class="material-icons">local_library</i>&nbsp;<span>Talk</span>
@@ -46,7 +56,7 @@
     {{ctrl.shuffle.elements(result.length)}}
     <div class="cesar-liste_container mdl-shadow--2dp cesar-session__container">
         <div class="cesar-liste" ng-repeat="session in ctrl.shuffle.filter(ctrl.search) as result track by $index"
-             ng-class="{'cesar-planning__slot-Annexe': !session.format}" ng-if="ctrl.shuffle.displayItem($index)">
+             ng-class="{'cesar-planning__slot-Annexe': !session.format}" ng-if="ctrl.displayElement(session, $index)">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone mdl-cell--10-col-tablet">
                     <h3 class="mdl-card__title-text cesar-card__title-text">
