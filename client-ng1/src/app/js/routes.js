@@ -531,7 +531,7 @@
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').
         build())
 
-      .state('conduite', new State(USER_ROLES, 'conduite', 'js/conduite/conduite.html')
+      .state('codeofconduct', new State(USER_ROLES, 'codeofconduct', 'js/codeofconduct/codeofconduct.html')
         .build())
 
       .state('faq', new State(USER_ROLES, 'faq', 'js/faq/faq.html')
