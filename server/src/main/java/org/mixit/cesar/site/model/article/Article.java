@@ -1,5 +1,16 @@
 package org.mixit.cesar.site.model.article;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonView;
 import com.rometools.rome.feed.synd.SyndContent;
 import com.rometools.rome.feed.synd.SyndContentImpl;
@@ -10,13 +21,6 @@ import org.mixit.cesar.site.model.FlatView;
 import org.mixit.cesar.site.model.member.Staff;
 import org.mixit.cesar.site.model.session.SessionLanguage;
 import org.mixit.cesar.site.web.api.ArticleController;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An article, i.e. a blog post
@@ -35,7 +39,7 @@ public class Article {
 
     @Column
     @JsonView(FlatView.class)
-    @Type(type="org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     public LocalDateTime postedAt = LocalDateTime.now();
 
     @Size(max = 100)
@@ -79,14 +83,6 @@ public class Article {
      */
     @JsonView(FlatView.class)
     public boolean valid;
-
-    /**
-     * Eventual comments
-     */
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    @OrderBy("postedAt ASC")
-    @JsonView(FlatView.class)
-    List<ArticleComment> comments = new ArrayList<>();
 
     /**
      * Number of consultation
@@ -186,15 +182,6 @@ public class Article {
         return this;
     }
 
-    public List<ArticleComment> getComments() {
-        return comments;
-    }
-
-    public Article setComments(List<ArticleComment> comments) {
-        this.comments = comments;
-        return this;
-    }
-
     public long getNbConsults() {
         return nbConsults;
     }
@@ -222,7 +209,8 @@ public class Article {
     private String getHeadline(SessionLanguage language) {
         if (language == SessionLanguage.en) {
             return getHeadline();
-        } else {
+        }
+        else {
             return getResume();
         }
     }
@@ -230,7 +218,8 @@ public class Article {
     private String getTitle(SessionLanguage language) {
         if (language == SessionLanguage.en) {
             return getTitle();
-        } else {
+        }
+        else {
             return getTitre();
         }
     }

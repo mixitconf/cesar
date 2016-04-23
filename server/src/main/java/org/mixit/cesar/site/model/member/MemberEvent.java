@@ -15,7 +15,7 @@ import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.event.Event;
 
 /**
- * A comment on e session talk.
+ * Link between an event and a member (like a speaker or a sponsor)
  */
 @Entity
 public class MemberEvent {
