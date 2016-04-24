@@ -45,7 +45,7 @@
     $http.get('/api/cesar').then(function(response){
       $rootScope.cesar = response.data;
       var mixitStart = moment($rootScope.cesar.day1).hours('0');
-      var mixitEnd = moment($rootScope.cesar.day2).hours('20');
+      var mixitEnd = moment($rootScope.cesar.day2).add(30, 'days').hours('20');
 
       $rootScope.cesar.voteIsOpen = moment().isAfter(mixitStart) && moment().isBefore(mixitEnd) && $rootScope.cesar.current==='2016';
     });
