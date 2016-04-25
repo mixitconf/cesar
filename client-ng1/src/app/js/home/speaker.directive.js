@@ -8,7 +8,7 @@
     return {
       templateUrl: 'js/home/speaker.directive.html',
       scope: {},
-      controller: function($scope){
+      controller: function ($scope) {
         $scope.speakers = [{
           id: 2841,
           name: 'Dan North',
@@ -18,9 +18,9 @@
           name: 'Pamela Fox',
           hash: '92dfeb863138a5a9c0453ed80f9c8c75'
         }, {
-          id: 3421,
-          name: 'Paul Bakaus',
-          hash: '9fb120a88c85d93be416ed62b8ab5e16'
+          id: 1005,
+          name: 'Matti Schneider',
+          hash: '3a06762591a19586422a38e508057850'
         }, {
           id: 274,
           name: 'Bodil Stokke',
@@ -38,13 +38,13 @@
           name: 'Dan Allen',
           hash: 'dcccd96c499963133f7f95e7ffa20c4e'
         }, {
-          id: 3721,
-          name: 'Stéphane Bortzmeyer',
-          hash: '2b9a6d8db89e80ea3028e179407b4990'
+          id: 7962,
+          name: 'Tim Urban',
+          image: 'img/speakers/urban.jpg'
         }, {
-          id: 1005,
-          name: 'Matti Schneider',
-          hash: '3a06762591a19586422a38e508057850'
+          id: 5872,
+          name: 'Katrina Owen',
+          hash: '51ee7bed9ecbc33aec92517f1fbb6cc2'
         }, {
           id: 175,
           name: 'Alexandre Boutin',

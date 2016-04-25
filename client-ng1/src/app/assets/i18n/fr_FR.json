@@ -60,7 +60,7 @@
       "hours" : "H-{{hours}} avant Mix-IT!",
       "minutes" : "M-{{minutes}} avant Mix-IT!",
       "welcome" : "Bienvenue à Mix-IT",
-      "bye" : "Mix-IT est maintenant terminé. Rendez vous l'année prochaine...",
+      "bye" : "Mix-IT  est maintenant terminé. Rendez vous l'année prochaine pour de nouvelles aventures !",
       "p1":"Cette année encore, malgré les <a href=\"/article/202\">actions</a> que nous avons tentées pour mieux répartir les ventes, vous êtes nombreux à ne pas avoir de place. Sachez que nous sommes sincèrement désolés et que nous allons tout faire pour améliorer la situation l'année prochaine. Pour celà nous avons besoin d'estimer le nombre de personnes qui n'ont pas pu avoir de place. Pouvez-vous si vous êtes dans ce cas, remplir le formulaire accessible via le bouton ci-dessous ?",
       "p2":"En ajoutant vos coordonnées dans ce formulaire, vous vous ajoutez automatiquement à la liste d'attente si des personnes se désistent. Si vous avez eu votre place rendez vous le 21 avril et en attendant n'hésitez pas à consulter les <a href=\"/sessions\">sessions</a> de l'édition 2016. Le planning final sera très bientôt publié. ",
       "p3":"L’ouverture de la billetterie se fera en ligne, en répartissant les ventes des 500 places entre le dimanche 20 mars à 19h, lundi 21 mars à 15h et mardi 22 mars à 21h. Vous trouverez le lien vers le système de réservation sur notre site web.",
@@ -92,13 +92,11 @@
       "p2": "Si vous avez manqué l'édition précédente voici un petit aperçu&nbsp;"
     },
     "speaker": {
-      "title": "En attendant plus d'informations sur les speakers 2016 voici un panel de ceux que nous avons pu voir lors des précédentes éditions&nbsp;:",
-      "top": "Cette année nous sommes très fiers d'accueillir&nbsp;",
-      "first": "Le premier speaker agile annoncé est ",
-      "next": "D'autres annonces suivront bientôt."
+      "title": "Voici un panel des speakers que nous avons pu voir lors des précédentes éditions&nbsp;:",
+      "top": "Cette année nous étions très fiers d'accueillir&nbsp;"
     },
     "sponsor": {
-      "title": "Devenez sponsor de l'édition 2016",
+      "title": "Sponsors de l'édition 2016",
       "annonce": "Profitez de cet évenement pour mettre en avant votre société. Nous proposons différents niveaux de partenariats qui sont détaillés dans",
       "annonceend": "notre plaquette.",
       "return": "Retournez nous le",

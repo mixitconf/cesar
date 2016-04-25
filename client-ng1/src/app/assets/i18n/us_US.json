@@ -60,7 +60,7 @@
       "hours" : "H-{{hours}} until Mix-IT!",
       "minutes" : "M-{{minutes}} until Mix-IT!",
       "welcome" : "Welcome to Mix-IT",
-      "bye" : "Mix-IT is closed. See you next year...",
+      "bye" : "Mix-IT is finished. See you next year !",
       "p1":"You can now discover our Mix-IT 2016 <a href=\"/sessions\">sessions</a> and take your ticket. This year, we'll open the ticketing in three times. The selling of 600 places will be dispatched between <b>sunday March 20th<b> at 7pm, <b>monday March 21st</b> at 3pm and <b>tuesday March 22nd</b> at 9pm. ",
       "p2":"This year, in order to avoid that all places disappear in two hour like in 2015, we have raised the number by 100 and you will have to buy your ticket only one at a time. You will find more details <a href=\"/article/202\">here</a>.",
       "p3":"The opening of the ticketing will be done online, we plan the selling of the 600 places between sunday March 20th at 7pm, monday March 21st at 3pm and tuesday March at 9pm. You will find the link to our reservation service on our website.",
@@ -92,13 +92,11 @@
       "p2": "If you missed the previous editions, here is a quick overview:"
     },
     "speaker": {
-      "title": "2016 speakers aren't known yet, but here is a focus of some we have seen during the previous editions:",
-      "top": "We are very proud to welcome&nbsp;",
-      "first": "The first announced agile speaker is ",
-      "next": "More announcements will follow in the very near future."
+      "title": "There is a focus of speakers we have seen during the previous editions:",
+      "top": "We were very proud to welcome&nbsp;"
     },
     "sponsor": {
-      "title": "Became sponsor of the 2016 edition",
+      "title": "Sponsors of the 2016 edition",
       "annonce": "Take the opportunity of this event to promote you company. We offer different partnership levels detailed in the",
       "annonceend": "following leaflet.",
       "return":"Please fill and send back to us this",
