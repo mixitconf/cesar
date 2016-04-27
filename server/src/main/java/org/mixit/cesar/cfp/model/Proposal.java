@@ -128,6 +128,10 @@ public class Proposal {
     @JsonView(FlatView.class)
     private boolean valid;
 
+    @Size(max = 255)
+    @JsonView(FlatView.class)
+    private String link;
+
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private List<ProposalVote> votes = new ArrayList<>();
 
@@ -355,6 +359,15 @@ public class Proposal {
 
     public Proposal setSession(Session session) {
         this.session = session;
+        return this;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public Proposal setLink(String link) {
+        this.link = link;
         return this;
     }
 

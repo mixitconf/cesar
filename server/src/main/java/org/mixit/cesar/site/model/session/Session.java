@@ -122,6 +122,10 @@ public abstract class Session<T extends Session> {
     /* true if Staff has given feedback */
     private boolean feedback;
 
+    @Size(max = 255)
+    @JsonView(FlatView.class)
+    private String link;
+
     public Long getId() {
         return id;
     }
@@ -357,6 +361,15 @@ public abstract class Session<T extends Session> {
 
     public T setSlot(Slot slot) {
         this.slot = slot;
+        return (T) this;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public T setLink(String link) {
+        this.link = link;
         return (T) this;
     }
 

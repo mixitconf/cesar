@@ -110,6 +110,7 @@ public class ProposalService {
                     .setFormat(proposal.getFormat())
                     .setTitle(proposal.getTitle())
                     .setSummary(proposal.getSummary())
+                    .setLink(proposal.getLink())
                     .setLevel(proposal.getLevel())
                     .setIdeaForNow(proposal.getIdeaForNow())
                     .setMessageForStaff(proposal.getMessageForStaff());
@@ -121,6 +122,7 @@ public class ProposalService {
                 .setFormat(proposal.getFormat())
                 .setTitle(proposal.getTitle())
                 .setSummary(proposal.getSummary())
+                .setLink(proposal.getLink())
                 .setLevel(proposal.getLevel())
                 .setFormat(proposal.getFormat())
                 .setIdeaForNow(proposal.getIdeaForNow())

@@ -83,7 +83,7 @@
 
 
             <div class="mdl-textfield mdl-js-textfield">
-                <p class="cesar-helper" translate="view.cfp.talk.language.help"></></p>
+                <p class="cesar-helper" translate="view.cfp.talk.language.help"></p>
                 <label class="mdl-textfield__label cesar-textfield__radio-label"
                        translate="view.cfp.talk.language.text">Language</label>
 
@@ -166,6 +166,18 @@
                         ng-blur="help.maxAttendees=false;ctrl.check(spinner)">
                     <option value=""></option>
                 </select>
+            </div>
+
+            <p class="cesar-helper" ng-if="help.link" translate="view.cfp.talk.link.help"></p>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="link" name="link"
+                       ng-maxlength="255"
+                       ng-model="ctrl.proposal.link"
+                       ng-focus="help.link=true"
+                       ng-blur="help.link=false;"
+                />
+                <label class="mdl-textfield__label" for="link" translate="view.cfp.talk.link.text"></label>
+                <cesar-nb-carac nbcarac="255" text="ctrl.proposal.link" field="frm.link"></cesar-nb-carac>
             </div>
 
             <p>&nbsp;</p>

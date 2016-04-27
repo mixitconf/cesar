@@ -20,6 +20,7 @@ public class ProposalDTO {
     private String level;
     private List<SpeakerDTO> speakers;
     private String lang;
+    private String link;
     private String status;
     private List<ProposalVoteDTO> votes;
 
@@ -31,6 +32,7 @@ public class ProposalDTO {
                 .setFormat(proposal.getFormat() != null ? proposal.getFormat().toString() : "Inconnu")
                 .setLang(proposal.getLang() != null ? proposal.getLang().toString() : "fr")
                 .setLevel(proposal.getLevel() != null ? proposal.getLevel().toString() : "Inconnu")
+                .setLink(proposal.getLink())
                 .setSpeakers(proposal
                         .getSpeakers()
                         .stream()
@@ -75,6 +77,11 @@ public class ProposalDTO {
 
     public ProposalDTO setLevel(String level) {
         this.level = level;
+        return this;
+    }
+
+    public ProposalDTO setLink(String link) {
+        this.link = link;
         return this;
     }
 

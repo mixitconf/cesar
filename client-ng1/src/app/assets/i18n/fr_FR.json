@@ -321,6 +321,7 @@
     },
     "talks": {
       "title": "Conférences et ateliers",
+      "link": "Slide ou repository des sources",
       "sponsor": "Sponsors",
       "room": "Salle",
       "ideaForNow": "Idée pour tout de suite",
@@ -502,6 +503,10 @@
         "language" : {
           "text" : "Language",
           "help": "Mix-IT est une conférence qui accueille des speakers étrangers. Une track sera dédiée à nos amis anglophones qui ne comprennent pas le français. Si vous pouvez faire le talk en anglais ou en français merci de nous l'indiquer dans la zone message pour le staff"
+        },
+        "link" : {
+          "text" : "Lien vers vos ressources",
+          "help": "Vous pouvez spécifier un lien vers un répertoire Github ou vers votre présentation en ligne"
         },
         "levels":{
           "text" : "Niveau",

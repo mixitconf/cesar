@@ -35,6 +35,7 @@ public class SessionResource extends ResourceSupport {
     public String start;
     public String end;
     public String qrCode;
+    public String link;
     public List<MemberDto> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 
@@ -58,6 +59,7 @@ public class SessionResource extends ResourceSupport {
                 .setFormat(session.getFormat().toString())
                 .setIdeaForNow(session.getIdeaForNow())
                 .setLang(session.getLang().toString())
+                .setLink(session.getLink())
                 .setSummary(session.getSummary())
                 .setTitle(session.getTitle())
                 .setYear(String.valueOf(session.getEvent()!=null ? session.getEvent().getYear() : ""))
@@ -234,6 +236,15 @@ public class SessionResource extends ResourceSupport {
 
     public SessionResource setQrCode(String qrCode) {
         this.qrCode = qrCode;
+        return this;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public SessionResource setLink(String link) {
+        this.link = link;
         return this;
     }
 

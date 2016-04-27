@@ -321,6 +321,7 @@
     },
     "talks": {
       "title": "Talks and workshops",
+      "link": "Slide or source repository",
       "sponsor": "Sponsors",
       "room": "Room",
       "ideaForNow": "Idea for now",
@@ -502,6 +503,10 @@
         "language" : {
           "text" : "Language",
           "help": "Mix-IT welcomes international speakers, the staff always tries to have at least a track in English so they can fully participate to the conference."
+        },
+        "link" : {
+          "text" : "Link to your resources",
+          "help": "You can add a link to your Github repository or the link to your slides"
         },
         "levels":{
           "text" : "Talk Level",
