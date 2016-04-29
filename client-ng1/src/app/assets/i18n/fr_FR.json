@@ -91,6 +91,11 @@
       "p1": "Nous faisons des métiers passionnants et d'une richesse incroyable. Nous sommes les acteurs du Web et des logiciels d'aujourd'hui et de demain qui apportons des idées, les réalisons, et les mettons en production. Venez chercher l'inspiration, les bonnes pratiques, et les nouveaux outils&nbsp;: vous les trouverez à Mix-IT&nbsp;! Mais surtout venez rencontrer et échanger avec d'autres passionnés.",
       "p2": "Si vous avez manqué l'édition précédente voici un petit aperçu&nbsp;"
     },
+    "future": {
+      "btn" : "Donner votre feedback",
+      "description":"Nous espérons que cette édition vous aura apporté autant de plaisir à suivre que nous à la préparer. L'édition 2016 est à peine terminée que des idées germent dans nos têtes pour 2017... Mais Mix-IT est aussi votre événement et vos retours sont importants pour savoir si les nouveautés vous ont plu ou non. Si vous avez des envies pour l'année prochaine, si vous voulez revenir....",
+      "question": "<p>Pouvez-vous prendre 5 minutes pour remplir ce formulaire? Si vous préférez nous contacter par mail vous pouvez aussi nous envoyer vos retours à contact@mix-it.fr.</p><p>Si Mix-IT doit continuer à être <b>la conférence avec des crêpes et du cœur</b> (ce qui avait plu à Laura Savino, une oratrice américaine de cette année), on veut bien s’occuper des crêpes, mais on compte sur vous pour en être une partie du cœur !</p>"
+    },
     "speaker": {
       "title": "Voici un panel des speakers que nous avons pu voir lors des précédentes éditions&nbsp;:",
       "top": "Cette année nous étions très fiers d'accueillir&nbsp;"
