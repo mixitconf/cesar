@@ -7,15 +7,13 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.planning.Room;
 import org.mixit.cesar.site.model.planning.Slot;
 import org.mixit.cesar.site.model.session.Format;
-import org.mixit.cesar.site.model.session.Talk;
-import org.mixit.cesar.site.model.session.Workshop;
+import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.SlotRepository;
 import org.mixit.cesar.site.web.dto.SlotDto;
@@ -48,30 +46,30 @@ public class SlotServiceTest {
     private Event event = new Event().setId(2L);
 
     @Test(expected = SlotOverlapException.class)
-    public void should_throw_exception_when_slots_overlap_with_start_date(){
+    public void should_throw_exception_when_slots_overlap_with_start_date() {
         SlotDto slotDto = new SlotDto()
                 .setId(null)
                 .setRoom(Room.Amphi1)
                 .setStart("2016-04-21 10:30:00")
                 .setIdSession(1L);
 
-        when(sessionRepository.findOne(1L)).thenReturn(new Talk().setFormat(Format.Talk));
+        when(sessionRepository.findOne(1L)).thenReturn(Session.createTalk().setFormat(Format.Talk));
         when(eventService.getEvent(2016)).thenReturn(event);
         when(slotRepository.findAllSlotsByRoom(event.getId(), Room.Amphi1)).thenReturn(
                 Arrays.asList(
-                    new Slot()
-                            .setId(1L)
-                            .setRoom(Room.Amphi1)
-                            .setStart(LocalDateTime.of(2016, 4, 21, 9, 30))
-                            .setEnd(LocalDateTime.of(2016, 4, 21, 10, 45)
-                )
-        ));
+                        new Slot()
+                                .setId(1L)
+                                .setRoom(Room.Amphi1)
+                                .setStart(LocalDateTime.of(2016, 4, 21, 9, 30))
+                                .setEnd(LocalDateTime.of(2016, 4, 21, 10, 45)
+                                )
+                ));
 
         slotService.save(slotDto);
     }
 
     @Test(expected = SlotOverlapException.class)
-    public void should_throw_exception_when_slots_overlap_with_end_date(){
+    public void should_throw_exception_when_slots_overlap_with_end_date() {
         SlotDto slotDto = new SlotDto()
                 .setId(1L)
                 .setRoom(Room.Amphi1)
@@ -80,7 +78,7 @@ public class SlotServiceTest {
 
         //This a talk so endTime will be 11:20
         when(slotRepository.findOne(1L)).thenReturn(slotDto.convert());
-        when(sessionRepository.findOne(1L)).thenReturn(new Talk().setFormat(Format.Talk));
+        when(sessionRepository.findOne(1L)).thenReturn(Session.createTalk().setFormat(Format.Talk));
         when(eventService.getEvent(2016)).thenReturn(event);
         when(slotRepository.findAllSlotsByRoom(event.getId(), Room.Amphi1)).thenReturn(
                 Arrays.asList(
@@ -96,7 +94,7 @@ public class SlotServiceTest {
     }
 
     @Test(expected = SlotOverlapException.class)
-    public void should_throw_exception_when_slots_overlap(){
+    public void should_throw_exception_when_slots_overlap() {
         SlotDto slotDto = new SlotDto()
                 .setId(1L)
                 .setRoom(Room.Amphi1)
@@ -105,7 +103,7 @@ public class SlotServiceTest {
 
         //This a talk so endTime will be 11:20
         when(slotRepository.findOne(1L)).thenReturn(slotDto.convert());
-        when(sessionRepository.findOne(1L)).thenReturn(new Workshop().setFormat(Format.Workshop));
+        when(sessionRepository.findOne(1L)).thenReturn(Session.createWorkshop().setFormat(Format.Workshop));
         when(eventService.getEvent(2016)).thenReturn(event);
         when(slotRepository.findAllSlotsByRoom(event.getId(), Room.Amphi1)).thenReturn(
                 Arrays.asList(
@@ -121,7 +119,7 @@ public class SlotServiceTest {
     }
 
     @Test
-    public void should_save_when_overlapped_slot_is_itself(){
+    public void should_save_when_overlapped_slot_is_itself() {
         SlotDto slotDto = new SlotDto()
                 .setId(1L)
                 .setRoom(Room.Amphi1)
@@ -130,7 +128,7 @@ public class SlotServiceTest {
 
         //This a talk so endTime will be 11:20
         when(slotRepository.findOne(1L)).thenReturn(slotDto.convert());
-        when(sessionRepository.findOne(1L)).thenReturn(new Talk().setFormat(Format.Talk));
+        when(sessionRepository.findOne(1L)).thenReturn(Session.createTalk().setFormat(Format.Talk));
         when(eventService.getEvent(2016)).thenReturn(event);
         when(slotRepository.findAllSlotsByRoom(event.getId(), Room.Amphi1)).thenReturn(
                 Arrays.asList(
@@ -146,7 +144,7 @@ public class SlotServiceTest {
     }
 
     @Test
-    public void should_save_when_start_date_just_after_slot(){
+    public void should_save_when_start_date_just_after_slot() {
         SlotDto slotDto = new SlotDto()
                 .setRoom(Room.Amphi1)
                 .setLabel("test")
@@ -168,7 +166,7 @@ public class SlotServiceTest {
     }
 
     @Test
-    public void should_save_when_end_date_justbefore_slot(){
+    public void should_save_when_end_date_justbefore_slot() {
         SlotDto slotDto = new SlotDto()
                 .setRoom(Room.Amphi1)
                 .setLabel("test")

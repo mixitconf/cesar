@@ -20,6 +20,7 @@ import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.service.EventService;
+import org.mixit.cesar.site.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,9 @@ public class ProposalController {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private SessionService sessionService;
 
     @RequestMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -177,10 +181,12 @@ public class ProposalController {
         proposal.setStatus(state);
 
         if(state == ProposalStatus.REJECTED && proposal.getSession()!=null){
-            proposal.getSession().setSessionAccepted(false);
+            Long idSession = proposal.getSession().getId();
+            proposal.setSession(null);
+            sessionService.deleteSession(idSession);
         }
-        else if (state == ProposalStatus.ACCEPTED && proposal.getSession()!=null){
-            proposal.getSession().setSessionAccepted(true);
+        else if (state == ProposalStatus.ACCEPTED){
+            proposal.setSession(sessionService.createSession(proposal.toSession(proposal.getSession())));
         }
     }
 }

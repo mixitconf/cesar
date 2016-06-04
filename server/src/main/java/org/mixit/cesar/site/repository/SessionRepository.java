@@ -30,21 +30,21 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Session> findAllAcceptedSessions(@Param("event") Event event);
 
     @Cacheable(CACHE_SESSION)
-    @Query(value = "SELECT DISTINCT s FROM Keynote s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true")
-    List<Keynote> findAllAcceptedKeynotes(@Param("event") Event event);
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true and s.format = 'Keynote'")
+    List<Session> findAllAcceptedKeynotes(@Param("event") Event event);
 
     @Cacheable(CACHE_SESSION)
-    @Query(value = "SELECT DISTINCT s FROM Talk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true")
-    List<Talk> findAllAcceptedTalks(@Param("event") Event event);
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true and s.format = 'Talk'")
+    List<Session> findAllAcceptedTalks(@Param("event") Event event);
 
     @Cacheable(CACHE_SESSION)
-    @Query(value = "SELECT DISTINCT s FROM Workshop s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true")
-    List<Workshop> findAllAcceptedWorkshops(@Param("event") Event event);
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes left join fetch s.slot where s.event = :event and s.valid = true and s.sessionAccepted = true and s.format = 'Workshop'")
+    List<Session> findAllAcceptedWorkshops(@Param("event") Event event);
 
     @Cacheable(CACHE_LIGHTNINGTALK)
-    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event = :event and s.valid = true")
-    List<LightningTalk> findAllLightningTalks(@Param("event") Event event);
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event = :event and s.valid = true and s.format = 'LightningTalk'")
+    List<Session> findAllLightningTalks(@Param("event") Event event);
 
-    @Query(value = "SELECT DISTINCT s FROM LightningTalk s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event = :event and s.valid = true and sp.id = :idSpeaker")
-    List<LightningTalk> findAllMyLightningTalks(@Param("event") Event event, @Param("idSpeaker") Long idSpeaker);
+    @Query(value = "SELECT DISTINCT s FROM Session s left join fetch s.interests i left join fetch s.speakers sp left join fetch s.votes where s.event = :event and s.valid = true and sp.id = :idSpeaker and s.format = 'LightningTalk'")
+    List<Session> findAllMyLightningTalks(@Param("event") Event event, @Param("idSpeaker") Long idSpeaker);
 }

@@ -36,8 +36,7 @@ import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.planning.Slot;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Session<T extends Session> {
+public class Session {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -126,112 +125,132 @@ public abstract class Session<T extends Session> {
     @JsonView(FlatView.class)
     private String link;
 
+    public static Session createKeynote(){
+        return new Session().setFormat(Format.Keynote);
+    }
+
+    public static Session createWorkshop(){
+        return new Session().setFormat(Format.Workshop);
+    }
+
+    public static Session createRandom(){
+        return new Session().setFormat(Format.Random);
+    }
+
+    public static Session createLightningTalk(){
+        return new Session().setFormat(Format.LightningTalk);
+    }
+
+    public static Session createTalk(){
+        return new Session().setFormat(Format.Talk);
+    }
+
     public Long getId() {
         return id;
     }
 
-    public T setId(Long id) {
+    public Session setId(Long id) {
         this.id = id;
-        return (T) this;
+        return this;
     }
 
     public Format getFormat() {
         return format;
     }
 
-    public T setFormat(Format format) {
+    public Session setFormat(Format format) {
         this.format = format;
-        return (T) this;
+        return this;
     }
 
     public Event getEvent() {
         return event;
     }
 
-    public T setEvent(Event event) {
+    public Session setEvent(Event event) {
         this.event = event;
-        return (T) this;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public T setTitle(String title) {
+    public Session setTitle(String title) {
         this.title = title;
-        return (T) this;
+        return this;
     }
 
     public String getSummary() {
         return summary;
     }
 
-    public T setSummary(String summary) {
+    public Session setSummary(String summary) {
         this.summary = summary;
-        return (T) this;
+        return this;
     }
 
     public LocalDateTime getAddedAt() {
         return addedAt;
     }
 
-    public T setAddedAt(LocalDateTime addedAt) {
+    public Session setAddedAt(LocalDateTime addedAt) {
         this.addedAt = addedAt;
-        return (T) this;
+        return this;
     }
 
     public Integer getMaxAttendees() {
         return maxAttendees;
     }
 
-    public T setMaxAttendees(Integer maxAttendees) {
+    public Session setMaxAttendees(Integer maxAttendees) {
         this.maxAttendees = maxAttendees;
-        return (T) this;
+        return this;
     }
 
     public Level getLevel() {
         return level;
     }
 
-    public T setLevel(Level level) {
+    public Session setLevel(Level level) {
         this.level = level;
-        return (T) this;
+        return this;
     }
 
     public boolean isGuest() {
         return guest;
     }
 
-    public T setGuest(boolean guest) {
+    public Session setGuest(boolean guest) {
         this.guest = guest;
-        return (T) this;
+        return this;
     }
 
     public String getMessageForStaff() {
         return messageForStaff;
     }
 
-    public T setMessageForStaff(String messageForStaff) {
+    public Session setMessageForStaff(String messageForStaff) {
         this.messageForStaff = messageForStaff;
-        return (T) this;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public T setDescription(String description) {
+    public Session setDescription(String description) {
         this.description = description;
-        return (T) this;
+        return this;
     }
 
     public String getIdeaForNow() {
         return ideaForNow;
     }
 
-    public T setIdeaForNow(String ideaForNow) {
+    public Session setIdeaForNow(String ideaForNow) {
         this.ideaForNow = ideaForNow;
-        return (T) this;
+        return this;
     }
 
     public Set<Member> getSpeakers() {
@@ -246,47 +265,47 @@ public abstract class Session<T extends Session> {
                 .isPresent();
     }
 
-    public T addSpeaker(Member speaker) {
+    public Session addSpeaker(Member speaker) {
         this.speakers.add(speaker);
-        return (T) this;
+        return this;
     }
 
-    public T removeSpeaker(Member speaker) {
+    public Session removeSpeaker(Member speaker) {
         this.speakers.remove(speaker);
-        return (T) this;
+        return this;
     }
 
-    public T clearSpeakers() {
+    public Session clearSpeakers() {
         this.speakers.clear();
-        return (T) this;
+        return this;
     }
 
     public Set<Interest> getInterests() {
         return interests;
     }
 
-    public T addInterest(Interest interest) {
+    public Session addInterest(Interest interest) {
         this.interests.add(interest);
-        return (T) this;
+        return this;
     }
 
-    public T removeInterest(Interest interest) {
+    public Session removeInterest(Interest interest) {
         this.interests.remove(interest);
-        return (T) this;
+        return this;
     }
 
-    public T clearInterests() {
+    public Session clearInterests() {
         this.interests.clear();
-        return (T) this;
+        return this;
     }
 
     public List<SessionComment> getComments() {
         return comments;
     }
 
-    public T setComments(List<SessionComment> comments) {
+    public Session setComments(List<SessionComment> comments) {
         this.comments = comments;
-        return (T) this;
+        return this;
     }
 
     public List<Vote> getVotes() {
@@ -304,80 +323,80 @@ public abstract class Session<T extends Session> {
         return getPositiveVotes() / votes.size();
     }
 
-    public T addVote(Vote vote) {
+    public Session addVote(Vote vote) {
         this.votes.add(vote);
-        return (T) this;
+        return this;
     }
 
-    public T removeVote(Vote vote) {
+    public Session removeVote(Vote vote) {
         this.votes.remove(vote);
-        return (T) this;
+        return this;
     }
 
-    public T clearVotes() {
+    public Session clearVotes() {
         this.votes.clear();
-        return (T) this;
+        return this;
     }
 
     public long getNbConsults() {
         return nbConsults;
     }
 
-    public T setNbConsults(long nbConsults) {
+    public Session setNbConsults(long nbConsults) {
         this.nbConsults = nbConsults;
-        return (T) this;
+        return this;
     }
 
     public boolean isValid() {
         return valid;
     }
 
-    public T setValid(boolean valid) {
+    public Session setValid(boolean valid) {
         this.valid = valid;
-        return (T) this;
+        return this;
     }
 
     public SessionLanguage getLang() {
         return lang;
     }
 
-    public T setLang(SessionLanguage lang) {
+    public Session setLang(SessionLanguage lang) {
         this.lang = lang;
-        return (T) this;
+        return this;
     }
 
     public boolean isFeedback() {
         return feedback;
     }
 
-    public T setFeedback(boolean feedback) {
+    public Session setFeedback(boolean feedback) {
         this.feedback = feedback;
-        return (T) this;
+        return this;
     }
 
     public Slot getSlot() {
         return slot;
     }
 
-    public T setSlot(Slot slot) {
+    public Session setSlot(Slot slot) {
         this.slot = slot;
-        return (T) this;
+        return this;
     }
 
     public String getLink() {
         return link;
     }
 
-    public T setLink(String link) {
+    public Session setLink(String link) {
         this.link = link;
-        return (T) this;
+        return this;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Session<?> session = (Session<?>) o;
+        Session session = (Session) o;
         return Objects.equals(id, session.id);
     }
 
@@ -385,9 +404,9 @@ public abstract class Session<T extends Session> {
         return sessionAccepted;
     }
 
-    public T setSessionAccepted(Boolean sessionAccepted) {
+    public Session setSessionAccepted(Boolean sessionAccepted) {
         this.sessionAccepted = sessionAccepted;
-        return (T) this;
+        return this;
     }
 
 

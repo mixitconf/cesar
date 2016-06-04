@@ -46,14 +46,14 @@ public class SessionController {
     @Autowired
     private QrCodeGenerator qrCodeGenerator;
 
-    private <T extends Session<T>> List<SessionResource> getAllSessions(List<T> sessions) {
+    private <T extends Session> List<SessionResource> getAllSessions(List<T> sessions) {
         return sessions
                 .stream()
                 .map(SessionResource::convert)
                 .collect(Collectors.toList());
     }
 
-    private <T extends Session<T>> List<SessionResource> getAllSessionsWithQrCode(List<T> sessions) {
+    private <T extends Session> List<SessionResource> getAllSessionsWithQrCode(List<T> sessions) {
         return sessions
                 .stream()
                 .map(SessionResource::convert)
@@ -80,7 +80,7 @@ public class SessionController {
                 .body(SessionResource.convert(session));
     }
 
-    protected boolean filterSession(Session session, Format format, LocalDateTime start, LocalDateTime end) {
+    private boolean filterSession(Session session, Format format, LocalDateTime start, LocalDateTime end) {
         boolean result = format == null || session.getFormat() == format;
         if (result && session.getSlot() != null) {
             result = start == null || session.getSlot().getStart().isAfter(start);
@@ -103,7 +103,7 @@ public class SessionController {
             @ApiParam(required = false, name = "end", value = "End for the comparaison")
             @RequestParam(required = false) String end,
             @ApiParam(required = true, name = "limit", value = "Nb elements in te ranking")
-            @RequestParam(required = true, defaultValue = "5") Integer limit
+            @RequestParam(defaultValue = "5") Integer limit
     ) {
 
         return ResponseEntity
@@ -131,7 +131,7 @@ public class SessionController {
     @RequestMapping(value = "/keynote")
     @ApiOperation(value = "Finds all keynotes", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllKeynotes(
-            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @ApiParam(name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
         return ResponseEntity
                 .ok(getAllSessions(sessionRepository.findAllAcceptedKeynotes(eventService.getEvent(year))));
@@ -140,7 +140,7 @@ public class SessionController {
     @RequestMapping(value = "/talk")
     @ApiOperation(value = "Finds all talks", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllTalks(
-            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @ApiParam(name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
         return ResponseEntity
                 .ok(getAllSessions(sessionRepository.findAllAcceptedTalks(eventService.getEvent(year))));
@@ -149,7 +149,7 @@ public class SessionController {
     @RequestMapping(value = "/workshop")
     @ApiOperation(value = "Finds all workshop", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllWorkshops(
-            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @ApiParam(name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
         return ResponseEntity
                 .ok(getAllSessions(sessionRepository.findAllAcceptedWorkshops(eventService.getEvent(year))));
@@ -158,7 +158,7 @@ public class SessionController {
     @RequestMapping(value = "/lightningtalks")
     @ApiOperation(value = "Finds all the lightning talks", httpMethod = "GET")
     public ResponseEntity<List<SessionResource>> getAllLightningTalks(
-            @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
+            @ApiParam(name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
         return ResponseEntity
                 .ok(getAllSessions(sessionRepository.findAllLightningTalks(eventService.getEvent(year))));

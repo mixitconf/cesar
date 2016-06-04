@@ -1,5 +1,7 @@
 package org.mixit.cesar;
 
+import static org.mixit.cesar.site.model.session.Session.*;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,14 +22,10 @@ import org.mixit.cesar.site.model.member.MemberEvent;
 import org.mixit.cesar.site.model.member.SharedLink;
 import org.mixit.cesar.site.model.member.Sponsor;
 import org.mixit.cesar.site.model.member.Staff;
-import org.mixit.cesar.site.model.session.Keynote;
 import org.mixit.cesar.site.model.session.Level;
-import org.mixit.cesar.site.model.session.LightningTalk;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.SessionLanguage;
-import org.mixit.cesar.site.model.session.Talk;
 import org.mixit.cesar.site.model.session.Vote;
-import org.mixit.cesar.site.model.session.Workshop;
 import org.mixit.cesar.site.repository.ArticleCommentRepository;
 import org.mixit.cesar.site.repository.ArticleRepository;
 import org.mixit.cesar.site.repository.EventRepository;
@@ -221,28 +219,28 @@ public class CesarInitializer {
                 .setOrdernum(1)
                 .setURL("http://martin.ordersky.com")
         );
-        addSession(new Keynote(), event2016, "Le scala c'est super bien", LocalDateTime.now(), true, speaker);
-        addSession(new Keynote(), event2015, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365)), true, speaker);
-        addSession(new Keynote(), event2014, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 2)), true, speaker);
-        addSession(new Keynote(), event2013, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 3)), true, speaker);
-        addSession(new Keynote(), event2012, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 4)), true, speaker);
-        addSession(new Keynote(), event2016, "Java bashing", LocalDateTime.now(), false);
-        addSession(new LightningTalk(), event2016, "Le scala en 5 minutes", LocalDateTime.now(), true, speaker);
+        addSession(createKeynote(), event2016, "Le scala c'est super bien", LocalDateTime.now(), true, speaker);
+        addSession(createKeynote(), event2015, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365)), true, speaker);
+        addSession(createKeynote(), event2014, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 2)), true, speaker);
+        addSession(createKeynote(), event2013, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 3)), true, speaker);
+        addSession(createKeynote(), event2012, "Le scala c'est super bien", LocalDateTime.now().minus(Duration.ofDays(365 * 4)), true, speaker);
+        addSession(createKeynote(), event2016, "Java bashing", LocalDateTime.now(), false);
+        addSession(createLightningTalk(), event2016, "Le scala en 5 minutes", LocalDateTime.now(), true, speaker);
 
         speaker1 = addMember("James", "Gosling", "Java",
                 new Member()
                         .setShortDescription("Open Web Developer Advocate at Google • Tools, Performance, Animation, UX • HFR enthusiast • Creator of jQuery UI")
                         .setEmail("james.gosling@pipo.com"), event2016, null);
-        addSession(new Workshop(), event2016, "Le Java c'est super bien", LocalDateTime.now(), true, speaker1);
+        addSession(createWorkshop(), event2016, "Le Java c'est super bien", LocalDateTime.now(), true, speaker1);
 
-        addSession(new Talk(), event2016, "Java vs Scala", LocalDateTime.now(), true, speaker, speaker1);
+        addSession(createTalk(), event2016, "Java vs Scala", LocalDateTime.now(), true, speaker, speaker1);
 
         speaker = addMember("Jean François", "Zobrist", "Agilite",
                 new Member()
                         .setShortDescription("Transdisciplinary engineer. Building software, studying humans, designing interactions, thinking society.")
                         .setEmail("jf.zobrist@pipo.com"), event2016, null);
         ;
-        addSession(new Talk(), event2016, "Favi l'entreprise libérée", LocalDateTime.now(), true, speaker);
+        addSession(createTalk(), event2016, "Favi l'entreprise libérée", LocalDateTime.now(), true, speaker);
     }
 
 

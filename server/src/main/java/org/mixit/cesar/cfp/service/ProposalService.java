@@ -103,19 +103,6 @@ public class ProposalService {
                     .addSpeaker(accountRepository.findOne(account.getId()).getMember());
         }
 
-        Session session = proposalPersisted.getSession();
-        if(session !=null){
-            //If session is accepted user can be able to change the description
-            session .setDescription(proposal.getDescription())
-                    .setFormat(proposal.getFormat())
-                    .setTitle(proposal.getTitle())
-                    .setSummary(proposal.getSummary())
-                    .setLink(proposal.getLink())
-                    .setLevel(proposal.getLevel())
-                    .setIdeaForNow(proposal.getIdeaForNow())
-                    .setMessageForStaff(proposal.getMessageForStaff());
-        }
-
         proposalPersisted = proposalRepository.save(proposalPersisted
                 .setCategory(proposal.getCategory())
                 .setDescription(proposal.getDescription())
@@ -140,10 +127,20 @@ public class ProposalService {
         //Validity
         proposalPersisted.setValid(check(proposalPersisted).isEmpty());
 
+        Session session = proposalPersisted.getSession();
+
+        if(session !=null){
+            proposalPersisted.toSession(session);
+            session.clearSpeakers();
+            proposalPersisted.getSpeakers().forEach(s -> session.addSpeaker(s));
+            session.clearInterests();
+            proposalPersisted.getInterests().forEach(s -> session.addInterest(s));
+        }
+
         proposalPersisted = proposalRepository.save(proposalPersisted);
 
         //The state can change only if session is not submitted
-        if(proposal.getStatus()==null || VALID.equals(proposal.getStatus()) || CREATED.equals(proposal.getStatus())) {
+        if(proposal.getStatus()==null || VALID == proposal.getStatus() || CREATED == proposal.getStatus()) {
             if (proposalPersisted.isValid()) {
                 proposalPersisted.setStatus(VALID);
                 //Add automatic submition

@@ -1,0 +1,98 @@
+project:
+  artifactId: cesar
+  name: Cesar
+  description: Mix-IT website
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+  app:
+    name: ${project.name}
+
+cesar:
+  baseurl: ${CESAR_BASEURL:http://localhost:8080}
+  slack: ${CESAR_SLACK:https://hooks.slack.com/services/token/credentials/channel}
+  crypto:
+    salt: ${CESAR_CRYPTO_SALT:XXXXX-SecretKey-XXXXX}
+  mail:
+    smtp:
+      host: ${CESAR_MAIL_HOST:smtp.gmail.com}
+      user: ${CESAR_MAIL_USER:contact@mix-it.fr}
+      password: ${CESAR_MAIL_PASSWORD:XXXXX-SecretKey-XXXXX}
+      auth: true
+      port: ${CESAR_MAIL_PORT:587}
+      starttls: true
+    from: Mix-IT <contact@mix-it.fr>
+
+drive:
+  sponsor:
+    form:
+      fr: ${DRIVE_SPONSOR_FORM_FR:0B43BPeaKpurvLTdsNnBHYjdTWW8}
+      en: ${DRIVE_SPONSOR_FORM_EN:0B43BPeaKpurvX3JWSGk5dWlOTWs}
+    leaflet:
+      fr: ${DRIVE_SPONSOR_LEAFLET_FR:0B43BPeaKpurvb181UGRUYV9zZWc}
+      en: ${DRIVE_SPONSOR_LEAFLET_EN:0B43BPeaKpurvZUtsNlFYR2F1cXM}
+  speaker:
+    leaflet:
+      fr: ${DRIVE_SPEAKER_LEAFLET_FR:0B43BPeaKpurvZFE1bUg4bHJWNEk}
+      en: ${DRIVE_SPEAKER_LEAFLET_EN:0B43BPeaKpurvZFE1bUg4bHJWNEk}
+  presse:
+    leaflet:
+        fr: ${DRIVE_PRESSE_LEAFLET_FR:0B43BPeaKpurvWVQ1NTdwa29zNFk}
+        en: ${DRIVE_PRESSE_LEAFLET_EN:0B43BPeaKpurvWVQ1NTdwa29zNFk}
+
+oauth:
+  google:
+    apiKey: ${OAUTH_GOOGLE_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_GOOGLE_SECRET:XXXXX-SecretKey-XXXXX}
+  twitter:
+    apiKey: ${OAUTH_TWITTER_APIKEY:XXXXX-SecretKey-XXXXX}
+    clientSecret: ${OAUTH_TWITTER_SECRET:XXXXX-SecretKey-XXXXX}
+
+spring:
+  datasource:
+    driver-class-name: ${CESAR_DATABASE_DRIVER:com.mysql.jdbc.Driver}
+    url: jdbc:mysql://${CESAR_DATABASE_HOST:localhost}:${CESAR_DATABASE_PORT:3306}/${CESAR_DATABASE_SCHEMA:mixit}
+    username: ${CESAR_DATABASE_USERNAME:mixit}
+    password: ${CESAR_DATABASE_PASSWORD:mixit}
+    max-wait: 10
+    testOnBorrow : true
+    validationQuery : SELECT 1
+  jpa :
+    ddl-auto : validate
+    hibernate.naming_strategy : org.hibernate.cfg.EJB3NamingStrategy
+    database-platform : org.hibernate.dialect.MySQL5InnoDBDialect
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+management:
+  context-path: /monitoring
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,text/css,application/javascript
+    min-response-size: 2048
+---
+spring:
+  profiles: default
+cesar:
+  initializeDataWhenDbEmpty : true
+---
+spring:
+  profiles: cloud
+  datasource:
+    min-idle: 1
+    max-idle: 5
+    max-active: 10
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
+server:
+  port: 80

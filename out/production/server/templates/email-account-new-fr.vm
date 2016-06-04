@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mix-IT : nouveau compte</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div style="font-family: Arial;color: #424242;margin:2em">
+    <p>Bonjour <b>${account.firstname}</b></p>
+
+    <h2>Vos informations d'identification Mix-IT</h2>
+
+    <p>Vous venez de cr&eacute;er un compte sur le site de Mix-IT. Pour le valider veuillez cliquer sur ce lien : <a href="${url}">${url}</a>. Vous pourrez ensuite utiliser la partie s&eacute;curis&eacute;e du site.</p>
+
+    <p>Attention, ce code n'est valable que pendant trois heures. Pass&eacute; ce d&eacute;lai, vous devrez soumettre une nouvelle demande de modification de vos informations d'identification.</p>
+
+    <p><b>La team Mix-IT</b></p>
+</div>
+</body>
+</html>
+
+

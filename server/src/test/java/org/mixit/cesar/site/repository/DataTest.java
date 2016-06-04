@@ -52,9 +52,9 @@ public class DataTest {
             INSERT_MEMBER,
             insertInto("Session")
                     .withGeneratedValue("id", ValueGenerators.sequence())
-                    .columns("DTYPE", "format", "Event_ID", "title", "DESCRIPTION", "FEEDBACK", "GUEST", "NBCONSULTS", "VALID")
-                    .values("Talk", Format.Talk, 1, "My session", "My session", FALSE, FALSE, 0, TRUE)
-                    .values("Workshop", Format.Workshop, 1, "My workshop", "My workshop", FALSE, FALSE, 0, TRUE)
+                    .columns("format", "Event_ID", "title", "DESCRIPTION", "FEEDBACK", "GUEST", "NBCONSULTS", "VALID")
+                    .values(Format.Talk, 1, "My session", "My session", FALSE, FALSE, 0, TRUE)
+                    .values(Format.Workshop, 1, "My workshop", "My workshop", FALSE, FALSE, 0, TRUE)
                     .build(),
             insertInto("Session_Interest")
                     .columns("SESSION_ID", "INTERESTS_ID")
