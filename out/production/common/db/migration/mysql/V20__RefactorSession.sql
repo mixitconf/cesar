@@ -1,1 +1,0 @@
-ALTER TABLE Session DROP COLUMN dtype;

@@ -1,1 +1,0 @@
-ALTER TABLE `Account` ADD tokenExpiration DATETIME;
