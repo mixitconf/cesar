@@ -353,6 +353,15 @@ public class Proposal {
         return this;
     }
 
+    public boolean containsStatus(ProposalStatus ... statuses) {
+        for(ProposalStatus stat : statuses){
+            if(this.status == stat){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ProposalStatus getStatus() {
         return status;
     }

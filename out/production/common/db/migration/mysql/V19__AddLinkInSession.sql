@@ -1,0 +1,2 @@
+ALTER TABLE Session ADD link VARCHAR(255);
+ALTER TABLE Proposal ADD link VARCHAR(255);

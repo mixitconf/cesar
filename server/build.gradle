@@ -13,6 +13,10 @@ springBoot {
     mainClass = 'org.mixit.cesar.CesarApplication'
 }
 
+bootRun {
+    addResources = true
+}
+
 idea {
     module {
         inheritOutputDirs = false

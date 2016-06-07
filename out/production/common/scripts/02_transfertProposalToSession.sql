@@ -1,0 +1,35 @@
+-- This request extracts all the accepted proposals and populate the sessions
+-- WARNING : before you must update the session format for keynotes and random....
+
+
+INSERT INTO SESSION
+	(DTYPE, ADDEDAT,DESCRIPTION,FEEDBACK,FORMAT,IDEAFORNOW,LANG,LEVEL,MAXATTENDEES,
+		MESSAGEFORSTAFF, NBCONSULTS, SESSIONACCEPTED, SUMMARY, TITLE, VALID, EVENT_ID, GUEST)
+		SELECT
+		  p.FORMAT, p.ADDEDAT, p.DESCRIPTION, p.FEEDBACK, p.FORMAT, p.IDEAFORNOW, p.LANG,  p.LEVEL, 1,
+		  p.MESSAGEFORSTAFF, 0, 1, p.SUMMARY, p.TITLE, 1, 6, 1
+		FROM PROPOSAL p
+		WHERE p.STATUS='ACCEPTED' and p.ID=2092;
+
+CREATE TABLE tempProposal
+(
+    ID_SESSION BIGINT,
+    ID_PROPOSAL BIGINT
+);
+
+INSERT INTO tempProposal (ID_PROPOSAL, ID_SESSION)
+SELECT p.ID, s.ID FROM PROPOSAL p inner join SESSION s on s.TITLE=p.TITLE and p.EVENT_ID=6 WHERE p.STATUS='ACCEPTED' and p.ID=2092;
+
+INSERT INTO session_member (SESSIONS_ID, SPEAKERS_ID)
+SELECT t.ID_SESSION, m.SPEAKERS_ID
+FROM tempProposal t inner join proposal_member m on t.ID_PROPOSAL=m.PROPOSAL_ID;
+
+INSERT INTO session_interest (SESSION_ID, INTERESTS_ID)
+SELECT t.ID_SESSION, m.INTERESTS_ID
+FROM tempProposal t inner join proposal_interest m on t.ID_PROPOSAL=m.PROPOSAL_ID;
+
+UPDATE proposal AS U1, tempProposal AS U2
+SET U1.SESSION_ID = U2.ID_SESSION
+WHERE U2.ID_PROPOSAL = U1.id;
+
+DROP TABLE tempProposal;
