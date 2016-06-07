@@ -3,16 +3,12 @@ package org.mixit.cesar.site.web.dto;
 import static java.time.format.DateTimeFormatter.ofPattern;
 import static org.mixit.cesar.CesarApplication.DATE_FORMAT;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.mixit.cesar.site.model.planning.Room;
 import org.mixit.cesar.site.model.planning.Slot;
-import org.mixit.cesar.site.model.session.Talk;
+import org.mixit.cesar.site.model.session.Session;
 
 /**
  * @author Dev-Mind <guillaume@dev-mind.fr>
@@ -45,7 +41,7 @@ public class SlotDto {
                 .setRoom(getRoom())
                 .setLabel(getLabel());
         if (getIdSession() != null) {
-            slot.setSession(new Talk().setId(getIdSession()));
+            slot.setSession(Session.createTalk().setId(getIdSession()));
         }
         return slot;
     }

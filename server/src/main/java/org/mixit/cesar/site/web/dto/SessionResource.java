@@ -39,7 +39,7 @@ public class SessionResource extends ResourceSupport {
     public List<MemberDto> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 
-    public static <T extends Session<T>> SessionResource convert(T session) {
+    public static <T extends Session> SessionResource convert(Session session) {
         SessionResource sessionResource = convertWithoutLink(session);
 
         sessionResource.add(ControllerLinkBuilder.linkTo(SessionController.class).slash(session.getId()).withSelfRel());
@@ -52,7 +52,7 @@ public class SessionResource extends ResourceSupport {
         return sessionResource;
     }
 
-    public static <T extends Session<T>> SessionResource convertWithoutLink(T session) {
+    public static <T extends Session> SessionResource convertWithoutLink(T session) {
         SessionResource sessionResource = new SessionResource()
                 .setIdSession(session.getId())
                 .setDescription(session.getDescription())
@@ -62,12 +62,12 @@ public class SessionResource extends ResourceSupport {
                 .setLink(session.getLink())
                 .setSummary(session.getSummary())
                 .setTitle(session.getTitle())
-                .setYear(String.valueOf(session.getEvent()!=null ? session.getEvent().getYear() : ""))
+                .setYear(String.valueOf(session.getEvent() != null ? session.getEvent().getYear() : ""))
                 .setNbConsults(session.getNbConsults());
 
         List<Vote> votes = session.getVotes();
         if (!votes.isEmpty()) {
-            sessionResource.setVotes(((Long)session.getVotes().stream().distinct().count()).intValue());
+            sessionResource.setVotes(((Long) session.getVotes().stream().distinct().count()).intValue());
             sessionResource.setPositiveVotes(session.getPositiveVotes());
         }
 
@@ -79,9 +79,9 @@ public class SessionResource extends ResourceSupport {
                     .collect(Collectors.toList()));
         }
 
-        if(session.getSlot()!=null){
+        if (session.getSlot() != null) {
             sessionResource
-                    .setRoom(session.getSlot().getRoom()==null ? null : session.getSlot().getRoom().getName())
+                    .setRoom(session.getSlot().getRoom() == null ? null : session.getSlot().getRoom().getName())
                     .setStart(session.getSlot().getStart().format(DateTimeFormatter.ISO_DATE_TIME))
                     .setEnd(session.getSlot().getEnd().format(DateTimeFormatter.ISO_DATE_TIME));
         }
@@ -225,7 +225,7 @@ public class SessionResource extends ResourceSupport {
         return this;
     }
 
-    public SessionResource addSpeaker(MemberDto memberDto){
+    public SessionResource addSpeaker(MemberDto memberDto) {
         speakers.add(memberDto);
         return this;
     }

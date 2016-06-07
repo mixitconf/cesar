@@ -25,7 +25,6 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.Type;
 import org.mixit.cesar.site.model.FlatView;
-import org.mixit.cesar.site.model.UserView;
 import org.mixit.cesar.site.model.event.Event;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -44,15 +43,15 @@ public class Proposal {
 
     @Enumerated(EnumType.STRING)
     @JsonView(FlatView.class)
-    protected Format format;
+    private Format format;
 
     @Enumerated(EnumType.STRING)
     @JsonView(FlatView.class)
-    protected ProposalCategory category;
+    private ProposalCategory category;
 
     @Enumerated(EnumType.STRING)
     @JsonView(FlatView.class)
-    protected ProposalTypeSession typeSession;
+    private ProposalTypeSession typeSession;
 
     @ManyToOne
     private Event event;
@@ -134,6 +133,33 @@ public class Proposal {
 
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private List<ProposalVote> votes = new ArrayList<>();
+
+    public Session toSession(Session session){
+        if(session==null){
+            session = new Session();
+        }
+
+        session
+                .setFormat(format)
+                .setDescription(description)
+                .setEvent(event)
+                .setIdeaForNow(ideaForNow)
+                .setLang(lang)
+                .setLevel(level)
+                .setLink(link)
+                .setMessageForStaff(messageForStaff)
+                .setMaxAttendees(maxAttendees.getNbMax())
+                .setSummary(summary)
+                .setTitle(title)
+                .clearInterests()
+                .clearSpeakers();
+
+        final Session sess = session;
+        interests.stream().forEach(i -> sess.addInterest(i));
+        speakers.stream().forEach(s -> sess.addSpeaker(s));
+
+        return session;
+    }
 
 
     public Long getId() {

@@ -4,7 +4,6 @@ import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_LIGHTNINGTALK;
 import static org.mixit.cesar.site.config.CesarCacheConfig.CACHE_SPEAKER_LT;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mixit.cesar.security.model.Account;
@@ -13,10 +12,8 @@ import org.mixit.cesar.security.service.autorisation.Authenticated;
 import org.mixit.cesar.security.service.exception.ForbiddenException;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.model.session.Format;
-import org.mixit.cesar.site.model.session.LightningTalk;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.SessionLanguage;
-import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.repository.VoteRepository;
 import org.mixit.cesar.site.service.EventService;
@@ -44,9 +41,6 @@ public class SessionWriterController {
     private SessionRepository sessionRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
-
-    @Autowired
     private VoteRepository voteRepository;
 
     @Autowired
@@ -59,7 +53,7 @@ public class SessionWriterController {
     @RequestMapping(value = "/mylightnings")
     @Authenticated
     public List<SessionResource> getMyLightningsInfo() {
-        Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
+        Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().orElseThrow(ForbiddenException::new).getMember();
         return sessionRepository
                 .findAllMyLightningTalks(EventService.getCurrent(), currentUser.getId())
                 .stream()
@@ -70,7 +64,7 @@ public class SessionWriterController {
     @RequestMapping(value = "/lightnings/votes")
     @Authenticated
     public List<VoteDto> getLightningsVotes() {
-        Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get().getMember();
+        Member currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().orElseThrow(ForbiddenException::new).getMember();
         return voteRepository.findByMember(currentUser)
                 .stream()
                 .filter(v -> v.getSession().getFormat().equals(Format.LightningTalk))
@@ -83,10 +77,10 @@ public class SessionWriterController {
     @Authenticated
     public SessionResource save(@RequestBody SessionResource lightning) {
         CurrentUser currentUser = applicationContext.getBean(CurrentUser.class);
-        LightningTalk lightningTalkSaved;
+        Session lightningTalkSaved;
 
         if (lightning.getIdSession() > 0) {
-            lightningTalkSaved = (LightningTalk) sessionRepository.findOne(lightning.getIdSession());
+            lightningTalkSaved = sessionRepository.findOne(lightning.getIdSession());
             lightningTalkSaved
                     .setLang(lightning.getLang().equals("fr") ? SessionLanguage.fr : SessionLanguage.en)
                     .setDescription(lightning.getDescription())
@@ -95,14 +89,15 @@ public class SessionWriterController {
         }
         else {
             lightningTalkSaved = sessionRepository.save(
-                    new LightningTalk()
+                    new Session()
                             .setFormat(Format.LightningTalk)
+                            .setValid(true)
                             .setEvent(EventService.getCurrent())
                             .setLang(lightning.getLang().equals("en") ? SessionLanguage.en : SessionLanguage.fr)
                             .setDescription(lightning.getDescription())
                             .setSummary(lightning.getSummary())
                             .setTitle(lightning.getTitle())
-                            .addSpeaker(currentUser.getCredentials().get().getMember())
+                            .addSpeaker(currentUser.getCredentials().orElseThrow(ForbiddenException::new).getMember())
                             .setSessionAccepted(true)
             );
         }
@@ -114,8 +109,8 @@ public class SessionWriterController {
 
     @RequestMapping(value = "/{idSession}", method = RequestMethod.DELETE)
     @Authenticated
-    public <T extends Session<T>> void delete(@PathVariable(value = "idSession") Long idSession) {
-        Account currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().get();
+    public <T extends Session> void delete(@PathVariable(value = "idSession") Long idSession) {
+        Account currentUser = applicationContext.getBean(CurrentUser.class).getCredentials().orElseThrow(ForbiddenException::new);
 
         Session session = sessionRepository.findOne(idSession);
 
