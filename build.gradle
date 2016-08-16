@@ -72,7 +72,7 @@ configure(allprojects) {
 }
 
 //We use gulp to manage the webapp
-configure([project(':client-ng1'), project(':client-ng2')]) {
+configure([project(':client-ng1')]) {
     apply plugin: 'com.moowork.node'
 }
 

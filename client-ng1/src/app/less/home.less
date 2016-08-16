@@ -1,60 +1,62 @@
-.cesar-headband{
-  background-size: cover;
+@import "text.less";
 
-  .cesar-headband-blink{
-    font-weight: bold;
-    color : @primary_color_dark;
-  }
-  .cesar-headband__content{
+.cesar-imagebanner-filter{
+  background-color: rgba(89, 89, 89, 0.6);
+  height: 100%;
+
+  .cesar-imagebanner__content{
     width: 80% !important;
-    background-color: @background_color_light;
-    text-align: center;
-    margin:0 auto;
+    margin:0em auto;
+
+    .cesar-text{
+      color: white;
+    }
+    .cesar-imagebanner-blink{
+      color: white;
+    }
+    .cesar-imagebanner-blink__head{
+      font-weight: bold;
+      font-size: 100px !important;
+      line-height: 100px !important;
+    }
   }
 
   @media only screen and (min-width: 0) {
-    background-image: url("assets/img/home1_500.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 100%;
-        min-width: 100%;
-        height: auto;
-      }
-    }
-  }
-  @media only screen and (min-width: 480px) and (max-width: 1023px) {
-    background-image: url("assets/img/home1_1000.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 100%;
-        min-width: 100%;
-        height: auto;
-      }
-    }
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      .cesar-headband__content {
-        img {
-          height: 150px;
-        }
+    .cesar-imagebanner__content {
+      width: 90% !important;
+
+      .cesar-imagebanner-blink__head{
+        font-size: 60px !important;
+        line-height: 60px !important;
       }
     }
   }
   @media only screen and (min-width: 1024px) {
-    background-image: url("assets/img/home1_1500.jpg");
-    .cesar-headband__content{
-      img{
-        max-width: 70%;
-        min-width: 70%;
-        height: auto;
-      }
+    .cesar-imagebanner__content {
+      margin: 17em auto;
     }
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      .cesar-headband__content {
-        img {
-          height: 160px;
-        }
-      }
+  }
+}
+
+.cesar-headband{
+  background-size: cover;
+
+  .cesar-headband-header{
+    background-color: rgba(89, 89, 89, 0.7);
+    img{
+      width: 20%;
+      padding: 1em;
     }
+  }
+
+  @media only screen and (min-width: 0) {
+    background-image: url("assets/img/home/home_500.jpg");
+  }
+  @media only screen and (min-width: 480px) and (max-width: 1023px) {
+    background-image: url("assets/img/home/home_1000.jpg");
+  }
+  @media only screen and (min-width: 1024px) {
+    background-image: url("assets/img/home/home_1500.jpg");
   }
 }
 
@@ -98,7 +100,40 @@
 }
 
 .cesar-speaker{
-  text-align: center;
+  background-size: cover;
+  display: flex;
+
+  img {
+    fill: #ffffff;
+    width: 1em;
+    height: 1em;
+  }
+  .cesar-speaker-head{
+    color: white;
+    flex: 1;
+  }
+  .cesar-speaker-content{
+    flex: 1;
+  }
+  @media only screen and (min-width: 0) {
+    background-image: url("assets/img/home/speaker_500.jpg");
+    .cesar-speaker-head{
+      padding: 1em 1em;
+    }
+  }
+  @media only screen and (min-width: 480px) and (max-width: 1023px) {
+    background-image: url("assets/img/home/speaker_1000.jpg");
+    .cesar-speaker-head{
+      padding: 3em 1em;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    background-image: url("assets/img/home/speaker_1500.jpg");
+    .cesar-speaker-head{
+      padding: 4em 3em;
+    }
+
+  }
 }
 
 .cesar-cfp{
@@ -107,7 +142,6 @@
 
 
 .cesar-info-panel{
-  background-color: @background_color_light;
 
   @media only screen and (min-width: 0) {
     .cesar-info__content{
@@ -122,24 +156,10 @@
 
 }
 
-.cesar-photos {
-  img {
-    min-width: 100%;
-  }
-  @media only screen and (min-width: 0) {
-    background-image: url("assets/img/panel1_500.jpg");
-  }
-  @media only screen and (min-width: 480px) and (max-width: 1023px) {
-    background-image: url("assets/img/panel1_1000.jpg");
-  }
-  @media only screen and (min-width: 1024px) {
-    background-image: url("assets/img/panel1_1500.jpg");
-  }
-}
-
 .cesar-sponsors{
   img{
     max-width: 100%;
     height: auto;
   }
+
 }

@@ -61,6 +61,10 @@
 
     /* @ngInject */
     function getAllSessions(SessionService) {
+      return _getAllSessions(SessionService, 2017);
+    }
+    /* @ngInject */
+    function getAll2016Sessions(SessionService) {
       return _getAllSessions(SessionService, 2016);
     }
     /* @ngInject */
@@ -87,6 +91,10 @@
     }
     /* @ngInject */
     function getAllSponsors(MemberService) {
+      return _getSponsors(MemberService, 2017);
+    }
+    /* @ngInject */
+    function getAll2016Sponsors(MemberService) {
       return _getSponsors(MemberService, 2016);
     }
     /* @ngInject */
@@ -250,7 +258,10 @@
       .state('home', new State(USER_ROLES, 'home', 'js/home/home.html')
         .controller('HomeCtrl')
         .build())
-
+      
+      .state('conference', new State(USER_ROLES, 'conference', 'js/conference/conference.html')
+        .build())
+      
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
           /* @ngInject */
@@ -366,6 +377,15 @@
 
       .state('mixteen', new State(USER_ROLES, 'mixteen', 'js/mixteen/mixteen.html')
         .controller('MixteenCtrl')
+        .build())
+
+      .state('mixit16', new State(USER_ROLES, 'mixit16?search', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2016})
+        .resolve({
+          sessions : getAll2016Sessions,
+          sponsors: getAll2016Sponsors
+        })
         .build())
 
       .state('mixit15', new State(USER_ROLES, 'mixit15?search', 'js/sessions/talks.html')

@@ -53,7 +53,7 @@
   },
   "home": {
     "headband": {
-      "comeback": "<span class=\"cesar-headband-blink\">21 et 22 avril 2016</span>"
+      "comeback": "La conférence avec du coeur et des crêpes"
     },
     "countdown": {
       "days" : "J-{{days}} avant Mix-IT!",
@@ -81,7 +81,8 @@
       "section1": "2 jours de conférences et d'ateliers.",
       "section2": "600 participants, 50 speakers",
       "section1content": "Des conférences pour faire des découvertes, des jeux pour apprendre, des ateliers de développement ou créatifs, Mix-IT c'est 2 jours intenses de progrès et de rencontres&nbsp;! La soirée, ouverte à tous, est aussi le moment idéal pour faire des connaissances et s'ouvrir aux autres cultures.",
-      "section2content": "Afin de garder une dimension conviviale, le nombre de participants est limité à 600. Nous nous battons pour vous proposer tout cela à un prix très abordable, pour que tout un chacun puisse en profiter."
+      "section2content": "Afin de garder une dimension conviviale, le nombre de participants est limité à 600. Nous nous battons pour vous proposer tout cela à un prix très abordable, pour que tout un chacun puisse en profiter.",
+      "oldconf": "See the programm of the previous editions : "
     },
     "intro": {
       "title": "La conférence lyonnaise à ne pas manquer&nbsp;! Deux jours de découvertes et de rencontres dans une ambiance conviviale, dédiée à la <span class=\"cesar-blink\">mixité</span> des sujets, des technologies mais aussi des participants.",
@@ -101,7 +102,7 @@
       "top": "Cette année nous étions très fiers d'accueillir&nbsp;"
     },
     "sponsor": {
-      "title": "Sponsors de l'édition 2016",
+      "title": "Sponsors de l'édition 2017",
       "annonce": "Profitez de cet évenement pour mettre en avant votre société. Nous proposons différents niveaux de partenariats qui sont détaillés dans",
       "annonceend": "notre plaquette.",
       "return": "Retournez nous le",
@@ -593,7 +594,8 @@
   "footer": {
     "whoarewe": {
       "title": "Qui sommes-nous&nbsp;?",
-      "content": "Mix-IT est une association à but non lucratif fondée en 2011 et animée par des bénévoles issus des communautés techniques et agiles lyonnaises. Mix-IT 2016 aura lieu les 21 et 22 avril à CPE Lyon"
+      "content": "Mix-IT est une association à but non lucratif fondée en 2011 et animée par des bénévoles issus des communautés techniques et agiles lyonnaises",
+      "more": "voir les membres du staff..."
     },
     "contactus": "Nous contacter",
     "codeofconduct": "Code de bonne conduite",
