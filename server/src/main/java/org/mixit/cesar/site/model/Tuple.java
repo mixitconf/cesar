@@ -3,9 +3,9 @@ package org.mixit.cesar.site.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Tuple {
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, ListView.class})
     private Object key;
-    @JsonView(FlatView.class)
+    @JsonView({FlatView.class, ListView.class})
     private Object value;
 
     public Object getKey() {

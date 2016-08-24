@@ -5,14 +5,15 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.mixit.cesar.site.model.member.Member;
 import org.mixit.cesar.site.repository.MemberRepository;
 import org.mixit.cesar.site.service.EventService;
+import org.mixit.cesar.site.model.ListView;
 import org.mixit.cesar.site.web.dto.MemberResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -83,18 +84,21 @@ public class MemberController {
 
     @RequestMapping
     @ApiOperation(value = "Finds all members", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<MemberResource>> getAllMembers() {
         return getAllMembers(memberRepository.findAllMembers());
     }
 
     @RequestMapping(value = "/staff")
     @ApiOperation(value = "Finds Mix-IT staff", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<MemberResource>> getAllStaffs() {
         return getAllMembers(memberRepository.findAllStaffs());
     }
 
     @RequestMapping(value = "/speaker")
     @ApiOperation(value = "Finds all speakers", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<MemberResource>> getAllSpeakers(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
@@ -103,6 +107,7 @@ public class MemberController {
 
     @RequestMapping(value = "/speaker/lightningtalks")
     @ApiOperation(value = "Finds all lightningtalk speakers", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<MemberResource>> getAllLightningtalksSpeakers(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
@@ -117,6 +122,7 @@ public class MemberController {
 
     @RequestMapping(value = "/sponsor")
     @ApiOperation(value = "Finds all sponsors", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<MemberResource>> getAllSponsors(
             @ApiParam(required = false, name = "year", value = "Year if null return data for current year")
             @RequestParam(required = false) Integer year) {
