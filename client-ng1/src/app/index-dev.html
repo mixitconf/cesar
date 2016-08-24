@@ -57,7 +57,7 @@
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <div class="android-header mdl-layout__header">
-        <div class="cesar-layout__header-row mdl-layout__header-row">
+        <div class="cesar-layout__header-row mdl-layout__header-row" ng-controller="cesarMenuTinyCtrl as ctrl">
             <!-- Add spacer, to align navigation to the right -->
             <nav class="mdl-navigation">
                 <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="home">
@@ -66,8 +66,17 @@
                 <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="article">
                     <span class="link" translate="menu.news"></span>&nbsp;
                 </a>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="conference">
-                    <span class="link" translate="menu.planning"></span>&nbsp;
+
+                <!-- i18n -->
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link"
+                   ng-click="ctrl.toggleLanguage()"
+                   ng-if="ctrl.currentLanguage === ctrl.languages.en">
+                    <img src="img/lang/fr.svg" class="cesar-menu__lang">
+                </a>
+                <a class="cesar-menu mdl-navigation__link cesar-navigation__link"
+                   ng-click="ctrl.toggleLanguage()"
+                   ng-if="ctrl.currentLanguage === ctrl.languages.fr">
+                    <img src="img/lang/us.svg" class="cesar-menu__lang">
                 </a>
             </nav>
         </div>
@@ -140,20 +149,6 @@
 <!-- endbuild -->
 <!-- build:e2e -->
 <!-- endbuild -->
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-8046496-2', 'auto');
-</script>
+<script defer="true" async="true" src="js/analytics/analytics.js"></script>
 </body>
 </html>
