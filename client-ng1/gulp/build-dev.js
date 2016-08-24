@@ -117,6 +117,9 @@ module.exports = function(gulp, config) {
    * Concatenate js vendor libs
    */
   gulp.task('build:dev:vendors', function () {
+    gulp.src(paths.js.external)
+      .pipe(gulp.dest(paths.build.dev + '/js'))
+    
     return gulp.src(paths.js.vendor)
       .pipe(concat('vendors.js'))
       .pipe(gulp.dest(paths.build.dev + '/js'));

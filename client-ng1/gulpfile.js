@@ -28,6 +28,9 @@ var paths = {
       'node_modules/moment/min/moment.min.js',
       'node_modules/stompjs/lib/stomp.min.js'
     ],
+    external: [
+      'src/app/assets/**/*.js'
+    ],
     unit: [
       'src/test/unit/**/*.spec.js'
     ],

@@ -102,6 +102,9 @@ module.exports = function(gulp, config) {
   });
 
   gulp.task('build:dist:vendors', ['build:dev:vendors'], function(){
+    gulp.src(paths.js.external)
+      .pipe(gulp.dest(paths.build.dist + '/js'))
+
     function notMinified(file) {
       return !/(src-min|\.min\.js)/.test(file.path);
     }
