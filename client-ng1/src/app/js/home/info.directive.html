@@ -1,18 +1,40 @@
 <div class="cesar-section cesar-info-panel">
   <div class="cesar-container">
-    <h2 translate="home.info.title"></h2>
-
     <div class="mdl-grid cesar-section--bottom">
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
-        <h4 translate="home.info.section1">2 jours de conférences et d'ateliers.</h4>
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
+        <h2 translate="home.sponsor.title"></h2>
+        <p class="cesar-text">
+          <span translate="home.sponsor.presse"></span>&nbsp;
+          <a ng-href="/docs/presse/leaflet/{{lang}}" target="sponsor"><span translate="home.sponsor.presseend"></span></a>
+        </p>
+        <p class="cesar-text">
+          <span translate="home.sponsor.annonce"></span>&nbsp;
+          <a ng-href="/docs/sponsor/leaflet/{{lang}}" target="sponsor"><span
+                  translate="home.sponsor.annonceend"></span></a>
 
-        <p translate="home.info.section1content"></p>
+          <span translate="home.sponsor.return"></span>&nbsp;
+          <a ng-href="/docs/sponsor/form/{{lang}}" target="sponsor"><span
+                  translate="home.sponsor.form"></span></a>
+          <span translate="home.sponsor.at"></span> <a>contact @ mix-it.fr</a></p>
+        <p>&nbsp;</p>
       </div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
-        <h4 translate="home.info.section2">500 participants, 50 speakers</h4>
-
-        <p translate="home.info.section2content"></p>
+        <h2 translate="home.info.section1">2 jours de conférences et d'ateliers.</h2>
+        <p translate="home.info.section1content" class="cesar-text"></p>
+        <p><span translate="home.info.oldconf"></span>&nbsp;
+          <a ui-sref="mixit16">2016</a>,&nbsp;
+          <a ui-sref="mixit15">2015</a>,&nbsp;
+          <a ui-sref="mixit14">2014</a>,&nbsp;
+          <a ui-sref="mixit13">2013</a>&nbsp;,
+          <a ui-sref="mixit12">2012</a></p>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone mdl-cell--12-col-tablet cesar-info__content">
+        <h2 translate="home.info.section2">500 participants, 50 speakers</h2>
+        <p translate="home.info.section2content" class="cesar-text"></p>
       </div>
     </div>
+
+
+
   </div>
 </div>

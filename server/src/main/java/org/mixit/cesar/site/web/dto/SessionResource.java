@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.ListView;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.session.Session;
 import org.mixit.cesar.site.model.session.Vote;
@@ -20,22 +22,31 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
  */
 public class SessionResource extends ResourceSupport {
 
+    @JsonView(ListView.class)
     private long idSession;
     public int votes = 0;
     public int positiveVotes = 0;
     public long nbConsults;
+    @JsonView(ListView.class)
     public String lang;
+    @JsonView(ListView.class)
     public String format;
+    @JsonView(ListView.class)
     public String title;
+    @JsonView(ListView.class)
     public String summary;
     public String description;
     public String ideaForNow;
+    @JsonView(ListView.class)
     public String room;
     public String year;
+    @JsonView(ListView.class)
     public String start;
+    @JsonView(ListView.class)
     public String end;
     public String qrCode;
     public String link;
+    @JsonView(ListView.class)
     public List<MemberDto> speakers = new ArrayList<>();
     public List<String> interests = new ArrayList<>();
 

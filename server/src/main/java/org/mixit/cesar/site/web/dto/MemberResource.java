@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mixit.cesar.site.model.ListView;
 import org.mixit.cesar.site.model.Tuple;
 import org.mixit.cesar.site.model.member.Interest;
 import org.mixit.cesar.site.model.member.Member;
@@ -18,20 +20,27 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
  * Member DTO for API HATEOAS
  */
 public class MemberResource extends ResourceSupport {
-
+    @JsonView(ListView.class)
     private Long idMember;
+    @JsonView(ListView.class)
     private String login;
+    @JsonView(ListView.class)
     private String firstname;
+    @JsonView(ListView.class)
     private String lastname;
     private String company;
+    @JsonView(ListView.class)
     private String logo;
+    @JsonView(ListView.class)
     private String hash;
     private String sessionType;
+    @JsonView(ListView.class)
     private String shortDescription;
     private String longDescription;
     private List<Tuple> userLinks = new ArrayList<>();
     private List<String> interests = new ArrayList<>();
     private List<Long> sessions = new ArrayList<>();
+    @JsonView(ListView.class)
     private List<Tuple> level = new ArrayList<>();
 
     public static <T extends Member<T>> MemberResource convert(T member) {

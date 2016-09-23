@@ -53,7 +53,7 @@
   },
   "home": {
     "headband": {
-      "comeback": "<span class=\"cesar-headband-blink\">April 21st and 22nd, 2016</span>"
+      "comeback": "La conférence avec du coeur et des crêpes"
     },
     "countdown": {
       "days" : "D-{{days}} until Mix-IT!",
@@ -81,7 +81,8 @@
       "section1": "2 days of talks and workshops.",
       "section2": "600 attendees, 50 speakers",
       "section1content": "Conferences to discover new ideas, games to learn, development or creative workshops. Mix-IT, it's 2 intense days of headway and meets! The party, open to everyone, is also the ideal moment to meet new people and open to other cultures.",
-      "section2content": "In order to keep a friendly atmosphere, the number of attendees is limited to 600 people. We fight to offer you a very affordable price, in order to allow everyone to enjoy the event..."
+      "section2content": "In order to keep a friendly atmosphere, the number of attendees is limited to 600 people. We fight to offer you a very affordable price, in order to allow everyone to enjoy the event...",
+      "oldconf": "Visualisez le programme des éditions précédentes : "
     },
     "intro": {
       "title": "The conference in Lyon not to be missed! Two days packed with ideas and amazing people in a friendly atmosphere, dedicated to the <span class=\"cesar-blink\">diversity</span> of topics, of technologies, and of our attendees.",
@@ -265,7 +266,7 @@
       "p1": "The 2016 edition will be  very great. This the list of people who will come to talk this year."
     },
     "sponsors": {
-      "title": "2016 Sponsors",
+      "title": "2017 Sponsors",
       "level_GOLD": "Level GOLD",
       "level_SILVER": "Level SILVER",
       "level_LANYARD": "Lanyard",
@@ -597,7 +598,8 @@
   "footer": {
     "whoarewe": {
       "title": "Who are we?",
-      "content": "Mix-IT is a non profit association created in 2011 by volunteers coming from technological and agile user groups in Lyon. Mix-IT 2016 returns to CPE on April 21st and 22nd, 2016"
+      "content": "Mix-IT is a non profit association created in 2011 by volunteers coming from technological and agile user groups in Lyon. ",
+      "more": "see staff members..."
     },
     "contactus": "Contact us",
     "codeofconduct": "Code of conduct",

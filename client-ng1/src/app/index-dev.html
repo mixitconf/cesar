@@ -18,16 +18,16 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Mix-IT">
-    <link rel="icon" sizes="192x192" href="img/touch/chrome-touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="logo/touch/chrome-touch-icon-192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Mix-IT">
-    <link rel="apple-touch-icon" href="img/touch/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="logo/touch/apple-touch-icon.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="img/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileImage" content="logo/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#0277bd">
     <meta name="google-site-verification" content="qDFxcAv1zhCLUhj0mMn9Nk_tEk0DCH02Dn6QHZP9Is8">
 
@@ -57,13 +57,6 @@
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-    <div class="android-header mdl-layout__header">
-        <cesar-menu></cesar-menu>
-    </div>
-    <div class="mdl-layout__drawer mdl-layout--small-screen-only cesar-layout__drawer">
-        <cesar-drawer></cesar-drawer>
-    </div>
-
     <main class="cesar-layout__content mdl-layout__content">
         <ui-view></ui-view>
 
@@ -73,10 +66,8 @@
                     <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
                         <h3 translate="footer.whoarewe.title"></h3>
 
-                        <p translate="footer.whoarewe.content"></p>
-                        <p class="cesar-footer__hosted">Hosted on <a href="https://pivotal.io/" target="new"
-                                                                     rel="external"><img
-                                src="img/sponsors/logo-pivotal.svg"></a></p>
+                        <p><span translate="footer.whoarewe.content"></span>&nbsp;(<a ui-sref="staff" translate="footer.whoarewe.more"></a>)</p>
+
                     </div>
                     <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
                         <h3 translate="footer.contactus"></h3>
@@ -94,17 +85,18 @@
             </div>
             <div class="cesar-subfooter">
                 <div class="cesar-container cesar-footer__copyright">
-                    © 2016 Copyright Mix-IT - v {{cesar.version}}
-                    <span class="right">
-                        <a class="grey-text text-lighten-4" href="/api/article/rss/{{ctrl.currentLanguage}}"
-                           rel="alternate" title="RSS" type="application/rss+xml">
-                            <span translate="footer.rss"></span>
-                        </a>
+                    &nbsp;<a class="grey-text text-lighten-4" href="/api/article/rss/{{ctrl.currentLanguage}}"
+                       rel="alternate" title="RSS" type="application/rss+xml">
+                        <span translate="footer.rss"></span>
+                    </a>
 
-                        &nbsp;&nbsp;
-                        <a class="grey-text text-lighten-4" href="http://confcodeofconduct.com/index-fr.html" target="_blank">
-                            <span translate="footer.codeofconduct"></span>
-                        </a>
+                    &nbsp;&nbsp;
+                    <a class="grey-text text-lighten-4" href="http://confcodeofconduct.com/index-fr.html" target="_blank">
+                        <span translate="footer.codeofconduct"></span>
+                    </a>
+
+                    <span class="right visible-on-desktop">
+                        © 2016 Copyright Mix-IT - v {{cesar.version}}
                     </span>
 
                 </div>
@@ -130,20 +122,6 @@
 <!-- endbuild -->
 <!-- build:e2e -->
 <!-- endbuild -->
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-8046496-2', 'auto');
-</script>
+<script defer="true" async="true" src="js/analytics/analytics.js"></script>
 </body>
 </html>

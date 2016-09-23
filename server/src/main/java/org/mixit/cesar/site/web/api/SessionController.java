@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +18,7 @@ import org.mixit.cesar.site.repository.SessionRepository;
 import org.mixit.cesar.site.service.AbsoluteUrlFactory;
 import org.mixit.cesar.site.service.EventService;
 import org.mixit.cesar.site.service.qrcode.QrCodeGenerator;
+import org.mixit.cesar.site.model.ListView;
 import org.mixit.cesar.site.web.dto.SessionResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -123,6 +125,7 @@ public class SessionController {
 
     @RequestMapping
     @ApiOperation(value = "Finds all sessions", httpMethod = "GET")
+    @JsonView(ListView.class)
     public ResponseEntity<List<SessionResource>> getAllSessions(@RequestParam(required = false) Integer year) {
         return ResponseEntity
                 .ok(getAllSessions(sessionRepository.findAllAcceptedSessions(eventService.getEvent(year))));

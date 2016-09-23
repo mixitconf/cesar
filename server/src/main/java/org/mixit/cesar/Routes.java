@@ -42,6 +42,7 @@ public class Routes {
             "/facilities",
             "/member/{type:\\w+}/{id:\\w+}",
             "/member/{type:\\w+}",
+            "/mixit16",
             "/mixit15",
             "/mixit14",
             "/mixit13",

@@ -7,7 +7,7 @@
 
     var ctrl = this;
 
-    MemberService.getAll('sponsor', 2016)
+    MemberService.getAll('sponsor', 2017)
       .then(function (response) {
         ctrl.homesponsors = response.data;
       });

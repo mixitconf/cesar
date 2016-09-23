@@ -12,7 +12,7 @@ public class CesarSerializerConfig {
     @Bean
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
-        b.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        b.indentOutput(false).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         return b;
     }
 

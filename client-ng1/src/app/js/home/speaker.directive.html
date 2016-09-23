@@ -1,32 +1,39 @@
-<div class="cesar-section cesar-speaker">
-
-    <div class="cesar-container">
-        <h3 class="center"><span
-                translate="home.speaker.top">Cette année nous sommes très très fier d'accueillir </span><a class="link"
-                                                                                                           ui-sref="article_zoom1({id : 163})">Joel
-            Spolsky</a></h3>
-
-        <div class="center"><a ui-sref="article_zoom1({id : 163})"><img src="img/speakers/splosky.jpg"/></a>
-            <p>&nbsp;</p>
-            <p class="center cesar-text">
-                <span translate="home.speaker.title"></span>
-            </p>
-
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--2-col cesar-speaker__content mdl-card mdl-shadow--2dp"
-                     ng-repeat="speaker in speakers">
-                    <div class="mdl-card__media">
-                        <a ui-sref="member({id : speaker.id})">
-                            <img ng-if="speaker.hash" ng-src="https://www.gravatar.com/avatar/{{speaker.hash}}?s=160" style="width: 100%">
-                            <img ng-if="speaker.image" src="{{speaker.image}}" style="width: 100%">
-                        </a>
-                    </div>
-                    <div class="mdl-card__title">
-                        <p class="mdl-card__title-text cesar-text">{{speaker.name}}</p>
-                    </div>
+<div class="cesar-speaker">
+    <div class="cesar-imagebanner-filter cesar-speaker-head">
+        <div class="cesar-imagebanner__content">
+            <div class="cesar-section">
+                <h1 class="cesar-imagebanner-blink">
+                    <span class="cesar-imagebanner-blink__head">Speakers</span><br>
+                    <span class="cesar-imagebanner-blink__content"></span><span translate="home.speaker.top"></span>
+                    <a class="link" ui-sref="article_zoom1({id : 163})">Joel Spolsky</a>
+                </h1>
+                <p class="center cesar-text">
+                    <span translate="home.speaker.title"></span>
+                </p>
+                <div style="display: flex">
+                    <ul>
+                        <li>Dan North <a href="https://twitter.com/tastapod"><img src="img/social/twitter.svg"></a></li>
+                        <li>Pamela Fox <a href="https://twitter.com/pamelafox"><img src="img/social/twitter.svg"></a></li>
+                        <li>Matti Schneider <a href="https://twitter.com/matti_sg"><img src="img/social/twitter.svg"></a></li>
+                        <li>Bodil Stokke <a href="https://github.com/bodil"><img src="img/social/twitter.svg"></a></li>
+                        <li>Dan Allen <a href="https://twitter.com/mojavelinux"><img src="img/social/twitter.svg"></a></li>
+                    </ul>
+                    <ul>
+                        <li>Tim Urban <a href="https://twitter.com/waitbutwhy"><img src="img/social/twitter.svg"></a></li>
+                        <li>Katrina Owen <a href="https://twitter.com/kytrinyx"><img src="img/social/twitter.svg"></a></li>
+                        <li>Pierre Piezzardi <a href="https://twitter.com/ppezziardi"><img src="img/social/twitter.svg"></a></li>
+                        <li>Tristan Nitot <a href="https://twitter.com/nitot"><img src="img/social/twitter.svg"></a></li>
+                        <li>...</li>
+                    </ul>
                 </div>
+                <p>&nbsp;</p>
+                <p class="center cesar-text">
+                    Notre appel à conférenciers ouvrira en janvier 2017
+                </p>
             </div>
-
         </div>
+    </div>
+    <div class="cesar-speaker-content visible-on-desktop">
+        &nbsp;
     </div>
 </div>
