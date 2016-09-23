@@ -69,7 +69,7 @@ module.exports = function(gulp, config) {
       .pipe(replace('"Helvetica","Arial",sans-serif', '"Roboto","Arial"'))
       .pipe(replace('Helvetica,Arial,sans-serif', '"Roboto","Arial"'))
       .pipe(replace('"Roboto","Arial",sans-serif', '"Roboto","Arial"'))
-      .pipe(replace('63,81,181', '2,119,189'))
+      .pipe(replace('63,81,181', '46,46,46'))
       .pipe(replace('213,0,0', '255,64,129'))
       .pipe(replace('#d50000', 'rgb(255,64,129)'))
       .pipe(replace('#de3226', 'rgb(255,64,129)'))

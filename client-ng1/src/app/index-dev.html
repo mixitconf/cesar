@@ -56,31 +56,6 @@
 <![endif]-->
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <div class="android-header mdl-layout__header">
-        <div class="cesar-layout__header-row mdl-layout__header-row" ng-controller="cesarMenuTinyCtrl as ctrl">
-            <!-- Add spacer, to align navigation to the right -->
-            <nav class="mdl-navigation">
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="home">
-                    <img src="img/icon/home.svg">
-                </a>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link" ui-sref="article">
-                    <span class="link" translate="menu.news"></span>&nbsp;
-                </a>
-
-                <!-- i18n -->
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link"
-                   ng-click="ctrl.toggleLanguage()"
-                   ng-if="ctrl.currentLanguage === ctrl.languages.en">
-                    <img src="img/lang/fr.svg" class="cesar-menu__lang">
-                </a>
-                <a class="cesar-menu mdl-navigation__link cesar-navigation__link"
-                   ng-click="ctrl.toggleLanguage()"
-                   ng-if="ctrl.currentLanguage === ctrl.languages.fr">
-                    <img src="img/lang/us.svg" class="cesar-menu__lang">
-                </a>
-            </nav>
-        </div>
-    </div>
 
     <main class="cesar-layout__content mdl-layout__content">
         <ui-view></ui-view>
@@ -92,9 +67,7 @@
                         <h3 translate="footer.whoarewe.title"></h3>
 
                         <p><span translate="footer.whoarewe.content"></span>&nbsp;(<a ui-sref="staff" translate="footer.whoarewe.more"></a>)</p>
-                        <p class="cesar-footer__hosted">Hosted on <a href="https://pivotal.io/" target="new"
-                                                                     rel="external"><img
-                                src="img/sponsors/logo-pivotal.svg"></a></p>
+
                     </div>
                     <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
                         <h3 translate="footer.contactus"></h3>
