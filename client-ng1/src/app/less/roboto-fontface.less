@@ -3,9 +3,10 @@
 .roboto-font(@type, @weight, @style) {
   @font-face {
     font-family: 'Roboto';
-    src: url('@{roboto-font-path}/Roboto-@{type}.eot');
-    src: url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
+    src:  local('Roboto'),
+    url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
     url('@{roboto-font-path}/Roboto-@{type}.woff') format('woff'),
+    url('@{roboto-font-path}/Roboto-@{type}.eot'),
     url('@{roboto-font-path}/Roboto-@{type}.ttf') format('truetype'),
     url('@{roboto-font-path}/Roboto-@{type}.svg#Roboto') format('svg');
     font-weight: @weight;
@@ -14,9 +15,10 @@
 
   @font-face {
     font-family: 'Roboto-@{type}';
-    src: url('@{roboto-font-path}/Roboto-@{type}.eot');
-    src: url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
+    src: local('Roboto-@{type}'),
+    url('@{roboto-font-path}/Roboto-@{type}.woff2') format('woff2'),
     url('@{roboto-font-path}/Roboto-@{type}.woff') format('woff'),
+    url('@{roboto-font-path}/Roboto-@{type}.eot'),
     url('@{roboto-font-path}/Roboto-@{type}.ttf') format('truetype'),
     url('@{roboto-font-path}/Roboto-@{type}.svg#Roboto') format('svg');
   }
