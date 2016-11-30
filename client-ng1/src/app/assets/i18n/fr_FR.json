@@ -53,7 +53,8 @@
   },
   "home": {
     "headband": {
-      "comeback": "La conférence avec des crêpes et du c&oelig;ur"
+      "comeback": "La conférence avec des crêpes et du c&oelig;ur",
+      "date":"20-21 avril 2017"
     },
     "countdown": {
       "days" : "J-{{days}} avant Mix-IT!",
@@ -99,7 +100,8 @@
     },
     "speaker": {
       "title": "Voici un panel des speakers que nous avons pu voir lors des précédentes éditions&nbsp;:",
-      "top": "Cette année nous étions très fiers d'accueillir&nbsp;"
+      "top": "Cette année nous étions très fiers d'accueillir&nbsp;",
+      "cfp": "Notre appel à conférenciers ouvrira en janvier 2017."
     },
     "sponsor": {
       "title": "Sponsors de l'édition 2017",

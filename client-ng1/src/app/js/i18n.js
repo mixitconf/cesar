@@ -16,7 +16,15 @@
       suffix: '.json'
     });
 
-    $translateProvider.preferredLanguage(LANGUAGES.fr);
+    // The default language is the browser language
+    var language = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+    if(language.indexOf('fr')>=0){
+      $translateProvider.preferredLanguage(LANGUAGES.fr);
+    }
+    else{
+      $translateProvider.preferredLanguage(LANGUAGES.en);
+    }
+
     $translateProvider.useCookieStorage();
     $translateProvider.useSanitizeValueStrategy('sanitize');
   });
