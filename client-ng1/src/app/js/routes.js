@@ -251,13 +251,9 @@
     $stateProvider
 
     //Home and error route
-      .state('start', new State(USER_ROLES, '', 'js/home/home.html')
-        .controller('HomeCtrl')
-        .build())
+      .state('start', new State(USER_ROLES, '', 'js/home/home.html').build())
 
-      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html')
-        .controller('HomeCtrl')
-        .build())
+      .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').build())
       
       .state('conference', new State(USER_ROLES, 'conference', 'js/conference/conference.html')
         .build())
@@ -371,9 +367,7 @@
         })
         .build())
 
-      .state('facilities', new State(USER_ROLES, 'facilities', 'js/facilities/facilities.html')
-        .controller('HomeCtrl')
-        .build())
+      .state('facilities', new State(USER_ROLES, 'facilities', 'js/facilities/facilities.html').build())
 
       .state('mixteen', new State(USER_ROLES, 'mixteen', 'js/mixteen/mixteen.html')
         .controller('MixteenCtrl')

@@ -59,11 +59,20 @@
 
     <main class="cesar-layout__content mdl-layout__content">
         <div class="cesar-headband">
-            <div class="cesar-imagebanner-filter">
+            <div class="cesar-imagebanner-filter" ng-controller="cesarMenuCtrl">
                 <div class="cesar-headband-header">
                     <a ui-sref="home"><img src="img/logo-mixit-transparent.svg"></a>
                     <div style="float: right;padding: 1em">
-                        <!-- TODO add a button to change the language -->
+                        <button ng-if="currentLanguage===languages.en"
+                                class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab french-flag"
+                                ng-click="toggleLanguage()">
+                            <img src="img/lang/fr.svg" class="cesar-menu__lang">
+                        </button>
+                        <button ng-if="currentLanguage===languages.fr"
+                                class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab american-flag"
+                                ng-click="toggleLanguage()">
+                            <img src="img/lang/us.svg" class="cesar-menu__lang">
+                        </button>
                     </div>
                 </div>
             </div>

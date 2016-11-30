@@ -72,6 +72,8 @@ var paths = {
       'src/app/assets/i18n/**/*.*'
     ],
     sitemap: [
+      'src/app/assets/sitemap.xml',
+      'src/app/assets/manifest.json',
       'src/app/assets/sitemap.xml'
     ],
     favicon: [
