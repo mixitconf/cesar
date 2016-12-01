@@ -29,7 +29,8 @@
           defaultLanguage = (currentUser.defaultLanguage === 'en') ? LANGUAGES.en : LANGUAGES.fr;
         }
         else {
-          defaultLanguage = LANGUAGES.fr;
+          var language = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+          defaultLanguage = language.indexOf('fr')>=0 ? LANGUAGES.fr : LANGUAGES.en;
         }
       }
 

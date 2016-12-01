@@ -53,7 +53,8 @@
   },
   "home": {
     "headband": {
-      "comeback": "La conférence avec du coeur et des crêpes"
+      "comeback": "La conférence avec des crêpes et du c&oelig;ur",
+      "date":"April 20,21 2017"
     },
     "countdown": {
       "days" : "D-{{days}} until Mix-IT!",
@@ -99,7 +100,8 @@
     },
     "speaker": {
       "title": "There is a focus of speakers we have seen during the previous editions:",
-      "top": "We were very proud to welcome&nbsp;"
+      "top": "We were very proud to welcome&nbsp;",
+      "cfp": "Our call for paper will start in january 2017."
     },
     "sponsor": {
       "title": "Sponsors of the 2016 edition",
