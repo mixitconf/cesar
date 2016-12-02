@@ -63,7 +63,7 @@ public class ProposalVoteController {
         return proposalRepository
                 .findAllProposalsWithVotes(eventService.getEvent(year))
                 .stream()
-                .filter(p -> p.getStatus() == SUBMITTED || p.getStatus() == ACCEPTED || p.getStatus() == REJECTED)
+                .filter(p -> p.containsStatus(SUBMITTED, ACCEPTED, REJECTED))
                 .map(ProposalDTO::convert)
                 .collect(Collectors.toList());
     }
