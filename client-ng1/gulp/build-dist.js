@@ -85,18 +85,18 @@ module.exports = function(gulp, config) {
   });
   gulp.task('build:dist:css:vendors', ['build:dev:css:vendors'], function(){
     return gulp.src(paths.build.dev + '/css/vendors.css')
-      .pipe(rename('vendors-' + timestamp + '.min.css'))
+      .pipe(rename('vendors.min.css'))
       .pipe(gulp.dest(paths.build.dist + '/css'));
   });
   gulp.task('build:dist:css', ['build:dev:css'], function(){
     return gulp.src(paths.build.dev + '/css/main.css')
       .pipe(csso())
-      .pipe(rename('cesar-' + timestamp + '.min.css'))
+      .pipe(rename('cesar.min.css'))
       .pipe(gulp.dest(paths.build.dist + '/css'));
   });
   gulp.task('build:dist:js', ['build:dev:js'], function(){
     return gulp.src(paths.build.dev + '/js/app.js')
-      .pipe(rename('cesar-' + timestamp + '.min.js'))
+      .pipe(rename('cesar.min.js'))
       .pipe(uglify({output: { 'ascii_only': true }}))   // preserve ascii unicode characters such as \u226E
       .pipe(gulp.dest(paths.build.dist + '/js'));
   });
@@ -111,7 +111,7 @@ module.exports = function(gulp, config) {
     return gulp.src(paths.build.dev + '/js/vendors.js')
       .pipe(sourcemaps.init())
       .pipe(gulpIf(notMinified, uglify()))
-      .pipe(rename('vendors-' + timestamp + '.min.js'))
+      .pipe(rename('vendors.min.js'))
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.build.dist + '/js'));
   });
@@ -122,10 +122,10 @@ module.exports = function(gulp, config) {
   gulp.task('build:dist:index', function () {
     return gulp.src(paths.index)
       .pipe(htmlreplace({
-        'js': 'js/cesar-' + timestamp + '.min.js',
-        'vendors': 'js/vendors-' + timestamp + '.min.js',
-        'css': 'css/cesar-' + timestamp + '.min.css',
-        'vendorscss': 'css/vendors-' + timestamp + '.min.css',
+        'js': 'js/cesar.min.js',
+        'vendors': 'js/vendors.min.js',
+        'css': 'css/cesar.min.css',
+        'vendorscss': 'css/vendors.min.css',
       }))
       .pipe(rename('index.html'))
       .pipe(gulp.dest(paths.build.dist));

@@ -254,10 +254,10 @@
       .state('start', new State(USER_ROLES, '', 'js/home/home.html').build())
 
       .state('home', new State(USER_ROLES, 'home', 'js/home/home.html').build())
-      
+
       .state('conference', new State(USER_ROLES, 'conference', 'js/conference/conference.html')
         .build())
-      
+
       .state('valid', new State(USER_ROLES, 'valid', 'js/home/home.html')
         .controller(
           /* @ngInject */
@@ -382,7 +382,25 @@
         })
         .build())
 
+      .state('mixit16ext', new State(USER_ROLES, 'mixit16/:type', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2016})
+        .resolve({
+          sessions : getAll2016Sessions,
+          sponsors: getAll2016Sponsors
+        })
+        .build())
+
       .state('mixit15', new State(USER_ROLES, 'mixit15?search', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2015})
+        .resolve({
+          sessions : getAll2015Sessions,
+          sponsors: getAll2015Sponsors
+        })
+        .build())
+
+      .state('mixit15ext', new State(USER_ROLES, 'mixit15/:type', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2015})
         .resolve({
@@ -400,6 +418,15 @@
         })
         .build())
 
+      .state('mixit14ext', new State(USER_ROLES, 'mixit14/:type', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2014})
+        .resolve({
+          sessions : getAll2014Sessions,
+          sponsors: getAll2014Sponsors
+        })
+        .build())
+
       .state('mixit13', new State(USER_ROLES, 'mixit13?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2013})
@@ -409,12 +436,30 @@
         })
         .build())
 
+      .state('mixit13ext', new State(USER_ROLES, 'mixit13/:type', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2013})
+        .resolve({
+          sessions : getAll2014Sessions,
+          sponsors: getAll2014Sponsors
+        })
+        .build())
+
       .state('mixit12', new State(USER_ROLES, 'mixit12?search', 'js/sessions/talks.html')
         .controller('SessionsClosedCtrl')
         .data({year: 2012})
         .resolve({
           sessions : getAll2012Sessions,
           sponsors: getAll2012Sponsors
+        })
+        .build())
+
+      .state('mixit12ext', new State(USER_ROLES, 'mixit12/:type', 'js/sessions/talks.html')
+        .controller('SessionsClosedCtrl')
+        .data({year: 2012})
+        .resolve({
+          sessions : getAll2014Sessions,
+          sponsors: getAll2014Sponsors
         })
         .build())
 
@@ -543,7 +588,7 @@
         .build())
 
       .state('multimedia', new State(USER_ROLES, 'multimedia', 'js/multimedia/multimedia.html').
-        build())
+      build())
 
       .state('codeofconduct', new State(USER_ROLES, 'codeofconduct', 'js/codeofconduct/codeofconduct.html')
         .build())
@@ -584,6 +629,18 @@
 
       //Security
       .state('logout', new State(USER_ROLES, 'logout', 'js/home/home.html')
+        .build())
+
+      .state('login', new State(USER_ROLES, 'login', 'js/login/login.html')
+        .controller('LoginCtrl')
+        .build())
+
+      .state('login1', new State(USER_ROLES, 'login/:id', 'js/login/login.html')
+        .controller('LoginCtrl')
+        .build())
+
+      .state('login2', new State(USER_ROLES, 'login/with/:id', 'js/login/login.html')
+        .controller('LoginCtrl')
         .build())
 
       .state('authent', new State(USER_ROLES, 'authent?redirect', 'js/login/login.html')
