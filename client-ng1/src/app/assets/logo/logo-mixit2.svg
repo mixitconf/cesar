@@ -1,0 +1,62 @@
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="19mm" width="71mm" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 71 19">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g stroke-width="0" fill="#0288D1">
+  <ellipse rx=".41575" ry=".35989" cy=".74196" cx="23.251"/>
+  <ellipse rx=".41575" ry=".35339" cy="1.4345" cx="23.795"/>
+  <ellipse rx=".41575" ry=".35339" cy=".73287" cx="27.206"/>
+  <ellipse rx=".41575" ry=".35339" cy="1.4319" cx="27.203"/>
+  <rect height="1.4032" width="3.9678" y=".38468" x="23.209"/>
+  <rect height=".69379" width="4.7864" y=".71468" x="22.835"/>
+  <ellipse rx=".41575" ry=".35989" cy="1.4241" cx="23.251"/>
+ </g>
+ <g transform="translate(0 -31)" stroke-width="0">
+  <g fill="#0288D1">
+   <g fill-rule="evenodd">
+    <ellipse rx="2.3172" ry="1.6098" cy="47.814" cx="10.304"/>
+    <ellipse rx="2.2513" ry="1.6098" cy="47.825" cx="17.923"/>
+    <ellipse rx="2.1169" ry="1.6098" cy="47.832" cx="2.5304"/>
+    <path d="m5.037 34.198c-2.5471 0.000018-4.612 1.364-4.612 3.0466 0.002412 1.59 1.7412 1.3992 4.141 1.5221l0.11433-0.04874h3.3222v0.85549c1.042-0.578 1.6446-1.43 1.6465-2.329 0-1.683-2.0648-3.046-4.612-3.047z"/>
+    <path d="m15.567 34.195a4.6121 3.031 0 0 1 4.612 3.0309 4.6121 3.031 0 0 1 -4.2554 3.0189v-1.553h-3.3222v0.8511a4.6121 3.031 0 0 1 -1.6465 -2.3169 4.6121 3.031 0 0 1 4.612 -3.0309z"/>
+   </g>
+   <rect height="10.551" width="4.224" y="37.366" x=".42145"/>
+   <rect height="10.463" width="4.6345" y="37.418" x="7.9897"/>
+   <rect height="10.478" width="4.5053" y="37.315" x="15.671"/>
+   <ellipse rx="2.4364" ry="2.3923" cy="47.049" cx="32.474"/>
+   <ellipse rx=".13964" ry=".029398" cy="46.435" cx="33.073"/>
+   <ellipse rx="2.4217" ry="2.3629" cy="36.403" cx="32.485"/>
+   <ellipse rx="2.3451" ry="2.3629" cy="47.06" cx="25.356"/>
+   <ellipse rx="2.3477" ry="2.3629" cy="36.462" cx="25.362"/>
+   <rect height="10.499" width="4.6881" y="36.586" x="23.015"/>
+  </g>
+  <g fill="#B0BEC5">
+   <rect height="1.0657" width="11.87" y="34.515" x="58.855"/>
+   <rect height="2.734" width="1.1318" y="35.448" x="58.855"/>
+   <rect height="2.6532" width="1.1024" y="35.507" x="69.6"/>
+   <rect height="12.998" width="1.1171" y="35.502" x="64.213"/>
+   <rect height="1.1392" width="5.6518" y="48.317" x="61.964"/>
+   <rect height="1.1392" width="5.6518" y="48.299" x="50.943"/>
+  </g>
+  <rect height="12.988" width="1.1171" y="35.446" x="53.181" fill="#B0BEC5"/>
+  <rect height="1.1392" width="5.6518" y="34.496" x="50.951" fill="#B0BEC5"/>
+  <rect height=".85255" width="3.3881" y="41.265" x="46.151" fill="#B0BEC5"/>
+  <path d="m30.773 38.067 3.5611 3.4769 3.3181-3.2001-3.4102-3.5645z" fill-rule="evenodd" fill="#0288D1"/>
+  <ellipse rx="2.4217" ry="2.3629" cy="36.389" cx="42.899" fill="#B0BEC5"/>
+  <ellipse rx="2.4217" ry="2.3629" cy="47.068" cx="42.936" fill="#B0BEC5"/>
+  <g fill-rule="evenodd">
+   <path d="m34.319 41.539 3.3315-3.2005 3.3279 3.3487-3.2789 3.2487z" fill="#005676"/>
+   <path d="m30.795 45.326 3.5342-3.7798 3.3786 3.3976-3.2601 3.5204z" fill="#0288D1"/>
+   <path d="m41.106 48.618-3.3998-3.6873 3.2757-3.2463 3.8135 3.8469-3.6601 3.1015z" fill="#B0BEC5"/>
+   <path d="m41.187 34.728-3.5688 3.6264 3.36 3.3401 3.8983-3.9164z" fill="#B0BEC5"/>
+  </g>
+  <rect height="3.7158" width="10.903" y="34.196" x="4.8799" fill="#0288D1"/>
+ </g>
+</svg>

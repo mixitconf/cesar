@@ -1,6 +1,8 @@
 package org.mixit.cesar.site.web;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -23,6 +25,35 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class BotFilter implements Filter {
 
+    private static List<String> pageReadByBots = Arrays.asList(
+            "/about",
+            "/account",
+            "/article",
+            "/authent",
+            "/codeofconduct",
+            "/compte",
+            "/conduite",
+            "/interest",
+            "/faq",
+            "/favoris",
+            "/lightning",
+            "/login",
+            "/logout",
+            "/facilities",
+            "/member",
+            "/mixit",
+            "/multimedia",
+            "/news",
+            "/planning",
+            "/timeline",
+            "/profile",
+            "/session",
+            "/speakers",
+            "/sponsor",
+            "/staff",
+            "/talks",
+            "/venir");
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -33,7 +64,7 @@ public class BotFilter implements Filter {
         if(request instanceof HttpServletRequest){
             HttpServletRequest req = (HttpServletRequest) request;
             if (mustFowardToBotUrl(req)) {
-                request.getRequestDispatcher("/bot" + req.getRequestURI()).forward(request, response);
+                request.getRequestDispatcher("/bot" + transformUri(req)).forward(request, response);
             }
             else{
                 filterChain.doFilter(request, response);
@@ -50,8 +81,19 @@ public class BotFilter implements Filter {
                 && hasShareableUri(request);
     }
 
+    private String transformUri(HttpServletRequest request) {
+        if(request.getRequestURI().startsWith("/home") || request.getRequestURI().equals("/") || request.getRequestURI().startsWith("/index.html")){
+            return "/";
+        }
+        return "/forward" + request.getRequestURI();
+    }
+
+
     private boolean hasShareableUri(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/home") || request.getRequestURI().equals("/") || request.getRequestURI().startsWith("/index.html");
+        return request.getRequestURI().startsWith("/home")
+                || request.getRequestURI().equals("/")
+                || request.getRequestURI().startsWith("/index.html")
+                || pageReadByBots.stream().anyMatch(url -> request.getRequestURI().startsWith(url));
     }
 
     private boolean hasBotUserAgent(HttpServletRequest request) {
