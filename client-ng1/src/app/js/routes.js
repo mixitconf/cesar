@@ -605,6 +605,10 @@
         .resolve({account: getAccount})
         .build())
 
+      .state('cfp2017', new State(USER_ROLES, 'cfp2017', 'js/cfp2017/cfp2017.html')
+        .controller('CfpCtrl2017')
+        .build())
+
       .state('cfptalk', new State(USER_ROLES, 'cfptalk/:id', 'js/cfp/talk/cfptalk.html')
         .controller('CfpTalkCtrl')
         .resolve({account: getAccount})
