@@ -27,6 +27,7 @@ public class Routes {
             "/cerror",
             "/cerror/{id:\\w+}",
             "/cfp",
+            "/cfp2017",
             "/cfptalk/{type:\\w+}",
             "/codeofconduct",
             "/compte",

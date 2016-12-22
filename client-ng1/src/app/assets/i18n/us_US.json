@@ -566,6 +566,13 @@
           }
         }
       }
+    },
+    "cfp2017" : {
+      "home" : {
+        "title" : "Call for paper 2017",
+        "p1" : "The seventh Mix-IT edition will be held in Lyon, France on April 20 & 21 2017. Submitions will be accepted until February 15 2017.",
+        "submit": "Submit"
+      }
     }
   },
   "error": {

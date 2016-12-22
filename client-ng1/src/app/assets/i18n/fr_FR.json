@@ -562,6 +562,13 @@
           }
         }
       }
+    },
+    "cfp2017": {
+      "home": {
+        "title": "Call for paper 2017",
+        "p1": "La septième édition de Mix-IT se tiendra à Lyon, les 20 et 21 avril 2017. Les soumissions de sessions seront acceptées jusqu'au 15 février 2017.",
+        "submit": "Soumettre"
+      }
     }
   },
   "error": {
