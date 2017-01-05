@@ -32,7 +32,7 @@ describe('Directive cesarSocialLink', function () {
   });
 
   it('should display a twitter image for twitter link', function () {
-    $scope.link = 'https://twitter.com/mixit_lyon';
+    $scope.link = 'https://twitter.com/mixit_conf';
     element = $compile('<cesar-social-link url="link"></cesar-social-link>')($scope);
     $scope.$digest();
     expect(element.find('img').attr('src')).toBe('img/social/twitter_primary.svg');
